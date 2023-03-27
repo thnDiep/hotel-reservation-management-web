@@ -1,0 +1,69 @@
+
+.profileMenu{
+    margin-bottom: 20px;
+    .buttonMenu{
+        border: none;
+        // border-bottom: 1px solid black;
+        background-color: white;
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 158px;
+        padding: 0 10px 0 0;
+        &:hover{
+            cursor: pointer;
+        }
+        &:active{
+    
+        }
+    }
+}
+
+
+
+
+.wrap{
+    border: 1px solid black;
+    width: 1200px;
+    height: 440px;
+    display: flex;
+    margin-left: 158px;
+    .information{
+        width: 440px;
+        margin-top: 10px;
+        .label{
+            color: #727f95;
+        }
+        .fieldInput{
+            color: black;
+            width: 440px;
+            border: none;
+            &:focus{
+                outline: 0;
+            }
+            }
+        }
+    }
+.profileAvt{
+    margin: 10px 80px 0 230px;
+    width: 130px;
+    border-radius: 100%;
+}
+input{
+    font-size: 16px;
+}
+.buttonSave{
+    width: 440px;
+    background-color: #e93062;
+    height: 45px;
+    border-color: #e93062;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
