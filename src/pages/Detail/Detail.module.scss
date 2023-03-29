@@ -162,7 +162,8 @@ td {
     }
 }
 .box-title {
-    h2 {
+    h2,
+    h3 {
         font-size: 20px;
         color: #15284a;
         font-family: 'os_semi_bold';
@@ -182,12 +183,40 @@ td {
 }
 .btn {
     &-readmore {
-        font-size: 20px;
-        color: #085ae8;
+        font-size: 17px;
+        color: #ff3366;
         font-family: 'os_semi_bold';
         background: transparent;
         outline: 0;
         border: 0px;
         border-color: transparent;
+    }
+}
+.box-map {
+    background: #fff;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto 300px;
+    border-radius: 5px;
+    margin-top: -130px;
+    img {
+        width: 295px;
+        height: 405px;
+    }
+}
+.content-item {
+    width: 100%;
+    font-size: 13px;
+    color: #333333;
+    ul {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        li {
+            margin-bottom: 20px;
+            padding-right: 15px;
+        }
     }
 }

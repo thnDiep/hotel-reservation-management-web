@@ -142,6 +142,43 @@ const Detail = () => {
                     </div>
                 </div>
             </div>
+            <div className={classes.container}>
+                <div className="row">
+                    <div className="col-lg-12 col-md-12">
+                        <div className={classes['box-map']}>
+                            <div className={classes['box-content']}>
+                                <div className={classes['box-title']}>
+                                    <h3>Khám phá địa điểm lân cận</h3>
+                                </div>
+                                <div className={classes['content-item']}>
+                                    <ul>
+                                        <li>Công viên nước Vũng Tàu </li>
+                                        <li>Cổng Hoa Giấy Checkin Vũng Tàu </li>
+                                        <li>Căn Nhà Hoang Bãi Sau </li>
+                                        <li>Sat </li>
+                                        <li>Monument for War Heroes </li>
+                                        <li>DU LỊCH BẢO HÂN VŨNG TÀU </li>
+                                        <li>Nhà SEO FI / Selfie House </li>
+                                        <li>Chùa Phước Hải Tự </li>
+                                        <li>Linh Sơn Cổ Tự </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className={classes['box-map']}>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=10.3524333,107.1015845"
+                                    title=""
+                                >
+                                    <img
+                                        src="https://data.vietnambooking.com/business/hotel/svg/common/icon_map.svg"
+                                        alt="map google"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </React.Fragment>
     )
 }
