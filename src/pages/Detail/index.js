@@ -98,41 +98,40 @@ const Detail = () => {
                                 </div>
                                 <div className="box-fac">
                                     <div className={`row ${classes['content-fac']} ${classes['content-fac-first']} `}>
-                                        <div className="col-3">
+                                        <div className="col-3 mb-5">
                                             <FontAwesomeIcon icon={faSwimmer} className={classes['icon-fac']} />
                                             <span> Hồ bơi ngoài trời (quanh năm)</span>
                                         </div>
-                                        <div className="col-3">
+                                        <div className="col-3 mb-5">
                                             <FontAwesomeIcon icon={faPersonRunning} className={classes['icon-fac']} />
                                             <span> Trung tâm thể dục</span>
                                         </div>
-                                        <div className="col-3">
+                                        <div className="col-3 mb-5">
                                             <FontAwesomeIcon icon={faHotTubPerson} className={classes['icon-fac']} />
                                             <span> Khu vực thư giãn/spa lounge</span>
                                         </div>
-                                        <div className="col-3">
+                                        <div className="col-3 mb-5">
                                             <FontAwesomeIcon icon={faUtensils} className={classes['icon-fac']} />
                                             <span> Nhà hàng</span>
                                         </div>
-                                    </div>
-                                    <div className={`row ${classes['content-fac']} ${classes['content-fac-first']} `}>
-                                        <div className="col-3">
+                                        <div className="col-3 mb-5">
                                             <FontAwesomeIcon icon={faCocktail} className={classes['icon-fac']} />
                                             <span> Quầy bar</span>
                                         </div>
-                                        <div className="col-3">
+                                        <div className="col-3 mb-5">
                                             <FontAwesomeIcon icon={faWifi} className={classes['icon-fac']} />
                                             <span> Wifi</span>
                                         </div>
-                                        <div className="col-3">
+                                        <div className="col-3 mb-5">
                                             <FontAwesomeIcon icon={faWind} className={classes['icon-fac']} />
                                             <span> Máy lạnh</span>
                                         </div>
-                                        <div className="col-3">
+                                        <div className="col-3 mb-5">
                                             <FontAwesomeIcon icon={faSmokingBan} className={classes['icon-fac']} />
                                             <span> Phòng không hút thuốc</span>
                                         </div>
                                     </div>
+
                                     <div className={classes['box-readmore']}>
                                         <button className={classes['btn-readmore']}>Xem thêm tiện ích</button>
                                     </div>
@@ -164,7 +163,7 @@ const Detail = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div className={classes['box-map']}>
+                            <div className={classes['box-content']}>
                                 <a
                                     href="https://www.google.com/maps/search/?api=1&query=10.3524333,107.1015845"
                                     title=""
