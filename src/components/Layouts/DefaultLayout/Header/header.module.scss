@@ -1,5 +1,5 @@
 .header {
-  height: 96px;
+  height: var(--height-header);
   position: fixed;
   top: 0;
   color: #1a202c;
@@ -55,7 +55,8 @@
     cursor: pointer;
     text-decoration: none;
   }
-  &__choose{
+
+  &__choose {
     color: #1a202c;
     height: 40px;
     margin: 0 -60px;
@@ -65,4 +66,8 @@
   }
 
 
+}
+
+a {
+  text-decoration: none;
 }

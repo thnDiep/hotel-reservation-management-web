@@ -1,6 +1,7 @@
 import classes from "./header.module.scss"
 import TitleButton from "~/components/Button/TitleButton"
 import ButtonPrimary from "~/components/Button/ButtonPrimary"
+import SideBar from "../SideBar/SideBar"
 function Header() {
     return <div className={classes.header} >
         <div className={classes.header__nav}>
@@ -78,11 +79,7 @@ function Header() {
                 </div>
                 <ButtonPrimary className="signIn">Sign in</ButtonPrimary>
                 <ButtonPrimary className="signUp">Sign up</ButtonPrimary>
-                <svg width="24" height="24" fill="none"
-                    style={{ stroke: 'rgb(26, 32, 44)', cursor: 'pointer', marginLeft: '16px' }}>
-                    <path d="M4 6h16M4 12h16M4 18h16" stroke="#1A202C" strokeWidth="1.5" strokeLinecap="round"
-                        strokeLinejoin="round"></path>
-                </svg>
+                <SideBar />
             </div>
 
         </div>
