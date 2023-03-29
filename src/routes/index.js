@@ -1,5 +1,5 @@
 import Home from '~/pages/Home'
-import Detail from '~/pages/Detail/DetailHotel'
+import Detail from '~/pages/Detail'
 import ListByPlace from '~/pages/ListByPlace'
 import Checkout from '~/pages/Checkout'
 import Profile from '~/pages/Profile'

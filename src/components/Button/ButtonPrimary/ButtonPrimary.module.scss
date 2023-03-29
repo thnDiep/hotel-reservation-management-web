@@ -5,7 +5,7 @@
     line-height: 17px;
     border-radius: 8px;
     color: #fff;
-    background-color: #FF3366;
+    background-color: #ff3366;
     border: 1px solid rgba(255, 51, 102, 0.5);
 
     &:hover {
@@ -26,10 +26,22 @@
     height: 36px;
     background: #ffffff;
     margin-left: 12px;
-    color: #FF3366;
+    color: #ff3366;
 
     &:hover {
-        border: 1px solid #FF3366;
+        border: 1px solid #ff3366;
         background-color: rgba(255, 51, 102, 0.04);
     }
+}
+
+.btnChoose {
+    border: 0px;
+    outline: 0;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: 'os_bold';
+    line-height: 50px;
+    font-size: large;
+    width: 100%;
+    color: #fff;
 }
