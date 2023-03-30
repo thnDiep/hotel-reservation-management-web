@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Phú Quốc",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/phu-quoc.png"
+    },
+    {
+        "name": "Nha Trang",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/nha-trang.png"
+    },
+    {
+        "name": "Bà Rịa - Vũng Tàu",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/vung-tau.png"
+    },
+    {
+        "name": "Đà Lạt",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/da-lat.png"
+    },
+    {
+        "name": "Đà Nẵng",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/danang.png"
+    },
+    {
+        "name": "Sa Pa",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/sa-pa.png"
+    },
+    {
+        "name": "Phan Thiết",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/phan-thiet.png"
+    },
+    {
+        "name": "Hạ Long",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/ha-long.png"
+    },
+    {
+        "name": "Hồ Chí Minh",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/hochiminh.png"
+    },
+    {
+        "name": "Hội An",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/hoi-an.png"
+    },
+    {
+        "name": "Hà Nội",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/hanoi.png"
+    },
+    {
+        "name": "Hải Phòng",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/hai-phong.png"
+    },
+    {
+        "name": "Singapore",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/singapore.png"
+    },
+    {
+        "name": "Bangkok, Thailand",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/bangkok.png"
+    },
+    {
+        "name": "Phuket, Thailand",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/phuket.png"
+    },
+    {
+        "name": "Kuala Lumpur, Malaysia",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/malaysia.png"
+    },
+    {
+        "name": "Seoul, South Korea",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/seoul.png"
+    },
+    {
+        "name": "Tokyo",
+        "image": "https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/tripi-assets/mytour/images/locations/tokyo.png"
+    }
+]
