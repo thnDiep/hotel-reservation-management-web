@@ -1,0 +1,73 @@
+.header {
+  height: var(--height-header);
+  position: fixed;
+  top: 0;
+  color: #1a202c;
+  width: 100%;
+  padding: 0px 60px;
+  z-index: 1002;
+  font-size: 14px;
+  background: #fff;
+  transition: all 0.3s;
+  line-height: 17px;
+  border-bottom: 1px solid #EDF2F7;
+
+  &__nav {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .img {
+      width: 120px;
+      height: 32px;
+    }
+
+    .nav__title {
+      display: flex;
+      align-items: center;
+    }
+
+    .vietnam {
+      width: 20px;
+      height: 20px;
+      margin-right: 4px;
+    }
+
+    .annouce {
+      cursor: pointer;
+      display: flex;
+      position: relative;
+      align-items: center;
+      margin-right: 16px;
+      // vertical-align: middle;
+      padding: 8px;
+      position: relative;
+      transition: all 0.3s;
+      border-radius: 100px;
+      background-color: #EDF2F7;
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  &__choose {
+    color: #1a202c;
+    height: 40px;
+    margin: 0 -60px;
+    display: flex;
+    padding: 0 60px;
+    align-items: center;
+  }
+
+
+}
+
+a {
+  text-decoration: none;
+}

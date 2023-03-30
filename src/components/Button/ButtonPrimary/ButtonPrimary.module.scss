@@ -1,0 +1,47 @@
+.btn {
+    font-size: 14px;
+    box-shadow: none;
+    font-weight: 600;
+    line-height: 17px;
+    border-radius: 8px;
+    color: #fff;
+    background-color: #ff3366;
+    border: 1px solid rgba(255, 51, 102, 0.5);
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(178, 35, 71);
+        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+            0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    }
+}
+
+.signIn {
+    width: 104px;
+    height: 36px;
+}
+
+.signUp {
+    width: 104px;
+    height: 36px;
+    background: #ffffff;
+    margin-left: 12px;
+    color: #ff3366;
+
+    &:hover {
+        border: 1px solid #ff3366;
+        background-color: rgba(255, 51, 102, 0.04);
+    }
+}
+
+.btnChoose {
+    border: 0px;
+    outline: 0;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: 'os_bold';
+    line-height: 50px;
+    font-size: large;
+    width: 100%;
+    color: #fff;
+}
