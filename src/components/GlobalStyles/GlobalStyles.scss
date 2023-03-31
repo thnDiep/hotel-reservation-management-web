@@ -2,7 +2,9 @@
 
 :root {
     --primary-color: #ff3366;
-    // --second-color: #003c71;
+    --second-color: #ff33661a;
+    --border-color: #e2e8f0;
+    --text-color: #1a202c;
 
     --default-width: 1200px;
     --height-header: 96px;
@@ -22,6 +24,55 @@ body {
     line-height: 1.5;
 }
 
-.dFlex {
+.d-flex {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+// Srollbar
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0;
+    border-radius: 50px;
+}
+
+// For react-range-date
+.rdrDefinedRangesWrapper {
+    display: none;
+}
+
+.rdrCalendarWrapper {
+    font-size: 1.53rem;
+
+    .rdrDayToday .rdrDayNumber span:after {
+        background-color: var(--primary-color);
+    }
+
+    .rdrNextPrevButton,
+    .rdrPprevButton {
+        background-color: #f8f8f8;
+    }
+
+    .rdrMonthAndYearWrapper {
+        border: 1px solid var(--border-color);
+        border-bottom: 0;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .rdrMonths {
+        border: 1px solid var(--border-color);
+        border-top: 0;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
 }
