@@ -1,0 +1,47 @@
+
+.wrapOfEmptyPage{
+    text-align: center;
+    .componentOfEmptyPage{
+        margin: 0 auto;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .imageForEmptyInfo{
+        width: 249px;
+        height: 210px;
+        margin: 0 auto;
+    }
+    .buttonSearchInWishList{
+        width: 145px;
+        font-weight: 600;
+        margin: 0 auto;
+        background-color: #00b6f3;
+        border-color: #00b6f3;
+    }
+
+}
+
+.buttonSave{
+    width: 440px;
+    background-color: rgb(255, 51, 102);
+    height: 45px;
+    margin-bottom: 30px;
+    border-color: rgb(255, 51, 102);
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    box-shadow: none;
+    font-weight: bolder;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
+.codeOrderFrame{
+    display: flex;
+    .codeOrder{
+        color: rgb(46, 186, 232);
+    }
+}
