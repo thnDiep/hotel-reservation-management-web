@@ -1,0 +1,135 @@
+.container {
+    width: 100%;
+    color: var(--text-color);
+    border: 1px solid #edf2f7;
+    cursor: pointer;
+    height: 100%;
+    font-size: 1.4rem;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.4s;
+    line-height: 1.7rem;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.image {
+    width: 100%;
+    height: 155px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    border-radius: 8px 8px 0px 0px;
+    position: relative;
+}
+
+.info {
+    width: 100%;
+    height: calc(100% - 155px);
+    display: flex;
+    padding: 12px;
+    min-height: 180px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.name {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.rate {
+    color: rgb(255, 188, 57);
+    font-size: 1.2rem;
+
+    .icon {
+        padding-right: 2px;
+    }
+}
+
+.type {
+    padding: 2px 4px;
+    margin-left: 6px;
+    font-size: 12px;
+    line-height: 14px;
+    white-space: nowrap;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+}
+
+.place {
+    margin-left: 6px;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.point {
+    color: var(--primary-color);
+    padding: 2px 4px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 14px;
+    background: rgba(255, 51, 102, 0.1);
+    border-radius: 4px;
+    span {
+        margin-left: 4px;
+    }
+}
+
+.evaluate {
+    margin-left: 4px;
+}
+
+.oldPrice {
+    color: #718096;
+    text-decoration-line: line-through;
+}
+
+.curPrice {
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 2.1rem;
+}
+
+.voucher {
+    width: 100%;
+    padding: 6px 8px;
+    margin-top: 4px;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    border: 1px dashed #cbd5e0;
+    border-radius: 8px;
+}
+
+.voucherCode {
+    color: #00b6f3;
+    margin: 0 2px;
+    overflow: hidden;
+    max-width: 85px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.voucherPercent {
+    padding: 2px;
+    color: #ffffff;
+    background-color: #00b6f3;
+    border-radius: 4px;
+}
+
+.voucherPrice {
+    color: #ff3366;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+}

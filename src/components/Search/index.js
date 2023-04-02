@@ -93,7 +93,12 @@ function Search() {
                 )}
             </div>
 
-            <SearchButton onSubmit={() => dispatch(submitSearch(place))} />
+            <SearchButton
+                onSubmit={() => {
+                    dispatch(changeShow(null))
+                    dispatch(submitSearch(place))
+                }}
+            />
         </div>
     )
 }

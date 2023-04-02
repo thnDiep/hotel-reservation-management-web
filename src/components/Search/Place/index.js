@@ -1,5 +1,5 @@
 import styles from './Place.module.scss'
-import notablePlaces from './notable.json'
+import notablePlaces from '~/assets/jsons/notable.json'
 
 function Place({ placeHistory, onClearHistory }) {
     return (

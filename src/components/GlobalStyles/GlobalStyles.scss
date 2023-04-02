@@ -26,8 +26,24 @@ body {
 
 .d-flex {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+}
+
+.d-flex-js {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.d-flex-column-r {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.flex-1 {
+    flex: 1;
 }
 
 // Srollbar
