@@ -6,7 +6,7 @@ import Reserve from './reservePage/reserve.js'
 import Wishlist from './wishlistPage/wishlist.js'
 
 function Profile() {
-    const [showModule, setShowModule] = useState('')
+    const [showModule, setShowModule] = useState(1)
 
     return (
         <div className={styles.wrap}>

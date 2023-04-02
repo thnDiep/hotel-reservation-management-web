@@ -1,0 +1,44 @@
+.selectList {
+    list-style-type: none;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 10px);
+    width: 100%;
+    background-color: #fff;
+    line-height: 17px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+    // transition: all ease 0.3s;
+}
+
+.selectItem {
+    padding: 10px 0;
+
+    .title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .number {
+        padding: 0 12px;
+    }
+
+    button {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        border-radius: 50px;
+        color: var(--primary-color);
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        cursor: pointer;
+
+        &:disabled {
+            color: var(--text-color);
+            cursor: default;
+        }
+    }
+}
