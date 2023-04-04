@@ -218,104 +218,102 @@
 
 
 
+    .slick-prev {
+        background: white !important;
+        height: 36px !important;
+        width: 36px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 2 !important;
+        border-radius: 100px !important;
+        cursor: pointer !important;
+        position: absolute !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        border: 1px solid rgb(237, 242, 247) !important;
+        left: 26px !important;
+    }
 
-}
+    .slick-next {
+        background: white !important;
+        height: 36px !important;
+        width: 36px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 2 !important;
+        border-radius: 100px !important;
+        cursor: pointer !important;
+        position: absolute !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        border: 1px solid rgb(237, 242, 247) !important;
+        right: -10px !important;
+    }
 
+    .slick-track {
+        height: 100%;
+    }
 
-.slick-prev {
-    background: white !important;
-    height: 36px !important;
-    width: 36px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    z-index: 2 !important;
-    border-radius: 100px !important;
-    cursor: pointer !important;
-    position: absolute !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    border: 1px solid rgb(237, 242, 247) !important;
-    left: 26px !important;
-}
+    .slick-list {
 
-.slick-next {
-    background: white !important;
-    height: 36px !important;
-    width: 36px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    z-index: 2 !important;
-    border-radius: 100px !important;
-    cursor: pointer !important;
-    position: absolute !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    border: 1px solid rgb(237, 242, 247) !important;
-    right: -10px !important;
-}
+        height: 100%;
+    }
 
-.slick-track {
-    height: 100%;
-}
-
-.slick-list {
-
-    height: 100%;
-}
-
-.slick-slider {
+    .slick-slider {
 
 
-    position: relative;
-    width: 286px;
-    height: 214px;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
+        position: relative;
+        width: 286px;
+        height: 214px;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
 
-    .slick-slide {
-        &>div {
-            height: 100% !important;
+        .slick-slide {
+            &>div {
+                height: 100% !important;
+            }
         }
     }
-}
 
-.slick-dots {
+    .slick-dots {
 
-    bottom: 23px !important;
-    height: 2px;
-    margin: 0px;
+        bottom: 23px !important;
+        height: 2px;
+        margin: 0px;
 
-    li {
-        button:before {
-            width: 6px !important;
-            height: 6px !important;
-            transition: all 0.2s !important;
-            border-radius: 100px !important;
+        li {
+            button:before {
+                width: 6px !important;
+                height: 6px !important;
+                transition: all 0.2s !important;
+                border-radius: 100px !important;
+                // background-color: rgba(255, 255, 255, 0.5) !important;
+                color: #ffffff !important;
+            }
+
             // background-color: rgba(255, 255, 255, 0.5) !important;
-            color: #ffffff !important;
+            // color: rgba(255, 255, 255, 0.5) !important;
+            // width: 6px !important;
+            // height: 6px !important;
+            // margin: 0 3px !important;
+            // border-radius: 100px !important;
         }
-
-        // background-color: rgba(255, 255, 255, 0.5) !important;
-        // color: rgba(255, 255, 255, 0.5) !important;
-        // width: 6px !important;
-        // height: 6px !important;
-        // margin: 0 3px !important;
-        // border-radius: 100px !important;
     }
-}
 
-.slick-dots li.slick-active button:before {
-    opacity: .75;
-    color: #fff;
-}
+    .slick-dots li.slick-active button:before {
+        opacity: .75;
+        color: #fff;
+    }
 
-.slick-next:before,
-.slick-prev:before {
-    content: '>' !important;
-    color: black !important;
+    .slick-next:before,
+    .slick-prev:before {
+        content: '>' !important;
+        color: black !important;
+    }
+
 }
