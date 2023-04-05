@@ -65,9 +65,24 @@
     border-radius: 8px;
     text-transform: none;
     background-color: inherit;
+
     &:hover {
         cursor: pointer;
         background-color: inherit;
         box-shadow: none;
     }
+}
+
+.btn__order {
+    // background: #f98713;
+    border: 0px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'os_bold';
+    text-transform: uppercase;
+    width: 140px;
+    border-radius: 5px;
+    margin-top: 40px;
+    float: right;
 }
