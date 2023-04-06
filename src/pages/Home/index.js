@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import Slider from 'react-slick'
 
 import styles from './Home.module.scss'
 import Search from '~/components/Search'
@@ -16,6 +17,14 @@ function Home() {
 
     function handleChooseShockPricePlace(index) {
         setIndexShockPrice(index)
+    }
+
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
     }
 
     useEffect(() => {
@@ -39,6 +48,83 @@ function Home() {
                 <p>Đăng nhập để nhận thêm ưu đãi 15% khi đặt phòng khách sạn, vé máy bay</p>
 
                 <ButtonPrimary className="btnIntroduction">Đăng nhập/Đăng ký</ButtonPrimary>
+            </div>
+
+            <div className={styles.flashSale}>
+                <div className={styles.content}>
+                    <div className={styles.header}>
+                        <div>
+                            <h1 className={clsx(styles.title, 'd-none')}>Flash Sale</h1>
+                            <img
+                                className={styles.imgTitle}
+                                src="https://storage.googleapis.com/tripi-assets/mytour/icons/icon_flashSale_home_white_new.png"
+                            />
+                            <div className="d-flex-js">
+                                <h6 className={styles.subTitle}>Chương trình sẽ kết thúc trong</h6>
+                                <div className={styles.countDown}>
+                                    <div className={styles.timer}>00</div>
+                                    <span>:</span>
+                                    <div className={styles.timer}>00</div>
+                                    <span>:</span>
+                                    <div className={styles.timer}>00</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="d-flex">
+                            <div className={clsx(styles.period, { [styles.active]: true })}>
+                                <h3>9:00-12:00</h3>
+                                <p>
+                                    ĐANG DIỄN RA
+                                    <img src="https://storage.googleapis.com/tripi-assets/mytour/icons/icon_fire.png" />
+                                </p>
+                            </div>
+                            <div className={clsx(styles.period, { [styles.active]: false })}>
+                                <h3>14:00-16:00</h3>
+                                <p>Sắp diễn ra</p>
+                            </div>
+                            <div className={clsx(styles.period, { [styles.active]: false })}>
+                                <h3>19:00-23:00</h3>
+                                <p>Sắp diễn ra</p>
+                            </div>
+                            <div className={clsx(styles.period, { [styles.active]: false })}>
+                                <h3>09:00-12:00</h3>
+                                <p>05/04</p>
+                            </div>
+                            <div className={clsx(styles.period, { [styles.active]: false })}>
+                                <h3>14:00-16:00</h3>
+                                <p>05/04</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.containerSlider}>
+                        {/* <Slider {...settings} style={{ position: 'relative' }}>
+                            <div>
+                                <h3>1</h3>
+                            </div>
+                            <div>
+                                <h3>2</h3>
+                            </div>
+                            <div>
+                                <h3>3</h3>
+                            </div>
+                            <div>
+                                <h3>4</h3>
+                            </div>
+                            <div>
+                                <h3>5</h3>
+                            </div>
+                            <div>
+                                <h3>6</h3>
+                            </div>
+                        </Slider> */}
+                    </div>
+
+                    <div className={styles.footer}>
+                        <ButtonPrimary className="btnSeeMore-m">Xem thêm</ButtonPrimary>
+                    </div>
+                </div>
             </div>
 
             <div className={styles.shockPrice}>
@@ -65,12 +151,33 @@ function Home() {
                     </div>
 
                     <div className={styles.hotels}>
-                        {notableDes.slice(0, 8).map((des, index) => (
+                        {notableDes.slice(0, 4).map((des, index) => (
                             <CardHotel
+                                key={index}
+                                image={des.image}
+                                name="Sailing Club Signature Resort Phú Quốc"
+                                percentDiscount={14}
+                                promotion="Ưu đãi chớp nhoáng"
+                                rate={3}
+                                liked={true}
+                                type="Khu nghỉ dưỡng"
+                                numberFeedback={123}
+                                place={notableDes[indexShockPrice].name}
+                                point={8.5}
+                                oldPrice="6.677.411"
+                                curPrice="5.763.274"
+                                voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                memberDiscount={19}
+                            />
+                        ))}
+                        {notableDes.slice(0, 4).map((des, index) => (
+                            <CardHotel
+                                key={index}
                                 image={des.image}
                                 name="Khách sạn Quốc Vinh"
                                 rate={3}
                                 type="Khu nghỉ dưỡng"
+                                numberFeedback={123}
                                 place={notableDes[indexShockPrice].name}
                                 point={8.5}
                                 oldPrice="6.677.411"
@@ -80,8 +187,41 @@ function Home() {
                         ))}
                     </div>
 
-                    <div className={styles.seeAll}>
-                        <ButtonPrimary className="btnSeeAll">Xem tất cả</ButtonPrimary>
+                    <div className={styles.footer}>
+                        <ButtonPrimary className="btnSeeMore-l">Xem tất cả</ButtonPrimary>
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.mall}>
+                <div className={styles.content}>
+                    <div className={styles.header}>
+                        <div>
+                            <h1 className={clsx(styles.title, 'd-none')}>Trademark</h1>
+                            <img
+                                className={styles.imgTitle}
+                                src="https://storage.googleapis.com/tripi-assets/mytour/icons/icon_mytour_mall_red.svg"
+                            />
+
+                            <h6 className={styles.subTitle}>Các thương hiệu khách sạn đối tác hàng đầu</h6>
+                        </div>
+
+                        <ButtonPrimary className="btnSeeMore-s">Khám phá ngay</ButtonPrimary>
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.vinpearl}>
+                <div className={styles.content}>
+                    <div className={styles.header}>
+                        <div>
+                            <h1 className={styles.title}>Vinpearl - Đối tác chiến lược giá độc quyền</h1>
+                            <h6 className={styles.subTitle}>
+                                Các khách sạn HOT nhất của chuỗi Vinpearl đang có nhiều ưu đãi dành cho khách hàng
+                            </h6>
+                        </div>
+
+                        <ButtonPrimary className="btnSeeMore-s">Xem thêm</ButtonPrimary>
                     </div>
                 </div>
             </div>

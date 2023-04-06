@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './account.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
@@ -40,7 +40,7 @@ function Account() {
     }, [name.value])
 
     useEffect(() => {
-        console.log(email.error)
+        // console.log(email.error)
         const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
         if (email.value.length === 0) {
             setEmail({ ...email, error: 'Bạn chưa nhập email' })
@@ -226,7 +226,7 @@ function Account() {
                 </button>
 
                 {/* Modal */}
-                <div id="myModal" class="modal">
+                <div id="myModal" className={styles.modal}>
                     {/* <!-- Modal content --> */}
                     <div className={styles.modalContent}>
                         <span className={styles.close} onClick={closeModal}>
