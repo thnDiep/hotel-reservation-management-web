@@ -38,7 +38,9 @@ import {
     faWineGlass,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faBuilding, faSnowflake, faSun } from '@fortawesome/free-regular-svg-icons'
+import ButtonPrimary from '~/components/Button/ButtonPrimary'
+import { faBell, faSnowflake } from '@fortawesome/free-regular-svg-icons'
+import RoomsList from '~/components/DetailRoom/RoomList/RoomsList'
 import PictureDetail from './PictureDetail/PictureDetail'
 import PriceDetail from './PriceDetail/PriceDeatil'
 const Detail = () => {
@@ -84,6 +86,8 @@ const Detail = () => {
                 </div>
             </div>
             <Search />
+            <hr />
+            <RoomsList />
             <hr />
             <div className={classes.container}>
                 <div className="row">
