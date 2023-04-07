@@ -39,10 +39,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ButtonPrimary from '~/components/Button/ButtonPrimary'
-import { faBell, faSnowflake } from '@fortawesome/free-regular-svg-icons'
+import { faBell, faBuilding, faSnowflake, faSun } from '@fortawesome/free-regular-svg-icons'
 import RoomsList from '~/components/DetailRoom/RoomList/RoomsList'
 import PictureDetail from './PictureDetail/PictureDetail'
 import PriceDetail from './PriceDetail/PriceDeatil'
+import FacilityList from '~/components/DetailRoom/FacilityList/FacilityList'
 const Detail = () => {
     return (
         <React.Fragment>
@@ -97,7 +98,7 @@ const Detail = () => {
                                 <h3>Tiện nghi Khách sạn Vias Vũng Tàu</h3>
                             </div>
                             <div className={classes['box-detail-fac']}>
-                                <div className={classes['box-item-fac']}>
+                                {/* <div className={classes['box-item-fac']}>
                                     <h3>Tiện nghi chung</h3>
                                     <div className={classes.items}>
                                         <div>
@@ -260,7 +261,8 @@ const Detail = () => {
                                             <span className={classes.detailName}> Khăn giấy</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
+                                <FacilityList />
                                 <div className={classes['box-item-fac']}>
                                     <h3>Hỗ trợ người khuyết tật</h3>
                                     <div className={classes.items}>
@@ -500,7 +502,7 @@ const Detail = () => {
                     </div>
                 </div>
             </div>
-            <div className={classes.container}>
+            {/* <div className={classes.container}>
                 <div className="row">
                     <div className="col-lg-12 col-md-12">
                         <div>
@@ -524,7 +526,7 @@ const Detail = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </React.Fragment>
     )
 }

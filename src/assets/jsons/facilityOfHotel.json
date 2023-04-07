@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "title": "Tiện nghi chung",
+        "facility": [
+            {
+                "icon": "wind",
+                "title": "Máy lạnh"
+            },
+            {
+                "icon": "elevator",
+                "title": "Thang máy"
+            },
+            {
+                "icon": "House",
+                "title": "Phòng gia đình"
+            },
+            {
+                "icon": "Coffee",
+                "title": "Cà phê / trà tại sảnh"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Tiện nghi phòng",
+        "facility": [
+            {
+                "icon": "Wind",
+                "title": "Máy lạnh"
+            },
+            {
+                "icon": "Elevator",
+                "title": "Thang máy"
+            },
+            {
+                "icon": "House",
+                "title": "Phòng gia đình"
+            },
+            {
+                "icon": "Coffee",
+                "title": "Cà phê / trà tại sảnh"
+            }
+        ]
+    }
+]
