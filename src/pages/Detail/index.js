@@ -8,157 +8,44 @@ import {
     faBroom,
     faCocktail,
     faCouch,
+    faDumbbell,
     faElevator,
+    faGlassCheers,
     faHotTub,
-    faHotTubPerson,
     faHouse,
+    faJugDetergent,
+    faKey,
+    faLuggageCart,
     faMugHot,
-    faPersonRunning,
+    faParking,
     faPhone,
     faPumpSoap,
     faShower,
     faSink,
     faSmokingBan,
     faSoap,
-    faStar,
+    faSpa,
     faSwimmer,
     faTv,
+    faUserCheck,
+    faUserShield,
+    faUserTie,
     faUtensils,
+    faWheelchair,
     faWifi,
     faWind,
     faWineBottle,
+    faWineGlass,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ButtonPrimary from '~/components/Button/ButtonPrimary'
-import { faBell, faSnowflake } from '@fortawesome/free-regular-svg-icons'
+import { faBell, faBuilding, faSnowflake, faSun } from '@fortawesome/free-regular-svg-icons'
+import PictureDetail from './PictureDetail/PictureDetail'
+import PriceDetail from './PriceDetail/PriceDeatil'
 const Detail = () => {
     return (
         <React.Fragment>
-            <div className={classes.container}>
-                <div className="row">
-                    <div className="col-lg-12 col-md-12">
-                        <div className={classes['box-slider']}>
-                            <div className={`${classes['box-item-1']} `}>
-                                <img
-                                    src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/7e0ab78439aba7749488a253455b5f22.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div className={classes['box-item-content']}>
-                                <div className={classes['box-second']}>
-                                    <img
-                                        src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/d7f96e68f2a7ee8d7fc05a9fabc6440f.jpg"
-                                        alt=""
-                                    />
-                                </div>
-                                <div className={`${classes['item-box-plus']}`}>
-                                    <div className={classes['box-item-3']}>
-                                        <img
-                                            src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/d876d86e587c9a76cdaa1ceb46d2b483.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                    <div className={classes['box-item-4']}>
-                                        <img
-                                            src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/511a3eb5dc56b4a69e42ba2c93fc1d96.jpg"
-                                            alt=""
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className={classes.content}>
-                <div className="row">
-                    <div className="col-lg-12 col-md-12">
-                        <div className={classes['single-box-content']}>
-                            <div className={`${classes['box-info']} ${classes['box-content-top']} `}>
-                                <table className={classes['table']}>
-                                    <tbody>
-                                        <tr>
-                                            <td className={classes['col-left']}>
-                                                <div class={classes['box-info']}>
-                                                    <span class={classes.boxTitle}>Khách sạn</span>
-                                                    <span class={classes['box-star']}>
-                                                        <FontAwesomeIcon icon={faStar} className={classes.icon} />
-                                                        <FontAwesomeIcon icon={faStar} className={classes.icon} />
-                                                        <FontAwesomeIcon icon={faStar} className={classes.icon} />
-                                                        <FontAwesomeIcon icon={faStar} className={classes.icon} />
-                                                        <FontAwesomeIcon icon={faStar} className={classes.icon} />
-                                                    </span>
-                                                </div>
-                                                <div class={classes.hotelTitle}>
-                                                    <h1>Khách sạn Vias Vũng Tàu</h1>
-                                                </div>
-                                                <div class={classes.boxAddress}>
-                                                    <h3>
-                                                        179 Thùy Vân, Phường 8, Thành phố Vũng Tàu, Bà Rịa - Vũng Tàu
-                                                    </h3>
-                                                </div>
-                                            </td>
-                                            <td className={`${classes['col-right']} ${classes['box-info']}`}>
-                                                <div className={classes['price-room-from']}>Giá phòng từ</div>
-                                                <div className={classes['price-old']}>3,960,000 VND</div>
-                                                <div className={classes['price-medium']}>
-                                                    2,376,000 VND<span>/ đêm</span>
-                                                </div>
-                                                <ButtonPrimary className="btnChoose">LỰA CHỌN PHÒNG</ButtonPrimary>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className={`${classes['box-info']} ${classes['box-content-bottom']} `}>
-                                <div className={classes['box-title']}>
-                                    <h2>Tiện nghi khách sạn</h2>
-                                </div>
-                                <div className="box-fac">
-                                    <div className={`row ${classes['content-fac']} ${classes['content-fac-first']} `}>
-                                        <div className="col-3 mb-5">
-                                            <FontAwesomeIcon icon={faSwimmer} className={classes['icon-fac']} />
-                                            <span> Hồ bơi ngoài trời (quanh năm)</span>
-                                        </div>
-                                        <div className="col-3 mb-5">
-                                            <FontAwesomeIcon icon={faPersonRunning} className={classes['icon-fac']} />
-                                            <span> Trung tâm thể dục</span>
-                                        </div>
-                                        <div className="col-3 mb-5">
-                                            <FontAwesomeIcon icon={faHotTubPerson} className={classes['icon-fac']} />
-                                            <span> Khu vực thư giãn/spa lounge</span>
-                                        </div>
-                                        <div className="col-3 mb-5">
-                                            <FontAwesomeIcon icon={faUtensils} className={classes['icon-fac']} />
-                                            <span> Nhà hàng</span>
-                                        </div>
-                                        <div className="col-3 mb-5">
-                                            <FontAwesomeIcon icon={faCocktail} className={classes['icon-fac']} />
-                                            <span> Quầy bar</span>
-                                        </div>
-                                        <div className="col-3 mb-5">
-                                            <FontAwesomeIcon icon={faWifi} className={classes['icon-fac']} />
-                                            <span> Wifi</span>
-                                        </div>
-                                        <div className="col-3 mb-5">
-                                            <FontAwesomeIcon icon={faWind} className={classes['icon-fac']} />
-                                            <span> Máy lạnh</span>
-                                        </div>
-                                        <div className="col-3 mb-5">
-                                            <FontAwesomeIcon icon={faSmokingBan} className={classes['icon-fac']} />
-                                            <span> Phòng không hút thuốc</span>
-                                        </div>
-                                    </div>
-
-                                    <div className={classes['box-readmore']}>
-                                        <button className={classes['btn-readmore']}>Xem thêm tiện ích</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <PictureDetail />
+            <PriceDetail />
             <div className={classes.container}>
                 <div className="row">
                     <div className="col-lg-12 col-md-12">
@@ -367,6 +254,265 @@ const Detail = () => {
                                                 className={classes['icon-fac-detail']}
                                             ></FontAwesomeIcon>
                                             <span className={classes.detailName}> Khăn giấy</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes['box-item-fac']}>
+                                    <h3>Hỗ trợ người khuyết tật</h3>
+                                    <div className={classes.items}>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faWheelchair}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Thuận tiện cho người khuyết tật</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faElevator}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Thang máy</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faWheelchair}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Phù hợp cho xe lăn</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes['box-item-fac']}>
+                                    <h3>Ăn uống</h3>
+                                    <div className={classes.items}>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faUtensils}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Nhà hàng</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faCocktail}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Quầy bar</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faWineBottle}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Nước suối</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faWineGlass}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Rượu vang / Sâmpanh</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faMugHot}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Bữa sáng tại phòng</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes['box-item-fac']}>
+                                    <h3>Dịch vụ lễ tân</h3>
+                                    <div className={classes.items}>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faUserTie}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Nhân viên xách hành lý</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faUserCheck}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Nhận phòng sớm</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faLuggageCart}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Giữ hành lý</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faUserShield}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Bảo vệ 24h</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faKey}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}> Lễ tân 24h</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes['box-item-fac']}>
+                                    <h3>Kết nối mạng</h3>
+                                    <div className={classes.items}>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faWifi}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>
+                                                Wifi miễn phí có ở toàn bộ khách sạn
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes['box-item-fac']}>
+                                    <h3>Dịch vụ lau dọn</h3>
+                                    <div className={classes.items}>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faBroom}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Dọn phòng hàng ngày</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faJugDetergent}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Giặt ủi</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes['box-item-fac']}>
+                                    <h3>Dịch vụ cho doanh nhân</h3>
+                                    <div className={classes.items}>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faBuilding}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Trung tâm dịch vụ doanh nhân</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faGlassCheers}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Tiện nghi tổ chức hội họp / tiệc</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes['box-item-fac']}>
+                                    <h3>Thư giãn và vui chơi giải trí</h3>
+                                    <div className={classes.items}>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faSwimmer}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Hồ bơi</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faDumbbell}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Phòng gym</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faSpa}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Khu vực thư giãn / spa lounge</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faHotTub}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Phòng xông hơi</span>
+                                        </div>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faTv}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>TV</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes['box-item-fac']}>
+                                    <h3>Ngoài trời</h3>
+                                    <div className={classes.items}>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faSun}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Ban công / sân hiên</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes['box-item-fac']}>
+                                    <h3>Di chuyển</h3>
+                                    <div className={classes.items}>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faParking}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Bãi đỗ xe</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={classes['box-item-fac']}>
+                                    <h3>Tiện ích bếp</h3>
+                                    <div className={classes.items}>
+                                        <div>
+                                            <FontAwesomeIcon
+                                                icon={faSnowflake}
+                                                className={classes['icon-fac-detail']}
+                                            ></FontAwesomeIcon>
+                                            <span className={classes.detailName}>Tủ lạnh</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={classes.container}>
+                <div className="row">
+                    <div className="col-lg-12 col-md-12">
+                        <div>
+                            <div className={classes['box-title']}>
+                                <h3>Chính sách Khách sạn </h3>
+                            </div>
+                            <div className={classes['box-policy']}>
+                                <div className={classes['panel-group']}>
+                                    <div className={classes.panel}>
+                                        <div className="card-header">
+                                            <a className="btn" data-bs-toggle="collapse" href="#collapseOne">
+                                                Collapsible Group Item #1
+                                            </a>
+                                        </div>
+                                        <div id="collapseOne" className="collapse show" data-bs-parent="#accordion">
+                                            <div class="card-body">Lorem ipsum..</div>
                                         </div>
                                     </div>
                                 </div>
