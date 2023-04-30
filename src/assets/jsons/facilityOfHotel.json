@@ -12,11 +12,11 @@
                 "title": "Thang máy"
             },
             {
-                "icon": "House",
+                "icon": "house",
                 "title": "Phòng gia đình"
             },
             {
-                "icon": "Coffee",
+                "icon": "coffee",
                 "title": "Cà phê / trà tại sảnh"
             }
         ]
@@ -26,20 +26,56 @@
         "title": "Tiện nghi phòng",
         "facility": [
             {
-                "icon": "Wind",
-                "title": "Máy lạnh"
+                "icon": "hot-tub",
+                "title": "Bồn tắm nước nóng"
             },
             {
-                "icon": "Elevator",
-                "title": "Thang máy"
+                "icon": "shower",
+                "title": "Phòng tắm vòi hoa sen"
             },
             {
-                "icon": "House",
-                "title": "Phòng gia đình"
+                "icon": "bath",
+                "title": "Bồn tắm"
             },
             {
-                "icon": "Coffee",
-                "title": "Cà phê / trà tại sảnh"
+                "icon": "sink",
+                "title": "Bồn rửa tay"
+            },
+            {
+                "icon": "tv",
+                "title": "TV"
+            },
+            {
+                "icon": "phone",
+                "title": "Điện thoại"
+            },
+            {
+                "icon": "wind",
+                "title": "Tủ lạnh nhỏ trong phòng"
+            },
+            {
+                "icon": "wine-bottle",
+                "title": "Nước đóng chai miễn phí"
+            },
+            {
+                "icon": "bell",
+                "title": "Dịch vụ báo thức"
+            },
+            {
+                "icon": "couch",
+                "title": "Ghế sofa"
+            },
+            {
+                "icon": "soap",
+                "title": "Vật dụng tắm rửa"
+            },
+            {
+                "icon": "blender",
+                "title": "Máy xay sinh tố"
+            },
+            {
+                "icon": "box-tissue",
+                "title": "Khăn giấy"
             }
         ]
     }
