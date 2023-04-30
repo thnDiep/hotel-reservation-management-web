@@ -143,9 +143,13 @@ function CardHotel(props) {
                 </div>
 
                 {!props.memberDiscount && (
-                    <div className="d-flex-column-r">
+                    <div className="d-flex-column-r" style={{ marginTop: '14px' }}>
                         {props.oldPrice && <div className={styles.oldPrice}>{props.oldPrice} ₫</div>}
-                        <div className={styles.curPrice}>{props.curPrice} ₫</div>
+                        {props.curPrice ? (
+                            <div className={styles.curPrice}>{props.curPrice} ₫</div>
+                        ) : (
+                            <div className={styles.nonePrice}>???</div>
+                        )}
 
                         {props.voucher && (
                             <div className={clsx(styles.voucher, 'd-flex')}>

@@ -31,6 +31,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ButtonPrimary from '~/components/Button/ButtonPrimary'
 import { faBell, faSnowflake } from '@fortawesome/free-regular-svg-icons'
+import RoomsList from '~/components/DetailRoom/RoomList/RoomsList'
 const Detail = () => {
     return (
         <React.Fragment>
@@ -79,9 +80,9 @@ const Detail = () => {
                                     <tbody>
                                         <tr>
                                             <td className={classes['col-left']}>
-                                                <div class={classes['box-info']}>
-                                                    <span class={classes.boxTitle}>Khách sạn</span>
-                                                    <span class={classes['box-star']}>
+                                                <div className={classes['box-info']}>
+                                                    <span className={classes.boxTitle}>Khách sạn</span>
+                                                    <span className={classes['box-star']}>
                                                         <FontAwesomeIcon icon={faStar} className={classes.icon} />
                                                         <FontAwesomeIcon icon={faStar} className={classes.icon} />
                                                         <FontAwesomeIcon icon={faStar} className={classes.icon} />
@@ -89,10 +90,10 @@ const Detail = () => {
                                                         <FontAwesomeIcon icon={faStar} className={classes.icon} />
                                                     </span>
                                                 </div>
-                                                <div class={classes.hotelTitle}>
+                                                <div className={classes.hotelTitle}>
                                                     <h1>Khách sạn Vias Vũng Tàu</h1>
                                                 </div>
-                                                <div class={classes.boxAddress}>
+                                                <div className={classes.boxAddress}>
                                                     <h3>
                                                         179 Thùy Vân, Phường 8, Thành phố Vũng Tàu, Bà Rịa - Vũng Tàu
                                                     </h3>
@@ -197,6 +198,8 @@ const Detail = () => {
                 </div>
             </div>
             <Search />
+            <hr />
+            <RoomsList />
             <hr />
             <div className={classes.container}>
                 <div className="row">

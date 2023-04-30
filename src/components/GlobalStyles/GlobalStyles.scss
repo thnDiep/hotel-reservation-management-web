@@ -96,3 +96,10 @@ body {
         border-bottom-right-radius: 8px;
     }
 }
+
+.home {
+    .slick-prev:before,
+    .slick-next:before {
+        content: '';
+    }
+}
