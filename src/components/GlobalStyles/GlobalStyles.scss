@@ -103,3 +103,14 @@ body {
         content: '';
     }
 }
+
+.conditionModal {
+    .modal-header {
+        padding: 1.8rem;
+        padding-bottom: 0;
+    }
+    .modal-body {
+        padding: 1.8rem;
+        padding-bottom: 1rem;
+    }
+}

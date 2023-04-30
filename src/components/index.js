@@ -1,0 +1,5 @@
+export { default as CardHotel } from './CardHotel'
+export { default as CardVinpearl } from './CardVinpearl'
+export { default as PlaceBar } from './PlaceBar'
+export { default as Search } from './Search'
+export { default as ButtonPrimary } from './Button/ButtonPrimary'

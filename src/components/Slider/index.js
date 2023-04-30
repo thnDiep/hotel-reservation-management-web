@@ -29,9 +29,9 @@ function NextArrow(props) {
                 <path
                     d="M3.333 8.5h9.334M10 11.167L12.667 8.5M10 5.833L12.667 8.5"
                     stroke="#1A202C"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 ></path>
             </svg>
         </div>
@@ -63,13 +63,13 @@ function PrevArrow(props) {
                 transform: 'translate(-50%, -50%)',
             }}
         >
-            <svg width="16" height="17" fill="none" class="svgFillAll jss3670" style={{ transform: 'rotate(180deg)' }}>
+            <svg width="16" height="17" fill="none" style={{ transform: 'rotate(180deg)' }}>
                 <path
                     d="M3.333 8.5h9.334M10 11.167L12.667 8.5M10 5.833L12.667 8.5"
                     stroke="#1A202C"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 ></path>
             </svg>
         </div>

@@ -1,28 +1,101 @@
 import { useRef, useEffect, useState } from 'react'
-import clsx from 'clsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Slider from 'react-slick'
+import clsx from 'clsx'
+import moment from 'moment'
 
 import styles from './Home.module.scss'
-import Search from '~/components/Search'
-import ButtonPrimary from '~/components/Button/ButtonPrimary'
 import notableDes from '~/assets/jsons/notable.json'
 import vinpearlDes from '~/assets/jsons/vinpearl.json'
-import PlaceBar from '~/components/PlaceBar'
-import CardHotel from '~/components/CardHotel'
-import CardVinpearl from '~/components/CardVinpearl'
+import { PlaceBar, CardHotel, CardVinpearl, ButtonPrimary, Search } from '~/components'
 import { NextArrow, PrevArrow } from '~/components/Slider'
+import { Vouchers, ConditionModal } from './components'
 
 function Home() {
+    const intervalRef = useRef()
     const vidRef = useRef()
+    const today = useRef(new Date())
+    const periodFlashSale = useRef([
+        {
+            start: new Date(new Date().setHours(9, 0, 0, 0)),
+            end: new Date(new Date().setHours(12, 0, 0, 0)),
+            active: false,
+            disabled: false,
+        },
+        {
+            start: new Date(new Date().setHours(14, 0, 0, 0)),
+            end: new Date(new Date().setHours(16, 0, 0, 0)),
+            active: false,
+            disabled: false,
+        },
+        {
+            start: new Date(new Date().setHours(19, 0, 0, 0)),
+            end: new Date(new Date().setHours(23, 0, 0, 0)),
+            active: false,
+            disabled: false,
+        },
+        {
+            start: new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(9, 0, 0, 0)),
+            end: new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(12, 0, 0, 0)),
+            active: false,
+            disabled: false,
+        },
+        {
+            start: new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(14, 0, 0, 0)),
+            end: new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(16, 0, 0, 0)),
+            active: false,
+            disabled: false,
+        },
+    ])
+
+    const [indexPeriod, setIndexPeriod] = useState(() => {
+        let index = -1
+        periodFlashSale.current.map((period, index) => {
+            if (today.current > period.end) {
+                index = index
+            }
+        })
+        ++index
+        return { active: index, current: index }
+    })
+    const [timeLeft, setTimeLeft] = useState(() => {
+        const now = today.current
+        const start = periodFlashSale.current[indexPeriod.current].start
+        const end = periodFlashSale.current[indexPeriod.current].end
+
+        if (now < start) {
+            // console.log(start - now)
+            return start - now
+        } else {
+            // console.log(end - now)
+            return end - now
+        }
+    })
     const [indexShockPrice, setIndexShockPrice] = useState(0)
+    const [showConditionModal, setShowConditionModal] = useState(false) // Modal Điều kiện & thể lệ chương trình
+
+    // Count down
+    useEffect(() => {
+        intervalRef.current = setInterval(() => {
+            setTimeLeft((t) => t - 1000)
+        }, 1000)
+        return () => clearInterval(intervalRef.current)
+    }, [])
+
+    // Xóa Interval khi hết CountDown
+    useEffect(() => {
+        if (timeLeft <= 0) {
+            clearInterval(intervalRef.current)
+        }
+    }, [timeLeft])
 
     function handleChooseShockPricePlace(index) {
         setIndexShockPrice(index)
     }
 
+    // for Slider
     var settings = {
         dots: false,
         infinite: true,
@@ -33,6 +106,7 @@ function Home() {
         prevArrow: <PrevArrow />,
     }
 
+    // video intro autoplay
     useEffect(() => {
         vidRef.current.play()
     }, [])
@@ -56,33 +130,8 @@ function Home() {
                 <ButtonPrimary className="btnIntroduction">Đăng nhập/Đăng ký</ButtonPrimary>
             </div>
 
-            <div className={styles.vouchers}>
-                <div className={clsx(styles.content, 'd-flex')}>
-                    <div className={styles.voucher}>
-                        <span className="d-flex-js">
-                            <span className={styles.subTitle}>Nhập mã</span>
-                            <span className={styles.code}>DEALCHOT</span>
-                        </span>
-                        <div className="d-flex" style={{ minHeight: '60px' }}>
-                            <span className={styles.subTitle1}>Khách sạn giảm đến 200K</span>
-                            <span className={styles.subTitle2}>Điều kiện &amp; thể lệ chương trình</span>
-                        </div>
-                        <span className={styles.subTitle3}>Hạn sử dụng: 17/04 -30/04 | Nhập mã khi thanh toán</span>
-                    </div>
-
-                    <div className={styles.voucher}>
-                        <span className="d-flex-js">
-                            <span className={styles.subTitle}>Nhập mã</span>
-                            <span className={styles.code}>HEVINPEARL</span>
-                        </span>
-                        <div className="d-flex" style={{ minHeight: '60px' }}>
-                            <span className={styles.subTitle1}>Khách sạn Vinpearl giảm 10%</span>
-                            <span className={styles.subTitle2}>Điều kiện &amp; thể lệ chương trình</span>
-                        </div>
-                        <span className={styles.subTitle3}>Hạn sử dụng: 20/04 -30/04 | Nhập mã khi thanh toán</span>
-                    </div>
-                </div>
-            </div>
+            <Vouchers onClick={() => setShowConditionModal(true)} />
+            <ConditionModal show={showConditionModal} onHide={() => setShowConditionModal(false)} />
 
             <div className={styles.flashSale}>
                 <div className={styles.content}>
@@ -94,59 +143,51 @@ function Home() {
                                 src="https://storage.googleapis.com/tripi-assets/mytour/icons/icon_flashSale_home_white_new.png"
                             />
                             <div className="d-flex-js">
-                                <h6 className={styles.subTitle}>Chương trình sẽ kết thúc trong</h6>
+                                {today.current < periodFlashSale.current[indexPeriod.current].start ? (
+                                    <h6 className={styles.subTitle}>Chương trình sẽ diễn ra trong</h6>
+                                ) : (
+                                    <h6 className={styles.subTitle}>Chương trình sẽ kết thúc trong</h6>
+                                )}
+
                                 <div className={styles.countDown}>
-                                    <div className={styles.timer}>00</div>
+                                    {console.log(timeLeft)}
+                                    <div className={styles.timer}>{new Date(timeLeft).toISOString().slice(11, 13)}</div>
                                     <span>:</span>
-                                    <div className={styles.timer}>00</div>
+                                    <div className={styles.timer}>{new Date(timeLeft).toISOString().slice(14, 16)}</div>
                                     <span>:</span>
-                                    <div className={styles.timer}>00</div>
+                                    <div className={styles.timer}>{new Date(timeLeft).toISOString().slice(17, 19)}</div>
                                 </div>
                             </div>
                         </div>
 
                         <div className="d-flex">
-                            <div
-                                className={clsx(styles.period, { [styles.active]: false }, { [styles.disabled]: true })}
-                            >
-                                <h3>9:00-12:00</h3>
-                                <p>Đã kết thúc</p>
-                            </div>
-                            <div
-                                className={clsx(styles.period, { [styles.active]: false }, { [styles.disabled]: true })}
-                            >
-                                <h3>14:00-16:00</h3>
-                                <p>Đã kết thúc</p>
-                            </div>
-                            <div
-                                className={clsx(styles.period, { [styles.active]: true }, { [styles.disabled]: false })}
-                            >
-                                <h3>19:00-23:00</h3>
-                                <p>
-                                    ĐANG DIỄN RA
-                                    <img src="https://storage.googleapis.com/tripi-assets/mytour/icons/icon_fire.png" />
-                                </p>
-                            </div>
-                            <div
-                                className={clsx(
-                                    styles.period,
-                                    { [styles.active]: false },
-                                    { [styles.disabled]: false },
-                                )}
-                            >
-                                <h3>09:00-12:00</h3>
-                                <p>05/04</p>
-                            </div>
-                            <div
-                                className={clsx(
-                                    styles.period,
-                                    { [styles.active]: false },
-                                    { [styles.disabled]: false },
-                                )}
-                            >
-                                <h3>14:00-16:00</h3>
-                                <p>05/04</p>
-                            </div>
+                            {periodFlashSale.current.map((period, index) => (
+                                <div
+                                    key={index}
+                                    className={clsx(
+                                        styles.period,
+                                        { [styles.active]: index === indexPeriod.active },
+                                        { [styles.disabled]: period.disabled },
+                                    )}
+                                    onClick={() => setIndexPeriod({ ...indexPeriod, active: index })}
+                                >
+                                    <h3>
+                                        {period.start.getHours()}:00 - {period.end.getHours()}:00
+                                    </h3>
+                                    {period.disabled && <p>Đã kết thúc</p>}
+                                    {period.active && (
+                                        <p>
+                                            ĐANG DIỄN RA
+                                            <img src="https://storage.googleapis.com/tripi-assets/mytour/icons/icon_fire.png" />
+                                        </p>
+                                    )}
+                                    {!period.active && today.current.getDay() === period.start.getDay() ? (
+                                        <p>Sắp diễn ra</p>
+                                    ) : (
+                                        <p>{moment(period.start).format('DD/MM')}</p>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     </div>
 
