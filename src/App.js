@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { publicRoutes } from '~/routes/index'
 import { DefaultLayout } from '~/components/Layouts'
-
+import 'bootstrap/dist/js/bootstrap.bundle'
 function App() {
     return (
         <Router>
