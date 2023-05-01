@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal'
 import clsx from 'clsx'
 
-import styles from '../Home.module.scss'
+import styles from './ConditionModal.module.scss'
 
 function ConditionModal(props) {
     return (

@@ -104,6 +104,56 @@ body {
     }
 }
 
+.part {
+    width: 100%;
+    padding: 44px 0;
+    font-size: 1.4rem;
+    font-weight: normal;
+    line-height: 1.7rem;
+    color: var(--text-color);
+
+    .part__content {
+        width: var(--default-width);
+        margin: auto;
+    }
+
+    .part__header {
+        padding-bottom: 16px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .part__footer {
+        display: flex;
+        justify-content: center;
+        padding-top: 24px;
+    }
+
+    .part__title {
+        color: var(--text-color);
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 29px;
+        margin-bottom: 8px;
+    }
+
+    .part__subTitle {
+        color: #4a5568;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17px;
+        margin: 0;
+    }
+
+    .part__hotels {
+        margin-top: 16px;
+        gap: 24px;
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 .conditionModal {
     .modal-header {
         padding: 1.8rem;

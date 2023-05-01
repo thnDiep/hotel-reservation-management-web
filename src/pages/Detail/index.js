@@ -50,6 +50,9 @@ import RoomsList from '~/components/DetailRoom/RoomList/RoomsList'
 import PictureDetail from './PictureDetail/PictureDetail'
 import PriceDetail from './PriceDetail/PriceDeatil'
 import FacilityList from '~/components/DetailRoom/FacilityList/FacilityList'
+import { RecentViews, SliderHotels } from '~/components'
+import notableDes from '~/assets/jsons/notable.json'
+
 const Detail = () => {
     return (
         <React.Fragment>
@@ -641,6 +644,16 @@ const Detail = () => {
                             <hr />
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <RecentViews />
+
+            <div className="part">
+                <div className="part__content">
+                    <h1 className="part__title">Các khách sạn tương tự</h1>
+
+                    <SliderHotels hotels={notableDes} />
                 </div>
             </div>
         </React.Fragment>
