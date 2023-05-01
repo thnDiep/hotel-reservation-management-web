@@ -1,0 +1,41 @@
+.box-item-fac {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 265px auto;
+    font-weight: 200;
+    h3 {
+        font-weight: 600;
+        font-family: 'os_semi_bold';
+    }
+}
+.items {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    border-bottom: 1px solid #e6e6e6;
+}
+.icon {
+    color: #f6d738;
+    font-size: 18px;
+    padding: 0px 3px;
+    &-fac {
+        color: #333333;
+        margin-left: 5px;
+        &-detail {
+            font-size: 20px;
+            margin-right: 5px;
+            font-family: icons;
+            display: inline-block;
+            vertical-align: text-top;
+            line-height: 1;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: inherit;
+            text-transform: none;
+            text-rendering: optimizeLegibility;
+            margin-bottom: 25px;
+        }
+    }
+}
+.detailName {
+    margin-top: 9px;
+}

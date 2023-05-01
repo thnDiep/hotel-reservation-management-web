@@ -52,7 +52,9 @@
     color: #fff;
 }
 
-.btnSeeAll {
+.btnSeeMore-s,
+.btnSeeMore-m,
+.btnSeeMore-l {
     color: rgb(255, 51, 102);
     width: fit-content;
     border: 1px solid rgb(255, 51, 102);
@@ -65,9 +67,36 @@
     border-radius: 8px;
     text-transform: none;
     background-color: inherit;
+
     &:hover {
         cursor: pointer;
         background-color: inherit;
         box-shadow: none;
     }
+}
+
+.btnSeeMore-s {
+    padding: 12px 16px;
+}
+
+.btnSeeMore-m {
+    padding: 12px 35px;
+}
+
+.btnSeeMore-l {
+    padding: 12px 50px;
+}
+
+.btn__order {
+    // background: #f98713;
+    border: 0px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'os_bold';
+    text-transform: uppercase;
+    width: 140px;
+    border-radius: 5px;
+    margin-top: 40px;
+    float: right;
 }

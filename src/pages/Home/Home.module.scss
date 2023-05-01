@@ -13,11 +13,6 @@
     z-index: -1;
 }
 
-.content {
-    width: var(--default-width);
-    margin: auto;
-}
-
 .title {
     color: var(--text-color);
     font-size: 24px;
@@ -31,11 +26,19 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
+    margin: 0;
+}
+
+.hotels {
+    margin-top: 16px;
+    gap: 24px;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .introduction {
     width: var(--default-width);
-    height: 480px;
+    height: calc(480px - var(--height-header));
     margin: auto;
     p {
         font-size: 26px;
@@ -47,12 +50,196 @@
     }
 }
 
-.shockPrice {
+.vouchers,
+.flashSale,
+.trending,
+.shockPrice,
+.vinpearl,
+.recentView {
     width: 100%;
+    // margin-bottom: 44px;
     padding: 44px 0;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 1.4rem;
+    font-weight: normal;
+    line-height: 1.7rem;
     color: var(--text-color);
+
+    .content {
+        width: var(--default-width);
+        margin: auto;
+    }
+
+    .header {
+        padding-bottom: 16px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: center;
+        padding-top: 24px;
+    }
+}
+
+.vouchers {
+    display: flex;
+    padding: 30px 0;
+
+    .voucher {
+        width: calc(50% - 12px);
+        margin: 12px 0px;
+        border: 1px dashed rgba(255, 18, 132, 0.5);
+        display: flex;
+        padding: 16px 24px;
+        background: rgba(255, 18, 132, 0.05);
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.05), 0px 8px 8px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        flex-direction: column;
+    }
+
+    .code {
+        color: #ffffff;
+        display: flex;
+        padding: 2px 4px 1px 4px;
+        font-size: 1.6rem;
+        background: var(--primary-color);
+        align-items: center;
+        font-weight: normal;
+        line-height: 1.9rem;
+        margin-left: 6px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        justify-content: center;
+    }
+
+    .subTitle1 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        padding: 6px 0 10px;
+        line-height: 2.2rem;
+        color: #1a202c;
+    }
+
+    .subTitle2 {
+        color: var(--primary-color);
+        text-align: right;
+        min-width: 118px;
+        font-size: 1.4rem;
+        line-height: 1.7rem;
+        font-weight: normal;
+        margin-left: 30px;
+        cursor: pointer;
+    }
+
+    .subTitle3 {
+        font-size: 1.3rem;
+        color: #718096;
+        font-style: italic;
+    }
+}
+
+.flashSale {
+    // margin: 32px 0 44px 0;
+    background: #fff5f7;
+
+    .imgTitle {
+        width: 198px;
+        height: 44px;
+        margin-bottom: 6px;
+    }
+
+    .countDown {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 6px;
+
+        .timer {
+            color: #ffffff;
+            width: 22px;
+            height: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.4rem;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        span {
+            color: var(--primary-color);
+            margin: 0 6px;
+        }
+    }
+
+    .period {
+        cursor: pointer;
+        width: 110px;
+        height: 48px;
+        margin: 0 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        pointer-events: visible;
+        // text-transform: uppercase;
+        color: rgb(255, 51, 102);
+        background: rgba(255, 51, 102, 0.1);
+        border-radius: 8px;
+        position: relative;
+
+        &.active {
+            background: rgb(255, 51, 102);
+            color: rgb(255, 255, 255);
+        }
+
+        &.disabled {
+            background: rgb(255, 255, 255);
+            color: rgb(160, 174, 192);
+            cursor: default;
+            pointer-events: none;
+            text-transform: inherit;
+        }
+
+        .containerSlider {
+            padding: 40px;
+            background: #fff;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            line-height: 1.7rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        p {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            margin-top: 4px;
+            font-size: 1.1rem;
+            line-height: 1.3rem;
+
+            img {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
+
+    .slickList {
+        gap: 24px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.shockPrice {
     background: #edf6f9;
 
     .suggestTag {
@@ -73,19 +260,6 @@
                 text-decoration: underline;
             }
         }
-    }
-
-    .hotels {
-        margin-top: 16px;
-        gap: 24px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .seeAll {
-        display: flex;
-        padding-top: 24px;
-        justify-content: center;
     }
 }
 
@@ -308,5 +482,63 @@
         right: 0;
         z-index: 0;
         position: absolute;
+    }
+}
+
+.recentView {
+    background: #fff5f7;
+    .image {
+        width: 178px;
+        height: 133px;
+        border-radius: 8px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .name {
+        margin-top: 8px;
+        width: 178px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 1.4rem;
+        font-weight: 600;
+        line-height: 1.6rem;
+    }
+
+    .rate {
+        display: flex;
+        margin-top: 4px;
+        margin-bottom: 13px;
+    }
+
+    .place {
+        font-size: 1.4rem;
+        margin-top: 6px;
+        font-weight: 400;
+        line-height: 1.7rem;
+    }
+}
+
+.conditionModal {
+    h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 1.9rem;
+        margin: 0;
+    }
+    h4 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 1.9rem;
+    }
+    p {
+        color: rgb(22, 22, 29);
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 2.2rem;
+        margin-top: 10px;
     }
 }

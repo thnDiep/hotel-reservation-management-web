@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useReducer, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-regular-svg-icons'
 import { clsx } from 'clsx'
@@ -17,16 +17,35 @@ import styles from './Search.module.scss'
 import { SearchButton } from '~/components/Button'
 import Place from './Place'
 import Room from './Room'
+
 function Search() {
+    const wrapperRef = useRef(null)
     const [state, dispatch] = useReducer(reducer, initState)
     const { show, place, placeHistory, date, number } = state
+
+    useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+                dispatch(changeShow(0))
+            }
+        }
+        // Bind the event listener
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [wrapperRef])
 
     useEffect(() => {
         localStorage.setItem('placeHistory', JSON.stringify(placeHistory))
     }, [placeHistory])
 
     return (
-        <div className={clsx(styles.container, 'd-flex')}>
+        <div className={clsx(styles.container, 'd-flex')} ref={wrapperRef}>
             <div className={styles.place} onClick={() => dispatch(changeShow(1))}>
                 <label htmlFor="placeInput" className={styles.title}>
                     Địa điểm

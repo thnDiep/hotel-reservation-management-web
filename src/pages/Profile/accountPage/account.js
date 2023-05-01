@@ -41,7 +41,7 @@ function Account() {
     }, [name.value])
 
     useEffect(() => {
-        console.log(email.error)
+        // console.log(email.error)
         const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
         if (email.value.length === 0) {
             setEmail({ ...email, error: 'Bạn chưa nhập email' })
@@ -227,6 +227,7 @@ function Account() {
                         Lưu lại
                     </button>
 
+<<<<<<< HEAD
                     {/* Modal */}
                     <div id="myModal" class="modal">
                         {/* <!-- Modal content --> */}
@@ -239,6 +240,19 @@ function Account() {
                                 Thay đổi thông tin thành công
                             </p>
                         </div>
+=======
+                {/* Modal */}
+                <div id="myModal" className={styles.modal}>
+                    {/* <!-- Modal content --> */}
+                    <div className={styles.modalContent}>
+                        <span className={styles.close} onClick={closeModal}>
+                            &times;
+                        </span>
+                        <p>
+                            <FontAwesomeIcon icon={faCheckCircle} className={styles.successIcon} />
+                            Thay đổi thông tin thành công
+                        </p>
+>>>>>>> 582c65c5b2311c2fc8c15589065c0438cb1bf9b1
                     </div>
                 </div>
             </div>

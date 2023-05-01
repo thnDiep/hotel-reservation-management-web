@@ -91,13 +91,13 @@ function reducer(state, action) {
                 startDate: state.date.startDate,
                 endDate: state.date.endDate,
             }
-            console.log(submit)
 
             return {
                 ...state,
-                placeHistory: !state.placeHistory.includes(action.payload)
-                    ? [action.payload, ...state.placeHistory]
-                    : state.placeHistory,
+                placeHistory:
+                    !state.placeHistory.includes(action.payload) && action.payload.trim() !== ''
+                        ? [action.payload, ...state.placeHistory]
+                        : state.placeHistory,
             }
         default:
             throw new Error('Invalid action.')
