@@ -1,6 +1,13 @@
 .container {
     margin-top: 110px;
 }
+.subContainer {
+    margin-top: 24px;
+}
+hr {
+    border: 1px solid #edf2f7;
+    margin-top: 24px;
+}
 .box-slider {
     display: grid;
     grid-template-columns: 700px calc(100% - 700px);
@@ -183,7 +190,7 @@ td {
         font-family: 'os_semi_bold';
         margin-bottom: 20px;
         font-weight: 600;
-        margin-top: 20px;
+        //margin-top: 20px;
     }
 }
 .content-fac {
@@ -240,9 +247,8 @@ td {
 }
 .box-detail-fac {
     background: #fff;
-    padding: 20px;
+    padding: 10px;
     display: block;
-    margin-bottom: 20px;
     border-radius: 5px;
 }
 .box-item-fac {
@@ -284,5 +290,68 @@ td {
 .collapse {
     &:not(.show) {
         display: none;
+    }
+}
+.hotelPolicyHour {
+    display: flex;
+    .hour {
+        color: #1a202c;
+        width: 120px;
+        display: flex;
+        border-left: 1px solid #cbd5e0;
+        justify-content: space-around;
+        .CheckInAndOut {
+            color: #4a5568;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 17px;
+        }
+        &Policy {
+            color: #1a202c;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 21px;
+        }
+    }
+}
+
+.hotelPolicyRegular {
+    margin-top: 19px;
+    max-height: 350px;
+    line-height: 20px;
+    .regular {
+        display: flex;
+        flex-direction: column;
+        &Title {
+            font-size: 14px;
+            font-weight: 600;
+            padding-bottom: 8px;
+        }
+        &Content {
+            color: rgb(22, 22, 29);
+            overflow: hidden;
+            font-size: 14px;
+            max-height: 132px;
+            line-height: 19px;
+            margin-bottom: 12px;
+        }
+    }
+}
+.usefulInformation {
+    gap: 20px 50px;
+    display: grid;
+    margin-top: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .partOfItem {
+            display: flex;
+            align-items: center;
+            .text {
+                padding-left: 12px;
+            }
+        }
     }
 }
