@@ -59,7 +59,10 @@ const Detail = () => {
             {/* <div className={classes.container}>
                 <ImageHotel />
             </div> */}
-            <PictureDetail />
+            <div className={classes.subContainer}>
+
+                <PictureDetail />
+            </div>
             <PriceDetail />
             <div className={classes.container}>
                 <div className="row">
@@ -98,7 +101,7 @@ const Detail = () => {
                     </div>
                 </div>
             </div>
-            <Search />
+            <hr className={classes.spacing2} />
             <RoomsList />
             <div className={classes.container}>
                 <div className="row">
@@ -512,7 +515,6 @@ const Detail = () => {
                     </div>
                 </div>
             </div>
-            <hr />
             <div className={classes.subContainer}>
                 <div className="row">
                     <div className="col-lg-12 col-md-12">
@@ -644,6 +646,32 @@ const Detail = () => {
 
                             <hr />
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div className={classes.subContainer}>
+                <div className="row">
+                    <div className="col-lg-12 col-md-12">
+                        <div className={classes['box-title']}>
+                            <h3>Giới thiệu về khách sạn</h3>
+                        </div>
+                        <p>
+                            Khách sạn Vias Vũng Tàu sở hữu vị trí độc đáo nằm đối diện bãi biển Thùy Vân, hứa hẹn mang
+                            đến quý khách những giây phút nghỉ ngơi thoải mái. So với tất cả các khách sạn Vũng Tàu nằm
+                            cạnh bãi biển, Vias Hotel nổi bật hơn hẳn với kiến trúc sang trọng, nội thất cao cấp đạt
+                            tiêu chuẩn quốc tế 4 sao. Điều đầu tiên gây ấn tượng đối với quý khách khi đến khách sạn
+                            Vias Vũng Tàu đó chính là cảnh quan bờ biển vô cùng xinh đẹp. Lưu trú tại bất kỳ một trong
+                            150 phòng nghỉ sang trọng và phòng suite đẳng cấp của khách sạn, quý khách đều có cơ hội
+                            ngắm nhìn khung cảnh biển trời mênh mông, lắng nghe tiếng sóng xô bờ qua khung cửa sổ từ các
+                            phòng. Tại sảnh khách sạn có đặt quầy bar sang trọng và một quầy bar phong cách bên hồ bơi
+                            để bạn tận hưởng trọn vẹn hương vị đặc sắc của đồ uống bên dòng nước mát trong. Đặc biệt,
+                            khách sạn còn sở hữu Serenity Spa, hồ bơi vô cực và thơ mộng đầu tiên tại Vũng Tàu, phòng
+                            tập thể thao với đầy đủ trang thiết bị hiện đại giúp quý khách có được những phút giây thư
+                            giãn, giải trí tuyệt vời nhất. Ngoài ra, Khách sạn Vias Vũng Tàu còn cung cấp phòng hội thảo
+                            cao cấp với đầy đủ trang thiết bị chuyên nghiệp. Nhanh tay gọi ngay 1900 4698 và đặt ngay
+                            phòng khách sạn Vũng Tàu để sở hữu phòng giá tốt cùng cơ hội nhận nhiều ưu đãi hấp dẫn và
+                            trải nghiệm kỳ nghỉ khó quên giữa không gian biển xanh cát vàng.
+                        </p>
                     </div>
                 </div>
             </div>
