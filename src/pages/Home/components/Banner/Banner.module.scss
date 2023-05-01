@@ -1,0 +1,82 @@
+.banner {
+    position: relative;
+    width: 100%;
+    height: 367px;
+    margin-top: 79px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 17px;
+    color: #ffffff;
+    background-color: var(--primary-color);
+
+    .contentBanner {
+        height: 100%;
+        width: var(--default-width);
+        margin: auto;
+        position: relative;
+    }
+
+    h1 {
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 36px;
+    }
+
+    p {
+        margin: 12px 0 8px 0;
+    }
+
+    .list {
+        padding: 0;
+        padding-right: 36px;
+
+        li {
+            display: flex;
+            align-items: center;
+
+            span {
+                padding: 8px 0;
+                margin-left: 12px;
+            }
+        }
+    }
+
+    .qr {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+    }
+
+    .appStoreLink,
+    .chPlayLink {
+        text-decoration: none;
+        display: block;
+        position: relative;
+        z-index: 2;
+    }
+
+    .appStoreImg,
+    .chPlayImg {
+        width: 135px;
+        height: 40px;
+        border-radius: 4px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        padding-bottom: 5px;
+    }
+
+    .imageBanner {
+        top: -72px;
+        right: -30px;
+        z-index: 1;
+        position: absolute;
+    }
+
+    .iconBanner {
+        top: 0;
+        right: 0;
+        z-index: 0;
+        position: absolute;
+    }
+}

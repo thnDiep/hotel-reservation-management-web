@@ -1,0 +1,48 @@
+.recentViews {
+    .recentView {
+        position: relative;
+        a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
+
+    .image {
+        width: 178px;
+        height: 133px;
+        border-radius: 8px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .name {
+        margin-top: 8px;
+        width: 178px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 1.4rem;
+        font-weight: 600;
+        line-height: 1.6rem;
+    }
+
+    .rate {
+        display: flex;
+        margin-top: 4px;
+        margin-bottom: 13px;
+        color: rgb(255, 188, 57);
+        font-size: 1.2rem;
+    }
+
+    .place {
+        font-size: 1.4rem;
+        margin-top: 6px;
+        font-weight: 400;
+        line-height: 1.7rem;
+    }
+}

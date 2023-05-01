@@ -47,15 +47,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ButtonPrimary from '~/components/Button/ButtonPrimary'
 import { faBell, faBuilding, faCalendar, faSnowflake, faSun } from '@fortawesome/free-regular-svg-icons'
 import RoomsList from '~/components/DetailRoom/RoomList/RoomsList'
-import PictureDetail from './PictureDetail/PictureDetail'
+import ImageHotel from '~/components/DetailRoom/ImageHotel/ImageHotel'
 import PriceDetail from './PriceDetail/PriceDeatil'
 import FacilityList from '~/components/DetailRoom/FacilityList/FacilityList'
+import { RecentViews, SliderHotels } from '~/components'
+import notableDes from '~/assets/jsons/notable.json'
+
 const Detail = () => {
     return (
         <React.Fragment>
             <div className={classes.spacing}></div>
             <Search />
-            <PictureDetail />
+            {/* <PictureDetail /> */}
+            <div className={classes.subContainer}>
+                <ImageHotel />
+            </div>
             <PriceDetail />
             <div className={classes.container}>
                 <div className="row">
@@ -96,7 +102,6 @@ const Detail = () => {
             </div>
             <hr className={classes.spacing2} />
             <RoomsList />
-            <hr />
             <div className={classes.container}>
                 <div className="row">
                     <div className="col-lg-12 col-md-12">
@@ -667,6 +672,16 @@ const Detail = () => {
                             trải nghiệm kỳ nghỉ khó quên giữa không gian biển xanh cát vàng.
                         </p>
                     </div>
+                </div>
+            </div>
+
+            <RecentViews />
+
+            <div className="part">
+                <div className="part__content">
+                    <h1 className="part__title">Các khách sạn tương tự</h1>
+
+                    <SliderHotels hotels={notableDes} />
                 </div>
             </div>
         </React.Fragment>

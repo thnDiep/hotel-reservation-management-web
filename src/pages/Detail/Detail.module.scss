@@ -70,22 +70,26 @@ img {
 .single-box-content {
     margin-top: 0px;
 }
+
 .box-info {
     background: #fff;
     margin-top: 20px;
     border-radius: 5px;
 }
+
 .box-content {
     &-top {
         padding: 20px;
         padding-bottom: 0px;
     }
+
     &-bottom {
         border-top: 1px solid #e6e6e6;
         padding: 20px;
         padding-top: 0px;
     }
 }
+
 .table {
     width: 100%;
     max-width: 100%;
@@ -94,6 +98,7 @@ img {
     border-spacing: 0;
     border-collapse: collapse;
 }
+
 td {
     border-top: 0px;
     padding: 0px;
@@ -103,14 +108,17 @@ td {
     display: table-cell;
     float: none;
 }
+
 .col-left {
     width: 870px;
+
     .box-info {
         text-align: left;
         display: block;
         margin-bottom: 15px;
     }
 }
+
 .boxTitle {
     background: #f4f7ff;
     font-size: 13px;
@@ -119,6 +127,7 @@ td {
     text-transform: uppercase;
     padding: 5px;
 }
+
 .hotelTitle {
     h1 {
         font-size: 28px;
@@ -130,8 +139,10 @@ td {
         font-weight: 600;
     }
 }
+
 .boxAddress {
     margin-bottom: 15px;
+
     h3 {
         color: #9aa2b2;
         font-family: 'os_regular';
@@ -139,16 +150,20 @@ td {
         margin: 0px;
     }
 }
+
 .box-star {
     padding-left: 15px;
 }
+
 .icon {
     color: #f6d738;
     font-size: 18px;
     padding: 0px 3px;
+
     &-fac {
         color: #333333;
         margin-left: 5px;
+
         &-detail {
             font-size: 20px;
             margin-right: 5px;
@@ -165,6 +180,7 @@ td {
         }
     }
 }
+
 .price-room-from {
     font-size: 20px;
     color: #333333;
@@ -172,22 +188,26 @@ td {
     margin-bottom: 5px;
     margin-top: 18px;
 }
+
 .price-old {
     text-decoration: line-through;
     font-size: 14px;
     color: #9aa2b2;
     font-family: 'os_regular';
 }
+
 .price-medium {
     color: #ff9000;
     font-size: 22px;
     font-family: 'os_bold';
     margin-bottom: 10px;
+
     span {
         color: #333333;
         font-size: 20px;
     }
 }
+
 .box-title {
     h2,
     h3 {
@@ -199,15 +219,19 @@ td {
         //margin-top: 20px;
     }
 }
+
 .content-fac {
     width: 100%;
+
     &-first {
         margin-bottom: 30px;
     }
 }
+
 .box-readmore {
     text-align: center;
 }
+
 .btn {
     &-readmore {
         font-size: 17px;
@@ -219,6 +243,7 @@ td {
         border-color: transparent;
     }
 }
+
 .box-map {
     background: #fff;
     padding: 20px;
@@ -226,92 +251,111 @@ td {
     grid-template-columns: auto 300px;
     border-radius: 5px;
     margin-top: -130px;
+
     img {
         width: 295px;
         height: 200px;
     }
 }
+
 .content-item {
     width: 100%;
     font-size: 13px;
     color: #333333;
+
     ul {
         margin: 0px;
         padding: 0px;
         list-style: none;
         display: grid;
         grid-template-columns: auto auto auto;
+
         li {
             margin-bottom: 20px;
             padding-right: 15px;
         }
     }
 }
+
 .box-fac {
     box-sizing: border-box;
     margin-top: -70px;
 }
+
 .box-detail-fac {
     background: #fff;
     padding: 10px;
     display: block;
     border-radius: 5px;
 }
+
 .box-item-fac {
     margin-bottom: 20px;
     display: grid;
     grid-template-columns: 265px auto;
     font-weight: 200;
+
     h3 {
         font-weight: 600;
         font-family: 'os_semi_bold';
     }
 }
+
 .items {
     display: grid;
     grid-template-columns: auto auto auto;
     border-bottom: 1px solid #e6e6e6;
 }
+
 .detailName {
     margin-top: 9px;
 }
+
 .down {
     margin-bottom: 5px;
 }
+
 .box-policy {
     background: transparent;
     padding: 0px;
     margin-bottom: 20px;
     border-radius: 5px;
 }
+
 .panel-group {
     margin-bottom: 20px;
 }
+
 .panel {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     border-radius: 4px;
     border: 0px;
     margin-bottom: 15px;
 }
+
 .collapse {
     &:not(.show) {
         display: none;
     }
 }
+
 .hotelPolicyHour {
     display: flex;
+
     .hour {
         color: #1a202c;
         width: 120px;
         display: flex;
         border-left: 1px solid #cbd5e0;
         justify-content: space-around;
+
         .CheckInAndOut {
             color: #4a5568;
             font-size: 14px;
             font-weight: normal;
             line-height: 17px;
         }
+
         &Policy {
             color: #1a202c;
             font-size: 16px;
@@ -325,14 +369,17 @@ td {
     margin-top: 19px;
     max-height: 350px;
     line-height: 20px;
+
     .regular {
         display: flex;
         flex-direction: column;
+
         &Title {
             font-size: 14px;
             font-weight: 600;
             padding-bottom: 8px;
         }
+
         &Content {
             color: rgb(22, 22, 29);
             overflow: hidden;
@@ -343,18 +390,22 @@ td {
         }
     }
 }
+
 .usefulInformation {
     gap: 20px 50px;
     display: grid;
     margin-top: 16px;
     grid-template-columns: repeat(3, 1fr);
+
     .item {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         .partOfItem {
             display: flex;
             align-items: center;
+
             .text {
                 padding-left: 12px;
             }

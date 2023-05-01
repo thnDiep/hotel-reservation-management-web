@@ -1,13 +1,13 @@
 import clsx from 'clsx'
-import styles from '../Home.module.scss'
+import styles from './Vouchers.module.scss'
 
 function Vouchers(props) {
     return (
-        <div className={styles.vouchers}>
-            <div className={clsx(styles.content, 'd-flex')}>
+        <div className={clsx(styles.vouchers, 'part')}>
+            <div className="part__content d-flex">
                 <div className={styles.voucher}>
                     <span className="d-flex-js">
-                        <span className={styles.subTitle}>Nhập mã</span>
+                        <span className="part__subTitle">Nhập mã</span>
                         <span className={styles.code}>DEALCHOT</span>
                     </span>
                     <div className="d-flex" style={{ minHeight: '60px' }}>
@@ -21,7 +21,7 @@ function Vouchers(props) {
 
                 <div className={styles.voucher}>
                     <span className="d-flex-js">
-                        <span className={styles.subTitle}>Nhập mã</span>
+                        <span className="part__subTitle">Nhập mã</span>
                         <span className={styles.code}>HEVINPEARL</span>
                     </span>
                     <div className="d-flex" style={{ minHeight: '60px' }}>

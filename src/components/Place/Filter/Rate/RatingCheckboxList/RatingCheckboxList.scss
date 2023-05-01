@@ -1,62 +1,61 @@
-.MuiSvgIcon-root {
-    width: 22px !important;
-    height: 22px !important;
-    ;
-    // box-shadow: inset 0 0 0 1px rgba(16, 22, 26, .2), inset 0 -1px 0 rgba(16, 22, 26, .1) !important;
-    // ;
-    border-radius: 6px !important;
-    ;
-    background-color: #f5f8fa !important;
-    ;
-    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .8), hsla(0, 0%, 100%, 0)) !important;
-    ;
-    border: 1px solid rgba(245, 245, 220, 0.315);
-    // color: rgba(245, 245, 220, 0.315);
+.RatingCheckboxList {
+    display: flex;
+    flex-direction: column;
 
-    // &:active {
-    //     color: white;
-    // }
-
-    &::before {
+    .iconCheckBox {
         width: 22px;
         height: 22px;
-        content: "";
-        display: block;
-        background-size: cover;
-        background-image: url('https://mytour.vn/icons/icon_checked.svg');
+        box-shadow: inset 0 0 0 1px rgba(16, 22, 26, .2), inset 0 -1px 0 rgba(16, 22, 26, .1);
+        border-radius: 6px;
+        background-color: #f5f8fa;
+        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .8), hsla(0, 0%, 100%, 0));
+
+        &::before {
+            width: 22px;
+            height: 22px;
+            content: "";
+            display: block;
+            background-size: cover;
+            background-image: url('https://mytour.vn/icons/icon_checked.svg');
+        }
     }
-}
 
-.PrivateSwitchBase-input-9 {
-    color: rgba(255, 255, 255, 0.349);
+    .checked {
+        background-color: #00B6F3;
+        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, 0));
+    }
 
-}
+    // .PrivateSwitchBase-input-9 {
+    //     color: rgba(255, 255, 255, 0.349);
 
-.MuiIconButton-colorSecondary {
-    color: rgba(245, 245, 220, 0.315);
+    // }
 
-    // fill: azure !important;
-    border: 0.1px solid white !important;
-}
+    // .MuiIconButton-colorSecondary {
+    //     color: rgba(245, 245, 220, 0.315);
 
-.MuiCheckbox-colorSecondary.Mui-checked {
-    color: rgb(10 185 243) !important;
-}
+    //     // fill: azure !important;
+    //     border: 0.1px solid white !important;
+    // }
 
-.fa-star {
-    color: #FFBC39 !important;
-    color: #FFBC39 !important;
-    width: 14px;
-    height: 14px;
-    margin-right: 3px;
-}
+    // .MuiCheckbox-colorSecondary.Mui-checked {
+    //     color: rgb(10 185 243) !important;
+    // }
 
-.MuiTypography-body1 {
-    overflow: hidden;
-    font-size: 14px !important;
-    line-height: 17px !important;
-    font-family: Mt !important;
-    font-weight: normal !important;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+    .fa-star {
+        color: #FFBC39 !important;
+        color: #FFBC39 !important;
+        width: 14px;
+        height: 14px;
+        margin-right: 3px;
+    }
+
+    .MuiTypography-body1 {
+        overflow: hidden;
+        font-size: 14px !important;
+        line-height: 17px !important;
+        font-family: Mt !important;
+        font-weight: normal !important;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
 }

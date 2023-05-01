@@ -1,3 +1,27 @@
+.listPlace {
+    width: 100%;
+    padding-top: 24px;
+    margin-left: auto;
+    padding-left: 0;
+}
+
+.Search {
+    padding: 12px 0 0 0;
+}
+
+.title {
+    font-size: 16px;
+    font-family: Mt;
+    font-weight: normal;
+    line-height: 20px;
+    font-weight: bold;
+    margin: 0;
+
+    h2 {
+        font-weight: bold;
+    }
+}
+
 .content {
     display: flex;
     align-items: flex-start;
@@ -156,6 +180,13 @@
                 cursor: pointer;
                 padding: 4px 12px;
                 position: relative;
+            }
+
+            .active {
+                color: #fff;
+                padding: 10px 12px;
+                border-radius: 8px;
+                background-color: #FF3366;
             }
         }
     }
