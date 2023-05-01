@@ -1,7 +1,5 @@
 import React, { Fragment, useState } from 'react';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './RatingCheckboxList.scss'
 function RatingCheckboxList(props) {
   // console.log(props.data);
@@ -18,15 +16,19 @@ function RatingCheckboxList(props) {
   };
 
   return (
-    <Fragment>
+    <div className='RatingCheckboxList'>
       {ratingValues.map((item) => (
         <FormControlLabel
           key={item.id}
-          control={<Checkbox checked={item.checked || false} onChange={handleCheckboxChange} value={item.value} />}
+          control={<Checkbox checked={item.checked || false}
+            icon={<span className='iconCheckBox'></span>}
+            checkedIcon={<span className='iconCheckBox checked'></span>}
+            onChange={handleCheckboxChange}
+            value={item.value} />}
           label={item.label}
         />
       ))}
-    </Fragment>
+    </div>
   );
 }
 export default RatingCheckboxList;

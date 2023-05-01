@@ -47,7 +47,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ButtonPrimary from '~/components/Button/ButtonPrimary'
 import { faBell, faBuilding, faCalendar, faSnowflake, faSun } from '@fortawesome/free-regular-svg-icons'
 import RoomsList from '~/components/DetailRoom/RoomList/RoomsList'
-import PictureDetail from './PictureDetail/PictureDetail'
+import ImageHotel from '~/components/DetailRoom/ImageHotel/ImageHotel'
 import PriceDetail from './PriceDetail/PriceDeatil'
 import FacilityList from '~/components/DetailRoom/FacilityList/FacilityList'
 import { RecentViews, SliderHotels } from '~/components'
@@ -56,7 +56,9 @@ import notableDes from '~/assets/jsons/notable.json'
 const Detail = () => {
     return (
         <React.Fragment>
-            <PictureDetail />
+            <div className={classes.container}>
+                <ImageHotel />
+            </div>
             <PriceDetail />
             <div className={classes.container}>
                 <div className="row">
@@ -96,9 +98,7 @@ const Detail = () => {
                 </div>
             </div>
             <Search />
-            <hr />
             <RoomsList />
-            <hr />
             <div className={classes.container}>
                 <div className="row">
                     <div className="col-lg-12 col-md-12">

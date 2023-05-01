@@ -53,9 +53,9 @@ const PriceDetail = () => {
                                 <tbody>
                                     <tr>
                                         <td className={classes['col-left']}>
-                                            <div class={classes['box-info']}>
-                                                <span class={classes.boxTitle}>Khách sạn</span>
-                                                <span class={classes['box-star']}>
+                                            <div className={classes['box-info']}>
+                                                <span className={classes.boxTitle}>Khách sạn</span>
+                                                <span className={classes['box-star']}>
                                                     <FontAwesomeIcon icon={faStar} className={classes.icon} />
                                                     <FontAwesomeIcon icon={faStar} className={classes.icon} />
                                                     <FontAwesomeIcon icon={faStar} className={classes.icon} />
@@ -63,10 +63,10 @@ const PriceDetail = () => {
                                                     <FontAwesomeIcon icon={faStar} className={classes.icon} />
                                                 </span>
                                             </div>
-                                            <div class={classes.hotelTitle}>
+                                            <div className={classes.hotelTitle}>
                                                 <h1>Khách sạn Vias Vũng Tàu</h1>
                                             </div>
-                                            <div class={classes.boxAddress}>
+                                            <div className={classes.boxAddress}>
                                                 <h3>179 Thùy Vân, Phường 8, Thành phố Vũng Tàu, Bà Rịa - Vũng Tàu</h3>
                                             </div>
                                         </td>
