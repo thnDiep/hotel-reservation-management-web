@@ -84,12 +84,11 @@ function Header() {
 
         </div>
         <div className={classes.header__choose}>
-            <TitleButton name="Hotels" className="btnChoose"></TitleButton>
-            <TitleButton name="Flights" className="btnChoose"></TitleButton>
-            <TitleButton name="Villa & Homestays" className="btnChoose"></TitleButton>
-            <TitleButton name="Top Brands" className="btnChoose"></TitleButton>
-            <TitleButton name="Restaurants" className="btnChoose"></TitleButton>
-            <TitleButton name="Tour & Event" className="btnChoose"></TitleButton>
+            <TitleButton name="Khách sạn" className="btnChoose" active="active"></TitleButton>
+            <TitleButton name="Biệt thự, Homestay" className="btnChoose"></TitleButton>
+            <TitleButton name="Top Thương hiệu" className="btnChoose"></TitleButton>
+            <TitleButton name="Nhà hàng" className="btnChoose"></TitleButton>
+            <TitleButton name="Sự kiện" className="btnChoose"></TitleButton>
         </div>
     </div>
 }

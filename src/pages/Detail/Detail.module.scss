@@ -1,55 +1,7 @@
 .container {
     margin-top: 110px;
 }
-.box-slider {
-    display: grid;
-    grid-template-columns: 700px calc(100% - 700px);
-    height: 435px;
-    overflow: hidden;
-    cursor: pointer;
-}
-.box-item-1 {
-    border-radius: 5px;
-    overflow: hidden;
-    max-height: 435px;
-    padding-right: 0px;
-    img {
-        height: 435px;
-    }
-}
-.box-item-content {
-    overflow: hidden;
-    max-height: 435px;
-    padding-right: 0px;
-}
-.box-second {
-    border-radius: 5px;
-    height: 210px;
-    overflow: hidden;
-    padding-left: 5px;
-}
-.item-box-plus {
-    display: grid;
-    grid-template-columns: auto auto;
-    height: 225px;
-    padding-top: 5px;
-    padding-left: 5px;
-}
-.box-item-3 {
-    overflow: hidden;
-    border-radius: 5px;
-    img {
-        height: 225px;
-    }
-}
-.box-item-4 {
-    padding-left: 5px;
-    overflow: hidden;
-    border-radius: 5px;
-    img {
-        height: 225px;
-    }
-}
+
 img {
     width: 100%;
 }

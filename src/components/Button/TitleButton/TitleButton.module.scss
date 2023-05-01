@@ -32,3 +32,21 @@
         text-decoration: none;
     }
 }
+
+.active {
+    color: #FF3366;
+}
+
+.active__css {
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+}
+
+.active__css1 {
+    width: 100%;
+    height: 3px;
+}

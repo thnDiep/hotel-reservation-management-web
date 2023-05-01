@@ -3,12 +3,14 @@
     height: 72px;
     padding: 8px;
     background-color: #fff;
+    -top: 12px;
     border: 1px solid var(--border-color);
     border-radius: 6px;
-    // box-shadow: rgba(26, 32, 44, 0.05) 0px 10px 10px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 15px 15px;
+    box-shadow: rgba(26, 32, 44, 0.05) 0px 10px 10px;
+    // box-shadow: rgba(0, 0, 0, 0.2) 0px 15px 15px;
     position: relative;
     z-index: 3;
+
     .title {
         color: #4a5568;
         text-align: left;
@@ -16,6 +18,7 @@
         font-weight: 400;
         line-height: 14px;
     }
+
     .content {
         padding-top: 6px;
         min-width: 120px;
@@ -35,6 +38,7 @@
     line-height: 19px;
     color: var(--text-color);
     z-index: 2;
+
     input {
         width: 100%;
         padding: 6px 0 7px;
@@ -63,6 +67,7 @@
         padding: 6px;
         margin-right: 50px;
         margin-left: 30px;
+
         span {
             font-size: 14px;
             padding-right: 2px;

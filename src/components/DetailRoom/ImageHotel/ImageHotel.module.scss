@@ -1,0 +1,151 @@
+.box-slider {
+    display: grid;
+    grid-template-columns: 700px calc(100% - 700px);
+    height: 435px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.box-item-1 {
+    border-radius: 5px;
+    overflow: hidden;
+    max-height: 435px;
+    padding-right: 0px;
+
+    img {
+        height: 435px;
+    }
+}
+
+.box-item-content {
+    overflow: hidden;
+    max-height: 435px;
+    padding-right: 0px;
+}
+
+.box-second {
+    border-radius: 5px;
+    height: 210px;
+    overflow: hidden;
+    padding-left: 5px;
+}
+
+.item-box-plus {
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 225px;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.box-item-3 {
+    overflow: hidden;
+    border-radius: 5px;
+
+    img {
+        height: 225px;
+    }
+}
+
+.box-item-4 {
+    padding-left: 5px;
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+
+    img {
+        height: 225px;
+    }
+
+    span {
+        color: #fff;
+        position: absolute;
+        line-height: 215px;
+        text-align: center;
+        width: 100%;
+        z-index: 1;
+        font-size: 14px;
+        font-family: 'os_semi_bold';
+        font-weight: 600;
+
+    }
+
+    .viewAll {
+        position: absolute;
+        width: 100%;
+        height: 220px;
+        text-align: center;
+        background: #000;
+        opacity: 0.5;
+        border-radius: 5px;
+    }
+}
+
+.box-popup-slider {
+    height: 80vh;
+    width: 1140px;
+    overflow-y: auto;
+}
+
+.carousel-indicators {
+    bottom: 20px;
+    z-index: 15;
+}
+
+.carousel-indicators-image {
+    height: 150px !important;
+    margin-top: 50px !important;
+    position: inherit !important;
+    margin: 0px !important;
+    left: 0px !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    overflow: auto !important;
+
+    &>div {
+
+
+        margin: 5px !important;
+        opacity: 0.6 !important;
+        border-radius: 5px !important;
+        cursor: pointer !important;
+        transition: all 0.5s !important;
+        height: 75px !important;
+        display: inline-block !important;
+        width: 100px !important;
+        vertical-align: top !important;
+        overflow: hidden !important;
+        margin-top: 0px !important;
+        border: 2px solid transparent !important;
+        text-indent: 0px !important;
+
+
+
+        & img {
+            border-radius: 5px !important;
+            height: 75px;
+        }
+    }
+}
+
+.box-popup-content {
+    background: #fff;
+    min-height: 150px;
+    position: relative;
+    border-radius: 5px;
+
+    &__button {
+        font-size: 16px;
+        color: #fff;
+        font-family: 'os_semi_bold';
+        border-radius: 5px;
+        background: #FF3366;
+        outline: 0;
+        border: 0px;
+        line-height: 50px;
+        padding: 0px 20px;
+        margin-top: 20px;
+        width: 85%;
+    }
+}
