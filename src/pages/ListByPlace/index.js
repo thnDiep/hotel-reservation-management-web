@@ -1,8 +1,6 @@
 import classes from "./ListByPlace.module.scss";
 import React, { Fragment, useState } from "react";
 import PlacesList from "~/components/Place/PlaceList/PlacesList";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
 import PriceSlider from "~/components/Place/Filter/Price/Price";
 import Star from "~/components/Place/Filter/Rate/Star/Star"
 import Service from "~/components/Place/Filter/Rate/Service/Service"
@@ -78,11 +76,12 @@ const listPlace = [
         discount: 0.2
     }
 ]
+const sort = ["Phù hợp nhất", "Rẻ nhất", "Đắt nhất", "Xếp hạng sao", "Đánh giá cao nhất"]
 function ListByPlace() {
-    const [checked, setChecked] = useState(false);
+    const [indexSort, setIndexSort] = useState(0);
 
-    const handleChange = () => {
-        setChecked(!checked);
+    const handleChangeIndex = (index) => {
+        setIndexSort(index);
     };
 
     return <Fragment>
@@ -143,14 +142,22 @@ function ListByPlace() {
                     <div className={classes.room__nav}>
                         <div className={classes['room__nav--choose']}>
                             <span style={{ fontWeight: '400', marginRight: '4px' }}>Sắp xếp:</span>
-                            <div className={`${classes.sort} ${classes.active}`}>Phù hợp nhất</div>
+                            {sort.map((sortItem, index) => {
+                                return (<div key={index}
+                                    className={`${classes.sort} ${index === indexSort && classes.active}`}
+                                    onClick={() => handleChangeIndex(index)}
+                                >
+                                    {sortItem}
+                                </div>)
+                            })}
+                            {/* <div className={`${classes.sort} ${classes.active}`}>Phù hợp nhất</div>
                             <div className={classes.sort}>Rẻ nhất</div>
                             <div className={classes.sort}>Đắt nhất</div>
                             <div className={classes.sort}>Xếp hạng sao</div>
-                            <div className={classes.sort}>Đánh giá cao nhất</div>
+                            <div className={classes.sort}>Đánh giá cao nhất</div> */}
                         </div>
                         <div className={classes.confirm}>
-                            <span className={classes.confirm__icon}>
+                            {/* <span className={classes.confirm__icon}>
                                 <svg width="16" height="16" fill="none">
                                     <path d="M12.739 6.478L6.652 15l1.217-5.478H3L9.087 1 7.87 6.478h4.87z" stroke="#ED8936" strokeLinecap="round"
                                         strokeLinejoin="round"></path>
@@ -162,7 +169,7 @@ function ListByPlace() {
                                 <label htmlFor="switch">
                                     <FontAwesomeIcon className={classes['confirm__switch--icon']} icon={checked ? faToggleOn : faToggleOff} />
                                 </label>
-                            </span>
+                            </span> */}
                         </div>
                     </div>
                     <PlacesList items={listPlace} />

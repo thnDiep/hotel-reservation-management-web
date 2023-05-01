@@ -5,9 +5,8 @@
     --second-color: #ff33661a;
     --border-color: #e2e8f0;
     --text-color: #1a202c;
-
     --default-width: 1200px;
-    --height-header: 96px;
+    --height-header: 60px;
 }
 
 * {
@@ -98,6 +97,7 @@ body {
 }
 
 .home {
+
     .slick-prev:before,
     .slick-next:before {
         content: '';
@@ -159,6 +159,7 @@ body {
         padding: 1.8rem;
         padding-bottom: 0;
     }
+
     .modal-body {
         padding: 1.8rem;
         padding-bottom: 1rem;

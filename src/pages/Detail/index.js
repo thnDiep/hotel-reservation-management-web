@@ -44,21 +44,22 @@ import {
     faWineGlassAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ButtonPrimary from '~/components/Button/ButtonPrimary'
+// import ButtonPrimary from '~/components/Button/ButtonPrimary'
 import { faBell, faBuilding, faCalendar, faSnowflake, faSun } from '@fortawesome/free-regular-svg-icons'
 import RoomsList from '~/components/DetailRoom/RoomList/RoomsList'
-import ImageHotel from '~/components/DetailRoom/ImageHotel/ImageHotel'
+// import ImageHotel from '~/components/DetailRoom/ButtonPopUpDetail/ImageHotel'
 import PriceDetail from './PriceDetail/PriceDeatil'
 import FacilityList from '~/components/DetailRoom/FacilityList/FacilityList'
 import { RecentViews, SliderHotels } from '~/components'
 import notableDes from '~/assets/jsons/notable.json'
-
+import PictureDetail from './PictureDetail/PictureDetail'
 const Detail = () => {
     return (
         <React.Fragment>
-            <div className={classes.container}>
+            {/* <div className={classes.container}>
                 <ImageHotel />
-            </div>
+            </div> */}
+            <PictureDetail />
             <PriceDetail />
             <div className={classes.container}>
                 <div className="row">
