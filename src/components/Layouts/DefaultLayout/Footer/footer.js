@@ -1,44 +1,41 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classes from './Footer.module.scss'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faFacebook, faInstagramSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons'
 
 const Footer = () => {
     return (
         <div className={classes.container}>
             <footer className="text-center text-lg-start bg-light text-muted">
-                <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-                    <div className="me-5 d-none d-lg-block"></div>
-
-                    <div>
-                        <a href="" className="me-4 text-reset">
-                            <i className="fab fa-facebook-f"></i>
+                <div className="d-flex justify-content-center  p-4 border-bottom text-align-center">
+                    <div className="me-5 d-none d-lg-block">
+                        <a href="" className="me-4">
+                            <FontAwesomeIcon icon={faFacebook} className={classes.icon} />
                         </a>
-                        <a href="" className="me-4 text-reset">
-                            <i className="fab fa-twitter"></i>
+                        <a href="" className="me-4 ">
+                            <FontAwesomeIcon icon={faTwitterSquare} className={classes.icon} />
                         </a>
-                        <a href="" className="me-4 text-reset">
-                            <i className="fab fa-google"></i>
-                        </a>
-                        <a href="" className="me-4 text-reset">
-                            <i className="fab fa-instagram"></i>
-                        </a>
-                        <a href="" className="me-4 text-reset">
-                            <i className="fab fa-linkedin"></i>
-                        </a>
-                        <a href="" className="me-4 text-reset">
-                            <i className="fab fa-github"></i>
+                        <a href="" className="me-4 ">
+                            <FontAwesomeIcon icon={faInstagramSquare} className={classes.icon} />
                         </a>
                     </div>
-                </section>
+                </div>
 
                 <section className="">
                     <div className="container text-center text-md-start mt-5">
                         <div className="row mt-3">
                             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                                 <h6 className="text-uppercase fw-bold mb-4">
-                                    <i className="fas fa-gem me-3"></i>Company name
+                                    <i className="fas fa-gem me-3"></i>MyTour
                                 </h6>
                                 <p>
-                                    Here you can use rows and columns to organize your footer content. Lorem ipsum dolor
-                                    sit amet, consectetur adipisicing elit.
+                                    <span>Công ty cổ phần du lịch Việt Nam VNTravel</span>
+                                    <div>Tổng đài chăm sóc: 1900 2083</div>
+                                    <div>Email: hotro@mytour.vn</div>
+                                    <div>
+                                        Văn phòng Hà Nội: Tầng 11, Tòa Peakview, 36 Hoàng Cầu, Đống Đa Văn phòng HCM:
+                                        Tầng 3, Tòa nhà ACM, 96 Cao Thắng, Quận 3
+                                    </div>
                                 </p>
                             </div>
 
