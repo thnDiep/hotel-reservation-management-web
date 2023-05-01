@@ -1,4 +1,10 @@
 
+.wrap{
+    // background-color: #f8f9fc;
+    // background-color: #00b6f3;
+    height: 100rem;
+}
+
 .wrapOfEmptyPage{
     text-align: center;
     .componentOfEmptyPage{
@@ -36,4 +42,104 @@
     &:hover{
         cursor: pointer;
     }
+}
+
+
+.card{
+    display: flex;
+    background-color: white;
+    font-size: 14px;
+    color: black;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+    &:hover{
+        box-shadow: 3px 3px 10px rgb(190, 190, 190);
+        width: 80%;
+        color: black;
+        cursor: pointer;
+    }
+
+    .image{
+        width: 288px;
+        height: 215px;
+        border-radius: 10px;
+    }
+    .info{
+        margin-left: 20px;
+        .name{
+            font-size: 18px;
+            font-weight: 500;
+            &:hover{
+                color:#00b6f3;
+            }
+        }
+    }
+
+}
+
+
+.tag_1{
+    background-color: orange;
+    color: white;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tag_2{
+    background-color:  purple;
+    color: white;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.point {
+    color: var(--primary-color);
+    padding: 2px 4px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 14px;
+    background: rgba(255, 51, 102, 0.1);
+    border-radius: 4px;
+    span {
+        margin-left: 4px;
+    }
+}
+
+.rate {
+    color: rgb(255, 188, 57);
+    font-size: 1.2rem;
+}
+
+.type{
+    border: 1px solid #f33266;
+    color: #f33266;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    // border-color: #00b6f3;
+}
+
+.icon{
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.evaluate{
+    margin-left: 10px;
+}
+
+.numberOfEvaluate{
+    color: gray;
+    margin-left: 10px;
 }
