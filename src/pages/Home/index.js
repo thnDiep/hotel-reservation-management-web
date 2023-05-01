@@ -18,44 +18,34 @@ function Home() {
         {
             start: new Date(new Date().setHours(9, 0, 0, 0)),
             end: new Date(new Date().setHours(12, 0, 0, 0)),
-            active: false,
-            disabled: false,
         },
         {
             start: new Date(new Date().setHours(14, 0, 0, 0)),
             end: new Date(new Date().setHours(16, 0, 0, 0)),
-            active: false,
-            disabled: false,
         },
         {
             start: new Date(new Date().setHours(19, 0, 0, 0)),
             end: new Date(new Date().setHours(23, 0, 0, 0)),
-            active: false,
-            disabled: false,
         },
         {
             start: new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(9, 0, 0, 0)),
             end: new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(12, 0, 0, 0)),
-            active: false,
-            disabled: false,
         },
         {
             start: new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(14, 0, 0, 0)),
             end: new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(16, 0, 0, 0)),
-            active: false,
-            disabled: false,
         },
     ])
 
     const [indexPeriod, setIndexPeriod] = useState(() => {
-        let index = -1
+        let lastIndex = -1
         periodFlashSale.current.map((period, index) => {
             if (today.current > period.end) {
-                index = index
+                lastIndex = index
             }
         })
-        ++index
-        return { active: index, current: index }
+        ++lastIndex
+        return { active: lastIndex, current: lastIndex }
     })
     const [timeLeft, setTimeLeft] = useState(() => {
         const now = today.current
@@ -63,10 +53,8 @@ function Home() {
         const end = periodFlashSale.current[indexPeriod.current].end
 
         if (now < start) {
-            // console.log(start - now)
             return start - now
         } else {
-            // console.log(end - now)
             return end - now
         }
     })
@@ -147,7 +135,6 @@ function Home() {
                                 )}
 
                                 <div className={styles.countDown}>
-                                    {console.log(timeLeft)}
                                     <div className={styles.timer}>{new Date(timeLeft).toISOString().slice(11, 13)}</div>
                                     <span>:</span>
                                     <div className={styles.timer}>{new Date(timeLeft).toISOString().slice(14, 16)}</div>
@@ -164,7 +151,7 @@ function Home() {
                                     className={clsx(
                                         styles.period,
                                         { [styles.active]: index === indexPeriod.active },
-                                        { [styles.disabled]: period.disabled },
+                                        { [styles.disabled]: index < indexPeriod.current },
                                     )}
                                     onClick={() => setIndexPeriod({ ...indexPeriod, active: index })}
                                 >
