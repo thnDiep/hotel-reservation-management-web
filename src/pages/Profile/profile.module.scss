@@ -1,6 +1,12 @@
 .wrap{
     margin-top: 130px;
+    margin-left: 170px;
+    margin-bottom: 4rem;
+    // background-color: #fafcff;
+ 
 }
+
+
 .profileMenu{
     margin-bottom: 20px;
     .buttonMenu {
@@ -25,31 +31,3 @@
 
 
 
-
-
-.wrapOfEmptyPage{
-    text-align: center;
-    .componentOfEmptyPage{
-        margin: 0 auto;
-        margin-top: 15px;
-        margin-bottom: 20px;
-    }
-    .imageForEmptyInfo{
-        width: 249px;
-        height: 210px;
-        margin: 0 auto;
-    }
-    .buttonSearchInReserve{
-        width: 175px;
-        font-weight: 600;
-        margin: 0 auto;
-    }
-    .buttonSearchInWishList{
-        width: 145px;
-        font-weight: 600;
-        margin: 0 auto;
-        background-color: #00b6f3;
-        border-color: #00b6f3;
-    }
-
-}

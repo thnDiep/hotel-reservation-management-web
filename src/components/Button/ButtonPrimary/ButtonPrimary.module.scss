@@ -52,7 +52,9 @@
     color: #fff;
 }
 
-.btnSeeAll {
+.btnSeeMore-s,
+.btnSeeMore-m,
+.btnSeeMore-l {
     color: rgb(255, 51, 102);
     width: fit-content;
     border: 1px solid rgb(255, 51, 102);
@@ -71,6 +73,18 @@
         background-color: inherit;
         box-shadow: none;
     }
+}
+
+.btnSeeMore-s {
+    padding: 12px 16px;
+}
+
+.btnSeeMore-m {
+    padding: 12px 35px;
+}
+
+.btnSeeMore-l {
+    padding: 12px 50px;
 }
 
 .btn__order {

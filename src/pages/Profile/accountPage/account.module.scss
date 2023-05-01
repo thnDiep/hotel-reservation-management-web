@@ -1,3 +1,9 @@
+// khung của module thuộc từng lựa chọn menu
+.contentWrap{
+    display:flex;
+    justify-content: center;
+}
+
 .formInformation{
     border: 1px solid black;
     width: 1200px;

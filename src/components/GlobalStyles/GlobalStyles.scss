@@ -24,6 +24,10 @@ body {
     line-height: 1.5;
 }
 
+.d-none {
+    display: none;
+}
+
 .d-flex {
     display: flex;
     align-items: center;
@@ -90,5 +94,23 @@ body {
         border-top: 0;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
+    }
+}
+
+.home {
+    .slick-prev:before,
+    .slick-next:before {
+        content: '';
+    }
+}
+
+.conditionModal {
+    .modal-header {
+        padding: 1.8rem;
+        padding-bottom: 0;
+    }
+    .modal-body {
+        padding: 1.8rem;
+        padding-bottom: 1rem;
     }
 }
