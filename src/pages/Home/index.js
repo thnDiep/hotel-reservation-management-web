@@ -158,18 +158,21 @@ function Home() {
                                     <h3>
                                         {period.start.getHours()}:00 - {period.end.getHours()}:00
                                     </h3>
-                                    {period.disabled && <p>Đã kết thúc</p>}
-                                    {period.active && (
+                                    {index < indexPeriod.current && <p>Đã kết thúc</p>}
+                                    {today.current >= period.start && today.current <= period.end && (
                                         <p>
                                             ĐANG DIỄN RA
                                             <img src="https://storage.googleapis.com/tripi-assets/mytour/icons/icon_fire.png" />
                                         </p>
                                     )}
-                                    {!period.active && today.current.getDay() === period.start.getDay() ? (
-                                        <p>Sắp diễn ra</p>
-                                    ) : (
-                                        <p>{moment(period.start).format('DD/MM')}</p>
-                                    )}
+
+                                    {today.current < period.start &&
+                                        today.current.getDay() === period.start.getDay() && <p>Sắp diễn ra</p>}
+
+                                    {today.current < period.start &&
+                                        today.current.getDay() !== period.start.getDay() && (
+                                            <p>{moment(period.start).format('DD/MM')}</p>
+                                        )}
                                 </div>
                             ))}
                         </div>

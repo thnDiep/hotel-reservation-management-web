@@ -1,0 +1,21 @@
+.container {
+    width: 100%;
+    font-family: Mt, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f5f7f9;
+}
+
+.content {
+    width: 920px;
+    margin: auto;
+
+    .contentBody {
+        width: 100%;
+        margin-top: 8px;
+        margin-bottom: 16px;
+        background-color: #fff;
+        border-radius: 6px;
+        border: 1px solid #eaedf1;
+        -webkit-box-shadow: 0 4px 8px rgba(33, 38, 44, 0.16);
+        box-shadow: 0 4px 8px rgba(33, 38, 44, 0.16);
+    }
+}

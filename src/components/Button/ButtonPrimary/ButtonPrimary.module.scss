@@ -67,10 +67,10 @@
     border-radius: 8px;
     text-transform: none;
     background-color: inherit;
-
     &:hover {
         cursor: pointer;
-        background-color: inherit;
+        background-color: rgba(255, 51, 102, 0.1);
+        border: 1px solid rgba(255, 51, 102, 0.1);
         box-shadow: none;
     }
 }

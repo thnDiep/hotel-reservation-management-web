@@ -1,0 +1,51 @@
+.container {
+    text-align: center;
+}
+
+.qrImageFrame {
+    width: 412px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+    margin: auto;
+}
+.qrImage {
+    width: 378px;
+    margin: 100px 0px;
+}
+
+.title {
+    margin: 0;
+    font-size: 2.2rem;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.bill {
+    padding: 12px;
+    background-color: #f5f7f9;
+    border-radius: 3px;
+}
+
+.subTitle {
+    color: #5a7087;
+    font-size: 1.4rem;
+}
+
+.text {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+.primary {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+sup {
+    font-size: 60%;
+    top: -0.8rem;
+    left: -0.5rem;
+}
