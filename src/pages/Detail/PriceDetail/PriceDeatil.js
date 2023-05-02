@@ -41,8 +41,21 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ButtonPrimary from '~/components/Button/ButtonPrimary'
-import { faBell, faBuilding, faSnowflake, faSun } from '@fortawesome/free-regular-svg-icons'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import AllFacility from './AllFacility/AllFacility'
+const MySwal = withReactContent(Swal)
 const PriceDetail = () => {
+    const handleButtonClick = () =>
+        MySwal.fire({
+            title: 'Tiện nghi Khách sạn',
+            html: <AllFacility />,
+            showCloseButton: true,
+            showConfirmButton: false,
+            width: '784px',
+            height: '530px',
+            backdrop: '#fffff',
+        })
     return (
         <div className={classes.content}>
             <div className="row">
@@ -123,7 +136,13 @@ const PriceDetail = () => {
                                 </div>
 
                                 <div className={classes['box-readmore']}>
-                                    <button className={classes['btn-readmore']}>Xem thêm tiện ích</button>
+                                    <button
+                                        type="button"
+                                        className={classes['btn-readmore']}
+                                        onClick={handleButtonClick}
+                                    >
+                                        Xem thêm tiện ích
+                                    </button>
                                 </div>
                             </div>
                         </div>

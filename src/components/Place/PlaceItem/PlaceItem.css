@@ -1,0 +1,311 @@
+.place {
+  margin: 12px 0px;
+  color: #1a202c;
+  width: 100%;
+  border: 1px solid #EDF2F7;
+  display: flex;
+  padding: 16px;
+  font-size: 14px;
+  background: #ffffff;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+  font-weight: normal;
+  line-height: 17px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.place:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.place:hover .place__detail--title {
+  color: #00B6F3;
+  transition: all 0.2s;
+}
+.place:hover .slick-prev, .place:hover .slick-next {
+  opacity: 1;
+}
+.place__img {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  border-radius: 8px;
+  width: 286px;
+  height: 214px;
+  position: relative;
+}
+.place__img .image {
+  height: 100%;
+}
+.place__img .jss300 {
+  top: 0;
+  right: 0;
+  z-index: 2;
+  position: absolute;
+}
+.place__detail {
+  width: calc(100% - 286px);
+  display: flex;
+  position: relative;
+  padding-left: 16px;
+}
+.place__detail--content {
+  width: 60%;
+}
+.place__detail--price {
+  width: 40%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.place__detail--price .price__old {
+  font-size: 20px;
+  margin-top: 2px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.place__detail--price .price__new {
+  color: #4A5568;
+  margin-top: 4px;
+  text-decoration-line: line-through;
+}
+.place__detail--price .price__discount {
+  color: #ffffff;
+  padding: 2px 4px;
+  position: relative;
+  background: #FF3366;
+  font-weight: 600;
+  border-radius: 3px 3px 0px 3px;
+}
+.place__detail--price .price__discount1 {
+  right: 0;
+  width: 0;
+  bottom: -4px;
+  height: 0;
+  position: absolute;
+  border-color: transparent #FF1284 transparent transparent;
+  border-style: solid;
+  border-width: 0px 5px 5px 0;
+}
+.place__detail--endow {
+  display: flex;
+  white-space: nowrap;
+  padding-bottom: 6px;
+}
+.place__detail--endow1 {
+  color: #ffffff;
+  padding: 2px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  border-radius: 4px;
+  background-color: rgb(255, 188, 57);
+  margin-right: 6px;
+}
+.place__detail--endow2 {
+  background-color: #8547EC;
+  margin-right: 6px;
+  color: #ffffff;
+  padding: 2px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  border-radius: 4px;
+}
+.place__detail--title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 16px;
+  margin-top: -4px;
+  transition: all 0.2s;
+  font-weight: 600;
+  line-height: 21px;
+  padding-top: 4px;
+  margin-bottom: 2px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.place__detail .fa-star {
+  color: #feda56;
+}
+.place__detail--star {
+  position: relative;
+  white-space: nowrap;
+  font-size: 1.2rem;
+}
+.place__detail--star .overlay--star {
+  background: #fff;
+  height: 100%;
+  overflow: hidden;
+  mix-blend-mode: color;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.place__detail--scored {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.place__detail--scored1 {
+  color: #FF3366;
+  display: flex;
+  padding: 2px 4px 0;
+  background: rgba(255, 51, 102, 0.1);
+  align-items: center;
+  font-weight: 600;
+  border-radius: 4px;
+}
+.place__detail--scored2 {
+  margin: 0 4px;
+}
+.place__detail--scored3 {
+  color: #718096;
+}
+.place__detail--map {
+  width: -moz-fit-content;
+  width: fit-content;
+  transition: all 0.3s;
+}
+.place__detail--map:hover {
+  color: #00B6F3;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.place__detail--map1 {
+  margin-bottom: 0px;
+  display: flex;
+}
+.place__detail--map1 .map1__icon {
+  width: 16px;
+  height: 16px;
+}
+.place__detail--map1 .map1__content {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-left: 6px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.place__detail--map2 {
+  color: #00B6F3;
+  padding-left: 22px;
+  margin-bottom: 6px;
+}
+.place__detail--status {
+  display: flex;
+  margin-bottom: 6px;
+}
+.place__detail--status .status__icon {
+  width: 16px;
+  height: 16px;
+}
+.place__detail--status .status__content {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-left: 6px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.place__detail--service {
+  color: #48BB78;
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.place .slick-prev {
+  background: white !important;
+  height: 36px !important;
+  width: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 2 !important;
+  border-radius: 100px !important;
+  cursor: pointer !important;
+  position: absolute !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  border: 1px solid rgb(237, 242, 247) !important;
+  left: 26px !important;
+  opacity: 0;
+  transition: all ease 0.2s;
+}
+.place .slick-prev svg {
+  display: block;
+  stroke: #1a202c;
+}
+.place .slick-prev:hover svg {
+  stroke: #FF3366;
+  transition: all ease 0.2s;
+}
+.place .slick-next {
+  background: white !important;
+  height: 36px !important;
+  width: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 2 !important;
+  border-radius: 100px !important;
+  cursor: pointer !important;
+  position: absolute !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  border: 1px solid rgb(237, 242, 247) !important;
+  right: -10px !important;
+  opacity: 0;
+  transition: all ease 0.2s;
+}
+.place .slick-next svg {
+  display: block;
+  stroke: #1a202c;
+}
+.place .slick-next:hover svg {
+  stroke: #FF3366;
+  transition: all ease 0.2s;
+}
+.place .slick-track {
+  height: 100%;
+}
+.place .slick-list {
+  height: 100%;
+}
+.place .slick-slider {
+  position: relative;
+  width: 286px;
+  height: 214px;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+.place .slick-slider .slick-slide > div {
+  height: 100% !important;
+}
+.place .slick-dots {
+  bottom: 23px !important;
+  height: 2px;
+  margin: 0px;
+}
+.place .slick-dots li button:before {
+  width: 6px !important;
+  height: 6px !important;
+  transition: all 0.2s !important;
+  border-radius: 100px !important;
+  color: #ffffff !important;
+}
+.place .slick-dots li.slick-active button:before {
+  opacity: 0.75;
+  color: #fff;
+}
+.place .fa-angle-right {
+  color: #48BB78;
+  z-index: 3;
+}
+.place .slick-next:before,
+.place .slick-prev:before {
+  display: none;
+}/*# sourceMappingURL=PlaceItem.css.map */

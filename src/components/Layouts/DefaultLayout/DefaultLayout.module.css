@@ -1,0 +1,6 @@
+.content {
+  width: var(--default-width);
+  margin: auto;
+  margin-top: var(--height-header);
+  font-family: Mt, -apple-system, BlinkMacSystemFont, sans-serif;
+}/*# sourceMappingURL=DefaultLayout.module.css.map */

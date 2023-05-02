@@ -1,0 +1,31 @@
+.Silder-Price .my-slider-class .MuiSlider-rail {
+  color: #eeeeee;
+  height: 6px;
+  box-shadow: inset 0 0 2px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+.Silder-Price .my-slider-class .MuiSlider-track {
+  color: #FF3366;
+  height: 6px;
+  border-radius: 3px;
+  left: 2%;
+  width: 76%;
+}
+.Silder-Price .my-slider-class .MuiSlider-thumb {
+  width: 28px;
+  border: none;
+  height: 28px;
+  left: 2%;
+  box-shadow: 0px 0.5px 4px rgba(0, 0, 0, 0.12), 0px 6px 13px rgba(0, 0, 0, 0.12);
+  margin-top: -12px;
+  margin-left: -12px;
+  border-radius: 100px;
+  background-color: #FFFFFF;
+}
+.Silder-Price .money {
+  font-size: 14px;
+  font-family: Mt;
+  font-weight: normal;
+  line-height: 16px;
+  margin-top: 8px;
+}/*# sourceMappingURL=Price.css.map */

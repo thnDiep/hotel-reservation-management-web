@@ -1,0 +1,280 @@
+.container {
+  width: 100%;
+  padding-top: var(--height-header);
+}
+
+.videoBackground {
+  position: absolute;
+  left: 0;
+  top: var(--height-header);
+  width: 100%;
+  height: 480px;
+  -o-object-fit: none;
+     object-fit: none;
+  z-index: -1;
+}
+
+.title {
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  margin-bottom: 8px;
+}
+
+.subTitle {
+  color: #4a5568;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  margin: 0;
+}
+
+.hotels {
+  margin-top: 16px;
+  gap: 24px;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.introduction {
+  width: var(--default-width);
+  height: calc(480px - var(--height-header));
+  margin: auto;
+}
+.introduction p {
+  font-size: 26px;
+  max-width: 566px;
+  font-weight: 600;
+  line-height: 36px;
+  color: #fff;
+  margin-top: 40px;
+}
+
+.flashSale {
+  background: #fff5f7;
+}
+.flashSale .imgTitle {
+  width: 198px;
+  height: 44px;
+  margin-bottom: 6px;
+}
+.flashSale .countDown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 6px;
+}
+.flashSale .countDown .timer {
+  color: #ffffff;
+  width: 22px;
+  height: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4rem;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flashSale .countDown span {
+  color: var(--primary-color);
+  margin: 0 6px;
+}
+.flashSale .period {
+  cursor: pointer;
+  width: 110px;
+  height: 48px;
+  margin: 0 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: visible;
+  color: rgb(255, 51, 102);
+  background: rgba(255, 51, 102, 0.1);
+  border-radius: 8px;
+  position: relative;
+}
+.flashSale .period.active {
+  background: rgb(255, 51, 102);
+  color: rgb(255, 255, 255);
+}
+.flashSale .period.disabled {
+  background: rgb(255, 255, 255);
+  color: rgb(160, 174, 192);
+  cursor: default;
+  pointer-events: none;
+  text-transform: inherit;
+}
+.flashSale .period .containerSlider {
+  padding: 40px;
+  background: #fff;
+}
+.flashSale .period h3 {
+  font-size: 1.4rem;
+  line-height: 1.7rem;
+  font-weight: 600;
+  margin: 0;
+}
+.flashSale .period p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  margin-top: 4px;
+  font-size: 1.1rem;
+  line-height: 1.3rem;
+}
+.flashSale .period p img {
+  width: 14px;
+  height: 14px;
+}
+.flashSale .slickList {
+  gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.shockPrice {
+  background: #edf6f9;
+}
+.shockPrice .suggestTag {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+}
+.shockPrice .suggestTag p {
+  margin: 0;
+  margin-right: 16px;
+}
+.shockPrice .suggestTag span {
+  color: #00b6f3;
+  cursor: pointer;
+  margin-right: 16px;
+}
+.shockPrice .suggestTag span:hover {
+  text-decoration: underline;
+}
+
+.favoriteDestination {
+  margin: 0 auto;
+  padding: 44px 0 0;
+  max-width: 1188px;
+}
+.favoriteDestination .destinations {
+  width: 100%;
+  height: 600px;
+  position: relative;
+}
+.favoriteDestination .destination {
+  position: absolute;
+  text-align: center;
+}
+.favoriteDestination .destination:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.favoriteDestination .destination a {
+  text-decoration: none;
+}
+.favoriteDestination .destination .imageDestination {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 100%;
+}
+.favoriteDestination .destination .nameDestination {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  color: white;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 66.5%, rgba(0, 0, 0, 0.8) 100%);
+  border-radius: 100%;
+}
+.favoriteDestination .destination .nameDestination p {
+  width: 95%;
+}
+.favoriteDestination .destination.id-0 {
+  top: 167px;
+  left: 0;
+  width: 266px;
+  height: 266px;
+}
+.favoriteDestination .destination.id-1 {
+  top: 23px;
+  left: 258px;
+  width: 163px;
+  height: 163px;
+}
+.favoriteDestination .destination.id-2 {
+  top: 198px;
+  left: 320px;
+  width: 163px;
+  height: 163px;
+}
+.favoriteDestination .destination.id-3 {
+  top: 408px;
+  left: 253px;
+  width: 133px;
+  height: 133px;
+}
+.favoriteDestination .destination.id-4 {
+  top: 12px;
+  left: 473px;
+  width: 266px;
+  height: 266px;
+}
+.favoriteDestination .destination.id-5 {
+  top: 310px;
+  left: 638px;
+  width: 163px;
+  height: 163px;
+}
+.favoriteDestination .destination.id-6 {
+  top: 361px;
+  left: 421px;
+  width: 200px;
+  height: 200px;
+}
+.favoriteDestination .destination.id-7 {
+  top: -20px;
+  left: 791px;
+  width: 163px;
+  height: 163px;
+}
+.favoriteDestination .destination.id-8 {
+  top: 192px;
+  left: 769px;
+  width: 133px;
+  height: 133px;
+}
+.favoriteDestination .destination.id-9 {
+  top: 54px;
+  left: 968px;
+  width: 163px;
+  height: 163px;
+}
+.favoriteDestination .destination.id-10 {
+  top: 259px;
+  left: 892px;
+  width: 266px;
+  height: 266px;
+}
+.favoriteDestination .destination.id-11 {
+  top: 440px;
+  left: 776px;
+  width: 133px;
+  height: 133px;
+}/*# sourceMappingURL=Home.module.css.map */

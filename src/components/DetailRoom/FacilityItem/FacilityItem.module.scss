@@ -1,17 +1,24 @@
 .box-item-fac {
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: 265px auto;
+    margin-bottom: 5px;
+    // display: grid;
+    // grid-template-columns: 100px auto;
     font-weight: 200;
     h3 {
         font-weight: 600;
         font-family: 'os_semi_bold';
+        margin-bottom: 20px;
+        text-align: left;
+        line-height: 19px;
+        font-size: 16px;
+        margin: 8px 0px 16px;
+        color: rgba(0, 0, 0, 0.87);
     }
 }
 .items {
     display: grid;
     grid-template-columns: auto auto auto;
-    border-bottom: 1px solid #e6e6e6;
+    justify-items: left;
+    border-bottom: 1px transparent;
 }
 .icon {
     color: #f6d738;

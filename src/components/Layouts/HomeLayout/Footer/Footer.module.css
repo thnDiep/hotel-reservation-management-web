@@ -1,0 +1,31 @@
+.container {
+  font-family: kite-mallory, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 300;
+}
+.container .detail {
+  padding-top: 48px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgb(42, 42, 46);
+  color: rgb(215, 215, 219);
+}
+.container .detail .detailPicture {
+  margin: 12px 0 20px 0;
+  align-items: center;
+  justify-content: center;
+  width: 392px;
+  height: 32px;
+}
+.container .icon {
+  color: #333333;
+  margin-left: 5px;
+  font-size: 20px;
+  margin-right: 5px;
+  display: inline-block;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  margin-bottom: 5px;
+}/*# sourceMappingURL=Footer.module.css.map */

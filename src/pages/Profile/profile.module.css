@@ -1,0 +1,26 @@
+.wrap {
+  margin-top: 130px;
+  margin-left: 170px;
+  margin-bottom: 4rem;
+}
+
+.profileMenu {
+  margin-bottom: 20px;
+}
+.profileMenu .buttonMenu {
+  border: none;
+  background-color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 90px 0 0;
+  text-decoration: underline;
+}
+.profileMenu .buttonMenu:hover {
+  cursor: pointer;
+}
+.profileMenu .buttonMenu:has(input:checked) {
+  color: #e93062;
+}
+.profileMenu .buttonMenu input {
+  display: none;
+}/*# sourceMappingURL=profile.module.css.map */
