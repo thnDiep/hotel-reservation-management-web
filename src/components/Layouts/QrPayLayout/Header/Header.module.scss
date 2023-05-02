@@ -1,0 +1,18 @@
+.header {
+    padding-top: 4px;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    img {
+        width: 32px;
+        height: 32px;
+    }
+    .title {
+        padding-left: 6px;
+        padding-right: 3px;
+    }
+}
