@@ -56,11 +56,12 @@ import PictureDetail from './PictureDetail/PictureDetail'
 const Detail = () => {
     return (
         <React.Fragment>
+            <div className={classes.spacing}> </div>
+            <Search />
             {/* <div className={classes.container}>
                 <ImageHotel />
             </div> */}
             <div className={classes.subContainer}>
-
                 <PictureDetail />
             </div>
             <PriceDetail />
