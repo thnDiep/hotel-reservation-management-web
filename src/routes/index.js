@@ -9,6 +9,6 @@ export const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
     { path: '/detail', component: Detail },
     { path: '/listByPlace', component: ListByPlace },
-    { path: '/checkout', component: Checkout },
+    { path: '/checkout', component: Checkout, layout: HomeLayout },
     { path: '/profile', component: Profile },
 ]
