@@ -4,7 +4,8 @@ import ListByPlace from '~/pages/ListByPlace'
 import Checkout from '~/pages/Checkout'
 import Profile from '~/pages/Profile'
 import QrPay from '~/pages/QrPay'
-import { HomeLayout, QrPayLayout } from '~/components/Layouts'
+import AdminHotel from '~/pages/Admin/Hotel'
+import { HomeLayout, QrPayLayout, AdminLayout } from '~/components/Layouts'
 
 export const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
@@ -13,4 +14,5 @@ export const publicRoutes = [
     { path: '/checkout', component: Checkout },
     { path: '/profile', component: Profile },
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
+    { path: '/admin/hotel', component: AdminHotel, layout: AdminLayout },
 ]

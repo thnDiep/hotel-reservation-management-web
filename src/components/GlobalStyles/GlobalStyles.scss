@@ -172,9 +172,8 @@ body {
     color: rgb(255, 51, 102);
     width: fit-content;
     border: 1px solid rgb(255, 51, 102);
-    height: 40px;
     margin: 0px;
-    padding: 12px 50px;
+    padding: 7px 30px;
     font-size: 14px;
     min-height: 20px;
     font-weight: 600;
@@ -187,5 +186,45 @@ body {
         border: 1px solid rgba(255, 51, 102, 0.1);
         color: rgb(255, 51, 102);
         box-shadow: none;
+    }
+
+    &.active {
+        color: #fff;
+        background-color: #68e365;
+        border: none;
+    }
+
+    &.blocked {
+        color: #fff;
+        background-color: #e23428;
+        border: none;
+    }
+
+    &.pending {
+        color: #fff;
+        background-color: #fb9f44;
+        border: none;
+    }
+}
+
+.admin {
+    .dropdown-menu {
+        min-width: 140px;
+        font-size: 1.6rem;
+        font-weight: 500;
+        padding: 7px 0;
+    }
+    .dropdown-toggle {
+        font-size: 1.6rem;
+        font-weight: 500;
+        min-width: 140px;
+        height: 38px;
+        color: #ff3366 !important;
+        background-color: inherit !important;
+        border-color: #ff3366 !important;
+    }
+
+    button:focus {
+        outline: 0;
     }
 }

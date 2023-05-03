@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import styles from './CardVinpearl.module.scss'
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
 
+import styles from './CardVinpearl.module.scss'
+import Tag from '../Tag'
 function CardVinpearl(props) {
     const [evaluate, setEvaluate] = useState('')
 
@@ -40,7 +41,7 @@ function CardVinpearl(props) {
                 <div className={styles.infoWrapper}>
                     {props.promotion && (
                         <div className={styles.promotion}>
-                            <div className={styles.contentPromotion}>{props.promotion}</div>
+                            <Tag list={props.promotion} />
                         </div>
                     )}
                     <div className={styles.info}>
