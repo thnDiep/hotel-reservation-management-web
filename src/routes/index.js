@@ -6,13 +6,15 @@ import Profile from '~/pages/Profile'
 import QrPay from '~/pages/QrPay'
 import AdminHotel from '~/pages/Admin/Hotel'
 import { HomeLayout, QrPayLayout, AdminLayout } from '~/components/Layouts'
+import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
 
 export const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
     { path: '/detail', component: Detail },
     { path: '/listByPlace', component: ListByPlace },
-    { path: '/checkout', component: Checkout },
+    { path: '/checkout', component: Checkout, layout: HomeLayout },
     { path: '/profile', component: Profile },
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
     { path: '/admin/hotel', component: AdminHotel, layout: AdminLayout },
+    { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
 ]
