@@ -9,13 +9,13 @@ const Footer = () => {
             <footer className="text-center text-lg-start bg-light text-muted">
                 <div className="d-flex justify-content-center  p-4 border-bottom text-align-center">
                     <div className="me-5 d-none d-lg-block">
-                        <a href="" className="me-4">
+                        <a href="/" className="me-4">
                             <FontAwesomeIcon icon={faFacebook} className={classes.icon} />
                         </a>
-                        <a href="" className="me-4 ">
+                        <a href="/" className="me-4 ">
                             <FontAwesomeIcon icon={faTwitterSquare} className={classes.icon} />
                         </a>
-                        <a href="" className="me-4 ">
+                        <a href="/" className="me-4 ">
                             <FontAwesomeIcon icon={faInstagramSquare} className={classes.icon} />
                         </a>
                     </div>
@@ -28,7 +28,7 @@ const Footer = () => {
                                 <h6 className="text-uppercase fw-bold mb-4">
                                     <i className="fas fa-gem me-3"></i>MyTour
                                 </h6>
-                                <p>
+                                <div>
                                     <span>Công ty cổ phần du lịch Việt Nam VNTravel</span>
                                     <div>Tổng đài chăm sóc: 1900 2083</div>
                                     <div>Email: hotro@mytour.vn</div>
@@ -36,7 +36,7 @@ const Footer = () => {
                                         Văn phòng Hà Nội: Tầng 11, Tòa Peakview, 36 Hoàng Cầu, Đống Đa Văn phòng HCM:
                                         Tầng 3, Tòa nhà ACM, 96 Cao Thắng, Quận 3
                                     </div>
-                                </p>
+                                </div>
                             </div>
 
                             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -89,9 +89,9 @@ const Footer = () => {
 
                             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                                 <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
-                                <p>
+                                <s>
                                     <i className="fas fa-home me-3"></i> New York, NY 10012, US
-                                </p>
+                                </s>
                                 <p>
                                     <i className="fas fa-envelope me-3"></i>
                                     info@example.com
