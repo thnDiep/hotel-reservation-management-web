@@ -41,8 +41,21 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ButtonPrimary from '~/components/Button/ButtonPrimary'
-import { faBell, faBuilding, faSnowflake, faSun } from '@fortawesome/free-regular-svg-icons'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import AllFacility from './AllFacility/AllFacility'
+const MySwal = withReactContent(Swal)
 const PriceDetail = () => {
+    const handleButtonClick = () =>
+        MySwal.fire({
+            title: 'Tiện nghi Khách sạn',
+            html: <AllFacility />,
+            showCloseButton: true,
+            showConfirmButton: false,
+            width: '784px',
+            height: '530px',
+            backdrop: '#fffff',
+        })
     return (
         <div className={classes.content}>
             <div className="row">
@@ -53,9 +66,9 @@ const PriceDetail = () => {
                                 <tbody>
                                     <tr>
                                         <td className={classes['col-left']}>
-                                            <div class={classes['box-info']}>
-                                                <span class={classes.boxTitle}>Khách sạn</span>
-                                                <span class={classes['box-star']}>
+                                            <div className={classes['box-info']}>
+                                                <span className={classes.boxTitle}>Khách sạn</span>
+                                                <span className={classes['box-star']}>
                                                     <FontAwesomeIcon icon={faStar} className={classes.icon} />
                                                     <FontAwesomeIcon icon={faStar} className={classes.icon} />
                                                     <FontAwesomeIcon icon={faStar} className={classes.icon} />
@@ -63,10 +76,10 @@ const PriceDetail = () => {
                                                     <FontAwesomeIcon icon={faStar} className={classes.icon} />
                                                 </span>
                                             </div>
-                                            <div class={classes.hotelTitle}>
+                                            <div className={classes.hotelTitle}>
                                                 <h1>Khách sạn Vias Vũng Tàu</h1>
                                             </div>
-                                            <div class={classes.boxAddress}>
+                                            <div className={classes.boxAddress}>
                                                 <h3>179 Thùy Vân, Phường 8, Thành phố Vũng Tàu, Bà Rịa - Vũng Tàu</h3>
                                             </div>
                                         </td>
@@ -123,7 +136,13 @@ const PriceDetail = () => {
                                 </div>
 
                                 <div className={classes['box-readmore']}>
-                                    <button className={classes['btn-readmore']}>Xem thêm tiện ích</button>
+                                    <button
+                                        type="button"
+                                        className={classes['btn-readmore']}
+                                        onClick={handleButtonClick}
+                                    >
+                                        Xem thêm tiện ích
+                                    </button>
                                 </div>
                             </div>
                         </div>

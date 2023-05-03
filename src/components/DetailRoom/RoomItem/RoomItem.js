@@ -5,21 +5,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faShop, faCheck, faSmoking, faHouse, faBed, faWifi, faMountain, faWater } from '@fortawesome/free-solid-svg-icons';
 import ButtonPrimary from "~/components/Button/ButtonPrimary";
-
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import Popup from "../Popup/Popup";
 library.add(faHouse, faShop, faSmoking, faBed, faWifi, faMountain, faWater);
+const MySwal = withReactContent(Swal);
 
 const RoomItem = (props) => {
-
+    const handleButtonClick = (index) =>
+        MySwal.fire({
+            title: 'Hình ảnh khách sạn',
+            html: (
+                <Popup index={index} />
+            ),
+            showCloseButton: true,
+            showConfirmButton: false,
+            width: '1140px',
+            height: '80vh',
+            backdrop: 'rgba(39,46,52,1)',
+        })
     return (<div className={classes.BoxRoomItem}>
         <div className={classes.BoxTitle}>{props.item.title}</div>
         <div className={classes.BoxContent}>
             <div className={classes.BoxContent__left}>
                 <div className={classes["BoxContent__left--img"]}>
-                    <img alt="jell" src={props.item.image} />
+                    <img alt="jell" onClick={handleButtonClick} src={props.item.image} />
                 </div>
                 <div className={classes["BoxContent__left--facilities"]}>
                     {props.item.convenient.map(data => {
-                        return (<div key={data.title} style={data.icon === 'wifi' ? { color: '#32a923' } : null}><FontAwesomeIcon style={data.icon === 'wifi' ? { color: '#32a923' } : null} icon={['fas', data.icon]} />{data.title}</div>)
+                        return (<div key={data.title} style={data.icon === 'wifi' ? { color: '#32a923' } : null}>
+                            <FontAwesomeIcon style={data.icon === 'wifi' ? { color: '#32a923' } : null} icon={['fas', data.icon]} />{data.title}</div>)
                     })}
                 </div>
             </div>

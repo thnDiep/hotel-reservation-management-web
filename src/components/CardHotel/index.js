@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import styles from './CardHotel.module.scss'
-import { useEffect, useState } from 'react'
 import clsx from 'clsx'
+import { useEffect, useState } from 'react'
 
+import styles from './CardHotel.module.scss'
+import Tag from '../Tag'
 function CardHotel(props) {
     const [evaluate, setEvaluate] = useState('')
     const [isLike, setIsLike] = useState(props.liked)
@@ -72,7 +73,7 @@ function CardHotel(props) {
 
                 {props.promotion && (
                     <div className={styles.promotion}>
-                        <div className={styles.contentPromotion}>{props.promotion}</div>
+                        <Tag list={props.promotion} />
                     </div>
                 )}
             </div>
@@ -143,7 +144,7 @@ function CardHotel(props) {
                 </div>
 
                 {!props.memberDiscount && (
-                    <div className="d-flex-column-r" style={{ marginTop: '14px' }}>
+                    <div className="d-flex-column-r">
                         {props.oldPrice && <div className={styles.oldPrice}>{props.oldPrice} ₫</div>}
                         {props.curPrice ? (
                             <div className={styles.curPrice}>{props.curPrice} ₫</div>

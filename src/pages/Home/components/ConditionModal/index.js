@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal'
 import clsx from 'clsx'
 
-import styles from '../Home.module.scss'
+import styles from './ConditionModal.module.scss'
 
 function ConditionModal(props) {
     return (
@@ -10,12 +10,12 @@ function ConditionModal(props) {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            className={clsx(styles.conditionModal, 'conditionModal')}
+            className={clsx(styles.conditionModal, 'myModal')}
         >
             <Modal.Header closeButton style={{ border: 'none' }}>
                 <h3>Điều kiện và thể lệ chương trình</h3>
             </Modal.Header>
-            <Modal.Body closeButton>
+            <Modal.Body>
                 <h4>Khách sạn giảm đến 200K</h4>
                 <p>
                     - Giảm ngay 4% tối đa 200.000Đ cho đơn phòng khách sạn (mức giảm áp dụng cho giá trị đơn chưa bao

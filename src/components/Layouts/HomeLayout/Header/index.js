@@ -83,14 +83,14 @@ function Header() {
             </div>
 
         </div>
-        <div className={classes.header__choose}>
+        {/* <div className={classes.header__choose}>
             <TitleButton name="Hotels" className="btnChoose"></TitleButton>
             <TitleButton name="Flights" className="btnChoose"></TitleButton>
             <TitleButton name="Villa & Homestays" className="btnChoose"></TitleButton>
             <TitleButton name="Top Brands" className="btnChoose"></TitleButton>
             <TitleButton name="Restaurants" className="btnChoose"></TitleButton>
             <TitleButton name="Tour & Event" className="btnChoose"></TitleButton>
-        </div>
+        </div> */}
     </div>
 }
 

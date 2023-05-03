@@ -77,30 +77,13 @@
 .promotion {
     left: 12px;
     bottom: 6px;
-    display: flex;
     position: absolute;
-    align-items: center;
-
-    .contentPromotion {
-        display: inline-block;
-        max-width: 140px;
-        padding: 2px 4px;
-        overflow: hidden;
-        font-size: 12px;
-        font-weight: 600;
-        line-height: 14px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        color: #fff;
-        background: rgb(255, 188, 57);
-        border-radius: 4px;
-    }
 }
 
 .info {
     width: 100%;
     height: calc(100% - 155px);
-    min-height: 200px;
+    min-height: 220px;
     padding: 12px;
     display: flex;
     flex-direction: column;

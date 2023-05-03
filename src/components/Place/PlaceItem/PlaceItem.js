@@ -5,14 +5,57 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useState } from 'react';
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const PlaceItem = ({ item }) => {
+    const [currentSlide, setCurrentSlide] = useState(0); // Khởi tạo state lưu giá trị của currentSlide
+
+    const handleAfterChange = (currentSlide) => {
+        setCurrentSlide(currentSlide);
+    };
+    const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+        <button
+            {...props}
+            className={
+                "slick-prev slick-arrow" +
+                (currentSlide === 0 ? " slick-disabled" : "")
+            }
+            aria-hidden="true"
+            aria-disabled={currentSlide === 0 ? true : false}
+            type="button"
+        >
+            <svg width="8" height="14" fill="none" style={{ transform: 'rotate(180deg)' }}>
+                <path d="M1 1l6 6-6 6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+            </svg>
+        </button>
+    );
+    const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+        <button
+            {...props}
+            className={
+                "slick-next slick-arrow" +
+                (currentSlide === slideCount - 1 ? " slick-disabled" : "")
+            }
+            aria-hidden="true"
+            aria-disabled={currentSlide === slideCount - 1 ? true : false}
+            type="button"
+        >
+            <svg width="8" height="14" fill="none">
+                <path d="M1 1l6 6-6 6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+            </svg>
+        </button>
+    );
 
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
         // slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        prevArrow: <SlickArrowLeft />,
+        nextArrow: <SlickArrowRight />,
+        // "data-currentslide": currentSlide,
+
     };
     const renderSlides = item.imgs.map(image =>
         <div className="image" key={image.id}>
@@ -23,14 +66,29 @@ const PlaceItem = ({ item }) => {
     return (
         <div className="place">
             <div className="place__img">
+
                 <Slider {...settings}>
+
                     {renderSlides}
                 </Slider>
+                <button className="MuiButtonBase-root MuiIconButton-root jss300" tabIndex="0" type="button"><span
+                    className="MuiIconButton-label"><svg width="28" height="28" fill="none" className="svgFillAll jss302">
+                        <g filter="url(#icon_heart_svg__filter0_d)">
+                            <path
+                                d="M9.318 3c-1.479 0-2.897.661-3.895 1.811C4.259 6.16 3.786 8.054 4.09 10.15c.683 4.708 5.546 8.674 9.911 10.468 4.363-1.794 9.223-5.76 9.91-10.468.303-2.096-.17-3.991-1.334-5.339C21.581 3.661 20.161 3 18.684 3c-1.49 0-2.885.68-3.929 1.915l-.75.89-.752-.89C12.204 3.681 10.81 3 9.318 3z"
+                                fill="#000" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                        </g>
+
+                    </svg></span><span className="MuiTouchRipple-root"></span>
+                </button>
             </div>
             <div className='place__detail'>
 
                 <div className='place__detail--content'>
-                    <div className="place__detail--endow">{item.endow}</div>
+                    <div className="place__detail--endow">
+                        <div className="place__detail--endow1">{item.endow[0]}</div>
+                        <div className="place__detail--endow2">{item.endow[1]}</div>
+                    </div>
                     <div className="place__detail--title">{item.title}</div>
                     <div className="place__detail--rate">{item.title}</div>
                     <div className="place__detail--star">
