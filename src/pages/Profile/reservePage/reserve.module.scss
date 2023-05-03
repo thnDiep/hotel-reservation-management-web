@@ -1,6 +1,6 @@
 
 .wrap{
-    background-color: #fafcff;
+    // background-color: #fafcff;
     // background-color: #00b6f3;
     height: 100rem;
 }
@@ -65,21 +65,21 @@
     padding-top: 5px;
     justify-content: space-between;
     margin-bottom: 5px;
-    background-color: white;
+    background-color: #fafcff;
     border-radius: 10px 10px 0 0;
     // box-shadow: 1px 1px;
     // margin-left: 10px;
 }
 
 .footerCard{
-    background-color: white;
+    background-color: #fafcff;
     border-radius: 0 0 10px 10px;
     padding-top: 10px;
     display: flex;
-    box-shadow: 5px;
+    box-shadow: 1px;
     // box-shadow: 1px 1px;
     .infoReserve{
-        min-width: 340px;
+        min-width: 305px;
         padding-right: 20px;
         .numberPerson{
             margin-top: 8px;
