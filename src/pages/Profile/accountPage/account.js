@@ -147,7 +147,7 @@ function Account() {
                             id="field-name"
                             name="name"
                             type="text"
-                            // autoFocus
+                            autoFocus
                             value={name.value}
                             onChange={(e) => setName({ error: ' ', value: e.target.value })}
                             onFocus={handleOnFocus_name}
@@ -198,7 +198,7 @@ function Account() {
                             onFocus={handleOnFocus_numberPhone}
                             onBlur={handleOnBlur_numberPhone}
                         />
-                        <hr id="lineUnderNumberPhone" />
+                        <hr id="lineUnderNumberPhone" className={styles.lineUnderOnBlur} />
                     </div>
                 </div>
                 {/* Dia chi */}
@@ -217,7 +217,7 @@ function Account() {
                             onFocus={handleOnFocus_address}
                             onBlur={handleOnBlur_address}
                         />
-                        <hr id="lineUnderAddress" />
+                        <hr id="lineUnderAddress" className={styles.lineUnderOnBlur} />
                     </div>
                 </div>
 
