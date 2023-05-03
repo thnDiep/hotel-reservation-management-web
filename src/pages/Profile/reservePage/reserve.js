@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import styles from './reserve.module.scss'
+// import DetailReserve from './detailReserve/detailReserve.js'
 import { clsx } from 'clsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faMoon } from '@fortawesome/free-regular-svg-icons'
 
 function Reserve() {
     const [isEmpty, setIsEmpty] = useState(false)
+    const [showDetail, setShowDetail] = useState(0)
 
     // 0: chờ xác nhận
     // 1: đã xác nhận
@@ -27,7 +29,7 @@ function Reserve() {
             )}
 
             {/* Khi có đơn đặt phòng  */}
-            {!isEmpty && (
+            {!isEmpty && showDetail === 0 && (
                 <div>
                     {/* 1 card ~ 1 don dat phong */}
                     <div className={styles.wrapOfInfoCard}>
@@ -97,6 +99,8 @@ function Reserve() {
                     </div>
                 </div>
             )}
+
+            {/* {!isEmpty && showDetail === 1 && <DetailReserve />} */}
         </div>
     )
 }

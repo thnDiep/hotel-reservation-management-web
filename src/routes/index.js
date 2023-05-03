@@ -9,6 +9,7 @@ import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
 import OrderDetail from '~/pages/Profile/OrderDetail'
 import { HomeLayout, QrPayLayout, AdminLayout } from '~/components/Layouts'
 
+import CheckOrder from '~/pages/CheckOrder/CheckOrder'
 export const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
     { path: '/detail', component: Detail },
@@ -19,4 +20,5 @@ export const publicRoutes = [
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
     { path: '/admin/hotel', component: AdminHotel, layout: AdminLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
+    { path: '/checkOrder', component: CheckOrder },
 ]
