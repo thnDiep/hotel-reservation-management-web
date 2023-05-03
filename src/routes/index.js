@@ -4,6 +4,7 @@ import ListByPlace from '~/pages/ListByPlace'
 import Checkout from '~/pages/Checkout'
 import Profile from '~/pages/Profile'
 import QrPay from '~/pages/QrPay'
+import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
 import { HomeLayout, QrPayLayout } from '~/components/Layouts'
 
 export const publicRoutes = [
@@ -13,4 +14,5 @@ export const publicRoutes = [
     { path: '/checkout', component: Checkout },
     { path: '/profile', component: Profile },
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
+    { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
 ]
