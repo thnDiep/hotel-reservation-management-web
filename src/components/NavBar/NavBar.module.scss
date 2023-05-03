@@ -11,7 +11,7 @@
     .navItem {
         cursor: pointer;
         padding: 7px 20px;
-        border-bottom: 1px solid #d4d4d4;
+        // border-bottom: 1px solid #d4d4d4;
         text-transform: capitalize;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
         &.active {

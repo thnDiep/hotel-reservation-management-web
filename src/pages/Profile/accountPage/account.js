@@ -40,7 +40,7 @@ function Account() {
     }, [name.value])
 
     useEffect(() => {
-        console.log(email.error)
+        // console.log(email.error)
         const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
         if (email.value.length === 0) {
             setEmail({ ...email, error: 'Bạn chưa nhập email' })

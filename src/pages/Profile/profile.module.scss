@@ -1,14 +1,25 @@
-.wrap{
-    margin-top: 130px;
-    margin-left: 170px;
-    margin-bottom: 4rem;
-    // background-color: #fafcff;
- 
+.container {
+    width: 100%;
+    background-color: rgb(250, 252, 255);
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
 
+.wrap {
+    width: var(--default-width);
+    margin: auto;
+    padding-top: 10px;
+    // padding-left: 170px;
+    // background-color: #fafcff;
+}
 
-.profileMenu{
-    margin-bottom: 20px;
+.content {
+    padding-top: 20px;
+}
+
+.profileMenu {
+    // margin-bottom: 20px;
+    margin: auto;
     .buttonMenu {
         border: none;
         background-color: white;
@@ -26,8 +37,4 @@
             display: none;
         }
     }
-   
 }
-
-
-

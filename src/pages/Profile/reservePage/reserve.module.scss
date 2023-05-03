@@ -1,33 +1,31 @@
-
-.wrap{
+.wrap {
     // background-color: #fafcff;
     // background-color: #00b6f3;
-    height: 100rem;
+    // height: 100rem;
 }
 
-.wrapOfEmptyPage{
+.wrapOfEmptyPage {
     text-align: center;
-    .componentOfEmptyPage{
+    .componentOfEmptyPage {
         margin: 0 auto;
         margin-top: 15px;
         margin-bottom: 20px;
     }
-    .imageForEmptyInfo{
+    .imageForEmptyInfo {
         width: 249px;
         height: 210px;
         margin: 0 auto;
     }
-    .buttonSearchInWishList{
+    .buttonSearchInWishList {
         width: 145px;
         font-weight: 600;
         margin: 0 auto;
         background-color: #00b6f3;
         border-color: #00b6f3;
     }
-
 }
 
-.buttonSave{
+.buttonSave {
     width: 440px;
     background-color: rgb(255, 51, 102);
     height: 45px;
@@ -38,20 +36,31 @@
     font-size: 16px;
     box-shadow: none;
     font-weight: bolder;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    &:hover{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    &:hover {
         cursor: pointer;
     }
 }
 
-.wrapOfInfoCard{
-    margin-top: 50px;
-    margin-left: 100px;
+.wrapOfInfoCard {
+    // margin-top: 50px;
+    // margin-left: 100px;
     // width: 85%;
+    margin-bottom: 20px;
     border-radius: 5px;
-    margin: 0 auto;
-    
-    &:hover{
+    // margin: 0 auto;
+    color: #1a202c;
+    display: flex;
+    padding: 12px 16px;
+    font-size: 14px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+    border-radius: 8px;
+    flex-direction: column;
+    background-color: #ffffff;
+    position: relative;
+
+    &:hover {
         box-shadow: 3px 3px 10px rgb(190, 190, 190);
         // width: 80%;
         color: black;
@@ -59,53 +68,71 @@
     }
 }
 
-.headerCard{
+.headerCard {
     display: flex;
-    padding-right: 30px;
-    padding-top: 5px;
+    // padding-right: 30px;
+    // padding-top: 5px;
     justify-content: space-between;
-    margin-bottom: 5px;
+    // margin-bottom: 5px;
     background-color: #fafcff;
     border-radius: 10px 10px 0 0;
     // box-shadow: 1px 1px;
     // margin-left: 10px;
 }
-
-.footerCard{
+.lineCard {
+    width: calc(100% + 32px);
+    margin: 12px -16px;
+    height: 1px;
+    // margin: 12px 0;
+    background-color: #edf2f7;
+    // position: relative;
+    // left: -16px;
+}
+.footerCard {
     background-color: #fafcff;
     border-radius: 0 0 10px 10px;
-    padding-top: 10px;
+    // padding-top: 10px;
     display: flex;
     box-shadow: 1px;
     // box-shadow: 1px 1px;
-    .infoReserve{
+
+    .title {
+        font-size: 18px;
+        font-weight: 600;
+        // line-height: 19px;
+        display: inline-block;
+        max-width: 400px;
+        text-overflow: ellipsis;
+        // margin-bottom: 8px;
+        overflow: hidden;
+    }
+    .infoReserve {
         min-width: 305px;
         padding-right: 20px;
-        .numberPerson{
+        .numberPerson {
             margin-top: 8px;
             font-size: 14px;
         }
     }
-    .datesOfReserve{
+    .datesOfReserve {
         padding-right: 20px;
     }
 }
 
-.codeOrderFrame{
+.codeOrderFrame {
     display: flex;
-    margin-left: 20px;
+    // margin-left: 20px;
 }
-.codeOrder{
+.codeOrder {
     color: rgb(46, 186, 232);
 }
 
-.image{
+.image {
     width: 175px;
     height: 100px;
     border-radius: 10px;
-    // margin: 20px
-    margin: 0 20px 20px 20px;
-
+    margin-right: 20px;
+    // margin: 0 20px 20px 20px;
 }
 
 .dates {
@@ -122,7 +149,7 @@
         text-align: left;
         font-size: 15px;
         font-weight: 400;
-        line-height: 14px;
+        // line-height: 14px;
         margin-bottom: 10px;
     }
     .content {
@@ -142,7 +169,7 @@
         justify-content: center;
         padding: 6px;
         margin-right: 50px;
-        margin-left: 20px;
+        // margin-left: 20px;
         span {
             font-size: 14px;
             padding-right: 2px;
@@ -155,17 +182,17 @@
     }
 }
 
-.stateOfReserve{
+.stateOfReserve {
     // background-color:aquamarine;
     width: 100%;
     font-size: 14px;
     text-align: right;
     margin-right: 15px;
-    .successRequest{
+    .successRequest {
         color: rgb(122, 201, 4);
         margin-top: 10px;
     }
-    .waitingConfirmLabel{
+    .waitingConfirmLabel {
         background-color: orange;
         color: white;
         padding: 3px;
@@ -173,7 +200,7 @@
         font-size: 12px;
         font-weight: 700;
     }
-    .confirmedLabel{
+    .confirmedLabel {
         background-color: green;
         color: white;
         padding: 3px;
@@ -183,7 +210,6 @@
     }
 }
 
-
-p{
-    margin: 0
+p {
+    margin: 0;
 }
