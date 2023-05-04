@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import styles from './profile.module.scss'
-import { NavBar } from '~/components'
+import { NavLink } from '~/components'
 import nav from '~/assets/jsons/nav.json'
 
 function Profile({ children }) {
@@ -10,7 +10,7 @@ function Profile({ children }) {
     return (
         <div className={styles.container}>
             <div className={styles.wrap}>
-                <NavBar list={nav.profile} />
+                <NavLink list={nav.profile} />
 
                 <div className={styles.content}>{children}</div>
             </div>

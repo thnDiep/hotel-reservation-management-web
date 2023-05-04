@@ -1,8 +1,9 @@
 import { Table } from 'react-bootstrap'
 import { useState, useRef, useEffect } from 'react'
 import clsx from 'clsx'
-import { Tag, NavBar, DropdownButton, DropdownOption } from '~/components'
+import { Tag, DropdownButton, DropdownOption, NavHandle } from '~/components'
 import styles from './Hotel.module.scss'
+import nav from '~/assets/jsons/nav.json'
 
 const data = ['Tên khách sạn', 'Chủ khách sạn', 'Địa chỉ', 'Giá tiêu chuẩn', 'Khuyến mãi', 'Đánh giá', 'Trạng thái', '']
 const hotels = [
@@ -40,6 +41,8 @@ const hotels = [
     },
 ]
 
+const menu = ['Tất cả', 'Chờ duyệt', 'Hoạt động', 'Bị khóa']
+
 function HotelTable() {
     return (
         <Table responsive className={styles.cusTable}>
@@ -57,7 +60,7 @@ function HotelTable() {
             </thead>
             <tbody>
                 {hotels.map((hotel, index) => (
-                    <tr className={styles.memberRow}>
+                    <tr key={index} className={styles.memberRow}>
                         <td className={styles.center}>
                             <input type="checkbox" className={styles.checkBox} />
                         </td>
@@ -144,7 +147,7 @@ function Hotel() {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <NavBar list={['Tất cả', 'chờ duyệt', 'hoạt động', 'Đã khóa']} onChoose={setActive} />
+                <NavHandle list={menu} active={active} onActive={setActive} />
                 <DropdownButton list={['Mới nhất', 'Cũ nhất']} />
             </div>
             <div className={styles.content}>

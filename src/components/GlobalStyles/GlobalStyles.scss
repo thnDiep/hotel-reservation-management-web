@@ -252,6 +252,11 @@ body {
         box-shadow: none;
     }
 
+    &.nohover:hover {
+        background-color: inherit;
+        border: 1px solid rgb(255, 51, 102);
+    }
+
     &.active {
         color: #fff;
         background-color: #68e365;

@@ -22,9 +22,11 @@
 }
 
 .cusTable {
-    tbody,
-    tr {
-        overflow: hidden;
+    thead {
+        vertical-align: middle;
+    }
+    tbody {
+        border-top: none;
     }
     img {
         height: 4.813rem;

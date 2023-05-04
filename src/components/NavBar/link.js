@@ -3,11 +3,6 @@ import { NavLink } from 'react-router-dom'
 import styles from './NavBar.module.scss'
 
 function NavBar({ list, noneBorder }) {
-    {
-        console.log(list[0].exact)
-        console.log('haha')
-    }
-
     return (
         <div className={clsx(styles.nav, 'nav')}>
             {Array.isArray(list) &&
@@ -15,7 +10,7 @@ function NavBar({ list, noneBorder }) {
                     <NavLink
                         key={index}
                         to={item.link}
-                        end={item.exact}
+                        end
                         className={clsx(styles.navItem, {
                             [styles.noneBorder]: noneBorder,
                         })}

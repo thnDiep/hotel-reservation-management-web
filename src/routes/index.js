@@ -3,10 +3,10 @@ import Detail from '~/pages/Detail'
 import ListByPlace from '~/pages/ListByPlace'
 import Checkout from '~/pages/Checkout'
 import { Account, Wishlist, Order, OrderDetail } from '~/pages/Profile'
+import { AccountAdmin, HotelAdmin } from '~/pages/Admin'
 import QrPay from '~/pages/QrPay'
 import HotelManagement from '~/pages/Hotelier/HotelManagement'
 import AddHotel from '~/pages/Hotelier/AddHotel'
-import AdminHotel from '~/pages/Admin/Hotel'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
 import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
@@ -26,7 +26,10 @@ export const publicRoutes = [
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
     { path: '/manageHotel', component: HotelManagement, layout: HotelierLayout },
     { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
-    { path: '/admin/hotel', component: AdminHotel, layout: ManageLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
     { path: '/checkOrder', component: CheckOrder },
+
+    // Admin
+    { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },
+    { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
 ]
