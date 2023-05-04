@@ -15,7 +15,22 @@
 .content {
     padding: 24px 20px 20px 20px;
 }
+// .custom {
+//     & :first-child {
+//         border-top: 1.4px solid red !important;
+//         // margin-left: -4px;
+//     }
+// }
 .cusTable {
+    & th {
+        padding: 15px 16px;
+        & :first-child {
+            // margin-left: -4px;
+        }
+    }
+    tbody {
+        border-top: 2px solid #f2f1f1 !important;
+    }
     tbody,
     tr {
         overflow: hidden;

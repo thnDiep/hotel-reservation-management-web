@@ -1,0 +1,45 @@
+.dataTables_paginate {
+    padding: 0.3125rem;
+    border-radius: 1rem;
+    color: #6e6e6e;
+    border-radius: 1rem;
+    color: #6e6e6e;
+    align-items: center;
+    display: flex;
+    flex-flow: wrap;
+}
+.paginate_button {
+    // & .previous {
+    border: 0.0625rem solid #135846;
+    border-radius: 11.1872px;
+    display: inline-block;
+    font-size: 14.72px;
+    height: 46px;
+    line-height: 46px;
+    margin: 0 9.2px;
+    padding: 0 18.4px;
+    width: fit-content;
+    // }
+    &:hover {
+        color: #fff;
+        background: #135846 !important;
+        cursor: pointer;
+    }
+}
+
+.current {
+    background: #135846 !important;
+    border-radius: 11.1872px;
+    color: #fff !important;
+    font-size: 1.125rem;
+    height: 46px;
+    line-height: 46px;
+    margin: 0 1.84px;
+    padding: 0;
+    text-align: center;
+    width: 46px;
+}
+.dataTables_info {
+    margin-left: 2rem;
+    font-size: 11.1872px;
+}
