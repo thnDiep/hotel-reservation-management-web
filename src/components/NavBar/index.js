@@ -1,26 +1,28 @@
 import clsx from 'clsx'
-import { useState } from 'react'
-
+import { NavLink } from 'react-router-dom'
 import styles from './NavBar.module.scss'
 
-function NavBar({ list, onChoose }) {
-    const [active, setActive] = useState(0)
-
-    function handleChoose(index) {
-        setActive(index)
-        onChoose(index)
+function NavBar({ list, noneBorder }) {
+    {
+        console.log(list[0].exact)
+        console.log('haha')
     }
+
     return (
-        <div className={styles.nav}>
-            {list.map((item, index) => (
-                <div
-                    key={index}
-                    className={clsx(styles.navItem, { [styles.active]: index === active })}
-                    onClick={() => handleChoose(index)}
-                >
-                    {item}
-                </div>
-            ))}
+        <div className={clsx(styles.nav, 'nav')}>
+            {Array.isArray(list) &&
+                list.map((item, index) => (
+                    <NavLink
+                        key={index}
+                        to={item.link}
+                        end={item.exact}
+                        className={clsx(styles.navItem, {
+                            [styles.noneBorder]: noneBorder,
+                        })}
+                    >
+                        {item.name}
+                    </NavLink>
+                ))}
         </div>
     )
 }

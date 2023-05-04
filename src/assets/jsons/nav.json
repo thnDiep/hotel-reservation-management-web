@@ -1,0 +1,7 @@
+{
+    "profile": [
+        { "name": "Tài khoản", "link": "/profile", "exact": true },
+        { "name": "Đơn đặt phòng", "link": "/profile/order", "exact": false },
+        { "name": "Khách sạn yêu thích", "link": "/profile/wish-list", "exact": false }
+    ]
+}

@@ -1,7 +1,7 @@
 import classes from './Header.module.scss'
-import TitleButton from '~/components/Button/TitleButton'
-import ButtonPrimary from '~/components/Button/ButtonPrimary'
-function Header() {
+import NavBar from '~/components/NavBar'
+
+function Header({ onChoose }) {
     return (
         <div className={classes.header}>
             <div className={classes.header__nav}>
@@ -14,17 +14,9 @@ function Header() {
                     />
                 </a>
                 <div className={classes.nav__title}>
-                    <ButtonPrimary className="signIn">Sign in</ButtonPrimary>
-                    <ButtonPrimary className="signUp">Sign up</ButtonPrimary>
+                    <NavBar list={['Quản lý khách sạn', 'Quản lý người dùng']} onChoose={onChoose} noneBorder />
                 </div>
             </div>
-            {/* <div className={classes.header__choose}>
-            <TitleButton name="Khách sạn" className="btnChoose" active="active"></TitleButton>
-            <TitleButton name="Biệt thự, Homestay" className="btnChoose"></TitleButton>
-            <TitleButton name="Top Thương hiệu" className="btnChoose"></TitleButton>
-            <TitleButton name="Nhà hàng" className="btnChoose"></TitleButton>
-            <TitleButton name="Sự kiện" className="btnChoose"></TitleButton>
-        </div> */}
         </div>
     )
 }

@@ -21,6 +21,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
+    background-color: #fff;
 }
 
 .d-none {
@@ -298,4 +299,16 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.nav {
+    a.active {
+        display: block;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+    }
+}
+
+a:hover {
+    color: var(--primary-color);
 }
