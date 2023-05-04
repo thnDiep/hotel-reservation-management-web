@@ -1,4 +1,5 @@
 import Login from '~/pages/Login/login'
+import SignUp from '~/pages/SignUp/signUp'
 import Home from '~/pages/Home'
 import Detail from '~/pages/Detail'
 import ListByPlace from '~/pages/ListByPlace'
@@ -31,6 +32,7 @@ export const publicRoutes = [
     { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
     { path: '/login', component: Login, layout: null },
+    { path: '/signUp', component: SignUp, layout: null },
     { path: '/checkOrder', component: CheckOrder },
 
     // Admin
