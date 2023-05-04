@@ -23,7 +23,7 @@ function SliderHotels(props) {
                         image={des.image}
                         name="Sailing Club Signature Resort Phú Quốc"
                         percentDiscount={14}
-                        promotion="Ưu đãi chớp nhoáng"
+                        promotion={['Ưu đãi chớp nhoáng']}
                         rate={3}
                         liked={true}
                         type="Khu nghỉ dưỡng"
@@ -45,7 +45,7 @@ function SliderHotels(props) {
                         image={des.image}
                         name="Sailing Club Signature Resort Phú Quốc"
                         percentDiscount={14}
-                        promotion="Ưu đãi chớp nhoáng"
+                        promotion={['Ưu đãi chớp nhoáng']}
                         rate={3}
                         liked={true}
                         type="Khu nghỉ dưỡng"

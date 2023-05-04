@@ -1,20 +1,26 @@
-.card-table {
-    & th {
-        padding: 15px 16px;
-        & :first-child {
-            // margin-left: -4px;
-        }
-    } // background-color: #000;
+.container {
+    padding-top: 40px;
 }
-.room-list-bx {
-    img {
-        height: 4.813rem;
-        width: 9.375rem;
-    }
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
 .content {
-    padding: 24px 20px 20px 20px;
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #fff;
+    border: 0 solid transparent;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.3125rem 0.3125rem 0 rgba(82, 63, 105, 0.05);
+    height: calc(100% - 30px);
+    margin-bottom: 1.875rem;
+    position: relative;
+    transition: all 0.5s ease-in-out;
 }
+
 .cusTable {
     tbody,
     tr {
@@ -107,4 +113,39 @@
         -webkit-transform: translate(-50%, -50%) scale(0.6);
         transform: translate(-50%, -50%) scale(0.6);
     }
+}
+
+.point {
+    color: var(--primary-color);
+    padding: 2px 4px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 14px;
+    background: rgba(255, 51, 102, 0.1);
+    border-radius: 4px;
+    width: fit-content;
+    margin: auto;
+    span {
+        margin-left: 4px;
+    }
+}
+
+.voucherCode {
+    color: #00b6f3;
+    margin: 0 2px;
+    overflow: hidden;
+    font-size: 1.2rem;
+    // max-width: 85px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.voucherPercent {
+    margin-left: 2px;
+    font-size: 1rem;
+    padding: 2px;
+    color: #ffffff;
+    background-color: #00b6f3;
+    border-radius: 4px;
 }

@@ -53,6 +53,7 @@ import FacilityList from '~/components/DetailRoom/FacilityList/FacilityList'
 import { RecentViews, SliderHotels } from '~/components'
 import notableDes from '~/assets/jsons/notable.json'
 import PictureDetail from './PictureDetail/PictureDetail'
+import Rating from './Rating/Rating'
 const Detail = () => {
     return (
         <React.Fragment>
@@ -274,6 +275,8 @@ const Detail = () => {
                     <SliderHotels hotels={notableDes} />
                 </div>
             </div>
+
+            <Rating />
         </React.Fragment>
     )
 }

@@ -1,10 +1,8 @@
-import React from 'react'
-import styles from './HotelManagement.module.scss'
-import TitleButton from '~/components/Button/TitleButton'
-import { ButtonPrimary } from '~/components'
+import { Table } from 'react-bootstrap'
+import { useState, useRef, useEffect } from 'react'
 import clsx from 'clsx'
 import { Tag, NavBar, DropdownButton, DropdownOption } from '~/components'
-import { Table } from 'react-bootstrap'
+import styles from './Hotel.module.scss'
 
 function HotelTable() {
     return (
@@ -23,15 +21,15 @@ function HotelTable() {
                     <th>
                         <h3 className={styles.title}>Địa chỉ</h3>
                     </th>
-                    {/* <th>
+                    <th>
                         <h3 className={styles.title}>Giá tiêu chuẩn</h3>
-                    </th> */}
+                    </th>
                     {/* <th>
                         <h3 className={styles.title}>Tiện nghi</h3>
                     </th> */}
-                    {/* <th>
+                    <th>
                         <h3 className={styles.title}>Khuyến mãi</h3>
-                    </th> */}
+                    </th>
                     <th>
                         <h3 className={styles.title}>Đánh giá</h3>
                     </th>
@@ -64,15 +62,15 @@ function HotelTable() {
                             AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi
                         </span>
                     </td>
-                    {/* <td className={styles.center}>
+                    <td className={styles.center}>
                         <h3 className={clsx(styles.text1, styles.primary)}>
                             3.160.143 <sup>VND</sup>
                         </h3>
-                    </td> */}
+                    </td>
                     {/* <td>
                         <Tag list={['Ưu đãi chớp nhoáng', 'Hồ bơi vô cực']} vertical />
                     </td> */}
-                    {/* <td className={styles.center}>
+                    <td className={styles.center}>
                         <div className="d-flex-js">
                             <span class={styles.voucherCode}>GIAIPHONG</span>
                             <span class={styles.voucherPercent}>- 1%</span>
@@ -82,7 +80,7 @@ function HotelTable() {
                             <span class={styles.voucherCode}>GIAIPHONG</span>
                             <span class={styles.voucherPercent}>- 1%</span>
                         </div>
-                    </td> */}
+                    </td>
                     <td>
                         <div className={clsx(styles.point, 'd-flex-js')}>
                             <svg width="21" height="16" fill="none" style={{ marginRight: '3px' }}>
@@ -119,40 +117,19 @@ function HotelTable() {
         </Table>
     )
 }
-const HotelManagement = () => {
+
+function Hotel() {
     return (
-        <div className={styles.content}>
-            <div className="mt-4 d-flex justify-content-between align-items-center flex-wrap">
-                <div className="card-action coin-tabs mb-2">
-                    <ul className="nav nav-tabs nav" role="tablist">
-                        <li className="nav-item nav-item">
-                            <TitleButton name="Tất cả" className="btnChoose" active="active"></TitleButton>
-                        </li>
-                        <li className="nav-item nav-item">
-                            <TitleButton name="Chờ duyệt" className="btnChoose"></TitleButton>
-                        </li>
-                    </ul>
-                </div>
-                <div className="d-flex align-items-center mb-2">
-                    <ButtonPrimary className="btnLarge1">
-                        <a href="/addHotel">+ Thêm khách sạn</a>
-                    </ButtonPrimary>
-                </div>
+        <div className={styles.container}>
+            <div className={styles.header}>
+                <NavBar list={['Tất cả', 'chờ duyệt', 'hoạt động', 'Đã khóa']} />
+                <DropdownButton list={['Mới nhất', 'Cũ nhất']} />
             </div>
-            <div className="row mt-4">
-                <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body p-0">
-                            <div className="table-responsive">
-                                <div id="room_wrapper" className="dataTables_wrapper no-footer">
-                                    <HotelTable />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div className={styles.content}>
+                <HotelTable />
             </div>
         </div>
     )
 }
-export default HotelManagement
+
+export default Hotel

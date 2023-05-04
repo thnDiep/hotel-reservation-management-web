@@ -225,7 +225,7 @@ function Home() {
                                 image={des.image}
                                 name="Sailing Club Signature Resort Phú Quốc"
                                 percentDiscount={14}
-                                promotion="Ưu đãi chớp nhoáng"
+                                promotion={['Ưu đãi chớp nhoáng']}
                                 rate={3}
                                 liked={true}
                                 type="Khu nghỉ dưỡng"
@@ -282,7 +282,7 @@ function Home() {
                                     image={des.image}
                                     name={des.name}
                                     percentDiscount={14}
-                                    promotion="Ưu đãi chớp nhoáng"
+                                    promotion={['Ưu đãi chớp nhoáng']}
                                     rate={3}
                                     type="Khu nghỉ dưỡng"
                                     numberFeedback={123}
@@ -300,7 +300,7 @@ function Home() {
                                     image={des.image}
                                     name={des.name}
                                     percentDiscount={14}
-                                    promotion="Ưu đãi chớp nhoáng"
+                                    promotion={['Ưu đãi chớp nhoáng']}
                                     rate={3}
                                     type="Khu nghỉ dưỡng"
                                     numberFeedback={123}
