@@ -10,7 +10,7 @@ function HotelierLayout({ children }) {
         SetCheckHide(!checkHide)
     }
     return (
-        <div>
+        <div className="HolierLayout">
             <Sidebar checkHide={checkHide} />
             <section id="content">
                 <Header onClick={handleCheckHide} />

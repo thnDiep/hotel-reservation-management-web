@@ -6,6 +6,7 @@ import { Account, Wishlist, Order, OrderDetail } from '~/pages/Profile'
 import { AccountAdmin, HotelAdmin } from '~/pages/Admin'
 import QrPay from '~/pages/QrPay'
 import HotelManagement from '~/pages/Hotelier/HotelManagement'
+import OrderManagement from '~/pages/Hotelier/OrderManagement/OrderManagement'
 import AddHotel from '~/pages/Hotelier/AddHotel'
 import RoomManage from '~/pages/Hotelier/RoomManage'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
@@ -25,6 +26,9 @@ export const publicRoutes = [
     { path: '/profile/wish-list', component: Wishlist, layout: HomeLayout },
 
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
+    { path: '/manageHotel', component: HotelManagement, layout: HotelierLayout },
+    { path: '/manageOrder', component: OrderManagement, layout: HotelierLayout },
+    { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
     { path: '/checkOrder', component: CheckOrder },
 

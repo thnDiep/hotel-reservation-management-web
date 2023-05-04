@@ -145,16 +145,6 @@ const HotelManagement = () => {
     return (
         <div className={styles.content}>
             <div className="mt-4 d-flex justify-content-between align-items-center flex-wrap">
-                {/* <div className="card-action coin-tabs mb-2">
-                    <ul className="nav nav-tabs nav" role="tablist">
-                        <li className="nav-item nav-item">
-                            <TitleButton name="Tất cả" className="btnChoose" active="active"></TitleButton>
-                        </li>
-                        <li className="nav-item nav-item">
-                            <TitleButton name="Chờ duyệt" className="btnChoose"></TitleButton>
-                        </li>
-                    </ul>
-                </div> */}
                 <NavHandle list={['Tất cả', 'chờ duyệt', 'hoạt động', 'Đã khóa']} active={0} />
 
                 {/* <NavBar list={['Tất cả', 'chờ duyệt', 'hoạt động', 'Đã khóa']}></NavBar> */}

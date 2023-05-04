@@ -115,7 +115,8 @@
     width: auto;
 }
 .btnLarge1,
-.btnLarge2 {
+.btnLarge2,
+.btnLarge3 {
     font-size: 14px;
     padding: 10px 16px;
     border: none;
@@ -128,6 +129,9 @@
 }
 .btnLarge2 {
     margin-left: 10px;
+}
+.btnLarge3 {
+    // margin-bottom: 0;
 }
 .btnCheck {
     color: rgb(255, 255, 255);

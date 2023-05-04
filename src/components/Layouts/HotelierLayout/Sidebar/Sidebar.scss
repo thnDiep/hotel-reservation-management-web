@@ -1,6 +1,6 @@
 /* SIDEBAR */
 #sidebar {
-    background: var(--grey);
+    background: var(--light);
     position: fixed;
     max-width: 260px;
     width: 100%;
@@ -33,7 +33,7 @@
     top: 0;
     left: 0;
     z-index: 100;
-    background: var(--grey);
+    background: var(--light);
     transition: all 0.3s ease;
     padding: 0 6px;
 }
