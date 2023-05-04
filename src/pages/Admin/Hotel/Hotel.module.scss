@@ -22,9 +22,11 @@
 }
 
 .cusTable {
-    tbody,
-    tr {
-        overflow: hidden;
+    thead {
+        vertical-align: middle;
+    }
+    tbody {
+        border-top: none;
     }
     img {
         height: 4.813rem;
@@ -76,7 +78,9 @@
 
     .status {
         cursor: default !important;
-        padding: 7px 20px;
+        padding: 7px 0;
+        min-width: 100px;
+        text-align: center;
     }
 }
 
@@ -135,10 +139,12 @@
     margin: 0 2px;
     overflow: hidden;
     font-size: 1.2rem;
-    // max-width: 85px;
+    width: 85px;
+    max-width: 85px;
     font-weight: 600;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-align: left;
 }
 
 .voucherPercent {

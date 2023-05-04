@@ -4,7 +4,7 @@ import Sidebar from './Sidebar'
 import { useState } from 'react'
 
 function HotelierLayout({ children }) {
-    const [checkHide, SetCheckHide] = useState(false)
+    const [checkHide, SetCheckHide] = useState(true)
     const handleCheckHide = () => {
         console.log('hello')
         SetCheckHide(!checkHide)
