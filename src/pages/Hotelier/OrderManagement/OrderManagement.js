@@ -66,7 +66,7 @@ function HotelTable() {
             </thead>
             <tbody>
                 {!enteredDel && (
-                    <tr className={styles.memberRow} onClick={handleButtonClick}>
+                    <tr className={styles.memberRow}>
                         <td className={styles.center}>
                             <input type="checkbox" className={styles.checkBox} />
                         </td>
@@ -76,7 +76,9 @@ function HotelTable() {
                                 <div className={styles.text1}>
                                     <h4>Phạm Thị Thanh Thảo</h4>
                                     <br />
-                                    <span>#EMP-00025</span>
+                                    <span onClick={handleButtonClick} className={styles.codeOrder}>
+                                        #H12345678
+                                    </span>
                                 </div>
                             </div>
                         </td>
@@ -102,7 +104,7 @@ function HotelTable() {
                     </tr>
                 )}
                 {!enteredDel1 && (
-                    <tr className={styles.memberRow} onClick={handleButtonClick}>
+                    <tr className={styles.memberRow}>
                         <td className={styles.center}>
                             <input type="checkbox" className={styles.checkBox} />
                         </td>
@@ -112,7 +114,9 @@ function HotelTable() {
                                 <div className={styles.text1}>
                                     <h4>Phạm Thị Thanh Thảo</h4>
                                     <br />
-                                    <span>#EMP-00025</span>
+                                    <span onClick={handleButtonClick} className={styles.codeOrder}>
+                                        #E54395855
+                                    </span>
                                 </div>
                             </div>
                         </td>

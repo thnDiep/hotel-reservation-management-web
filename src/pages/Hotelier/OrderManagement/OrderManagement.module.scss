@@ -161,3 +161,10 @@
     transform: scale(1.1);
     box-shadow: 0 0 15px #ff3366;
 }
+
+.codeOrder {
+    cursor: pointer;
+}
+.codeOrder:hover {
+    color: #0d6efd;
+}
