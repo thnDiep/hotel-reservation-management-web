@@ -1,0 +1,14 @@
+.card-table {
+    & th {
+        padding: 15px 16px;
+        & :first-child {
+            // margin-left: -4px;
+        }
+    } // background-color: #000;
+}
+.room-list-bx {
+    img {
+        height: 4.813rem;
+        width: 9.375rem;
+    }
+}

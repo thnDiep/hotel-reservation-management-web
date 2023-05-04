@@ -175,15 +175,15 @@ body {
 .iconCheckBox {
     width: 22px;
     height: 22px;
-    box-shadow: inset 0 0 0 1px rgba(16, 22, 26, .2), inset 0 -1px 0 rgba(16, 22, 26, .1);
+    box-shadow: inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1);
     border-radius: 6px;
     background-color: #f5f8fa;
-    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .8), hsla(0, 0%, 100%, 0));
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0));
 
     &::before {
         width: 22px;
         height: 22px;
-        content: "";
+        content: '';
         display: block;
         background-size: cover;
         background-image: url('https://mytour.vn/icons/icon_checked.svg');
@@ -191,18 +191,22 @@ body {
 }
 
 .checked {
-    background-color: #00B6F3;
-    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, 0));
+    background-color: #00b6f3;
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0));
 }
-
+.CheckFacility__inline {
+    .MuiFormControlLabel-root {
+        margin-right: 0px;
+    }
+}
 .checkBoxPayment {
     .iconCheckBox {
         width: 20px;
         height: 20px;
-        box-shadow: inset 0 0 0 1px rgba(16, 22, 26, .2), inset 0 -1px 0 rgba(16, 22, 26, .1);
+        box-shadow: inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1);
         border-radius: 50%;
         background-color: #f5f8fa;
-        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .8), hsla(0, 0%, 100%, 0));
+        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0));
 
         &::before {
             width: 20px;
@@ -211,8 +215,8 @@ body {
     }
 
     .checked {
-        background-color: #FF3366;
-        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, 0));
+        background-color: #ff3366;
+        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0));
     }
 
     .MuiFormControlLabel-root {
@@ -229,7 +233,7 @@ body {
     font-size: 14px;
     min-height: 20px;
     font-weight: 600;
-    
+
     border-radius: 8px;
     text-transform: none;
     background-color: inherit;
