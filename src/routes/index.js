@@ -5,6 +5,7 @@ import Checkout from '~/pages/Checkout'
 import Profile from '~/pages/Profile'
 import QrPay from '~/pages/QrPay'
 import HotelManagement from '~/pages/Hotelier/HotelManagement'
+import OrderManagement from '~/pages/Hotelier/OrderManagement/OrderManagement'
 import AddHotel from '~/pages/Hotelier/AddHotel'
 import AdminHotel from '~/pages/Admin/Hotel'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
@@ -19,6 +20,7 @@ export const publicRoutes = [
     { path: '/profile', component: Profile, layout: HomeLayout },
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
     { path: '/manageHotel', component: HotelManagement, layout: HotelierLayout },
+    { path: '/manageOrder', component: OrderManagement, layout: HotelierLayout },
     { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
     { path: '/admin/hotel', component: AdminHotel, layout: ManageLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
