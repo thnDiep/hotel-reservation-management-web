@@ -7,6 +7,7 @@ import { AccountAdmin, HotelAdmin } from '~/pages/Admin'
 import QrPay from '~/pages/QrPay'
 import HotelManagement from '~/pages/Hotelier/HotelManagement'
 import AddHotel from '~/pages/Hotelier/AddHotel'
+import RoomManage from '~/pages/Hotelier/RoomManage'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
 import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
@@ -24,12 +25,15 @@ export const publicRoutes = [
     { path: '/profile/wish-list', component: Wishlist, layout: HomeLayout },
 
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
-    { path: '/manageHotel', component: HotelManagement, layout: HotelierLayout },
-    { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
     { path: '/checkOrder', component: CheckOrder },
 
     // Admin
     { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },
     { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
+
+    //CKS
+    { path: '/cks/manageHotel', component: HotelManagement, layout: HotelierLayout },
+    { path: '/cks/addHotel', component: AddHotel, layout: HotelierLayout },
+    { path: '/cks/manage-room', component: RoomManage, layout: HotelierLayout },
 ]
