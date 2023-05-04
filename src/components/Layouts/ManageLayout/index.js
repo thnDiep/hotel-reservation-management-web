@@ -1,7 +1,7 @@
-import styles from './AdminLayout.module.scss'
+import styles from './ManageLayout.module.scss'
 import Header from './Header'
 
-function AdminLayout({ children }) {
+function ManageLayout({ children }) {
     return (
         <div className={styles.container}>
             <Header />
@@ -10,4 +10,4 @@ function AdminLayout({ children }) {
     )
 }
 
-export default AdminLayout
+export default ManageLayout

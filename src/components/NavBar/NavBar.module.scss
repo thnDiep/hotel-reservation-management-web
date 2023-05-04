@@ -8,6 +8,10 @@
     font-weight: 500;
     padding: 0.5rem 1.25rem;
 
+    nav {
+        background-color: transparent;
+    }
+
     .navItem {
         cursor: pointer;
         padding: 7px 20px;
@@ -17,6 +21,9 @@
         &.active {
             color: var(--primary-color);
             border-bottom: 2px solid var(--primary-color);
+        }
+        &.noneBorder {
+            border-bottom: none;
         }
     }
 }

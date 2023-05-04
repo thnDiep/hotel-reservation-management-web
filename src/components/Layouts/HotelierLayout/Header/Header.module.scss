@@ -1,0 +1,118 @@
+nav {
+    // background: var(--light);
+    background: var(--grey);
+
+    height: 64px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    grid-gap: 28px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+nav .toggle-sidebar {
+    font-size: 30px;
+    cursor: pointer;
+}
+nav form {
+    max-width: 400px;
+    width: 100%;
+    margin-right: auto;
+}
+nav .form-group {
+    position: relative;
+}
+nav .form-group {
+    width: 100%;
+    color: #000;
+    font-size: 30px;
+    font-weight: 600;
+    // background: var(--grey);
+    // border-radius: 5px;
+    // border: none;
+    // outline: none;
+    // padding: 10px 36px 10px 16px;
+    // transition: all 0.3s ease;
+}
+// nav .form-group input:focus {
+//     box-shadow: 0 0 0 1px var(--blue), 0 0 0 4px var(--light-blue);
+// }
+nav .form-group .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    color: var(--dark-grey);
+}
+nav .nav-link {
+    position: relative;
+}
+nav .nav-link .icon {
+    font-size: 18px;
+    color: var(--dark);
+}
+nav .nav-link .badge {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--light);
+    background: var(--red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--light);
+    font-size: 10px;
+    font-weight: 700;
+}
+nav .divider {
+    width: 1px;
+    background: var(--grey);
+    height: 12px;
+    display: block;
+}
+nav .profile {
+    position: relative;
+}
+nav .profile img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+nav .profile .profile-link {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: var(--light);
+    padding: 10px 0;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 160px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+nav .profile .profile-link.show {
+    opacity: 1;
+    pointer-events: visible;
+    top: 100%;
+}
+nav .profile .profile-link a {
+    padding: 10px 16px;
+    display: flex;
+    grid-gap: 10px;
+    font-size: 14px;
+    color: var(--dark);
+    align-items: center;
+    transition: all 0.3s ease;
+}
+nav .profile .profile-link a:hover {
+    background: var(--grey);
+}
+/* NAVBAR */

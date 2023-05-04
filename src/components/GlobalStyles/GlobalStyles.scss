@@ -21,6 +21,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
+    background-color: #fff;
 }
 
 .d-none {
@@ -37,6 +38,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+}
+
+.d-flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .d-flex-column-r {
@@ -175,15 +182,15 @@ body {
 .iconCheckBox {
     width: 22px;
     height: 22px;
-    box-shadow: inset 0 0 0 1px rgba(16, 22, 26, .2), inset 0 -1px 0 rgba(16, 22, 26, .1);
+    box-shadow: inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1);
     border-radius: 6px;
     background-color: #f5f8fa;
-    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .8), hsla(0, 0%, 100%, 0));
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0));
 
     &::before {
         width: 22px;
         height: 22px;
-        content: "";
+        content: '';
         display: block;
         background-size: cover;
         background-image: url('https://mytour.vn/icons/icon_checked.svg');
@@ -191,18 +198,22 @@ body {
 }
 
 .checked {
-    background-color: #00B6F3;
-    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, 0));
+    background-color: #00b6f3;
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0));
 }
-
+.CheckFacility__inline {
+    .MuiFormControlLabel-root {
+        margin-right: 0px;
+    }
+}
 .checkBoxPayment {
     .iconCheckBox {
         width: 20px;
         height: 20px;
-        box-shadow: inset 0 0 0 1px rgba(16, 22, 26, .2), inset 0 -1px 0 rgba(16, 22, 26, .1);
+        box-shadow: inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1);
         border-radius: 50%;
         background-color: #f5f8fa;
-        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .8), hsla(0, 0%, 100%, 0));
+        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0));
 
         &::before {
             width: 20px;
@@ -211,14 +222,15 @@ body {
     }
 
     .checked {
-        background-color: #FF3366;
-        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .1), hsla(0, 0%, 100%, 0));
+        background-color: #ff3366;
+        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0));
     }
 
     .MuiFormControlLabel-root {
         margin-right: 0px;
     }
 }
+
 .btn-1 {
     color: rgb(255, 51, 102);
     width: fit-content;
@@ -228,7 +240,7 @@ body {
     font-size: 14px;
     min-height: 20px;
     font-weight: 600;
-    
+
     border-radius: 8px;
     text-transform: none;
     background-color: inherit;
@@ -238,6 +250,11 @@ body {
         border: 1px solid rgba(255, 51, 102, 0.1);
         color: rgb(255, 51, 102);
         box-shadow: none;
+    }
+
+    &.nohover:hover {
+        background-color: inherit;
+        border: 1px solid rgb(255, 51, 102);
     }
 
     &.active {
@@ -279,4 +296,24 @@ body {
     button:focus {
         outline: 0;
     }
+}
+
+.link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.nav {
+    a.active {
+        display: block;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+    }
+}
+
+a:hover {
+    color: var(--primary-color);
 }

@@ -1,34 +1,32 @@
-
-.wrap{
+.wrap {
     // background-color: #f8f9fc;
     // background-color: #00b6f3;
     // background-color: #fafcff;
     height: 100rem;
 }
 
-.wrapOfEmptyPage{
+.wrapOfEmptyPage {
     text-align: center;
-    .componentOfEmptyPage{
+    .componentOfEmptyPage {
         margin: 0 auto;
         margin-top: 15px;
         margin-bottom: 20px;
     }
-    .imageForEmptyInfo{
+    .imageForEmptyInfo {
         width: 249px;
         height: 210px;
         margin: 0 auto;
     }
-    .buttonSearchInWishList{
+    .buttonSearchInWishList {
         width: 145px;
         font-weight: 500;
         margin: 0 auto;
         background-color: #00b6f3;
         border-color: #00b6f3;
     }
-
 }
 
-.buttonSave{
+.buttonSave {
     width: 440px;
     background-color: rgb(255, 51, 102);
     height: 45px;
@@ -39,20 +37,17 @@
     font-size: 16px;
     box-shadow: none;
     font-weight: bolder;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    &:hover{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    &:hover {
         cursor: pointer;
     }
 }
-
-
-
 
 .place {
     margin: 12px 0px;
     color: #1a202c;
     width: 100%;
-    border: 1px solid #EDF2F7;
+    border: 1px solid #edf2f7;
     display: flex;
     padding: 16px;
     font-size: 14px;
@@ -76,7 +71,6 @@
             // position: absolute;
             height: 100%;
         }
-
     }
 
     &__detail {
@@ -88,8 +82,6 @@
         &--content {
             width: 60%;
         }
-
-
 
         &--endow {
             color: #ffffff;
@@ -116,8 +108,6 @@
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
         }
-
-
 
         .fa-star {
             color: #feda56;
@@ -146,7 +136,7 @@
             margin-bottom: 6px;
 
             &1 {
-                color: #FF3366;
+                color: #ff3366;
                 display: flex;
                 padding: 2px 4px 0;
                 background: rgba(255, 51, 102, 0.1);
@@ -169,7 +159,7 @@
             transition: all 0.3s;
 
             &:hover {
-                color: #00B6F3;
+                color: #00b6f3;
                 text-decoration: underline;
                 cursor: pointer;
             }
@@ -194,7 +184,7 @@
         }
 
         &--map2 {
-            color: #00B6F3;
+            color: #00b6f3;
             padding-left: 22px;
             margin-bottom: 6px;
         }
@@ -218,14 +208,12 @@
         }
 
         &--service {
-            color: #48BB78;
+            color: #48bb78;
             display: flex;
             align-items: center;
             margin-bottom: 6px;
         }
     }
-
-
 
     .slick-prev {
         background: white !important;
@@ -266,13 +254,10 @@
     }
 
     .slick-list {
-
         height: 100%;
     }
 
     .slick-slider {
-
-
         position: relative;
         width: 286px;
         height: 214px;
@@ -283,14 +268,13 @@
         bottom: 0 !important;
 
         .slick-slide {
-            &>div {
+            & > div {
                 height: 100% !important;
             }
         }
     }
 
     .slick-dots {
-
         bottom: 23px !important;
         height: 2px;
         margin: 0px;
@@ -315,7 +299,7 @@
     }
 
     .slick-dots li.slick-active button:before {
-        opacity: .75;
+        opacity: 0.75;
         color: #fff;
     }
 
@@ -324,15 +308,10 @@
         content: '>' !important;
         color: black !important;
     }
-
 }
 
-
-
-
-
 .confirm {
-    color: #ED8936;
+    color: #ed8936;
     display: flex;
     font-size: 14px;
     text-align: center;
@@ -345,10 +324,7 @@
     }
 
     &__switch {
-
-
         &--icon {
-
             width: 42px;
             height: 26px;
             margin: 8px;
@@ -359,56 +335,47 @@
             display: none;
         }
     }
-
-
 }
 
-
-
-
-
-
-
-
-
-
-.card{
+.card {
     display: flex;
-    background-color: #fafcff;
+    background-color: #fff;
     font-size: 14px;
     color: black;
     margin: 0 auto;
     margin-bottom: 2rem;
     padding: 15px;
     border-radius: 10px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
     // width: 80%;
-    &:hover{
-        box-shadow: 3px 3px 8px rgb(209, 209, 209);
+    &:hover {
+        // box-shadow: 3px 3px 8px rgb(209, 209, 209);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         // width: 80%;
         color: black;
         cursor: pointer;
     }
 
-    .image{
+    .image {
         width: 288px;
         height: 215px;
         border-radius: 10px;
     }
-    .info{
+    .info {
         margin-left: 20px;
-        .name{
+        .name {
             font-size: 18px;
             font-weight: 500;
-            &:hover{
-                color:#00b6f3;
+            &:hover {
+                color: #00b6f3;
             }
         }
     }
-
 }
 
-
-.tag_1{
+.tag_1 {
     background-color: orange;
     color: white;
     border-radius: 5px;
@@ -419,8 +386,8 @@
     font-weight: 600;
 }
 
-.tag_2{
-    background-color:  purple;
+.tag_2 {
+    background-color: purple;
     color: white;
     border-radius: 5px;
     padding-left: 5px;
@@ -448,7 +415,7 @@
     font-size: 1.2rem;
 }
 
-.type{
+.type {
     border: 1px solid #f33266;
     color: #f33266;
     border-radius: 5px;
@@ -457,16 +424,16 @@
     // border-color: #00b6f3;
 }
 
-.icon{
+.icon {
     margin-right: 5px;
     margin-top: 5px;
 }
 
-.evaluate{
+.evaluate {
     margin-left: 10px;
 }
 
-.numberOfEvaluate{
+.numberOfEvaluate {
     color: gray;
     margin-left: 10px;
 }

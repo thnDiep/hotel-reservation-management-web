@@ -1,0 +1,310 @@
+.container {
+    width: 100%;
+    background-color: rgb(250, 252, 255);
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.wrap {
+    width: var(--default-width);
+    margin: auto;
+    padding-top: 10px;
+    // padding-left: 170px;
+    // background-color: #fafcff;
+}
+
+.content {
+    padding-top: 20px;
+}
+
+.profileMenu {
+    // margin-bottom: 20px;
+    margin: auto;
+    .buttonMenu {
+        border: none;
+        background-color: white;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 0 90px 0 0;
+        text-decoration: underline;
+        &:hover {
+            cursor: pointer;
+        }
+        &:has(input:checked) {
+            color: #e93062;
+        }
+        input {
+            display: none;
+        }
+    }
+}
+
+.container {
+    color: #1a202c;
+    padding: 20px 16px 40px;
+    font-size: 14px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
+    line-height: 17px;
+    border-radius: 8px;
+    background-color: #ffffff;
+
+    sup {
+        font-size: 80%;
+        left: -0.2rem;
+        top: -0.5rem;
+    }
+
+    .status {
+        color: #ff3366;
+        background-color: inherit;
+        border: 1px solid #ff3366;
+        padding: 4px 8px;
+        border-radius: 4px;
+        width: fit-content;
+
+        &.success {
+            color: #fff;
+            border: 1px solid rgb(72, 187, 120);
+            background-color: rgb(72, 187, 120);
+        }
+    }
+}
+
+.header {
+    font-size: 1.4rem;
+    color: #00b6f3;
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+
+    span {
+        padding-left: 12px;
+    }
+}
+
+.tagInfo {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    &__part {
+        flex-basis: 23%;
+        padding: 16px 0 0 10px;
+        min-height: 80px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        background-color: #f7fafc;
+        position: relative;
+
+        .background {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 86px;
+            height: 64px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+        .title {
+            padding-bottom: 8px;
+        }
+
+        .code {
+            color: rgb(0, 182, 243);
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 21px;
+
+            &.primary {
+                color: #ff3366;
+            }
+        }
+    }
+}
+
+.checkoutInfo {
+    padding-top: 16px;
+    .time {
+        color: rgb(237, 137, 54);
+    }
+    .info {
+        border: 1px dashed #cbd5e0;
+        background: #f7fafc;
+        margin-top: 12px;
+        padding: 12px;
+        padding-bottom: 0;
+        border-radius: 8px;
+
+        &__part {
+            margin: 12px 0;
+            display: flex;
+        }
+
+        h6 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 48px;
+            border: 1px solid #e2e8f0;
+            height: 24px;
+            margin-left: 12px;
+            border-radius: 4px;
+            background-color: #ffffff;
+        }
+
+        .copy {
+            color: #00b6f3;
+            cursor: pointer;
+            display: flex;
+            padding-left: 12px;
+            span {
+                padding-left: 4px;
+            }
+        }
+    }
+
+    .title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        line-height: 1.6rem;
+    }
+
+    .subTitle {
+        font-size: 1.4rem;
+        font-weight: 500;
+        line-height: 1.7rem;
+        min-width: 300px;
+    }
+}
+
+.orderInfo {
+    display: flex;
+    padding-top: 24px;
+    .hotelImage {
+        img {
+            width: 136px;
+            height: 102px;
+            border-radius: 8px;
+        }
+    }
+
+    .info {
+        margin-left: 16px;
+        display: flex;
+        flex-direction: column;
+
+        &__hotel {
+            .rating {
+                cursor: pointer;
+                display: flex;
+                margin-top: 10px;
+                margin-bottom: 12px;
+                font-size: 1.2rem;
+                .icon {
+                    padding: 0 2px;
+                }
+            }
+        }
+
+        &__time {
+            display: flex;
+
+            &__part {
+                display: flex;
+                padding: 0 40px 0 10px;
+                border-left: 1px solid #e2e8f0;
+                flex-direction: column;
+            }
+        }
+
+        &__order {
+            width: 100%;
+            border-top: 1px solid #edf2f7;
+            margin-top: 24px;
+            &__part {
+                display: flex;
+                padding-top: 24px;
+            }
+            .title {
+                min-width: 150px;
+            }
+            .icon {
+                color: #ff3366;
+            }
+            .price {
+                display: flex;
+                padding: 12px 0;
+                align-items: center;
+                border-bottom: 1px solid #edf2f7;
+                justify-content: space-between;
+            }
+            .price.total {
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 21px;
+                border-bottom: none;
+            }
+            .checkout {
+                display: flex;
+                padding: 12px 0;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .code {
+                border: 1px solid #a0aec0;
+                padding: 4px 6px;
+                margin-left: 8px;
+                border-radius: 4px;
+            }
+        }
+
+        .content1 {
+            display: flex;
+            padding-left: 140px;
+            flex-direction: column;
+        }
+        .content2 {
+            display: flex;
+            padding-left: 10px;
+            flex-direction: column;
+        }
+    }
+
+    .title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 21px;
+    }
+
+    .subTitle1 {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19px;
+        padding-top: 16px;
+        padding-bottom: 8px;
+    }
+
+    .subTitle2 {
+        font-weight: 600;
+        padding-bottom: 8px;
+    }
+
+    .subTitle3 {
+        display: flex;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 17px;
+        padding-bottom: 8px;
+
+        span {
+            margin-left: 6px;
+            margin-right: 4px;
+        }
+    }
+    .green {
+        color: #48bb78;
+    }
+}

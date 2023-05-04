@@ -3,24 +3,37 @@ import Home from '~/pages/Home'
 import Detail from '~/pages/Detail'
 import ListByPlace from '~/pages/ListByPlace'
 import Checkout from '~/pages/Checkout'
-import Profile from '~/pages/Profile'
-import Reserve from '~/pages/Profile/reservePage/reserve'
-import Wishlist from '~/pages/Profile/wishlistPage/wishlist'
+import { Account, Wishlist, Order, OrderDetail } from '~/pages/Profile'
+import { AccountAdmin, HotelAdmin } from '~/pages/Admin'
 import QrPay from '~/pages/QrPay'
-import AdminHotel from '~/pages/Admin/Hotel'
-import { HomeLayout, QrPayLayout, AdminLayout } from '~/components/Layouts'
+import HotelManagement from '~/pages/Hotelier/HotelManagement'
+import OrderManagement from '~/pages/Hotelier/OrderManagement/OrderManagement'
+import AddHotel from '~/pages/Hotelier/AddHotel'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
+import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
+import CheckOrder from '~/pages/CheckOrder/CheckOrder'
 export const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
     { path: '/detail', component: Detail },
     { path: '/listByPlace', component: ListByPlace },
     { path: '/checkout', component: Checkout, layout: HomeLayout },
-    { path: '/profile', component: Profile },
-    { path: '/reserve', component: Reserve },
-    { path: '/wishlist', component: Wishlist },
+
+    // Profile
+    { path: '/profile', component: Account, layout: HomeLayout },
+    { path: '/profile/order', component: Order, layout: HomeLayout },
+    { path: '/profile/order/1', component: OrderDetail, layout: HomeLayout },
+    { path: '/profile/wish-list', component: Wishlist, layout: HomeLayout },
+
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
-    { path: '/admin/hotel', component: AdminHotel, layout: AdminLayout },
+    { path: '/manageHotel', component: HotelManagement, layout: HotelierLayout },
+    { path: '/manageOrder', component: OrderManagement, layout: HotelierLayout },
+    { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
     { path: '/login', component: Login, layout: null },
+    { path: '/checkOrder', component: CheckOrder },
+
+    // Admin
+    { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },
+    { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
 ]

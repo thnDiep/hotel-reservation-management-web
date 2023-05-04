@@ -17,7 +17,7 @@ function Login() {
                 } else if (email.value.length === 0) {
                     setEmail({ ...email, error: 'Thông tin bắt buộc' })
                 } else {
-                    setEmail({ ...email, error: '' })
+                    setEmail({ ...email, error: ' ' })
                 }
             }, 500)
             return () => {
