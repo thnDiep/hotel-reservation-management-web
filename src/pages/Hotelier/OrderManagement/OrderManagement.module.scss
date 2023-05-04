@@ -18,6 +18,9 @@
 .cusTable {
     tbody {
         border-top: 1px solid #f2f1f1 !important;
+        tr:hover {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
     }
     tbody,
     tr {
@@ -96,7 +99,11 @@
 
     .status {
         cursor: default !important;
-        padding: 7px 25px;
+        padding: 7px 25px !important;
+        &Pending {
+            cursor: pointer !important;
+            padding: 7px 25px;
+        }
     }
 }
 
@@ -106,6 +113,9 @@
 }
 .btnSearch {
     padding: 11.5px;
+}
+.btnPending {
+    border: transparent;
 }
 
 .checkBox {
@@ -141,4 +151,13 @@
         -webkit-transform: translate(-50%, -50%) scale(0.6);
         transform: translate(-50%, -50%) scale(0.6);
     }
+}
+.icon:hover {
+    color: red;
+    box-shadow: 0 0 5px #ff3366;
+    text-shadow: 0 0 5px #ff3366;
+}
+.icon:hover::before {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ff3366;
 }
