@@ -11,6 +11,7 @@
     height: 480px;
     object-fit: none;
     z-index: -1;
+    background-color: #fff5f7;
 }
 
 .title {
@@ -40,6 +41,8 @@
     width: var(--default-width);
     height: calc(480px - var(--height-header));
     margin: auto;
+    // background-color: #fff5f7;
+
     p {
         font-size: 26px;
         max-width: 566px;

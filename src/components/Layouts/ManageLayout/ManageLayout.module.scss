@@ -1,6 +1,7 @@
 .container {
     background-color: #f8f8f8;
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
 }
 
 .content {

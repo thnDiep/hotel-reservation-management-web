@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import styles from './account.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import Profile from '../profile'
 
 function Account() {
     const data = JSON.parse(localStorage.getItem('data'))
@@ -129,117 +130,119 @@ function Account() {
         }
     }
     return (
-        <div className={styles.formInformation}>
-            {/* avatar */}
-            <div>
-                <img src={process.env.PUBLIC_URL + '/avt.png'} alt="avata" className={styles.profileAvt} />
+        <Profile>
+            <div className={styles.formInformation}>
+                {/* avatar */}
+                <div>
+                    <img src={process.env.PUBLIC_URL + '/avt.png'} alt="avata" className={styles.profileAvt} />
+                </div>
+                {/* Thong tin ca nhan */}
+                <div className={styles.information}>
+                    {/* Ho ten */}
+                    <div>
+                        <label htmlFor="field-name" className={styles.label}>
+                            Họ tên
+                        </label>
+                        <div>
+                            <input
+                                className={styles.fieldInput}
+                                id="field-name"
+                                name="name"
+                                type="text"
+                                autoFocus
+                                value={name.value}
+                                onChange={(e) => setName({ error: ' ', value: e.target.value })}
+                                onFocus={handleOnFocus_name}
+                                onBlur={handleOnBlur_name}
+                            />
+                            <hr id="lineUnderName" className={styles.lineUnderOnBlur} />
+                            <p id="noticeForFieldName" className={styles.notice} value="1">
+                                {name.error}
+                            </p>
+                        </div>
+                    </div>
+                    {/* Email */}
+                    <div>
+                        <label htmlFor="field-email" className={styles.label}>
+                            Email
+                        </label>
+                        <div>
+                            <input
+                                className={styles.fieldInput}
+                                id="field-email"
+                                name="email"
+                                type="text"
+                                value={email.value}
+                                onChange={(e) => setEmail({ ...email, value: e.target.value })}
+                                onFocus={handleOnFocus_email}
+                                onBlur={handleOnBlur_email}
+                            />
+                            <hr id="lineUnderEmail" className={styles.lineUnderOnBlur} />
+                            <p id="noticeForFieldEmail" className={styles.notice} value="1">
+                                {email.error}
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* So dien thoai */}
+                    <div>
+                        <label htmlFor="field-numberPhone" className={styles.label}>
+                            Số điện thoại
+                        </label>
+                        <div>
+                            <input
+                                className={styles.fieldInput}
+                                id="field-numberPhone"
+                                name="numberPhone"
+                                type="number"
+                                value={numberPhone.value}
+                                onChange={(e) => setNumberPhone({ ...numberPhone, value: e.target.value })}
+                                onFocus={handleOnFocus_numberPhone}
+                                onBlur={handleOnBlur_numberPhone}
+                            />
+                            <hr id="lineUnderNumberPhone" className={styles.lineUnderOnBlur} />
+                        </div>
+                    </div>
+                    {/* Dia chi */}
+                    <div>
+                        <label htmlFor="field-address" className={styles.label}>
+                            Địa chỉ
+                        </label>
+                        <div>
+                            <input
+                                className={styles.fieldInput}
+                                id="field-address"
+                                name="address"
+                                type="text"
+                                value={address.value}
+                                onChange={(e) => setAddress({ ...address, value: e.target.value })}
+                                onFocus={handleOnFocus_address}
+                                onBlur={handleOnBlur_address}
+                            />
+                            <hr id="lineUnderAddress" className={styles.lineUnderOnBlur} />
+                        </div>
+                    </div>
+
+                    <button className={styles.buttonSave} onClick={handleSubmit}>
+                        Lưu lại
+                    </button>
+
+                    {/* Modal */}
+                    <div id="myModal" class="modal">
+                        {/* <!-- Modal content --> */}
+                        <div className={styles.modalContent}>
+                            <span className={styles.close} onClick={closeModal}>
+                                &times;
+                            </span>
+                            <p>
+                                <FontAwesomeIcon icon={faCheckCircle} className={styles.successIcon} />
+                                Thay đổi thông tin thành công
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {/* Thong tin ca nhan */}
-            <div className={styles.information}>
-                {/* Ho ten */}
-                <div>
-                    <label htmlFor="field-name" className={styles.label}>
-                        Họ tên
-                    </label>
-                    <div>
-                        <input
-                            className={styles.fieldInput}
-                            id="field-name"
-                            name="name"
-                            type="text"
-                            autoFocus
-                            value={name.value}
-                            onChange={(e) => setName({ error: ' ', value: e.target.value })}
-                            onFocus={handleOnFocus_name}
-                            onBlur={handleOnBlur_name}
-                        />
-                        <hr id="lineUnderName" className={styles.lineUnderOnBlur} />
-                        <p id="noticeForFieldName" className={styles.notice} value="1">
-                            {name.error}
-                        </p>
-                    </div>
-                </div>
-                {/* Email */}
-                <div>
-                    <label htmlFor="field-email" className={styles.label}>
-                        Email
-                    </label>
-                    <div>
-                        <input
-                            className={styles.fieldInput}
-                            id="field-email"
-                            name="email"
-                            type="text"
-                            value={email.value}
-                            onChange={(e) => setEmail({ ...email, value: e.target.value })}
-                            onFocus={handleOnFocus_email}
-                            onBlur={handleOnBlur_email}
-                        />
-                        <hr id="lineUnderEmail" className={styles.lineUnderOnBlur} />
-                        <p id="noticeForFieldEmail" className={styles.notice} value="1">
-                            {email.error}
-                        </p>
-                    </div>
-                </div>
-
-                {/* So dien thoai */}
-                <div>
-                    <label htmlFor="field-numberPhone" className={styles.label}>
-                        Số điện thoại
-                    </label>
-                    <div>
-                        <input
-                            className={styles.fieldInput}
-                            id="field-numberPhone"
-                            name="numberPhone"
-                            type="number"
-                            value={numberPhone.value}
-                            onChange={(e) => setNumberPhone({ ...numberPhone, value: e.target.value })}
-                            onFocus={handleOnFocus_numberPhone}
-                            onBlur={handleOnBlur_numberPhone}
-                        />
-                        <hr id="lineUnderNumberPhone" className={styles.lineUnderOnBlur} />
-                    </div>
-                </div>
-                {/* Dia chi */}
-                <div>
-                    <label htmlFor="field-address" className={styles.label}>
-                        Địa chỉ
-                    </label>
-                    <div>
-                        <input
-                            className={styles.fieldInput}
-                            id="field-address"
-                            name="address"
-                            type="text"
-                            value={address.value}
-                            onChange={(e) => setAddress({ ...address, value: e.target.value })}
-                            onFocus={handleOnFocus_address}
-                            onBlur={handleOnBlur_address}
-                        />
-                        <hr id="lineUnderAddress" className={styles.lineUnderOnBlur} />
-                    </div>
-                </div>
-
-                <button className={styles.buttonSave} onClick={handleSubmit}>
-                    Lưu lại
-                </button>
-
-                {/* Modal */}
-                <div id="myModal" class="modal">
-                    {/* <!-- Modal content --> */}
-                    <div className={styles.modalContent}>
-                        <span className={styles.close} onClick={closeModal}>
-                            &times;
-                        </span>
-                        <p>
-                            <FontAwesomeIcon icon={faCheckCircle} className={styles.successIcon} />
-                            Thay đổi thông tin thành công
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </Profile>
     )
 }
 

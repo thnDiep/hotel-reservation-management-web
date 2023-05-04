@@ -8,15 +8,22 @@
     font-weight: 500;
     padding: 0.5rem 1.25rem;
 
+    nav {
+        background-color: transparent;
+    }
+
     .navItem {
         cursor: pointer;
         padding: 7px 20px;
-        // border-bottom: 1px solid #d4d4d4;
+        border-bottom: 1px solid #d4d4d4;
         text-transform: capitalize;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
         &.active {
             color: var(--primary-color);
             border-bottom: 2px solid var(--primary-color);
+        }
+        &.noneBorder {
+            border-bottom: none;
         }
     }
 }

@@ -1,0 +1,14 @@
+{
+    "profile": [
+        { "name": "Tài khoản", "link": "/profile" },
+        { "name": "Đơn đặt phòng", "link": "/profile/order" },
+        { "name": "Khách sạn yêu thích", "link": "/profile/wish-list" }
+    ],
+    "admin": [
+        {
+            "name": "Quản lý khách sạn",
+            "link": "/admin/hotel"
+        },
+        { "name": "Quản lý tài khoản", "link": "/admin/account" }
+    ]
+}

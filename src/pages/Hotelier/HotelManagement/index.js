@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styles from './HotelManagement.module.scss'
-import TitleButton from '~/components/Button/TitleButton'
-import { ButtonPrimary, NavBar } from '~/components'
+import { ButtonPrimary, NavHandle } from '~/components'
 import clsx from 'clsx'
 import { DropdownOption } from '~/components'
 import { Table } from 'react-bootstrap'
@@ -156,7 +155,9 @@ const HotelManagement = () => {
                         </li>
                     </ul>
                 </div> */}
-                <NavBar list={['Tất cả', 'chờ duyệt', 'hoạt động', 'Đã khóa']}></NavBar>
+                <NavHandle list={['Tất cả', 'chờ duyệt', 'hoạt động', 'Đã khóa']} active={0} />
+
+                {/* <NavBar list={['Tất cả', 'chờ duyệt', 'hoạt động', 'Đã khóa']}></NavBar> */}
                 <div className="d-flex align-items-center mb-2">
                     <ButtonPrimary className="btnLarge1">
                         <a href="/addHotel">+ Thêm khách sạn</a>
