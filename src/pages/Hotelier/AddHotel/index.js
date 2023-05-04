@@ -17,6 +17,13 @@ const options = [
     { value: '16:00', label: '4:00 PM' },
     { value: '17:00', label: '5:00 PM' },
 ]
+const optionStar = [
+    { value: 1, label: '1 sao' },
+    { value: 2, label: '2 sao' },
+    { value: 3, label: '3 sao' },
+    { value: 4, label: '4 sao' },
+    { value: 5, label: '5 sao' },
+]
 const AddHotel = () => {
     const [selectedSite, setSelectedSite] = useState(1)
     const [provinces, setProvinces] = useState([])
@@ -100,11 +107,14 @@ const AddHotel = () => {
         if (selectedSite === 1 && selectedSite < 4) {
             for (const key in hotel) {
                 if (hotel[key] === '') {
+                    console.log(2)
+                    console.log(key)
                     setNextCheck(true)
                     return
                 }
             }
         }
+        console.log(1)
         setNextCheck(false)
         if (selectedSite < 4) setSelectedSite(selectedSite + 1)
     }
@@ -126,11 +136,11 @@ const AddHotel = () => {
 
     return (
         <section
-            className="vh-100"
-            // style={{
-            //     backgroundImage:
-            //         'url("https://icdn.dantri.com.vn/2021/04/30/dji-0788-hdr-panoa-crop-1619717280597.jpeg")',
-            // }}
+        // className="vh-100"
+        // style={{
+        //     backgroundImage:
+        //         'url("https://icdn.dantri.com.vn/2021/04/30/dji-0788-hdr-panoa-crop-1619717280597.jpeg")',
+        // }}
         >
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center  h-100">
@@ -199,8 +209,18 @@ const AddHotel = () => {
                                     </div>
                                     <div className="row mt-4">
                                         <span className={`col-4 ${styles.label}`}>Hạng khách sạn</span>
-                                        <div className={`${styles.padding_0} col-5`}>
+                                        <Select
+                                            className={`col-5 ${styles.padding_0} ${
+                                                hotel.Diem === '' && nextCheck && styles.inputRed
+                                            }`}
+                                            value={hotel.Diem}
+                                            options={optionStar}
+                                            placeholder="Chọn hạng"
+                                            onChange={(selectedOption) => handleChange(selectedOption, 'Diem')}
+                                        />
+                                        {/* <div className={`${styles.padding_0} col-5`}>
                                             <div className={styles.inputSelect}>
+                                               
                                                 <select
                                                     name="Diem"
                                                     value={hotel.Diem}
@@ -214,7 +234,7 @@ const AddHotel = () => {
                                                     <option value="3">5 sao</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
 
                                     <div className="row mt-4 ">

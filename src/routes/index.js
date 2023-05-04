@@ -1,3 +1,5 @@
+import Login from '~/pages/Login/login'
+import SignUp from '~/pages/SignUp/signUp'
 import Home from '~/pages/Home'
 import Detail from '~/pages/Detail'
 import ListByPlace from '~/pages/ListByPlace'
@@ -6,6 +8,7 @@ import { Account, Wishlist, Order, OrderDetail } from '~/pages/Profile'
 import { AccountAdmin, HotelAdmin } from '~/pages/Admin'
 import QrPay from '~/pages/QrPay'
 import HotelManagement from '~/pages/Hotelier/HotelManagement'
+import OrderManagement from '~/pages/Hotelier/OrderManagement/OrderManagement'
 import AddHotel from '~/pages/Hotelier/AddHotel'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
 
@@ -27,11 +30,14 @@ export const publicRoutes = [
 
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
+    { path: '/login', component: Login, layout: null },
+    { path: '/signUp', component: SignUp, layout: null },
     { path: '/checkOrder', component: CheckOrder },
 
     // Hotelier - Hotel
     { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
     { path: '/manageHotel', component: HotelManagement, layout: HotelierLayout },
+    { path: '/manageOrder', component: OrderManagement, layout: HotelierLayout },
 
     // Hotelier - Voucher
     { path: '/voucher/add', component: AddVoucher, layout: HotelierLayout },

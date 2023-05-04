@@ -1,48 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
-
-* {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --grey: #f1f0f6;
-    --dark-grey: #8d8d8d;
-    --light: #fff;
-    --dark: #000;
-    --green: #81d43a;
-    --light-green: #e3ffcb;
-    --blue: #1775f1;
-    --light-blue: #d0e4ff;
-    --dark-blue: #0c5fcd;
-    --red: #fc3b56;
-}
-
-html {
-    overflow-x: hidden;
-}
-
-body {
-    background: var(--grey);
-    overflow-x: hidden;
-}
-
-a {
-    text-decoration: none;
-}
-
-li {
-    list-style: none;
-}
-
 /* SIDEBAR */
 #sidebar {
+    background: var(--grey);
     position: fixed;
     max-width: 260px;
     width: 100%;
-    background: var(--light);
+    // background: var(--light);
     top: 0;
     left: 0;
     height: 100%;
@@ -71,7 +33,7 @@ li {
     top: 0;
     left: 0;
     z-index: 100;
-    background: var(--light);
+    background: var(--grey);
     transition: all 0.3s ease;
     padding: 0 6px;
 }

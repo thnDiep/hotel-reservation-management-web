@@ -203,15 +203,15 @@ const CheckFacility = () => {
                 </div>
             </div>
             <div className={styles.chooseTitle}>Thông tin hữu ích</div>
+            <div className={styles.chooseTitle}>Khoảng cách tới trung tâm</div>
             <div className={` mt-3 ${styles.card1}`}>
-                Khoảng cách tới trung tâm
                 <input className={styles.input} type="number" name="name" />
-                km
+                <span>km</span>
             </div>
+            <div className={styles.chooseTitle}>Khoảng cách tới trung tâm</div>
             <div className={` mt-3 ${styles.card1}`}>
-                Khoảng cách tới trung tâm
                 <input className={styles.input} type="number" name="name" />
-                km
+                <span>km</span>
             </div>
         </div>
     )
