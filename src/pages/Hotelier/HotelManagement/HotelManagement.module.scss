@@ -1,0 +1,110 @@
+.card-table {
+    & th {
+        padding: 15px 16px;
+        & :first-child {
+            // margin-left: -4px;
+        }
+    } // background-color: #000;
+}
+.room-list-bx {
+    img {
+        height: 4.813rem;
+        width: 9.375rem;
+    }
+}
+.content {
+    padding: 24px 20px 20px 20px;
+}
+.cusTable {
+    tbody,
+    tr {
+        overflow: hidden;
+    }
+    img {
+        height: 4.813rem;
+        width: 9.375rem;
+        border-radius: 0.75rem;
+        margin-right: 1rem;
+    }
+
+    .title {
+        font-size: 1.6rem;
+        line-height: 1.6;
+        font-weight: 600;
+    }
+
+    .text1 {
+        font-size: 1.4rem;
+        line-height: 1.6;
+        font-weight: 500;
+        color: #757575;
+        &.primary {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #ff3366;
+        }
+    }
+
+    .text2 {
+        font-size: 1.4rem;
+        line-height: 1.6;
+        font-weight: 300;
+        color: #757575;
+        display: block;
+        max-width: 180px;
+    }
+
+    .memberRow {
+        td {
+            border: none;
+            padding: 20px 5px;
+            vertical-align: middle;
+        }
+    }
+
+    .center {
+        text-align: center;
+        // display: flex;
+        // justify-content: center;
+    }
+
+    .status {
+        cursor: default !important;
+        padding: 7px 20px;
+    }
+}
+
+.checkBox {
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    border: 0.225rem solid #e7e7e7;
+    border-radius: 0.25rem;
+    position: relative;
+
+    &:checked {
+        // background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    &::after {
+        background: var(--primary-color);
+        border-radius: 0.15rem;
+
+        content: '';
+        height: 100%;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%) scale(0);
+        transform: translate(-50%, -50%) scale(0);
+        transition: all 0.2s;
+        width: 100%;
+        margin: 0;
+    }
+
+    &:checked::after {
+        -webkit-transform: translate(-50%, -50%) scale(0.6);
+        transform: translate(-50%, -50%) scale(0.6);
+    }
+}

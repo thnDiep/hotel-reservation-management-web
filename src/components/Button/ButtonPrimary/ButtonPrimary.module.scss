@@ -114,6 +114,21 @@
     margin: 12px 0;
     width: auto;
 }
+.btnLarge1,
+.btnLarge2 {
+    font-size: 14px;
+    padding: 10px 16px;
+    border: none;
+    min-height: 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-transform: none;
+    margin: 12px 0;
+    width: auto;
+}
+.btnLarge2 {
+    margin-left: 10px;
+}
 .btnCheck {
     color: rgb(255, 255, 255);
     border: none;

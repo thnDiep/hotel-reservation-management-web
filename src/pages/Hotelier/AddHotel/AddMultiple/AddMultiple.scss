@@ -1,0 +1,44 @@
+.AddMultiple {
+    padding: 20px 30px;
+    .input-group {
+        min-height: 20px;
+    }
+    .btn-outline-secondary {
+        font-size: 14px;
+        box-shadow: none;
+        font-weight: 600;
+        line-height: 17px;
+        border-radius: 8px;
+        padding: 5px 16px;
+    }
+    .btn-primary {
+        font-size: 14px;
+        box-shadow: none;
+        font-weight: 600;
+        line-height: 17px;
+        border-radius: 8px;
+        color: #fff;
+        background-color: #ff3366;
+        border: 1px solid rgba(255, 51, 102, 0.5);
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(178, 35, 71);
+            box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+                0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+        }
+        font-size: 14px;
+        padding: 5px 16px;
+        border: none;
+        min-height: 20px;
+        font-weight: 600;
+        border-radius: 8px;
+        text-transform: none;
+        margin: 12px 0;
+        width: auto;
+        margin-left: 4px;
+    }
+    .fileinput-upload {
+        display: none;
+    }
+}

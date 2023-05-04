@@ -200,7 +200,11 @@ body {
     background-color: #00b6f3;
     background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0));
 }
-
+.CheckFacility__inline {
+    .MuiFormControlLabel-root {
+        margin-right: 0px;
+    }
+}
 .checkBoxPayment {
     .iconCheckBox {
         width: 20px;
