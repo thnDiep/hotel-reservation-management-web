@@ -26,7 +26,7 @@ const Sidebar = ({ checkHide }) => {
         {
             id: 4,
             name: 'Quản lý khuyến mãi',
-            link: '/voucher/manage',
+            link: '/cks/voucher',
         },
     ]
     return (

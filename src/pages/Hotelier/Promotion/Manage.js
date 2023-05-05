@@ -1,15 +1,20 @@
 import { useRef, useState } from 'react'
 import clsx from 'clsx'
-
-import { ButtonPrimary, DropdownButton, NavHandle } from '~/components'
-import styles from './Voucher.module.scss'
-import { VoucherTable, FlashSaleTable } from '~/components/Table'
+import { useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
+import { ButtonPrimary, DropdownButton, NavHandle } from '~/components'
+import { VoucherTable, FlashSaleTable } from '~/components/Table'
+import styles from './Promotion.module.scss'
+
 function ManageVoucher() {
-    const [active, setActive] = useState(0)
+    const { state } = useLocation()
+    const [active, setActive] = useState(() => {
+        if (state) return state.active
+        else return 0
+    })
     const menu = useRef(['Voucher', 'FlashSale'])
     return (
         <div className={styles.container}>

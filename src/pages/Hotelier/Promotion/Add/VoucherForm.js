@@ -3,9 +3,9 @@ import React, { useRef, useState } from 'react'
 import clsx from 'clsx'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import styles from '../Voucher.module.scss'
-import './datetime.scss'
 import { vi } from 'date-fns/locale'
+import './datetime.scss'
+import styles from '../Promotion.module.scss'
 
 function VoucherForm({ data, onEdit }) {
     const editorRef = useRef(null)
@@ -57,8 +57,10 @@ function VoucherForm({ data, onEdit }) {
                     />
                     <span className={styles.form__error}>{data.errors.voucher}</span>
                 </div>
+            </div>
 
-                <div className={styles.form__input} style={{ width: '300px', marginLeft: '30px' }}>
+            <div className={styles.form__part}>
+                <div className={styles.form__input}>
                     <span className={styles.title}>
                         Phần trăm KM <sup>*</sup>
                     </span>
@@ -93,12 +95,6 @@ function VoucherForm({ data, onEdit }) {
                     />
                     <span className={styles.form__error}>{data.errors.start}</span>
                 </div>
-                <div className={styles.form__input} style={{ width: '300px', marginLeft: '30px' }}>
-                    <span className={styles.title}>
-                        <sup></sup>
-                    </span>
-                    <input type="number" disabled style={{ opacity: 0 }} />
-                </div>
             </div>
 
             {/* Thời gian kết thúc */}
@@ -110,14 +106,17 @@ function VoucherForm({ data, onEdit }) {
                         dateFormat="dd/MM/yyyy - hh:mm aa"
                         minDate={data.fields.start}
                         className={clsx({ [styles.error]: data.errors.end })}
-                        selected={data.fields.end || new Date(+new Date() + 86400000)}
+                        selected={data.fields.end || null}
                         timeInputLabel="Time:"
                         showTimeInput
                         onChange={(e) => handleChange(e, 'end')}
                     />
                     <span className={styles.form__error}>{data.errors.end}</span>
                 </div>
-                <div className={styles.form__input} style={{ width: '300px', marginLeft: '30px' }}>
+            </div>
+
+            <div className={styles.form__part}>
+                <div className={styles.form__input}>
                     <span className={styles.title}>Số lượng giới hạn</span>
                     <input
                         type="number"
@@ -148,7 +147,9 @@ function VoucherForm({ data, onEdit }) {
             <div className={styles.form__part}>
                 <div className={styles.form__input}>
                     <div>
-                        <span className={styles.title}>Điều kiện & thể lệ chương trình</span>
+                        <span className={styles.title} style={{ marginRight: '30px' }}>
+                            Điều kiện & thể lệ chương trình
+                        </span>
                     </div>
                     <Editor
                         onInit={(evt, editor) => (editorRef.current = editor)}
@@ -157,21 +158,9 @@ function VoucherForm({ data, onEdit }) {
                         width="520px"
                         init={{
                             menubar: false,
-                            plugins: ['image', 'code', 'table', 'link', 'media', 'codesample', 'lists'],
+                            plugins: ['code', 'table', 'link', 'lists'],
                             toolbar: [
                                 'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright| forecolor backcolor | table link image media codesample',
-                            ],
-                            codesample_languages: [
-                                { text: 'HTML/XML', value: 'markup' },
-                                { text: 'JavaScript', value: 'javascript' },
-                                { text: 'CSS', value: 'css' },
-                                { text: 'PHP', value: 'php' },
-                                { text: 'Ruby', value: 'ruby' },
-                                { text: 'Python', value: 'python' },
-                                { text: 'Java', value: 'java' },
-                                { text: 'C', value: 'c' },
-                                { text: 'C#', value: 'csharp' },
-                                { text: 'C++', value: 'cpp' },
                             ],
                         }}
                     />
