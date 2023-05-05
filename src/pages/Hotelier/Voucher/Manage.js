@@ -22,7 +22,7 @@ function ManageVoucher() {
                 {active === 0 && <VoucherTable />}
                 {active === 1 && <FlashSaleTable />}
 
-                <Link to="/voucher/add" className={styles.btn}>
+                <Link to="/cks/voucher/add" className={styles.btn}>
                     <FontAwesomeIcon icon={faPlus} />
                 </Link>
             </div>

@@ -149,7 +149,7 @@ function AddVoucher() {
                     </div>
 
                     <div className={styles.form__footer}>
-                        <Link to="/voucher" className="btn-1">
+                        <Link to="/cks/voucher" className="btn-1">
                             Quay lại
                         </Link>
                         <div className="btn-1 primary" onClick={handleAddVoucher}>

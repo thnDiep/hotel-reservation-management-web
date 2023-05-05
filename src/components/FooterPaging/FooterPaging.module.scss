@@ -10,7 +10,7 @@
 }
 .paginate_button {
     // & .previous {
-    border: 0.0625rem solid #135846;
+    border: 0.0625rem solid var(--primary-color);
     border-radius: 11.1872px;
     display: inline-block;
     font-size: 14.72px;
@@ -22,13 +22,13 @@
     // }
     &:hover {
         color: #fff;
-        background: #135846 !important;
+        background: var(--primary-color) !important;
         cursor: pointer;
     }
 }
 
 .current {
-    background: #135846 !important;
+    background: var(--primary-color) !important;
     border-radius: 11.1872px;
     color: #fff !important;
     font-size: 1.125rem;

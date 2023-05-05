@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import styles from './login.module.scss'
 
 function Login() {
@@ -89,7 +90,9 @@ function Login() {
                             <a className={styles.ggLink}>Đăng nhập bằng Google</a>
                         </p>
                         Bạn không có tài khoản?
-                        <a className={styles.signUpLink}>Đăng ký</a>
+                        <NavLink to="/signUp">
+                            <span className={styles.signUpLink}>Đăng ký</span>
+                        </NavLink>
                     </p>
                 </div>
             </div>

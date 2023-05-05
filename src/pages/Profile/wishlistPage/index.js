@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faUmbrellaBeach, faBolt, faSignsPost } from '@fortawesome/free-solid-svg-icons'
 import PlacesList from '~/components/Place/PlaceList/PlacesList'
 import Profile from '../profile'
+import { NavLink } from 'react-router-dom'
 // const wishlist = [
 //     {
 //         imgs: [
@@ -252,7 +253,9 @@ function Wishlist() {
                     //         </div>
                     //     </div>
                     // </div>
-                    <PlacesList items={wishlist} />
+                    <NavLink to="/detail">
+                        <PlacesList items={wishlist} />
+                    </NavLink>
                 )}
             </div>
         </Profile>
