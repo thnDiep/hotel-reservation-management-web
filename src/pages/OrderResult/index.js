@@ -193,51 +193,51 @@ function OrderResult() {
                     <div className={styles.orderInfo}>
                         <div className={styles.info}>
                             <div className={styles.info__hotel}>
-                                <h3 className={styles.title}>Khách Sạn Mường Thanh Holiday Mũi Né</h3>
+                                <div className={styles.info__hotel__intro}>
+                                    <h3 className={styles.title}>Khách Sạn Mường Thanh Holiday Mũi Né</h3>
 
-                                <div className={styles.rating}>
-                                    <FontAwesomeIcon className={styles.icon} icon={faStar} />
-                                    <FontAwesomeIcon className={styles.icon} icon={faStar} />
-                                    <FontAwesomeIcon className={styles.icon} icon={faStar} />
-                                    <FontAwesomeIcon className={styles.icon} icon={faStar} />
-                                </div>
-
-                                <div className={styles.subTitle3}>
-                                    <svg width="16" height="16" fill="none">
-                                        <path
-                                            d="M8 9.333a2 2 0 100-4 2 2 0 000 4z"
-                                            stroke="#1A202C"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        ></path>
-                                        <path
-                                            d="M11.771 11.105l-2.828 2.828a1.333 1.333 0 01-1.885 0l-2.83-2.828a5.333 5.333 0 117.543 0v0z"
-                                            stroke="#1A202C"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        ></path>
-                                    </svg>
-                                    <span>Huỳnh Thúc Kháng, Thành Phố Phan Thiết, Bình Thuận, Việt Nam</span>
-                                </div>
-
-                                <div className={styles.info__time}>
-                                    <div className={styles.info__time__part}>
-                                        <div className={styles.subTitle2}>Nhận phòng</div>
-                                        <div className={styles.subTitle3}>14:00, Thứ 2, 03 tháng 07</div>
+                                    <div className={styles.rating}>
+                                        <FontAwesomeIcon className={styles.icon} icon={faStar} />
+                                        <FontAwesomeIcon className={styles.icon} icon={faStar} />
+                                        <FontAwesomeIcon className={styles.icon} icon={faStar} />
+                                        <FontAwesomeIcon className={styles.icon} icon={faStar} />
                                     </div>
 
-                                    <div className={styles.info__time__part}>
-                                        <div className={styles.subTitle2}>Trả phòng</div>
-                                        <div className={styles.subTitle3}>12:00, Chủ Nhật, 09 tháng 07</div>
+                                    <div className={styles.subTitle3}>
+                                        <svg width="16" height="16" fill="none">
+                                            <path
+                                                d="M8 9.333a2 2 0 100-4 2 2 0 000 4z"
+                                                stroke="#1A202C"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            ></path>
+                                            <path
+                                                d="M11.771 11.105l-2.828 2.828a1.333 1.333 0 01-1.885 0l-2.83-2.828a5.333 5.333 0 117.543 0v0z"
+                                                stroke="#1A202C"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            ></path>
+                                        </svg>
+                                        <span>Huỳnh Thúc Kháng, Thành Phố Phan Thiết, Bình Thuận, Việt Nam</span>
                                     </div>
 
-                                    <div className={styles.info__time__part}>
-                                        <div className={styles.subTitle2}>Số đêm</div>
-                                        <div className={styles.subTitle3}>06</div>
+                                    <div className={styles.info__time}>
+                                        <div className={styles.info__time__part}>
+                                            <div className={styles.subTitle2}>Nhận phòng</div>
+                                            <div className={styles.subTitle3}>14:00, Thứ 2, 03 tháng 07</div>
+                                        </div>
+
+                                        <div className={styles.info__time__part}>
+                                            <div className={styles.subTitle2}>Trả phòng</div>
+                                            <div className={styles.subTitle3}>12:00, Chủ Nhật, 09 tháng 07</div>
+                                        </div>
+
+                                        <div className={styles.info__time__part}>
+                                            <div className={styles.subTitle2}>Số đêm</div>
+                                            <div className={styles.subTitle3}>06</div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <hr className={styles.line2} />
                                 <div className={styles.roomDetail}>
                                     <div>
                                         <div className={styles.subTitle1}>1x Grand Suite</div>
@@ -358,7 +358,6 @@ function OrderResult() {
                                     </div>
                                 </div>
 
-                                {/* <hr className={styles.line} /> */}
                                 <div className={styles.info__order__part}>
                                     <h3 className={styles.subTitle1}>Yêu cầu đặc biệt</h3>
                                     <div className={styles.content2}>

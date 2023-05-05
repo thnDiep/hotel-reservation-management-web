@@ -144,18 +144,6 @@
     // margin: 0;  
 }
 
-.line2{
-    background-color: rgb(84, 84, 84);
-    height: 1px;
-    border-width: 0;
-    margin-top: 1rem;
-    margin-bottom: 5px;
-    width: 97%;
-
-    // margin: auto 0;
-    // margin: 0;  
-}
-    
 
 .title {
     font-size: 1.4rem;
@@ -199,6 +187,9 @@
                 .icon {
                     padding: 0 2px;
                 }
+            }
+            &__intro{
+                border-bottom: 1px solid #E2E8F0;
             }
         }
 

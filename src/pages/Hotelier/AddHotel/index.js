@@ -1,10 +1,10 @@
 import styles from './AddHotel.module.scss'
 import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
-import CheckFacility from './CheckFacility/CheckFacility'
+import CheckFacility from '../../../components/CheckFacility/CheckFacility'
 import { ButtonPrimary } from '~/components'
 import PaymentIntput from './PaymentInput/PaymentInput'
-import AddMultiple from './AddMultiple/AddMultiple'
+import AddMultiple from '../../../components/AddMultiple/AddMultiple'
 const options = [
     { value: '8:00', label: '8:00 AM' },
     { value: '9:00', label: '9:00 AM' },
@@ -135,15 +135,10 @@ const AddHotel = () => {
     console.log(hotel.GioNhanPhong)
 
     return (
-        <section
-        // className="vh-100"
-        // style={{
-        //     backgroundImage:
-        //         'url("https://icdn.dantri.com.vn/2021/04/30/dji-0788-hdr-panoa-crop-1619717280597.jpeg")',
-        // }}
-        >
-            <div className="container py-5 h-100">
-                <div className="row d-flex justify-content-center  h-100">
+        <section>
+            <div className={`${styles.title} container`}>Đăng ký khách sạn của bạn với mytour chỉ 4 bước đơn giản</div>
+            <div className="container py-5 ">
+                <div className="row d-flex justify-content-center">
                     <div className="col col-xl-10">
                         <div className="card" style={{ borderRadius: '1rem' }}>
                             <div className={` row g-0 ${styles.header}`}>

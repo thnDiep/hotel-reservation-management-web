@@ -1,6 +1,6 @@
 nav {
-    // background: var(--light);
-    background: var(--grey);
+    background: var(--light);
+    // background: var(--grey);
 
     height: 64px;
     padding: 0 20px;
@@ -27,8 +27,10 @@ nav .form-group {
 nav .form-group {
     width: 100%;
     color: #000;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 600;
+    align-items: center;
+    margin-top: 9px;
     // background: var(--grey);
     // border-radius: 5px;
     // border: none;

@@ -10,8 +10,11 @@ import QrPay from '~/pages/QrPay'
 import HotelManagement from '~/pages/Hotelier/HotelManagement'
 import OrderManagement from '~/pages/Hotelier/OrderManagement/OrderManagement'
 import AddHotel from '~/pages/Hotelier/AddHotel'
+import RoomManage from '~/pages/Hotelier/RoomManage'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
 import OrderResult from '~/pages/OrderResult'
+import AddRoom from '~/pages/Hotelier/RoomManage/AddRoom/AddRoom'
+import { AddVoucher, ManageVoucher } from '~/pages/Hotelier'
 import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
 import CheckOrder from '~/pages/CheckOrder/CheckOrder'
@@ -28,14 +31,22 @@ export const publicRoutes = [
     { path: '/profile/wish-list', component: Wishlist, layout: HomeLayout },
 
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
-    { path: '/manageHotel', component: HotelManagement, layout: HotelierLayout },
-    { path: '/manageOrder', component: OrderManagement, layout: HotelierLayout },
-    { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
     { path: '/login', component: Login, layout: null },
     { path: '/signUp', component: SignUp, layout: null },
     { path: '/checkOrder', component: CheckOrder },
     { path: '/orderResult', component: OrderResult, layout: HomeLayout },
+
+    //Hotelier - Hotel
+    { path: '/cks/manageHotel', component: HotelManagement, layout: HotelierLayout },
+    { path: '/cks/addHotel', component: AddHotel, layout: HotelierLayout },
+    { path: '/cks/manage-room', component: RoomManage, layout: HotelierLayout },
+    { path: '/cks/manageOrder', component: OrderManagement, layout: HotelierLayout },
+    { path: '/cks/addRoom', component: AddRoom, layout: HotelierLayout },
+
+    // Hotelier - Voucher
+    { path: '/voucher/add', component: AddVoucher, layout: HotelierLayout },
+    { path: '/voucher/manage', component: ManageVoucher, layout: HotelierLayout },
 
     // Admin
     { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },

@@ -1,41 +1,83 @@
 import React from 'react'
 import './Sidebar.scss'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 const Sidebar = ({ checkHide }) => {
+    const [select, setSelect] = useState(1)
+    const handleSelect = (value) => {
+        setSelect(value)
+    }
+    const chooses = [
+        {
+            id: 1,
+            name: 'Quản lý khách sạn',
+            link: '/cks/manageHotel',
+        },
+        {
+            id: 2,
+            name: 'Quản lý phòng',
+            link: '/cks/manage-room',
+        },
+        {
+            id: 3,
+            name: 'Quản lý đơn đặt phòng',
+            link: '/cks/manageOrder',
+        },
+        {
+            id: 4,
+            name: 'Quản lý khuyến mãi',
+            link: '/voucher/manage',
+        },
+    ]
     return (
         <section id="sidebar" className={`${checkHide && 'hide'}`}>
-            <a href="/" className="brand">
+            <Link to="/" className="brand">
                 <i className="bx bxs-smile icon"></i> AdminSite
-            </a>
+            </Link>
             <ul className="side-menu">
                 <li>
-                    <a href="/">
+                    <Link to="/">
                         <i className="bx bxs-dashboard icon"></i> Dashboard
-                    </a>
+                    </Link>
                 </li>
                 <li className="divider" data-text="main">
                     Main
                 </li>
-                <li>
-                    <a href="/" className="active">
+                {chooses.map((choose) => {
+                    console.log(choose.name)
+                    return (
+                        <li key={choose.id}>
+                            <Link
+                                onClick={() => handleSelect(choose.id)}
+                                to={choose.link}
+                                className={`${select === choose.id && 'active'}`}
+                            >
+                                <i className="bx bxs-inbox icon"></i> {choose.name}
+                            </Link>
+                        </li>
+                    )
+                })}
+                {/* <li>
+                    <Link onClick={() => handleSelect(0)} to="/cks/manageHotel" className="active">
                         <i className="bx bxs-inbox icon"></i> Quản lý khách sạn
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/">
+                    <Link onClick={() => handleSelect(1)} to="/cks/manage-room">
                         <i className="bx bxs-chart icon"></i> Quản lý phòng
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/">
+                    <Link onClick={() => handleSelect(2)} to="/cks/manageOrder">
                         <i className="bx bxs-widget icon"></i> Quản lý đơn đặt phòng
-                    </a>
-                </li>
+                    </Link>
+                </li> */}
             </ul>
-            <div className="ads mt-5">
+            <div className="ads">
                 <div className="wrapper">
-                    <a href="/" className="btn-upgrade">
+                    <Link to="/" className="btn-upgrade">
                         Đăng xuất
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>
