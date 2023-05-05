@@ -263,6 +263,12 @@ body {
         border: 1px solid rgb(255, 51, 102);
     }
 
+    &.primary {
+        color: #fff;
+        background-color: rgb(255, 51, 102);
+        border: none;
+    }
+
     &.active {
         color: #fff;
         background-color: #68e365;
@@ -318,8 +324,8 @@ body {
         color: var(--primary-color);
         border-bottom: 2px solid var(--primary-color);
     }
-}
 
-a:hover {
-    color: var(--primary-color);
+    a:hover {
+        color: var(--primary-color);
+    }
 }

@@ -1,9 +1,12 @@
 import { useRef, useState } from 'react'
 import clsx from 'clsx'
 
-import { DropdownButton, NavHandle } from '~/components'
+import { ButtonPrimary, DropdownButton, NavHandle } from '~/components'
 import styles from './Voucher.module.scss'
 import { VoucherTable, FlashSaleTable } from '~/components/Table'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 function ManageVoucher() {
     const [active, setActive] = useState(0)
@@ -18,6 +21,10 @@ function ManageVoucher() {
 
                 {active === 0 && <VoucherTable />}
                 {active === 1 && <FlashSaleTable />}
+
+                <Link to="/voucher/add" className={styles.btn}>
+                    <FontAwesomeIcon icon={faPlus} />
+                </Link>
             </div>
         </div>
     )

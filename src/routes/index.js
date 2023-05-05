@@ -37,11 +37,13 @@ export const publicRoutes = [
     // Hotelier - Hotel
     { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
     { path: '/manageHotel', component: HotelManagement, layout: HotelierLayout },
+
+    // Hotelier - Order
     { path: '/manageOrder', component: OrderManagement, layout: HotelierLayout },
 
     // Hotelier - Voucher
     { path: '/voucher/add', component: AddVoucher, layout: HotelierLayout },
-    { path: '/voucher/manage', component: ManageVoucher, layout: HotelierLayout },
+    { path: '/voucher', component: ManageVoucher, layout: HotelierLayout },
 
     // Admin
     { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },
