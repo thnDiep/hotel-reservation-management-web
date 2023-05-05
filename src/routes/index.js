@@ -1,3 +1,5 @@
+import Login from '~/pages/Login/login'
+import SignUp from '~/pages/SignUp/signUp'
 import Home from '~/pages/Home'
 import Detail from '~/pages/Detail'
 import ListByPlace from '~/pages/ListByPlace'
@@ -10,6 +12,8 @@ import OrderManagement from '~/pages/Hotelier/OrderManagement/OrderManagement'
 import AddHotel from '~/pages/Hotelier/AddHotel'
 import RoomManage from '~/pages/Hotelier/RoomManage'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
+
+import { AddVoucher, ManageVoucher } from '~/pages/Hotelier'
 import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
 import CheckOrder from '~/pages/CheckOrder/CheckOrder'
@@ -26,11 +30,19 @@ export const publicRoutes = [
     { path: '/profile/wish-list', component: Wishlist, layout: HomeLayout },
 
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
+    { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
+    { path: '/login', component: Login, layout: null },
+    { path: '/signUp', component: SignUp, layout: null },
+    { path: '/checkOrder', component: CheckOrder },
+
+    // Hotelier - Hotel
+    { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
     { path: '/manageHotel', component: HotelManagement, layout: HotelierLayout },
     { path: '/manageOrder', component: OrderManagement, layout: HotelierLayout },
-    { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
-    { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
-    { path: '/checkOrder', component: CheckOrder },
+
+    // Hotelier - Voucher
+    { path: '/voucher/add', component: AddVoucher, layout: HotelierLayout },
+    { path: '/voucher/manage', component: ManageVoucher, layout: HotelierLayout },
 
     // Admin
     { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },

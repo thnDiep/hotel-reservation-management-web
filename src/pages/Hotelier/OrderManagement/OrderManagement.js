@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import clsx from 'clsx'
 import TitleButton from '~/components/Button/TitleButton'
 import { ButtonPrimary } from '~/components'
@@ -7,7 +7,35 @@ import { Table } from 'react-bootstrap'
 import styles from './OrderManagement.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import OrderDetailCard from '~/pages/Hotelier/OrderManagement/OrderDetailCard/OrderDetailCard'
+const MySwal = withReactContent(Swal)
 function HotelTable() {
+    const handleButtonClick = () =>
+        MySwal.fire({
+            title: 'Đơn hàng',
+            html: <OrderDetailCard />,
+            showCloseButton: true,
+            showConfirmButton: false,
+            width: '784px',
+            height: '530px',
+            backdrop: '#fffff',
+        })
+    const [enteredPendingBtn, setEnteredPendingBtn] = useState(false)
+    // khi nhấn nút xóa của 1 thẻ
+    const [enteredDel, setEnteredDel] = useState(false)
+    const [enteredDel1, setEnteredDel1] = useState(false)
+
+    const pendingBtnChangeHandler = () => {
+        setEnteredPendingBtn(!enteredPendingBtn)
+    }
+    const delChangeHandler = () => {
+        setEnteredDel(!enteredDel)
+    }
+    const del1ChangeHandler = () => {
+        setEnteredDel1(!enteredDel1)
+    }
     return (
         <Table responsive className={styles.cusTable}>
             <thead>
@@ -37,74 +65,92 @@ function HotelTable() {
                 </tr>
             </thead>
             <tbody>
-                <tr className={styles.memberRow}>
-                    <td className={styles.center}>
-                        <input type="checkbox" className={styles.checkBox} />
-                    </td>
-                    <td>
-                        <div className="d-flex-js">
-                            <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
-                            <div className={styles.text1}>
-                                <h4>Phạm Thị Thanh Thảo</h4>
-                                <br />
-                                <span>#EMP-00025</span>
+                {!enteredDel && (
+                    <tr className={styles.memberRow}>
+                        <td className={styles.center}>
+                            <input type="checkbox" className={styles.checkBox} />
+                        </td>
+                        <td>
+                            <div className="d-flex-js">
+                                <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
+                                <div className={styles.text1}>
+                                    <h4>Phạm Thị Thanh Thảo</h4>
+                                    <br />
+                                    <span onClick={handleButtonClick} className={styles.codeOrder}>
+                                        #H12345678
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <span className={styles.text2}>Oct 30th 2022</span>
-                    </td>
-                    <td>
-                        <span className={styles.date}>Nov 2th, 2022</span>
-                    </td>
-                    <td>
-                        <span className={styles.date}>Nov 4th, 2022</span>
-                    </td>
+                        </td>
+                        <td>
+                            <span className={styles.text2}>Oct 30th 2022</span>
+                        </td>
+                        <td>
+                            <span className={styles.date}>Nov 2th, 2022</span>
+                        </td>
+                        <td>
+                            <span className={styles.date}>Nov 4th, 2022</span>
+                        </td>
 
-                    <td>
-                        <span className={styles.text2}>1.500.000 VND</span>
-                    </td>
-                    <td>
-                        <div className={clsx('btn-1', 'active', styles.status)}>Đã duyệt</div>
-                    </td>
-                    <td>
-                        <FontAwesomeIcon icon={faTrash} className={styles.icon} />
-                    </td>
-                </tr>
-                <tr className={styles.memberRow}>
-                    <td className={styles.center}>
-                        <input type="checkbox" className={styles.checkBox} />
-                    </td>
-                    <td>
-                        <div className="d-flex-js">
-                            <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
-                            <div className={styles.text1}>
-                                <h4>Phạm Thị Thanh Thảo</h4>
-                                <br />
-                                <span>#EMP-00025</span>
+                        <td>
+                            <span className={styles.text2}>1.500.000 VND</span>
+                        </td>
+                        <td>
+                            <div className={clsx('btn-1', 'active', styles.status)}>Đã duyệt</div>
+                        </td>
+                        <td>
+                            <FontAwesomeIcon icon={faTrash} className={styles.icon} onClick={delChangeHandler} />
+                        </td>
+                    </tr>
+                )}
+                {!enteredDel1 && (
+                    <tr className={styles.memberRow}>
+                        <td className={styles.center}>
+                            <input type="checkbox" className={styles.checkBox} />
+                        </td>
+                        <td>
+                            <div className="d-flex-js">
+                                <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
+                                <div className={styles.text1}>
+                                    <h4>Phạm Thị Thanh Thảo</h4>
+                                    <br />
+                                    <span onClick={handleButtonClick} className={styles.codeOrder}>
+                                        #E54395855
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <span className={styles.text2}>Oct 30th 2022</span>
-                    </td>
-                    <td>
-                        <span className={styles.date}>Nov 2th, 2022</span>
-                    </td>
-                    <td>
-                        <span className={styles.date}>Nov 4th, 2022</span>
-                    </td>
+                        </td>
+                        <td>
+                            <span className={styles.text2}>Oct 30th 2022</span>
+                        </td>
+                        <td>
+                            <span className={styles.date}>Nov 2th, 2022</span>
+                        </td>
+                        <td>
+                            <span className={styles.date}>Nov 4th, 2022</span>
+                        </td>
 
-                    <td>
-                        <span className={styles.text2}>1.500.000 VND</span>
-                    </td>
-                    <td>
-                        <div className={clsx('btn-1', 'pending', styles.status)}>Chờ duyệt</div>
-                    </td>
-                    <td>
-                        <FontAwesomeIcon icon={faTrash} className={styles.icon} />
-                    </td>
-                </tr>
+                        <td>
+                            <span className={styles.text2}>1.500.000 VND</span>
+                        </td>
+                        <td>
+                            <button className={styles.btnPending} onClick={pendingBtnChangeHandler}>
+                                <div
+                                    className={clsx(
+                                        'btn-1',
+                                        { active: enteredPendingBtn, pending: !enteredPendingBtn },
+                                        styles.statusPending,
+                                    )}
+                                >
+                                    {enteredPendingBtn ? 'Đã duyệt' : 'Chờ duyệt'}
+                                </div>
+                            </button>
+                        </td>
+                        <td>
+                            <FontAwesomeIcon icon={faTrash} className={styles.icon} onClick={del1ChangeHandler} />
+                        </td>
+                    </tr>
+                )}
                 <tr className={styles.memberRow}>
                     <td className={styles.center}>
                         <input type="checkbox" className={styles.checkBox} />
@@ -150,7 +196,13 @@ const OrderManagement = () => {
                             <TitleButton name="Tất cả" className="btnChoose" active="active"></TitleButton>
                         </li>
                         <li className="nav-item nav-item">
+                            <TitleButton name="Đã duyệt" className="btnChoose"></TitleButton>
+                        </li>
+                        <li className="nav-item nav-item">
                             <TitleButton name="Chờ duyệt" className="btnChoose"></TitleButton>
+                        </li>
+                        <li className="nav-item nav-item">
+                            <TitleButton name="Đã xóa" className="btnChoose"></TitleButton>
                         </li>
                     </ul>
                 </div>

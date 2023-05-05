@@ -6,7 +6,7 @@ import clsx from 'clsx'
 
 import styles from './Dropdown.module.scss'
 
-function DropdownButton({ list }) {
+function DropdownButton({ list, width }) {
     const wrapperRef = useRef(null)
     const [show, setShow] = useState(false)
     const [active, setActive] = useState(0)
@@ -30,14 +30,18 @@ function DropdownButton({ list }) {
 
     return (
         <div className={styles.dropdown} ref={wrapperRef}>
-            <div className={clsx('btn-1', styles.dropdownBtn)} onClick={() => setShow(!show)}>
+            <div
+                className={clsx('btn-1', styles.dropdownBtn)}
+                onClick={() => setShow(!show)}
+                style={{ minWidth: `${width}px` }}
+            >
                 {list[active]}
                 <span>
                     <FontAwesomeIcon icon={faAngleDown} />
                 </span>
             </div>
             {show && (
-                <div className={styles.dropdownMenu}>
+                <div className={clsx(styles.dropdownMenu)} style={{ minWidth: `${width}px` }}>
                     {list.map((item, index) => (
                         <div
                             className={clsx(styles.dropdownItem, { [styles.active]: index === active })}
