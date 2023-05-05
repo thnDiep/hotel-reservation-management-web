@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import styles from './signUp.module.scss'
 
 function SignUp() {
@@ -10,7 +11,7 @@ function SignUp() {
         if (email.isValid === true) {
             const identifier = setTimeout(() => {
                 if (!filter.test(email.value)) {
-                    setEmail({ ...email, error: 'Email không đúng ' })
+                    setEmail({ ...email, error: 'Email không đúng định dạng' })
                 } else if (email.value.length === 0) {
                     setEmail({ ...email, error: 'Thông tin bắt buộc' })
                 } else {
@@ -93,12 +94,15 @@ function SignUp() {
                 </div>
 
                 <form action="/">
-                    <input type="button" value="Đăng nhập" className={styles.loginBtn} />
+                    <input type="button" value="Đăng ký" className={styles.loginBtn} />
                 </form>
 
                 <p className={styles.title2}>
                     Đã có tài khoản?
-                    <a className={styles.signUpLink}>Đăng nhập</a>
+                    <NavLink to="/logIn">
+                        <span className={styles.signUpLink}>Đăng nhập</span>
+                    </NavLink>
+                    {/* <a >Đăng nhập</a> */}
                 </p>
             </div>
         </div>

@@ -11,6 +11,7 @@ import HotelManagement from '~/pages/Hotelier/HotelManagement'
 import OrderManagement from '~/pages/Hotelier/OrderManagement/OrderManagement'
 import AddHotel from '~/pages/Hotelier/AddHotel'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
+import OrderResult from '~/pages/OrderResult'
 import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
 import CheckOrder from '~/pages/CheckOrder/CheckOrder'
@@ -34,6 +35,7 @@ export const publicRoutes = [
     { path: '/login', component: Login, layout: null },
     { path: '/signUp', component: SignUp, layout: null },
     { path: '/checkOrder', component: CheckOrder },
+    { path: '/orderResult', component: OrderResult, layout: HomeLayout },
 
     // Admin
     { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },

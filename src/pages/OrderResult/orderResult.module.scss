@@ -1,0 +1,335 @@
+.wrap{
+    color: #1A202C;
+    width: 100%;
+    background: #EDF2F7;
+}
+
+
+.form{
+    margin: 0 auto;
+    display: flex;
+    padding: 32px 0;
+    max-width: 630px;
+    background: transparent;
+    flex-direction: column;
+}
+
+.contentForm{
+    width: 100%;
+    position: relative;
+    background: white;
+    border-top: solid 4px #48BB78;
+    border-radius: 8px;
+    padding-bottom: 2rem;
+}
+
+
+.checkIcon{
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.guideline{
+    font-size: 14px;
+    text-align: center;
+    line-height: 22px;
+    .mainTitle{
+        padding: 12px 0px 8px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19px;
+    }
+    .codeOrder{
+        color: rgb(72, 187, 120);
+        border: 1px solid rgb(72, 187, 120);
+        padding: 2px 4px;
+        line-height: 17px;
+        border-radius: 4px;
+        margin:  0 auto;
+        width:fit-content;
+        margin-bottom: 15px;
+    }
+    .timeToPay{
+        font-weight: normal;
+        line-height: 22px;
+    }
+    .payTime{
+        color: rgb(229, 62, 62);
+        font-weight: 600;
+        line-height: 22px;
+    }
+    .remind{
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+    }
+}
+
+.creditInfo{
+    border: 1px dashed #cbd5e0;
+    background: #F7FAFC;
+    margin-top: 12px;
+    border-radius: 8px;
+    .frameInfo{
+        margin: 0 12px;
+        .personalInfo{
+            border-bottom: 1px solid #E2E8F0;
+            margin-bottom: 12px;
+        }
+    }
+}
+
+
+.accountInfo {
+    border: 1px dashed #cbd5e0;
+    background: #f7fafc;
+    margin-top: 12px;
+    padding: 12px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+
+    &__part {
+        margin: 12px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+        // border-bottom: 1px solid #E2E8F0;
+
+    }
+
+    h6 {
+        margin-bottom: 20px;
+    }
+
+    img {
+        width: 48px;
+        border: 1px solid #e2e8f0;
+        height: 24px;
+        margin-left: 12px;
+        border-radius: 4px;
+        background-color: #ffffff;
+    }
+
+    .copy {
+        color: #00b6f3;
+        cursor: pointer;
+        display: flex;
+        padding-left: 12px;
+        
+        margin-top: 1rem;
+        // margin-top: 5rem
+        span {
+            padding-left: 4px;
+        }
+    }
+}
+
+.frameLineBottom{
+    border-bottom: 1px solid #E2E8F0;
+    margin-bottom: 12px;
+    padding-bottom: 15px;
+}
+
+.line{
+    background-color: rgb(84, 84, 84);
+    height: 1px;
+    border-width: 0;
+    margin-top: 1rem;
+    margin-bottom: 5px;
+    // margin: 0;  
+}
+
+.line2{
+    background-color: rgb(84, 84, 84);
+    height: 1px;
+    border-width: 0;
+    margin-top: 1rem;
+    margin-bottom: 5px;
+    width: 97%;
+
+    // margin: auto 0;
+    // margin: 0;  
+}
+    
+
+.title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.6rem;
+}
+
+.subTitle {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.7rem;
+}   
+
+
+.orderInfo {
+    display: flex;
+    padding-top: 20px;
+    padding-left: 1rem;
+    padding-right: 5px;
+    .hotelImage {
+        img {
+            width: 178px;
+            height: 130px;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+    }
+
+    .info {
+        margin-left: 16px;
+        display: flex;
+        flex-direction: column;
+
+        &__hotel {
+            .rating {
+                cursor: pointer;
+                display: flex;
+                margin-top: 10px;
+                margin-bottom: 12px;
+                font-size: 1.2rem;
+                .icon {
+                    padding: 0 2px;
+                }
+            }
+        }
+
+        &__time {
+            display: flex;
+            margin-bottom: 2rem;
+            font-size: 14px;
+
+            &__part {
+                display: flex;
+                padding: 0 40px 0 10px;
+                border-left: 1px solid #e2e8f0;
+                flex-direction: column;
+            }
+        }
+
+        &__order {
+            width: 100%;
+            border-top: 1px solid #edf2f7;
+            margin-top: 24px;
+            &__part {
+                // display: flex;
+                padding-top: 7px;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid #E2E8F0;
+            }
+            .title {
+                min-width: 150px;
+            }
+            .icon {
+                color: #ff3366;
+            }
+            .price {
+                display: flex;
+                padding: 12px 0;
+                align-items: center;
+                border-bottom: 1px solid #edf2f7;
+                justify-content: space-between;
+            }
+            .price.total {
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 21px;
+                border-bottom: none;
+            }
+            .checkout {
+                display: flex;
+                padding: 12px 0;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .code {
+                border: 1px solid #a0aec0;
+                padding: 4px 6px;
+                margin-left: 8px;
+                border-radius: 4px;
+            }
+        }
+
+        .content1 {
+            display: flex;
+            padding-left: 140px;
+            flex-direction: column;
+        }
+        .content2 {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 21px;
+    }
+
+    .subTitle1 {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19px;
+        padding-top: 16px;
+        padding-bottom: 8px;
+    }
+
+    .subTitle2 {
+        font-weight: 600;
+        padding-bottom: 8px;
+    }
+
+    .subTitle3 {
+        display: flex;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 17px;
+        padding-bottom: 8px;
+        margin-right: 1rem;
+        align-items: center;
+
+        span {
+            margin-left: 6px;
+            margin-right: 4px;
+        }
+    }
+    .subTitle4{
+        font-weight: 600;
+        margin-bottom: 4px;
+        font-size: 14px;
+        // margin-top: 5px;
+        span{
+            font-weight: normal;
+            font-size: 14px;
+        }
+    }
+    .subTitle5{
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 17px;
+        // padding-bottom: 8px;
+        padding: 5px 0 5px 2rem;
+        margin-right: 1rem;
+        border-left: 1px solid #1d1d1d;
+    }
+    .green {
+        color: #48bb78;
+    }
+}
+
+
+
+.roomDetail{
+    display: flex;
+    padding-right: 3rem;
+    justify-content: space-between;
+}
