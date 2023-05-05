@@ -1,6 +1,7 @@
 import { Checkbox, FormControlLabel } from '@material-ui/core'
 import styles from './CheckFacility.module.scss'
-const CheckFacility = () => {
+const CheckFacility = (props) => {
+    console.log(props.check)
     return (
         <div className={styles.content}>
             <div className={styles.chooseTitle}>Chọn tiện ích khách sạn</div>
@@ -202,17 +203,21 @@ const CheckFacility = () => {
                     <span className={styles.title}>Ban công/sân thượng</span>
                 </div>
             </div>
-            <div className={styles.chooseTitle}>Thông tin hữu ích</div>
-            <div className={styles.chooseTitle}>Khoảng cách tới trung tâm</div>
-            <div className={` mt-3 ${styles.card1}`}>
-                <input className={styles.input} type="number" name="name" />
-                <span>km</span>
-            </div>
-            <div className={styles.chooseTitle}>Khoảng cách tới trung tâm</div>
-            <div className={` mt-3 ${styles.card1}`}>
-                <input className={styles.input} type="number" name="name" />
-                <span>km</span>
-            </div>
+            {props.check && (
+                <>
+                    <div className={styles.chooseTitle}>Thông tin hữu ích</div>
+                    <div className={styles.chooseTitle}>Khoảng cách tới trung tâm</div>
+                    <div className={` mt-3 ${styles.card1}`}>
+                        <input className={styles.input} type="number" name="name" />
+                        <span>km</span>
+                    </div>
+                    <div className={styles.chooseTitle}>Khoảng cách tới trung tâm</div>
+                    <div className={` mt-3 ${styles.card1}`}>
+                        <input className={styles.input} type="number" name="name" />
+                        <span>km</span>
+                    </div>
+                </>
+            )}
         </div>
     )
 }

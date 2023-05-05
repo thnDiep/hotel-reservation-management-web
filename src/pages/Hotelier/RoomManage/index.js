@@ -4,8 +4,9 @@ import { ButtonPrimary, NavHandle } from '~/components'
 import clsx from 'clsx'
 import { DropdownOption } from '~/components'
 import { Table } from 'react-bootstrap'
-import FooterPaging from '~/components/FooterPaging/FooterPaging'
+// import FooterPaging from '~/components/FooterPaging/FooterPaging'
 import Select from 'react-select'
+import { Link } from 'react-router-dom'
 
 function HotelTable() {
     const [allChecked, setAllChecked] = useState(false)
@@ -184,9 +185,9 @@ const RoomManage = () => {
                     />
                     <div className="d-flex justify-content-between mb-2">
                         <div></div>
-                        <ButtonPrimary className="btnLarge3">
-                            <a href="/addHotel">+ Thêm Phòng</a>
-                        </ButtonPrimary>
+                        <Link to="/cks/addRoom">
+                            <ButtonPrimary className="btnLarge1">+ Thêm phòng</ButtonPrimary>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -197,7 +198,7 @@ const RoomManage = () => {
                             <div className="table-responsive">
                                 <div id="room_wrapper" className="dataTables_wrapper no-footer">
                                     <HotelTable />
-                                    <FooterPaging />
+                                    {/* <FooterPaging /> */}
                                 </div>
                             </div>
                         </div>

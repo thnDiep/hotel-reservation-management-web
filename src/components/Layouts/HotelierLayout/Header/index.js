@@ -3,15 +3,24 @@ const Header = ({ onClick }) => {
     return (
         <nav>
             <i onClick={onClick} className={`bx bx-menu ${styles['toggle-sidebar']}`} />
-            <span className={styles['form-group']}>Home</span>
+            {/* <span className={styles['form-group']}>Home</span> */}
+            <ol class={`${styles['form-group']} breadcrumb`}>
+                <li class="breadcrumb-item">
+                    <a href="#">Quản lý khách sạn</a>
+                </li>
+
+                <li class="breadcrumb-item active" aria-current="page">
+                    Thêm khách sạn
+                </li>
+            </ol>
             {/* <a href="/" className={styles['nav-link']}>
                 <i className={`bx bxs-bell ${styles.icon}`}></i>
                 <span className="badge">5</span>
             </a> */}
-            <a href="/" className={styles['nav-link']}>
+            {/* <a href="/" className={styles['nav-link']}>
                 <i className={`bx bxs-message-square-dots ${styles.icon}`}></i>
                 <span className={styles.badge}>8</span>
-            </a>
+            </a> */}
             <span className={styles.divider}></span>
             <div className={styles.profile}>
                 <img

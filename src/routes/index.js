@@ -12,7 +12,7 @@ import OrderManagement from '~/pages/Hotelier/OrderManagement/OrderManagement'
 import AddHotel from '~/pages/Hotelier/AddHotel'
 import RoomManage from '~/pages/Hotelier/RoomManage'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
-
+import AddRoom from '~/pages/Hotelier/RoomManage/AddRoom/AddRoom'
 import { AddVoucher, ManageVoucher } from '~/pages/Hotelier'
 import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
@@ -35,10 +35,12 @@ export const publicRoutes = [
     { path: '/signUp', component: SignUp, layout: null },
     { path: '/checkOrder', component: CheckOrder },
 
-    // Hotelier - Hotel
-    { path: '/addHotel', component: AddHotel, layout: HotelierLayout },
-    { path: '/manageHotel', component: HotelManagement, layout: HotelierLayout },
-    { path: '/manageOrder', component: OrderManagement, layout: HotelierLayout },
+    //Hotelier - Hotel
+    { path: '/cks/manageHotel', component: HotelManagement, layout: HotelierLayout },
+    { path: '/cks/addHotel', component: AddHotel, layout: HotelierLayout },
+    { path: '/cks/manage-room', component: RoomManage, layout: HotelierLayout },
+    { path: '/cks/manageOrder', component: OrderManagement, layout: HotelierLayout },
+    { path: '/cks/addRoom', component: AddRoom, layout: HotelierLayout },
 
     // Hotelier - Voucher
     { path: '/voucher/add', component: AddVoucher, layout: HotelierLayout },
@@ -47,9 +49,4 @@ export const publicRoutes = [
     // Admin
     { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },
     { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
-
-    //CKS
-    { path: '/cks/manageHotel', component: HotelManagement, layout: HotelierLayout },
-    { path: '/cks/addHotel', component: AddHotel, layout: HotelierLayout },
-    { path: '/cks/manage-room', component: RoomManage, layout: HotelierLayout },
 ]
