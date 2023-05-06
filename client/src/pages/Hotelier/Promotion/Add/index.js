@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import Axios from 'axios'
 import VoucherForm from './VoucherForm'
 import FlashSaleForm from './FlashSaleForm'
 import styles from '../Promotion.module.scss'
@@ -58,7 +59,7 @@ function AddPromotion() {
     }
 
     const [flashSaleState, setFlashSaleState] = useState({
-        fields: { start: new Date(), idTime: 1 },
+        fields: { BatDau: new Date(), IDKhungGio: 1, IDKhachSan: 1 },
         errors: {},
     })
 
@@ -68,25 +69,25 @@ function AddPromotion() {
         const fields = flashSaleState.fields
         const errors = {}
 
-        if (!fields.title) {
-            errors.title = 'Nhập tiêu đề khuyến mãi'
+        if (!fields.TieuDe) {
+            errors.TieuDe = 'Nhập tiêu đề khuyến mãi'
             validForm = false
         }
 
-        if (!fields.percent) {
-            errors.percent = 'Nhập phần trăm khuyến mãi'
+        if (!fields.PhanTramKM) {
+            errors.PhanTramKM = 'Nhập phần trăm khuyến mãi'
             validForm = false
-        } else if (fields.percent <= 0 || fields.percent >= 100) {
-            errors.percent = 'Phần trăm không hợp lệ'
+        } else if (fields.PhanTramKM <= 0 || fields.PhanTramKM >= 100) {
+            errors.PhanTramKM = 'Phần trăm không hợp lệ'
             validForm = false
         }
 
-        if (!fields.start) {
-            errors.start = 'Nhập ngày bắt đầu'
+        if (!fields.BatDau) {
+            errors.BatDau = 'Nhập ngày bắt đầu'
             validForm = false
         }
-        if (fields.end && fields.start >= fields.end) {
-            errors.end = 'Ngày kết thúc phải sau ngày bắt đầu'
+        if (fields.KetThuc && fields.BatDau >= fields.KetThuc) {
+            errors.KetThuc = 'Ngày kết thúc phải sau ngày bắt đầu'
             validForm = false
         }
 
@@ -97,13 +98,19 @@ function AddPromotion() {
     }
 
     function handleSubmit() {
-        let valid
-        if (showForm === 0) valid = handleAddVoucher()
-        else valid = handleAddFlashSale()
-
-        if (valid) {
+        if (showForm === 0 && handleAddVoucher()) {
             alert('Thêm thành công')
-            navigate('/cks/voucher', { state: { active: showForm } })
+            console.log(voucherState.fields)
+            navigate('/cks/voucher', { state: { active: 0 } })
+        } else if (showForm === 1 && handleAddFlashSale()) {
+            console.log(flashSaleState.fields)
+
+            Axios.post('http://localhost:8800/api/cks/voucher/insert', { khuyenmai: flashSaleState.fields }).then(
+                () => {
+                    alert('Thêm thành công')
+                    navigate('/cks/voucher', { state: { active: 1 } })
+                },
+            )
         } else {
             window.scrollTo(0, 0)
         }

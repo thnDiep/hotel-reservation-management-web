@@ -8,7 +8,7 @@ import { vi } from 'date-fns/locale'
 
 function FlashSaleForm({ data, onEdit }) {
     function handleChange(e, type) {
-        if (type === 'start' || type === 'end' || type === 'idTime') {
+        if (type === 'BatDau' || type === 'KetThuc' || type === 'IDKhungGio') {
             onEdit({ errors: { ...data.errors, [type]: null }, fields: { ...data.fields, [type]: e } })
             return
         }
@@ -26,11 +26,11 @@ function FlashSaleForm({ data, onEdit }) {
                     <input
                         type="text"
                         placeholder="FlashSale bùng nổ ngày hè"
-                        className={clsx({ [styles.error]: data.errors.title })}
-                        value={data.fields.title || ''}
-                        onChange={(e) => handleChange(e, 'title')}
+                        className={clsx({ [styles.error]: data.errors.TieuDe })}
+                        value={data.fields.TieuDe || ''}
+                        onChange={(e) => handleChange(e, 'TieuDe')}
                     />
-                    <span className={styles.form__error}>{data.errors.title}</span>
+                    <span className={styles.form__error}>{data.errors.TieuDe}</span>
                 </div>
             </div>
 
@@ -45,11 +45,11 @@ function FlashSaleForm({ data, onEdit }) {
                         min="1"
                         max="99"
                         placeholder="14"
-                        className={clsx({ [styles.error]: data.errors.percent })}
-                        value={data.fields.percent || ''}
-                        onChange={(e) => handleChange(e, 'percent')}
+                        className={clsx({ [styles.error]: data.errors.PhanTramKM })}
+                        value={data.fields.PhanTramKM || ''}
+                        onChange={(e) => handleChange(e, 'PhanTramKM')}
                     />
-                    <span className={styles.form__error}>{data.errors.percent}</span>
+                    <span className={styles.form__error}>{data.errors.PhanTramKM}</span>
                 </div>
             </div>
 
@@ -65,8 +65,8 @@ function FlashSaleForm({ data, onEdit }) {
                             type="radio"
                             name="time"
                             id="0"
-                            checked={data.fields.idTime === 0}
-                            onChange={() => handleChange(0, 'idTime')}
+                            checked={data.fields.IDKhungGio === 0}
+                            onChange={() => handleChange(0, 'IDKhungGio')}
                         />
                         <label htmlFor="0" className={styles.subTitle}>
                             09:00 - 12:00
@@ -78,8 +78,8 @@ function FlashSaleForm({ data, onEdit }) {
                             type="radio"
                             name="time"
                             id="1"
-                            checked={data.fields.idTime === 1}
-                            onChange={() => handleChange(1, 'idTime')}
+                            checked={data.fields.IDKhungGio === 1}
+                            onChange={() => handleChange(1, 'IDKhungGio')}
                         />
                         <label htmlFor="1" className={styles.subTitle}>
                             14:00 - 16:00
@@ -90,8 +90,8 @@ function FlashSaleForm({ data, onEdit }) {
                             type="radio"
                             name="time"
                             id="2"
-                            checked={data.fields.idTime === 2}
-                            onChange={() => handleChange(2, 'idTime')}
+                            checked={data.fields.IDKhungGio === 2}
+                            onChange={() => handleChange(2, 'IDKhungGio')}
                         />
                         <label htmlFor="2" className={styles.subTitle}>
                             19:00 - 23:00
@@ -110,11 +110,11 @@ function FlashSaleForm({ data, onEdit }) {
                         locale={vi}
                         dateFormat="dd/MM/yyyy"
                         minDate={new Date()}
-                        className={clsx({ [styles.error]: data.errors.start })}
-                        selected={data.fields.start || new Date()}
-                        onChange={(e) => handleChange(e, 'start')}
+                        className={clsx({ [styles.error]: data.errors.BatDau })}
+                        selected={data.fields.BatDau || new Date()}
+                        onChange={(e) => handleChange(e, 'BatDau')}
                     />
-                    <span className={styles.form__error}>{data.errors.start}</span>
+                    <span className={styles.form__error}>{data.errors.BatDau}</span>
                 </div>
             </div>
 
@@ -125,12 +125,12 @@ function FlashSaleForm({ data, onEdit }) {
                     <DatePicker
                         locale={vi}
                         dateFormat="dd/MM/yyyy"
-                        minDate={data.fields.start}
-                        className={clsx({ [styles.error]: data.errors.end })}
-                        selected={data.fields.end || null}
-                        onChange={(e) => handleChange(e, 'end')}
+                        minDate={data.fields.BatDau}
+                        className={clsx({ [styles.error]: data.errors.KetThuc })}
+                        selected={data.fields.KetThuc || null}
+                        onChange={(e) => handleChange(e, 'KetThuc')}
                     />
-                    <span className={styles.form__error}>{data.errors.end}</span>
+                    <span className={styles.form__error}>{data.errors.KetThuc}</span>
                 </div>
             </div>
         </React.Fragment>

@@ -16,6 +16,7 @@
         "@testing-library/user-event": "^14.4.3",
         "@tinymce/tinymce-react": "^4.3.0",
         "animate.css": "^4.1.1",
+        "axios": "^1.4.0",
         "bootstrap": "^5.2.3",
         "clsx": "^1.2.1",
         "date-fns": "^2.29.3",
