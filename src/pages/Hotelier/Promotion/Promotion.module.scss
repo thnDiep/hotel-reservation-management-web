@@ -95,7 +95,7 @@
 
     &__left {
         align-self: stretch;
-        width: 400px;
+        width: 540px;
         border-right: 1px solid #ebebeb;
     }
 
@@ -210,8 +210,8 @@
     }
 
     input[type='number'] {
-        flex: none;
-        width: 70px;
+        // flex: none;
+        // width: 70px;
     }
 
     textarea {

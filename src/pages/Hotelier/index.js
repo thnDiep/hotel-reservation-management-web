@@ -1,2 +1,2 @@
-export { default as AddVoucher } from './Voucher/Add'
-export { default as ManageVoucher } from './Voucher/Manage.js'
+export { default as AddPromotion } from './Promotion/Add'
+export { default as ManagePromotion } from './Promotion/Manage.js'

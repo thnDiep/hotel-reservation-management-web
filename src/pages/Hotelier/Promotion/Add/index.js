@@ -1,14 +1,16 @@
 import React, { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import VoucherForm from './VoucherForm'
-import styles from '../Voucher.module.scss'
+import FlashSaleForm from './FlashSaleForm'
+import styles from '../Promotion.module.scss'
 
-function AddVoucher() {
+function AddPromotion() {
     const navigate = useNavigate()
+
     const [showForm, setShowForm] = useState(0)
     const [voucherState, setVoucherState] = useState({
-        fields: { start: new Date(), end: new Date(+new Date() + 86400), percent: 5, number: 100 },
+        fields: { start: new Date(), percent: 5, number: 100 },
         errors: {},
     })
     function handleAddVoucher() {
@@ -40,7 +42,7 @@ function AddVoucher() {
             validForm = false
         }
         if (fields.end && fields.start >= fields.end) {
-            errors.end = 'Thời gian kết thúc lớn hơn thời gian bắt đầu'
+            errors.end = 'Thời gian kết thúc phải sau thời gian bắt đầu'
             validForm = false
         }
 
@@ -52,10 +54,58 @@ function AddVoucher() {
         const form = { fields, errors }
         setVoucherState(form)
 
-        if (validForm) {
-            console.log(form.fields)
+        return validForm
+    }
 
-            navigate('/voucher')
+    const [flashSaleState, setFlashSaleState] = useState({
+        fields: { start: new Date(), idTime: 1 },
+        errors: {},
+    })
+
+    function handleAddFlashSale() {
+        let validForm = true
+
+        const fields = flashSaleState.fields
+        const errors = {}
+
+        if (!fields.title) {
+            errors.title = 'Nhập tiêu đề khuyến mãi'
+            validForm = false
+        }
+
+        if (!fields.percent) {
+            errors.percent = 'Nhập phần trăm khuyến mãi'
+            validForm = false
+        } else if (fields.percent <= 0 || fields.percent >= 100) {
+            errors.percent = 'Phần trăm không hợp lệ'
+            validForm = false
+        }
+
+        if (!fields.start) {
+            errors.start = 'Nhập ngày bắt đầu'
+            validForm = false
+        }
+        if (fields.end && fields.start >= fields.end) {
+            errors.end = 'Ngày kết thúc phải sau ngày bắt đầu'
+            validForm = false
+        }
+
+        const form = { fields, errors }
+        setFlashSaleState(form)
+
+        return validForm
+    }
+
+    function handleSubmit() {
+        let valid
+        if (showForm === 0) valid = handleAddVoucher()
+        else valid = handleAddFlashSale()
+
+        if (valid) {
+            alert('Thêm thành công')
+            navigate('/cks/voucher', { state: { active: showForm } })
+        } else {
+            window.scrollTo(0, 0)
         }
     }
 
@@ -145,6 +195,7 @@ function AddVoucher() {
 
                         <div className={styles.form__right}>
                             {showForm === 0 && <VoucherForm data={voucherState} onEdit={setVoucherState} />}
+                            {showForm === 1 && <FlashSaleForm data={flashSaleState} onEdit={setFlashSaleState} />}
                         </div>
                     </div>
 
@@ -152,7 +203,7 @@ function AddVoucher() {
                         <Link to="/cks/voucher" className="btn-1">
                             Quay lại
                         </Link>
-                        <div className="btn-1 primary" onClick={handleAddVoucher}>
+                        <div className="btn-1 primary" onClick={() => handleSubmit()}>
                             Thêm
                         </div>
                     </div>
@@ -162,4 +213,4 @@ function AddVoucher() {
     )
 }
 
-export default AddVoucher
+export default AddPromotion
