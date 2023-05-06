@@ -1,0 +1,216 @@
+.checkb {
+    // transform: scale(2);
+    position: relative;
+    appearance: none;
+    // border: 2px solid #ccc;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    outline: none;
+    // background-color: purple;
+    cursor: pointer;
+
+    &::before {
+        content: '1';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        font-weight: bold;
+        color: #ccc;
+    }
+
+    &:checked {
+        background-color: #ff9e07;
+
+        &.checkb::before {
+            color: #000;
+        }
+    }
+}
+
+.c2::before {
+    content: '2';
+}
+
+.c3::before {
+    content: '3';
+}
+
+.c4::before {
+    content: '4';
+}
+
+// }
+// .header {
+//     padding: 16px 20px;
+//     background-color: rgba(128, 128, 128, 0.318);
+// }
+// .header1 {
+//     // padding: 16px 20px;
+//     background-color: rgba(128, 128, 128, 0.318);
+//     align-items: center !important;
+//     justify-content: center;
+//     display: flex;
+// }
+// .flexCenter {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     input {
+//         margin-right: 10px;
+//     }
+// }
+// .label {
+//     font-size: 14px;
+//     font-weight: 600;
+//     line-height: 22px;
+//     text-align: end;
+//     margin-top: 8px;
+// }
+// .input {
+//     border-radius: 8px;
+//     margin-bottom: 0;
+//     border: 1px solid #ced4da;
+//     padding: 0;
+//     overflow: hidden;
+//     position: relative;
+//     min-height: 40px;
+//     transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+//     border-radius: 4px;
+//     background-color: #fff;
+
+//     input {
+//         color: #1a202c;
+//         position: relative;
+//         font-size: 14px;
+//         border-radius: 4px;
+//         font: inherit;
+//         width: 100%;
+//         border: 0;
+//         margin: 0;
+//         display: block;
+//         min-width: 0;
+//         background: none;
+//         letter-spacing: inherit;
+//         animation-duration: 10ms;
+//         padding: 8px;
+
+//         &:focus {
+//             outline: 0;
+
+//             border: 1px solid #00adef;
+//         }
+//     }
+// }
+// .inputRed {
+//     border: 1px solid #ef0000;
+// }
+// .inputSelect {
+//     // padding: 8px;
+//     height: 10px;
+//     select {
+//         border: 1px solid #ced4da;
+
+//         height: 35px;
+//         width: 100%;
+//     }
+// }
+// .content {
+//     height: 500px;
+//     max-height: 500px;
+//     overflow: auto;
+// }
+// .padding_0 {
+//     padding: 0 !important;
+// }
+.title {
+    margin-left: 28%;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.content {
+    padding: 20px 100px;
+
+}
+
+.card {
+    background-color: #fff;
+    border: 0 solid transparent;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.3125rem 0.3125rem 0 rgba(82, 63, 105, 0.05);
+    height: calc(100% - 30px);
+    margin-bottom: 1.875rem;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+
+    .cardHeader {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        margin-bottom: 0;
+        align-items: center;
+        background: transparent;
+        border-color: #ccc7c7;
+        display: flex;
+        justify-content: space-between;
+        padding: 1.5rem 1.875rem 1.25rem;
+        position: relative;
+
+        .cardTitle {
+            color: #000;
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-transform: capitalize;
+            margin-bottom: 0;
+        }
+    }
+
+    .cardHeader:first-child {
+        border-radius: calc(0.75rem - 1px) calc(0.75rem - 1px) 0 0;
+    }
+
+    .cardBody {
+        padding: 1.875rem;
+        flex: 1 1 auto;
+
+
+
+        .formControl {
+            background: #fff;
+            border: 0.92px solid #ccc7c7;
+            border-radius: 15px;
+            color: #6e6e6e;
+            height: 46px;
+            padding: 3px 18.75px;
+            font-size: 16px;
+
+        }
+
+        .disabled {
+            background-color: hsl(0, 0%, 95%);
+            border-color: hsl(0, 0%, 90%);
+        }
+
+        .select {
+            padding: 0;
+        }
+
+        .label {
+            margin-bottom: 12px;
+        }
+
+        .inputRed {
+            border: 1px solid #ef0000;
+        }
+    }
+}

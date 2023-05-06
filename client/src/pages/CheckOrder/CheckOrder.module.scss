@@ -1,0 +1,99 @@
+.container {
+    color: #1a202c;
+    margin: 0 auto;
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 28px;
+}
+.checkForm {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.title {
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-family: Mt;
+    font-weight: 600;
+    line-height: 28px;
+}
+.gr {
+    border: 0;
+    margin: 0;
+    display: inline-flex;
+    padding: 0;
+    position: relative;
+    min-width: 0;
+    margin-right: 0;
+    flex-direction: column;
+    vertical-align: top;
+    .item {
+        margin-top: 0;
+        border: none;
+        height: 44px;
+        background-color: #edf2f7;
+        border-radius: 8px;
+        padding-left: 16px;
+        width: 380px;
+        color: rgba(0, 0, 0, 0.87);
+        cursor: text;
+        display: inline-flex;
+        position: relative;
+        font-size: 16px;
+        box-sizing: border-box;
+        align-items: center;
+        font-family: Mt;
+        font-weight: normal;
+        line-height: 1.1876em;
+    }
+    .err {
+        min-height: 24px;
+        color: initial;
+        margin-top: 6px !important;
+        color: red;
+        margin: 0;
+        font-size: 13px;
+        text-align: left;
+        font-family: Mt;
+        font-weight: normal;
+        line-height: 14px;
+    }
+}
+.icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    color: rgb(0, 182, 243);
+    &Phone {
+        transform: rotateY(180deg);
+    }
+}
+.Input {
+    color: #1a202c;
+    padding: 8px;
+    position: relative;
+    font-size: 14px;
+    border-radius: 4px;
+    font: inherit;
+    color: currentColor;
+    width: 100%;
+    height: 1.1876em;
+    margin: 0;
+    display: block;
+    padding: 6px 0 7px;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+    letter-spacing: inherit;
+    border: 1px solid transparent;
+    margin-left: 12px;
+}
+input:focus {
+    outline: none;
+}
+.button {
+    width: 100%;
+}

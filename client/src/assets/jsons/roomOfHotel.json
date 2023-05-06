@@ -1,0 +1,96 @@
+[
+    {
+        "id": 1,
+        "title": "Phòng Deluxe",
+        "image": "https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/ab47d8b24d903c37aabc89445a9ff105.jpg",
+        "convenient": [
+            {
+                "icon": "house",
+                "title": "37 m2"
+            },
+            {
+                "icon": "bed",
+                "title": " 1 giường đôi hoặc 2 giường đơn"
+            },
+            {
+                "icon": "water",
+                "title": "Hướng biển"
+            },
+            {
+                "icon": "wifi",
+                "title": "Wifi miễn phí"
+            },
+            {
+                "icon": "shop",
+                "title": "Ban công/sân hiên"
+            },
+            {
+                "icon": "smoking",
+                "title": "Không hút thuốc"
+            }
+        ],
+        "people": {
+            "adult": 2,
+            "child": 2,
+            "free": 2
+        },
+        "promotion": [
+            "Bữa sáng miễn phí",
+            "Sử dụng miễn phí hồ bơi",
+            "Truy cập wifi miễn phí",
+            "Sử dụng 2 chai nước",
+            "Sử dụng miễn phí phòng gym",
+            "Chỗ đậu xe",
+            "Đặt 2 đêm từ 21/02 - 27/04 sẽ được giảm mạnh"
+        ],
+        "sale": 40,
+        "price": 277
+    },
+    {
+        "id": 2,
+        "title": "Phòng Premium hướng Biển",
+        "image": "https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/896dfe1b3cfb2734ea68889b6ca71878.jpg",
+        "convenient": [
+            {
+                "icon": "house",
+                "title": "37 m2"
+            },
+            {
+                "icon": "bed",
+                "title": " 1 giường đôi hoặc 2 giường đơn"
+            },
+            {
+                "icon": "water",
+                "title": "Hướng biển"
+            },
+            {
+                "icon": "wifi",
+                "title": "Wifi miễn phí"
+            },
+            {
+                "icon": "shop",
+                "title": "Ban công/sân hiên"
+            },
+            {
+                "icon": "smoking",
+                "title": "Không hút thuốc"
+            }
+        ],
+        "people": {
+            "adult": 2,
+            "child": 2,
+            "free": 2
+        },
+        "promotion": [
+            "Bữa sáng miễn phí",
+            "Sử dụng miễn phí hồ bơi",
+            "Truy cập wifi miễn phí",
+            "Sử dụng 2 chai nước",
+            "Sử dụng miễn phí phòng gym",
+            "Chỗ đậu xe",
+            "Đặt 2 đêm từ 21/02 - 27/04 sẽ được giảm mạnh"
+        ],
+        "sale": 40,
+        "price": 277
+    }
+]
