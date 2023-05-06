@@ -1,9 +1,10 @@
 import { Checkbox, FormControlLabel } from '@material-ui/core'
 import styles from './CheckFacility.module.scss'
+import 'animate.css';
 const CheckFacility = (props) => {
     console.log(props.check)
     return (
-        <div className={styles.content}>
+        <div className={`animate__animated animate__fadeInRight ${styles.content}`} style={{ display: props.display }}>
             <div className={styles.chooseTitle}>Chọn tiện ích khách sạn</div>
 
             <div className={`row mt-3 ${styles.card}`}>

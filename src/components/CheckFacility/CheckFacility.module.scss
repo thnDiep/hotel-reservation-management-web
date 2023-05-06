@@ -1,22 +1,31 @@
 .title {
     font-size: 15px;
 }
+
 .inline {
     text-align: start;
 }
+
 .card {
     padding-left: 40px;
     background-color: var(--grey);
     margin: 60px;
 }
+
 .chooseTitle {
     margin-left: 60px;
     font-weight: 600;
     margin-top: 10px;
 }
+
 .content {
     height: 415px;
+    animation: backInRight;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s;
+    /* don't forget to set a duration! */
 }
+
 .input {
     // border-radius: 4px;
     border: 1px solid #ced4da;
@@ -30,8 +39,10 @@
     // margin-left: 14px;
     // margin-right: 8px;
 }
+
 .card1 {
     padding-left: 60px;
+
     span {
         background-color: rgb(239, 239, 239);
         font-size: 16px;
@@ -43,6 +54,7 @@
         width: 100px;
         box-sizing: border-box;
     }
+
     // display: flex;
     // justify-content: flex-start;
     // align-items: center;

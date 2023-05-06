@@ -155,9 +155,9 @@ const HotelManagement = () => {
 
                 {/* <NavBar list={['Tất cả', 'chờ duyệt', 'hoạt động', 'Đã khóa']}></NavBar> */}
                 <div className="d-flex align-items-center mb-2">
-                    <Link to="/cks/addHotel">
+                    <a href="/cks/addHotel">
                         <ButtonPrimary className="btnLarge1">+ Thêm khách sạn</ButtonPrimary>
-                    </Link>
+                    </a>
                 </div>
             </div>
             <div className="row mt-4">

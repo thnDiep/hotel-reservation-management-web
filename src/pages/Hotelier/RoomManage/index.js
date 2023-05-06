@@ -185,9 +185,9 @@ const RoomManage = () => {
                     />
                     <div className="d-flex justify-content-between mb-2">
                         <div></div>
-                        <Link to="/cks/addRoom">
+                        <a href="/cks/addRoom">
                             <ButtonPrimary className="btnLarge1">+ Thêm phòng</ButtonPrimary>
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </div>

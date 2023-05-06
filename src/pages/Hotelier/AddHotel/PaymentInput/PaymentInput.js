@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import styles from './PaymentInput.module.scss'
 import Select from 'react-select'
 import { Editor } from '@tinymce/tinymce-react'
-const PaymentIntput = () => {
+const PaymentIntput = (props) => {
     const api = 'https://api.vietqr.io/v2/banks'
     const [nameBank, setNameBank] = useState([])
     const [selectedNameBank, setSelectedNameBank] = useState(null)
@@ -29,7 +29,7 @@ const PaymentIntput = () => {
         // setSelectedWards(null)
     }
     return (
-        <div className={styles.paymentContent}>
+        <div className={`animate__animated animate__fadeInRight ${styles.paymentContent}`} style={{ display: props.display }}>
             <div className={styles.chooseTitle}>Nhập tài khoản ngân hàng</div>
             <div className="row mt-3 ">
                 <span className={` col-4 ${styles.label}`}>Chọn ngân hàng</span>
@@ -40,7 +40,7 @@ const PaymentIntput = () => {
                     onChange={handleNameBankChange}
                     options={nameBank}
                     placeholder="Chọn Ngân hàng"
-                    // isDisabled={!selectedNameBank}
+                // isDisabled={!selectedNameBank}
                 />
             </div>
             <div className="row mt-3 ">
