@@ -6,6 +6,8 @@ import ListByPlace from '~/pages/ListByPlace'
 import Checkout from '~/pages/Checkout'
 import { Account, Wishlist, Order, OrderDetail } from '~/pages/Profile'
 import { AccountAdmin, HotelAdmin } from '~/pages/Admin'
+import BlockedAccount from '~/pages/Admin/Account/BlockedAccount'
+import ActiveAccount from '~/pages/Admin/Account/ActiveAccount'
 import QrPay from '~/pages/QrPay'
 import HotelManagement from '~/pages/Hotelier/HotelManagement'
 import OrderManagement from '~/pages/Hotelier/OrderManagement/OrderManagement'
@@ -50,5 +52,8 @@ export const publicRoutes = [
 
     // Admin
     { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },
+    { path: '/admin/account/blocked', component: BlockedAccount, layout: ManageLayout },
+    { path: '/admin/account/active', component: ActiveAccount, layout: ManageLayout },
     { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
+    {},
 ]

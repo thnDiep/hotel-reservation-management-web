@@ -54,7 +54,6 @@
     display: flex;
     margin-top: 10rem;
     justify-content: center;
-    display: flex;
     width: 90%;
     .logo{
         height: 80px;
@@ -66,10 +65,12 @@
         font-size: 30px;
         font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         margin-top: 5px;
+        color: #ff3366;
     }
     .description{
         font-size: 14px;
         color: gray;
+        // margin-top: -5px;
     }
 }
 
@@ -123,7 +124,7 @@
 
 .loginBtn{
     margin-top: 4rem;
-    background-color: red;
+    background-color: #ff3366;
     width: 37rem;
     height: 4rem;
     border: none;

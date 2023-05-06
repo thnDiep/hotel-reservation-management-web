@@ -35,7 +35,7 @@ function Login() {
                 <div className={styles.infoWeb}>
                     <img
                         className={styles.logo}
-                        src="https://static.vecteezy.com/system/resources/previews/016/892/364/original/hotel-icon-free-vector.jpg"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
                     />
                     <div>
                         <p className={styles.nameOfWeb}>MyTravel</p>

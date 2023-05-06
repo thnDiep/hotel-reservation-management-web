@@ -1,4 +1,4 @@
-import styles from './account.module.scss'
+import styles from './blockAccount.module.scss'
 import clsx from 'clsx'
 import TitleButton from '~/components/Button/TitleButton'
 import { Table } from 'react-bootstrap'
@@ -6,7 +6,7 @@ import { NavLink } from '~/components'
 import nav from '~/assets/jsons/nav.json'
 
 // tên, email, sđt, địa chỉ, tên đn, nút hoạt động: hoạt động, khóa
-function Account() {
+function BlockedAccount() {
     return (
         <div>
             <NavLink list={nav.accountOfAdmin} />
@@ -58,57 +58,10 @@ function Account() {
                                 <p className={styles.text1}>Số 1, phường 2, quận 1, TPHCM</p>
                             </td>
                             <td>
-                                <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td className={styles.center}>
-                                <input type="checkbox" className={styles.checkBox} />
-                            </td>
-                            <td>
-                                <img src="https://i.pinimg.com/originals/7d/1d/c1/7d1dc1920d7f7fb9d0ecb9ae90a19a7a.jpg" />
-                            </td>
-                            <td>
-                                <p className={styles.text1}>Trần Thảo Quyên</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>cd@gmail.com</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>0994234811</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>Số 1, phường 2, quận 1, TPHCM</p>
-                            </td>
-                            <td>
-                                <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td className={styles.center}>
-                                <input type="checkbox" className={styles.checkBox} />
-                            </td>
-                            <td>
-                                <img src="https://i.pinimg.com/originals/7d/1d/c1/7d1dc1920d7f7fb9d0ecb9ae90a19a7a.jpg" />
-                            </td>
-                            <td>
-                                <p className={styles.text1}>Trần Thảo Quyên</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>cd@gmail.com</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>0994234811</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>Số 1, phường 2, quận 1, TPHCM</p>
-                            </td>
-                            <td>
                                 <div className={clsx('btn-1', 'block', styles.status)}>Khóa</div>
                             </td>
                         </tr>
+
                         <tr>
                             <td className={styles.center}>
                                 <input type="checkbox" className={styles.checkBox} />
@@ -139,4 +92,4 @@ function Account() {
     )
 }
 
-export default Account
+export default BlockedAccount
