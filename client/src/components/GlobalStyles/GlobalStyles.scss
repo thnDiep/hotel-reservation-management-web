@@ -1,0 +1,336 @@
+@import 'normalize.css';
+
+:root {
+    --primary-color: #ff3366;
+    --second-color: #ff33661a;
+    --border-color: #e2e8f0;
+    --text-color: #1a202c;
+    --default-width: 1200px;
+    --height-header: 60px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    background-color: #fff;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.d-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.d-flex-js {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.d-flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.d-flex-column-r {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+// Srollbar
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0;
+    border-radius: 50px;
+}
+
+// For react-range-date
+.rdrDefinedRangesWrapper {
+    display: none;
+}
+
+.rdrCalendarWrapper {
+    font-size: 1.53rem;
+
+    .rdrDayToday .rdrDayNumber span:after {
+        background-color: var(--primary-color);
+    }
+
+    .rdrNextPrevButton,
+    .rdrPprevButton {
+        background-color: #f8f8f8;
+    }
+
+    .rdrMonthAndYearWrapper {
+        border: 1px solid var(--border-color);
+        border-bottom: 0;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .rdrMonths {
+        border: 1px solid var(--border-color);
+        border-top: 0;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+}
+
+.home {
+    .slick-prev:before,
+    .slick-next:before {
+        content: '';
+    }
+}
+
+.part {
+    width: 100%;
+    padding: 44px 0;
+    font-size: 1.4rem;
+    font-weight: normal;
+    line-height: 1.7rem;
+    color: var(--text-color);
+
+    .part__content {
+        width: var(--default-width);
+        margin: auto;
+    }
+
+    .part__header {
+        padding-bottom: 16px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .part__footer {
+        display: flex;
+        justify-content: center;
+        padding-top: 24px;
+    }
+
+    .part__title {
+        color: var(--text-color);
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 29px;
+        margin-bottom: 8px;
+    }
+
+    .part__subTitle {
+        color: #4a5568;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17px;
+        margin: 0;
+    }
+
+    .part__hotels {
+        margin-top: 16px;
+        gap: 24px;
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.myModal {
+    .modal-content {
+        border-radius: 10px;
+    }
+    .modal-header {
+        padding: 1.8rem;
+        padding-bottom: 0;
+    }
+
+    .modal-body {
+        padding: 1.8rem;
+        padding-bottom: 1rem;
+    }
+}
+
+.fa-star {
+    color: #feda56;
+}
+
+.iconCheckBox {
+    width: 22px;
+    height: 22px;
+    box-shadow: inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1);
+    border-radius: 6px;
+    background-color: #f5f8fa;
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0));
+
+    &::before {
+        width: 22px;
+        height: 22px;
+        content: '';
+        display: block;
+        background-size: cover;
+        background-image: url('https://mytour.vn/icons/icon_checked.svg');
+    }
+}
+
+.checked {
+    background-color: #00b6f3;
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0));
+}
+.CheckFacility__inline {
+    .MuiFormControlLabel-root {
+        margin-right: 0px;
+    }
+}
+.checkBoxPayment {
+    .iconCheckBox {
+        width: 20px;
+        height: 20px;
+        box-shadow: inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1);
+        border-radius: 50%;
+        background-color: #f5f8fa;
+        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0));
+
+        &::before {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .checked {
+        background-color: #ff3366;
+        background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0));
+    }
+
+    .MuiFormControlLabel-root {
+        margin-right: 0px;
+    }
+}
+
+.btn-1 {
+    color: rgb(255, 51, 102);
+    width: fit-content;
+    border: 1px solid rgb(255, 51, 102);
+    margin: 0px;
+    padding: 7px 30px;
+    font-size: 14px;
+    min-height: 20px;
+    font-weight: 600;
+
+    border-radius: 8px;
+    text-transform: none;
+    background-color: inherit;
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(255, 51, 102, 0.1);
+        border: 1px solid rgba(255, 51, 102, 0.1);
+        color: rgb(255, 51, 102);
+        box-shadow: none;
+    }
+
+    &.nohover:hover {
+        background-color: inherit;
+        border: 1px solid rgb(255, 51, 102);
+    }
+
+    &.primary {
+        color: #fff;
+        background-color: rgb(255, 51, 102);
+        border: none;
+    }
+
+    &.active {
+        color: #fff;
+        background-color: #68e365;
+        border: none;
+    }
+
+    &.blocked {
+        color: #fff;
+        background-color: #e23428;
+        border: none;
+    }
+
+    &.pending {
+        color: #fff;
+        background-color: #fb9f44;
+        border: none;
+    }
+}
+
+.admin {
+    .dropdown-menu {
+        min-width: 140px;
+        font-size: 1.6rem;
+        font-weight: 500;
+        padding: 7px 0;
+    }
+    .dropdown-toggle {
+        font-size: 1.6rem;
+        font-weight: 500;
+        min-width: 140px;
+        height: 38px;
+        color: #ff3366 !important;
+        background-color: inherit !important;
+        border-color: #ff3366 !important;
+    }
+
+    button:focus {
+        outline: 0;
+    }
+}
+
+.link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.nav {
+    a.active {
+        display: block;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+    }
+
+    a:hover {
+        color: var(--primary-color);
+    }
+}
+.btn-primary {
+    color: #fff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
