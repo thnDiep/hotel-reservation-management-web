@@ -1,10 +1,13 @@
 import React, { useRef, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
+import clsx from 'clsx'
 import { useNavigate } from 'react-router-dom'
 import Axios from 'axios'
 import VoucherForm from './VoucherForm'
 import FlashSaleForm from './FlashSaleForm'
 import styles from '../Promotion.module.scss'
+import { NavHandle } from '~/components'
+import voucher from '~/assets/jsons/voucher.json'
 
 function AddPromotion() {
     const navigate = useNavigate()
@@ -118,101 +121,29 @@ function AddPromotion() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.content}>
-                <div className={styles.form}>
-                    <h3 className={styles.form__header}>Thêm khuyến mãi mới</h3>
+            <div className={clsx(styles.content, styles.add)}>
+                <NavHandle list={voucher.menu} active={showForm} onActive={setShowForm} />
 
-                    <div className={styles.form__content}>
-                        <div className="d-flex">
-                            <div className={styles.form__part}>
-                                <span className={styles.title}>Loại khuyến mãi</span>
-
-                                <div>
-                                    <div className={styles.form__input}>
-                                        <input
-                                            type="radio"
-                                            name="loaiKM"
-                                            id="voucher"
-                                            onChange={() => setShowForm(0)}
-                                            checked={showForm === 0}
-                                        />
-                                        <label htmlFor="voucher" className={styles.subTitle}>
-                                            Voucher
-                                        </label>
-                                    </div>
-
-                                    <div className={styles.form__input}>
-                                        <input
-                                            type="radio"
-                                            name="loaiKM"
-                                            id="flashSale"
-                                            onChange={() => setShowForm(1)}
-                                            checked={showForm === 1}
-                                        />
-                                        <label htmlFor="flashSale" className={styles.subTitle}>
-                                            FlashSale
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles.form__part}>
-                                <span className={styles.title}>Khách sạn áp dụng</span>
-
-                                {/* <div>
-                                    <div className={styles.form__input}>
-                                        <input type="checkbox" name="khachSan" />
-                                        <label className={styles.subTitle}>Khách sạn Đà Lạt</label>
-                                    </div>
-
-                                    <div className={styles.form__input}>
-                                        <input type="checkbox" name="khachSan" />
-                                        <label className={styles.subTitle}>Khách sạn Thanh Đa</label>
-                                    </div>
-                                    <div className={styles.form__input}>
-                                        <input type="checkbox" name="khachSan" />
-                                        <label className={styles.subTitle}>Khách sạn Đà Lạt</label>
-                                    </div>
-
-                                    <div className={styles.form__input}>
-                                        <input type="checkbox" name="khachSan" />
-                                        <label className={styles.subTitle}>Khách sạn Thanh Đa</label>
-                                    </div>
-                                    <div className={styles.form__input}>
-                                        <input type="checkbox" name="khachSan" />
-                                        <label className={styles.subTitle}>Khách sạn Đà Lạt</label>
-                                    </div>
-
-                                    <div className={styles.form__input}>
-                                        <input type="checkbox" name="khachSan" />
-                                        <label className={styles.subTitle}>Khách sạn Thanh Đa</label>
-                                    </div>
-                                    <div className={styles.form__input}>
-                                        <input type="checkbox" name="khachSan" />
-                                        <label className={styles.subTitle}>Khách sạn Đà Lạt</label>
-                                    </div>
-
-                                    <div className={styles.form__input}>
-                                        <input type="checkbox" name="khachSan" />
-                                        <label className={styles.subTitle}>Khách sạn Thanh Đa</label>
-                                    </div>
-                                </div> */}
-                            </div>
-                        </div>
-
-                        {/* <div className={styles.form__right}> */}
-                        {showForm === 0 && <VoucherForm data={voucherState} onEdit={setVoucherState} />}
-                        {showForm === 1 && <FlashSaleForm data={flashSaleState} onEdit={setFlashSaleState} />}
-                        {/* </div> */}
+                {showForm === 0 && (
+                    <div className={styles.form}>
+                        <h3 className={styles.form__header}>Thêm Voucher</h3>
+                        <VoucherForm data={voucherState} onEdit={setVoucherState} />
                     </div>
+                )}
 
-                    <div className={styles.form__footer}>
-                        <Link to="/cks/voucher" className="btn-1">
-                            Quay lại
-                        </Link>
-                        <div className="btn-1 primary" onClick={() => handleSubmit()}>
-                            Thêm
-                        </div>
+                {showForm === 1 && (
+                    <div className={styles.form}>
+                        <h3 className={styles.form__header}>Thêm FlashSale</h3>
+                        <FlashSaleForm data={flashSaleState} onEdit={setFlashSaleState} />
+                    </div>
+                )}
+
+                <div className={styles.footer}>
+                    <Link to="/cks/voucher" className="btn-1">
+                        Quay lại
+                    </Link>
+                    <div className="btn-1 primary" onClick={() => handleSubmit()}>
+                        Thêm
                     </div>
                 </div>
             </div>

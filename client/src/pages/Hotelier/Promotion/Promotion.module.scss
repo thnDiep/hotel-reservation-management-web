@@ -4,10 +4,15 @@
 }
 
 .content {
-    // width: var(--default-width);
     margin: auto;
-    padding-top: 24px;
+    // padding-top: 24px;
+    margin-top: 1.5rem;
     position: relative;
+
+    &.add {
+        padding-top: 0;
+        width: var(--default-width);
+    }
 }
 
 .btn {
@@ -39,17 +44,23 @@
     box-shadow: 0 0 2.1875rem 0 hsla(215, 9%, 64%, 0.15);
     width: var(--default-width);
     margin: auto;
+    margin-top: 2.215rem;
+
     &__header {
         font-size: 3rem;
         font-weight: 600;
-        padding: 2.125rem 0;
+        // padding: 2.125rem 0;
+        padding-top: 2.125rem;
+        padding-bottom: 1.125rem;
         text-align: center;
         border-bottom: 2px solid #ebebeb;
+        ///
+        display: flex;
     }
 
     &__content {
-        // display: flex;
-        // align-items: flex-start;
+        display: flex;
+        align-items: flex-start;
         padding: 2.125rem 0;
     }
 
@@ -64,7 +75,8 @@
     &__part {
         display: flex;
         align-items: flex-start;
-        padding: 20px 0;
+        padding: 10px 0;
+
         width: 100%;
         position: relative;
     }
@@ -95,20 +107,16 @@
     }
 
     &__left {
-        align-self: stretch;
-        width: 540px;
-        border-right: 1px solid #ebebeb;
+        flex: 1;
+        // align-self: stretch;
+        // width: 540px;
+        // border-right: 1px solid #ebebeb;
     }
 
     &__right {
         flex: 1;
-        padding: 0 30px;
-        .title {
-            width: 160px;
-        }
-        .form__part {
-            padding: 10px 0;
-        }
+        // padding: 0 30px;
+        padding-left: 80px;
     }
 
     input[type='radio'] {
@@ -180,7 +188,8 @@
 
     input[type='text'],
     input[type='number'],
-    textarea {
+    textarea,
+    select {
         flex: 1;
         display: block;
         color: #1a202c;
@@ -211,12 +220,14 @@
     }
 
     input[type='number'] {
-        // flex: none;
-        // width: 70px;
+        flex: none;
+        width: 70px;
     }
 
     textarea {
         overflow-y: auto;
+    }
+    .input {
     }
 }
 
@@ -225,6 +236,8 @@
     font-weight: 600;
     line-height: 22px;
     width: 180px;
+    display: block;
+    // width: 160px;
 
     sup {
         color: red;
@@ -239,4 +252,15 @@
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 22px;
+}
+
+.editor {
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.125rem 0;
 }
