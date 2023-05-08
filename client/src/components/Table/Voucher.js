@@ -69,10 +69,10 @@ function VoucherTable() {
                                 <span className={styles.text1}>{voucher.percent} %</span>
                             </td>
                             <td className={styles.center}>
-                                <span className={styles.text1}>{voucher.start}</span>
+                                <span className={clsx(styles.text1, styles.bold)}>{voucher.start}</span>
                             </td>
                             <td className={styles.center}>
-                                <span className={styles.text1}>{voucher.end}</span>
+                                <span className={clsx(styles.text1, styles.bold)}>{voucher.end}</span>
                             </td>
                             <td className={styles.center}>
                                 {voucher.number && (

@@ -4,7 +4,7 @@
 }
 
 .content {
-    width: var(--default-width);
+    // width: var(--default-width);
     margin: auto;
     padding-top: 24px;
     position: relative;
@@ -37,7 +37,8 @@
     background: #fff;
     border-radius: 0.3125rem;
     box-shadow: 0 0 2.1875rem 0 hsla(215, 9%, 64%, 0.15);
-
+    width: var(--default-width);
+    margin: auto;
     &__header {
         font-size: 3rem;
         font-weight: 600;
@@ -47,8 +48,8 @@
     }
 
     &__content {
-        display: flex;
-        align-items: flex-start;
+        // display: flex;
+        // align-items: flex-start;
         padding: 2.125rem 0;
     }
 

@@ -70,10 +70,10 @@ function FlashSaleTable() {
                                 <span className={styles.text1}>{flashSale.percent} %</span>
                             </td>
                             <td className={styles.center}>
-                                <span className={styles.text1}>{flashSale.start}</span>
+                                <span className={clsx(styles.text1, styles.bold)}>{flashSale.start}</span>
                             </td>
                             <td className={styles.center}>
-                                <span className={styles.text1}>{flashSale.end}</span>
+                                <span className={clsx(styles.text1, styles.bold)}>{flashSale.end}</span>
                             </td>
                             {/* <td className={styles.center}>
                                 {voucher.number && (

@@ -123,7 +123,7 @@ function AddPromotion() {
                     <h3 className={styles.form__header}>Thêm khuyến mãi mới</h3>
 
                     <div className={styles.form__content}>
-                        <div className={styles.form__left}>
+                        <div className="d-flex">
                             <div className={styles.form__part}>
                                 <span className={styles.title}>Loại khuyến mãi</span>
 
@@ -159,7 +159,7 @@ function AddPromotion() {
                             <div className={styles.form__part}>
                                 <span className={styles.title}>Khách sạn áp dụng</span>
 
-                                <div>
+                                {/* <div>
                                     <div className={styles.form__input}>
                                         <input type="checkbox" name="khachSan" />
                                         <label className={styles.subTitle}>Khách sạn Đà Lạt</label>
@@ -196,14 +196,14 @@ function AddPromotion() {
                                         <input type="checkbox" name="khachSan" />
                                         <label className={styles.subTitle}>Khách sạn Thanh Đa</label>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
-                        <div className={styles.form__right}>
-                            {showForm === 0 && <VoucherForm data={voucherState} onEdit={setVoucherState} />}
-                            {showForm === 1 && <FlashSaleForm data={flashSaleState} onEdit={setFlashSaleState} />}
-                        </div>
+                        {/* <div className={styles.form__right}> */}
+                        {showForm === 0 && <VoucherForm data={voucherState} onEdit={setVoucherState} />}
+                        {showForm === 1 && <FlashSaleForm data={flashSaleState} onEdit={setFlashSaleState} />}
+                        {/* </div> */}
                     </div>
 
                     <div className={styles.form__footer}>
