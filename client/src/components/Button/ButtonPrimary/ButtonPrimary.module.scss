@@ -7,6 +7,10 @@
     color: #fff;
     background-color: #ff3366;
     border: 1px solid rgba(255, 51, 102, 0.5);
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 
     &:hover {
         cursor: pointer;
@@ -115,7 +119,8 @@
     width: auto;
 }
 .btnLarge1,
-.btnLarge2 {
+.btnLarge2,
+.btnLarge4 {
     font-size: 14px;
     padding: 10px 16px;
     border: none;

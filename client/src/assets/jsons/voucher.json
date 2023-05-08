@@ -1,0 +1,4 @@
+{
+    "menu": ["Voucher", "FlashSale"],
+    "state": ["Chưa bắt đầu", "Đang diễn ra", "Đã kết thúc"]
+}
