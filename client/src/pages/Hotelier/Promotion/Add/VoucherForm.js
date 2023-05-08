@@ -1,5 +1,7 @@
 import { Editor } from '@tinymce/tinymce-react'
 import React, { useRef, useState } from 'react'
+import Select from 'react-select'
+
 import clsx from 'clsx'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -25,109 +27,133 @@ function VoucherForm({ data, onEdit }) {
 
     return (
         <React.Fragment>
-            {/* Tiêu đề */}
-            <div className={styles.form__part}>
-                <div className={styles.form__input}>
-                    <span className={styles.title}>
-                        Tiêu đề <sup>*</sup>
-                    </span>
-                    <input
-                        type="text"
-                        placeholder="Khách sạn giảm đến 200K"
-                        className={clsx({ [styles.error]: data.errors.title })}
-                        value={data.fields.title || ''}
-                        onChange={(e) => handleChange(e, 'title')}
-                    />
-                    <span className={styles.form__error}>{data.errors.title}</span>
+            <div className="d-flex">
+                {/* Tiêu đề */}
+                <div className={clsx(styles.form__part, styles.form__left)}>
+                    <div className={styles.form__input}>
+                        <span className={styles.title}>
+                            Tiêu đề <sup>*</sup>
+                        </span>
+                        <input
+                            type="text"
+                            placeholder="Khách sạn giảm đến 200K"
+                            className={clsx({ [styles.error]: data.errors.title })}
+                            value={data.fields.title || ''}
+                            onChange={(e) => handleChange(e, 'title')}
+                        />
+                        <span className={styles.form__error}>{data.errors.title}</span>
+                    </div>
+                </div>
+                <div className={clsx(styles.form__part, styles.form__right)}>
+                    <div className={styles.form__input}>
+                        <label className={styles.title} htmlFor="ks">
+                            Khách sạn áp dụng <sup>*</sup>
+                        </label>
+                        <select name="khachSan" id="ks">
+                            <option value="1">Khách sạn Thanh Đa</option>
+                            <option value="2">Khách sạn Nikko</option>
+                            <option value="3">Khách sạn Đà Lạt</option>
+                            <option value="4">Khách sạn Cà Mau</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            {/* Mã voucher */}
-            <div className={clsx(styles.form__part, 'd-flex')}>
-                <div className={styles.form__input}>
-                    <span className={styles.title}>
-                        Mã Voucher <sup>*</sup>
-                    </span>
-                    <input
-                        type="text"
-                        placeholder="CHAOHE23"
-                        className={clsx({ [styles.error]: data.errors.voucher })}
-                        value={data.fields.voucher || ''}
-                        onChange={(e) => handleChange(e, 'voucher')}
-                    />
-                    <span className={styles.form__error}>{data.errors.voucher}</span>
+            <div className="d-flex">
+                {/* Mã voucher */}
+                <div className={clsx(styles.form__part, styles.form__left)}>
+                    <div className={styles.form__input}>
+                        <span className={styles.title}>
+                            Mã Voucher <sup>*</sup>
+                        </span>
+                        <input
+                            type="text"
+                            placeholder="CHAOHE23"
+                            className={clsx({ [styles.error]: data.errors.voucher })}
+                            value={data.fields.voucher || ''}
+                            onChange={(e) => handleChange(e, 'voucher')}
+                        />
+                        <span className={styles.form__error}>{data.errors.voucher}</span>
+                    </div>
+                </div>
+
+                <div className={clsx(styles.form__right, 'd-flex')}>
+                    {/* Phần trăm KM */}
+                    <div className={clsx(styles.form__part)}>
+                        <div className={styles.form__input}>
+                            <span className={styles.title}>
+                                Phần trăm KM <sup>*</sup>
+                            </span>
+                            <input
+                                type="number"
+                                min="1"
+                                max="99"
+                                placeholder="14"
+                                className={clsx({ [styles.error]: data.errors.percent })}
+                                value={data.fields.percent || ''}
+                                onChange={(e) => handleChange(e, 'percent')}
+                            />
+                            <span className={styles.form__error}>{data.errors.percent}</span>
+                        </div>
+                    </div>
+
+                    {/* Số lượng */}
+                    <div className={styles.form__part}></div>
+
+                    <div className={styles.form__input}>
+                        <span className={styles.title}>Số lượng giới hạn</span>
+                        <input
+                            type="number"
+                            min="1"
+                            max="99"
+                            placeholder="14"
+                            className={clsx({ [styles.error]: data.errors.number })}
+                            value={data.fields.number || ''}
+                            onChange={(e) => handleChange(e, 'number')}
+                        />
+                        <span className={styles.form__error}>{data.errors.number}</span>
+                    </div>
                 </div>
             </div>
 
-            <div className={styles.form__part}>
-                <div className={styles.form__input}>
-                    <span className={styles.title}>
-                        Phần trăm KM <sup>*</sup>
-                    </span>
-                    <input
-                        type="number"
-                        min="1"
-                        max="99"
-                        placeholder="14"
-                        className={clsx({ [styles.error]: data.errors.percent })}
-                        value={data.fields.percent || ''}
-                        onChange={(e) => handleChange(e, 'percent')}
-                    />
-                    <span className={styles.form__error}>{data.errors.percent}</span>
+            <div className="d-flex">
+                {/* Thời gian bắt đầu */}
+                <div className={clsx(styles.form__part, 'form', styles.form__left)}>
+                    <div className={styles.form__input}>
+                        <span className={styles.title}>
+                            Thời gian bắt đầu <sup>*</sup>
+                        </span>
+                        <DatePicker
+                            locale={vi}
+                            dateFormat="dd/MM/yyyy - hh:mm aa"
+                            minDate={new Date()}
+                            className={clsx({ [styles.error]: data.errors.start })}
+                            selected={data.fields.start || new Date()}
+                            timeInputLabel="Time:"
+                            showTimeInput
+                            onChange={(e) => handleChange(e, 'start')}
+                        />
+                        <span className={styles.form__error}>{data.errors.start}</span>
+                    </div>
                 </div>
-            </div>
 
-            {/* Thời gian bắt đầu */}
-            <div className={clsx(styles.form__part, 'form')}>
-                <div className={styles.form__input}>
-                    <span className={styles.title}>
-                        Thời gian bắt đầu <sup>*</sup>
-                    </span>
-                    <DatePicker
-                        locale={vi}
-                        dateFormat="dd/MM/yyyy - hh:mm aa"
-                        minDate={new Date()}
-                        className={clsx({ [styles.error]: data.errors.start })}
-                        selected={data.fields.start || new Date()}
-                        timeInputLabel="Time:"
-                        showTimeInput
-                        onChange={(e) => handleChange(e, 'start')}
-                    />
-                    <span className={styles.form__error}>{data.errors.start}</span>
-                </div>
-            </div>
-
-            {/* Thời gian kết thúc */}
-            <div className={clsx(styles.form__part, 'form')}>
-                <div className={styles.form__input}>
-                    <span className={styles.title}>Thời gian kết thúc</span>
-                    <DatePicker
-                        locale={vi}
-                        dateFormat="dd/MM/yyyy - hh:mm aa"
-                        minDate={data.fields.start}
-                        className={clsx({ [styles.error]: data.errors.end })}
-                        selected={data.fields.end || null}
-                        timeInputLabel="Time:"
-                        showTimeInput
-                        onChange={(e) => handleChange(e, 'end')}
-                    />
-                    <span className={styles.form__error}>{data.errors.end}</span>
-                </div>
-            </div>
-
-            <div className={styles.form__part}>
-                <div className={styles.form__input}>
-                    <span className={styles.title}>Số lượng giới hạn</span>
-                    <input
-                        type="number"
-                        min="1"
-                        max="99"
-                        placeholder="14"
-                        className={clsx({ [styles.error]: data.errors.number })}
-                        value={data.fields.number || ''}
-                        onChange={(e) => handleChange(e, 'number')}
-                    />
-                    <span className={styles.form__error}>{data.errors.number}</span>
+                {/* Thời gian kết thúc */}
+                <div className={clsx(styles.form__part, 'form', styles.form__right)}>
+                    <div className={styles.form__input}>
+                        <span className={styles.title}>Thời gian kết thúc</span>
+                        <DatePicker
+                            locale={vi}
+                            dateFormat="dd/MM/yyyy - hh:mm aa"
+                            minDate={data.fields.start}
+                            className={clsx({ [styles.error]: data.errors.end })}
+                            selected={data.fields.end || null}
+                            timeInputLabel="Time:"
+                            showTimeInput
+                            onChange={(e) => handleChange(e, 'end')}
+                            placeholderText="08/05/2023 - 06:00 PM"
+                        />
+                        <span className={styles.form__error}>{data.errors.end}</span>
+                    </div>
                 </div>
             </div>
 
@@ -147,23 +173,22 @@ function VoucherForm({ data, onEdit }) {
             <div className={styles.form__part}>
                 <div className={styles.form__input}>
                     <div>
-                        <span className={styles.title} style={{ marginRight: '30px' }}>
-                            Điều kiện & thể lệ chương trình
-                        </span>
+                        <span className={styles.title}>Điều kiện & thể lệ chương trình</span>
                     </div>
-                    <Editor
-                        onInit={(evt, editor) => (editorRef.current = editor)}
-                        initialValue={data.fields.condition || ''}
-                        onChange={(e) => handleChange(e, 'condition')}
-                        width="520px"
-                        init={{
-                            menubar: false,
-                            plugins: ['code', 'table', 'link', 'lists'],
-                            toolbar: [
-                                'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright| forecolor backcolor | table link image media codesample',
-                            ],
-                        }}
-                    />
+                    <div className={styles.editor}>
+                        <Editor
+                            onInit={(evt, editor) => (editorRef.current = editor)}
+                            initialValue={data.fields.condition || ''}
+                            onChange={(e) => handleChange(e, 'condition')}
+                            init={{
+                                menubar: false,
+                                plugins: ['code', 'table', 'link', 'lists'],
+                                toolbar: [
+                                    'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright| forecolor backcolor | table link image media codesample',
+                                ],
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
         </React.Fragment>
