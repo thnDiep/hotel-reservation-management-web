@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './signUp.module.scss'
-
+import axios from "axios";
 function SignUp() {
     const [email, setEmail] = useState(() => {
         return { value: '', error: ' ', isValid: false }
@@ -23,6 +23,21 @@ function SignUp() {
             }
         }
     }, [email.value])
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post("http://localhost:8800/auth/signup", {
+                TenDangNhap: 'manhtu',
+                Email: "manhtu2272002@gmail.com",
+                MatKhau: "123",
+            });
+            // navigate("/")
+        } catch (err) {
+            console.log(err.response.data)
+            console.log('sai')
+        }
+    };
     return (
         <div className={styles.wrap}>
             <div className={styles.form}>
@@ -80,10 +95,10 @@ function SignUp() {
                                 name="password"
                                 type="text"
                                 placeholder="Nhập mật khẩu"
-                                // value={email.value}
-                                // onChange={(e) => setEmail({ ...email, value: e.target.value })}
-                                // onFocus={handleOnFocus_email}
-                                // onBlur={handleOnBlur_email}
+                            // value={email.value}
+                            // onChange={(e) => setEmail({ ...email, value: e.target.value })}
+                            // onFocus={handleOnFocus_email}
+                            // onBlur={handleOnBlur_email}
                             />
                             {/* <hr id="lineUnderEmail" className={styles.lineUnderOnBlur} />
                             <p id="noticeForFieldEmail" className={styles.notice} value="1">
@@ -94,7 +109,9 @@ function SignUp() {
                 </div>
 
                 <form action="/">
-                    <input type="button" value="Đăng ký" className={styles.loginBtn} />
+                    <input type="button" value="Đăng ký"
+                        onClick={handleClick}
+                        className={styles.loginBtn} />
                 </form>
 
                 <p className={styles.title2}>
@@ -102,7 +119,6 @@ function SignUp() {
                     <NavLink to="/logIn">
                         <span className={styles.signUpLink}>Đăng nhập</span>
                     </NavLink>
-                    {/* <a >Đăng nhập</a> */}
                 </p>
             </div>
         </div>
