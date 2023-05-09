@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faMoon } from '@fortawesome/free-regular-svg-icons'
 import Profile from '../profile'
 import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import nav from '~/assets/jsons/nav.json'
 function Reserve() {
     const [isEmpty, setIsEmpty] = useState(false)
@@ -14,7 +15,7 @@ function Reserve() {
     // 0: chờ xác nhận
     // 1: đã xác nhận
     // 2: đã hoàn thành
-    const [state, setState] = useState(0)
+    const [state, setState] = useState(1)
 
     return (
         <Profile>
@@ -97,6 +98,13 @@ function Reserve() {
                                         {state === 1 && (
                                             <div>
                                                 <p className={styles.successRequest}>Đặt phòng thành công</p>
+                                                <Link to={'/profile/order/comment'}>
+                                                    <label
+                                                        className={`${styles.feedBackLabel} ${styles.confirmedLabel}`}
+                                                    >
+                                                        ĐÁNH GIÁ
+                                                    </label>{' '}
+                                                </Link>
                                                 <label className={styles.confirmedLabel}>ĐÃ XÁC NHẬN</label>
                                             </div>
                                         )}

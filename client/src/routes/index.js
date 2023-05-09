@@ -17,6 +17,7 @@ import RoomManage from '~/pages/Hotelier/RoomManage'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
 import OrderResult from '~/pages/OrderResult'
 import AddRoom from '~/pages/Hotelier/RoomManage/AddRoom/AddRoom'
+import CommentAboutHotel from '~/pages/CommentAboutHotel/CommentAboutHotel'
 import { AddPromotion, ManagePromotion } from '~/pages/Hotelier'
 import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
@@ -33,6 +34,7 @@ export const publicRoutes = [
     { path: '/profile/order', component: Order, layout: HomeLayout },
     { path: '/profile/order/1', component: OrderDetail, layout: HomeLayout },
     { path: '/profile/wish-list', component: Wishlist, layout: HomeLayout },
+    { path: '/profile/order/comment', component: CommentAboutHotel, layout: null },
 
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: null },
