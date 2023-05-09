@@ -52,8 +52,13 @@ export const publicRoutes = [
     { path: '/cks/manageOrder', component: OrderManagement, layout: HotelierLayout },
     { path: '/cks/addRoom', component: AddRoom, layout: HotelierLayout },
 
-    // Hotelier - Voucher
+    // Hotelier - Voucher - Add
+    { path: '/cks/voucher/add/:active/:id', component: AddPromotion, layout: HotelierLayout },
+    { path: '/cks/voucher/add/:active', component: AddPromotion, layout: HotelierLayout },
     { path: '/cks/voucher/add', component: AddPromotion, layout: HotelierLayout },
+
+    // Hotelier - Voucher - Manage
+    { path: '/cks/voucher/:preActive', component: ManagePromotion, layout: HotelierLayout },
     { path: '/cks/voucher', component: ManagePromotion, layout: HotelierLayout },
 
     // Admin
