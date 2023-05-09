@@ -4,6 +4,7 @@ import Home from '~/pages/Home'
 import Detail from '~/pages/Detail'
 import ListByPlace from '~/pages/ListByPlace'
 import Checkout from '~/pages/Checkout'
+import SuccessCheckOut from '~/pages/Checkout/SuccessCheckOut'
 import { Account, Wishlist, Order, OrderDetail } from '~/pages/Profile'
 import { AccountAdmin, HotelAdmin } from '~/pages/Admin'
 import BlockedAccount from '~/pages/Admin/Account/BlockedAccount'
@@ -25,6 +26,7 @@ export const publicRoutes = [
     { path: '/detail', component: Detail },
     { path: '/listByPlace', component: ListByPlace },
     { path: '/checkout', component: Checkout, layout: HomeLayout },
+    { path: '/checkout/success', component: SuccessCheckOut, layout: HomeLayout },
 
     // Profile
     { path: '/profile', component: Account, layout: HomeLayout },

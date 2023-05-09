@@ -4,13 +4,15 @@ import TitleButton from '~/components/Button/TitleButton'
 import { Table } from 'react-bootstrap'
 import { NavLink } from '~/components'
 import nav from '~/assets/jsons/nav.json'
+import ActiveAccountTable from '~/components/Table/ActiveAccount'
 
 // tên, email, sđt, địa chỉ, tên đn, nút hoạt động: hoạt động, khóa
 function ActiveAccount() {
     return (
         <div>
             <NavLink list={nav.accountOfAdmin} />
-            <div className={styles.wrap}>
+            <ActiveAccountTable />
+            {/* <div className={styles.wrap}>
                 <Table responsive className={styles.cusTable}>
                     <thead>
                         <tr className={styles.headerOfTable}>
@@ -87,7 +89,7 @@ function ActiveAccount() {
                         </tr>
                     </tbody>
                 </Table>
-            </div>
+            </div> */}
         </div>
     )
 }

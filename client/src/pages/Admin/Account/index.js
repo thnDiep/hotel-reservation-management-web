@@ -11,9 +11,7 @@ function Account() {
     return (
         <div>
             <NavLink list={nav.accountOfAdmin} />
-            {/* <div className={styles.wrap}> */}
             <AccountTable />
-            {/* </div> */}
         </div>
     )
 }

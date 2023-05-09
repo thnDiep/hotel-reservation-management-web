@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import styles from './Table.module.scss'
 import { DropdownOption } from '~/components'
 
-function AccountTable() {
+function BlockedAccountTable() {
     const options1 = ['Vô hiệu hóa', 'Xóa']
     const options2 = ['Bỏ vô hiệu hóa', 'Xóa']
     const accounts = [
@@ -72,45 +72,48 @@ function AccountTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {accounts.map((account, index) => (
-                        <tr key={index}>
-                            <td className={styles.center}>
-                                <input type="checkbox" className={styles.checkBox} />
-                            </td>
-                            <td>
-                                <img src={account.image} />
-                            </td>
-                            <td>
-                                <p className={styles.text1}>{account.name}</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>{account.email}</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>{account.numberPhone}</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>{account.address}</p>
-                            </td>
-                            <td>
-                                {account.status === 1 && (
-                                    <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
-                                )}
-                                {account.status === 0 && (
-                                    <div className={clsx('btn-1', 'block', styles.status)}>Khóa</div>
-                                )}
-                            </td>
+                    {accounts.map(
+                        (account, index) =>
+                            account.status === 0 && (
+                                <tr key={index}>
+                                    <td className={styles.center}>
+                                        <input type="checkbox" className={styles.checkBox} />
+                                    </td>
+                                    <td>
+                                        <img src={account.image} />
+                                    </td>
+                                    <td>
+                                        <p className={styles.text1}>{account.name}</p>
+                                    </td>
+                                    <td>
+                                        <p className={styles.text1}>{account.email}</p>
+                                    </td>
+                                    <td>
+                                        <p className={styles.text1}>{account.numberPhone}</p>
+                                    </td>
+                                    <td>
+                                        <p className={styles.text1}>{account.address}</p>
+                                    </td>
+                                    <td>
+                                        {account.status === 1 && (
+                                            <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
+                                        )}
+                                        {account.status === 0 && (
+                                            <div className={clsx('btn-1', 'block', styles.status)}>Khóa</div>
+                                        )}
+                                    </td>
 
-                            <td>
-                                {account.status === 1 && <DropdownOption list={options1} />}
-                                {account.status === 0 && <DropdownOption list={options2} />}
-                            </td>
-                        </tr>
-                    ))}
+                                    <td>
+                                        {account.status === 1 && <DropdownOption list={options1} />}
+                                        {account.status === 0 && <DropdownOption list={options2} />}
+                                    </td>
+                                </tr>
+                            ),
+                    )}
                 </tbody>
             </Table>
         </div>
     )
 }
 
-export default AccountTable
+export default BlockedAccountTable

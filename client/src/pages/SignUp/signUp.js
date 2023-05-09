@@ -1,21 +1,28 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './signUp.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 function SignUp() {
     const [email, setEmail] = useState(() => {
         return { value: '', error: ' ', isValid: false }
     })
+    const [valid, setValid] = useState(false)
+
+    const Nav = useNavigate()
     useEffect(() => {
         const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
         if (email.isValid === true) {
             const identifier = setTimeout(() => {
                 if (!filter.test(email.value)) {
                     setEmail({ ...email, error: 'Email không đúng định dạng' })
+                    setValid(false)
                 } else if (email.value.length === 0) {
                     setEmail({ ...email, error: 'Thông tin bắt buộc' })
+                    setValid(false)
                 } else {
                     setEmail({ ...email, error: ' ' })
+                    setValid(true)
                 }
             }, 500)
             return () => {
@@ -23,13 +30,19 @@ function SignUp() {
             }
         }
     }, [email.value])
+
+    function handleSignUp() {
+        if (valid) {
+            Nav('/logIn')
+        }
+    }
     return (
         <div className={styles.wrap}>
             <div className={styles.form}>
                 <div className={styles.infoWeb}>
                     <img
                         className={styles.logo}
-                        src="https://static.vecteezy.com/system/resources/previews/016/892/364/original/hotel-icon-free-vector.jpg"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
                     />
                     <div>
                         <p className={styles.nameOfWeb}>MyTravel</p>
@@ -41,7 +54,8 @@ function SignUp() {
                 <div>
                     <div>
                         <label htmlFor="field-name" className={styles.label}>
-                            Tên người dùng
+                            Họ tên
+                            <span>*</span>
                         </label>
                         <div>
                             <input
@@ -55,7 +69,10 @@ function SignUp() {
                     </div>
 
                     <div>
-                        <label className={styles.label}>Email</label>
+                        <label className={styles.label}>
+                            Email
+                            <span>*</span>
+                        </label>
                         <div>
                             <input
                                 className={styles.fieldInput}
@@ -72,6 +89,7 @@ function SignUp() {
                     <div>
                         <label htmlFor="field-password" className={styles.label2}>
                             Mật khẩu
+                            <span>*</span>
                         </label>
                         <div>
                             <input
@@ -80,22 +98,14 @@ function SignUp() {
                                 name="password"
                                 type="text"
                                 placeholder="Nhập mật khẩu"
-                                // value={email.value}
-                                // onChange={(e) => setEmail({ ...email, value: e.target.value })}
-                                // onFocus={handleOnFocus_email}
-                                // onBlur={handleOnBlur_email}
                             />
-                            {/* <hr id="lineUnderEmail" className={styles.lineUnderOnBlur} />
-                            <p id="noticeForFieldEmail" className={styles.notice} value="1">
-                                {email.error}
-                            </p> */}
                         </div>
                     </div>
                 </div>
 
-                <form action="/">
-                    <input type="button" value="Đăng ký" className={styles.loginBtn} />
-                </form>
+                <button className={styles.loginBtn} onClick={handleSignUp}>
+                    Đăng ký
+                </button>
 
                 <p className={styles.title2}>
                     Đã có tài khoản?
