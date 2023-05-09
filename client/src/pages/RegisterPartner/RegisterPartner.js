@@ -30,6 +30,7 @@ const RegisterPartner = () => {
     const [enteredIntroducedPhoneNumber, setEnteredIntroducedPhoneNumber] = useState(() => {
         return { value: '', error: '', isValid: false }
     })
+    const [enteredQuyMo, setEnterQuyMo] = useState('1 - 19 nhân viên')
 
     const [selectedOption, setSelectedOption] = useState(false)
 
@@ -199,22 +200,32 @@ const RegisterPartner = () => {
     const handleOptionChange = () => {
         setSelectedOption(!selectedOption)
     }
+    const handleQuyMoChange = (e) => {
+
+        setEnterQuyMo(e.target.value)
+    }
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
-        // try {
-        //     const res = await axios.post("auth/login", {
-        //         HoTen: 'manhtu',
-        //         TenCongTy: enteredNameCompany.value,
-        //         DiaChi: enteredAddress.value,
-        //         Email: "manhtu2272002@gmail.com",
-        //         MatKhau: "123",
-        //     });
-        //     // navigate("/")
-        // } catch (err) {
-        //     console.log(err)
-        //     console.log('sai')
-        // }
+        e.preventDefault();
+
+        try {
+            const res = await axios.post("http://localhost:8800/auth/signup", {
+                HoTen: enteredUserName.value,
+                TenCongTy: enteredNameCompany.value,
+                DiaChi: enteredAddress.value,
+                QuyMo: enteredQuyMo,
+                Email: enteredEmail.value,
+                MatKhau: enteredPass.value,
+                SoDienThoai: enteredPhoneNumber.value,
+                PhanQuyen: 1,
+                MaSoThue: enteredTaxCode.value,
+            });
+            // console.log(res.)
+            // navigate("/")
+        } catch (err) {
+            console.log(err.response.data)
+            console.log('sai')
+        }
     }
 
     return (
@@ -257,7 +268,7 @@ const RegisterPartner = () => {
                                             Quy mô <span className={classes.important}>*</span>
                                         </span>
                                         <div className={classes.input}>
-                                            <select className={classes.inputName}>
+                                            <select onChange={handleQuyMoChange} className={classes.inputName}>
                                                 <option value="1">1 - 19 nhân viên</option>
                                                 <option value="2">20 - 49 nhân viên</option>
                                                 <option value="3">50 - 99 nhân viên</option>
@@ -265,7 +276,7 @@ const RegisterPartner = () => {
                                                 <option value="5">200 - 499 nhân viên</option>
                                                 <option value="6">500 - 1000 nhân viên</option>
                                             </select>
-                                            <p className={classes.error}>{enteredNameCompany.error}</p>
+                                            <p className={classes.error}></p>
                                         </div>
                                     </div>
                                 </div>
@@ -314,7 +325,7 @@ const RegisterPartner = () => {
                                 <div className={classes.twoCol}>
                                     <div className={`d-flex flex-column align-items-start ${classes.twoCol1}`}>
                                         <span className={classes.label}>
-                                            Tên người liên hệ <span className={classes.important}>*</span>
+                                            Họ và tên <span className={classes.important}>*</span>
                                         </span>
                                         <div className={classes.input}>
                                             <div className={classes.inputName}>
@@ -325,7 +336,7 @@ const RegisterPartner = () => {
                                                     className={`${enteredUserName.error !== '' && classes.lineUnderWhenError
                                                         }`}
                                                     onChange={useNameChangeHandler}
-                                                    placeholder="Nhập tên người liên hệ"
+                                                    placeholder="Nhập Họ và tên"
                                                 />
                                             </div>
                                             <p className={classes.error}>{enteredUserName.error}</p>
@@ -433,7 +444,7 @@ const RegisterPartner = () => {
                                 </div>
 
                                 <div className="form-outline  ">
-                                    <input type="radio" onClick={handleOptionChange} checked={selectedOption} />
+                                    <input type="radio" onClick={handleOptionChange} readOnly={selectedOption} />
                                     <span className={classes.agree}>
                                         <label className="form-label ml-5">
                                             Tôi đồng ý với các điều khoản và điều kiện của doanh nghiệp

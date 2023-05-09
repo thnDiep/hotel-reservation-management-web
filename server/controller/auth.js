@@ -9,12 +9,10 @@ export const signup = async (req, res, next) => {
         const user = {
             ...req.body,
             MatKhau: hash,
-            PhanQuyen: 0
         }
         console.log(user)
         const check = (name, check, i) => {
             if (name === check) {
-
                 return 0;
             }
             return 1;

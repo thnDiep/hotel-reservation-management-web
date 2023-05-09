@@ -31,6 +31,7 @@ function SignUp() {
                 HoTen: 'Nguyễn Đăng Mạnh Tú',
                 Email: "manhtu2272002@gmail.com",
                 MatKhau: "123",
+                PhanQuyen: 0,
             });
             // navigate("/")
         } catch (err) {

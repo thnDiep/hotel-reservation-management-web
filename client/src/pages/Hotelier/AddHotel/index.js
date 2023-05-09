@@ -23,7 +23,7 @@ const options = [
 ]
 
 const AddHotel = () => {
-    const [selectedSite, setSelectedSite] = useState(2)
+    const [selectedSite, setSelectedSite] = useState(1)
     const [provinces, setProvinces] = useState([])
     const [districts, setDistricts] = useState([])
     const [wards, setWards] = useState([])
@@ -34,10 +34,11 @@ const AddHotel = () => {
         return {
             Ten: '',
             DiaChi: '',
-            DanhGia: '',
-            // GioiThieu: "",
+            Sao: '',
+            GioiThieu: "",
             GioNhanPhong: '',
             GioTraPhong: '',
+            ChinhSach: '',
         }
     })
     const [diaChi, setDiaChi] = useState(() => {
@@ -110,14 +111,11 @@ const AddHotel = () => {
         if (selectedSite === 1 && selectedSite < 3) {
             for (const key in hotel) {
                 if (hotel[key] === '') {
-                    console.log(2)
-                    console.log(key)
                     setNextCheck(true)
                     return
                 }
             }
         }
-        console.log(1)
         setNextCheck(false)
         if (selectedSite < 3) setSelectedSite(selectedSite + 1)
     }
@@ -126,14 +124,12 @@ const AddHotel = () => {
     }
 
     const handleChange = (value, name) => {
-
+        console.log('đâs');
         setHotel((prev) => ({ ...prev, [name]: value }))
+        console.log(value)
     }
     const handleChangeDiaChi = (value, name) => {
-        console.log("name")
-        console.log(name)
         if (name === 'ThanhPho') {
-            console.log(2)
             setDiaChi((prev) => ({ ...prev, Quan: null }))
             setDiaChi((prev) => ({ ...prev, Phuong: null }))
             setHotel((prev) => ({ ...prev, "DiaChi": '' }))
@@ -195,9 +191,9 @@ const AddHotel = () => {
                                                 <Rating
 
                                                     name="simple-controlled"
-                                                    value={parseInt(hotel.DanhGia)}
+                                                    value={parseInt(hotel.Sao)}
                                                     onChange={(newValue) => {
-                                                        handleChange(newValue.toString(), "DanhGia");
+                                                        handleChange(newValue.toString(), "Sao");
                                                     }}
                                                 />
 
@@ -293,7 +289,11 @@ const AddHotel = () => {
                                         <div className="col-lg-12 mb-2">
                                             <div className="form-group mb-3">
                                                 <label className={`text-label ${styles.label}`}>Chính sách<span>*</span></label>
-                                                <textarea className={`form-control ${styles.formControl} `}></textarea>
+                                                <textarea rows={20} cols={10}
+                                                    onChange={(e) => { handleChange(e.target.value, "ChinhSach") }}
+                                                    className={`form-control ${styles.formControl} ${hotel.ChinhSach === '' && nextCheck && styles.inputRed
+                                                        }`}>{hotel.ChinhSach}
+                                                </textarea>
 
                                             </div>
                                         </div>
@@ -323,6 +323,7 @@ const AddHotel = () => {
                                                             { text: 'C++', value: 'cpp' },
                                                         ],
                                                     }}
+                                                    onChange={(e) => { handleChange(e.target.getContent(), "GioiThieu") }}
                                                 />
                                             </div>
                                         </div>
