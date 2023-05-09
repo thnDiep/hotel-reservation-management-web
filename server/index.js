@@ -8,7 +8,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use("/auth", authRouter);
+app.use("api/auth", authRouter);
 // check connect backend
 app.get("/", async (req, res) => {
   res.json(await db("diadiem"))

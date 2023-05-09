@@ -6,6 +6,7 @@ import { ButtonPrimary } from '~/components'
 import PaymentIntput from './PaymentInput/PaymentInput'
 import AddMultiple from '../../../components/AddMultiple/AddMultiple'
 import Rating from 'material-ui-rating'
+import { Editor } from '@tinymce/tinymce-react'
 import 'animate.css'
 import './styles.scss'
 const options = [
@@ -22,7 +23,7 @@ const options = [
 ]
 
 const AddHotel = () => {
-    const [selectedSite, setSelectedSite] = useState(1)
+    const [selectedSite, setSelectedSite] = useState(2)
     const [provinces, setProvinces] = useState([])
     const [districts, setDistricts] = useState([])
     const [wards, setWards] = useState([])
@@ -93,8 +94,8 @@ const AddHotel = () => {
         }
     }, [diaChi.Quan])
 
-    const handleCheckboxSite = (event) => {
-        if (selectedSite === 1 && parseInt(event.target.value) !== 1) {
+    const handleCheckboxSite = (value) => {
+        if (selectedSite === 1 && parseInt(value) !== 1) {
             for (const key in hotel) {
                 if (hotel[key] === '') {
                     setNextCheck(true)
@@ -103,10 +104,10 @@ const AddHotel = () => {
             }
         }
         setNextCheck(false)
-        setSelectedSite(parseInt(event.target.value))
+        setSelectedSite(value)
     }
     const handleNext = () => {
-        if (selectedSite === 1 && selectedSite < 4) {
+        if (selectedSite === 1 && selectedSite < 3) {
             for (const key in hotel) {
                 if (hotel[key] === '') {
                     console.log(2)
@@ -118,7 +119,7 @@ const AddHotel = () => {
         }
         console.log(1)
         setNextCheck(false)
-        if (selectedSite < 4) setSelectedSite(selectedSite + 1)
+        if (selectedSite < 3) setSelectedSite(selectedSite + 1)
     }
     const handlePrev = () => {
         if (selectedSite > 1) setSelectedSite(selectedSite - 1)
@@ -154,12 +155,11 @@ const AddHotel = () => {
         setDiaChi((prev) => ({ ...prev, [name]: value }))
 
     }
-    console.log(diaChi.Quan)
 
     return (
         <section>
             <div className={`${styles.title} container`}>Đăng ký khách sạn của bạn với mytour chỉ 4 bước đơn giản</div>
-            <div className={`${styles.content} py-5 `}>
+            <div className={`${styles.content}  `}>
                 <div className="row d-flex justify-content-center">
                     <div className="col col-xl-12">
                         <div className={`card ${styles.card}`} style={{ borderRadius: '1rem' }}>
@@ -168,22 +168,21 @@ const AddHotel = () => {
                             </div>
                             <div className={styles.cardBody}>
                                 <ul id="progressbar">
-                                    <li className={`check ${selectedSite >= 1 && 'active'}`} id="account"></li>
-                                    <li id="personal" className={`check ${selectedSite >= 2 && 'active'}`}></li>
-                                    <li id="payment" className={`check ${selectedSite >= 3 && 'active'}`}></li>
-                                    <li id="confirm" className={` ${selectedSite >= 4 && 'active'}`}></li>
+                                    <li onClick={() => handleCheckboxSite(1)} className={`check ${selectedSite >= 1 && 'active'}`} id="account"></li>
+                                    <li onClick={() => handleCheckboxSite(2)} id="personal" className={`check ${selectedSite >= 2 && 'active'}`}></li>
+                                    <li onClick={() => handleCheckboxSite(3)} id="confirm" className={`check ${selectedSite >= 3 && 'active'}`}></li>
                                 </ul>
 
-                                <div className='animate__animated animate__fadeInRight' style={{ display: `${selectedSite === 1 ? 'block' : 'none'}` }}>
+                                <div className={`animate__animated animate__fadeInRight ${styles.contentHotel}`} style={{ display: `${selectedSite === 1 ? 'block' : 'none'}` }}>
                                     <div className="row" >
                                         <div className="col-lg-12 mb-2">
                                             <div className="form-group mb-3">
-                                                <label className={`text-label ${styles.label}`}>Họ và tên*</label>
+                                                <label className={`text-label ${styles.label}`}>Họ và tên<span><span>*</span></span></label>
                                                 <input
                                                     type="text"
                                                     name="firstName"
                                                     className={`form-control ${styles.formControl} ${hotel.Ten === '' && nextCheck && styles.inputRed}`}
-                                                    placeholder="Parsley"
+                                                    placeholder="Tên khách sạn"
                                                     onChange={(e) => {
                                                         handleChange(e.target.value, "Ten");
                                                     }}
@@ -192,9 +191,9 @@ const AddHotel = () => {
                                         </div>
                                         <div className="col-lg-12 mb-2">
                                             <div className="form-group mb-3">
-                                                <label className={`text-label ${styles.label}`}>First Name*</label>
+                                                <label className={`text-label ${styles.label}`}>Sao<span>*</span></label>
                                                 <Rating
-                                                    className={`${hotel.Ten === '' && nextCheck && styles.inputRed}`}
+
                                                     name="simple-controlled"
                                                     value={parseInt(hotel.DanhGia)}
                                                     onChange={(newValue) => {
@@ -207,9 +206,11 @@ const AddHotel = () => {
                                         </div>
                                         <div className="col-lg-6 mb-2">
                                             <div className="form-group mb-3">
-                                                <label className={`text-label ${styles.label}`}>Tỉnh/thành phố*</label>
+                                                <label className={`text-label ${styles.label}`}>Tỉnh/thành phố<span>*</span></label>
                                                 <Select
                                                     // className={`form-control `}
+                                                    className={` ${diaChi.ThanhPho === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     value={diaChi.ThanhPho}
                                                     options={provinces}
                                                     placeholder="Chọn tỉnh/thành phố"
@@ -219,9 +220,11 @@ const AddHotel = () => {
                                         </div>
                                         <div className="col-lg-6 mb-2">
                                             <div className="form-group mb-3">
-                                                <label className={`text-label ${styles.label}`}>Quận/huyện*</label>
+                                                <label className={`text-label ${styles.label}`}>Quận/huyện<span>*</span></label>
                                                 <Select
                                                     // className={`form-control `}
+                                                    className={` ${diaChi.Quan === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     value={diaChi.Quan}
                                                     options={districts}
                                                     placeholder="Chọn quận/huyện"
@@ -232,9 +235,11 @@ const AddHotel = () => {
                                         </div>
                                         <div className="col-lg-6 mb-2">
                                             <div className="form-group mb-3">
-                                                <label className={`text-label ${styles.label}`}>Phường/Xã *</label>
+                                                <label className={`text-label ${styles.label}`}>Phường/Xã <span>*</span></label>
                                                 <Select
                                                     // className={`form-control `}
+                                                    className={` ${diaChi.Phuong === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     value={diaChi.Phuong}
                                                     options={wards}
                                                     placeholder="Chọn phường/xã"
@@ -245,10 +250,11 @@ const AddHotel = () => {
                                         </div>
                                         <div className="col-lg-6 mb-2">
                                             <div className="form-group mb-3">
-                                                <label className={`text-label ${styles.label}`}>Số nhà/Tên Đường*</label>
+                                                <label className={`text-label ${styles.label}`}>Số nhà/Tên Đường<span>*</span></label>
                                                 <input type="text"
                                                     onChange={(e) => handleChangeDiaChi(e.target.value, "Duong")}
-                                                    className={`form-control ${styles.formControl}`} placeholder="Parsley" required="" />
+                                                    className={`form-control ${styles.formControl}  ${diaChi.Duong === '' && nextCheck && styles.inputRed
+                                                        }`} placeholder="Nhập đường" required="" />
                                             </div>
                                         </div>
                                         <div className="col-lg-12 mb-2">
@@ -260,9 +266,10 @@ const AddHotel = () => {
                                         </div>
                                         <div className="col-lg-6 mb-2">
                                             <div className="form-group mb-3">
-                                                <label className={`text-label ${styles.label}`}>Giờ nhận phòng*</label>
+                                                <label className={`text-label ${styles.label}`}>Giờ nhận phòng<span>*</span></label>
                                                 <Select
-                                                    // className={`form-control `}
+                                                    className={` ${hotel.GioNhanPhong === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     value={hotel.GioNhanPhong}
                                                     options={options}
                                                     // placeholder="Chọn hạng"
@@ -272,9 +279,10 @@ const AddHotel = () => {
                                         </div>
                                         <div className="col-lg-6 mb-2">
                                             <div className="form-group mb-3">
-                                                <label className={`text-label ${styles.label}`}>Giờ Trả phòng*</label>
+                                                <label className={`text-label ${styles.label}`}>Giờ Trả phòng<span>*</span></label>
                                                 <Select
-                                                    // className={`form-control `}
+                                                    className={` ${hotel.GioTraPhong === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     value={hotel.GioTraPhong}
                                                     options={options}
                                                     // placeholder="Chọn hạng"
@@ -282,18 +290,53 @@ const AddHotel = () => {
                                                 />
                                             </div>
                                         </div>
+                                        <div className="col-lg-12 mb-2">
+                                            <div className="form-group mb-3">
+                                                <label className={`text-label ${styles.label}`}>Chính sách<span>*</span></label>
+                                                <textarea className={`form-control ${styles.formControl} `}></textarea>
+
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-12 mb-2">
+                                            <div className="form-group mb-3">
+                                                <label className={`text-label ${styles.label}`}>Giới thiệu<span>*</span></label>
+
+                                                <Editor
+                                                    onInit={() => "gfd"}
+                                                    initialValue="<p>This is the initial content of the editor.</p>"
+                                                    init={{
+                                                        menubar: false,
+                                                        plugins: ['image', 'code', 'table', 'link', 'media', 'codesample', 'lists'],
+                                                        toolbar: [
+                                                            'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright| forecolor backcolor | table link image media codesample',
+                                                        ],
+                                                        codesample_languages: [
+                                                            { text: 'HTML/XML', value: 'markup' },
+                                                            { text: 'JavaScript', value: 'javascript' },
+                                                            { text: 'CSS', value: 'css' },
+                                                            { text: 'PHP', value: 'php' },
+                                                            { text: 'Ruby', value: 'ruby' },
+                                                            { text: 'Python', value: 'python' },
+                                                            { text: 'Java', value: 'java' },
+                                                            { text: 'C', value: 'c' },
+                                                            { text: 'C#', value: 'csharp' },
+                                                            { text: 'C++', value: 'cpp' },
+                                                        ],
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <CheckFacility display={`${selectedSite === 2 ? 'block' : 'none'}`} />
-                                <PaymentIntput display={`${selectedSite === 3 ? 'block' : 'none'}`} />
-                                <AddMultiple display={`${selectedSite === 4 ? 'block' : 'none'}`} />
+                                <CheckFacility check={false} display={`${selectedSite === 2 ? 'block' : 'none'}`} />
+                                <AddMultiple display={`${selectedSite === 3 ? 'block' : 'none'}`} />
                                 <div className='text-end toolbar toolbar-bottom p-2'>
                                     {selectedSite !== 1 && (
                                         <ButtonPrimary onSubmit={handlePrev} className="btnLarge2">
                                             Lùi lại
                                         </ButtonPrimary>
                                     )}
-                                    {selectedSite !== 4 ? (
+                                    {selectedSite !== 3 ? (
                                         <ButtonPrimary onSubmit={handleNext} className="btnLarge2">
                                             Tiếp tục
                                         </ButtonPrimary>

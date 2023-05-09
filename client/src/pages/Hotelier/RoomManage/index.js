@@ -6,6 +6,7 @@ import { DropdownOption } from '~/components'
 import { Table } from 'react-bootstrap'
 // import FooterPaging from '~/components/FooterPaging/FooterPaging'
 import Select from 'react-select'
+import RoomCKS from '~/components/Table/RoomCKS'
 import { Link } from 'react-router-dom'
 
 function HotelTable() {
@@ -161,17 +162,17 @@ const RoomManage = () => {
         <div className={styles.content}>
             <div className="mt-4 d-flex justify-content-between align-items-center flex-wrap">
                 <div className={styles.leftContent}>
-                    <div className="row mt-2">
-                        <span className={`col-2 ${styles.leftTitle} `}>Khách sạn: </span>
-                        <span className="col-10">Anh yeu ba già khó tính</span>
+                    <div className="d-flex justify-content-start mt-2">
+                        <span className={` ${styles.leftTitle} `}>Khách sạn: </span>
+                        <span className="">Anh yeu ba già khó tính</span>
                     </div>
-                    <div className="row mt-2">
-                        <span className={`col-2 ${styles.leftTitle} `}>Địa chỉ: </span>
-                        <span className="col-10">77 đường chuyên dùng 9, Phường phú mỹ</span>
+                    <div className="d-flex justify-content-start mt-2">
+                        <span className={` ${styles.leftTitle} `}>Địa chỉ: </span>
+                        <span className="">77 đường chuyên dùng 9, Phường phú mỹ</span>
                     </div>
-                    <div className="row mt-2">
-                        <span className={`col-2 ${styles.leftTitle} `}>Điện thoại: </span>
-                        <span className="col-10">0985154345</span>
+                    <div className="d-flex justify-content-start mt-2">
+                        <span className={` ${styles.leftTitle} `}>Điện thoại: </span>
+                        <span className="">0985154345</span>
                     </div>
                 </div>
                 {/* <NavBar list={['Tất cả', 'chờ duyệt', 'hoạt động', 'Đã khóa']}></NavBar> */}
@@ -193,16 +194,11 @@ const RoomManage = () => {
             </div>
             <div className="row ">
                 <div className="col-xl-12">
-                    <div className="card">
-                        <div className="card-body p-0">
-                            <div className="table-responsive">
-                                <div id="room_wrapper" className="dataTables_wrapper no-footer">
-                                    <HotelTable />
-                                    {/* <FooterPaging /> */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    {/* <div id="room_wrapper" className="dataTables_wrapper no-footer"> */}
+                    <RoomCKS />
+                    {/* <FooterPaging /> */}
+                    {/* </div> */}
                 </div>
             </div>
         </div>
