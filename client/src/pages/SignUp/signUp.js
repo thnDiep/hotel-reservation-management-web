@@ -27,14 +27,14 @@ function SignUp() {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("auth/signup", {
-                TenDangNhap: 'manhtu',
+            const res = await axios.post("http://localhost:8800/auth/signup", {
+                HoTen: 'Nguyễn Đăng Mạnh Tú',
                 Email: "manhtu2272002@gmail.com",
                 MatKhau: "123",
             });
             // navigate("/")
         } catch (err) {
-            console.log(err)
+            console.log(err.response.data)
             console.log('sai')
         }
     };

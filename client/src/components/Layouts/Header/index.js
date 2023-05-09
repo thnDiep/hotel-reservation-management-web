@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import classes from './header.module.scss'
-import TitleButton from '~/components/Button/TitleButton'
+import TitleLinkButton from '~/components/Button/TitleButton'
 import ButtonPrimary from '~/components/Button/ButtonPrimary'
 import SideBar from '../DefaultLayout/SideBar/SideBar'
 import { Link } from 'react-router-dom'
@@ -23,7 +23,7 @@ function Header() {
                     />
                 </a>
                 <div className={classes.nav__title}>
-                    <TitleButton className="btnTitle" name="Ưu đãi" link="/">
+                    <TitleLinkButton className="btnTitle" name="Ưu đãi" link="/">
                         <svg width="16" height="16" fill="none" style={{ marginRight: '8px' }}>
                             <g clipPath="url(#ic_promo_svg__clip0_21534_217225)">
                                 <path
@@ -41,8 +41,8 @@ function Header() {
                                 </clipPath>
                             </defs>
                         </svg>
-                    </TitleButton>
-                    <TitleButton className="btnTitle" name="Giới thiệu nhận quà" link="/">
+                    </TitleLinkButton>
+                    <TitleLinkButton className="btnTitle" name="Giới thiệu nhận quà" link="/">
                         <svg width="16" height="16" fill="none" style={{ marginRight: '8px' }}>
                             <path
                                 d="M3.055 2.746a1.6 1.6 0 011.648-1.545C7.141 1.201 8 4.291 8 4.291H4.703a1.6 1.6 0 01-1.648-1.545v0zM11.296 4.292H8S8.858 1.2 11.296 1.2a1.6 1.6 0 011.649 1.545 1.599 1.599 0 01-1.649 1.546zM13.563 8.618v4.945a1.236 1.236 0 01-1.237 1.236H3.673a1.236 1.236 0 01-1.237-1.236V8.618"
@@ -57,8 +57,8 @@ function Header() {
                                 strokeLinejoin="round"
                             ></path>
                         </svg>
-                    </TitleButton>
-                    <TitleButton className="btnTitle" name="Hợp tác nhận quà" link="/">
+                    </TitleLinkButton>
+                    <TitleLinkButton className="btnTitle" name="Hợp tác nhận quà" link="/">
                         <svg width="16" height="16" fill="none" style={{ marginRight: '8px' }}>
                             <path
                                 d="M9.236 5.09L7.893 6.434a2.473 2.473 0 01-3.496 0l-.106-.106L7.337 3.28a4.372 4.372 0 016.182 0v0a4.373 4.373 0 01.662 5.334"
@@ -75,52 +75,49 @@ function Header() {
                                 strokeLinejoin="round"
                             ></path>
                         </svg>
-                    </TitleButton>
-                    <Link to="./registerPartner">
-                        <TitleButton className="btnTitle" name="Khách hàng doanh nghiệp" link="/">
-                            <svg width="17" height="16" fill="none" style={{ marginRight: '8px' }}>
-                                <path
-                                    d="M5.548 14.667h5.457c2.741 0 3.232-1.074 3.376-2.38l.511-5.334C15.076 5.327 14.6 4 11.687 4h-6.82C1.953 4 1.476 5.327 1.66 6.953l.511 5.334c.144 1.306.635 2.38 3.376 2.38zM5.549 4v-.534c0-1.18 0-2.133 2.182-2.133h1.091c2.183 0 2.183.953 2.183 2.133V4"
-                                    stroke="#1A202C"
-                                    strokeMiterlimit="10"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                ></path>
-                                <path
-                                    d="M9.64 8.667v.68c0 .726-.006 1.32-1.363 1.32-1.35 0-1.364-.587-1.364-1.314v-.686c0-.667 0-.667.682-.667h1.364c.682 0 .682 0 .682.667zM14.858 7.333a11.392 11.392 0 01-5.217 2.013M1.88 7.513a11.263 11.263 0 005.033 1.84"
-                                    stroke="#1A202C"
-                                    strokeMiterlimit="10"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                ></path>
-                            </svg>
-                        </TitleButton></Link>
-                    <Link to="./registerPartner">
-                        <TitleButton className="btnTitle" name="Đơn hàng" link="/" check="true">
-                            <svg width="16" height="16" fill="none" style={{ marginRight: '8px' }}>
-                                <path
-                                    d="M9.2 1.6v3.022a.756.756 0 00.755.755h3.022"
-                                    stroke="#1A202C"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                ></path>
-                                <path
-                                    d="M11.467 15.2H3.91A1.511 1.511 0 012.4 13.689V3.11A1.511 1.511 0 013.91 1.6H9.2l3.778 3.777v8.311a1.511 1.511 0 01-1.511 1.512zM5.422 6.133h.756M5.422 9.155h4.534M5.422 12.178h4.534"
-                                    stroke="#1A202C"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                ></path>
-                            </svg>
-                        </TitleButton>
-                    </Link>
+                    </TitleLinkButton>
+                    <TitleLinkButton link='./registerPartner' className="btnTitle" name="Khách hàng doanh nghiệp" >
+                        <svg width="17" height="16" fill="none" style={{ marginRight: '8px' }}>
+                            <path
+                                d="M5.548 14.667h5.457c2.741 0 3.232-1.074 3.376-2.38l.511-5.334C15.076 5.327 14.6 4 11.687 4h-6.82C1.953 4 1.476 5.327 1.66 6.953l.511 5.334c.144 1.306.635 2.38 3.376 2.38zM5.549 4v-.534c0-1.18 0-2.133 2.182-2.133h1.091c2.183 0 2.183.953 2.183 2.133V4"
+                                stroke="#1A202C"
+                                strokeMiterlimit="10"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            ></path>
+                            <path
+                                d="M9.64 8.667v.68c0 .726-.006 1.32-1.363 1.32-1.35 0-1.364-.587-1.364-1.314v-.686c0-.667 0-.667.682-.667h1.364c.682 0 .682 0 .682.667zM14.858 7.333a11.392 11.392 0 01-5.217 2.013M1.88 7.513a11.263 11.263 0 005.033 1.84"
+                                stroke="#1A202C"
+                                strokeMiterlimit="10"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            ></path>
+                        </svg>
+                    </TitleLinkButton>
+                    <TitleLinkButton link='./profile' className="btnTitle" name="Đơn hàng" check="true">
+                        <svg width="16" height="16" fill="none" style={{ marginRight: '8px' }}>
+                            <path
+                                d="M9.2 1.6v3.022a.756.756 0 00.755.755h3.022"
+                                stroke="#1A202C"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            ></path>
+                            <path
+                                d="M11.467 15.2H3.91A1.511 1.511 0 012.4 13.689V3.11A1.511 1.511 0 013.91 1.6H9.2l3.778 3.777v8.311a1.511 1.511 0 01-1.511 1.512zM5.422 6.133h.756M5.422 9.155h4.534M5.422 12.178h4.534"
+                                stroke="#1A202C"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            ></path>
+                        </svg>
+                    </TitleLinkButton>
 
-                    <TitleButton className="btnTitle" name="VND" link="/" check="true">
+                    <TitleLinkButton className="btnTitle" name="VND" link="/" check="true">
                         <img
                             src="https://storage.googleapis.com/tripi-assets/mytour/icons/icon_lang_vi.png"
                             className={classes.vietnam}
                             alt=""
                         />
-                    </TitleButton>
+                    </TitleLinkButton>
                     <div className={classes.annouce}>
                         <svg
                             width="20"
