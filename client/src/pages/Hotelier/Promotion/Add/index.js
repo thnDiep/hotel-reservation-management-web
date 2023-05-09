@@ -1,4 +1,4 @@
- import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import clsx from 'clsx'
 import { useNavigate } from 'react-router-dom'
@@ -7,12 +7,24 @@ import VoucherForm from './VoucherForm'
 import FlashSaleForm from './FlashSaleForm'
 import styles from '../Promotion.module.scss'
 import { NavHandle } from '~/components'
-import voucher from '~/assets/jsons/voucher.json'
+import promotion from '~/assets/jsons/promotion.json'
 
 function AddPromotion() {
     const navigate = useNavigate()
-
     const [showForm, setShowForm] = useState(0)
+    const [formData, setFormData] = useState({})
+
+    // Lấy dữ liệu cho form
+    useEffect(() => {
+        Axios.get('http://localhost:8800/cks/promotion/insert', { params: { idCKS: 1 } })
+            .then((response) => {
+                setFormData(response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [])
+
     const [voucherState, setVoucherState] = useState({
         fields: { start: new Date(), percent: 5, number: 100 },
         errors: {},
@@ -65,7 +77,6 @@ function AddPromotion() {
         fields: { BatDau: new Date(), IDKhungGio: 1, IDKhachSan: 1 },
         errors: {},
     })
-
     function handleAddFlashSale() {
         let validForm = true
 
@@ -106,14 +117,12 @@ function AddPromotion() {
             console.log(voucherState.fields)
             navigate('/cks/voucher', { state: { active: 0 } })
         } else if (showForm === 1 && handleAddFlashSale()) {
-            console.log(flashSaleState.fields)
-
-            Axios.post('http://localhost:8800/api/cks/voucher/insert', { khuyenmai: flashSaleState.fields }).then(
-                () => {
+            Axios.post('http://localhost:8800/cks/promotion/insert', { khuyenmai: flashSaleState.fields })
+                .then(() => {
                     alert('Thêm thành công')
                     navigate('/cks/voucher', { state: { active: 1 } })
-                },
-            )
+                })
+                .catch((error) => console.log(error))
         } else {
             window.scrollTo(0, 0)
         }
@@ -122,19 +131,24 @@ function AddPromotion() {
     return (
         <div className={styles.container}>
             <div className={clsx(styles.content, styles.add)}>
-                <NavHandle list={voucher.menu} active={showForm} onActive={setShowForm} />
+                <NavHandle list={promotion.menu} active={showForm} onActive={setShowForm} />
 
                 {showForm === 0 && (
                     <div className={styles.form}>
                         <h3 className={styles.form__header}>Thêm Voucher</h3>
-                        <VoucherForm data={voucherState} onEdit={setVoucherState} />
+                        <VoucherForm formData={formData} data={voucherState} onEdit={setVoucherState} styles={styles} />
                     </div>
                 )}
 
                 {showForm === 1 && (
                     <div className={styles.form}>
                         <h3 className={styles.form__header}>Thêm FlashSale</h3>
-                        <FlashSaleForm data={flashSaleState} onEdit={setFlashSaleState} />
+                        <FlashSaleForm
+                            formData={formData}
+                            data={flashSaleState}
+                            onEdit={setFlashSaleState}
+                            styles={styles}
+                        />
                     </div>
                 )}
 

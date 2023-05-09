@@ -94,6 +94,12 @@
         padding-bottom: 8px;
         width: 100%;
         position: relative;
+
+        &:has(input[type='number']) {
+            .form__error {
+                right: calc(100% - 70px - 180px);
+            }
+        }
     }
 
     &__error {
@@ -226,8 +232,6 @@
 
     textarea {
         overflow-y: auto;
-    }
-    .input {
     }
 }
 
