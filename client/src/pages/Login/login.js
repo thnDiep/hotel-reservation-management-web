@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './login.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
+    const Nav = useNavigate()
     const data = JSON.parse(localStorage.getItem('identification'))
+    const [valid, setValid] = useState(false)
 
     const [email, setEmail] = useState(() => {
         return { value: '', error: ' ', isValid: false }
@@ -15,10 +18,13 @@ function Login() {
             const identifier = setTimeout(() => {
                 if (!filter.test(email.value)) {
                     setEmail({ ...email, error: 'Email không đúng ' })
+                    setValid(false)
                 } else if (email.value.length === 0) {
                     setEmail({ ...email, error: 'Thông tin bắt buộc' })
+                    setValid(false)
                 } else {
                     setEmail({ ...email, error: ' ' })
+                    setValid(true)
                 }
             }, 500)
             return () => {
@@ -27,7 +33,11 @@ function Login() {
         }
     }, [email.value])
 
-    function handleLogin() {}
+    function handleLogin() {
+        if (valid) {
+            Nav('/')
+        }
+    }
 
     return (
         <div className={styles.wrap}>
@@ -55,7 +65,10 @@ function Login() {
                 <div>
                     <p className={styles.title}>Đăng nhập vào tài khoản</p>
                     <div>
-                        <label className={styles.label}>Email</label>
+                        <label className={styles.label}>
+                            Email hoặc số điện thoại
+                            <span>*</span>
+                        </label>
                         <div>
                             <input
                                 className={styles.fieldInput}
@@ -69,7 +82,10 @@ function Login() {
                         <p className={styles.err}>{email.error}</p>
                     </div>
                     <div>
-                        <label className={styles.label}>Mật khẩu</label>
+                        <label className={styles.label}>
+                            Mật khẩu
+                            <span>*</span>
+                        </label>
                         <div>
                             <input
                                 className={styles.fieldInput}
@@ -81,9 +97,9 @@ function Login() {
                         </div>
                     </div>
 
-                    <form action="/">
-                        <input type="button" value="Đăng nhập" onClick={handleLogin} className={styles.loginBtn} />
-                    </form>
+                    <button onClick={handleLogin} className={styles.loginBtn}>
+                        Đăng nhập
+                    </button>
 
                     <p className={styles.title3}>
                         <p>

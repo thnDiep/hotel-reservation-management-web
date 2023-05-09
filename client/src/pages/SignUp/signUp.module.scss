@@ -10,21 +10,18 @@
 .form{
     padding: 3.125rem;
     width: 540px;
-    height: 560px;
-    // background-color: white;    
+    height: 560px; 
     background: #fff;
-    border-radius: .3125rem;
+    border-radius: .5rem;
     box-shadow: 0 0 2.1875rem 0 hsla(215,9%,64%,.15);
     input:focus, :active{
-        border-color: red;
+        border-color: lightskyblue;
     }
 }
 
 .infoWeb{
     display: flex;
-    margin-top: 1rem;
     justify-content: center;
-    display: flex;
     width: 90%;
     .logo{
         height: 80px;
@@ -36,38 +33,50 @@
         font-size: 30px;
         font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         margin-top: 5px;
+        color: #ff3366;
     }
     .description{
         font-size: 14px;
         color: gray;
+        // margin-top: -5px;
     }
 }
+
 
 
 .title1{
 display: flex;
 justify-content: center;
-margin-top: 15px;
-font-weight: 600;
+margin-top: 25px;
+font-weight: 700;
 margin-bottom: 1rem;
 }
 
 .title2{
     font-size: 13px;
+    margin-top: 10px;
 
 }
 
 .label {
-    color: #727f95;width: 440px;
+    color: #727f95;
+    width: 440px;
     font-weight: 700;
     margin-top: 10px;
+    span{
+        color: red;
+    }
 }
 
 .label2 {
-    color: #727f95;width: 440px;
+    color: #727f95;
+    width: 440px;
     font-weight: 700;
     margin-top: 10px;
-    margin-top: -2rem;
+    margin-top: -30px;
+    span{
+        color: red;
+    }
 }
        
 
@@ -88,7 +97,7 @@ margin-bottom: 1rem;
 
 .loginBtn{
     margin-top: 2rem;
-    background-color: red;
+    background-color: #ff3366;
     width: 100%;
     height: 4rem;
     border: none;
@@ -116,4 +125,5 @@ margin-bottom: 1rem;
     justify-content:flex-end;
     display: flex;
     height: 2rem;
+    margin-top: -10px;
 }

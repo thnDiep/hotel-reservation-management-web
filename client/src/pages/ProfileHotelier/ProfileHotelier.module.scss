@@ -1,0 +1,102 @@
+body {
+    font-family: Open Sans, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    text-align: left;
+    color: #172038;
+    background-color: #f8f9fe;
+}
+.main-content {
+    margin-top: 50px;
+}
+.container1 {
+    border: none;
+    .card-header {
+        background-color: #f6e4e3;
+    }
+    .btn {
+        font-size: 14px;
+        padding: 10px 16px;
+        border: none;
+        min-height: 20px;
+        font-weight: 600;
+        border-radius: 8px;
+        text-transform: none;
+        margin: 12px 0;
+        width: auto;
+        border: 3px dashed rgb(255, 51, 102);
+        color: rgb(255, 51, 102) !important;
+        margin-right: 3px;
+    }
+    .btn:hover {
+        background-color: rgb(255, 51, 102);
+        color: #fff !important;
+    }
+    .bodyCard {
+        background-color: #f7fafc;
+    }
+    // chu xam dau muc
+    .heading-small {
+        font-size: 1.6rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+    .text-muted {
+        color: #8898aa !important;
+    }
+    // label
+    .form-control-label {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #525f7f;
+    }
+    label {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
+    //input
+    .form-control {
+        border-color: rgba(50, 151, 211, 0.25);
+        font-size: 1.4rem;
+        line-height: 1.5;
+        display: block;
+        width: 100%;
+        height: calc(4rem + 2px);
+        padding: 0.625rem 0.75rem;
+        color: #8898aa;
+        border-radius: 0.375rem;
+        background-color: #fff;
+        background-clip: padding-box;
+        margin-bottom: 3px;
+    }
+    .form-control-alternative {
+        transition: box-shadow 0.15s ease;
+        border: 0;
+        box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+    }
+}
+.card-profile {
+    .card-header {
+        background-color: #f6e4e3;
+    }
+    //profile image
+    .cardImage {
+        position: absolute;
+        left: 58%;
+
+        transition: all 0.15s ease;
+        transform: translate(-50%, -30%);
+    }
+    .rounded-circle {
+        border-radius: 50% !important;
+        max-width: 38%;
+    }
+    .slogan {
+        font-style: italic;
+        font-size: 14px;
+    }
+}

@@ -1,141 +1,84 @@
+import styles from './successCheckOut.module.scss'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faCheckCircle, faMarsDouble, faStar } from '@fortawesome/free-solid-svg-icons'
 import { ButtonPrimary } from '~/components'
 import clsx from 'clsx'
-import moment from 'moment'
-import styles from './orderResult.module.scss'
 import { NavLink } from 'react-router-dom'
 
-function OrderResult() {
+function SuccessCheckOut() {
     return (
         <div className={styles.wrap}>
             <div className={styles.form}>
                 <div className={styles.contentForm}>
-                    <img
-                        className={styles.checkIcon}
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Eo_circle_yellow_checkmark.svg/1200px-Eo_circle_yellow_checkmark.svg.png"
-                    />
+                    <div className={styles.checkIcon}>
+                        <svg width="64" height="64" fill="none">
+                            <g clip-path="url(#icon_payment_settled_hotel_svg__clip0)">
+                                <path
+                                    d="M32 64c17.673 0 32-14.327 32-32C64 14.327 49.673 0 32 0 14.327 0 0 14.327 0 32c0 17.673 14.327 32 32 32z"
+                                    fill="url(#icon_payment_settled_hotel_svg__paint0_linear)"
+                                ></path>
+                                <path
+                                    d="M23.823 46.435L40.278 62.89C53.905 59.255 64 46.84 64 32v-.908L51.079 19.18 23.823 46.435z"
+                                    fill="#37A866"
+                                ></path>
+                                <path
+                                    d="M32.808 39.167c1.413 1.414 1.413 3.836 0 5.25l-2.928 2.927c-1.413 1.413-3.836 1.413-5.249 0l-12.82-12.921c-1.413-1.413-1.413-3.836 0-5.25l2.927-2.927c1.414-1.413 3.836-1.413 5.25 0l12.82 12.921z"
+                                    fill="url(#icon_payment_settled_hotel_svg__paint1_linear)"
+                                ></path>
+                                <path
+                                    d="M44.013 16.858c1.413-1.413 3.836-1.413 5.249 0l2.927 2.928c1.413 1.413 1.413 3.836 0 5.249L29.981 47.142c-1.413 1.413-3.836 1.413-5.25 0l-2.927-2.927c-1.413-1.414-1.413-3.836 0-5.25l22.209-22.107z"
+                                    fill="url(#icon_payment_settled_hotel_svg__paint2_linear)"
+                                ></path>
+                            </g>
+                            <defs>
+                                <linearGradient
+                                    id="icon_payment_settled_hotel_svg__paint0_linear"
+                                    x1="19"
+                                    y1="3"
+                                    x2="45.5"
+                                    y2="61"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#5BDC91"></stop>
+                                    <stop offset="1" stop-color="#34AC66"></stop>
+                                </linearGradient>
+                                <linearGradient
+                                    id="icon_payment_settled_hotel_svg__paint1_linear"
+                                    x1="32"
+                                    y1="22.5"
+                                    x2="32"
+                                    y2="45.5"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#fff"></stop>
+                                    <stop offset="1" stop-color="#B1EFCB"></stop>
+                                </linearGradient>
+                                <linearGradient
+                                    id="icon_payment_settled_hotel_svg__paint2_linear"
+                                    x1="32"
+                                    y1="22.5"
+                                    x2="32"
+                                    y2="45.5"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#fff"></stop>
+                                    <stop offset="1" stop-color="#B1EFCB"></stop>
+                                </linearGradient>
+                                <clipPath id="icon_payment_settled_hotel_svg__clip0">
+                                    <path fill="#fff" d="M0 0h64v64H0z"></path>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
                     <div className={styles.guideline}>
-                        <p className={styles.mainTitle}>Đặt phòng thành công</p>
+                        <p className={styles.mainTitle}>Thanh toán thành công</p>
                         <p className={styles.codeOrder}>Mã đặt phòng: H1223233</p>
-                        <p className={styles.timeToPay}>
-                            Quý khách vui lòng thanh toán theo thông tin hướng dẫn dưới đây.
-                        </p>
-                        <p>
-                            Thời hạn thanh toán trước
-                            <span class={styles.payTime}> 02:42, Thứ sáu, ngày 05/05/2023.</span>
-                        </p>
-                        <p className={styles.remind}>
-                            Quá thời hạn thanh toán trên, chúng tôi không thể đảm bảo giữ phòng cho Quý Khách.
-                        </p>
                     </div>
 
-                    <div className={styles.accountInfo}>
-                        <div className={styles.frameLineBottom}>
-                            <h6 className={styles.title}>Thông tin chuyển khoản</h6>
-
-                            <div className={styles.info__part}>
-                                <span className={styles.subTitle}>Ngân hàng</span>
-                                <div className="d-flex-js">
-                                    <span className={styles.title}>
-                                        Ngân hàng TMCP Kỹ Thương Việt Nam – CN Thăng Long
-                                    </span>
-                                    <img src="https://storage.googleapis.com/tripi-assets/images/banks_list/techcombank_logo.png" />
-                                </div>
-                            </div>
-
-                            <div className={styles.info__part}>
-                                <span className={styles.subTitle}>Số tài khoản</span>
-                                <div className="d-flex-column-r">
-                                    <span className={styles.title}>M555P553392</span>
-                                    <div className={styles.copy}>
-                                        <svg width="16" height="16" fill="none">
-                                            <path
-                                                d="M12 5.333H6.666c-.736 0-1.333.597-1.333 1.334V12c0 .736.597 1.334 1.333 1.334H12c.736 0 1.333-.598 1.333-1.334V6.667c0-.737-.597-1.333-1.333-1.333z"
-                                                stroke="#00B6F3"
-                                                strokeWidth="1.2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            ></path>
-                                            <path
-                                                d="M10.667 5.333V4a1.334 1.334 0 00-1.333-1.333H4A1.333 1.333 0 002.667 4v5.333A1.333 1.333 0 004 10.666h1.334"
-                                                stroke="#00B6F3"
-                                                strokeWidth="1.2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            ></path>
-                                        </svg>
-                                        <span>Sao chép</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles.info__part}>
-                                <span className={styles.subTitle}>Tên chủ tài khoản</span>
-                                <div className="d-flex-js">
-                                    <span className={styles.title}>Ctcp Du Lich Vn Vntravel H1219655</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={styles.info__part}>
-                            <span className={styles.subTitle}>Số tiền</span>
-                            <div className="d-flex-column-r">
-                                <span className={styles.title}>
-                                    19.294.000 <sup>₫</sup>
-                                </span>
-                                <div className={styles.copy}>
-                                    <svg width="16" height="16" fill="none">
-                                        <path
-                                            d="M12 5.333H6.666c-.736 0-1.333.597-1.333 1.334V12c0 .736.597 1.334 1.333 1.334H12c.736 0 1.333-.598 1.333-1.334V6.667c0-.737-.597-1.333-1.333-1.333z"
-                                            stroke="#00B6F3"
-                                            strokeWidth="1.2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        ></path>
-                                        <path
-                                            d="M10.667 5.333V4a1.334 1.334 0 00-1.333-1.333H4A1.333 1.333 0 002.667 4v5.333A1.333 1.333 0 004 10.666h1.334"
-                                            stroke="#00B6F3"
-                                            strokeWidth="1.2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        ></path>
-                                    </svg>
-                                    <span>Sao chép</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={styles.info__part}>
-                            <span className={styles.subTitle}>Nội dung chuyển khoản</span>
-                            <div className="d-flex-column-r">
-                                <span className={styles.title}>THANHTOAN 2XFS553392</span>
-                                <div className={styles.copy}>
-                                    <svg width="16" height="16" fill="none">
-                                        <path
-                                            d="M12 5.333H6.666c-.736 0-1.333.597-1.333 1.334V12c0 .736.597 1.334 1.333 1.334H12c.736 0 1.333-.598 1.333-1.334V6.667c0-.737-.597-1.333-1.333-1.333z"
-                                            stroke="#00B6F3"
-                                            strokeWidth="1.2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        ></path>
-                                        <path
-                                            d="M10.667 5.333V4a1.334 1.334 0 00-1.333-1.333H4A1.333 1.333 0 002.667 4v5.333A1.333 1.333 0 004 10.666h1.334"
-                                            stroke="#00B6F3"
-                                            strokeWidth="1.2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        ></path>
-                                    </svg>
-                                    <span>Sao chép</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr className={styles.line} />
                     <div className={styles.orderInfo}>
                         <div className={styles.info}>
+                            <p className={styles.receipt}>Biên Lai</p>
                             <div className={styles.info__hotel}>
                                 <div className={styles.info__hotel__intro}>
                                     <h3 className={styles.title}>Khách Sạn Mường Thanh Holiday Mũi Né</h3>
@@ -340,4 +283,4 @@ function OrderResult() {
     )
 }
 
-export default OrderResult
+export default SuccessCheckOut

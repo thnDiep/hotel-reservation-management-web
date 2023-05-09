@@ -18,7 +18,7 @@
     width: 100%;
     position: relative;
     background: white;
-    border-top: solid 6px #FFD700;
+    border-top: solid 4px #48BB78;
     border-radius: 8px;
     padding-bottom: 2rem;
 }
@@ -26,9 +26,8 @@
 
 .checkIcon{
     padding-top: 2rem;
-    margin: 0 auto;
     display: flex;
-    width: 7rem;
+    justify-content: center;
 }
 
 .guideline{
@@ -42,8 +41,8 @@
         line-height: 19px;
     }
     .codeOrder{
-        color: #dfc103	;
-        border: 1px solid #FFDF00	;
+        color: rgb(72, 187, 120);
+        border: 1px solid rgb(72, 187, 120);
         padding: 2px 4px;
         line-height: 17px;
         border-radius: 4px;
@@ -51,10 +50,7 @@
         width:fit-content;
         margin-bottom: 15px;
     }
-    .timeToPay{
-        font-weight: normal;
-        line-height: 22px;
-    }
+
     .payTime{
         color: rgb(229, 62, 62);
         font-weight: 600;
@@ -164,6 +160,7 @@
     padding-top: 20px;
     padding-left: 1rem;
     padding-right: 5px;
+    border-top: 1px solid rgb(225, 225, 225);
     .hotelImage {
         img {
             width: 178px;
@@ -176,7 +173,15 @@
     .info {
         margin-left: 16px;
         display: flex;
-        flex-direction: column;
+        flex-direction: column;            
+        .receipt{
+            // margin-top: 10px;
+            margin: 0 auto;
+            font-size: 25px;
+            font-weight: 700;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            margin-bottom: 2rem;
+        }
 
         &__hotel {
             .rating {
@@ -189,8 +194,10 @@
                     padding: 0 2px;
                 }
             }
+
             &__intro{
                 border-bottom: 1px solid #E2E8F0;
+
             }
         }
 
