@@ -15,6 +15,20 @@
 .content {
     // padding: 24px 20px 20px 20px;
 }
+
+.tableWrapper {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #fff;
+    border: 0 solid transparent;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.3125rem 0.3125rem 0 rgba(82, 63, 105, 0.05);
+    height: calc(100% - 30px);
+    margin-bottom: 1.875rem;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    padding-bottom: 0;
+}
 .cusTable {
     tbody {
         border-top: 1px solid #f2f1f1 !important;
@@ -22,9 +36,8 @@
             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         }
     }
-    tbody,
     tr {
-        overflow: hidden;
+        // position: relative;
     }
     img {
         height: 5rem;
@@ -37,7 +50,7 @@
         color: #000;
         font-size: 1.5rem;
         font-weight: 800;
-        padding: 1.25rem 0.9375rem;
+        //padding: 1.25rem 0.9375rem;
         text-transform: capitalize;
         white-space: nowrap;
     }
@@ -98,11 +111,18 @@
     }
 
     .status {
+        width: 111px !important;
         cursor: default !important;
         padding: 7px 25px !important;
         &Pending {
             cursor: pointer !important;
+            width: 111px !important;
             padding: 7px 25px;
+        }
+        &Pending1 {
+            cursor: pointer !important;
+            width: 111px !important;
+            padding: 7px 20px;
         }
     }
 }
@@ -152,19 +172,13 @@
         transform: translate(-50%, -50%) scale(0.6);
     }
 }
-.icon:hover {
-    color: red;
-    box-shadow: 0 0 5px #ff3366;
-    text-shadow: 0 0 5px #ff3366;
-}
-.icon:hover::before {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px #ff3366;
-}
 
 .codeOrder {
     cursor: pointer;
 }
 .codeOrder:hover {
     color: #0d6efd;
+}
+.relative {
+    position: relative;
 }

@@ -10,7 +10,7 @@ function OrderDetailCard() {
     return (
         <React.Fragment>
             <div className={styles.container}>
-                <div className={styles.tagInfo}>
+                {/* <div className={styles.tagInfo}>
                     <div className={styles.tagInfo__part}>
                         <div className={styles.background}>
                             <svg width="84" height="64" fill="none">
@@ -66,12 +66,12 @@ function OrderDetailCard() {
                         <span className={styles.title}>Ngày đặt</span>
                         <span className={styles.title}>{moment(new Date()).format('DD/MM/yyyy HH:mm')}</span>
                     </div>
-                </div>
+                </div> */}
 
                 <div className={styles.checkoutInfo}>
-                    <div className={styles.time}>
+                    {/* <div className={styles.time}>
                         <span>Vui lòng thanh toán trước 22:35, Thứ tư, ngày 03/05/2023</span>
-                    </div>
+                    </div> */}
                     <div className={styles.info}>
                         <h6 className={styles.title}>Thông tin chuyển khoản</h6>
 
@@ -188,7 +188,7 @@ function OrderDetailCard() {
                             </div>
 
                             <div className={styles.subTitle3}>
-                                <svg width="16" height="16" fill="none">
+                                <svg width="19" height="16" fill="none">
                                     <path
                                         d="M8 9.333a2 2 0 100-4 2 2 0 000 4z"
                                         stroke="#1A202C"
@@ -221,7 +221,7 @@ function OrderDetailCard() {
 
                                 <div className={styles.info__time__part}>
                                     <div className={styles.subTitle2}>Số đêm</div>
-                                    <div className={styles.subTitle3}>06</div>
+                                    <div className={`${styles.subTitle3} text-center`}>06</div>
                                 </div>
                             </div>
 
@@ -334,8 +334,8 @@ function OrderDetailCard() {
                             <div className={styles.info__order__part}>
                                 <h3 className={styles.title}>Yêu cầu đặc biệt</h3>
                                 <div className={styles.content1}>
-                                    <span className={styles.subTitle2}>Yêu cầu đặc biệt</span>
-                                    <span className={styles.subTitle3}>phòng 1: Grand Suite</span>
+                                    {/* <span className={styles.subTitle2}>Yêu cầu đặc biệt</span> */}
+                                    <span className={styles.subTitle3}>Phòng 1: Grand Suite</span>
                                     <div className={styles.subTitle3}>
                                         <FontAwesomeIcon className={styles.icon} icon={faCheckCircle} />
                                         <span>1 giường Queen</span>
@@ -397,7 +397,7 @@ function OrderDetailCard() {
                                 <h3 className={styles.title}>Thanh toán</h3>
                                 <div className={clsx(styles.content1, 'flex-1')}>
                                     <div className={styles.checkout}>
-                                        <span>Phương thức thanh toán</span>
+                                        <span>Phương thức thanh toán: </span>
                                         <span>Chuyển khoản ngân hàng</span>
                                     </div>
                                     <div className={styles.checkout}>
