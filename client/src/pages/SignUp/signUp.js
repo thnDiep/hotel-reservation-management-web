@@ -28,7 +28,7 @@ function SignUp() {
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:8800/auth/signup", {
-                TenDangNhap: 'manhtu',
+                HoTen: 'Nguyễn Đăng Mạnh Tú',
                 Email: "manhtu2272002@gmail.com",
                 MatKhau: "123",
             });

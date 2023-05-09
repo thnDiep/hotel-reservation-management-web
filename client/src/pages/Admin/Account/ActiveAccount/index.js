@@ -1,6 +1,6 @@
 import styles from './activeAccount.module.scss'
 import clsx from 'clsx'
-import TitleButton from '~/components/Button/TitleButton'
+import TitleLinkButton from '~/components/Button/TitleButton'
 import { Table } from 'react-bootstrap'
 import { NavLink } from '~/components'
 import nav from '~/assets/jsons/nav.json'

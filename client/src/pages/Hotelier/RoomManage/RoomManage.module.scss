@@ -1,20 +1,26 @@
 .card-table {
     & th {
         padding: 15px 16px;
+
         & :first-child {
             // margin-left: -4px;
         }
-    } // background-color: #000;
+    }
+
+    // background-color: #000;
 }
+
 .room-list-bx {
     img {
         height: 4.813rem;
         width: 9.375rem;
     }
 }
+
 .content {
     // padding: 24px 20px 20px 20px;
 }
+
 // .custom {
 //     & :first-child {
 //         border-top: 1.4px solid red !important;
@@ -24,17 +30,21 @@
 .cusTable {
     & th {
         padding: 15px 16px;
+
         & :first-child {
             // margin-left: -4px;
         }
     }
+
     tbody {
         border-top: 2px solid #f2f1f1 !important;
     }
+
     tbody,
     tr {
         overflow: hidden;
     }
+
     img {
         height: 6.5rem;
         width: 13rem;
@@ -53,6 +63,7 @@
         line-height: 1.6;
         font-weight: 500;
         color: #757575;
+
         &.primary {
             font-size: 1.6rem;
             font-weight: 600;
@@ -123,18 +134,23 @@
         transform: translate(-50%, -50%) scale(0.6);
     }
 }
+
 .leftContent {
     width: 70%;
     font-family: Mt, -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 14px;
 }
+
 .leftTitle {
-    text-align: end;
+    margin-left: 40px;
     font-weight: 600;
+    width: 90px;
 }
+
 .selectHotel {
-    width: 100%;
+    width: 230px;
 }
+
 // .rightContent {
 //     width: 20%;
 // }

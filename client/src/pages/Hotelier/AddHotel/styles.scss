@@ -7,7 +7,7 @@
     margin-bottom: 30px;
     overflow: hidden;
     // color: lightgrey;
-    margin-left: 5%;
+    margin-left: 20%;
 }
 
 #progressbar .active {
@@ -44,7 +44,7 @@
 
 #progressbar #confirm:before {
     top: 10px;
-    content: "4";
+    content: "3";
 }
 
 /*ProgressBar before any progress*/
