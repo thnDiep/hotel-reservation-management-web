@@ -35,14 +35,7 @@ const Sidebar = ({ checkHide }) => {
                 <i className="bx bxs-smile icon"></i> AdminSite
             </Link>
             <ul className="side-menu">
-                <li>
-                    <Link to="/">
-                        <i className="bx bxs-dashboard icon"></i> Dashboard
-                    </Link>
-                </li>
-                <li className="divider" data-text="main">
-                    Main
-                </li>
+
                 {chooses.map((choose) => {
                     console.log(choose.name)
                     return (

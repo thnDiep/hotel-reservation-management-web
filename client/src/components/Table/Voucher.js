@@ -1,10 +1,8 @@
 import { Table } from 'react-bootstrap'
 import clsx from 'clsx'
+
 import { DropdownOption } from '~/components'
 import styles from './Table.module.scss'
-
-const data = ['ID', 'Mã khuyến mãi', 'Phần trăm', 'Bắt đầu', 'Kết thúc', 'Số lượng', 'Trạng thái', '']
-const option = ['Chỉnh sửa', 'Ngừng khuyến mãi', 'Xóa']
 
 const vouchers = [
     {
@@ -37,7 +35,8 @@ const vouchers = [
     },
 ]
 
-function VoucherTable() {
+function VoucherTable({ header, option, data }) {
+    console.log(data)
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={styles.cusTable}>
@@ -46,7 +45,7 @@ function VoucherTable() {
                         <th className={styles.center}>
                             <input type="checkbox" className={styles.checkBox} />
                         </th>
-                        {data.map((item, index) => (
+                        {header.map((item, index) => (
                             <th key={index} className={styles.center}>
                                 <h3 className={styles.title}>{item}</h3>
                             </th>

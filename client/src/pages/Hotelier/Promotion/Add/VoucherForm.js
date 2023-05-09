@@ -1,15 +1,13 @@
 import { Editor } from '@tinymce/tinymce-react'
 import React, { useRef, useState } from 'react'
-import Select from 'react-select'
 
 import clsx from 'clsx'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { vi } from 'date-fns/locale'
 import './datetime.scss'
-import styles from '../Promotion.module.scss'
 
-function VoucherForm({ data, onEdit }) {
+function VoucherForm({ data, onEdit, formData, styles }) {
     const editorRef = useRef(null)
     const log = () => {
         if (editorRef.current) {
@@ -49,11 +47,18 @@ function VoucherForm({ data, onEdit }) {
                         <label className={styles.title} htmlFor="ks">
                             Khách sạn áp dụng <sup>*</sup>
                         </label>
-                        <select name="khachSan" id="ks">
-                            <option value="1">Khách sạn Thanh Đa</option>
-                            <option value="2">Khách sạn Nikko</option>
-                            <option value="3">Khách sạn Đà Lạt</option>
-                            <option value="4">Khách sạn Cà Mau</option>
+                        <select
+                            name="khachSan"
+                            id="ks"
+                            value={data.fields.IDKhachSan}
+                            onChange={(e) => handleChange(e, 'IDKhachSan')}
+                        >
+                            {formData.hotels &&
+                                formData.hotels.map((hotel, index) => (
+                                    <option key={index} value={hotel.ID}>
+                                        {hotel.Ten}
+                                    </option>
+                                ))}
                         </select>
                     </div>
                 </div>

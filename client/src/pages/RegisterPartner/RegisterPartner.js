@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import classes from './RegisterPartner.module.scss'
 import { ButtonPrimary } from '~/components'
+import axios from "axios";
 const RegisterPartner = () => {
     const [enteredNameCompany, setEnteredNameCompany] = useState(() => {
         return { value: '', error: '', isValid: false }
@@ -198,6 +199,24 @@ const RegisterPartner = () => {
     const handleOptionChange = () => {
         setSelectedOption(!selectedOption)
     }
+
+    const handleSubmit = async (e) => {
+        // e.preventDefault();
+        // try {
+        //     const res = await axios.post("auth/login", {
+        //         HoTen: 'manhtu',
+        //         TenCongTy: enteredNameCompany.value,
+        //         DiaChi: enteredAddress.value,
+        //         Email: "manhtu2272002@gmail.com",
+        //         MatKhau: "123",
+        //     });
+        //     // navigate("/")
+        // } catch (err) {
+        //     console.log(err)
+        //     console.log('sai')
+        // }
+    }
+
     return (
         <form>
             <div className={`${classes.myContainer}`}>
@@ -224,9 +243,8 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="nameCompany"
                                                     value={enteredNameCompany.value}
-                                                    className={`${
-                                                        enteredNameCompany.error !== '' && classes.lineUnderWhenError
-                                                    }`}
+                                                    className={`${enteredNameCompany.error !== '' && classes.lineUnderWhenError
+                                                        }`}
                                                     onChange={nameCompanyChangeHandler}
                                                     placeholder="Nhập tên công ty"
                                                 />
@@ -263,9 +281,8 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="address"
                                                     value={enteredAddress.value}
-                                                    className={`${
-                                                        enteredAddress.error !== '' && classes.lineUnderWhenError
-                                                    }`}
+                                                    className={`${enteredAddress.error !== '' && classes.lineUnderWhenError
+                                                        }`}
                                                     onChange={addressChangeHandler}
                                                     placeholder="Nhập địa chỉ"
                                                 />
@@ -283,9 +300,8 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="tax"
                                                     value={enteredTaxCode.value}
-                                                    className={`${
-                                                        enteredTaxCode.error !== '' && classes.lineUnderWhenError
-                                                    }`}
+                                                    className={`${enteredTaxCode.error !== '' && classes.lineUnderWhenError
+                                                        }`}
                                                     onChange={taxCodeChangeHandler}
                                                     placeholder="Nhập mã số thuế"
                                                 />
@@ -306,9 +322,8 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="contactUser"
                                                     value={enteredUserName.value}
-                                                    className={`${
-                                                        enteredUserName.error !== '' && classes.lineUnderWhenError
-                                                    }`}
+                                                    className={`${enteredUserName.error !== '' && classes.lineUnderWhenError
+                                                        }`}
                                                     onChange={useNameChangeHandler}
                                                     placeholder="Nhập tên người liên hệ"
                                                 />
@@ -326,9 +341,8 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="phone"
                                                     value={enteredPhoneNumber.value}
-                                                    className={`${
-                                                        enteredPhoneNumber.error !== '' && classes.lineUnderWhenError
-                                                    }`}
+                                                    className={`${enteredPhoneNumber.error !== '' && classes.lineUnderWhenError
+                                                        }`}
                                                     onChange={phoneNumberChangeHandler}
                                                     placeholder="Nhập số điện thoại"
                                                 />
@@ -346,9 +360,8 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="email"
                                                     value={enteredEmail.value}
-                                                    className={`${
-                                                        enteredEmail.error !== '' && classes.lineUnderWhenError
-                                                    }`}
+                                                    className={`${enteredEmail.error !== '' && classes.lineUnderWhenError
+                                                        }`}
                                                     onChange={emailChangeHandler}
                                                     placeholder="Nhập địa chỉ email"
                                                 />
@@ -369,9 +382,8 @@ const RegisterPartner = () => {
                                                     type="password"
                                                     name="pass"
                                                     value={enteredPass.value}
-                                                    className={`${
-                                                        enteredPass.error !== '' && classes.lineUnderWhenError
-                                                    }`}
+                                                    className={`${enteredPass.error !== '' && classes.lineUnderWhenError
+                                                        }`}
                                                     onChange={passChangeHandler}
                                                     placeholder="******"
                                                 />
@@ -389,9 +401,8 @@ const RegisterPartner = () => {
                                                     type="password"
                                                     name="rePass"
                                                     value={enteredRePass.value}
-                                                    className={`${
-                                                        enteredRePass.error !== '' && classes.lineUnderWhenError
-                                                    }`}
+                                                    className={`${enteredRePass.error !== '' && classes.lineUnderWhenError
+                                                        }`}
                                                     onChange={rePassChangeHandler}
                                                     placeholder="******"
                                                 />
@@ -410,10 +421,9 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="introducedPhone"
                                                     value={enteredIntroducedPhoneNumber.value}
-                                                    className={`${
-                                                        enteredIntroducedPhoneNumber.error !== '' &&
+                                                    className={`${enteredIntroducedPhoneNumber.error !== '' &&
                                                         classes.lineUnderWhenError
-                                                    }`}
+                                                        }`}
                                                     onChange={introducedPhoneNumberChangeHandler}
                                                 />
                                             </div>
@@ -432,7 +442,7 @@ const RegisterPartner = () => {
                                 </div>
 
                                 <div className="d-flex justify-content-start pt-1 mx-0">
-                                    <ButtonPrimary type="button" className="btnLarge4" disabled={!selectedOption}>
+                                    <ButtonPrimary type="button" onSubmit={handleSubmit} className="btnLarge4" disabled={!selectedOption}>
                                         Gửi thông tin đăng ký
                                     </ButtonPrimary>
                                 </div>

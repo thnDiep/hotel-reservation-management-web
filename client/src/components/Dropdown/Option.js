@@ -21,6 +21,11 @@ function DropdownOption({ list }) {
         }
     }, [wrapperRef])
 
+    function handleClick(item) {
+        setShow(!show)
+        item.handle()
+    }
+
     return (
         <div className={clsx(styles.dropdown, styles.option)} ref={wrapperRef}>
             <div className={clsx(styles.dropdownOption)} onClick={() => setShow(!show)}>
@@ -29,10 +34,15 @@ function DropdownOption({ list }) {
             {show && (
                 <div className={clsx(styles.dropdownMenu)}>
                     {list.map((item, index) => (
+                        <div key={index} className={clsx(styles.dropdownItem)} onClick={() => handleClick(item)}>
+                            <span>{item.name}</span>
+                        </div>
+                    ))}
+                    {/* {list.map((item, index) => (
                         <div key={index} className={clsx(styles.dropdownItem)} onClick={() => setShow(!show)}>
                             {item}
                         </div>
-                    ))}
+                    ))} */}
                 </div>
             )}
         </div>

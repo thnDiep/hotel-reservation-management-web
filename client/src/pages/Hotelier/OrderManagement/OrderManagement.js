@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
-import TitleButton from '~/components/Button/TitleButton'
+import TitleLinkButton from '~/components/Button/TitleButton'
 import { Tag, NavBar, DropdownButton, DropdownOption } from '~/components'
 import { Table } from 'react-bootstrap'
 import styles from './OrderManagement.module.scss'
@@ -183,16 +183,16 @@ const OrderManagement = () => {
                 <div className="card-action coin-tabs mb-2">
                     <ul className="nav nav-tabs nav" role="tablist">
                         <li className="nav-item nav-item">
-                            <TitleButton name="Tất cả" className="btnChoose" active="active"></TitleButton>
+                            <TitleLinkButton name="Tất cả" className="btnChoose" active="active"></TitleLinkButton>
                         </li>
                         <li className="nav-item nav-item">
-                            <TitleButton name="Đã duyệt" className="btnChoose"></TitleButton>
+                            <TitleLinkButton name="Đã duyệt" className="btnChoose"></TitleLinkButton>
                         </li>
                         <li className="nav-item nav-item">
-                            <TitleButton name="Chờ duyệt" className="btnChoose"></TitleButton>
+                            <TitleLinkButton name="Chờ duyệt" className="btnChoose"></TitleLinkButton>
                         </li>
                         <li className="nav-item nav-item">
-                            <TitleButton name="Đã xóa" className="btnChoose"></TitleButton>
+                            <TitleLinkButton name="Đã xóa" className="btnChoose"></TitleLinkButton>
                         </li>
                     </ul>
                 </div>

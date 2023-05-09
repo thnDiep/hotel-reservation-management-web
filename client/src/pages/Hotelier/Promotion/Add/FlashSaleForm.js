@@ -1,15 +1,16 @@
 import React, { useRef, useState } from 'react'
 import clsx from 'clsx'
+import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import styles from '../Promotion.module.scss'
 import './datetime.scss'
 import { vi } from 'date-fns/locale'
 
-function FlashSaleForm({ data, onEdit }) {
+function FlashSaleForm({ data, onEdit, formData, styles }) {
     function handleChange(e, type) {
         if (type === 'BatDau' || type === 'KetThuc' || type === 'IDKhungGio') {
             onEdit({ errors: { ...data.errors, [type]: null }, fields: { ...data.fields, [type]: e } })
+
             return
         }
         onEdit({ errors: { ...data.errors, [type]: null }, fields: { ...data.fields, [type]: e.target.value } })
@@ -98,59 +99,45 @@ function FlashSaleForm({ data, onEdit }) {
                         <label className={styles.title} htmlFor="ks">
                             Khách sạn áp dụng <sup>*</sup>
                         </label>
-                        <select name="khachSan" id="ks">
-                            <option value="1">Khách sạn Thanh Đa</option>
-                            <option value="2">Khách sạn Nikko</option>
-                            <option value="3">Khách sạn Đà Lạt</option>
-                            <option value="4">Khách sạn Cà Mau</option>
+                        <select
+                            name="khachSan"
+                            id="ks"
+                            value={data.fields.IDKhachSan}
+                            onChange={(e) => handleChange(e, 'IDKhachSan')}
+                        >
+                            {formData.hotels &&
+                                formData.hotels.map((hotel, index) => (
+                                    <option key={index} value={hotel.ID}>
+                                        {hotel.Ten}
+                                    </option>
+                                ))}
                         </select>
                     </div>
                 </div>
 
                 {/* Chọn khung giờ */}
                 <div className={clsx(styles.form__part, styles.form__right)}>
-                    <span className={styles.title} style={{ alignItems: 'center' }}>
+                    <span className={styles.title} style={{ alignSelf: 'center' }}>
                         Khung giờ <sup>*</sup>
                     </span>
 
                     <div>
-                        <div className={styles.form__input}>
-                            <input
-                                type="radio"
-                                name="time"
-                                id="0"
-                                checked={data.fields.IDKhungGio === 0}
-                                onChange={() => handleChange(0, 'IDKhungGio')}
-                            />
-                            <label htmlFor="0" className={styles.subTitle}>
-                                09:00 - 12:00
-                            </label>
-                        </div>
-
-                        <div className={styles.form__input}>
-                            <input
-                                type="radio"
-                                name="time"
-                                id="1"
-                                checked={data.fields.IDKhungGio === 1}
-                                onChange={() => handleChange(1, 'IDKhungGio')}
-                            />
-                            <label htmlFor="1" className={styles.subTitle}>
-                                14:00 - 16:00
-                            </label>
-                        </div>
-                        <div className={styles.form__input}>
-                            <input
-                                type="radio"
-                                name="time"
-                                id="2"
-                                checked={data.fields.IDKhungGio === 2}
-                                onChange={() => handleChange(2, 'IDKhungGio')}
-                            />
-                            <label htmlFor="2" className={styles.subTitle}>
-                                19:00 - 23:00
-                            </label>
-                        </div>
+                        {formData.hotels &&
+                            formData.periods.map((period, index) => (
+                                <div key={index} className={styles.form__input}>
+                                    <input
+                                        type="radio"
+                                        name="time"
+                                        id={period.ID}
+                                        checked={data.fields.IDKhungGio === period.ID}
+                                        onChange={() => handleChange(period.ID, 'IDKhungGio')}
+                                    />
+                                    <label htmlFor={period.ID} className={styles.subTitle}>
+                                        {moment(period.GioBatDau, 'HH:mm:ss').format('HH:mm')}&nbsp;&nbsp;-&nbsp;&nbsp;
+                                        {moment(period.GioKetThuc, 'HH:mm:ss').format('HH:mm')}
+                                    </label>
+                                </div>
+                            ))}
                     </div>
                 </div>
             </div>
