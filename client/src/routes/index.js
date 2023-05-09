@@ -18,6 +18,7 @@ import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
 import OrderResult from '~/pages/OrderResult'
 import AddRoom from '~/pages/Hotelier/RoomManage/AddRoom/AddRoom'
 import CommentAboutHotel from '~/pages/CommentAboutHotel/CommentAboutHotel'
+import ProfileHotelier from '~/pages/ProfileHotelier/ProfileHotelier'
 import { AddPromotion, ManagePromotion } from '~/pages/Hotelier'
 import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
@@ -44,6 +45,7 @@ export const publicRoutes = [
     { path: '/orderResult', component: OrderResult, layout: HomeLayout },
 
     //Hotelier - Hotel
+    { path: '/cks/profile', component: ProfileHotelier, layout: HotelierLayout },
     { path: '/cks/manageHotel', component: HotelManagement, layout: HotelierLayout },
     { path: '/cks/addHotel', component: AddHotel, layout: HotelierLayout },
     { path: '/cks/manage-room', component: RoomManage, layout: HotelierLayout },
