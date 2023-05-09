@@ -35,7 +35,7 @@ export const publicRoutes = [
     { path: '/profile/wish-list', component: Wishlist, layout: HomeLayout },
 
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
-    { path: '/registerPartner', component: RegisterPartner, layout: QrPayLayout },
+    { path: '/registerPartner', component: RegisterPartner, layout: null },
     { path: '/login', component: Login, layout: null },
     { path: '/signUp', component: SignUp, layout: null },
     { path: '/checkOrder', component: CheckOrder },

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './signUp.module.scss'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function SignUp() {
     const [email, setEmail] = useState(() => {
@@ -31,9 +32,23 @@ function SignUp() {
         }
     }, [email.value])
 
-    function handleSignUp() {
-        if (valid) {
-            Nav('/logIn')
+    // function handleSignUp() {
+    //     if (valid) {
+    //         Nav('/logIn')
+    //     }
+    // }
+    const handleClick = async (e) => {
+        e.preventDefault()
+        try {
+            const res = await axios.post('auth/signup', {
+                TenDangNhap: 'manhtu',
+                Email: 'manhtu2272002@gmail.com',
+                MatKhau: '123',
+            })
+            // navigate("/")
+        } catch (err) {
+            console.log(err)
+            console.log('sai')
         }
     }
     return (
@@ -103,7 +118,7 @@ function SignUp() {
                     </div>
                 </div>
 
-                <button className={styles.loginBtn} onClick={handleSignUp}>
+                <button className={styles.loginBtn} onClick={handleClick}>
                     Đăng ký
                 </button>
 
@@ -112,7 +127,6 @@ function SignUp() {
                     <NavLink to="/logIn">
                         <span className={styles.signUpLink}>Đăng nhập</span>
                     </NavLink>
-                    {/* <a >Đăng nhập</a> */}
                 </p>
             </div>
         </div>

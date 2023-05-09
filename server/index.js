@@ -2,13 +2,13 @@ import express from "express"
 import db from "./utils/db.js"
 import bodyParser from "body-parser"
 import cors from "cors"
-
+import authRouter from "./routes/auth.js";
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use("api/auth", authRouter);
 // check connect backend
 app.get("/", async (req, res) => {
   res.json(await db("diadiem"))

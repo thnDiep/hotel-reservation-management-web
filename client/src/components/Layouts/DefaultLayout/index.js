@@ -1,6 +1,6 @@
 import styles from './DefaultLayout.module.scss'
-import Footer from './Footer/footer'
-import Header from './Header'
+import Footer from '../Footer/footer'
+import Header from '../Header'
 
 function DefaultLayout({ children }) {
     return (

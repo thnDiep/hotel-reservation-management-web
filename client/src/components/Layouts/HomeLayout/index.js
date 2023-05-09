@@ -1,6 +1,6 @@
 import styles from './HomeLayout.module.scss'
-import Header from './Header'
-import Footer from './Footer/footer'
+import Footer from '../Footer/footer'
+import Header from '../Header'
 
 function HomeLayout({ children }) {
     return (

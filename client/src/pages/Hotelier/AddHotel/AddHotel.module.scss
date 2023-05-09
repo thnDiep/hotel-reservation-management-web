@@ -141,7 +141,7 @@
 }
 
 .content {
-    padding: 20px 100px;
+    padding: 0 100px;
 }
 
 .card {
@@ -203,10 +203,23 @@
 
         .label {
             margin-bottom: 12px;
+            font-weight: bold;
+
+            span {
+                color: red;
+            }
         }
 
         .inputRed {
             border: 1px solid #ef0000;
+            border-radius: 15px;
         }
     }
+}
+
+.contentHotel {
+    height: 400px;
+    max-height: 400px;
+    overflow: auto;
+    padding: 20px
 }

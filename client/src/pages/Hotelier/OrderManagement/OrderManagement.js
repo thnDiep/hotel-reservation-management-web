@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import TitleButton from '~/components/Button/TitleButton'
-import { ButtonPrimary } from '~/components'
 import { Tag, NavBar, DropdownButton, DropdownOption } from '~/components'
 import { Table } from 'react-bootstrap'
 import styles from './OrderManagement.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import OrderDetailCard from '~/pages/Hotelier/OrderManagement/OrderDetailCard/OrderDetailCard'
+import FooterPaging from '~/components/FooterPaging/FooterPaging'
 const MySwal = withReactContent(Swal)
 function HotelTable() {
     const handleButtonClick = () =>
@@ -37,153 +36,144 @@ function HotelTable() {
         setEnteredDel1(!enteredDel1)
     }
     return (
-        <Table responsive className={styles.cusTable}>
-            <thead>
-                <tr>
-                    <th className={styles.center}>
-                        <input type="checkbox" className={styles.checkBox} />
-                    </th>
-                    <th>
-                        <h3 className={styles.title}>Khách hàng</h3>
-                    </th>
-                    <th>
-                        <h3 className={styles.title}>Ngày đặt phòng</h3>
-                    </th>
-                    <th>
-                        <h3 className={styles.title}>Ngày nhận phòng</h3>
-                    </th>
-                    <th>
-                        <h3 className={styles.title}>Ngày trả phòng</h3>
-                    </th>
-                    <th>
-                        <h3 className={styles.title}>Số tiền thanh toán</h3>
-                    </th>
-                    <th>
-                        <h3 className={styles.title}>Trạng thái</h3>
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {!enteredDel && (
-                    <tr className={styles.memberRow}>
-                        <td className={styles.center}>
+        <div className={styles.tableWrapper}>
+            <Table responsive className={styles.cusTable}>
+                <thead>
+                    <tr>
+                        <th className={styles.center}>
                             <input type="checkbox" className={styles.checkBox} />
-                        </td>
-                        <td>
-                            <div className="d-flex-js">
-                                <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
-                                <div className={styles.text1}>
-                                    <h4>Phạm Thị Thanh Thảo</h4>
-                                    <br />
-                                    <span onClick={handleButtonClick} className={styles.codeOrder}>
-                                        #H12345678
-                                    </span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span className={styles.text2}>Oct 30th 2022</span>
-                        </td>
-                        <td>
-                            <span className={styles.date}>Nov 2th, 2022</span>
-                        </td>
-                        <td>
-                            <span className={styles.date}>Nov 4th, 2022</span>
-                        </td>
-
-                        <td>
-                            <span className={styles.text2}>1.500.000 VND</span>
-                        </td>
-                        <td>
-                            <div className={clsx('btn-1', 'active', styles.status)}>Đã duyệt</div>
-                        </td>
-                        <td>
-                            <FontAwesomeIcon icon={faTrash} className={styles.icon} onClick={delChangeHandler} />
-                        </td>
+                        </th>
+                        <th>
+                            <h3 className={styles.title}>Khách hàng</h3>
+                        </th>
+                        <th>
+                            <h3 className={styles.title}>Tên khách sạn</h3>
+                        </th>
+                        <th>
+                            <h3 className={styles.title}>Loại phòng</h3>
+                        </th>
+                        <th>
+                            <h3 className={styles.title}>Ngày nhận phòng</h3>
+                        </th>
+                        <th>
+                            <h3 className={styles.title}>Ngày trả phòng</h3>
+                        </th>
+                        <th>
+                            <h3 className={styles.title}>Số điện thoại</h3>
+                        </th>
+                        <th>
+                            <h3 className={styles.title}>Số tiền thanh toán</h3>
+                        </th>
+                        <th>
+                            <h3 className={styles.title}>Trạng thái</h3>
+                        </th>
+                        <th></th>
                     </tr>
-                )}
-                {!enteredDel1 && (
-                    <tr className={styles.memberRow}>
-                        <td className={styles.center}>
-                            <input type="checkbox" className={styles.checkBox} />
-                        </td>
-                        <td>
-                            <div className="d-flex-js">
-                                <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
-                                <div className={styles.text1}>
-                                    <h4>Phạm Thị Thanh Thảo</h4>
-                                    <br />
-                                    <span onClick={handleButtonClick} className={styles.codeOrder}>
-                                        #E54395855
-                                    </span>
+                </thead>
+                <tbody>
+                    {!enteredDel && (
+                        <tr className={styles.memberRow}>
+                            <td className={styles.center}>
+                                <input type="checkbox" className={styles.checkBox} />
+                            </td>
+                            <td>
+                                <div className="d-flex-js">
+                                    <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
+                                    <div className={styles.text1}>
+                                        <span className={styles.codeOrder}>#H12345678</span>
+                                        <h4>Phạm Thị Thanh Thảo</h4>
+                                        <br />
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span className={styles.text2}>Oct 30th 2022</span>
-                        </td>
-                        <td>
-                            <span className={styles.date}>Nov 2th, 2022</span>
-                        </td>
-                        <td>
-                            <span className={styles.date}>Nov 4th, 2022</span>
-                        </td>
-
-                        <td>
-                            <span className={styles.text2}>1.500.000 VND</span>
-                        </td>
-                        <td>
-                            <button className={styles.btnPending} onClick={pendingBtnChangeHandler}>
-                                <div
-                                    className={clsx(
-                                        'btn-1',
-                                        { active: enteredPendingBtn, pending: !enteredPendingBtn },
-                                        styles.statusPending,
-                                    )}
-                                >
-                                    {enteredPendingBtn ? 'Đã duyệt' : 'Chờ duyệt'}
+                            </td>
+                            <td>
+                                <span className={`${styles.text2} text-left`}>Mường Thanh Holiday Mũi Né</span>
+                            </td>
+                            <td>
+                                <span className={`${styles.text2} text-left`}>Grand Suite</span>
+                            </td>
+                            <td>
+                                <span className={styles.date}>Nov 2th, 2022</span>
+                            </td>
+                            <td>
+                                <span className={styles.date}>Nov 4th, 2022</span>
+                            </td>
+                            <td>
+                                <span className={styles.text2}>0342221667</span>
+                            </td>
+                            <td>
+                                <span className={styles.date}>1.500.000 VND</span>
+                            </td>
+                            <td>
+                                <div className={clsx('btn-1', 'active', styles.status)}>Đã duyệt</div>
+                            </td>
+                            <td className={styles.relative}>
+                                <DropdownOption list={['Xem chi tiết', 'Xóa']} />
+                            </td>
+                        </tr>
+                    )}
+                    {!enteredDel1 && (
+                        <tr className={styles.memberRow}>
+                            <td className={styles.center}>
+                                <input type="checkbox" className={styles.checkBox} />
+                            </td>
+                            <td>
+                                <div className="d-flex-js">
+                                    <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
+                                    <div className={styles.text1}>
+                                        <span onClick={handleButtonClick} className={styles.codeOrder}>
+                                            #E54395855
+                                        </span>
+                                        <h4>Phạm Thị Thanh Thảo</h4>
+                                        <br />
+                                    </div>
                                 </div>
-                            </button>
-                        </td>
-                        <td>
-                            <FontAwesomeIcon icon={faTrash} className={styles.icon} onClick={del1ChangeHandler} />
-                        </td>
-                    </tr>
-                )}
-                <tr className={styles.memberRow}>
-                    <td className={styles.center}>
-                        <input type="checkbox" className={styles.checkBox} />
-                    </td>
-                    <td>
-                        <div className="d-flex-js">
-                            <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
-                            <div className={styles.text1}>
-                                <h4>Phạm Thị Thanh Thảo</h4>
-                                <br />
-                                <span>#EMP-00025</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <span className={styles.text2}>Oct 30th 2022</span>
-                    </td>
-                    <td>
-                        <span className={styles.date}>Nov 2th, 2022</span>
-                    </td>
-                    <td>
-                        <span className={styles.date}>Nov 4th, 2022</span>
-                    </td>
+                            </td>
+                            <td>
+                                <span className={`${styles.text2} text-left`}>Mường Thanh Holiday Mũi Né</span>
+                            </td>
+                            <td>
+                                <span className={`${styles.text2} text-left`}>Grand Suite</span>
+                            </td>
 
-                    <td>
-                        <span className={styles.text2}>1.500.000 VND</span>
-                    </td>
-                    <td>
-                        <div className={clsx('btn-1', 'blocked', styles.status)}>Đã xóa</div>
-                    </td>
-                </tr>
-            </tbody>
-        </Table>
+                            <td>
+                                <span className={styles.date}>Nov 2th, 2022</span>
+                            </td>
+                            <td>
+                                <span className={styles.date}>Nov 4th, 2022</span>
+                            </td>
+                            <td>
+                                <span className={styles.date}>0342221667</span>
+                            </td>
+                            <td>
+                                <span className={styles.text2}>1.500.000 VND</span>
+                            </td>
+                            <td>
+                                <button className={styles.btnPending} onClick={pendingBtnChangeHandler}>
+                                    <div
+                                        className={clsx(
+                                            'btn-1',
+                                            {
+                                                active: enteredPendingBtn,
+                                                pending: !enteredPendingBtn,
+                                            },
+                                            styles.statusPending,
+                                            !enteredPendingBtn && styles.statusPending1,
+                                        )}
+                                    >
+                                        {enteredPendingBtn ? 'Đã duyệt' : 'Chờ duyệt'}
+                                    </div>
+                                </button>
+                            </td>
+                            <td className={styles.relative}>
+                                <DropdownOption list={['Xem chi tiết', 'Xóa']} />
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            </Table>
+            <FooterPaging />
+        </div>
     )
 }
 const OrderManagement = () => {

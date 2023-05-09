@@ -1,6 +1,3 @@
-label {
-    font-size: 12px;
-}
 h3 {
     font-weight: 600;
 }
@@ -17,6 +14,144 @@ input[type='radio'] {
     min-height: 10px;
     display: inline-block;
 }
+
+.card {
+    border: 0px transparent;
+}
+img {
+    width: 369px;
+}
+
+.myContainer {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 32px;
+    background: rgb(245, 245, 245);
+}
+.myContainer1 {
+    display: flex;
+    min-width: 958px;
+    justify-content: space-between;
+    background-color: #fff;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 5px 5px 16px rgba(0, 0, 0, 0.05), -5px -5px 16px rgba(0, 0, 0, 0.05);
+}
+.left {
+    position: relative;
+    background-image: url('https://agents.mytour.vn/static/media/bg_banner.88ef9b28.svg');
+    min-height: 638px;
+    width: 369px;
+    padding: 100px 24px;
+    background-size: cover;
+}
+.right {
+    margin: 24px 12px 20px 32px;
+    width: 658px;
+    flex: 1 1 0%;
+}
+.label {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    .important {
+        color: red;
+    }
+}
+
+.input {
+    // border: 0;
+    margin: 0;
+    display: inline-flex;
+    padding: 0;
+    position: relative;
+    min-width: 0;
+    margin-right: 16px;
+    flex-direction: column;
+    vertical-align: top;
+    min-width: 120px;
+    width: 100%;
+
+    .inputName {
+        margin-top: 2px;
+        border-radius: 8px;
+        margin-bottom: 0;
+        border: 1px solid #ced4da;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+        min-height: 40px;
+        transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+            box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        border-radius: 4px;
+        background-color: #fff;
+
+        input {
+            color: #1a202c;
+            position: relative;
+            font-size: 14px;
+            border-radius: 4px;
+            font: inherit;
+            width: 100%;
+            border: 0;
+            margin: 0;
+            display: block;
+            min-width: 0;
+            background: none;
+            letter-spacing: inherit;
+            animation-duration: 10ms;
+            padding: 8px;
+
+            &:focus {
+                outline: 0;
+
+                border: 1px solid #00adef;
+            }
+        }
+    }
+
+    .error {
+        color: rgba(0, 0, 0, 0.54);
+        margin: 0;
+        font-size: 14px;
+        text-align: left;
+        font-family: Mt;
+        font-weight: normal;
+        line-height: 14px;
+        color: #e5322b;
+        min-height: 16px;
+        margin-top: 6px;
+    }
+}
+.twoCol {
+    display: flex;
+    align-items: center;
+    .twoCol1 {
+        flex: 2 1 0%;
+        margin-right: 24px;
+    }
+    .twoCol2 {
+        flex: 1 1 0%;
+        margin-right: 24px;
+    }
+}
 .lineUnderWhenError {
-    border: 2px solid red;
+    border: 2px solid red !important;
+}
+.slogan {
+    font-size: 14px;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: 0.01071em;
+    color: #fff;
+    z-index: 10;
+}
+.sloganMain {
+    font-family: 'Baltica';
+    font-size: 37px;
+    color: #fff;
 }

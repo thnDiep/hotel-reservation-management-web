@@ -19,6 +19,7 @@
     --dark-blue: #0c5fcd;
     --red: #fc3b56;
 }
+
 a {
     text-decoration: none;
 }
@@ -26,9 +27,11 @@ a {
 li {
     list-style: none;
 }
+
 .HolierLayout {
     background-color: var(--grey);
 }
+
 // html {
 //     // overflow-x: hidden;
 // }
@@ -52,11 +55,13 @@ li {
     left: 260px;
     transition: all 0.3s ease;
 }
-#sidebar.hide + #content {
+
+#sidebar.hide+#content {
     width: calc(100% - 60px);
     left: 60px;
 }
+
 main {
     width: 100%;
-    padding: 30px 40px;
+    padding: 0px 40px;
 }
