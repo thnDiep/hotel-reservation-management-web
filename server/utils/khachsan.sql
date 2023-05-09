@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: May 06, 2023 at 04:05 PM
+-- Generation Time: May 09, 2023 at 12:18 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -31,6 +31,15 @@ CREATE TABLE `chukhachsan_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `IDChuKhachSan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chukhachsan_khachsan`
+--
+
+INSERT INTO `chukhachsan_khachsan` (`IDKhachSan`, `IDChuKhachSan`) VALUES
+(1, 1),
+(2, 1),
+(3, 1);
 
 -- --------------------------------------------------------
 
@@ -246,7 +255,9 @@ CREATE TABLE `khachsan` (
 --
 
 INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `ChinhSach`, `GioiThieu`, `TrangThai`, `IDDiaDiem`, `Nhan`) VALUES
-(1, 'Khách Sạn 1', '', '', '', 0, 1, '');
+(1, 'Sailing Club Signature Resort Phú Quốc', '', '', '', 0, 1, ''),
+(2, 'Khách sạn 2', '', '', '', 0, 7, ''),
+(3, 'Khách sạn 3', '', '', '', 0, 11, '');
 
 -- --------------------------------------------------------
 
@@ -295,7 +306,7 @@ CREATE TABLE `khuyenmai` (
 --
 
 INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`, `MaKhuyenMai`, `BatDau`, `KetThuc`, `MoTa`, `DieuKien`, `SoLuongKM`, `IDKhungGio`) VALUES
-(3, 'FlashSale', 1, 1, 0, NULL, '2023-05-06 14:01:11', '0000-00-00 00:00:00', NULL, NULL, NULL, 1);
+(4, 'FlashSale', 1, 15, 0, NULL, '2023-05-10 09:21:58', '2023-05-24 17:00:00', NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -370,6 +381,13 @@ CREATE TABLE `nguoidung` (
   `MaSoThue` char(10) NOT NULL,
   `QuyMo` char(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `nguoidung`
+--
+
+INSERT INTO `nguoidung` (`ID`, `HoTen`, `Email`, `SoDienThoai`, `DiaChi`, `TenDangNhap`, `MatKhau`, `PhanQuyen`, `TenCongTy`, `MaSoThue`, `QuyMo`) VALUES
+(1, '', 'manhtu2272002@gmail.com', '', '', 'manhtu', '$2a$10$OIwh/uwYQW4RD3VW6yAo2OaCkjqkRZ8r3r/ftutrTCGJsH2xHyEl2', 0, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -836,7 +854,7 @@ ALTER TABLE `hinhanh_khachsan`
 -- AUTO_INCREMENT for table `khachsan`
 --
 ALTER TABLE `khachsan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `khunggio`
@@ -848,7 +866,7 @@ ALTER TABLE `khunggio`
 -- AUTO_INCREMENT for table `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `loaitiennghikhachsan`
@@ -866,7 +884,7 @@ ALTER TABLE `loaitiennghiphong`
 -- AUTO_INCREMENT for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `nguoinhanphong`
