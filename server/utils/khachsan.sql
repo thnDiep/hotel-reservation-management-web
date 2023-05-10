@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 10, 2023 lúc 04:45 PM
+-- Thời gian đã tạo: Th5 10, 2023 lúc 06:05 PM
 -- Phiên bản máy phục vụ: 10.4.25-MariaDB
 -- Phiên bản PHP: 8.1.10
 
@@ -242,19 +242,20 @@ CREATE TABLE `khachsan` (
   `GioiThieu` text NOT NULL,
   `TrangThai` int(10) NOT NULL,
   `IDDiaDiem` int(11) NOT NULL,
-  `Nhan` varchar(255) NOT NULL,
+  `Nhan` varchar(255) DEFAULT NULL,
   `GioNhanPhong` varchar(20) NOT NULL,
-  `GioTraPhong` varchar(20) NOT NULL
+  `GioTraPhong` varchar(20) NOT NULL,
+  `PhanTramKM` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khachsan`
 --
 
-INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `soSao`, `ChinhSach`, `GioiThieu`, `TrangThai`, `IDDiaDiem`, `Nhan`, `GioNhanPhong`, `GioTraPhong`) VALUES
-(1, 'Sailing Club Signature Resort Phú Quốc', '', 0, '', '', 0, 1, '', '', ''),
-(2, 'Khách sạn 2', '', 0, '', '', 0, 7, '', '', ''),
-(3, 'Khách sạn 3', '', 0, '', '', 0, 11, '', '', '');
+INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `soSao`, `ChinhSach`, `GioiThieu`, `TrangThai`, `IDDiaDiem`, `Nhan`, `GioNhanPhong`, `GioTraPhong`, `PhanTramKM`) VALUES
+(1, 'Sailing Club Signature Resort Phú Quốc', '', 0, '', '', 0, 1, '', '', '', 0),
+(2, 'Khách sạn 2', '', 0, '', '', 0, 7, '', '', '', 0),
+(3, 'Khách sạn 3', '', 0, '', '', 0, 11, '', '', '', 0);
 
 -- --------------------------------------------------------
 
