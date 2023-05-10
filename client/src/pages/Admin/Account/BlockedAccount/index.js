@@ -1,95 +1,41 @@
-import styles from './blockAccount.module.scss'
-import clsx from 'clsx'
-import TitleLinkButton from '~/components/Button/TitleButton'
-import { Table } from 'react-bootstrap'
 import { NavLink } from '~/components'
 import nav from '~/assets/jsons/nav.json'
 import BlockedAccountTable from '~/components/Table/BlockedAccount'
+import { useState, useRef, useEffect } from 'react'
+import Axios from 'axios'
 
 // tên, email, sđt, địa chỉ, tên đn, nút hoạt động: hoạt động, khóa
 function BlockedAccount() {
+    const [data, setData] = useState([])
+    useEffect(() => {
+        Axios.get('http://localhost:8800/admin/account')
+            .then((response) => {
+                setData(response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [])
+
+    const option2 = useRef([
+        {
+            name: 'Bỏ vô hiệu hóa ',
+            handle: function () {
+                alert('bỏ vô hiệu hóa thành công')
+            },
+        },
+        {
+            name: 'Xóa',
+            handle: function () {
+                alert('Xóa')
+            },
+        },
+    ])
+
     return (
         <div>
             <NavLink list={nav.accountOfAdmin} />
-            <BlockedAccountTable />
-            {/* <div className={styles.wrap}>
-                <Table responsive className={styles.cusTable}>
-                    <thead>
-                        <tr className={styles.headerOfTable}>
-                            <th className={styles.center}>
-                                <input type="checkbox" className={styles.checkBox} />
-                            </th>
-                            <th>
-                                <h3 className={styles.title}>Hình ảnh</h3>
-                            </th>
-                            <th>
-                                <h3 className={styles.title}>Họ tên</h3>
-                            </th>
-                            <th>
-                                <h3 className={styles.title}>Email</h3>
-                            </th>
-                            <th>
-                                <h3 className={styles.title}>Số điện thoại</h3>
-                            </th>
-                            <th>
-                                <h3 className={styles.title}>Địa chỉ</h3>
-                            </th>
-                            <th>
-                                <h3 className={styles.title}>Trạng thái</h3>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td className={styles.center}>
-                                <input type="checkbox" className={styles.checkBox} />
-                            </td>
-                            <td>
-                                <img src="https://i.pinimg.com/236x/58/e1/e2/58e1e2dc4aa65e033a67394c9309b6ea.jpg" />
-                            </td>
-                            <td>
-                                <p className={styles.text1}>Trần Thảo Quyên</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>cd@gmail.com</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>0994234811</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>Số 1, phường 2, quận 1, TPHCM</p>
-                            </td>
-                            <td>
-                                <div className={clsx('btn-1', 'block', styles.status)}>Khóa</div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td className={styles.center}>
-                                <input type="checkbox" className={styles.checkBox} />
-                            </td>
-                            <td>
-                                <img src="https://i.pinimg.com/236x/58/e1/e2/58e1e2dc4aa65e033a67394c9309b6ea.jpg" />
-                            </td>
-                            <td>
-                                <p className={styles.text1}>Trần Thảo Quyên</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>cd@gmail.com</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>0994234811</p>
-                            </td>
-                            <td>
-                                <p className={styles.text1}>Số 1, phường 2, quận 1, TPHCM</p>
-                            </td>
-                            <td>
-                                <div className={clsx('btn-1', 'block', styles.status)}>Khóa</div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </div> */}
+            <BlockedAccountTable data={data} option={option2} />
         </div>
     )
 }
