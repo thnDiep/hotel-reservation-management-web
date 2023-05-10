@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import styles from './Table.module.scss'
 import { DropdownOption } from '~/components'
 
-function AccountTable(data) {
+function AccountTable({ data, option1, option2 }) {
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={clsx(styles.cusTable, styles.account)}>
@@ -33,13 +33,13 @@ function AccountTable(data) {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.data.map((item, index) => (
+                    {data.map((item, index) => (
                         <tr key={index}>
                             <td className={styles.center}>
                                 <input type="checkbox" className={styles.checkBox} />
                             </td>
                             <td>
-                                <img src="https://i.pinimg.com/236x/58/e1/e2/58e1e2dc4aa65e033a67394c9309b6ea.jpg" />
+                                <img src={item.HinhAnh} />
                             </td>
                             <td>
                                 <p className={styles.text1}>{item.HoTen}</p>
@@ -53,28 +53,18 @@ function AccountTable(data) {
                             <td>
                                 <p className={styles.text1}>{item.DiaChi}</p>
                             </td>
-                            {/* <td>
-                                {item.status === 1 && (
+                            <td>
+                                {item.TrangThai === 1 && (
                                     <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
                                 )}
-                                {item.status === 0 && (
+                                {item.TrangThai === 0 && (
                                     <div className={clsx('btn-1', 'block', styles.status)}>Khóa</div>
                                 )}
                             </td>
 
                             <td>
-                                {item.status === 1 && <DropdownOption list={options1} />}
-                                {item.status === 0 && <DropdownOption list={options2} />}
-                            </td> */}
-
-                            <td>
-                                {1 === 1 && <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>}
-                                {/* {0 === 0 && <div className={clsx('btn-1', 'block', styles.status)}>Khóa</div>} */}
-                            </td>
-
-                            <td>
-                                {1 === 1 && <DropdownOption list={data.option1} />}
-                                {/* {0 === 0 && <DropdownOption list={data.option2} />} */}
+                                {item.TrangThai === 1 && <DropdownOption list={option1} />}
+                                {item.TrangThai === 0 && <DropdownOption list={option2} />}
                             </td>
                         </tr>
                     ))}

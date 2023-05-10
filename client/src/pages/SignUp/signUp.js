@@ -6,7 +6,7 @@ import axios from 'axios'
 
 function SignUp() {
     const [data, setData] = useState(() => {
-        return { name: '', email: '', pass: '', isValid: false }
+        return { name: '', phoneNumber: '', email: '', pass: '', isValid: false }
     })
     const [email, setEmail] = useState(() => {
         return { value: '', error: ' ', isValid: false }
@@ -40,6 +40,7 @@ function SignUp() {
         try {
             const res = await axios.post('http://localhost:8800/auth/signup', {
                 HoTen: data.name,
+                SoDienThoai: data.phoneNumber,
                 Email: data.email,
                 MatKhau: data.pass,
             })
@@ -76,8 +77,25 @@ function SignUp() {
                                 id="field-name"
                                 name="name"
                                 type="text"
-                                placeholder="Tên người dùng"
+                                placeholder="Nhập tên người dùng"
                                 onChange={(e) => setData({ ...data, name: e.target.value })}
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="field-name" className={styles.label}>
+                            Số điện thoại
+                            <span>*</span>
+                        </label>
+                        <div>
+                            <input
+                                className={styles.fieldInput}
+                                id="field-name"
+                                name="name"
+                                type="text"
+                                placeholder="Nhập số điện thoại"
+                                onChange={(e) => setData({ ...data, phoneNumber: e.target.value })}
                             />
                         </div>
                     </div>

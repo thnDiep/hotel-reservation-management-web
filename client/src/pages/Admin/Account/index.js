@@ -6,35 +6,37 @@ import { useState, useEffect, useRef } from 'react'
 
 // tên, email, sđt, địa chỉ, tên đn, nút hoạt động: hoạt động, khóa
 function Account() {
-    const option1 = useRef([
-        {
-            name: 'Vô hiệu hóa',
-            handle: function () {
-                alert('vô hiệu hóa thành công')
-            },
-        },
-        {
-            name: 'Xóa',
-            handle: function () {
-                alert('Xóa thành công')
-            },
-        },
-    ])
+    const [option1, setOption1] = useState([])
+    // setOption1([
+    //     {
+    //         name: 'Vô hiệu hóa',
+    //         handle: function () {
+    //             alert('vô hiệu hóa thành công')
+    //         },
+    //     },
+    //     {
+    //         name: 'Xóa',
+    //         handle: function () {
+    //             alert('xóa thành công')
+    //         },
+    //     },
+    // ])
 
-    const option2 = useRef([
-        {
-            name: 'Bỏ vô hiệu hóa ',
-            handle: function () {
-                alert('bỏ vô hiệu hóa thành công')
-            },
-        },
-        {
-            name: 'Xóa',
-            handle: function () {
-                alert('Xóa')
-            },
-        },
-    ])
+    // const [option2, setOption2] = useState([])
+    // setOption2([
+    //     {
+    //         name: 'Bỏ vô hiệu hóa',
+    //         handle: function () {
+    //             alert('bỏ vô hiệu hóa thành công')
+    //         },
+    //     },
+    //     {
+    //         name: 'Xóa',
+    //         handle: function () {
+    //             alert('xóa thành công')
+    //         },
+    //     },
+    // ])
 
     const [data, setData] = useState([])
     useEffect(() => {
@@ -50,7 +52,7 @@ function Account() {
     return (
         <div>
             <NavLink list={nav.accountOfAdmin} />
-            <AccountTable data={data} option1={option1.current} option2={option2.current} />
+            {/* <AccountTable data={data} option1={option1} option2={option2} /> */}
         </div>
     )
 }
