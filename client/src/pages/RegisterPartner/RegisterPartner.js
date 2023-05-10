@@ -204,6 +204,7 @@ const RegisterPartner = () => {
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value)
     }
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -233,16 +234,15 @@ const RegisterPartner = () => {
         }
         try {
             const res = await axios.post('auth/signUp', {
-                HoTen: '',
-                TenDangNhap: enteredUserName.value,
-                Email: enteredEmail.value,
-                SoDienThoai: enteredPhoneNumber.value,
-                DiaChi: enteredAddress.value,
-                MatKhau: enteredPass.value,
+                HoTen: enteredUserName.value,
                 TenCongTy: enteredNameCompany.value,
-                MaSoThue: enteredTaxCode.value,
+                DiaChi: enteredAddress.value,
                 QuyMo: selectedValue,
-                PhanQuyen: 0,
+                Email: enteredEmail.value,
+                MatKhau: enteredPass.value,
+                SoDienThoai: enteredPhoneNumber.value,
+                PhanQuyen: 1,
+                MaSoThue: enteredTaxCode.value,
             })
         } catch (err) {
             console.log(err)
@@ -351,7 +351,7 @@ const RegisterPartner = () => {
                                 <div className={classes.twoCol}>
                                     <div className={`d-flex flex-column align-items-start ${classes.twoCol1}`}>
                                         <span className={classes.label}>
-                                            Tên người liên hệ <span className={classes.important}>*</span>
+                                            Họ và tên <span className={classes.important}>*</span>
                                         </span>
                                         <div className={classes.input}>
                                             <div className={classes.inputName}>
@@ -363,7 +363,7 @@ const RegisterPartner = () => {
                                                         enteredUserName.error !== '' && classes.lineUnderWhenError
                                                     }`}
                                                     onChange={useNameChangeHandler}
-                                                    placeholder="Nhập tên người liên hệ"
+                                                    placeholder="Nhập Họ và tên"
                                                 />
                                             </div>
                                             <p className={classes.error}>{enteredUserName.error}</p>

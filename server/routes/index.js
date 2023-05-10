@@ -1,5 +1,6 @@
 import authRouter from "./auth.js";
 import promotionRouter from "./promotion.js";
+import hotelierRouter from "./hotelier.js"
 import hotelModel from "../models/hotelModel.js";
 import profileRouter from "./profile.js";
 import adminRouter from "./admin.js";
@@ -7,6 +8,7 @@ import adminRouter from "./admin.js";
 export default function route(app) {
   app.use("/auth", authRouter);
   app.use("/cks/promotion", promotionRouter);
+  app.use("/cks", hotelierRouter);
   app.use("/profile", profileRouter);
   app.use("/admin", adminRouter);
   //   app.use("/account", accountRoute);

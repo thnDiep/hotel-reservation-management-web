@@ -4,12 +4,12 @@ const Header = ({ onClick }) => {
         <nav>
             <i onClick={onClick} className={`bx bx-menu ${styles['toggle-sidebar']}`} />
             {/* <span className={styles['form-group']}>Home</span> */}
-            <ol class={`${styles['form-group']} breadcrumb`}>
-                <li class="breadcrumb-item">
+            <ol className={`${styles['form-group']} breadcrumb`}>
+                <li className="breadcrumb-item">
                     <a href="#">Quản lý khách sạn</a>
                 </li>
 
-                <li class="breadcrumb-item active" aria-current="page">
+                <li className="breadcrumb-item active" aria-current="page">
                     Thêm khách sạn
                 </li>
             </ol>

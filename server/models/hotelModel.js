@@ -25,4 +25,16 @@ export default {
     return await db("khachsan").whereIn("ID", ids)
     // .andWhere("TrangThai", 0);
   },
+  async add(khachsan) {
+    // console.log(user.password);
+    const result = await db("khachsan").insert(khachsan);
+    return result[0]
+  },
+  addHinhAnhKhachSan(hinhanh) {
+    return db("HinhAnh_KhachSan").insert(hinhanh);
+  },
+  async getHotelTrung(name) {
+    return await db("khachsan").where("DiaChi", name)
+
+  }
 }
