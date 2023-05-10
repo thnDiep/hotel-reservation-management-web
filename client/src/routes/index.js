@@ -30,6 +30,10 @@ export const publicRoutes = [
     { path: '/checkout', component: Checkout, layout: HomeLayout },
     { path: '/checkout/success', component: SuccessCheckOut, layout: HomeLayout },
 
+    // Hotel
+    { path: '/hotels/:id', component: Detail },
+    { path: '/hotels', component: ListByPlace },
+
     // Profile
     { path: '/profile', component: Account, layout: HomeLayout },
     { path: '/profile/order', component: Order, layout: HomeLayout },

@@ -298,12 +298,6 @@ CREATE TABLE `khuyenmai` (
   `IDKhungGio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Đang đổ dữ liệu cho bảng `khuyenmai`
---
-
-INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`, `MaKhuyenMai`, `BatDau`, `KetThuc`, `MoTa`, `DieuKien`, `SoLuongKM`, `IDKhungGio`) VALUES
-(4, 'FlashSale', 1, 15, 0, NULL, '2023-05-10 09:21:58', '2023-05-24 17:00:00', NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -869,7 +863,7 @@ ALTER TABLE `khunggio`
 -- AUTO_INCREMENT cho bảng `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `loaitiennghikhachsan`

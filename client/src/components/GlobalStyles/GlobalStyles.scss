@@ -110,7 +110,6 @@ body {
 }
 
 .home {
-
     .slick-prev:before,
     .slick-next:before {
         content: '';
@@ -376,6 +375,9 @@ body {
 }
 
 .nav {
+    a {
+        color: #1a202c;
+    }
     a.active {
         display: block;
         color: var(--primary-color);

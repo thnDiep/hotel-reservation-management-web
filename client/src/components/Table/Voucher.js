@@ -9,7 +9,7 @@ import { DropdownOption } from '~/components'
 import styles from './Table.module.scss'
 
 function VoucherTable({ header, option, data }) {
-    const { hotels } = useContext(DataContext)
+    const globalData = useContext(DataContext)
 
     return (
         <div className={styles.tableWrapper}>
@@ -66,7 +66,8 @@ function VoucherTable({ header, option, data }) {
                                 </td>
                                 <td style={{ width: '200px' }}>
                                     <span className={styles.text2}>
-                                        {hotels.find((hotel) => hotel.ID === voucher.IDKhachSan).Ten}
+                                        {globalData &&
+                                            globalData.hotels.find((hotel) => hotel.ID === voucher.IDKhachSan).Ten}
                                     </span>
                                 </td>
                                 <td>

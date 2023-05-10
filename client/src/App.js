@@ -9,7 +9,7 @@ function App() {
     const [data, setData] = useState()
 
     useEffect(() => {
-        Axios.get('http://localhost:8800')
+        Axios.get('http://localhost:8800', { params: { idUser: 5 } })
             .then((response) => {
                 console.log(response.data)
                 setData(response.data)

@@ -58,6 +58,10 @@
                 font-weight: 600;
             }
 
+            &.gold {
+                color: #feda56;
+            }
+
             h4 {
                 line-height: 1.6;
                 white-space: nowrap !important;
@@ -65,10 +69,17 @@
             }
 
             span {
-                font-size: 1.2rem !important;
-                color: #e23428 !important;
+                font-size: 1.2rem;
+                color: #ff3366;
                 font-weight: 400;
             }
+        }
+
+        .icon {
+            font-size: 1.4rem;
+            position: relative;
+            top: -2px;
+            margin-left: 4px;
         }
 
         .date {

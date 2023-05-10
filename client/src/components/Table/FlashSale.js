@@ -9,7 +9,7 @@ import styles from './Table.module.scss'
 import moment from 'moment'
 
 function FlashSaleTable({ header, option, data }) {
-    const { hotels } = useContext(DataContext)
+    const globalData = useContext(DataContext)
 
     return (
         <div className={styles.tableWrapper}>
@@ -62,7 +62,8 @@ function FlashSaleTable({ header, option, data }) {
                                 </td>
                                 <td style={{ width: '200px' }}>
                                     <span className={styles.text2}>
-                                        {hotels.find((hotel) => hotel.ID === flashSale.IDKhachSan).Ten}
+                                        {globalData &&
+                                            globalData.hotels.find((hotel) => hotel.ID === flashSale.IDKhachSan).Ten}
                                     </span>
                                 </td>
                                 <td>
