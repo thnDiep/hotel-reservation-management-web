@@ -20,15 +20,20 @@ function DropdownOption({ list, idActive, type }) {
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [wrapperRef])
-
+    // show dropdown menu
     function handleClick(item) {
         setShow(!show)
         item.handle(idActive, type)
     }
+    // show dropdown option
+    function handleClickDropdownOption(e) {
+        e.stopPropagation()
+        setShow(!show)
+    }
 
     return (
         <div className={clsx(styles.dropdown, styles.option)} ref={wrapperRef}>
-            <div className={clsx(styles.dropdownOption)} onClick={() => setShow(!show)}>
+            <div className={clsx(styles.dropdownOption)} onClick={handleClickDropdownOption}>
                 <FontAwesomeIcon icon={faEllipsisV} />
             </div>
             {show && (

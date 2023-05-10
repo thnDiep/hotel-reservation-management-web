@@ -30,3 +30,59 @@ export const signup = async (req, res, next) => {
     next(err);
   }
 };
+export const login = async (req, res, next) => {
+  try {
+    console.log("UUUUUUUUUUUU");
+    const check = (name, chec) => {
+      if (name === chec) {
+        return 0;
+      } else {
+        return 1;
+      }
+    };
+    const emailAvailable = await authModel.findByEmail(req.body.Email);
+    if (check(emailAvailable?.Email, req.body.Email) == 1) {
+      return next(res.status(400).send("Email và Password không đúng"));
+    } else {
+      if (check(emailAvailable?.Email, req.body.Email) == 0) {
+        // Đúng email rồi so sánh password
+        const [passAvailable] = await authModel.findByEmailToCheckPassword(
+          req.body.Email
+        );
+        //console.log(passAvailable);
+        const ret = bcrypt.compareSync(req.body.MatKhau, passAvailable.MatKhau);
+        //console.log(ret);
+        if (!ret) {
+          return next(res.status(400).send("Email và Password không đúng"));
+        }
+        res.status(200).send("Đăng nhập thành công.");
+        // if (ret) {
+        //   //req.session.isAuthenticated = true;
+        //   // Xét quyền của 3 vai trò
+        //   if (emailAvailable.permissionID == 2) {
+        //     req.session.isStudent = true;
+        //     req.session.authUser = emailAvailable;
+        //     return res.redirect("/");
+        //   } else if (emailAvailable.permissionID == 3) {
+        //     req.session.isTeacher = true;
+        //     req.session.authTeacher = emailAvailable;
+        //     return res.redirect("/teacher/profile");
+        //   } else if (emailAvailable.permissionID == 1) {
+        //     req.session.isAdmin = true;
+        //     req.session.authAdmin = emailAvailable;
+        //     return res.redirect("/admin/listAccount");
+        //   }
+        // } else {
+        //   return res.render("login", {
+        //     layout: false,
+        //     email: req.body.email,
+
+        //     err_message: "Email & password is not correct...",
+        //   });
+        // }
+      }
+    }
+  } catch (err) {
+    next(err);
+  }
+};

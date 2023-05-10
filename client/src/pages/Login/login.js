@@ -2,24 +2,28 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './login.module.scss'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function Login() {
     const Nav = useNavigate()
     const data = JSON.parse(localStorage.getItem('identification'))
     const [valid, setValid] = useState(false)
 
+    const [Data, setData] = useState(() => {
+        return { email: '', pass: '', isValid: false }
+    })
     const [email, setEmail] = useState(() => {
         return { value: '', error: ' ', isValid: false }
     })
 
     useEffect(() => {
         const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
-        if (email.isValid === true) {
+        if (Data.isValid === true) {
             const identifier = setTimeout(() => {
-                if (!filter.test(email.value)) {
+                if (!filter.test(Data.email)) {
                     setEmail({ ...email, error: 'Email không đúng ' })
                     setValid(false)
-                } else if (email.value.length === 0) {
+                } else if (Data.email.length === 0) {
                     setEmail({ ...email, error: 'Thông tin bắt buộc' })
                     setValid(false)
                 } else {
@@ -31,11 +35,18 @@ function Login() {
                 clearTimeout(identifier)
             }
         }
-    }, [email.value])
+    }, [Data.email])
 
-    function handleLogin() {
-        if (valid) {
+    const handleLogin = async (e) => {
+        e.preventDefault()
+        try {
+            const res = await axios.post('http://localhost:8800/auth/login', {
+                Email: Data.email,
+                MatKhau: Data.pass,
+            })
             Nav('/')
+        } catch (err) {
+            console.log('sai')
         }
     }
 
@@ -76,7 +87,7 @@ function Login() {
                                 name="email"
                                 type="text"
                                 placeholder="Nhập email"
-                                onChange={(e) => setEmail({ ...email, value: e.target.value, isValid: true })}
+                                onChange={(e) => setData({ ...Data, email: e.target.value, isValid: true })}
                             />
                         </div>
                         <p className={styles.err}>{email.error}</p>
@@ -93,6 +104,7 @@ function Login() {
                                 name="password"
                                 type="password"
                                 placeholder="Nhập mật khẩu"
+                                onChange={(e) => setData({ ...Data, pass: e.target.value, isValid: true })}
                             />
                         </div>
                     </div>
