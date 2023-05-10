@@ -53,7 +53,7 @@ function ManageVoucher() {
                         handle: function (idActive) {
                             const promotion = result.promotions.find((key) => key.ID === idActive)
                             setPromotionActive(promotion)
-                            setShowStopModal(!showStopModal)
+                            setShowStopModal(true)
                         },
                     },
                     {
@@ -61,7 +61,7 @@ function ManageVoucher() {
                         handle: function (idActive) {
                             const promotion = result.promotions.find((key) => key.ID === idActive)
                             setPromotionActive(promotion)
-                            setShowDeleteModal(!showDeleteModal)
+                            setShowDeleteModal(true)
                         },
                     },
                 ])
@@ -78,6 +78,27 @@ function ManageVoucher() {
         const flashSales = promotions.filter((key) => key.MaKhuyenMai === null)
 
         const now = new Date()
+        if (vouchers) {
+            vouchers.map((voucher) => {
+                const BatDau = new Date(voucher.BatDau)
+                voucher.BatDau = BatDau
+                let KetThuc
+                if (voucher.KetThuc) {
+                    KetThuc = new Date(voucher.KetThuc)
+                    voucher.KetThuc = KetThuc
+                } else {
+                    KetThuc = new Date()
+                }
+
+                if (now < BatDau) {
+                    voucher.TrangThai = 0
+                } else if (now >= BatDau && now <= KetThuc) {
+                    voucher.TrangThai = 1
+                } else {
+                    voucher.TrangThai = 2
+                }
+            })
+        }
         if (flashSales) {
             flashSales.map((flashSale) => {
                 const BatDau = new Date(flashSale.BatDau)
@@ -157,12 +178,12 @@ function ManageVoucher() {
                     setData({
                         promotions: data.promotions,
                         vouchers: data.promotions.filter((key) => key.MaKhuyenMai !== null),
-                        flashSale: data.flashSale,
+                        flashSales: data.flashSales,
                     })
                 }
 
                 setPromotionActive(null)
-                setShowStopModal(!showStopModal)
+                setShowStopModal(false)
             })
             .catch((error) => console.log(error))
     }
@@ -183,7 +204,7 @@ function ManageVoucher() {
                     flashSales: data.flashSales.filter((key) => key.ID !== promotionActive.ID),
                 })
                 setPromotionActive(null)
-                setShowDeleteModal(!showDeleteModal)
+                setShowDeleteModal(false)
             })
             .catch((error) => {
                 console.log(error)
@@ -209,7 +230,7 @@ function ManageVoucher() {
                 {/* Xác nhận ngừng khuyến mãi */}
                 <ConformModal
                     show={showStopModal}
-                    onClose={() => setShowStopModal(!showStopModal)}
+                    onClose={() => setShowStopModal(false)}
                     onConform={() => handleStopPromotion()}
                     content={`Bạn chắc chắn muốn ngừng khuyến mãi`}
                     highlight={promotionActive && promotionActive.TieuDe}
@@ -219,7 +240,7 @@ function ManageVoucher() {
                 {/* Xác nhận xóa */}
                 <ConformModal
                     show={showDeleteModal}
-                    onClose={() => setShowDeleteModal(!showDeleteModal)}
+                    onClose={() => setShowDeleteModal(false)}
                     onConform={() => handleDeletePromotion()}
                     content={`Bạn chắc chắn muốn xóa khuyến mãi`}
                     highlight={promotionActive && promotionActive.TieuDe}

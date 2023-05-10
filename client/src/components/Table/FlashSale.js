@@ -1,8 +1,8 @@
 import { Table } from 'react-bootstrap'
 import { useContext, useEffect } from 'react'
 import clsx from 'clsx'
-import DataContext from '~/contexts/DataContext'
 
+import DataContext from '~/contexts/DataContext'
 import FooterPaging from '../FooterPaging/FooterPaging'
 import { DropdownOption } from '~/components'
 import styles from './Table.module.scss'
@@ -60,7 +60,7 @@ function FlashSaleTable({ header, option, data }) {
                                         {!flashSale.KetThuc && '-'}
                                     </span>
                                 </td>
-                                <td>
+                                <td style={{ width: '200px' }}>
                                     <span className={styles.text2}>
                                         {hotels.find((hotel) => hotel.ID === flashSale.IDKhachSan).Ten}
                                     </span>
