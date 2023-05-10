@@ -181,6 +181,57 @@ body {
     }
 }
 
+.myModal1 {
+    // display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    padding-top: 10px; /* Location of the box */
+    right: 0;
+    top: 0;
+
+    width: 100%; /* Full width */
+    // height: 60px;
+    height: 100%;
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+
+    /* Modal Content */
+    .modalContent {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: #fefefe;
+        // margin: auto;
+        min-width: 200px;
+        padding: 15px;
+        border: 1px solid #888;
+        width: fit-content;
+        height: 52px;
+        font-size: 15px;
+        background-color: #eff7ed;
+        border-color: #eff7ed;
+        display: flex;
+        align-items: center;
+        transition: all linear 1;
+    }
+    // /* The Close Button */
+    .modalIcon {
+        // background-color: green;
+        color: green;
+        margin-right: 15px;
+        font-size: 18px;
+    }
+    // .modalClose {
+    //     color: #aaaaaa;
+    //     float: right;
+    //     font-size: 32px;
+    //     font-weight: bold;
+    //     margin-top: -12px;
+    //     cursor: pointer;
+    // }
+}
+
 .fa-star {
     color: #feda56;
 }

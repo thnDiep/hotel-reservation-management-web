@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import clsx from 'clsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import Axios from 'axios'
+
 import VoucherForm from './VoucherForm'
 import FlashSaleForm from './FlashSaleForm'
 import styles from '../Promotion.module.scss'
@@ -12,8 +15,10 @@ import promotion from '~/assets/jsons/promotion.json'
 function AddPromotion() {
     const { active, id } = useParams()
     const navigate = useNavigate()
+
+    const [showInformModal, setShowInformModal] = useState(false)
     const [showForm, setShowForm] = useState(() => {
-        if (active !== 'undefined') {
+        if (active !== 'undefined' && active !== undefined) {
             return parseInt(active)
         }
         return 0
@@ -146,17 +151,21 @@ function AddPromotion() {
             console.log(voucherState.fields)
             navigate('/cks/voucher', { state: { active: 0 } })
         } else if (showForm === 1 && handleAddFlashSale()) {
-            flashSaleState.fields.BatDau.setHours(0, 0, 0, 0)
+            flashSaleState.fields.BatDau.setUTCHours(0, 0, 0, 0)
 
-            if (flashSaleState.fields.KetThuc) flashSaleState.fields.KetThuc.setHours(23, 59, 59, 0)
+            if (flashSaleState.fields.KetThuc) flashSaleState.fields.KetThuc.setUTCHours(0, 0, 0, 0)
 
             console.log(flashSaleState.fields)
             Axios.post(`http://localhost:8800/cks/promotion/${id ? 'update' : 'insert'}`, {
                 khuyenmai: flashSaleState.fields,
             })
                 .then(() => {
-                    alert('Thêm thành công')
-                    navigate('/cks/voucher', { state: { active: 1 } })
+                    setShowInformModal(true)
+
+                    window.setTimeout(function () {
+                        setShowInformModal(false)
+                        navigate('/cks/voucher', { state: { active: 1 } })
+                    }, 1000)
                 })
                 .catch((error) => console.log(error))
         } else {
@@ -198,6 +207,20 @@ function AddPromotion() {
                         {id && 'Lưu'}
                     </div>
                 </div>
+
+                {/* Thông báo thành công */}
+                {showInformModal && (
+                    <div id="myModal" className="myModal1">
+                        {/* <!-- Modal content --> */}
+                        <div className="modalContent">
+                            <FontAwesomeIcon icon={faCheckCircle} className="modalIcon" />
+                            <div>
+                                {!id && 'Thêm thành công'}
+                                {id && 'Lưu thành công'}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )
