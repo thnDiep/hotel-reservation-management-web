@@ -44,6 +44,7 @@ import ButtonPrimary from '~/components/Button/ButtonPrimary'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import AllFacility from './AllFacility/AllFacility'
+import { Link } from 'react-router-dom'
 const MySwal = withReactContent(Swal)
 const PriceDetail = () => {
     const handleButtonClick = () =>
@@ -56,6 +57,11 @@ const PriceDetail = () => {
             height: '530px',
             backdrop: '#fffff',
         })
+    function scrollToRoomList() {
+        console.log(scrollToRoomList)
+        const roomListContainer = document.getElementById('roomListContainer')
+        roomListContainer.scrollIntoView({ behavior: 'smooth' })
+    }
     return (
         <div className={classes.content}>
             <div className="row">
@@ -89,7 +95,10 @@ const PriceDetail = () => {
                                             <div className={classes['price-medium']}>
                                                 2,376,000 VND<span>/ đêm</span>
                                             </div>
-                                            <ButtonPrimary className="btnChoose">LỰA CHỌN PHÒNG</ButtonPrimary>
+
+                                            <ButtonPrimary className="btnChoose" onSubmit={scrollToRoomList}>
+                                                LỰA CHỌN PHÒNG
+                                            </ButtonPrimary>
                                         </td>
                                     </tr>
                                 </tbody>
