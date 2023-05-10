@@ -19,6 +19,7 @@ function Hotel() {
     const [showInformModal, setShowInformModal] = useState(false)
 
     const data = useContext(DataContext)
+    const [option, setOption] = useState([])
     const [hotels, setHotels] = useState()
     const [hotelActive, setHotelActive] = useState(null)
 
@@ -76,8 +77,6 @@ function Hotel() {
         }
     }, [data])
 
-    const [option, setOption] = useState([])
-
     function updateHotel(hotelActive, ChuKhachSan, DanhGia) {
         Axios.post('http://localhost:8800/hotel/update', {
             khachsan: hotelActive,
@@ -102,7 +101,10 @@ function Hotel() {
                 setHotelActive(null)
                 setShowConformModal(false)
             })
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                console.log(error)
+                setShowConformModal(false)
+            })
     }
 
     function handleBlockHotel() {

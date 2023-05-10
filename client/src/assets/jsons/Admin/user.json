@@ -1,0 +1,5 @@
+{
+    "menu": ["Tất cả", "Hoạt động", "Bị khóa"],
+    "state": ["Hoạt động", "Đã khóa"],
+    "header": ["Hình ảnh", "Họ tên", "Email", "Số điện thoại", "Địa chỉ", "Trạng thái", ""]
+}

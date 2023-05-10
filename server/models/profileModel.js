@@ -1,16 +1,21 @@
-import db from "../utils/db.js";
+import db from "../utils/db.js"
 
 export default {
   async findByID(accountID) {
-    const account = await db("nguoidung").where("ID", accountID);
-    if (account.length === 0) return null;
-    return account[0];
+    const account = await db("nguoidung").where("ID", accountID)
+    if (account.length === 0) return null
+    return account[0]
     // .andWhere("TrangThai", 0);
   },
 
   //cập nhật thông tin người dùng
   async update(profileInfo) {
-    return db("nguoidung").where("ID", profileInfo.ID).update(profileInfo);
+    return db("nguoidung").where("ID", profileInfo.ID).update(profileInfo)
+  },
+
+  // XXÓa người dùng
+  del(id) {
+    return db("nguoidung").where("ID", id).del()
   },
 
   // async getHotelInWishList(ID) {
@@ -30,7 +35,7 @@ export default {
   // },
   //thêm ks vào danh sách yêu thích
   async addToWishList(data) {
-    return db("danhsachyeuthich").insert(data);
+    return db("danhsachyeuthich").insert(data)
   },
 
   //xóa khách sạn khỏi danh sách yêu thích
@@ -38,6 +43,6 @@ export default {
     return db("danhsachyeuthich")
       .where("IDKhachHang", data.IDKhachHang)
       .where("IDKhachSan", data.IDKhachSan)
-      .del();
+      .del()
   },
-};
+}

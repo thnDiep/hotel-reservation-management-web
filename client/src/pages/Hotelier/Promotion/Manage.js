@@ -185,7 +185,10 @@ function ManageVoucher() {
                 setPromotionActive(null)
                 setShowStopModal(false)
             })
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                console.log(error)
+                setShowStopModal(false)
+            })
     }
 
     // Xóa khuyến mãi
@@ -208,6 +211,7 @@ function ManageVoucher() {
             })
             .catch((error) => {
                 console.log(error)
+                setShowDeleteModal(false)
             })
     }
 
