@@ -4,6 +4,7 @@ import Home from '~/pages/Home'
 import Detail from '~/pages/Detail'
 import ListByPlace from '~/pages/ListByPlace'
 import Checkout from '~/pages/Checkout'
+import SuccessCheckOut from '~/pages/Checkout/SuccessCheckOut'
 import { Account, Wishlist, Order, OrderDetail } from '~/pages/Profile'
 import { AccountAdmin, HotelAdmin } from '~/pages/Admin'
 import BlockedAccount from '~/pages/Admin/Account/BlockedAccount'
@@ -16,6 +17,7 @@ import RoomManage from '~/pages/Hotelier/RoomManage'
 import RegisterPartner from '~/pages/RegisterPartner/RegisterPartner'
 import OrderResult from '~/pages/OrderResult'
 import AddRoom from '~/pages/Hotelier/RoomManage/AddRoom/AddRoom'
+import CommentAboutHotel from '~/pages/CommentAboutHotel/CommentAboutHotel'
 import { AddPromotion, ManagePromotion } from '~/pages/Hotelier'
 import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
@@ -25,12 +27,14 @@ export const publicRoutes = [
     { path: '/detail', component: Detail },
     { path: '/listByPlace', component: ListByPlace },
     { path: '/checkout', component: Checkout, layout: HomeLayout },
+    { path: '/checkout/success', component: SuccessCheckOut, layout: HomeLayout },
 
     // Profile
     { path: '/profile', component: Account, layout: HomeLayout },
     { path: '/profile/order', component: Order, layout: HomeLayout },
     { path: '/profile/order/1', component: OrderDetail, layout: HomeLayout },
     { path: '/profile/wish-list', component: Wishlist, layout: HomeLayout },
+    { path: '/profile/order/comment', component: CommentAboutHotel, layout: null },
 
     { path: '/qrPay', component: QrPay, layout: QrPayLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: null },

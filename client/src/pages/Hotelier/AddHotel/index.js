@@ -3,12 +3,15 @@ import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import CheckFacility from '../../../components/CheckFacility/CheckFacility'
 import { ButtonPrimary } from '~/components'
-import PaymentIntput from './PaymentInput/PaymentInput'
 import AddMultiple from '../../../components/AddMultiple/AddMultiple'
 import Rating from 'material-ui-rating'
 import { Editor } from '@tinymce/tinymce-react'
 import 'animate.css'
+import axios from 'axios'
 import './styles.scss'
+import FormData from 'form-data';
+import { v4 as uuidv4 } from 'uuid';
+import { Cloudinary } from 'cloudinary-core';
 const options = [
     { value: '8:00', label: '8:00 AM' },
     { value: '9:00', label: '9:00 AM' },
@@ -23,21 +26,21 @@ const options = [
 ]
 
 const AddHotel = () => {
-    const [selectedSite, setSelectedSite] = useState(1)
+    const [selectedSite, setSelectedSite] = useState(2)
     const [provinces, setProvinces] = useState([])
     const [districts, setDistricts] = useState([])
     const [wards, setWards] = useState([])
-    // const [hotel.ThanhPho, setSelectedProvince] = useState(null)
-    // const [hotel.Quan, setSelectedDistrict] = useState(null)
-    // const [hotel.Phuong, setSelectedWards] = useState(null)
+
+
+
     const [hotel, setHotel] = useState(() => {
         return {
             Ten: '',
             DiaChi: '',
             Sao: '',
             GioiThieu: "",
-            GioNhanPhong: '',
-            GioTraPhong: '',
+            GioNhanPhong: { value: '12:00', label: '12:00 AM' },
+            GioTraPhong: { value: '12:00', label: '12:00 AM' },
             ChinhSach: '',
         }
     })
@@ -95,6 +98,44 @@ const AddHotel = () => {
         }
     }, [diaChi.Quan])
 
+
+
+    // Tiện nghi
+    const [tienNghi, setTienNghi] = useState(null)
+    const [thongTin, setThongTin] = useState(null)
+    const [nhan, setNhan] = useState(null)
+    useEffect(() => {
+        axios.get('http://localhost:8800/cks/facility')
+            .then((response) => {
+                for (let check of response.data.types) {
+                    check.checked = false;
+                }
+                for (let check of response.data.useFull) {
+                    check.NoiDung = '';
+                }
+                setTienNghi(response.data.types)
+                setThongTin(response.data.useFull)
+            })
+            .catch((error) => {
+            })
+    }, [])
+    const handleChangeTienNghi = (tienNghi) => {
+        setTienNghi(tienNghi)
+    }
+    const handleChangeThongTin = (thongTin) => {
+        setThongTin(thongTin)
+    }
+    const handleChangeNhan = (nhan) => {
+        setNhan(nhan)
+    }
+
+    //image
+    const [selectedFiles, setSelectedFiles] = useState([]);
+    const handleImagesChange = (event) => {
+        setSelectedFiles([...event.target.files]);
+    }
+
+
     const handleCheckboxSite = (value) => {
         if (selectedSite === 1 && parseInt(value) !== 1) {
             for (const key in hotel) {
@@ -108,7 +149,7 @@ const AddHotel = () => {
         setSelectedSite(value)
     }
     const handleNext = () => {
-        if (selectedSite === 1 && selectedSite < 3) {
+        if (selectedSite === 1) {
             for (const key in hotel) {
                 if (hotel[key] === '') {
                     setNextCheck(true)
@@ -116,17 +157,43 @@ const AddHotel = () => {
                 }
             }
         }
+        if (selectedSite === 2) {
+            const filteredTienNghi = tienNghi?.filter((item) => item.checked);
+
+            const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '');
+            if (filteredTienNghi.length === 0 || filteredThongTin.length === 0 || nhan === null) {
+                setNextCheck(true)
+                return
+            }
+
+        }
         setNextCheck(false)
         if (selectedSite < 3) setSelectedSite(selectedSite + 1)
     }
     const handlePrev = () => {
+        if (selectedSite === 1) {
+            for (const key in hotel) {
+                if (hotel[key] === '') {
+                    setNextCheck(true)
+                    return
+                }
+            }
+        }
+        if (selectedSite === 2) {
+            let filteredTienNghi = tienNghi?.filter((item) => item.checked);
+
+            const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '');
+            if (filteredTienNghi.length === 0 || filteredThongTin.length === 0 || nhan === null) {
+                setNextCheck(true)
+                return
+            }
+
+        }
         if (selectedSite > 1) setSelectedSite(selectedSite - 1)
     }
 
     const handleChange = (value, name) => {
-        console.log('đâs');
         setHotel((prev) => ({ ...prev, [name]: value }))
-        console.log(value)
     }
     const handleChangeDiaChi = (value, name) => {
         if (name === 'ThanhPho') {
@@ -149,6 +216,62 @@ const AddHotel = () => {
             }
         }
         setDiaChi((prev) => ({ ...prev, [name]: value }))
+
+    }
+
+    // Submit
+    const handleSubmit = async (event) => {
+        // Gửi dữ liệu formData về server
+        try {
+            event.preventDefault();
+            const PRESET_NAME = "ml_default"
+            const CLOUD_NAME = 'dzawgnpm9'
+            const url = []
+            const FOLDER_NAME = "khachsan"
+            const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
+            const formData = new FormData();
+            formData.append('upload_preset', PRESET_NAME)
+            formData.append('folder', FOLDER_NAME)
+            for (const file of selectedFiles) {
+                formData.append("file", file);
+                const res = await axios.post(api, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    },
+                })
+                url.push(res.data.url)
+
+            }
+            console.log(url.length)
+
+            if (url.length === 0)
+                return
+            const IDTienNghi = []
+            console.log(nhan)
+            const filteredTienNghi = tienNghi?.filter((item) => item.checked);
+            for (const loai of filteredTienNghi) {
+                for (const tiennghi of loai.TienNghi) {
+                    IDTienNghi.push(tiennghi.ID);
+                }
+            }
+            const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '');
+            hotel.nhan = nhan
+            console.log(hotel)
+            hotel.GioNhanPhong = hotel.GioNhanPhong.value;
+            hotel.GioTraPhong = hotel.GioTraPhong.value;
+            hotel.IDDiaDiem = 1
+            // const results = await Promise.all(promises);
+            const res = await axios.post('http://localhost:8800/cks/addHotel', {
+                HinhAnh: url,
+                hotel: hotel,
+                tienNghi: IDTienNghi,
+                thongTin: filteredThongTin,
+
+            });
+            // navigate("/")
+        } catch (err) {
+            console.log(err)
+        }
 
     }
 
@@ -189,7 +312,6 @@ const AddHotel = () => {
                                             <div className="form-group mb-3">
                                                 <label className={`text-label ${styles.label}`}>Sao<span>*</span></label>
                                                 <Rating
-
                                                     name="simple-controlled"
                                                     value={parseInt(hotel.Sao)}
                                                     onChange={(newValue) => {
@@ -329,8 +451,19 @@ const AddHotel = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <CheckFacility check={false} display={`${selectedSite === 2 ? 'block' : 'none'}`} />
-                                <AddMultiple display={`${selectedSite === 3 ? 'block' : 'none'}`} />
+                                <CheckFacility
+                                    check={false}
+                                    nextCheck={nextCheck}
+                                    handleChangeTienNghi={handleChangeTienNghi}
+                                    handleChangeThongTin={handleChangeThongTin}
+                                    handleChangeNhan={handleChangeNhan}
+                                    tienNghi={tienNghi}
+                                    thongTin={thongTin}
+                                    nhan={nhan}
+                                    display={`${selectedSite === 2 ? 'block' : 'none'}`} />
+                                <AddMultiple
+                                    handleImagesChange={handleImagesChange}
+                                    display={`${selectedSite === 3 ? 'block' : 'none'}`} />
                                 <div className='text-end toolbar toolbar-bottom p-2'>
                                     {selectedSite !== 1 && (
                                         <ButtonPrimary onSubmit={handlePrev} className="btnLarge2">
@@ -342,7 +475,7 @@ const AddHotel = () => {
                                             Tiếp tục
                                         </ButtonPrimary>
                                     ) : (
-                                        <ButtonPrimary className="btnLarge2">Đăng Ký</ButtonPrimary>
+                                        <ButtonPrimary className="btnLarge2" onSubmit={handleSubmit}>Đăng Ký</ButtonPrimary>
                                     )}
                                 </div>
                             </div>

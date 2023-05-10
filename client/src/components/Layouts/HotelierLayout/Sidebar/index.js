@@ -37,7 +37,6 @@ const Sidebar = ({ checkHide }) => {
             <ul className="side-menu">
 
                 {chooses.map((choose) => {
-                    console.log(choose.name)
                     return (
                         <li key={choose.id}>
                             <Link

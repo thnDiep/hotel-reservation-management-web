@@ -88,14 +88,18 @@
         justify-content: center;
         display: flex;
         font-weight: 700;
+        margin-bottom: 2rem;
     }
 }
 
 .label{
-    margin-top: 3rem;
+    margin-top: 1rem;
     font-size: 15px;
     font-weight: bold;
     color: rgb(97, 97, 97);
+    span{
+        color: red;
+    }
 }
 
 .title3{
@@ -111,6 +115,7 @@
     border-radius: 3px;
     width: 37rem;
     height: 5rem;
+    margin-top: 5px;
     padding: 20px;
     box-shadow: 1px 1px 5px rgb(190, 190, 190);
     .fieldInput:focus, :active{
@@ -123,7 +128,7 @@
 // }
 
 .loginBtn{
-    margin-top: 4rem;
+    margin-top: 5rem;
     background-color: #ff3366;
     width: 37rem;
     height: 4rem;
