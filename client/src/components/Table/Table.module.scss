@@ -11,7 +11,7 @@
     transition: all 0.5s ease-in-out;
     padding-bottom: 0;
     // width: 1354px;
-    overflow: hidden;
+    // overflow: hidden;
 
     .cusTable {
         background-color: #fff;
@@ -22,22 +22,17 @@
 
         tbody {
             border-top: none !important;
-
-
-
         }
 
         img {
-            /*
             height: 4.813rem;
             width: 9.375rem;
             border-radius: 0.75rem;
             margin-right: 1rem;
-            */
-            height: 6.5rem;
-            width: 13rem;
-            border-radius: 0.75rem;
-            margin-right: 1rem;
+            // height: 6.5rem;
+            // width: 13rem;
+            // border-radius: 0.75rem;
+            // margin-right: 1rem;
         }
 
         .title {
@@ -75,8 +70,6 @@
                 font-weight: 400;
             }
         }
-
-
 
         .date {
             font-size: 1.4rem;

@@ -12,6 +12,7 @@ import './styles.scss'
 import FormData from 'form-data';
 import { v4 as uuidv4 } from 'uuid';
 import { Cloudinary } from 'cloudinary-core';
+import { useNavigate } from 'react-router-dom'
 const options = [
     { value: '8:00', label: '8:00 AM' },
     { value: '9:00', label: '9:00 AM' },
@@ -26,11 +27,12 @@ const options = [
 ]
 
 const AddHotel = () => {
-    const [selectedSite, setSelectedSite] = useState(2)
+    const [selectedSite, setSelectedSite] = useState(1)
     const [provinces, setProvinces] = useState([])
     const [districts, setDistricts] = useState([])
     const [wards, setWards] = useState([])
 
+    const Nav = useNavigate()
 
 
     const [hotel, setHotel] = useState(() => {
@@ -113,10 +115,12 @@ const AddHotel = () => {
                 for (let check of response.data.useFull) {
                     check.NoiDung = '';
                 }
+                console.log(response.data)
                 setTienNghi(response.data.types)
                 setThongTin(response.data.useFull)
             })
             .catch((error) => {
+                console.log("lấy lỗi")
             })
     }, [])
     const handleChangeTienNghi = (tienNghi) => {
@@ -268,7 +272,7 @@ const AddHotel = () => {
                 thongTin: filteredThongTin,
 
             });
-            // navigate("/")
+            Nav('/')
         } catch (err) {
             console.log(err)
         }
@@ -414,8 +418,8 @@ const AddHotel = () => {
                                                 <textarea rows={20} cols={10}
                                                     onChange={(e) => { handleChange(e.target.value, "ChinhSach") }}
                                                     className={`form-control ${styles.formControl} ${hotel.ChinhSach === '' && nextCheck && styles.inputRed
-                                                        }`}>{hotel.ChinhSach}
-                                                </textarea>
+                                                        }`}
+                                                    defaultValue={hotel.ChinhSach} />
 
                                             </div>
                                         </div>

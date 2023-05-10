@@ -1,16 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import clsx from 'clsx'
 import TitleLinkButton from '~/components/Button/TitleButton'
 import { Tag, NavBar, DropdownButton, DropdownOption } from '~/components'
 import { Table } from 'react-bootstrap'
 import styles from './OrderManagement.module.scss'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import OrderDetailCard from '~/pages/Hotelier/OrderManagement/OrderDetailCard/OrderDetailCard'
 import FooterPaging from '~/components/FooterPaging/FooterPaging'
+import { useNavigate } from 'react-router-dom'
 const MySwal = withReactContent(Swal)
 function HotelTable() {
+    function confirmAction() {
+        console.log('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv')
+        let result = window.confirm('Are you sure you want to delete this item?')
+
+        if (result) {
+            // Do something if user clicks "OK"
+            console.log('User clicked OK')
+        } else {
+            // Do something if user clicks "Cancel"
+            console.log('User clicked Cancel')
+        }
+    }
+    const option = useRef([
+        {
+            name: 'Xem chi tiết',
+            handle: function () {
+                // navigate('/cks/voucher/add', { state: { active: active } })
+            },
+        },
+        {
+            name: 'Xóa',
+            handle: function () {
+                const act = confirmAction
+                window.addEventListener('beforeunload', act)
+            },
+        },
+    ])
     const handleButtonClick = () =>
         MySwal.fire({
             title: 'Đơn hàng',
@@ -37,6 +66,7 @@ function HotelTable() {
     }
     return (
         <div className={styles.tableWrapper}>
+            <base href="/"></base>
             <Table responsive className={styles.cusTable}>
                 <thead>
                     <tr>
@@ -102,13 +132,15 @@ function HotelTable() {
                                 <span className={styles.text2}>0342221667</span>
                             </td>
                             <td>
-                                <span className={styles.date}>1.500.000 VND</span>
+                                <h3 className={clsx(styles.text1, styles.primary)}>
+                                    1.550.000 <sup>VND</sup>
+                                </h3>
                             </td>
                             <td>
                                 <div className={clsx('btn-1', 'active', styles.status)}>Đã duyệt</div>
                             </td>
                             <td className={styles.relative}>
-                                <DropdownOption list={['Xem chi tiết', 'Xóa']} />
+                                <DropdownOption list={option.current} />
                             </td>
                         </tr>
                     )}
@@ -143,10 +175,12 @@ function HotelTable() {
                                 <span className={styles.date}>Nov 4th, 2022</span>
                             </td>
                             <td>
-                                <span className={styles.date}>0342221667</span>
+                                <span className={styles.text2}>0342221667</span>
                             </td>
                             <td>
-                                <span className={styles.text2}>1.500.000 VND</span>
+                                <h3 className={clsx(styles.text1, styles.primary)}>
+                                    1.550.000 <sup>VND</sup>
+                                </h3>
                             </td>
                             <td>
                                 <button className={styles.btnPending} onClick={pendingBtnChangeHandler}>
@@ -166,7 +200,7 @@ function HotelTable() {
                                 </button>
                             </td>
                             <td className={styles.relative}>
-                                <DropdownOption list={['Xem chi tiết', 'Xóa']} />
+                                <DropdownOption list={option.current} />
                             </td>
                         </tr>
                     )}

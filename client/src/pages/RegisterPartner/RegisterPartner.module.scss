@@ -44,6 +44,9 @@
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 5px 5px 16px rgba(0, 0, 0, 0.05), -5px -5px 16px rgba(0, 0, 0, 0.05);
+    img {
+        width: 369px;
+    }
 }
 
 .left {
@@ -121,7 +124,9 @@
             }
         }
     }
-
+    .space {
+        color: transparent !important;
+    }
     .error {
         color: rgba(0, 0, 0, 0.54);
         margin: 0;
