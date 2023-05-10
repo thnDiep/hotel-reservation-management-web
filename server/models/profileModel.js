@@ -5,7 +5,6 @@ export default {
     const account = await db("nguoidung").where("ID", accountID);
     if (account.length === 0) return null;
     return account[0];
-    // return await db("khachsan").whereIn("ID", ids)
     // .andWhere("TrangThai", 0);
   },
 

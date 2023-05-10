@@ -36,7 +36,7 @@
             }
 
             &--facilities {
-                &>div {
+                & > div {
                     display: block;
                     width: 100%;
                     margin-bottom: 15px;
@@ -51,8 +51,6 @@
                         margin-right: 5px;
                     }
                 }
-
-
             }
         }
 
@@ -69,7 +67,6 @@
                 border-bottom: 1px solid #e6e6e6;
                 padding: 0px 20px;
                 display: grid;
-                grid-template-columns: auto auto;
                 line-height: 60px;
                 font-size: 13px;
                 color: #333333;
@@ -77,8 +74,10 @@
 
                 .box-passenger {
                     display: grid;
-                    grid-template-columns: auto auto auto;
-
+                    display: flex;
+                    justify-content: space-between;
+                    .notice {
+                    }
                     svg {
                         font-size: 20px;
                         font-size: 16px;
@@ -94,7 +93,6 @@
                         text-transform: none;
                         text-rendering: optimizeLegibility;
                         margin-bottom: 3px;
-
                     }
 
                     span {
@@ -102,7 +100,6 @@
                         font-family: 'os_semi_bold';
                     }
                 }
-
             }
 
             &--content {
@@ -128,7 +125,7 @@
                     font-family: 'os_regular';
                     margin: 10px 0px;
 
-                    &>div {
+                    & > div {
                         margin-bottom: 15px;
                     }
 
@@ -147,7 +144,6 @@
                         text-transform: none;
                         text-rendering: optimizeLegibility;
                         margin-bottom: 3px;
-
                     }
                 }
 
@@ -191,7 +187,7 @@
                         }
 
                         i {
-                            content: "";
+                            content: '';
                             border: 10px solid #9f1917;
                             position: absolute;
                             left: -20px;

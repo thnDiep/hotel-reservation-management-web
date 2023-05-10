@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import classes from './RegisterPartner.module.scss'
 import { ButtonPrimary } from '~/components'
-import axios from "axios";
+import axios from 'axios'
 const RegisterPartner = () => {
     const [enteredNameCompany, setEnteredNameCompany] = useState(() => {
         return { value: '', error: '', isValid: false }
@@ -32,7 +32,7 @@ const RegisterPartner = () => {
     })
 
     const [selectedOption, setSelectedOption] = useState(false)
-
+    const [selectedValue, setSelectedValue] = useState()
     useEffect(() => {
         if (enteredIntroducedPhoneNumber.isValid === true) {
             const identifier = setTimeout(() => {
@@ -52,10 +52,10 @@ const RegisterPartner = () => {
         const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
         if (enteredEmail.isValid === true) {
             const identifier = setTimeout(() => {
-                if (!filter.test(enteredEmail.value)) {
-                    setEnteredEmail({ ...enteredEmail, error: 'Email không đúng ' })
-                } else if (enteredEmail.value.length === 0) {
+                if (enteredEmail.value.length === 0) {
                     setEnteredEmail({ ...enteredEmail, error: 'Thông tin bắt buộc' })
+                } else if (!filter.test(enteredEmail.value)) {
+                    setEnteredEmail({ ...enteredEmail, error: 'Email không đúng ' })
                 } else {
                     setEnteredEmail({ ...enteredEmail, error: '' })
                 }
@@ -67,6 +67,7 @@ const RegisterPartner = () => {
     }, [enteredEmail.value])
 
     useEffect(() => {
+        //const filter = /(84|0[3|5|7|8|9])+([0-9]{8})\b/
         if (enteredPhoneNumber.isValid === true) {
             const identifier = setTimeout(() => {
                 if (enteredPhoneNumber.value.length === 0) {
@@ -198,23 +199,55 @@ const RegisterPartner = () => {
     }
     const handleOptionChange = () => {
         setSelectedOption(!selectedOption)
+        document.querySelector('input[type="radio"]').checked = !selectedOption
     }
+    const handleSelectChange = (event) => {
+        setSelectedValue(event.target.value)
+    }
+   
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
-        // try {
-        //     const res = await axios.post("auth/login", {
-        //         HoTen: 'manhtu',
-        //         TenCongTy: enteredNameCompany.value,
-        //         DiaChi: enteredAddress.value,
-        //         Email: "manhtu2272002@gmail.com",
-        //         MatKhau: "123",
-        //     });
-        //     // navigate("/")
-        // } catch (err) {
-        //     console.log(err)
-        //     console.log('sai')
-        // }
+        e.preventDefault()
+        if (enteredNameCompany.value.length === 0) {
+            setEnteredNameCompany({ ...enteredNameCompany, error: 'Thông tin bắt buộc' })
+        }
+        if (enteredAddress.value.length === 0) {
+            setEnteredAddress({ ...enteredAddress, error: 'Thông tin bắt buộc' })
+        }
+        if (enteredTaxCode.value.length === 0) {
+            setEnteredTaxCode({ ...enteredTaxCode, error: 'Thông tin bắt buộc' })
+        }
+        if (enteredUserName.value.length === 0) {
+            setEnteredUserName({ ...enteredUserName, error: 'Thông tin bắt buộc' })
+        }
+        if (enteredPhoneNumber.value.length === 0) {
+            setEnteredPhoneNumber({ ...enteredPhoneNumber, error: 'Thông tin bắt buộc' })
+        }
+        if (enteredEmail.value.length === 0) {
+            setEnteredEmail({ ...enteredEmail, error: 'Thông tin bắt buộc' })
+        }
+        if (enteredPass.value.length === 0) {
+            setEnteredPass({ ...enteredPass, error: 'Thông tin bắt buộc' })
+        }
+        if (enteredRePass.value.length === 0) {
+            setEnteredRePass({ ...enteredRePass, error: 'Thông tin bắt buộc' })
+        }
+        try {
+            const res = await axios.post('auth/signUp', {
+                HoTen: enteredUserName.value,
+                TenCongTy: enteredNameCompany.value,
+                DiaChi: enteredAddress.value,
+                QuyMo: selectedValue,
+                Email: enteredEmail.value,
+                MatKhau: enteredPass.value,
+                SoDienThoai: enteredPhoneNumber.value,
+                PhanQuyen: 1,
+                MaSoThue: enteredTaxCode.value,
+            })
+        } catch (err) {
+            console.log(err)
+            console.log('sai')
+        }
     }
 
     return (
@@ -243,8 +276,9 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="nameCompany"
                                                     value={enteredNameCompany.value}
-                                                    className={`${enteredNameCompany.error !== '' && classes.lineUnderWhenError
-                                                        }`}
+                                                    className={`${
+                                                        enteredNameCompany.error !== '' && classes.lineUnderWhenError
+                                                    }`}
                                                     onChange={nameCompanyChangeHandler}
                                                     placeholder="Nhập tên công ty"
                                                 />
@@ -257,15 +291,16 @@ const RegisterPartner = () => {
                                             Quy mô <span className={classes.important}>*</span>
                                         </span>
                                         <div className={classes.input}>
-                                            <select className={classes.inputName}>
-                                                <option value="1">1 - 19 nhân viên</option>
-                                                <option value="2">20 - 49 nhân viên</option>
-                                                <option value="3">50 - 99 nhân viên</option>
-                                                <option value="4">100 - 199 nhân viên</option>
-                                                <option value="5">200 - 499 nhân viên</option>
-                                                <option value="6">500 - 1000 nhân viên</option>
+                                            <select className={classes.inputName} onChange={handleSelectChange}>
+                                                <option value="">Hãy chọn quy mô</option>
+                                                <option value="1 - 19 nhân viên">1 - 19 nhân viên</option>
+                                                <option value="20 - 49 nhân viên">20 - 49 nhân viên</option>
+                                                <option value="50 - 99 nhân viên">50 - 99 nhân viên</option>
+                                                <option value="100 - 199 nhân viên">100 - 199 nhân viên</option>
+                                                <option value="200 - 499 nhân viên">200 - 499 nhân viên</option>
+                                                <option value="500 - 1000 nhân viên">500 - 1000 nhân viên</option>
                                             </select>
-                                            <p className={classes.error}>{enteredNameCompany.error}</p>
+                                            <p className={`${classes.space} ${classes.error}`}>.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -281,8 +316,9 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="address"
                                                     value={enteredAddress.value}
-                                                    className={`${enteredAddress.error !== '' && classes.lineUnderWhenError
-                                                        }`}
+                                                    className={`${
+                                                        enteredAddress.error !== '' && classes.lineUnderWhenError
+                                                    }`}
                                                     onChange={addressChangeHandler}
                                                     placeholder="Nhập địa chỉ"
                                                 />
@@ -300,8 +336,9 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="tax"
                                                     value={enteredTaxCode.value}
-                                                    className={`${enteredTaxCode.error !== '' && classes.lineUnderWhenError
-                                                        }`}
+                                                    className={`${
+                                                        enteredTaxCode.error !== '' && classes.lineUnderWhenError
+                                                    }`}
                                                     onChange={taxCodeChangeHandler}
                                                     placeholder="Nhập mã số thuế"
                                                 />
@@ -314,7 +351,7 @@ const RegisterPartner = () => {
                                 <div className={classes.twoCol}>
                                     <div className={`d-flex flex-column align-items-start ${classes.twoCol1}`}>
                                         <span className={classes.label}>
-                                            Tên người liên hệ <span className={classes.important}>*</span>
+                                            Họ và tên <span className={classes.important}>*</span>
                                         </span>
                                         <div className={classes.input}>
                                             <div className={classes.inputName}>
@@ -322,10 +359,11 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="contactUser"
                                                     value={enteredUserName.value}
-                                                    className={`${enteredUserName.error !== '' && classes.lineUnderWhenError
-                                                        }`}
+                                                    className={`${
+                                                        enteredUserName.error !== '' && classes.lineUnderWhenError
+                                                    }`}
                                                     onChange={useNameChangeHandler}
-                                                    placeholder="Nhập tên người liên hệ"
+                                                    placeholder="Nhập Họ và tên"
                                                 />
                                             </div>
                                             <p className={classes.error}>{enteredUserName.error}</p>
@@ -341,8 +379,9 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="phone"
                                                     value={enteredPhoneNumber.value}
-                                                    className={`${enteredPhoneNumber.error !== '' && classes.lineUnderWhenError
-                                                        }`}
+                                                    className={`${
+                                                        enteredPhoneNumber.error !== '' && classes.lineUnderWhenError
+                                                    }`}
                                                     onChange={phoneNumberChangeHandler}
                                                     placeholder="Nhập số điện thoại"
                                                 />
@@ -360,8 +399,9 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="email"
                                                     value={enteredEmail.value}
-                                                    className={`${enteredEmail.error !== '' && classes.lineUnderWhenError
-                                                        }`}
+                                                    className={`${
+                                                        enteredEmail.error !== '' && classes.lineUnderWhenError
+                                                    }`}
                                                     onChange={emailChangeHandler}
                                                     placeholder="Nhập địa chỉ email"
                                                 />
@@ -382,8 +422,9 @@ const RegisterPartner = () => {
                                                     type="password"
                                                     name="pass"
                                                     value={enteredPass.value}
-                                                    className={`${enteredPass.error !== '' && classes.lineUnderWhenError
-                                                        }`}
+                                                    className={`${
+                                                        enteredPass.error !== '' && classes.lineUnderWhenError
+                                                    }`}
                                                     onChange={passChangeHandler}
                                                     placeholder="******"
                                                 />
@@ -401,8 +442,9 @@ const RegisterPartner = () => {
                                                     type="password"
                                                     name="rePass"
                                                     value={enteredRePass.value}
-                                                    className={`${enteredRePass.error !== '' && classes.lineUnderWhenError
-                                                        }`}
+                                                    className={`${
+                                                        enteredRePass.error !== '' && classes.lineUnderWhenError
+                                                    }`}
                                                     onChange={rePassChangeHandler}
                                                     placeholder="******"
                                                 />
@@ -421,9 +463,10 @@ const RegisterPartner = () => {
                                                     type="text"
                                                     name="introducedPhone"
                                                     value={enteredIntroducedPhoneNumber.value}
-                                                    className={`${enteredIntroducedPhoneNumber.error !== '' &&
+                                                    className={`${
+                                                        enteredIntroducedPhoneNumber.error !== '' &&
                                                         classes.lineUnderWhenError
-                                                        }`}
+                                                    }`}
                                                     onChange={introducedPhoneNumberChangeHandler}
                                                 />
                                             </div>
@@ -433,7 +476,7 @@ const RegisterPartner = () => {
                                 </div>
 
                                 <div className="form-outline  ">
-                                    <input type="radio" onClick={handleOptionChange} checked={selectedOption} />
+                                    <input type="radio" onClick={handleOptionChange} onChange={handleOptionChange} />
                                     <span className={classes.agree}>
                                         <label className="form-label ml-5">
                                             Tôi đồng ý với các điều khoản và điều kiện của doanh nghiệp
@@ -442,7 +485,12 @@ const RegisterPartner = () => {
                                 </div>
 
                                 <div className="d-flex justify-content-start pt-1 mx-0">
-                                    <ButtonPrimary type="button" onSubmit={handleSubmit} className="btnLarge4" disabled={!selectedOption}>
+                                    <ButtonPrimary
+                                        type="button"
+                                        onSubmit={handleSubmit}
+                                        className="btnLarge4"
+                                        disabled={!selectedOption}
+                                    >
                                         Gửi thông tin đăng ký
                                     </ButtonPrimary>
                                 </div>

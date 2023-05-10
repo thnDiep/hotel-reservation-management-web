@@ -1,0 +1,29 @@
+{
+    "nav": [
+        {
+            "name": "Quản lý khách sạn",
+            "link": "/admin/hotel"
+        },
+        { "name": "Quản lý tài khoản", "link": "/admin/account" }
+    ],
+    "hotel": {
+        "menu": ["Tất cả", "Chờ duyệt", "Hoạt động", "Bị khóa"],
+        "state": ["Chờ duyệt", "Hoạt động", "Đã khóa"],
+        "option": ["Xem khách sạn", "Xem tiện nghi", "Liên lạc", "Khóa"],
+        "header": [
+            "Tên khách sạn",
+            "Chủ khách sạn",
+            "Địa chỉ",
+            "Giá tiêu chuẩn",
+            "Khuyến mãi",
+            "Đánh giá",
+            "Trạng thái",
+            ""
+        ]
+    },
+    "accountOfAdmin": [
+        { "name": "Tất cả", "link": "/admin/account" },
+        { "name": "Hoạt động", "link": "/admin/account/active" },
+        { "name": "Khóa", "link": "/admin/account/blocked" }
+    ]
+}

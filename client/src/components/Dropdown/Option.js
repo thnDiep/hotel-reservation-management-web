@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 import styles from './Dropdown.module.scss'
 
-function DropdownOption({ list, idActive, type }) {
+function DropdownOption({ list, idActive, phoneActive, type, disables, hides }) {
     const wrapperRef = useRef(null)
     const [show, setShow] = useState(false)
 
@@ -21,7 +21,8 @@ function DropdownOption({ list, idActive, type }) {
         }
     }, [wrapperRef])
 
-    function handleClick(item) {
+    function handleClick(item, index) {
+        if (disables && disables[index]) return
         setShow(!show)
         item.handle(idActive, type)
     }
@@ -33,11 +34,36 @@ function DropdownOption({ list, idActive, type }) {
             </div>
             {show && (
                 <div className={clsx(styles.dropdownMenu)}>
-                    {list.map((item, index) => (
-                        <div key={index} className={clsx(styles.dropdownItem)} onClick={() => handleClick(item)}>
-                            <span>{item.name}</span>
-                        </div>
-                    ))}
+                    {list.map((item, index) => {
+                        if (hides && !hides[index]) {
+                            if (item.link) {
+                                return (
+                                    <a
+                                        style={{ display: 'block', color: '#212529' }}
+                                        href={`${item.link}${phoneActive}`}
+                                        key={index}
+                                        className={clsx(styles.dropdownItem, {
+                                            [styles.disabled]: (disables && disables[index]) || false,
+                                        })}
+                                    >
+                                        <span>{item.name}</span>
+                                    </a>
+                                )
+                            } else {
+                                return (
+                                    <div
+                                        key={index}
+                                        className={clsx(styles.dropdownItem, {
+                                            [styles.disabled]: (disables && disables[index]) || false,
+                                        })}
+                                        onClick={() => handleClick(item, index)}
+                                    >
+                                        <span>{item.name}</span>
+                                    </div>
+                                )
+                            }
+                        }
+                    })}
                     {/* {list.map((item, index) => (
                         <div key={index} className={clsx(styles.dropdownItem)} onClick={() => setShow(!show)}>
                             {item}

@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useState, useEffect, useContext } from 'react'
+import { useLocation, useParams, Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+
 import Axios from 'axios'
 
-import DataContext from '~/contexts/DataContext'
 import promotion from '~/assets/jsons/promotion.json'
 import { DropdownButton, NavHandle, ConformModal } from '~/components'
 import { VoucherTable, FlashSaleTable } from '~/components/Table'
 import styles from './Promotion.module.scss'
-import { useEffect, useContext } from 'react'
 
 function ManageVoucher() {
     const navigate = useNavigate()
-    const [showConformModal, setShowConformModal] = useState(false)
+    const { state } = useLocation()
+    const { preActive } = useParams()
+
+    // Conform modal
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
+    const [showStopModal, setShowStopModal] = useState(false)
+    const [showInformModal, setShowInformModal] = useState(false)
+
     const [promotionActive, setPromotionActive] = useState(null)
     const [option, setOption] = useState([])
     const [data, setData] = useState({})
 
     // Menu
-    const { preActive } = useParams()
-
-    const { state } = useLocation()
     const [active, setActive] = useState(() => {
-        if (state) return state.active
-        if (preActive !== 'undefined') return parseInt(preActive)
-        else return 0
+        if (state) {
+            return state.active
+        }
+        if (preActive !== undefined && preActive !== 'undefined') {
+            return parseInt(preActive)
+        }
+        return 0
     })
-
     // Dữ liệu cho bảng
     useEffect(() => {
         Axios.get('http://localhost:8800/cks/promotion', { params: { idCKS: 1 } })
@@ -45,8 +50,10 @@ function ManageVoucher() {
                     },
                     {
                         name: 'Ngừng khuyến mãi',
-                        handle: function () {
-                            alert('Ngừng khuyến mãi')
+                        handle: function (idActive) {
+                            const promotion = result.promotions.find((key) => key.ID === idActive)
+                            setPromotionActive(promotion)
+                            setShowStopModal(true)
                         },
                     },
                     {
@@ -54,7 +61,7 @@ function ManageVoucher() {
                         handle: function (idActive) {
                             const promotion = result.promotions.find((key) => key.ID === idActive)
                             setPromotionActive(promotion)
-                            setShowConformModal(!showConformModal)
+                            setShowDeleteModal(true)
                         },
                     },
                 ])
@@ -71,12 +78,40 @@ function ManageVoucher() {
         const flashSales = promotions.filter((key) => key.MaKhuyenMai === null)
 
         const now = new Date()
+        if (vouchers) {
+            vouchers.map((voucher) => {
+                const BatDau = new Date(voucher.BatDau)
+                voucher.BatDau = BatDau
+                let KetThuc
+                if (voucher.KetThuc) {
+                    KetThuc = new Date(voucher.KetThuc)
+                    voucher.KetThuc = KetThuc
+                } else {
+                    KetThuc = new Date()
+                }
+
+                if (now < BatDau) {
+                    voucher.TrangThai = 0
+                } else if (now >= BatDau && now <= KetThuc) {
+                    voucher.TrangThai = 1
+                } else {
+                    voucher.TrangThai = 2
+                }
+            })
+        }
         if (flashSales) {
             flashSales.map((flashSale) => {
                 const BatDau = new Date(flashSale.BatDau)
-                BatDau.setHours(0, 0, 0, 0)
-                const KetThuc = new Date(flashSale.KetThuc)
-                KetThuc.setHours(23, 59, 59, 0)
+                // BatDau.setUTCHours(0, 0, 0, 0)
+                flashSale.BatDau = BatDau
+                let KetThuc
+                // KetThuc.setUTCHours(0, 0, 0, 0)
+                if (flashSale.KetThuc) {
+                    KetThuc = new Date(flashSale.KetThuc)
+                    flashSale.KetThuc = KetThuc
+                } else {
+                    KetThuc = new Date()
+                }
 
                 const period = periods.find((key) => key.ID === flashSale.IDKhungGio)
                 const start = period.GioBatDau.toString()
@@ -104,21 +139,72 @@ function ManageVoucher() {
         return { vouchers, flashSales, promotions }
     }
 
+    // Dừng khuyến mãi
+    function handleStopPromotion() {
+        const GioBatDau = promotionActive.GioBatDau
+        const GioKetThuc = promotionActive.GioKetThuc
+
+        delete promotionActive.GioBatDau
+        delete promotionActive.GioKetThuc
+        delete promotionActive.TrangThai
+
+        promotionActive.KetThuc = new Date()
+        Axios.post('http://localhost:8800/cks/promotion/update', {
+            khuyenmai: promotionActive,
+        })
+            .then(() => {
+                setShowInformModal(true)
+
+                window.setTimeout(function () {
+                    setShowInformModal(false)
+                }, 1000)
+
+                promotionActive.GioBatDau = GioBatDau
+                promotionActive.GioKetThuc = GioKetThuc
+                promotionActive.TrangThai = 2
+
+                data.promotions.forEach((promotion) => {
+                    if (promotion.ID === promotionActive.ID) {
+                        promotion = promotionActive
+                    }
+                })
+                if (promotionActive.MaKhuyenMai === null) {
+                    setData({
+                        promotions: data.promotions,
+                        vouchers: data.vouchers,
+                        flashSales: data.promotions.filter((key) => key.MaKhuyenMai === null),
+                    })
+                } else {
+                    setData({
+                        promotions: data.promotions,
+                        vouchers: data.promotions.filter((key) => key.MaKhuyenMai !== null),
+                        flashSales: data.flashSales,
+                    })
+                }
+
+                setPromotionActive(null)
+                setShowStopModal(false)
+            })
+            .catch((error) => console.log(error))
+    }
+
     // Xóa khuyến mãi
     function handleDeletePromotion() {
         Axios.get('http://localhost:8800/cks/promotion/del', { params: { idPromotion: promotionActive.ID } })
             .then(() => {
+                setShowInformModal(true)
+
+                window.setTimeout(function () {
+                    setShowInformModal(false)
+                }, 1000)
+
                 setData({
                     promotions: data.promotions.filter((key) => key.ID !== promotionActive.ID),
-                    vouchers: data.promotions.filter(
-                        (key) => key.MaKhuyenMai !== null && key.ID !== promotionActive.ID,
-                    ),
-                    flashSales: data.promotions.filter(
-                        (key) => key.MaKhuyenMai !== null && key.ID !== promotionActive.ID,
-                    ),
+                    vouchers: data.vouchers.filter((key) => key.ID !== promotionActive.ID),
+                    flashSales: data.flashSales.filter((key) => key.ID !== promotionActive.ID),
                 })
                 setPromotionActive(null)
-                setShowConformModal(!showConformModal)
+                setShowDeleteModal(false)
             })
             .catch((error) => {
                 console.log(error)
@@ -141,13 +227,35 @@ function ManageVoucher() {
                     <FlashSaleTable option={option} header={promotion.header.flashSale} data={data.flashSales} />
                 )}
 
+                {/* Xác nhận ngừng khuyến mãi */}
                 <ConformModal
-                    show={showConformModal}
-                    onClose={() => setShowConformModal(!showConformModal)}
+                    show={showStopModal}
+                    onClose={() => setShowStopModal(false)}
+                    onConform={() => handleStopPromotion()}
+                    content={`Bạn chắc chắn muốn ngừng khuyến mãi`}
+                    highlight={promotionActive && promotionActive.TieuDe}
+                    conFormBtn="Ngừng khuyến mãi"
+                />
+
+                {/* Xác nhận xóa */}
+                <ConformModal
+                    show={showDeleteModal}
+                    onClose={() => setShowDeleteModal(false)}
                     onConform={() => handleDeletePromotion()}
                     content={`Bạn chắc chắn muốn xóa khuyến mãi`}
                     highlight={promotionActive && promotionActive.TieuDe}
                 />
+
+                {/* Thông báo thành công */}
+                {showInformModal && (
+                    <div id="myModal" className="myModal1">
+                        {/* <!-- Modal content --> */}
+                        <div className="modalContent">
+                            <FontAwesomeIcon icon={faCheckCircle} className="modalIcon" />
+                            <div>Thao tác thành công</div>
+                        </div>
+                    </div>
+                )}
 
                 <Link to={`/cks/voucher/add/${active}`} className={styles.btn}>
                     <FontAwesomeIcon icon={faPlus} />

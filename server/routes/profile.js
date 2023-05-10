@@ -34,7 +34,6 @@ router.post("/update", async (req, res, next) => {
 router.post("/addToWishList", async (req, res, next) => {
   try {
     const data = req.body.data;
-    console.log("-----");
     await profileModel.addToWishList(data);
     res.json({});
   } catch (err) {
@@ -46,7 +45,6 @@ router.post("/addToWishList", async (req, res, next) => {
 router.post("/removeFromWishList", async (req, res, next) => {
   try {
     const data = req.body.data;
-    console.log("=====");
     await profileModel.removeFromWishList(data);
     res.json({});
   } catch (err) {

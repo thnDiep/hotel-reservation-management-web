@@ -1,14 +1,15 @@
 import { Table } from 'react-bootstrap'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import clsx from 'clsx'
-import DataContext from '~/contexts/DataContext'
 
+import DataContext from '~/contexts/DataContext'
+import FooterPaging from '../FooterPaging/FooterPaging'
 import { DropdownOption } from '~/components'
 import styles from './Table.module.scss'
 import moment from 'moment'
 
 function FlashSaleTable({ header, option, data }) {
-    const { hotels } = useContext(DataContext)
+    const globalData = useContext(DataContext)
 
     return (
         <div className={styles.tableWrapper}>
@@ -59,9 +60,10 @@ function FlashSaleTable({ header, option, data }) {
                                         {!flashSale.KetThuc && '-'}
                                     </span>
                                 </td>
-                                <td>
+                                <td style={{ width: '200px' }}>
                                     <span className={styles.text2}>
-                                        {hotels.find((hotel) => hotel.ID === flashSale.IDKhachSan).Ten}
+                                        {globalData &&
+                                            globalData.hotels.find((hotel) => hotel.ID === flashSale.IDKhachSan).Ten}
                                     </span>
                                 </td>
                                 <td>
@@ -76,12 +78,22 @@ function FlashSaleTable({ header, option, data }) {
                                     )}
                                 </td>
                                 <td>
-                                    <DropdownOption list={option} idActive={flashSale.ID} type={1} />
+                                    <DropdownOption
+                                        list={option}
+                                        idActive={flashSale.ID}
+                                        type={1}
+                                        disables={[
+                                            flashSale.TrangThai === 2,
+                                            flashSale.TrangThai === 2,
+                                            flashSale.TrangThai !== 2,
+                                        ]}
+                                    />
                                 </td>
                             </tr>
                         ))}
                 </tbody>
             </Table>
+            <FooterPaging />
         </div>
     )
 }

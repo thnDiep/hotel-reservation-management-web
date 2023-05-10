@@ -3,6 +3,7 @@ import nav from '~/assets/jsons/nav.json'
 import { AccountTable } from '~/components/Table'
 import Axios from 'axios'
 import { useState, useEffect, useRef } from 'react'
+import styles from './account.module.scss'
 
 // tên, email, sđt, địa chỉ, tên đn, nút hoạt động: hoạt động, khóa
 function Account() {
@@ -50,7 +51,7 @@ function Account() {
     }, [])
 
     return (
-        <div>
+        <div className={styles.container}>
             <NavLink list={nav.accountOfAdmin} />
             {/* <AccountTable data={data} option1={option1} option2={option2} /> */}
         </div>

@@ -3,7 +3,18 @@
     "state": ["Chưa bắt đầu", "Đang diễn ra", "Đã kết thúc"],
     "option": ["Chỉnh sửa", "Ngừng khuyến mãi", "Xóa"],
     "header": {
-        "voucher": ["ID", "Mã khuyến mãi", "Phần trăm", "Bắt đầu", "Kết thúc", "Số lượng", "Trạng thái", ""],
+        "voucher": [
+            "ID",
+            "Tiêu đề",
+            "Mã khuyến mãi",
+            "Phần trăm",
+            "Bắt đầu",
+            "Kết thúc",
+            "Số lượng",
+            "Khách sạn",
+            "Trạng thái",
+            ""
+        ],
         "flashSale": [
             "ID",
             "Tiêu đề",

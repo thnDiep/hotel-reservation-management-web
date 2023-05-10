@@ -104,7 +104,9 @@ const Detail = () => {
                 </div>
             </div>
             <hr className={classes.spacing2} />
-            <RoomsList />
+            <div id="roomListContainer">
+                <RoomsList />
+            </div>
 
             <div className={classes.subContainer}>
                 <div className="row">

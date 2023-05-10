@@ -112,17 +112,19 @@ hr {
     background-color: transparent;
     border-spacing: 0;
     border-collapse: collapse;
+
+    td {
+        border-top: 0px;
+        padding: 0px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        position: static;
+        display: table-cell;
+        float: none;
+    }
 }
 
-td {
-    border-top: 0px;
-    padding: 0px;
-    line-height: 1.42857143;
-    vertical-align: top;
-    position: static;
-    display: table-cell;
-    float: none;
-}
+
 
 .col-left {
     width: 870px;
@@ -224,6 +226,7 @@ td {
 }
 
 .box-title {
+
     h2,
     h3 {
         font-size: 20px;

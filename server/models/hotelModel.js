@@ -25,4 +25,23 @@ export default {
     return await db("khachsan").whereIn("ID", ids)
     // .andWhere("TrangThai", 0);
   },
+  async add(khachsan) {
+    // console.log(user.password);
+    const result = await db("khachsan").insert(khachsan)
+    return result[0]
+  },
+  update(khachsan) {
+    return db("khachsan").where("ID", khachsan.ID).update(khachsan)
+  },
+  addHinhAnhKhachSan(hinhanh) {
+    return db("HinhAnh_KhachSan").insert(hinhanh)
+  },
+  async getHotelTrung(name) {
+    return await db("khachsan").where("DiaChi", name)
+  },
+  async getIDDiaDiem(name) {
+    const [ID] = await db.raw(`SELECT ID FROM diadiem WHERE 
+    '${name}' LIKE CONCAT('%', TenDiaDiem, '%');`)
+    return ID[0].ID
+  },
 }
