@@ -35,6 +35,10 @@ export default {
   },
   async getHotelTrung(name) {
     return await db("khachsan").where("DiaChi", name)
-
+  },
+  async getIDDiaDiem(name) {
+    const [ID] = await db.raw(`SELECT ID FROM diadiem WHERE 
+    '${name}' LIKE CONCAT('%', TenDiaDiem, '%');`);
+    return ID[0].ID
   }
 }

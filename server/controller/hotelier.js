@@ -27,8 +27,14 @@ export const addHotel = async (req, res, next) => {
             // GioDatPhong: req.body.hotel.GioDatPhong.value,
             // GioNhanPhong: req.body.hotel.GioNhanPhong.value
         }
+
+        const ID = await hotelModel.getIDDiaDiem(hotel.DiaChi);
+        console.log('ID')
+        console.log(ID)
+        if (ID > 0) {
+            hotel.IDDiaDiem = ID
+        }
         const [oldHotel] = await hotelModel.getHotelTrung(hotel.DiaChi)
-        console.log(oldHotel)
         if (oldHotel === undefined) {
             const id = await hotelModel.add(hotel)
             for (const ID of req.body.tienNghi) {

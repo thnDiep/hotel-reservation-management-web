@@ -263,7 +263,6 @@ const AddHotel = () => {
             console.log(hotel)
             hotel.GioNhanPhong = hotel.GioNhanPhong.value;
             hotel.GioTraPhong = hotel.GioTraPhong.value;
-            hotel.IDDiaDiem = 1
             // const results = await Promise.all(promises);
             const res = await axios.post('http://localhost:8800/cks/addHotel', {
                 HinhAnh: url,
