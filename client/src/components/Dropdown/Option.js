@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 import styles from './Dropdown.module.scss'
 
-function DropdownOption({ list }) {
+function DropdownOption({ list, idActive, type }) {
     const wrapperRef = useRef(null)
     const [show, setShow] = useState(false)
 
@@ -23,7 +23,7 @@ function DropdownOption({ list }) {
 
     function handleClick(item) {
         setShow(!show)
-        item.handle()
+        item.handle(idActive, type)
     }
 
     return (

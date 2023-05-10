@@ -21,15 +21,25 @@
         margin-top: 10px;
         .label {
             color: #727f95;
+            
+            span{
+                color: rgb(255, 123, 123);
+            }
         }
         .fieldInput {
             color: black;
+            font-size: 15px;
             width: 440px;
             border: none;
+            border-bottom: 1px solid rgb(202, 202, 202);
             // margin-top: -10px;
-            &:focus {
+            margin-bottom: 2.5rem;
+            margin-top: 6px;
+            &:focus, :active {
                 outline: 0;
+                border-color: #10aadd;
             }
+
         }
     }
 }
@@ -44,32 +54,16 @@ input {
 }
 .notice {
     color: red;
+    font-size: 12px;
+    display: flex;
+    justify-content: end;
     // margin-top: -2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    margin-top: -2rem;
+    height: 3px;
 }
 
-hr {
-    margin-bottom: 30px;
-    margin-top: 0px;
-}
-.lineUnderOnBlur {
-    background-color: black;
-    height: 1px;
-    border-width: 0;
-    // margin: 0;
-}
-.lineUnderWhenVisited {
-    border-width: 0;
-    height: 1px;
-    background-color: #00b6f3;
-    // margin: 0;
-}
-.lineUnderWhenError {
-    border-width: 0;
-    height: 1px;
-    background-color: red;
-    // margin: 0;
-}
+
 
 .buttonSave {
     width: 440px;

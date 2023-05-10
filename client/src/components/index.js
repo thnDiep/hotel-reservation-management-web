@@ -1,5 +1,6 @@
 export { default as CardHotel } from './CardHotel'
 export { default as CardVinpearl } from './CardVinpearl'
+export { default as ConformModal } from './ConformModal'
 export { default as PlaceBar } from './PlaceBar'
 export { default as RecentViews } from './RecentViews'
 export { default as Search } from './Search'

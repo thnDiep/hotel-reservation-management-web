@@ -36,7 +36,6 @@ const vouchers = [
 ]
 
 function VoucherTable({ header, option, data }) {
-    console.log(data)
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={styles.cusTable}>

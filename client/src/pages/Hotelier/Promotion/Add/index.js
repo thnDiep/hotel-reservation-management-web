@@ -10,11 +10,55 @@ import { NavHandle } from '~/components'
 import promotion from '~/assets/jsons/promotion.json'
 
 function AddPromotion() {
+    const { active, id } = useParams()
     const navigate = useNavigate()
-    const [showForm, setShowForm] = useState(0)
+    const [showForm, setShowForm] = useState(() => {
+        if (active !== 'undefined') {
+            return parseInt(active)
+        }
+        return 0
+    })
     const [formData, setFormData] = useState({})
+    const [flashSaleState, setFlashSaleState] = useState({
+        fields: { BatDau: new Date(), IDKhungGio: 1, IDKhachSan: 1 },
+        errors: {},
+    })
 
-    // Lấy dữ liệu cho form
+    function handleAddFlashSale() {
+        let validForm = true
+
+        const fields = flashSaleState.fields
+        const errors = {}
+
+        if (!fields.TieuDe) {
+            errors.TieuDe = 'Nhập tiêu đề khuyến mãi'
+            validForm = false
+        }
+
+        if (!fields.PhanTramKM) {
+            errors.PhanTramKM = 'Nhập phần trăm khuyến mãi'
+            validForm = false
+        } else if (fields.PhanTramKM <= 0 || fields.PhanTramKM >= 100) {
+            errors.PhanTramKM = 'Phần trăm không hợp lệ'
+            validForm = false
+        }
+
+        if (!fields.BatDau) {
+            errors.BatDau = 'Nhập ngày bắt đầu'
+            validForm = false
+        }
+        if (fields.KetThuc && fields.BatDau >= fields.KetThuc) {
+            errors.KetThuc = 'Ngày kết thúc phải sau ngày bắt đầu'
+            validForm = false
+        }
+
+        const form = { fields, errors }
+        setFlashSaleState(form)
+
+        return validForm
+    }
+
+    // Lấy dữ liệu cho form  ============================> có thể thay thế bằng useContext =====> xử lý sau
     useEffect(() => {
         Axios.get('http://localhost:8800/cks/promotion/insert', { params: { idCKS: 1 } })
             .then((response) => {
@@ -23,6 +67,29 @@ function AddPromotion() {
             .catch((error) => {
                 console.log(error)
             })
+    }, [])
+
+    // Lấy dữ liệu từ promotion để chỉnh sửa
+    useEffect(() => {
+        if (id !== undefined) {
+            Axios.get('http://localhost:8800/cks/promotion/update', { params: { idPromotion: id, idCKS: 1 } })
+                .then((response) => {
+                    const data = response.data
+                    data.BatDau = new Date(data.BatDau)
+
+                    if (data.KetThuc) {
+                        data.KetThuc = new Date(data.KetThuc)
+                    }
+
+                    setFlashSaleState({
+                        fields: data,
+                        errors: {},
+                    })
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
     }, [])
 
     const [voucherState, setVoucherState] = useState({
@@ -73,51 +140,20 @@ function AddPromotion() {
         return validForm
     }
 
-    const [flashSaleState, setFlashSaleState] = useState({
-        fields: { BatDau: new Date(), IDKhungGio: 1, IDKhachSan: 1 },
-        errors: {},
-    })
-    function handleAddFlashSale() {
-        let validForm = true
-
-        const fields = flashSaleState.fields
-        const errors = {}
-
-        if (!fields.TieuDe) {
-            errors.TieuDe = 'Nhập tiêu đề khuyến mãi'
-            validForm = false
-        }
-
-        if (!fields.PhanTramKM) {
-            errors.PhanTramKM = 'Nhập phần trăm khuyến mãi'
-            validForm = false
-        } else if (fields.PhanTramKM <= 0 || fields.PhanTramKM >= 100) {
-            errors.PhanTramKM = 'Phần trăm không hợp lệ'
-            validForm = false
-        }
-
-        if (!fields.BatDau) {
-            errors.BatDau = 'Nhập ngày bắt đầu'
-            validForm = false
-        }
-        if (fields.KetThuc && fields.BatDau >= fields.KetThuc) {
-            errors.KetThuc = 'Ngày kết thúc phải sau ngày bắt đầu'
-            validForm = false
-        }
-
-        const form = { fields, errors }
-        setFlashSaleState(form)
-
-        return validForm
-    }
-
     function handleSubmit() {
         if (showForm === 0 && handleAddVoucher()) {
             alert('Thêm thành công')
             console.log(voucherState.fields)
             navigate('/cks/voucher', { state: { active: 0 } })
         } else if (showForm === 1 && handleAddFlashSale()) {
-            Axios.post('http://localhost:8800/cks/promotion/insert', { khuyenmai: flashSaleState.fields })
+            flashSaleState.fields.BatDau.setHours(0, 0, 0, 0)
+
+            if (flashSaleState.fields.KetThuc) flashSaleState.fields.KetThuc.setHours(23, 59, 59, 0)
+
+            console.log(flashSaleState.fields)
+            Axios.post(`http://localhost:8800/cks/promotion/${id ? 'update' : 'insert'}`, {
+                khuyenmai: flashSaleState.fields,
+            })
                 .then(() => {
                     alert('Thêm thành công')
                     navigate('/cks/voucher', { state: { active: 1 } })
@@ -142,7 +178,8 @@ function AddPromotion() {
 
                 {showForm === 1 && (
                     <div className={styles.form}>
-                        <h3 className={styles.form__header}>Thêm FlashSale</h3>
+                        {!id && <h3 className={styles.form__header}>Thêm FlashSale</h3>}
+                        {id && <h3 className={styles.form__header}>Chỉnh sửa FlashSale</h3>}
                         <FlashSaleForm
                             formData={formData}
                             data={flashSaleState}
@@ -153,11 +190,12 @@ function AddPromotion() {
                 )}
 
                 <div className={styles.footer}>
-                    <Link to="/cks/voucher" className="btn-1">
+                    <Link to={`/cks/voucher/${showForm}`} className="btn-1">
                         Quay lại
                     </Link>
                     <div className="btn-1 primary" onClick={() => handleSubmit()}>
-                        Thêm
+                        {!id && 'Thêm'}
+                        {id && 'Lưu'}
                     </div>
                 </div>
             </div>

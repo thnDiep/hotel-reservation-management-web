@@ -4,6 +4,16 @@
     "option": ["Chỉnh sửa", "Ngừng khuyến mãi", "Xóa"],
     "header": {
         "voucher": ["ID", "Mã khuyến mãi", "Phần trăm", "Bắt đầu", "Kết thúc", "Số lượng", "Trạng thái", ""],
-        "flashSale": ["ID", "Tiêu đề", "Khung giờ", "Phần trăm", "Ngày bắt đầu", "Ngày kết thúc", "Trạng thái", ""]
+        "flashSale": [
+            "ID",
+            "Tiêu đề",
+            "Khung giờ",
+            "Phần trăm",
+            "Ngày bắt đầu",
+            "Ngày kết thúc",
+            "Khách sạn",
+            "Trạng thái",
+            ""
+        ]
     }
 }

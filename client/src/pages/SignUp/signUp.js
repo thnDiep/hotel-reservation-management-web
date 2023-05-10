@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function SignUp() {
+    const [data, setData] = useState(() => {
+        return { name: '', email: '', pass: '', isValid: false }
+    })
     const [email, setEmail] = useState(() => {
         return { value: '', error: ' ', isValid: false }
     })
@@ -13,12 +16,12 @@ function SignUp() {
     const Nav = useNavigate()
     useEffect(() => {
         const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
-        if (email.isValid === true) {
+        if (data.isValid === true) {
             const identifier = setTimeout(() => {
-                if (!filter.test(email.value)) {
+                if (!filter.test(data.email)) {
                     setEmail({ ...email, error: 'Email không đúng định dạng' })
                     setValid(false)
-                } else if (email.value.length === 0) {
+                } else if (data.email.length === 0) {
                     setEmail({ ...email, error: 'Thông tin bắt buộc' })
                     setValid(false)
                 } else {
@@ -30,22 +33,17 @@ function SignUp() {
                 clearTimeout(identifier)
             }
         }
-    }, [email.value])
+    }, [data.email])
 
-    // function handleSignUp() {
-    //     if (valid) {
-    //         Nav('/logIn')
-    //     }
-    // }
     const handleClick = async (e) => {
         e.preventDefault()
         try {
             const res = await axios.post('http://localhost:8800/auth/signup', {
-                HoTen: 'Nguyễn Đăng Mạnh Tú',
-                Email: 'manhtu2272002@gmail.com',
-                MatKhau: '123',
+                HoTen: data.name,
+                Email: data.email,
+                MatKhau: data.pass,
             })
-            // navigate("/")
+            Nav('/login')
         } catch (err) {
             console.log(err.response.data)
             console.log('sai')
@@ -79,6 +77,7 @@ function SignUp() {
                                 name="name"
                                 type="text"
                                 placeholder="Tên người dùng"
+                                onChange={(e) => setData({ ...data, name: e.target.value })}
                             />
                         </div>
                     </div>
@@ -95,7 +94,7 @@ function SignUp() {
                                 name="email"
                                 type="text"
                                 placeholder="Nhập email"
-                                onChange={(e) => setEmail({ ...email, value: e.target.value, isValid: true })}
+                                onChange={(e) => setData({ ...data, email: e.target.value, isValid: true })}
                             />
                         </div>
                         <p className={styles.err}>{email.error}</p>
@@ -113,6 +112,7 @@ function SignUp() {
                                 name="password"
                                 type="text"
                                 placeholder="Nhập mật khẩu"
+                                onChange={(e) => setData({ ...data, pass: e.target.value })}
                             />
                         </div>
                     </div>

@@ -50,13 +50,30 @@ export default {
     // .andWhere("TrangThai", 0);
   },
 
+  async getPromotionByHotelierId(hotelierID) {
+    const hotels = await db("chukhachsan_khachsan").where(
+      "IDChuKhachSan",
+      hotelierID
+    )
+    if (hotels.length === 0) return null
+
+    const ids = []
+    hotels.forEach((hotel) => {
+      ids.push(hotel.IDKhachSan)
+    })
+    return await db("khuyenmai").whereIn("IDKhachSan", ids)
+    // .andWhere("TrangThai", 0);
+  },
+
   add(promotion) {
     return db("khuyenmai").insert(promotion)
   },
+
   del(id) {
-    return db("khuyenmai").where("id", id).del()
+    return db("khuyenmai").where("ID", id).del()
   },
+
   update(promotion) {
-    return db("khuyenmai").where("id", promotion.id).update(promotion)
+    return db("khuyenmai").where("ID", promotion.ID).update(promotion)
   },
 }
