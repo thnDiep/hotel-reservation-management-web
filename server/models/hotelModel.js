@@ -53,4 +53,18 @@ export default {
   update(khachsan) {
     return db("khachsan").where("ID", khachsan.ID).update(khachsan)
   },
+  addHinhAnhKhachSan(hinhanh) {
+    return db("hinhanh_khachsan").insert(hinhanh)
+  },
+  addGiuongPhong(giuong) {
+    return db("giuong_phong").insert(giuong)
+  },
+  async getHotelTrung(name) {
+    return await db("khachsan").where("DiaChi", name)
+  },
+  async getIDDiaDiem(name) {
+    const [ID] = await db.raw(`SELECT ID FROM diadiem WHERE 
+    '${name}' LIKE CONCAT('%', TenDiaDiem, '%');`)
+    return ID[0].ID
+  },
 }

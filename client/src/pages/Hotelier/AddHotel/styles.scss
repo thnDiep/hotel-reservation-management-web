@@ -1,13 +1,11 @@
 /*The background card*/
 
-
-
 /*progressbar*/
 #progressbar {
     margin-bottom: 30px;
     overflow: hidden;
     // color: lightgrey;
-    margin-left: 20%;
+    margin-left: 33%;
 }
 
 #progressbar .active {
@@ -17,7 +15,7 @@
 #progressbar li {
     list-style-type: none;
     font-size: 12px;
-    width: 30%;
+    width: 40%;
     float: left;
     position: relative;
 }
@@ -25,26 +23,26 @@
 /*Icons in the ProgressBar*/
 #progressbar #account:before {
     top: 10px;
-    content: "1";
+    content: '1';
 }
 
 #progressbar #personal:before {
     top: 10px;
-    content: "2";
+    content: '2';
 }
 
 #progressbar #payment:before {
     top: 10px;
-    content: "3";
+    content: '3';
 }
 
-#progressbar #confirm {
+#progressbar #personal {
     width: 0%;
 }
 
 #progressbar #confirm:before {
     top: 10px;
-    content: "3";
+    content: '3';
 }
 
 /*ProgressBar before any progress*/
@@ -91,10 +89,8 @@
 /*Color number of the step and the connector before it*/
 #progressbar li.active:before,
 #progressbar li.active:after {
-
     background: var(--primary-color);
     color: lightgrey;
-
 }
 
 .MuiSvgIcon-root {
@@ -103,10 +99,6 @@
 }
 
 .form-group {
-
-
-
-
     .css-13cymwt-control,
     .css-t3ipsp-control,
     .css-16xfy0z-control {
