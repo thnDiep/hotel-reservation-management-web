@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react'
+/* eslint-disable no-lone-blocks */
+import React, { useState, useRef, useEffect } from 'react'
 import clsx from 'clsx'
 import TitleLinkButton from '~/components/Button/TitleButton'
 import { Tag, NavBar, DropdownButton, DropdownOption } from '~/components'
@@ -11,25 +12,32 @@ import withReactContent from 'sweetalert2-react-content'
 import OrderDetailCard from '~/pages/Hotelier/OrderManagement/OrderDetailCard/OrderDetailCard'
 import FooterPaging from '~/components/FooterPaging/FooterPaging'
 import { useNavigate } from 'react-router-dom'
+import Axios from 'axios'
+
 const MySwal = withReactContent(Swal)
 function HotelTable() {
-    function confirmAction() {
-        let result = window.confirm('Are you sure you want to delete this item?')
+    const [enteredPendingBtn, setEnteredPendingBtn] = useState(false)
+    // khi nhấn nút xóa của 1 thẻ
+    const [enteredDel, setEnteredDel] = useState(false)
+    const [enteredDel1, setEnteredDel1] = useState(false)
+    const [data, setData] = useState(null)
+    const [option, setOption] = useState([])
+    useEffect(() => {
+        Axios.get('http://localhost:8800/cks/order', { params: { idCKS: 1 } })
+            .then((response) => {
+                setData(response.data.orders)
+                setOption([
+                    {
+                        name: 'Xóa',
+                        handle: function () {},
+                    },
+                ])
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [])
 
-        if (result) {
-            // Do something if user clicks "OK"
-            console.log('User clicked OK')
-        } else {
-            // Do something if user clicks "Cancel"
-            console.log('User clicked Cancel')
-        }
-    }
-    const option = useRef([
-        {
-            name: 'Xóa',
-            handle: function (idActive) {},
-        },
-    ])
     const handleButtonClick = () =>
         MySwal.fire({
             title: 'Đơn hàng',
@@ -40,10 +48,6 @@ function HotelTable() {
             height: '530px',
             backdrop: '#fffff',
         })
-    const [enteredPendingBtn, setEnteredPendingBtn] = useState(false)
-    // khi nhấn nút xóa của 1 thẻ
-    const [enteredDel, setEnteredDel] = useState(false)
-    const [enteredDel1, setEnteredDel1] = useState(false)
 
     const pendingBtnChangeHandler = () => {
         setEnteredPendingBtn(!enteredPendingBtn)
@@ -91,7 +95,7 @@ function HotelTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {!enteredDel && (
+                    {/* {!enteredDel && (
                         <tr className={styles.memberRow}>
                             <td className={styles.center}>
                                 <input type="checkbox" className={styles.checkBox} />
@@ -130,68 +134,71 @@ function HotelTable() {
                                 <div className={clsx('btn-1', 'active', styles.status)}>Đã duyệt</div>
                             </td>
                             <td className={styles.relative}>
-                                <DropdownOption list={option.current} />
+                                <DropdownOption />
                             </td>
                         </tr>
-                    )}
-                    {!enteredDel1 && (
-                        <tr className={styles.memberRow} onClick={handleButtonClick}>
-                            <td className={styles.center}>
-                                <input type="checkbox" className={styles.checkBox} />
-                            </td>
-                            <td>
-                                <div className="d-flex-js">
-                                    <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
-                                    <div className={styles.text1}>
-                                        <span className={styles.codeOrder}>#E54395855</span>
-                                        <h4>Phạm Thị Thanh Thảo</h4>
-                                        <br />
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span className={`${styles.text2} text-left`}>Mường Thanh Holiday Mũi Né</span>
-                            </td>
-                            <td>
-                                <span className={`${styles.text2} text-left`}>Grand Suite</span>
-                            </td>
+                    )} */}
+                    {data &&
+                        data.map((data) => {
+                            return (
+                                <tr className={styles.memberRow} onClick={handleButtonClick}>
+                                    <td className={styles.center}>
+                                        <input type="checkbox" className={styles.checkBox} />
+                                    </td>
+                                    <td>
+                                        <div className="d-flex-js">
+                                            <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
+                                            <div className={styles.text1}>
+                                                <span className={styles.codeOrder}>{data.MaDatPhong}</span>
+                                                <h4>Phạm Thị Thanh Thảo</h4>
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span className={`${styles.text2} text-left`}>Mường Thanh Holiday Mũi Né</span>
+                                    </td>
+                                    <td>
+                                        <span className={`${styles.text2} text-left`}>Grand Suite</span>
+                                    </td>
 
-                            <td>
-                                <span className={styles.date}>Nov 2th, 2022</span>
-                            </td>
-                            <td>
-                                <span className={styles.date}>Nov 4th, 2022</span>
-                            </td>
-                            <td>
-                                <span className={styles.text2}>0342221667</span>
-                            </td>
-                            <td>
-                                <h3 className={clsx(styles.text1, styles.primary)}>
-                                    1.550.000 <sup>VND</sup>
-                                </h3>
-                            </td>
-                            <td>
-                                <button className={styles.btnPending} onClick={btnChangeHandler}>
-                                    <div
-                                        className={clsx(
-                                            'btn-1',
-                                            {
-                                                active: enteredPendingBtn,
-                                                pending: !enteredPendingBtn,
-                                            },
-                                            styles.statusPending,
-                                            !enteredPendingBtn && styles.statusPending1,
-                                        )}
-                                    >
-                                        {enteredPendingBtn ? 'Đã duyệt' : 'Chờ duyệt'}
-                                    </div>
-                                </button>
-                            </td>
-                            <td className={`${styles.relative} ${styles.btnDotted}`}>
-                                <DropdownOption list={option.current} />
-                            </td>
-                        </tr>
-                    )}
+                                    <td>
+                                        <span className={styles.date}>{data.NgayNhanPhong}</span>
+                                    </td>
+                                    <td>
+                                        <span className={styles.date}>{data.NgayTraPhong}</span>
+                                    </td>
+                                    <td>
+                                        <span className={styles.text2}>0342221667</span>
+                                    </td>
+                                    <td>
+                                        <h3 className={clsx(styles.text1, styles.primary)}>
+                                            {data.TongTien} <sup>VND</sup>
+                                        </h3>
+                                    </td>
+                                    <td>
+                                        <button className={styles.btnPending} onClick={btnChangeHandler}>
+                                            <div
+                                                className={clsx(
+                                                    'btn-1',
+                                                    {
+                                                        active: enteredPendingBtn,
+                                                        pending: !enteredPendingBtn,
+                                                    },
+                                                    styles.statusPending,
+                                                    !enteredPendingBtn && styles.statusPending1,
+                                                )}
+                                            >
+                                                {enteredPendingBtn ? 'Đã duyệt' : 'Chờ duyệt'}
+                                            </div>
+                                        </button>
+                                    </td>
+                                    <td className={`${styles.relative} ${styles.btnDotted}`}>
+                                        <DropdownOption />
+                                    </td>
+                                </tr>
+                            )
+                        })}
                 </tbody>
             </Table>
             <FooterPaging />
