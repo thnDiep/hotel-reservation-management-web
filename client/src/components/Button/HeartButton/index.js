@@ -1,17 +1,32 @@
 import { useState } from 'react'
-
+import Axios from 'axios'
 import styles from './HeartButton.module.scss'
+import { useEffect } from 'react'
 
 function HeartButton({ liked }) {
     const [isLike, setIsLike] = useState(liked)
 
+    const data = { IDKhachHang: 4, IDKhachSan: 1 }
+    function handleClick() {
+        setIsLike(!isLike)
+        console.log(isLike)
+        if (!isLike) {
+            Axios.post('http://localhost:8800/profile/addToWishList', { data })
+                .then(() => {
+                    alert('them vao ds yeu thich thanh cong')
+                })
+                .catch((error) => console.log(error))
+        } else {
+            Axios.post('http://localhost:8800/profile/removeFromWishList', { data })
+                .then(() => {
+                    alert('xoa khoi ds yeu thich thanh cong')
+                })
+                .catch((error) => console.log(error))
+        }
+    }
+
     return (
-        <button
-            className={styles.heartBtn}
-            onClick={() => {
-                setIsLike(!isLike)
-            }}
-        >
+        <button className={styles.heartBtn} onClick={handleClick}>
             <span>
                 <svg width="28" height="28" fill="none" className="svgFillAll jss692">
                     <g filter="url(#icon_heart_svg__filter0_d)">

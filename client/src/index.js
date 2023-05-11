@@ -6,22 +6,23 @@ import reportWebVitals from './reportWebVitals'
 import Axios from 'axios'
 import DataContext from './contexts/DataContext'
 
-Axios.get('http://localhost:8800')
-    .then((response) => {
-        const root = ReactDOM.createRoot(document.getElementById('root'))
-        root.render(
-            <React.StrictMode>
-                <GlobalStyles>
-                    <DataContext.Provider value={response.data}>
-                        <App />
-                    </DataContext.Provider>
-                </GlobalStyles>
-            </React.StrictMode>,
-        )
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
+// Axios.get('http://localhost:8800')
+//     .then((response) => {
+root.render(
+    <React.StrictMode>
+        {/* <DataContext.Provider value={response.data}> */}
+        <GlobalStyles>
+            <App />
+        </GlobalStyles>
+        {/* </DataContext.Provider> */}
+    </React.StrictMode>,
+)
+// })
+// .catch((error) => {
+//     console.log(error)
+// })
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

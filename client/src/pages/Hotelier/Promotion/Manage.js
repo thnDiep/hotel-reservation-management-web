@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react'
 import { useLocation, useParams, Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import Axios from 'axios'
 
@@ -185,7 +185,10 @@ function ManageVoucher() {
                 setPromotionActive(null)
                 setShowStopModal(false)
             })
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                console.log(error)
+                setShowStopModal(false)
+            })
     }
 
     // Xóa khuyến mãi
@@ -208,6 +211,7 @@ function ManageVoucher() {
             })
             .catch((error) => {
                 console.log(error)
+                setShowDeleteModal(false)
             })
     }
 

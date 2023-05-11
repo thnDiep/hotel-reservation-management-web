@@ -41,7 +41,7 @@ function ActiveAccountTable(data) {
                                         <input type="checkbox" className={styles.checkBox} />
                                     </td>
                                     <td>
-                                        <img src={item.image} />
+                                        <img src={item.HinhAnh} />
                                     </td>
                                     <td>
                                         <p className={styles.text1}>{item.HoTen}</p>

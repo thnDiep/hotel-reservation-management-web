@@ -30,6 +30,9 @@ export default {
     const result = await db("khachsan").insert(khachsan);
     return result[0];
   },
+  update(khachsan) {
+    return db("khachsan").where("ID", khachsan.ID).update(khachsan);
+  },
   addHinhAnhKhachSan(hinhanh) {
     return db("HinhAnh_KhachSan").insert(hinhanh);
   },

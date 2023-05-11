@@ -1,0 +1,14 @@
+{
+    "nav": [
+        {
+            "name": "Quản lý khách sạn",
+            "link": "/admin/hotel"
+        },
+        { "name": "Quản lý tài khoản", "link": "/admin/account" }
+    ],
+    "accountOfAdmin": [
+        { "name": "Tất cả", "link": "/admin/account" },
+        { "name": "Hoạt động", "link": "/admin/account/active" },
+        { "name": "Khóa", "link": "/admin/account/blocked" }
+    ]
+}

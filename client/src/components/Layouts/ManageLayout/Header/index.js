@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import classes from './Header.module.scss'
 import { NavLink } from '~/components'
-import nav from '~/assets/jsons/nav.json'
+import nav from '~/assets/jsons/Navigation/admin.json'
 import { ButtonPrimary } from '~/components/Button'
 
 function Header({ onChoose }) {
@@ -17,7 +17,7 @@ function Header({ onChoose }) {
                     />
                 </Link>
                 <div className="d-flex">
-                    <NavLink list={nav.admin} noneBorder />
+                    <NavLink list={nav.nav} noneBorder />
 
                     <Link to="/" className="btn-1 nohover">
                         Đăng xuất

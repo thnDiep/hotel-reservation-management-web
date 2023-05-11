@@ -79,7 +79,7 @@ function Account() {
             <div className={styles.formInformation}>
                 {/* avatar */}
                 <div>
-                    <img src={process.env.PUBLIC_URL + '/avt.png'} alt="avata" className={styles.profileAvt} />
+                    <img src={data.HinhAnh} alt="avata" className={styles.profileAvt} />
                 </div>
                 {/* Thong tin ca nhan */}
                 <div className={styles.information}>

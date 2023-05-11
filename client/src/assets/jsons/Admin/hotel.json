@@ -1,0 +1,5 @@
+{
+    "menu": ["Tất cả", "Chờ duyệt", "Hoạt động", "Bị khóa"],
+    "state": ["Chờ duyệt", "Hoạt động", "Đã khóa"],
+    "header": ["Tên khách sạn", "Chủ khách sạn", "Địa chỉ", "Số sao", "Đánh giá", "Trạng thái", ""]
+}
