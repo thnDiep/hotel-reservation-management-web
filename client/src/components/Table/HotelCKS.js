@@ -2,12 +2,16 @@ import { Table } from 'react-bootstrap'
 import clsx from 'clsx'
 import { DropdownOption } from '~/components'
 import styles from './Table.module.scss'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import FooterPaging from '../FooterPaging/FooterPaging'
+import DataContext from '~/contexts/DataContext'
+
 import Star from '../Star/Star'
 function HotelCKSTable() {
     const [allChecked, setAllChecked] = useState(false)
     const [checkboxState, setCheckboxState] = useState({})
+    // const hotel1 = useContext(DataContext)
+    // console.log(hotel1)
 
     const handleAllChecked = (event) => {
         const updatedState = {}
@@ -30,23 +34,22 @@ function HotelCKSTable() {
     const hotels = [
         {
             HoTen: 'Đoàn văn bơ Quận 5',
-            TenPhong: ["deluxe", "public", "yeu duong"],
+            TenPhong: ['deluxe', 'public', 'yeu duong'],
             DiaChi: '77 Chuyên dùng 9 Phường Phú Mỹ quận 7 TPhCm',
-            TienIch: "AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi",
+            TienIch: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
             Sao: 4,
             TrangThai: 'Active',
         },
         {
             HoTen: 'Hotel A',
-            TenPhong: ["deluxe", "public", "yeu duong"],
+            TenPhong: ['deluxe', 'public', 'yeu duong'],
 
             DiaChi: '77 Chuyên dùng 9 Phường Phú Mỹ quận 7 TPhCm',
-            TienIch: "AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi",
+            TienIch: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
             Sao: 4,
             TrangThai: 'Active',
         },
     ]
-
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={styles.cusTable}>
@@ -115,7 +118,7 @@ function HotelCKSTable() {
                                 <span className={styles.text2}>{hotel.TienIch}</span>
                             </td>
                             <td>
-                                <div >
+                                <div>
                                     <Star number={4} />
                                 </div>
                             </td>

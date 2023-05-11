@@ -10,20 +10,21 @@ import 'animate.css'
 import axios from 'axios'
 import './styles.scss'
 import FormData from 'form-data'
+import { NumericFormat } from 'react-number-format'
 import { v4 as uuidv4 } from 'uuid'
 import { Cloudinary } from 'cloudinary-core'
 import { useNavigate } from 'react-router-dom'
 const options = [
-    { value: '8:00', label: '8:00 AM' },
-    { value: '9:00', label: '9:00 AM' },
-    { value: '10:00', label: '10:00 AM' },
-    { value: '11:00', label: '11:00 AM' },
-    { value: '12:00', label: '12:00 PM' },
-    { value: '13:00', label: '1:00 PM' },
-    { value: '14:00', label: '2:00 PM' },
-    { value: '15:00', label: '3:00 PM' },
-    { value: '16:00', label: '4:00 PM' },
-    { value: '17:00', label: '5:00 PM' },
+    { value: 8, label: '8:00 AM' },
+    { value: 9, label: '9:00 AM' },
+    { value: 10, label: '10:00 AM' },
+    { value: 11, label: '11:00 AM' },
+    { value: 12, label: '12:00 PM' },
+    { value: 13, label: '1:00 PM' },
+    { value: 14, label: '2:00 PM' },
+    { value: 15, label: '3:00 PM' },
+    { value: 16, label: '4:00 PM' },
+    { value: 17, label: '5:00 PM' },
 ]
 
 const AddHotel = () => {
@@ -38,11 +39,12 @@ const AddHotel = () => {
         return {
             Ten: '',
             DiaChi: '',
-            Sao: '',
+            soSao: '',
             GioiThieu: '',
-            GioNhanPhong: { value: '12:00', label: '12:00 AM' },
-            GioTraPhong: { value: '12:00', label: '12:00 AM' },
+            GioNhanPhong: '',
+            GioTraPhong: '',
             ChinhSach: '',
+            GiamGia: '',
         }
     })
     const [diaChi, setDiaChi] = useState(() => {
@@ -134,6 +136,7 @@ const AddHotel = () => {
     //image
     const [selectedFiles, setSelectedFiles] = useState([])
     const handleImagesChange = (event) => {
+        console.log('fdsfsdfsdf')
         setSelectedFiles([...event.target.files])
     }
 
@@ -145,6 +148,10 @@ const AddHotel = () => {
                     return
                 }
             }
+            if (hotel.GiamGia > 100) {
+                setNextCheck(true)
+                return
+            }
         }
         setNextCheck(false)
         setSelectedSite(value)
@@ -152,33 +159,33 @@ const AddHotel = () => {
     const handleNext = () => {
         if (selectedSite === 1) {
             for (const key in hotel) {
-                if (hotel[key] === '') {
+                if (hotel[key] === '' || selectedFiles.length === 0) {
                     setNextCheck(true)
                     return
                 }
             }
         }
-        if (selectedSite === 2) {
-            const filteredTienNghi = tienNghi?.filter((item) => item.checked)
+        // if (selectedSite === 2) {
+        //     const filteredTienNghi = tienNghi?.filter((item) => item.checked)
 
-            const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '')
-            if (filteredTienNghi.length === 0 || filteredThongTin.length === 0 || nhan === null) {
-                setNextCheck(true)
-                return
-            }
-        }
+        //     const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '')
+        //     if (filteredTienNghi.length === 0 || filteredThongTin.length === 0 || nhan === null) {
+        //         setNextCheck(true)
+        //         return
+        //     }
+        // }
         setNextCheck(false)
-        if (selectedSite < 3) setSelectedSite(selectedSite + 1)
+        if (selectedSite < 2) setSelectedSite(selectedSite + 1)
     }
     const handlePrev = () => {
-        if (selectedSite === 1) {
-            for (const key in hotel) {
-                if (hotel[key] === '') {
-                    setNextCheck(true)
-                    return
-                }
-            }
-        }
+        // if (selectedSite === 1) {
+        //     for (const key in hotel) {
+        //         if (hotel[key] === '') {
+        //             setNextCheck(true)
+        //             return
+        //         }
+        //     }
+        // }
         if (selectedSite === 2) {
             let filteredTienNghi = tienNghi?.filter((item) => item.checked)
 
@@ -252,9 +259,8 @@ const AddHotel = () => {
             const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '')
             hotel.nhan = nhan
             console.log(hotel)
-            hotel.GioNhanPhong = hotel.GioNhanPhong.value
-            hotel.GioTraPhong = hotel.GioTraPhong.value
-            // const results = await Promise.all(promises);
+            hotel.IDChuKhachSan = 1
+
             const res = await axios.post('http://localhost:8800/cks/addHotel', {
                 HinhAnh: url,
                 hotel: hotel,
@@ -289,11 +295,11 @@ const AddHotel = () => {
                                         id="personal"
                                         className={`check ${selectedSite >= 2 && 'active'}`}
                                     ></li>
-                                    <li
+                                    {/* <li
                                         onClick={() => handleCheckboxSite(3)}
                                         id="confirm"
                                         className={`check ${selectedSite >= 3 && 'active'}`}
-                                    ></li>
+                                    ></li> */}
                                 </ul>
 
                                 <div
@@ -323,18 +329,53 @@ const AddHotel = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-lg-12 mb-2">
+
+                                        <div className="col-lg-6 mb-2">
                                             <div className="form-group mb-3">
                                                 <label className={`text-label ${styles.label}`}>
                                                     Sao<span>*</span>
                                                 </label>
                                                 <Rating
                                                     name="simple-controlled"
-                                                    value={parseInt(hotel.Sao)}
+                                                    value={parseInt(hotel.soSao)}
                                                     onChange={(newValue) => {
-                                                        handleChange(newValue.toString(), 'Sao')
+                                                        handleChange(newValue.toString(), 'soSao')
                                                     }}
                                                 />
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-6 mb-2">
+                                            <div className="form-group mb-3">
+                                                <label className={`text-label ${styles.label}`}>
+                                                    % Giảm giá<span>*</span>
+                                                </label>
+                                                <NumericFormat
+                                                    value={hotel.GiamGia}
+                                                    // thousandSeparator="."
+                                                    // decimalSeparator=","
+                                                    className={`form-control ${styles.formControl} ${
+                                                        hotel.GiamGia === '' && nextCheck && styles.inputRed
+                                                    } ${hotel.GiamGia > 100 && styles.inputRed}`}
+                                                    suffix=" %"
+                                                    decimalScale={0}
+                                                    allowNegative={false}
+                                                    onValueChange={(values) =>
+                                                        handleChange(values.floatValue, 'GiamGia')
+                                                    }
+                                                    min={1}
+                                                    max={100}
+                                                />
+                                                {/* <input
+                                                    type="number"
+                                                    className={`form-control ${styles.formControl} ${
+                                                        hotel.GiamGia === '' && nextCheck && styles.inputRed
+                                                    }`}
+                                                    placeholder="Phần trăm"
+                                                    onChange={(e) => {
+                                                        handleChange(e.target.value, 'GiamGia')
+                                                    }}
+                                                    required=""
+                                                /> */}
                                             </div>
                                         </div>
                                         <div className="col-lg-6 mb-2">
@@ -433,7 +474,7 @@ const AddHotel = () => {
                                                     }`}
                                                     value={hotel.GioNhanPhong}
                                                     options={options}
-                                                    // placeholder="Chọn hạng"
+                                                    placeholder="Chọn giờ nhận phòng"
                                                     onChange={(selectedOption) =>
                                                         handleChange(selectedOption, 'GioNhanPhong')
                                                     }
@@ -451,7 +492,7 @@ const AddHotel = () => {
                                                     }`}
                                                     value={hotel.GioTraPhong}
                                                     options={options}
-                                                    // placeholder="Chọn hạng"
+                                                    placeholder="Chọn giờ trả phòng"
                                                     onChange={(selectedOption) =>
                                                         handleChange(selectedOption, 'GioTraPhong')
                                                     }
@@ -484,7 +525,7 @@ const AddHotel = () => {
 
                                                 <Editor
                                                     onInit={() => 'gfd'}
-                                                    initialValue="<p>This is the initial content of the editor.</p>"
+                                                    // initialValue="<p>This is the initial content of the editor.</p>"
                                                     init={{
                                                         menubar: false,
                                                         plugins: [
@@ -518,6 +559,17 @@ const AddHotel = () => {
                                                 />
                                             </div>
                                         </div>
+                                        <div className="col-lg-12 mb-2">
+                                            <div className="form-group mb-3">
+                                                <label className={`text-label ${styles.label}`}>
+                                                    Chọn ảnh khách sạn<span>*</span>
+                                                </label>
+                                                <AddMultiple
+                                                    handleImagesChange={handleImagesChange}
+                                                    // display={`${selectedSite === 3 ? 'block' : 'none'}`}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <CheckFacility
@@ -531,17 +583,14 @@ const AddHotel = () => {
                                     nhan={nhan}
                                     display={`${selectedSite === 2 ? 'block' : 'none'}`}
                                 />
-                                <AddMultiple
-                                    handleImagesChange={handleImagesChange}
-                                    display={`${selectedSite === 1 ? 'block' : 'none'}`}
-                                />
+
                                 <div className="text-end toolbar toolbar-bottom p-2">
                                     {selectedSite !== 1 && (
                                         <ButtonPrimary onSubmit={handlePrev} className="btnLarge2">
                                             Lùi lại
                                         </ButtonPrimary>
                                     )}
-                                    {selectedSite !== 3 ? (
+                                    {selectedSite !== 2 ? (
                                         <ButtonPrimary onSubmit={handleNext} className="btnLarge2">
                                             Tiếp tục
                                         </ButtonPrimary>
