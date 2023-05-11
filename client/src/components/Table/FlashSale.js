@@ -10,7 +10,7 @@ import moment from 'moment'
 
 function FlashSaleTable({ header, option, data }) {
     const globalData = useContext(DataContext)
-
+    console.log(globalData)
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={styles.cusTable}>

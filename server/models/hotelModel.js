@@ -4,6 +4,9 @@ export default {
   getAll() {
     return db("khachsan");
   },
+  getHotelByIDCKS(id) {
+    return db("khachsan").where("IDChuKhachSan", id);
+  },
 
   async findById(id) {
     const list = await db("khachsan").where("id", id);
@@ -66,5 +69,8 @@ export default {
     const [ID] = await db.raw(`SELECT ID FROM diadiem WHERE 
     '${name}' LIKE CONCAT('%', TenDiaDiem, '%');`);
     return ID[0].ID;
+  },
+  async getImage(id) {
+    return await db("hinhanh_khachsan").where("IDKhachSan", id);
   },
 };

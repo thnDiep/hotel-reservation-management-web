@@ -20,4 +20,5 @@ router.post("/addHotel", addHotel);
 
 // Thực hiện thêm phong
 router.post("/addRoom", addRoom);
+
 export default router;
