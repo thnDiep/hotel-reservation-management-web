@@ -10,6 +10,7 @@ import hotelModel from "../models/hotelModel.js"
 import authModel from "../models/authModel.js"
 import rateModal from "../models/rateModal.js"
 import placeModal from "../models/placeModel.js"
+import roomModel from "../models/roomModel.js"
 
 export default function route(app) {
   app.use("/auth", authRouter)
@@ -33,27 +34,29 @@ export default function route(app) {
 
   app.get("/", async (req, res, next) => {
     try {
-      const idUser = req.query.idUser || 5
+      const idUser = req.query.idUser || 1
       const curUser = await authModel.findById(idUser)
 
-      if (curUser.PhanQuyen === 2) {
-        const hotels = await hotelModel.getAll()
-        hotels.map(async (hotel) => {
-          hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan)
-          hotel.DanhGia = await rateModal.getAvgRate(hotel.ID)
-          if (hotel.DanhGia) {
-            hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2)
-          } else {
-            hotel.DanhGia = Number(0).toFixed(2)
-          }
-        })
-        const users = await authModel.getAll()
-        const rates = await rateModal.getAll()
-        res.json({ hotels, users, rates })
-      } else {
-        const hotels = await hotelModel.getAll()
-        res.json({ hotels })
-      }
+      const hotels = await hotelModel.getAll()
+      hotels.map(async (hotel) => {
+        hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan)
+        hotel.DanhGia = await rateModal.getAvgRate(hotel.ID)
+        // hotel.SoDanhGia = await rateModal.getCount(hotel.ID)
+        // hotel.Phong = await hotelModel.getRoom(hotel.ID)
+
+        if (hotel.DanhGia) {
+          hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2)
+        } else {
+          hotel.DanhGia = Number(0).toFixed(1)
+        }
+      })
+      const users = await authModel.getAll()
+      const rates = await rateModal.getAll()
+      const hotelImages = await hotelModel.getAllImage()
+      const places = await placeModal.getAll()
+      const rooms = await roomModel.getAll()
+
+      res.json({ hotels, users, rates, hotelImages, places, rooms })
     } catch (err) {
       next(err)
     }

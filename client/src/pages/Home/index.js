@@ -1,9 +1,10 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, useContext } from 'react'
 import Slider from 'react-slick'
 import clsx from 'clsx'
 import moment from 'moment'
 
 import styles from './Home.module.scss'
+import DataContext from '~/contexts/DataContext'
 import notableDes from '~/assets/jsons/notable.json'
 import vinpearlDes from '~/assets/jsons/vinpearl.json'
 import { PlaceBar, CardHotel, CardVinpearl, ButtonPrimary, Search, RecentViews, SliderHotels } from '~/components'
@@ -11,6 +12,10 @@ import { NextArrow, PrevArrow } from '~/components/Slider'
 import { Vouchers, ConditionModal, Banner } from './components'
 
 function Home() {
+    const data = useContext(DataContext)
+
+    const [hotels, setHotels] = useState()
+    const [shockPrices, setShockPrices] = useState([])
     const intervalRef = useRef()
     const vidRef = useRef()
     const today = useRef(new Date())
@@ -75,6 +80,36 @@ function Home() {
             clearInterval(intervalRef.current)
         }
     }, [timeLeft])
+
+    useEffect(() => {
+        if (data) {
+            const shockPrices = []
+            data.hotels.map((hotel) => {
+                const HinhAnh = data.hotelImages.find((item) => item.IDKhachSan === hotel.ID)
+                if (HinhAnh) hotel.HinhAnh = HinhAnh.HinhAnh
+
+                const DiaDiem = data.places.find((item) => item.ID === hotel.IDDiaDiem)
+                if (DiaDiem) hotel.DiaDiem = DiaDiem.TenDiaDiem
+
+                let SoDanhGia = 0
+                data.rates.map((rate) => {
+                    if (rate.IDKhachSan === hotel.ID) SoDanhGia++
+                })
+                hotel.SoDanhGia = SoDanhGia
+
+                const PhongTieuChuan = data.rooms.find((item) => item.IDKhachSan === hotel.ID)
+                if (PhongTieuChuan) hotel.GiaTieuChuan = PhongTieuChuan.Gia
+
+                if (hotel.GiamGia !== 0 && hotel.TrangThai === 1) {
+                    shockPrices.push(hotel)
+                }
+            })
+            setHotels(data.hotels)
+            console.log(shockPrices)
+
+            setShockPrices(shockPrices)
+        }
+    }, [data])
 
     function handleChooseShockPricePlace(index) {
         setIndexShockPrice(index)
@@ -197,10 +232,10 @@ function Home() {
 
             <div className={clsx(styles.shockPrice, 'part')}>
                 <div className="part__content">
-                    <h1 className="part__title">Khách sạn giá sốc chỉ có trên Evivu</h1>
+                    <h1 className="part__title">Khách sạn giá sốc chỉ có trên My Travel</h1>
                     <h6 className="part__subTitle">
-                        Tiết kiệm chi phí với các khách sạn hợp tác chiến lược cùng Evivu, cam kết giá tốt nhất và chất
-                        lượng dịch vụ tốt nhất dành cho bạn.
+                        Tiết kiệm chi phí với các khách sạn hợp tác chiến lược cùng My Travel, cam kết giá tốt nhất và
+                        chất lượng dịch vụ tốt nhất dành cho bạn.
                     </h6>
 
                     <PlaceBar
@@ -219,26 +254,29 @@ function Home() {
                     </div>
 
                     <div className="part__hotels">
-                        {notableDes.slice(0, 4).map((des, index) => (
-                            <CardHotel
-                                key={index}
-                                image={des.image}
-                                name="Sailing Club Signature Resort Phú Quốc"
-                                percentDiscount={14}
-                                promotion={['Ưu đãi chớp nhoáng']}
-                                rate={3}
-                                liked={true}
-                                type="Khu nghỉ dưỡng"
-                                numberFeedback={123}
-                                place={notableDes[indexShockPrice].name}
-                                point={8.5}
-                                oldPrice="6.677.411"
-                                curPrice="5.763.274"
-                                voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
-                                memberDiscount={19}
-                            />
-                        ))}
-                        {notableDes.slice(0, 4).map((des, index) => (
+                        {shockPrices &&
+                            shockPrices.slice(0, 8).map((hotel, index) => (
+                                <CardHotel
+                                    key={hotel.ID}
+                                    ID={hotel.ID}
+                                    image={hotel.HinhAnh}
+                                    name={hotel.Ten}
+                                    percentDiscount={hotel.GiamGia}
+                                    promotion={[hotel.Nhan]}
+                                    rate={hotel.soSao}
+                                    // liked={true}
+                                    // type="Khu nghỉ dưỡng"
+                                    numberFeedback={hotel.SoDanhGia}
+                                    place={hotel.DiaDiem}
+                                    point={hotel.DanhGia}
+                                    // oldPrice="6.677.411"
+                                    // curPrice="5.763.274"
+                                    price={hotel.GiaTieuChuan}
+                                    // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                    // memberDiscount={19}
+                                />
+                            ))}
+                        {/* {notableDes.slice(0, 4).map((des, index) => (
                             <CardHotel
                                 key={index}
                                 image={des.image}
@@ -252,7 +290,7 @@ function Home() {
                                 curPrice="5.763.274"
                                 voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
                             />
-                        ))}
+                        ))} */}
                     </div>
 
                     {/* <div className="part__footer">

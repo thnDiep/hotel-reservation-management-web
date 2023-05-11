@@ -10,8 +10,8 @@ import {
 
 const router = express.Router();
 
-// Chỉnh sửa khách sạn
-router.get("/", async (req, res, next) => {
+// Search khách sạn
+router.get("/search", async (req, res, next) => {
   try {
     const key = req.query.key;
 
