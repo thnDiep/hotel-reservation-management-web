@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react'
+import { useEffect, useReducer, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-regular-svg-icons'
 import { clsx } from 'clsx'
@@ -33,6 +33,7 @@ function Search(props) {
     const wrapperRef = useRef(null)
     const [state, dispatch] = useReducer(reducer, initState)
     const { show, place, placeHistory, date, number } = state
+    const [notablePlace, setNotablePlace] = useState()
 
     useEffect(() => {
         /**
@@ -56,13 +57,21 @@ function Search(props) {
     }, [placeHistory])
 
     useEffect(() => {
-        if (props.show) {
+        if (props.place) {
             dispatch(changeAll(props))
         }
+    }, [props])
+
+    useEffect(() => {
+        Axios.get('http://localhost:8800/place', { params: { limit: 18 } }).then((response) => {
+            // console.log(response.data)
+            setNotablePlace(response.data)
+        })
     }, [])
 
-    function handleSubmit() {
+    function handleSubmit(tendiadiem) {
         dispatch(changeShow(null))
+
         const submit = {
             place: place,
             number: {
@@ -74,17 +83,22 @@ function Search(props) {
             endDate: date.endDate,
         }
 
+        if (tendiadiem) {
+            dispatch(inputPlace(tendiadiem))
+            submit.place = tendiadiem
+        }
+
         Axios.get('http://localhost:8800/hotel', { params: { key: submit } })
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
                 // result = response.data
-                dispatch(submitSearch(place))
-                navigate(`/hotels/${place}`, {
+                dispatch(submitSearch(submit.place))
+                navigate(`/hotels/${submit.place}`, {
                     state: {
                         hotels: response.data,
                         searchBar: {
-                            show,
-                            place,
+                            show: null,
+                            place: submit.place,
                             placeHistory,
                             date,
                             number,
@@ -111,7 +125,12 @@ function Search(props) {
                     onChange={(e) => dispatch(inputPlace(e.target.value))}
                 />
                 {show === 1 && (
-                    <Place placeHistory={placeHistory} onClearHistory={() => dispatch(clearPlaceHistory())} />
+                    <Place
+                        placeHistory={placeHistory}
+                        onClearHistory={() => dispatch(clearPlaceHistory())}
+                        places={notablePlace}
+                        onChoose={handleSubmit}
+                    />
                 )}
             </div>
 

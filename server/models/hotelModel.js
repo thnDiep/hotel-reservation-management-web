@@ -6,7 +6,7 @@ export default {
   },
 
   async findById(id) {
-    const list = await db("khachsan").where("id", id)
+    const list = await db("khachsan").where("ID", id)
     if (list.length === 0) return null
 
     return list[0]

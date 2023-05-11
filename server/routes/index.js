@@ -8,7 +8,8 @@ import userRouter from "./user.js"
 
 import hotelModel from "../models/hotelModel.js"
 import authModel from "../models/authModel.js"
-import rateModal from "..//models/rateModal.js"
+import rateModal from "../models/rateModal.js"
+import placeModal from "../models/placeModel.js"
 
 export default function route(app) {
   app.use("/auth", authRouter)
@@ -18,6 +19,17 @@ export default function route(app) {
   app.use("/admin", adminRouter)
   app.use("/user", userRouter)
   app.use("/hotel", hotelRouter)
+
+  app.get("/place", async (req, res, next) => {
+    try {
+      const limit = req.query.limit || 10
+
+      const places = await placeModal.getLimit(limit)
+      res.json(places)
+    } catch (err) {
+      next(err)
+    }
+  })
 
   app.get("/", async (req, res, next) => {
     try {
