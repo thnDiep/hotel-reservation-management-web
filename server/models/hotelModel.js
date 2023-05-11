@@ -34,7 +34,7 @@ export default {
     return db("khachsan").where("ID", khachsan.ID).update(khachsan);
   },
   addHinhAnhKhachSan(hinhanh) {
-    return db("HinhAnh_KhachSan").insert(hinhanh);
+    return db("hinhanh_khachsan").insert(hinhanh);
   },
   addGiuongPhong(giuong) {
     return db("giuong_phong").insert(giuong);

@@ -259,7 +259,7 @@ const AddHotel = () => {
             const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '')
             hotel.nhan = nhan
             console.log(hotel)
-            hotel.IDChuKhachSan = 1
+            hotel.IDChuKhachSan = 9
 
             const res = await axios.post('http://localhost:8800/cks/addHotel', {
                 HinhAnh: url,
@@ -504,16 +504,39 @@ const AddHotel = () => {
                                                 <label className={`text-label ${styles.label}`}>
                                                     Chính sách<span>*</span>
                                                 </label>
-                                                <textarea
-                                                    rows={20}
-                                                    cols={10}
-                                                    onChange={(e) => {
-                                                        handleChange(e.target.value, 'ChinhSach')
+                                                <Editor
+                                                    onInit={() => 'gfd'}
+                                                    // initialValue="<p>This is the initial content of the editor.</p>"
+                                                    init={{
+                                                        menubar: false,
+                                                        plugins: [
+                                                            'image',
+                                                            'code',
+                                                            'table',
+                                                            'link',
+                                                            'media',
+                                                            'codesample',
+                                                            'lists',
+                                                        ],
+                                                        toolbar: [
+                                                            'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright| forecolor backcolor | table link image media codesample',
+                                                        ],
+                                                        codesample_languages: [
+                                                            { text: 'HTML/XML', value: 'markup' },
+                                                            { text: 'JavaScript', value: 'javascript' },
+                                                            { text: 'CSS', value: 'css' },
+                                                            { text: 'PHP', value: 'php' },
+                                                            { text: 'Ruby', value: 'ruby' },
+                                                            { text: 'Python', value: 'python' },
+                                                            { text: 'Java', value: 'java' },
+                                                            { text: 'C', value: 'c' },
+                                                            { text: 'C#', value: 'csharp' },
+                                                            { text: 'C++', value: 'cpp' },
+                                                        ],
                                                     }}
-                                                    className={`form-control ${styles.formControl} ${
-                                                        hotel.ChinhSach === '' && nextCheck && styles.inputRed
-                                                    }`}
-                                                    defaultValue={hotel.ChinhSach}
+                                                    onChange={(e) => {
+                                                        handleChange(e.target.getContent(), 'ChinhSach')
+                                                    }}
                                                 />
                                             </div>
                                         </div>

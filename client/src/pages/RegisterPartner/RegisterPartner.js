@@ -204,7 +204,6 @@ const RegisterPartner = () => {
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value)
     }
-   
 
     const handleSubmit = async (e) => {
         e.preventDefault()

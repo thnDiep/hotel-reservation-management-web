@@ -191,7 +191,7 @@
                             border: 10px solid #9f1917;
                             position: absolute;
                             left: -20px;
-                            bottom: -16px;
+                            bottom: -13px;
                             border-left-color: transparent;
                             border-top-color: transparent;
                             border-bottom-color: transparent;
@@ -201,7 +201,7 @@
 
                 .box-price {
                     display: grid;
-                    grid-template-columns: auto 250px;
+                    grid-template-columns: auto 160px;
 
                     &-inner {
                         text-align: right;

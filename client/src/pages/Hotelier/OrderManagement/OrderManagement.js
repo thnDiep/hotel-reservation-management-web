@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom'
 const MySwal = withReactContent(Swal)
 function HotelTable() {
     function confirmAction() {
-        console.log('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv')
         let result = window.confirm('Are you sure you want to delete this item?')
 
         if (result) {
@@ -27,17 +26,8 @@ function HotelTable() {
     }
     const option = useRef([
         {
-            name: 'Xem chi tiết',
-            handle: function () {
-                // navigate('/cks/voucher/add', { state: { active: active } })
-            },
-        },
-        {
             name: 'Xóa',
-            handle: function () {
-                const act = confirmAction
-                window.addEventListener('beforeunload', act)
-            },
+            handle: function (idActive) {},
         },
     ])
     const handleButtonClick = () =>
@@ -58,15 +48,15 @@ function HotelTable() {
     const pendingBtnChangeHandler = () => {
         setEnteredPendingBtn(!enteredPendingBtn)
     }
-    const delChangeHandler = () => {
-        setEnteredDel(!enteredDel)
-    }
     const del1ChangeHandler = () => {
         setEnteredDel1(!enteredDel1)
     }
+    const btnChangeHandler = (e) => {
+        e.stopPropagation()
+        pendingBtnChangeHandler()
+    }
     return (
         <div className={styles.tableWrapper}>
-            <base href="/"></base>
             <Table responsive className={styles.cusTable}>
                 <thead>
                     <tr>
@@ -145,7 +135,7 @@ function HotelTable() {
                         </tr>
                     )}
                     {!enteredDel1 && (
-                        <tr className={styles.memberRow}>
+                        <tr className={styles.memberRow} onClick={handleButtonClick}>
                             <td className={styles.center}>
                                 <input type="checkbox" className={styles.checkBox} />
                             </td>
@@ -153,9 +143,7 @@ function HotelTable() {
                                 <div className="d-flex-js">
                                     <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
                                     <div className={styles.text1}>
-                                        <span onClick={handleButtonClick} className={styles.codeOrder}>
-                                            #E54395855
-                                        </span>
+                                        <span className={styles.codeOrder}>#E54395855</span>
                                         <h4>Phạm Thị Thanh Thảo</h4>
                                         <br />
                                     </div>
@@ -183,7 +171,7 @@ function HotelTable() {
                                 </h3>
                             </td>
                             <td>
-                                <button className={styles.btnPending} onClick={pendingBtnChangeHandler}>
+                                <button className={styles.btnPending} onClick={btnChangeHandler}>
                                     <div
                                         className={clsx(
                                             'btn-1',
@@ -199,7 +187,7 @@ function HotelTable() {
                                     </div>
                                 </button>
                             </td>
-                            <td className={styles.relative}>
+                            <td className={`${styles.relative} ${styles.btnDotted}`}>
                                 <DropdownOption list={option.current} />
                             </td>
                         </tr>

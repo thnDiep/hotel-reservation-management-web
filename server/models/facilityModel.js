@@ -37,6 +37,6 @@ export default {
   },
   addThongTinKhachSan(thongTin) {
     // console.log(user.password);
-    return db("ThongTinHuuIch_KS").insert(thongTin);
+    return db("thongtinhuuich_ks").insert(thongTin);
   },
 };

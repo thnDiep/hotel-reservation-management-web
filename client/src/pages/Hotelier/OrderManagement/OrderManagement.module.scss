@@ -28,6 +28,7 @@
     position: relative;
     transition: all 0.5s ease-in-out;
     padding-bottom: 0;
+    padding-top: 0px;
 }
 .cusTable {
     tbody {
@@ -36,9 +37,7 @@
             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         }
     }
-    tr {
-        // position: relative;
-    }
+
     img {
         height: 5rem;
         width: 5rem;
@@ -114,6 +113,7 @@
         width: 111px !important;
         cursor: default !important;
         padding: 7px 25px !important;
+        z-index: 100;
         &Pending {
             cursor: pointer !important;
             width: 111px !important;
@@ -124,6 +124,10 @@
             width: 111px !important;
             padding: 7px 20px;
         }
+    }
+    .btnDotted {
+        z-index: 100;
+        padding: 5px;
     }
 }
 

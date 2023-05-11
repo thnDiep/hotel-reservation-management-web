@@ -16,6 +16,14 @@ const AllNhan = [
         ID: 3,
         Ten: 'Khách sạn yêu thích',
     },
+    {
+        ID: 4,
+        Ten: 'Vị trí đẹp',
+    },
+    {
+        ID: 5,
+        Ten: 'Giá độc quyền',
+    },
 ]
 const CheckFacility = (props) => {
     const handleCheckboxChangeTienNghi = (event, index) => {

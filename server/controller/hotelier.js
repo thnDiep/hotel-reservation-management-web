@@ -35,21 +35,19 @@ export const facilityRoom = async (req, res, next) => {
 };
 export const addHotel = async (req, res, next) => {
   try {
-    console.log(req.body.hotel);
     const hotel = {
       ...req.body.hotel,
       soSao: parseInt(req.body.hotel.soSao),
       GioTraPhong: req.body.hotel.GioTraPhong.value,
       GioNhanPhong: req.body.hotel.GioNhanPhong.value,
     };
-    console.log(hotel.IDChuKhachSan);
+
     const ID = await hotelModel.getIDDiaDiem(hotel.DiaChi);
-    console.log("ID");
-    console.log(ID);
     if (ID > 0) {
       hotel.IDDiaDiem = ID;
     }
     const [oldHotel] = await hotelModel.getHotelTrung(hotel.DiaChi);
+    console.log(oldHotel);
     if (oldHotel === undefined) {
       const id = await hotelModel.add(hotel);
       for (const ID of req.body.tienNghi) {
@@ -58,9 +56,11 @@ export const addHotel = async (req, res, next) => {
           IDKhachSan: id,
         });
       }
+      console.log(req.body.thongTin);
       for (const ID of req.body.thongTin) {
+        console.log(ID);
         await facilityModel.addThongTinKhachSan({
-          idThongTin: ID.ThongTin,
+          IDThongTin: ID.ID,
           IDKhachSan: id,
           NoiDung: ID.NoiDung,
         });
