@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import classes from './RegisterPartner.module.scss'
-import { useNavigate } from 'react-router-dom'
 import { ButtonPrimary } from '~/components'
 import axios from 'axios'
 const RegisterPartner = () => {
-    const Nav = useNavigate()
     const [enteredNameCompany, setEnteredNameCompany] = useState(() => {
         return { value: '', error: '', isValid: false }
     })

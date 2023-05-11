@@ -30,7 +30,7 @@ function Hotel() {
                 {
                     name: 'Xem khách sạn',
                     handle: function (idActive) {
-                        navigate(`/hotels/${idActive}`)
+                        navigate(`/hotels/detail/${idActive}`)
                     },
                 },
                 {

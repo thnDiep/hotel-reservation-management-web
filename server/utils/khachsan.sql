@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 11, 2023 lúc 08:18 AM
--- Phiên bản máy phục vụ: 10.4.27-MariaDB
--- Phiên bản PHP: 8.1.12
+-- Host: localhost:3307
+-- Generation Time: May 09, 2023 at 06:12 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -200,8 +200,96 @@ CREATE TABLE `giuong_phong` (
 
 CREATE TABLE `hinhanh_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
-  `HinhAnh` varchar(100) NOT NULL
+  `HinhAnh` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hinhanh_khachsan`
+--
+
+INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792502/khachsan/photos_S1XRWSGTR5__tmp_playtemp5872956675624463109_multipartBody8558484951637666092asTemporaryFile_btzixh.jpg'),
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792503/khachsan/photos_MPYMPFT5C2__tmp_playtemp5872956675624463109_multipartBody364551780357405725asTemporaryFile_1_tpw6be.jpg'),
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792504/khachsan/photos_L4TBGM54WB__tmp_playtemp5872956675624463109_multipartBody3364572361152519043asTemporaryFile_dqdn1p.jpg'),
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792504/khachsan/photos_MPYMPFT5C2__tmp_playtemp5872956675624463109_multipartBody364551780357405725asTemporaryFile_ogkyfl.jpg'),
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792506/khachsan/photos_ZLBJ7TEVP1__tmp_playtemp5872956675624463109_multipartBody4290430561101661591asTemporaryFile_1_xnuo4a.jpg'),
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792507/khachsan/photos_OG95G6RF4A__tmp_playtemp5872956675624463109_multipartBody9090145801521184631asTemporaryFile_sdcis8.jpg'),
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792507/khachsan/photos_WKY71EUR5F__tmp_playtemp5872956675624463109_multipartBody9147740090240808180asTemporaryFile_wjkm1u.jpg'),
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792507/khachsan/photos_WKY71EUR5F__tmp_playtemp5872956675624463109_multipartBody9147740090240808180asTemporaryFile_wjkm1u.jpg2'),
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792508/khachsan/photos_ZLBJ7TEVP1__tmp_playtemp5872956675624463109_multipartBody4290430561101661591asTemporaryFile_kflpog.jpg'),
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792509/khachsan/photos_8NKKRLR0H2__tmp_playtemp5872956675624463109_multipartBody4724123070755322533asTemporaryFile_1_nqecch.jpg'),
+(8, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792510/khachsan/photos_8NKKRLR0H2__tmp_playtemp5872956675624463109_multipartBody4724123070755322533asTemporaryFile_ibsnmt.jpg'),
+(9, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792755/khachsan/23812_H29VWRHQ6O_Lobby_1_1_ss4cn5.jpg'),
+(9, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792756/khachsan/23812_UJ0N9NDLLB_lobby-bar_1_muaepc.jpg'),
+(9, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792757/khachsan/118594263_vsb1ci.jpg'),
+(9, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792757/khachsan/87108667_nb1lfc.jpg'),
+(9, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792758/khachsan/130505664_pkido5.jpg'),
+(9, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792759/khachsan/23812_UJ0N9NDLLB_lobby-bar_mk9lbl.jpg'),
+(9, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792760/khachsan/130505661_lkmit5.jpg'),
+(9, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792760/khachsan/23812_H29VWRHQ6O_Lobby_1_xtj6hn.jpg'),
+(9, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683792761/khachsan/87172189_bk94ul.jpg'),
+(10, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793170/khachsan/736941_15092916450036499557_nb3yq2.jpg'),
+(10, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793171/khachsan/736941_15092916450036499545_cv8xav.jpg'),
+(10, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793171/khachsan/736941_15092916450036499577_hljojh.jpg'),
+(10, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793172/khachsan/736941_15080516220033703928_hub4hy.jpg'),
+(10, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793172/khachsan/736941_15092916450036499558_rze2qg.jpg'),
+(10, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793173/khachsan/736941_15092916450036499544_h9r4am.jpg'),
+(10, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793174/khachsan/736941_15092915460036494648_imdiku.jpg'),
+(10, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793175/khachsan/736941_15092915460036494655_qgtx4h.jpg'),
+(10, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793175/khachsan/lMYTsRUlRfuHxMystmjuMA-69_dsx3r5.jpg'),
+(10, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793176/khachsan/logo_4_736941_jzveas.jpg'),
+(11, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793461/khachsan/_ika9320_z9bnih.jpg'),
+(11, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793462/khachsan/2_hjqfzj.jpg'),
+(11, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793463/khachsan/35193_561QMVFCS3_177834588_mf0kbw.jpg'),
+(11, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793463/khachsan/35193_5KL3K92Z7U_177834566_iafchp.jpg'),
+(11, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793464/khachsan/35193_16DVZ3LL0X_177833842_k5c28j.jpg'),
+(11, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793465/khachsan/17_pvmglu.jpg'),
+(11, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793465/khachsan/35193_A7AGSHJ3RG_177834498_gfjkyv.jpg'),
+(11, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793466/khachsan/4_p8zfti.jpg'),
+(12, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793745/khachsan/paos-sapa-leisure-hotel-5f697c2423d0e-848x477_fhuab3.jpg'),
+(12, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793746/khachsan/40714_ILFLVGYK7U_10_lg2mmf.jpg'),
+(12, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793747/khachsan/40714_IHSXJRRKQ6_9_rpimog.jpg'),
+(12, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793748/khachsan/40714_0LIUS3HY1N_6_dapuvu.jpg'),
+(12, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793749/khachsan/photos_JZNYP9RT0N__tmp_playtemp6021156645283393444_multipartBody3299974993605232547asTemporaryFile_crjsts.jpg'),
+(12, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793749/khachsan/photos_OSK0Y66G8T__tmp_playtemp6021156645283393444_multipartBody5248522890029035594asTemporaryFile_frthbq.jpg'),
+(12, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793750/khachsan/40714_LNWDW81E3I_3_qwd4vs.jpg'),
+(12, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793751/khachsan/40714_G235J5B01A_2_rhj1wy.jpg'),
+(12, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683793751/khachsan/40714_MXQNBU4ATQ_1_xkxxna.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794120/khachsan/photos_thumb_4VMPUI5PT5_1_hounqh.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794121/khachsan/atu1407382133_binh-an-village-da-lat-resort_aesp0z.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794121/khachsan/tqs1407382165_binh-an-village-da-lat-resort_ypoyad.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794122/khachsan/wzj1407382108_binh-an-village-da-lat-resort_hntqja.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794123/khachsan/9186_TZYYNM2S66_2_t5acqf.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794123/khachsan/aqy1407382108_binh-an-village-da-lat-resort_scmmch.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794124/khachsan/ded1407382108_binh-an-village-da-lat-resort_qju3qc.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794125/khachsan/9186_096EWIO780_1_yi1dm1.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794126/khachsan/9186_26QRN2V0SG_3_uv5fhz.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794127/khachsan/9186_2S9S56ZHHS_5_kup0yw.jpg'),
+(13, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794127/khachsan/9186_VCELAC5KKC_4_ylaxcy.jpg'),
+(14, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794410/khachsan/movenpick_m2ivfd.jpg'),
+(14, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794411/khachsan/gymspa_03-copy_im9zyl.jpg'),
+(14, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794412/khachsan/lobby_-1-copy_po1gqa.jpg'),
+(14, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794412/khachsan/lobby_-2-copy_ihbk2j.jpg'),
+(14, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794413/khachsan/overview_2-copy_1_uh9h4g.jpg'),
+(14, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794414/khachsan/overview_1-copy_lkiciw.jpg'),
+(14, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794415/khachsan/bounty-restaurant_-1-copy_ndsr6y.jpg'),
+(14, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794416/khachsan/bounty-bar_-1-copy_aeytyq.jpg'),
+(14, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794417/khachsan/overview_2-copy_lpjnl0.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794688/khachsan/318712386_p5bfqk.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794688/khachsan/318712637_1_ui6l9s.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794689/khachsan/318712453_owzh1o.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794690/khachsan/b1108076_yacrcr.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794691/khachsan/318712647_xwilih.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794691/khachsan/b1108242_zk6ugs.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794692/khachsan/318712417_ryagog.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794693/khachsan/318712637_vypsbu.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794952/khachsan/vpharv--view-from-the-balcony_fmo8vs.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794953/khachsan/vdnrv--beach-4_mazyjh.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794953/khachsan/vpharv--lobby-9_qaur7d.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794954/khachsan/vpharv--lobby-7_tg1uoc.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794955/khachsan/vpharv--lobby-8_ysvlgb.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794956/khachsan/vpharv--lobby-6_cwuoec.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683794957/khachsan/vpharv--lobby-1_ym4lde.jpg');
 
 -- --------------------------------------------------------
 
@@ -211,7 +299,7 @@ CREATE TABLE `hinhanh_khachsan` (
 
 CREATE TABLE `hinhanh_phong` (
   `IDPhong` int(11) NOT NULL,
-  `HinhAnh` varchar(100) NOT NULL
+  `HinhAnh` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -240,10 +328,10 @@ CREATE TABLE `khachsan` (
 -- Đang đổ dữ liệu cho bảng `khachsan`
 --
 
-INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, `GioiThieu`, `TrangThai`, `IDDiaDiem`, `Nhan`, `GioNhanPhong`, `GioTraPhong`, `IDChuKhachSan`) VALUES
-(5, 'Khách Sạn The Cap Vũng Tàu', '1, Thi Sách, Thành Phố Vũng Tàu, Bà Rịa Vũng Tàu, Việt Nam', 0, 4, '', '', 2, 64, '', 0, 0, 5),
-(6, 'Movenpick Resort Phan Thiết', 'Đường Hòn Giồ, Thuận Qúy - Thôn Tiến Hòa - Xã Tiến Thành, Thành Phố Phan Thiết, Bình Thuận', 0, 2, '', '', 1, 4, '', 0, 0, 5),
-(7, 'Khách Sạn Mường Thanh Grand Hạ Long', 'Số 7, Lô 20 Hoàng Quốc Việt, Khu Đông Hùng Thắng, Phường Bãi Cháy, Hùng Thắng, Thành Phố Hạ Long, Qu', 0, 5, '', '', 1, 5, '', 0, 0, 5);
+INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `soSao`, `ChinhSach`, `GioiThieu`, `TrangThai`, `IDDiaDiem`, `Nhan`, `GioNhanPhong`, `GioTraPhong`, `IDChuKhachSan`) VALUES
+(5, 'Khách Sạn The Cap Vũng Tàu', '1, Thi Sách, Thành Phố Vũng Tàu, Bà Rịa Vũng Tàu, Việt Nam', 4, '', '', 2, 64, '', '', '', 5),
+(6, 'Movenpick Resort Phan Thiết', 'Đường Hòn Giồ, Thuận Qúy - Thôn Tiến Hòa - Xã Tiến Thành, Thành Phố Phan Thiết, Bình Thuận', 2, '', '', 1, 4, '', '', '', 5),
+(7, 'Khách Sạn Mường Thanh Grand Hạ Long', 'Số 7, Lô 20 Hoàng Quốc Việt, Khu Đông Hùng Thắng, Phường Bãi Cháy, Hùng Thắng, Thành Phố Hạ Long, Qu', 5, '', '', 1, 5, '', '', '', 5);
 
 -- --------------------------------------------------------
 
@@ -475,6 +563,82 @@ CREATE TABLE `thongtinhuuich_ks` (
   `NoiDung` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `thongtinhuuich_ks`
+--
+
+INSERT INTO `thongtinhuuich_ks` (`IDKhachSan`, `IDThongTin`, `NoiDung`) VALUES
+(8, 1, '2'),
+(8, 2, '3'),
+(8, 3, '4'),
+(8, 4, '2015'),
+(8, 5, '5'),
+(8, 6, '10'),
+(8, 8, '15'),
+(9, 1, '5'),
+(9, 2, '3'),
+(9, 3, '1'),
+(9, 4, '2015'),
+(9, 5, '3'),
+(9, 6, '1'),
+(9, 7, '12'),
+(9, 8, '12'),
+(10, 1, '3'),
+(10, 2, '4'),
+(10, 3, '5'),
+(10, 4, '2020'),
+(10, 5, '1'),
+(10, 6, '3'),
+(10, 7, '4'),
+(10, 8, '12'),
+(11, 1, '2'),
+(11, 2, '3'),
+(11, 3, '4'),
+(11, 4, '2018'),
+(11, 6, '30'),
+(11, 7, '2'),
+(11, 8, '3'),
+(12, 1, '1'),
+(12, 2, '2'),
+(12, 3, '3'),
+(12, 4, '2010'),
+(12, 5, '2'),
+(12, 6, '30'),
+(12, 7, '10'),
+(12, 8, '30'),
+(13, 1, '5'),
+(13, 2, '10'),
+(13, 3, '10'),
+(13, 4, '2018'),
+(13, 5, '1'),
+(13, 6, '50'),
+(13, 7, '2'),
+(13, 8, '40'),
+(14, 1, '2'),
+(14, 2, '4'),
+(14, 3, '5'),
+(14, 4, '2013'),
+(14, 5, '22'),
+(14, 6, '23'),
+(14, 7, '12'),
+(14, 8, '45'),
+(15, 1, '3'),
+(15, 2, '3'),
+(15, 3, '4'),
+(15, 4, '2010'),
+(15, 5, '23'),
+(15, 6, '43'),
+(15, 7, '1'),
+(15, 8, '45'),
+(16, 1, '12'),
+(16, 2, '3'),
+(16, 3, '1'),
+(16, 4, '2019'),
+(16, 5, '3'),
+(16, 6, '30'),
+(16, 7, '1'),
+(16, 8, '23');
+
 -- --------------------------------------------------------
 
 --
@@ -603,6 +767,202 @@ CREATE TABLE `tiennghi_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tiennghi_khachsan`
+--
+
+INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
+(8, 1),
+(8, 2),
+(8, 3),
+(8, 4),
+(8, 5),
+(8, 11),
+(8, 12),
+(8, 21),
+(8, 22),
+(8, 23),
+(8, 31),
+(8, 41),
+(8, 42),
+(8, 43),
+(8, 44),
+(8, 45),
+(8, 46),
+(8, 47),
+(8, 61),
+(8, 62),
+(8, 63),
+(9, 1),
+(9, 2),
+(9, 3),
+(9, 4),
+(9, 5),
+(9, 11),
+(9, 12),
+(9, 21),
+(9, 22),
+(9, 23),
+(9, 31),
+(9, 41),
+(9, 42),
+(9, 43),
+(9, 44),
+(9, 45),
+(9, 46),
+(9, 47),
+(9, 61),
+(9, 62),
+(9, 63),
+(10, 1),
+(10, 2),
+(10, 3),
+(10, 4),
+(10, 5),
+(10, 11),
+(10, 12),
+(10, 21),
+(10, 22),
+(10, 23),
+(10, 31),
+(10, 41),
+(10, 42),
+(10, 43),
+(10, 44),
+(10, 45),
+(10, 46),
+(10, 47),
+(10, 61),
+(10, 62),
+(10, 63),
+(11, 1),
+(11, 2),
+(11, 3),
+(11, 4),
+(11, 5),
+(11, 11),
+(11, 12),
+(11, 21),
+(11, 22),
+(11, 23),
+(11, 31),
+(11, 41),
+(11, 42),
+(11, 43),
+(11, 44),
+(11, 45),
+(11, 46),
+(11, 47),
+(11, 61),
+(11, 62),
+(11, 63),
+(12, 1),
+(12, 2),
+(12, 3),
+(12, 4),
+(12, 5),
+(12, 21),
+(12, 22),
+(12, 23),
+(12, 31),
+(12, 41),
+(12, 42),
+(12, 43),
+(12, 44),
+(12, 45),
+(12, 46),
+(12, 47),
+(12, 51),
+(12, 52),
+(12, 53),
+(12, 61),
+(12, 62),
+(12, 63),
+(13, 1),
+(13, 2),
+(13, 3),
+(13, 4),
+(13, 5),
+(13, 11),
+(13, 12),
+(13, 21),
+(13, 22),
+(13, 23),
+(13, 31),
+(13, 41),
+(13, 42),
+(13, 43),
+(13, 44),
+(13, 45),
+(13, 46),
+(13, 47),
+(13, 51),
+(13, 52),
+(13, 53),
+(13, 61),
+(13, 62),
+(13, 63),
+(14, 1),
+(14, 2),
+(14, 3),
+(14, 4),
+(14, 5),
+(14, 11),
+(14, 12),
+(14, 21),
+(14, 22),
+(14, 23),
+(14, 31),
+(14, 41),
+(14, 42),
+(14, 43),
+(14, 44),
+(14, 45),
+(14, 46),
+(14, 47),
+(15, 1),
+(15, 2),
+(15, 3),
+(15, 4),
+(15, 5),
+(15, 11),
+(15, 12),
+(15, 21),
+(15, 22),
+(15, 23),
+(15, 31),
+(15, 41),
+(15, 42),
+(15, 43),
+(15, 44),
+(15, 45),
+(15, 46),
+(15, 47),
+(15, 51),
+(15, 52),
+(15, 53),
+(15, 61),
+(15, 62),
+(15, 63),
+(16, 1),
+(16, 2),
+(16, 3),
+(16, 4),
+(16, 5),
+(16, 11),
+(16, 12),
+(16, 31),
+(16, 41),
+(16, 42),
+(16, 43),
+(16, 44),
+(16, 45),
+(16, 46),
+(16, 47),
+(16, 61),
+(16, 62),
+(16, 63);
 
 -- --------------------------------------------------------
 
@@ -836,13 +1196,13 @@ ALTER TABLE `diadiem`
 -- AUTO_INCREMENT cho bảng `hinhanh_khachsan`
 --
 ALTER TABLE `hinhanh_khachsan`
-  MODIFY `IDKhachSan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDKhachSan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `khachsan`
 --
 ALTER TABLE `khachsan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `khunggio`

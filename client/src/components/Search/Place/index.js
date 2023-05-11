@@ -1,7 +1,6 @@
 import styles from './Place.module.scss'
-import notablePlaces from '~/assets/jsons/notable.json'
 
-function Place({ placeHistory, onClearHistory }) {
+function Place({ placeHistory, onClearHistory, places, onChoose }) {
     return (
         <div className={styles.place}>
             <div className={styles.historyPlace}>
@@ -15,7 +14,13 @@ function Place({ placeHistory, onClearHistory }) {
                 ) : (
                     <ul className={styles.list}>
                         {placeHistory.map((place, index) => (
-                            <li key={index} className={styles.item}>
+                            <li
+                                key={index}
+                                className={styles.item}
+                                onClick={() => {
+                                    onChoose(place)
+                                }}
+                            >
                                 <div className={styles.image}>
                                     <svg width="20" height="20" fill="none">
                                         <path
@@ -44,12 +49,21 @@ function Place({ placeHistory, onClearHistory }) {
             <div className={styles.notablePlace}>
                 <div className={styles.title}>Địa điểm nổi bật</div>
                 <ul className={styles.list}>
-                    {notablePlaces.map((place, index) => (
-                        <li key={index}>
-                            <div className={styles.image} style={{ backgroundImage: `url(${place.image})` }}></div>
-                            <div className={styles.name}>{place.name}</div>
-                        </li>
-                    ))}
+                    {places &&
+                        places.map((place, index) => (
+                            <li
+                                key={index}
+                                onClick={() => {
+                                    onChoose(place.TenDiaDiem)
+                                }}
+                            >
+                                <div
+                                    className={styles.image}
+                                    style={{ backgroundImage: `url(${place.HinhAnh})` }}
+                                ></div>
+                                <div className={styles.name}>{place.TenDiaDiem}</div>
+                            </li>
+                        ))}
                 </ul>
             </div>
         </div>

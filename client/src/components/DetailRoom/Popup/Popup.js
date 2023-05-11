@@ -4,30 +4,20 @@ import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 import classes from './Popup.module.scss'
 import './Popup.scss'
 import { clsx } from 'clsx'
-const Popup = () => {
+const Popup = ({ picHotel }) => {
     return (
         <div className="row">
             <div className="col-8">
                 <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img
-                                src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/7e0ab78439aba7749488a253455b5f22.jpg"
-                                alt=""
-                            />
+                            <img src={picHotel[0].HinhAnh} alt="" />
                         </div>
-                        <div className="carousel-item">
-                            <img
-                                src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/7e0ab78439aba7749488a253455b5f22.jpg"
-                                alt=""
-                            />
-                        </div>
-                        <div className="carousel-item">
-                            <img
-                                src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/7e0ab78439aba7749488a253455b5f22.jpg"
-                                alt=""
-                            />
-                        </div>
+                        {picHotel.slice(1).map((pic) => (
+                            <div className="carousel-item" key={pic.HinhAnh}>
+                                <img src={pic.HinhAnh} alt="" />
+                            </div>
+                        ))}
                     </div>
                     <button
                         className="carousel-control-prev"
@@ -35,7 +25,7 @@ const Popup = () => {
                         data-bs-target="#carouselExampleCaptions"
                         data-bs-slide="prev"
                     >
-                        <FontAwesomeIcon icon={faCaretLeft} aria-hidden="true" />
+                        <FontAwesomeIcon icon={faCaretLeft} />
                         <span className="visually-hidden">Previous</span>
                     </button>
                     <button
@@ -44,33 +34,21 @@ const Popup = () => {
                         data-bs-target="#carouselExampleCaptions"
                         data-bs-slide="next"
                     >
-                        <FontAwesomeIcon icon={faCaretRight} aria-hidden="true" />
+                        <FontAwesomeIcon icon={faCaretRight} />
                         <span className="visually-hidden">Next</span>
                     </button>
                     {/* indicator */}
+
                     <div className={clsx(classes['carousel-indicators-image'], 'carousel-indicators')}>
-                        <div
-                            data-bs-target="#carouselExampleCaptions"
-                            data-bs-slide-to="0"
-                            className={clsx(classes['active'], 'active')}
-                        >
-                            <img
-                                src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/7e0ab78439aba7749488a253455b5f22.jpg"
-                                alt=""
-                            />
-                        </div>
-                        <div data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1">
-                            <img
-                                src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/7e0ab78439aba7749488a253455b5f22.jpg"
-                                alt=""
-                            />
-                        </div>
-                        <div data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2">
-                            <img
-                                src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/7e0ab78439aba7749488a253455b5f22.jpg"
-                                alt=""
-                            />
-                        </div>
+                        {picHotel.slice(1).map((pic, index) => (
+                            <div
+                                data-bs-target="#carouselExampleCaptions"
+                                data-bs-slide-to={index}
+                                className={clsx(classes['active'], 'active')}
+                            >
+                                <img src={pic.HinhAnh} alt="" />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
