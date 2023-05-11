@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 import styles from './CardVinpearl.module.scss'
@@ -17,6 +18,8 @@ function CardVinpearl(props) {
 
     return (
         <div className={styles.container}>
+            <Link to={`/hotels/detail/${props.ID}`} className="link"></Link>
+
             <div className={styles.image} style={{ backgroundImage: `url(${props.image})` }}>
                 <div className={styles.logoWrapper}>
                     <div

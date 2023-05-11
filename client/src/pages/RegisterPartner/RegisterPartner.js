@@ -232,7 +232,7 @@ const RegisterPartner = () => {
             setEnteredRePass({ ...enteredRePass, error: 'Thông tin bắt buộc' })
         }
         try {
-            const res = await axios.post('auth/signUp', {
+            const res = await axios.post('http://localhost:8800/auth/signUp', {
                 HoTen: enteredUserName.value,
                 TenCongTy: enteredNameCompany.value,
                 DiaChi: enteredAddress.value,

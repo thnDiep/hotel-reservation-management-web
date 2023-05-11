@@ -9,7 +9,7 @@ function Banner() {
         <div className={styles.banner}>
             <div className={clsx(styles.contentBanner, 'd-flex')}>
                 <div>
-                    <h1>Tải ứng dụng Evivu.vn</h1>
+                    <h1>Tải ứng dụng MyTravel.vn</h1>
                     <p>Đặt khách sạn hạng sang</p>
                     <ul className={styles.list}>
                         <li>

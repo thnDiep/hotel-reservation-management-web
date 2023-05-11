@@ -10,11 +10,12 @@ import vinpearlDes from '~/assets/jsons/vinpearl.json'
 import { PlaceBar, CardHotel, CardVinpearl, ButtonPrimary, Search, RecentViews, SliderHotels } from '~/components'
 import { NextArrow, PrevArrow } from '~/components/Slider'
 import { Vouchers, ConditionModal, Banner } from './components'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Home() {
     const data = useContext(DataContext)
-
-    const [hotels, setHotels] = useState()
+    const navigate = useNavigate()
+    // const [hotels, setHotels] = useState()
     const [shockPrices, setShockPrices] = useState([])
     const intervalRef = useRef()
     const vidRef = useRef()
@@ -104,8 +105,8 @@ function Home() {
                     shockPrices.push(hotel)
                 }
             })
-            setHotels(data.hotels)
-            console.log(shockPrices)
+            // setHotels(data.hotels)
+            // console.log(shockPrices)
 
             setShockPrices(shockPrices)
         }
@@ -356,21 +357,23 @@ function Home() {
 
             <div className={clsx(styles.favoriteDestination, 'part')}>
                 <h1 className={styles.title}>Điểm đến yêu thích</h1>
-                <h6 className={styles.subTitle}>Địa điểm hot nhất do Evivu đề xuất</h6>
+                <h6 className={styles.subTitle}>Địa điểm hot nhất do My Travel đề xuất</h6>
 
                 <div className={clsx(styles.destinations)}>
-                    {notableDes.slice(0, 12).map((des, index) => (
-                        <div key={index} className={clsx(styles.destination, styles[`id-${index}`])}>
-                            <a href=""></a>
-                            <div
-                                className={styles.imageDestination}
-                                style={{ backgroundImage: `url(${des.image})` }}
-                            ></div>
-                            <div className={styles.nameDestination}>
-                                <p>{des.name}</p>
-                            </div>
-                        </div>
-                    ))}
+                    {data &&
+                        data.places.slice(58, 70).map((des, index) => (
+                            <Link to={`hotels/${des.TenDiaDiem}`}>
+                                <div key={index} className={clsx(styles.destination, styles[`id-${index}`])}>
+                                    <div
+                                        className={styles.imageDestination}
+                                        style={{ backgroundImage: `url(${des.HinhAnh})` }}
+                                    ></div>
+                                    <div className={styles.nameDestination}>
+                                        <p>{des.TenDiaDiem}</p>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
                 </div>
             </div>
 

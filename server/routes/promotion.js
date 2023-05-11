@@ -7,7 +7,7 @@ const router = express.Router()
 // Lấy dữ liệu hiện danh sách khuyến mãi
 router.get("/", async (req, res, next) => {
   try {
-    const idCKS = req.query.idCKS || 1
+    const idCKS = req.query.idCKS || 2
 
     const promotions = await promotionModel.getPromotionByHotelierId(idCKS)
     const periods = await promotionModel.getPeriods()
@@ -21,7 +21,7 @@ router.get("/", async (req, res, next) => {
 // Lấy dữ liệu hiện form thêm khuyến mãi
 router.get("/insert", async (req, res, next) => {
   try {
-    const idCKS = req.query.idCKS || 1
+    const idCKS = req.query.idCKS || 2
 
     const hotels = await hotelModel.findByHotelierId(idCKS)
     const periods = await promotionModel.getPeriods()
@@ -63,7 +63,7 @@ router.get("/del", async (req, res, next) => {
 // Chỉnh sửa khuyến mãi
 router.get("/update", async (req, res, next) => {
   try {
-    const idCKS = req.query.idCKS || 1
+    const idCKS = req.query.idCKS || 2
     const idPromotion = req.query.idPromotion || 1
 
     // const hotels = await hotelModel.findByHotelierId(idCKS)
