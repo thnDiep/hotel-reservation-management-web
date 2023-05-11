@@ -27,6 +27,14 @@ export default {
     // .andWhere("TrangThai", 0);
   },
 
+  async getAllImage() {
+    return await db("HinhAnh_KhachSan")
+  },
+
+  async getImage(id) {
+    return await db("HinhAnh_KhachSan").where("IDKhachSan", id)
+  },
+
   addHinhAnhKhachSan(hinhanh) {
     return db("HinhAnh_KhachSan").insert(hinhanh)
   },

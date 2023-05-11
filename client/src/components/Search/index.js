@@ -88,7 +88,7 @@ function Search(props) {
             submit.place = tendiadiem
         }
 
-        Axios.get('http://localhost:8800/hotel', { params: { key: submit } })
+        Axios.get('http://localhost:8800/hotel/search', { params: { key: submit } })
             .then((response) => {
                 // console.log(response.data)
                 // result = response.data
