@@ -1,12 +1,12 @@
 import express from "express";
 import hotelModel from "../models/hotelModel.js";
 import promotionModel from "../models/promotionModel.js";
+import { order } from "../controller/hotelier.js";
 import {
   facility,
   addHotel,
   addRoom,
   facilityRoom,
-  order,
 } from "../controller/hotelier.js";
 const router = express.Router();
 
