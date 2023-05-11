@@ -6,7 +6,7 @@ export default {
   },
 
   async findById(id) {
-    const list = await db("khachsan").where("ID", id)
+    const list = await db("khachsan").where("ID", 8)
     if (list.length === 0) return null
 
     return list[0]
@@ -22,6 +22,13 @@ export default {
     return await db("khachsan").where("IDChuKhachSan", hotelierID)
   },
 
+  async getPicByHotelId(id) {
+    return await db("hinhanh_khachsan").where("IDKhachSan", id)
+  },
+
+  async getFeedBackByHotelId(id) {
+    return await db("danhgia").where("IDKhachSan", id)
+  },
   async getAllImage() {
     return await db("HinhAnh_KhachSan")
   },

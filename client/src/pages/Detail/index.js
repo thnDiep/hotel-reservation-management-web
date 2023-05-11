@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Search from '~/components/Search'
 import classes from './Detail.module.scss'
 import {
@@ -54,7 +54,21 @@ import { RecentViews, SliderHotels } from '~/components'
 import notableDes from '~/assets/jsons/notable.json'
 import PictureDetail from './PictureDetail/PictureDetail'
 import Rating from './Rating/Rating'
+import { useNavigate } from 'react-router-dom'
+import Axios from 'axios'
 const Detail = () => {
+    const [data, setData] = useState(null)
+    useEffect(() => {
+        Axios.get('http://localhost:8800/hotel/detail', { params: { idKs: 8 } })
+            .then((response) => {
+                setData(response.data)
+                console.log(response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [])
+    console.log(data?.picHotel)
     return (
         <React.Fragment>
             <div className={classes.spacing}> </div>
@@ -62,10 +76,14 @@ const Detail = () => {
             {/* <div className={classes.container}>
                 <ImageHotel />
             </div> */}
-            <div className={classes.subContainer}>
-                <PictureDetail />
-            </div>
-            <PriceDetail />
+            {data && (
+                <>
+                    <div className={classes.subContainer}>
+                        <PictureDetail picHotel={data.picHotel} />
+                    </div>
+                    <PriceDetail infor={data.infor} />
+                </>
+            )}
             <div className={classes.container}>
                 <div className="row">
                     <div className="col-lg-12 col-md-12">
