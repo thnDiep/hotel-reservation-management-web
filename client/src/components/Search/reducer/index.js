@@ -1,7 +1,16 @@
 import moment from 'moment'
 import { addDays } from 'date-fns'
 
-import { CHANGE_SHOW, INPUT_PLACE, CLEAR_PLACE_HISTORY, INPUT_DATE, INPUT_NUMBER, SUBMIT_SEARCH } from './constans'
+import {
+    CHANGE_SHOW,
+    INPUT_PLACE,
+    CLEAR_PLACE_HISTORY,
+    INPUT_DATE,
+    INPUT_NUMBER,
+    SUBMIT_SEARCH,
+    CHANGE_ALL,
+} from './constans'
+import Axios from 'axios'
 
 const initState = {
     show: null,
@@ -22,6 +31,11 @@ const initState = {
 
 function reducer(state, action) {
     switch (action.type) {
+        case CHANGE_ALL:
+            return {
+                ...action.payload,
+                show: null,
+            }
         case CHANGE_SHOW:
             return {
                 ...state,
@@ -81,17 +95,27 @@ function reducer(state, action) {
                 number: { room, adult, child },
             }
         case SUBMIT_SEARCH:
-            const submit = {
-                place: state.place,
-                number: {
-                    room: state.number.room.value,
-                    adult: state.number.adult.value,
-                    child: state.number.child.value,
-                },
-                startDate: state.date.startDate,
-                endDate: state.date.endDate,
-            }
+            // const submit = {
+            //     place: state.place,
+            //     number: {
+            //         room: state.number.room.value,
+            //         adult: state.number.adult.value,
+            //         child: state.number.child.value,
+            //     },
+            //     startDate: state.date.startDate,
+            //     endDate: state.date.endDate,
+            // }
+            // let result
 
+            // Axios.get('http://localhost:8800/hotel', { params: { key: submit } })
+            //     .then((response) => {
+            //         // console.log(response.data)
+            //         result = response.data
+            //         // action.link(`/hotels/${action.payload}`, { state: { hotels: response.data } })
+            //     })
+            //     .catch((error) => {
+            //         console.log(error)
+            //     })
             return {
                 ...state,
                 placeHistory:
@@ -99,6 +123,7 @@ function reducer(state, action) {
                         ? [action.payload, ...state.placeHistory]
                         : state.placeHistory,
             }
+
         default:
             throw new Error('Invalid action.')
     }

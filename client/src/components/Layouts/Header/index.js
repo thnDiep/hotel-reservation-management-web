@@ -14,14 +14,14 @@ function Header() {
     return (
         <div className={classes.header}>
             <div className={classes.header__nav}>
-                <a href="/" className={classes.logo}>
+                <Link to="/" className={classes.logo}>
                     {/* <h1>SunLight</h1> */}
                     <img
                         src="https://storage.googleapis.com/tripi-assets/mytour/icons/icon_logo_mytour_red.svg"
                         className={classes.img}
                         alt="logo_mytour"
                     />
-                </a>
+                </Link>
                 <div className={classes.nav__title}>
                     <TitleLinkButton className="btnTitle" name="Ưu đãi" link="/">
                         <svg width="16" height="16" fill="none" style={{ marginRight: '8px' }}>
@@ -76,7 +76,7 @@ function Header() {
                             ></path>
                         </svg>
                     </TitleLinkButton>
-                    <TitleLinkButton link='./registerPartner' className="btnTitle" name="Khách hàng doanh nghiệp" >
+                    <TitleLinkButton link="./registerPartner" className="btnTitle" name="Khách hàng doanh nghiệp">
                         <svg width="17" height="16" fill="none" style={{ marginRight: '8px' }}>
                             <path
                                 d="M5.548 14.667h5.457c2.741 0 3.232-1.074 3.376-2.38l.511-5.334C15.076 5.327 14.6 4 11.687 4h-6.82C1.953 4 1.476 5.327 1.66 6.953l.511 5.334c.144 1.306.635 2.38 3.376 2.38zM5.549 4v-.534c0-1.18 0-2.133 2.182-2.133h1.091c2.183 0 2.183.953 2.183 2.133V4"
@@ -94,7 +94,7 @@ function Header() {
                             ></path>
                         </svg>
                     </TitleLinkButton>
-                    <TitleLinkButton link='./profile' className="btnTitle" name="Đơn hàng" check="true">
+                    <TitleLinkButton link="./profile" className="btnTitle" name="Đơn hàng" check="true">
                         <svg width="16" height="16" fill="none" style={{ marginRight: '8px' }}>
                             <path
                                 d="M9.2 1.6v3.022a.756.756 0 00.755.755h3.022"
