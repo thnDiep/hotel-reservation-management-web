@@ -1,4 +1,19 @@
-import { CHANGE_SHOW, INPUT_PLACE, CLEAR_PLACE_HISTORY, INPUT_DATE, INPUT_NUMBER, SUBMIT_SEARCH } from './constans'
+import {
+    CHANGE_SHOW,
+    INPUT_PLACE,
+    CLEAR_PLACE_HISTORY,
+    INPUT_DATE,
+    INPUT_NUMBER,
+    SUBMIT_SEARCH,
+    CHANGE_ALL,
+} from './constans'
+
+export const changeAll = (payload) => {
+    return {
+        type: CHANGE_ALL,
+        payload,
+    }
+}
 
 export const changeShow = (payload) => {
     return {
