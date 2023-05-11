@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import authModel from "../models/authModel.js";
+
 export const signup = async (req, res, next) => {
   try {
     const rawPassword = req.body.MatKhau;
@@ -8,7 +9,7 @@ export const signup = async (req, res, next) => {
     const user = {
       ...req.body,
       MatKhau: hash,
-      PhanQuyen: 0,
+      PhanQuyen: 0 || 1,
     };
     const check = (name, check, i) => {
       if (name === check) {
@@ -32,7 +33,6 @@ export const signup = async (req, res, next) => {
 };
 export const login = async (req, res, next) => {
   try {
-    console.log("UUUUUUUUUUUU");
     const check = (name, chec) => {
       if (name === chec) {
         return 0;

@@ -42,6 +42,7 @@ function SignUp() {
                 HoTen: data.name,
                 Email: data.email,
                 MatKhau: data.pass,
+                PhanQuyen:0,
             })
             Nav('/login')
         } catch (err) {

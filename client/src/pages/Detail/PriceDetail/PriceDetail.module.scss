@@ -1,22 +1,26 @@
 .single-box-content {
     margin-top: 0px;
 }
+
 .box-info {
     background: #fff;
     margin-top: 20px;
     border-radius: 5px;
 }
+
 .box-content {
     &-top {
         padding: 20px;
         padding-bottom: 0px;
     }
+
     &-bottom {
         border-top: 1px solid #e6e6e6;
         padding: 20px;
         padding-top: 0px;
     }
 }
+
 .table {
     width: 100%;
     max-width: 100%;
@@ -24,24 +28,28 @@
     background-color: transparent;
     border-spacing: 0;
     border-collapse: collapse;
+
+    td {
+        border-top: 0px;
+        padding: 0px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        position: static;
+        display: table-cell;
+        float: none;
+    }
 }
-td {
-    border-top: 0px;
-    padding: 0px;
-    line-height: 1.42857143;
-    vertical-align: top;
-    position: static;
-    display: table-cell;
-    float: none;
-}
+
 .col-left {
     width: 870px;
+
     .box-info {
         text-align: left;
         display: block;
         margin-bottom: 15px;
     }
 }
+
 .boxTitle {
     background: #f4f7ff;
     font-size: 13px;
@@ -50,6 +58,7 @@ td {
     text-transform: uppercase;
     padding: 5px;
 }
+
 .hotelTitle {
     h1 {
         font-size: 28px;
@@ -61,8 +70,10 @@ td {
         font-weight: 600;
     }
 }
+
 .boxAddress {
     margin-bottom: 15px;
+
     h3 {
         color: #9aa2b2;
         font-family: 'os_regular';
@@ -70,16 +81,20 @@ td {
         margin: 0px;
     }
 }
+
 .box-star {
     padding-left: 15px;
 }
+
 .icon {
     color: #f6d738;
     font-size: 18px;
     padding: 0px 3px;
+
     &-fac {
         color: #333333;
         margin-left: 5px;
+
         &-detail {
             font-size: 20px;
             margin-right: 5px;
@@ -96,6 +111,7 @@ td {
         }
     }
 }
+
 .price-room-from {
     font-size: 20px;
     color: #333333;
@@ -103,24 +119,29 @@ td {
     margin-bottom: 5px;
     margin-top: 18px;
 }
+
 .price-old {
     text-decoration: line-through;
     font-size: 14px;
     color: #9aa2b2;
     font-family: 'os_regular';
 }
+
 .price-medium {
     color: #ff9000;
     font-size: 22px;
     font-family: 'os_bold';
     margin-bottom: 10px;
+
     span {
         color: #333333;
         font-size: 20px;
         font-family: 'os_bold';
     }
 }
+
 .box-title {
+
     h2,
     h3 {
         font-size: 20px;
@@ -131,15 +152,19 @@ td {
         margin-top: 20px;
     }
 }
+
 .content-fac {
     width: 100%;
+
     &-first {
         margin-bottom: 30px;
     }
 }
+
 .box-readmore {
     text-align: center;
 }
+
 .btn {
     &-readmore {
         font-size: 17px;

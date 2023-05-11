@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 import styles from './Dropdown.module.scss'
 
-function DropdownOption({ list, idActive, type }) {
+function DropdownOption({ list, idActive, type, disables }) {
     const wrapperRef = useRef(null)
     const [show, setShow] = useState(false)
 
@@ -20,8 +20,9 @@ function DropdownOption({ list, idActive, type }) {
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [wrapperRef])
-    // show dropdown menu
-    function handleClick(item) {
+
+    function handleClick(item, index) {
+        if (disables[index]) return
         setShow(!show)
         item.handle(idActive, type)
     }
@@ -39,7 +40,11 @@ function DropdownOption({ list, idActive, type }) {
             {show && (
                 <div className={clsx(styles.dropdownMenu)}>
                     {list.map((item, index) => (
-                        <div key={index} className={clsx(styles.dropdownItem)} onClick={() => handleClick(item)}>
+                        <div
+                            key={index}
+                            className={clsx(styles.dropdownItem, { [styles.disabled]: disables[index] })}
+                            onClick={() => handleClick(item, index)}
+                        >
                             <span>{item.name}</span>
                         </div>
                     ))}

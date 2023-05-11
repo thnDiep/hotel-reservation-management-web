@@ -27,10 +27,7 @@ function HotelTable() {
     const option = useRef([
         {
             name: 'Xóa',
-            handle: function () {
-                const act = confirmAction
-                window.addEventListener('beforeunload', act)
-            },
+            handle: function (idActive) {},
         },
     ])
     const handleButtonClick = () =>
@@ -50,9 +47,6 @@ function HotelTable() {
 
     const pendingBtnChangeHandler = () => {
         setEnteredPendingBtn(!enteredPendingBtn)
-    }
-    const delChangeHandler = () => {
-        setEnteredDel(!enteredDel)
     }
     const del1ChangeHandler = () => {
         setEnteredDel1(!enteredDel1)

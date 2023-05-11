@@ -1,41 +1,16 @@
 import { Table } from 'react-bootstrap'
+import { useContext } from 'react'
 import clsx from 'clsx'
+import moment from 'moment'
 
+import DataContext from '~/contexts/DataContext'
+import FooterPaging from '../FooterPaging/FooterPaging'
 import { DropdownOption } from '~/components'
 import styles from './Table.module.scss'
 
-const vouchers = [
-    {
-        id: 1,
-        name: 'CHAOHE23',
-        percent: 5,
-        start: '23/12/2022',
-        end: '23/12/2028',
-        used: '80',
-        number: '100',
-        status: 1,
-    },
-    {
-        id: 2,
-        name: 'GIAIPHONG',
-        percent: 14,
-        start: '23/12/2023',
-        end: '23/12/2028',
-        number: null,
-        status: 2,
-    },
-    {
-        id: 2,
-        name: 'GIAIPHONG',
-        percent: 14,
-        start: '23/12/2002',
-        end: '23/12/2022',
-        number: null,
-        status: 3,
-    },
-]
-
 function VoucherTable({ header, option, data }) {
+    const { hotels } = useContext(DataContext)
+
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={styles.cusTable}>
@@ -45,59 +20,83 @@ function VoucherTable({ header, option, data }) {
                             <input type="checkbox" className={styles.checkBox} />
                         </th>
                         {header.map((item, index) => (
-                            <th key={index} className={styles.center}>
+                            <th key={index}>
                                 <h3 className={styles.title}>{item}</h3>
                             </th>
                         ))}
                     </tr>
                 </thead>
                 <tbody>
-                    {vouchers.map((voucher, index) => (
-                        <tr key={index} className={styles.memberRow}>
-                            <td className={styles.center}>
-                                <input type="checkbox" className={styles.checkBox} />
-                            </td>
-                            <td className={styles.center}>
-                                <span>#{voucher.id}</span>
-                            </td>
-                            <td className={styles.center}>
-                                <span className={clsx(styles.text1, styles.primary)}>{voucher.name}</span>
-                            </td>
-                            <td className={styles.center}>
-                                <span className={styles.text1}>{voucher.percent} %</span>
-                            </td>
-                            <td className={styles.center}>
-                                <span className={clsx(styles.text1, styles.bold)}>{voucher.start}</span>
-                            </td>
-                            <td className={styles.center}>
-                                <span className={clsx(styles.text1, styles.bold)}>{voucher.end}</span>
-                            </td>
-                            <td className={styles.center}>
-                                {voucher.number && (
-                                    <span className={styles.text1}>
-                                        {voucher.used} / {voucher.number}
+                    {data &&
+                        data.map((voucher, index) => (
+                            <tr key={index} className={styles.memberRow}>
+                                <td className={styles.center}>
+                                    <input type="checkbox" className={styles.checkBox} />
+                                </td>
+                                <td>
+                                    <span>#{voucher.ID}</span>
+                                </td>
+                                <td>
+                                    <span className={clsx(styles.text1, styles.bold)}>{voucher.TieuDe}</span>
+                                </td>
+                                <td>
+                                    <span className={clsx(styles.text1, styles.primary)}>{voucher.MaKhuyenMai}</span>
+                                </td>
+                                <td>
+                                    <span className={styles.text1}>{voucher.PhanTramKM} %</span>
+                                </td>
+                                <td>
+                                    <span className={clsx(styles.text1, styles.bold)}>
+                                        {moment(voucher.BatDau).format('DD/MM/yyyy')}
                                     </span>
-                                )}
-                                {!voucher.number && <span className={styles.text1}>-</span>}
-                            </td>
-                            <td className="d-flex-center">
-                                {voucher.status === 1 && (
-                                    <div className={clsx('btn-1', 'active', styles.status)}>Đang diễn ra</div>
-                                )}
-                                {voucher.status === 2 && (
-                                    <div className={clsx('btn-1', 'pending', styles.status)}>Chưa bắt đầu</div>
-                                )}
-                                {voucher.status === 3 && (
-                                    <div className={clsx('btn-1', 'blocked', styles.status)}>Đã kết thúc</div>
-                                )}
-                            </td>
-                            <td>
-                                <DropdownOption list={option} />
-                            </td>
-                        </tr>
-                    ))}
+                                </td>
+                                <td>
+                                    <span className={clsx(styles.text1, styles.bold)}>
+                                        {voucher.KetThuc && moment(voucher.KetThuc).format('DD/MM/yyyy')}
+                                        {!voucher.KetThuc && '-'}
+                                    </span>
+                                </td>
+                                <td>
+                                    {voucher.SoLuongKM && (
+                                        <span className={styles.text1}>
+                                            {voucher.SoLuongSD} / {voucher.SoLuongKM}
+                                        </span>
+                                    )}
+                                    {!voucher.SoLuongKM && <span className={styles.text1}>-</span>}
+                                </td>
+                                <td style={{ width: '200px' }}>
+                                    <span className={styles.text2}>
+                                        {hotels.find((hotel) => hotel.ID === voucher.IDKhachSan).Ten}
+                                    </span>
+                                </td>
+                                <td>
+                                    {voucher.TrangThai === 0 && (
+                                        <div className={clsx('btn-1', 'pending', styles.status)}>Chưa bắt đầu</div>
+                                    )}
+                                    {voucher.TrangThai === 1 && (
+                                        <div className={clsx('btn-1', 'active', styles.status)}>Đang diễn ra</div>
+                                    )}
+                                    {voucher.TrangThai === 2 && (
+                                        <div className={clsx('btn-1', 'blocked', styles.status)}>Đã kết thúc</div>
+                                    )}
+                                </td>
+                                <td>
+                                    <DropdownOption
+                                        list={option}
+                                        idActive={voucher.ID}
+                                        type={0}
+                                        disables={[
+                                            voucher.TrangThai === 2,
+                                            voucher.TrangThai === 2,
+                                            voucher.TrangThai !== 2,
+                                        ]}
+                                    />
+                                </td>
+                            </tr>
+                        ))}
                 </tbody>
             </Table>
+            <FooterPaging />
         </div>
     )
 }

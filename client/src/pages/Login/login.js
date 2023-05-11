@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom'
 import styles from './login.module.scss'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
 
 function Login() {
     const Nav = useNavigate()
@@ -44,9 +47,13 @@ function Login() {
                 Email: Data.email,
                 MatKhau: Data.pass,
             })
-            Nav('/')
+            if (res.status === 200) {
+                await Swal.fire('Đăng nhập thành công', 'Nhấn nút để đến trang chủ', 'success')
+                Nav('/')
+            }
         } catch (err) {
-            console.log('sai')
+            console.log(err.response.data)
+            await Swal.fire('Đăng nhập thất bại', 'Nhấn nút để thực hiện lại việc đăng nhập', 'error')
         }
     }
 

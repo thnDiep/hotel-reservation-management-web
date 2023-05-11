@@ -60,6 +60,28 @@
             background-color: rgba(255, 51, 102, 0.1);
         }
     }
+
+    .dropdownItem {
+        padding: 8px 10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(255, 51, 102, 0.1);
+        }
+
+        &.active {
+            color: #ff3366;
+        }
+
+        &.disabled {
+            cursor: default;
+            color: #d4d4d4;
+            &:hover {
+                background-color: #fff;
+            }
+        }
+    }
+
     .dropdownMenu {
         width: max-content;
         top: 50%;

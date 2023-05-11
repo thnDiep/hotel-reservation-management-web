@@ -66,5 +66,4 @@ export const publicRoutes = [
     { path: '/admin/account/blocked', component: BlockedAccount, layout: ManageLayout },
     { path: '/admin/account/active', component: ActiveAccount, layout: ManageLayout },
     { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
-    {},
 ]

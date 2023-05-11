@@ -17,7 +17,8 @@ function ConformModal(props) {
                         Hủy bỏ
                     </div>
                     <div className={styles.conform} onClick={props.onConform}>
-                        Xóa
+                        {props.conFormBtn && `${props.conFormBtn}`}
+                        {!props.conFormBtn && 'Xóa'}
                     </div>
                 </div>
             </Modal.Body>

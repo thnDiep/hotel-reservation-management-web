@@ -4,8 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWpforms } from '@fortawesome/free-brands-svg-icons'
 import { ButtonPrimary } from '~/components'
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const CheckOrder = () => {
+    const Nav = useNavigate()
     const [enteredCode, setEnteredCode] = useState(() => {
         return { value: '', error: '', isValid: false }
     })
@@ -13,13 +16,17 @@ const CheckOrder = () => {
         return { value: '', error: '', isValid: false }
     })
 
+    const [data, setData] = useState(() => {
+        return { code: '', phone: '', isValid: false }
+    })
+
     useEffect(() => {
         const filter = /^[A-Z]\d{7}$/
-        if (enteredCode.isValid === true) {
+        if (data.isValid === true) {
             const identifier = setTimeout(() => {
-                if (enteredCode.value.length === 0) {
+                if (data.code.length === 0) {
                     setEnteredCode({ ...enteredCode, error: 'Vui lòng nhập thông tin mã đơn hàng' })
-                } else if (!filter.test(enteredCode.value)) {
+                } else if (!filter.test(data.code)) {
                     setEnteredCode({ ...enteredCode, error: 'Mã đơn hàng không đúng định dạng' })
                 } else {
                     setEnteredCode({ ...enteredCode, error: '' })
@@ -29,7 +36,7 @@ const CheckOrder = () => {
                 clearTimeout(identifier)
             }
         }
-    }, [enteredCode.value])
+    }, [data.code])
 
     useEffect(() => {
         const filter = /(84|0[3|5|7|8|9])+([0-9]{8})\b/
@@ -37,8 +44,6 @@ const CheckOrder = () => {
             const identifier = setTimeout(() => {
                 if (enteredPhoneNum.value.length === 0) {
                     setEnteredPhoneNum({ ...enteredPhoneNum, error: 'Vui lòng nhập thông tin số điện thoại' })
-                } else if (!filter.test(enteredPhoneNum.value)) {
-                    setEnteredPhoneNum({ ...enteredPhoneNum, error: 'Số điện thoại không đúng định dạng' })
                 } else {
                     setEnteredPhoneNum({ ...enteredPhoneNum, error: '' })
                 }
@@ -55,7 +60,18 @@ const CheckOrder = () => {
     const phoneNumChangeHandler = (event) => {
         setEnteredPhoneNum({ value: event.target.value, isValid: true, error: '' })
     }
-
+    const handleCheckOrder = async (e) => {
+        e.preventDefault()
+        try {
+            const res = await axios.post('http://localhost:8800/user/checkOrder', {
+                MaDatPhong: data.code,
+                SoDienThoai: data.phone,
+            })
+            Nav('/profile/order')
+        } catch (err) {
+            console.log('sai')
+        }
+    }
     return (
         <div className={classes.container}>
             <form>
@@ -70,8 +86,8 @@ const CheckOrder = () => {
                                 className={classes.Input}
                                 id="formGroupExampleInput"
                                 placeholder="Nhập mã đơn hàng"
-                                value={enteredCode.value}
-                                onChange={codeChangeHandler}
+                                onChange={(e) => setData({ ...data, code: e.target.value, isValid: true })}
+                                name="code"
                             />
                         </div>
                         <p className={classes.err}>{enteredCode.error}</p>
@@ -84,13 +100,16 @@ const CheckOrder = () => {
                                 className={classes.Input}
                                 id="formGroupExampleInput"
                                 placeholder="Nhập số điện thoại"
-                                onChange={phoneNumChangeHandler}
+                                onChange={(e) => setData({ ...data, phone: e.target.value, isValid: true })}
+                                name="phone"
                             />
                         </div>
                         <p className={classes.err}>{enteredPhoneNum.error}</p>
                     </div>
                 </div>
-                <ButtonPrimary className="btnCheck">Kiểm tra</ButtonPrimary>
+                <ButtonPrimary className="btnCheck" onSubmit={handleCheckOrder}>
+                    Kiểm tra
+                </ButtonPrimary>
             </form>
         </div>
     )

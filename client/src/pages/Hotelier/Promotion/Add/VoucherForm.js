@@ -16,7 +16,7 @@ function VoucherForm({ data, onEdit, formData, styles }) {
     }
 
     function handleChange(e, type) {
-        if (type === 'start' || type === 'end') {
+        if (type === 'BatDau' || type === 'KetThuc') {
             onEdit({ errors: { ...data.errors, [type]: null }, fields: { ...data.fields, [type]: e } })
             return
         }
@@ -35,11 +35,11 @@ function VoucherForm({ data, onEdit, formData, styles }) {
                         <input
                             type="text"
                             placeholder="Khách sạn giảm đến 200K"
-                            className={clsx({ [styles.error]: data.errors.title })}
-                            value={data.fields.title || ''}
-                            onChange={(e) => handleChange(e, 'title')}
+                            className={clsx({ [styles.error]: data.errors.TieuDe })}
+                            value={data.fields.TieuDe || ''}
+                            onChange={(e) => handleChange(e, 'TieuDe')}
                         />
-                        <span className={styles.form__error}>{data.errors.title}</span>
+                        <span className={styles.form__error}>{data.errors.TieuDe}</span>
                     </div>
                 </div>
                 <div className={clsx(styles.form__part, styles.form__right)}>
@@ -74,11 +74,11 @@ function VoucherForm({ data, onEdit, formData, styles }) {
                         <input
                             type="text"
                             placeholder="CHAOHE23"
-                            className={clsx({ [styles.error]: data.errors.voucher })}
-                            value={data.fields.voucher || ''}
-                            onChange={(e) => handleChange(e, 'voucher')}
+                            className={clsx({ [styles.error]: data.errors.MaKhuyenMai })}
+                            value={data.fields.MaKhuyenMai || ''}
+                            onChange={(e) => handleChange(e, 'MaKhuyenMai')}
                         />
-                        <span className={styles.form__error}>{data.errors.voucher}</span>
+                        <span className={styles.form__error}>{data.errors.MaKhuyenMai}</span>
                     </div>
                 </div>
 
@@ -94,29 +94,31 @@ function VoucherForm({ data, onEdit, formData, styles }) {
                                 min="1"
                                 max="99"
                                 placeholder="14"
-                                className={clsx({ [styles.error]: data.errors.percent })}
-                                value={data.fields.percent || ''}
-                                onChange={(e) => handleChange(e, 'percent')}
+                                className={clsx({ [styles.error]: data.errors.PhanTramKM })}
+                                value={data.fields.PhanTramKM || ''}
+                                onChange={(e) => handleChange(e, 'PhanTramKM')}
                             />
-                            <span className={styles.form__error}>{data.errors.percent}</span>
+                            <span className={styles.form__error}>{data.errors.PhanTramKM}</span>
                         </div>
                     </div>
 
                     {/* Số lượng */}
-                    <div className={styles.form__part}></div>
-
-                    <div className={styles.form__input}>
-                        <span className={styles.title}>Số lượng giới hạn</span>
-                        <input
-                            type="number"
-                            min="1"
-                            max="99"
-                            placeholder="14"
-                            className={clsx({ [styles.error]: data.errors.number })}
-                            value={data.fields.number || ''}
-                            onChange={(e) => handleChange(e, 'number')}
-                        />
-                        <span className={styles.form__error}>{data.errors.number}</span>
+                    <div className={styles.form__part} style={{ marginLeft: '110px' }}>
+                        <div className={styles.form__input}>
+                            <span className={styles.title} style={{ width: 'fit-content' }}>
+                                Số lượng giới hạn
+                            </span>
+                            <input
+                                type="number"
+                                min="1"
+                                max="99"
+                                placeholder="14"
+                                className={clsx({ [styles.error]: data.errors.SoLuongKM })}
+                                value={data.fields.SoLuongKM || ''}
+                                onChange={(e) => handleChange(e, 'SoLuongKM')}
+                            />
+                            <span className={styles.form__error}>{data.errors.SoLuongKM}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,13 +134,13 @@ function VoucherForm({ data, onEdit, formData, styles }) {
                             locale={vi}
                             dateFormat="dd/MM/yyyy - hh:mm aa"
                             minDate={new Date()}
-                            className={clsx({ [styles.error]: data.errors.start })}
-                            selected={data.fields.start || new Date()}
+                            className={clsx({ [styles.error]: data.errors.BatDau })}
+                            selected={data.fields.BatDau || new Date()}
                             timeInputLabel="Time:"
                             showTimeInput
-                            onChange={(e) => handleChange(e, 'start')}
+                            onChange={(e) => handleChange(e, 'BatDau')}
                         />
-                        <span className={styles.form__error}>{data.errors.start}</span>
+                        <span className={styles.form__error}>{data.errors.BatDau}</span>
                     </div>
                 </div>
 
@@ -150,14 +152,14 @@ function VoucherForm({ data, onEdit, formData, styles }) {
                             locale={vi}
                             dateFormat="dd/MM/yyyy - hh:mm aa"
                             minDate={data.fields.start}
-                            className={clsx({ [styles.error]: data.errors.end })}
-                            selected={data.fields.end || null}
+                            className={clsx({ [styles.error]: data.errors.KetThuc })}
+                            selected={data.fields.KetThuc || null}
                             timeInputLabel="Time:"
                             showTimeInput
-                            onChange={(e) => handleChange(e, 'end')}
+                            onChange={(e) => handleChange(e, 'KetThuc')}
                             placeholderText="08/05/2023 - 06:00 PM"
                         />
-                        <span className={styles.form__error}>{data.errors.end}</span>
+                        <span className={styles.form__error}>{data.errors.KetThuc}</span>
                     </div>
                 </div>
             </div>
@@ -166,11 +168,7 @@ function VoucherForm({ data, onEdit, formData, styles }) {
             <div className={styles.form__part}>
                 <div className={styles.form__input}>
                     <span className={styles.title}>Mô tả khuyến mãi</span>
-                    <textarea
-                        rows={5}
-                        value={data.fields.description || ''}
-                        onChange={(e) => handleChange(e, 'description')}
-                    />
+                    <textarea rows={5} value={data.fields.MoTa || ''} onChange={(e) => handleChange(e, 'MoTa')} />
                 </div>
             </div>
 
@@ -183,8 +181,8 @@ function VoucherForm({ data, onEdit, formData, styles }) {
                     <div className={styles.editor}>
                         <Editor
                             onInit={(evt, editor) => (editorRef.current = editor)}
-                            initialValue={data.fields.condition || ''}
-                            onChange={(e) => handleChange(e, 'condition')}
+                            initialValue={data.fields.DieuKien || ''}
+                            onChange={(e) => handleChange(e, 'DieuKien')}
                             init={{
                                 menubar: false,
                                 plugins: ['code', 'table', 'link', 'lists'],
