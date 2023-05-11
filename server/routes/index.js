@@ -11,6 +11,7 @@ import authModel from "../models/authModel.js"
 import rateModal from "../models/rateModal.js"
 import placeModal from "../models/placeModel.js"
 import roomModel from "../models/roomModel.js"
+import promotionModel from "../models/promotionModel.js"
 
 export default function route(app) {
   app.use("/auth", authRouter)
@@ -41,8 +42,6 @@ export default function route(app) {
       hotels.map(async (hotel) => {
         hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan)
         hotel.DanhGia = await rateModal.getAvgRate(hotel.ID)
-        // hotel.SoDanhGia = await rateModal.getCount(hotel.ID)
-        // hotel.Phong = await hotelModel.getRoom(hotel.ID)
 
         if (hotel.DanhGia) {
           hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2)
@@ -55,8 +54,9 @@ export default function route(app) {
       const hotelImages = await hotelModel.getAllImage()
       const places = await placeModal.getAll()
       const rooms = await roomModel.getAll()
+      const promotions = await promotionModel.getAll()
 
-      res.json({ hotels, users, rates, hotelImages, places, rooms })
+      res.json({ hotels, users, rates, hotelImages, places, rooms, promotions })
     } catch (err) {
       next(err)
     }

@@ -16,7 +16,7 @@ function CardHotel(props) {
         else if (props.point >= 8) setEvaluate('Rất tốt')
         else if (props.point >= 7) setEvaluate('Tốt')
         else setEvaluate('Bình thường')
-    }, [])
+    }, [props])
 
     return (
         <div className={styles.container}>
@@ -107,9 +107,13 @@ function CardHotel(props) {
 
                 {!props.memberDiscount && (
                     <div className="d-flex-column-r">
-                        {/* {props.oldPrice && <div className={styles.oldPrice}>{props.oldPrice} ₫</div>} */}
-                        {props.price ? (
-                            <div className={styles.curPrice}>{props.price.toLocaleString()} ₫</div>
+                        {props.oldPrice ? (
+                            <div className={styles.oldPrice}>{props.oldPrice.toLocaleString()} ₫</div>
+                        ) : (
+                            <div></div>
+                        )}
+                        {props.curPrice ? (
+                            <div className={styles.curPrice}>{props.curPrice.toLocaleString()} ₫</div>
                         ) : (
                             <div className={styles.nonePrice}>???</div>
                         )}

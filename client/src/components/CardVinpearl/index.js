@@ -30,7 +30,7 @@ function CardVinpearl(props) {
                     ></div>
                 </div>
 
-                {props.percentDiscount && (
+                {props.percentDiscount !== 0 && (
                     <div className={styles.percentDiscount}>
                         <div className={styles.percent}>
                             -{props.percentDiscount}
@@ -89,15 +89,23 @@ function CardVinpearl(props) {
                                     <span>{props.point}</span>
                                 </div>
                                 <div className={styles.evaluate}>{evaluate}</div>
-                                {props.numberFeedback && (
+                                {props.numberFeedback !== 0 && (
                                     <div className={styles.numberFeedback}>({props.numberFeedback} đánh giá)</div>
                                 )}
                             </div>
                         </div>
 
                         <div className="d-flex-column-r">
-                            {props.oldPrice && <div className={styles.oldPrice}>{props.oldPrice} ₫</div>}
-                            <div className={styles.curPrice}>{props.curPrice} ₫</div>
+                            {props.oldPrice ? (
+                                <div className={styles.oldPrice}>{props.oldPrice.toLocaleString()} ₫</div>
+                            ) : (
+                                <div></div>
+                            )}
+                            {props.curPrice ? (
+                                <div className={styles.curPrice}>{props.curPrice.toLocaleString()} ₫</div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </div>
                 </div>
