@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3307
--- Generation Time: May 12, 2023 at 01:08 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 12, 2023 lúc 05:23 PM
+-- Phiên bản máy phục vụ: 10.4.25-MariaDB
+-- Phiên bản PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `khachsan`
+-- Cơ sở dữ liệu: `khachsan`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhgia`
+-- Cấu trúc bảng cho bảng `danhgia`
 --
 
 CREATE TABLE `danhgia` (
@@ -35,10 +35,10 @@ CREATE TABLE `danhgia` (
   `NoiDung` text NOT NULL,
   `Diem` int(11) NOT NULL,
   `ThoiGian` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `danhgia`
+-- Đang đổ dữ liệu cho bảng `danhgia`
 --
 
 INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `Diem`, `ThoiGian`) VALUES
@@ -47,16 +47,16 @@ INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhsachyeuthich`
+-- Cấu trúc bảng cho bảng `danhsachyeuthich`
 --
 
 CREATE TABLE `danhsachyeuthich` (
   `IDKhachHang` int(11) NOT NULL,
   `IDKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `danhsachyeuthich`
+-- Đang đổ dữ liệu cho bảng `danhsachyeuthich`
 --
 
 INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
@@ -66,17 +66,17 @@ INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diadiem`
+-- Cấu trúc bảng cho bảng `diadiem`
 --
 
 CREATE TABLE `diadiem` (
   `ID` int(11) NOT NULL,
   `TenDiaDiem` varchar(255) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `diadiem`
+-- Đang đổ dữ liệu cho bảng `diadiem`
 --
 
 INSERT INTO `diadiem` (`ID`, `TenDiaDiem`, `HinhAnh`) VALUES
@@ -155,7 +155,7 @@ INSERT INTO `diadiem` (`ID`, `TenDiaDiem`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dondatphong`
+-- Cấu trúc bảng cho bảng `dondatphong`
 --
 
 CREATE TABLE `dondatphong` (
@@ -166,22 +166,30 @@ CREATE TABLE `dondatphong` (
   `SoLuongPhong` int(100) NOT NULL,
   `TongTien` decimal(10,0) NOT NULL,
   `TrangThai` int(11) NOT NULL,
-  `IDKhachHang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `IDKhachHang` int(11) NOT NULL,
+  `IDPhong` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `dondatphong`
+--
+
+INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhachHang`, `IDPhong`) VALUES
+('5743539', '2023-05-02', '2023-05-10', '2023-05-11', 1, '1399000', 1, 4, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `giuong`
+-- Cấu trúc bảng cho bảng `giuong`
 --
 
 CREATE TABLE `giuong` (
   `ID` int(11) NOT NULL,
   `LoaiGiuong` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `giuong`
+-- Đang đổ dữ liệu cho bảng `giuong`
 --
 
 INSERT INTO `giuong` (`ID`, `LoaiGiuong`) VALUES
@@ -191,28 +199,35 @@ INSERT INTO `giuong` (`ID`, `LoaiGiuong`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `giuong_phong`
+-- Cấu trúc bảng cho bảng `giuong_phong`
 --
 
 CREATE TABLE `giuong_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDGiuong` int(11) NOT NULL,
   `SoLuongGiuong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `giuong_phong`
+--
+
+INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
+(1, 2, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hinhanh_khachsan`
+-- Cấu trúc bảng cho bảng `hinhanh_khachsan`
 --
 
 CREATE TABLE `hinhanh_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `HinhAnh` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `hinhanh_khachsan`
+-- Đang đổ dữ liệu cho bảng `hinhanh_khachsan`
 --
 
 INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
@@ -302,18 +317,18 @@ INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hinhanh_phong`
+-- Cấu trúc bảng cho bảng `hinhanh_phong`
 --
 
 CREATE TABLE `hinhanh_phong` (
   `IDPhong` int(11) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khachsan`
+-- Cấu trúc bảng cho bảng `khachsan`
 --
 
 CREATE TABLE `khachsan` (
@@ -330,10 +345,10 @@ CREATE TABLE `khachsan` (
   `GioNhanPhong` int(20) NOT NULL,
   `GioTraPhong` int(20) NOT NULL,
   `IDChuKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `khachsan`
+-- Đang đổ dữ liệu cho bảng `khachsan`
 --
 
 INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, `GioiThieu`, `TrangThai`, `IDDiaDiem`, `Nhan`, `GioNhanPhong`, `GioTraPhong`, `IDChuKhachSan`) VALUES
@@ -341,7 +356,7 @@ INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, 
 (9, 'Sol by Meliá Phú Quốc Resort', 'Đt 975, Đường Bào, Xã Dương Tơ, Thành phố Phú Quốc, Tỉnh Kiên Giang', 30, 5, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/new-world-phu-quoc-resort.html\">New World Ph&uacute; Quốc</a>&nbsp;</strong>l&agrave; khu nghỉ dưỡng tọa lạc b&ecirc;n b&ecirc;n b&atilde;i biển Khem nổi tiếng xinh đẹp, thơ mộng. Resort đạt chuẩn 5 sao quốc tế với thiết kế c&ugrave;ng những dịch vụ tiện nghi v&agrave; b&atilde;i biển ri&ecirc;ng trong xanh. Từ khu nghỉ dưỡng, bạn c&oacute; thể đi tham quan c&aacute;c địa danh của đảo Ph&uacute; Quốc như: C&aacute;p treo (5km), nh&agrave; t&ugrave; Ph&uacute; Quốc (11km),...</p>\n<p><strong>New World Ph&uacute; Quốc</strong>&nbsp;bao gồm 375 căn biệt thự c&oacute; hồ bơi 3 hoặc 4 ph&ograve;ng ngủ d&agrave;nh cho cặp đ&ocirc;i, nh&oacute;m bạn hoặc gia đ&igrave;nh. Trong mỗi căn sẽ chia ra c&aacute;c ph&ograve;ng như ph&ograve;ng ngủ, nh&agrave; bếp, ph&ograve;ng kh&aacute;ch. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c vật dụng cần thiết: TV truyền h&igrave;nh c&aacute;p, tủ lạnh, m&aacute;y pha c&agrave; ph&ecirc;, mấy sấy t&oacute;c,...</p>\n<p><strong>New World Ph&uacute; Quốc</strong>&nbsp;c&ograve;n sở hữu nh&agrave; h&agrave;ng, hồ bơi ngo&agrave;i trời, trung t&acirc;m thể thao v&agrave; một khu vườn với b&agrave;n ghế ngo&agrave;i trời. Qu&yacute; kh&aacute;ch c&oacute; thể tận hưởng kỳ nghỉ dưỡng l&yacute; tượng với việc tắm bồn nước nước hoặc spa. Kh&aacute;ch sạn cung cấp Wifi miễn ph&iacute; khắp khu&ocirc;n vi&ecirc;n.</p>', 1, 34, 'Ưu đãi chớp nhoáng', 14, 12, 8),
 (10, 'Khách Sạn Mường Thanh Holiday Mũi Né', '12 Quang Văn Chuẩn, Phường Phú Thủy, Thành phố Phan Thiết, Tỉnh Bình Thuận', 10, 5, '<div class=\"MuiBox-root jss502\"><strong><span class=\"MuiBox-root jss503\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/khu-nghi-duong-jw-marriott-phu-quoc-emerald-bay.html\" target=\"_blank\" rel=\"noopener\">JW Marriott Ph&uacute; Quốc Emerald Bay</a></strong>&nbsp;l&agrave; khu nghỉ dưỡng đạt ti&ecirc;u chuẩn quốc tế 5 sao, tọa lạc tại bờ biển của khu vực B&atilde;i Khem.</p>\n<p>Khu nghỉ dưỡng c&oacute; tổng cộng tất cả l&agrave; 244 ph&ograve;ng nghỉ được thiết kế độc đ&aacute;o bởi&nbsp;<strong>kiến tr&uacute;c sư nổi tiếng Bill Bensley</strong>&nbsp;dựa tr&ecirc;n &yacute; tưởng kiến tr&uacute;c của đại học Lamarck University. Tất cả c&aacute;c ph&ograve;ng tại đ&acirc;y đều được cung cấp đầy đủ trang bị c&aacute;c tiện nghi cần thiết, hiện đại cao cấp như: m&aacute;y lạnh, tủ lạnh, truyền h&igrave;nh c&aacute;p, mini bar, dụng cụ giặt ủi &aacute;o quần, sofa, b&agrave;n trang điểm, mấy sấy t&oacute;c, ph&ograve;ng tắm ri&ecirc;ng sang trọng c&oacute; bồn tắm ri&ecirc;ng v&agrave; v&ograve;i sen hiện đại.</p>\n<p>Ngo&agrave;i việc an dưỡng, tận hưởng bầu kh&ocirc;ng kh&iacute; trong l&agrave;nh, khi đặt ph&ograve;ng trực tuyến tại&nbsp;<strong>JW Marriott Ph&uacute; Quốc Emerald Bay</strong>, du kh&aacute;ch c&ograve;n c&oacute; thể tận hưởng&nbsp;<strong>c&aacute;c dịch vụ cao cấp</strong>&nbsp;kh&aacute;c. Một số dịch vụ ti&ecirc;u biểu&nbsp;như: spa chăm s&oacute;c sức khỏe v&agrave; sắc đẹp, hồ bơi ngo&agrave;i trời, dịch vụ cho thu&ecirc; xe, c&aacute;c hoạt động giải tr&iacute; dưới nước&hellip; Kh&ocirc;ng dừng lại ở đ&oacute;, khu nghỉ dưỡng c&ograve;n cung cấp đến 3 nh&agrave; h&agrave;ng v&agrave; bar với h&agrave;ng loạt c&aacute;c m&oacute;n hải sản tươi ngon của địa phương v&agrave; quốc tế c&ugrave;ng với</p>', 1, 11, 'Khách sạn yêu thích', 14, 12, 9),
 (11, 'Khách Sạn Hilton Đà Nẵng', '50, Bạch Đằng,, Phường Hòa Cường Bắc, Quận Hải Châu, Thành phố Đà Nẵng', 20, 3, '<div class=\"MuiBox-root jss502\"><strong><span class=\"MuiBox-root jss503\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 15, 'Ưu đãi chớp nhoáng', 14, 12, 9),
-(12, 'Khách sạn Pao\'s Sapa Leisure', 'Đường Mường Hoa, Phường Sa Pa, Thị xã Sa Pa, Tỉnh Lào Cai', 25, 5, '<div class=\"MuiBox-root jss504 jss476\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 37, 'Vị trí đẹp', 15, 12, 9),
+(12, 'Khách sạn Paos Sapa Leisure', 'Đường Mường Hoa, Phường Sa Pa, Thị xã Sa Pa, Tỉnh Lào Cai', 25, 5, '<div class=\"MuiBox-root jss504 jss476\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 37, 'Vị trí đẹp', 15, 12, 9),
 (13, 'Binh An Village Đà Lạt Resort', 'Hồ Tuyền Lâm, Hồ Tuyền Lâm, Xã Tà Nung, Thành phố Đà Lạt, Tỉnh Lâm Đồng', 12, 4, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 39, 'Vị trí đẹp', 15, 12, 9),
 (14, 'Movenpick Resort Phan Thiết', 'Đường Hòn Giồ, Thuận Qúy , Phường Mũi Né, Thành phố Phan Thiết, Tỉnh Bình Thuận', 35, 4, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/poshanu-resort-phan-thiet.html\">Poshanu Resort</a>&nbsp;</strong>sở hữu một lối đi để ra khu vực b&atilde;i biển ri&ecirc;ng v&agrave; hệ thống những bungalow với diện t&iacute;ch rộng r&atilde;i&nbsp;gi&uacute;p du kh&aacute;ch tận hưởng chuyến đi một c&aacute;ch thoải m&aacute;i v&agrave; trọn vẹn nhất. Đặc biệt, những tiện nghi như&nbsp;<strong>s&agrave;n gỗ, giường 4 cọc v&agrave; quạt trần</strong>&nbsp;được trang bị tại đ&acirc;y đ&atilde; to&aacute;t l&ecirc;n được vẻ độc đ&aacute;o v&agrave; gần gũi với thi&ecirc;n nhi&ecirc;n, tạo n&ecirc;n kh&ocirc;ng gian l&yacute; tưởng cho việc nghỉ dưỡng.</p>\n<p>B&ecirc;n cạnh vẻ truyền thống th&igrave; những vật dụng hiện đại như k&eacute;t an to&agrave;n, v&ograve;i hoa sen, tivi truyền h&igrave;nh c&aacute;p m&agrave;n h&igrave;nh phẳng, minibar,.. cũng c&oacute; trong mỗi Bungalow. Ngo&agrave;i ra, để mang lại sự thuận tiện cho du kh&aacute;ch th&igrave; resort cũng cung cấp &aacute;p cho&agrave;ng tắm v&agrave; d&eacute;p. Kh&ocirc;ng dừng lại ở đ&oacute;, du kh&aacute;ch sẽ được tận hưởng l&agrave;n nước m&aacute;t l&agrave;nh ở trong&nbsp;<strong>bể bơi ngo&agrave;i trời&nbsp;</strong>hoặc vươn m&igrave;nh dưới hơi ấm của mặt trời khi nằm tr&ecirc;n c&acirc;c ghế phơi nắng tại resort.</p>', 1, 11, 'Khách sạn yêu thích', 13, 12, 9),
 (15, 'New World Phú Quốc Resort', 'Bãi Khem, An Thới, Phường An Thới, Thành phố Phú Quốc, Tỉnh Kiên Giang', 13, 4, '<p><strong>Ch&iacute;nh s&aacute;ch chung:</strong></p>\n<div>\n<ul>\n<li>Kh&ocirc;ng cho ph&eacute;p h', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 34, 'Ưu đãi chớp nhoáng', 14, 12, 9),
@@ -350,17 +365,17 @@ INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khunggio`
+-- Cấu trúc bảng cho bảng `khunggio`
 --
 
 CREATE TABLE `khunggio` (
   `ID` int(11) NOT NULL,
   `GioBatDau` time NOT NULL,
   `GioKetThuc` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `khunggio`
+-- Đang đổ dữ liệu cho bảng `khunggio`
 --
 
 INSERT INTO `khunggio` (`ID`, `GioBatDau`, `GioKetThuc`) VALUES
@@ -371,7 +386,7 @@ INSERT INTO `khunggio` (`ID`, `GioBatDau`, `GioKetThuc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khuyenmai`
+-- Cấu trúc bảng cho bảng `khuyenmai`
 --
 
 CREATE TABLE `khuyenmai` (
@@ -387,10 +402,10 @@ CREATE TABLE `khuyenmai` (
   `DieuKien` text DEFAULT NULL,
   `SoLuongKM` int(11) DEFAULT NULL,
   `IDKhungGio` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `khuyenmai`
+-- Đang đổ dữ liệu cho bảng `khuyenmai`
 --
 
 INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`, `MaKhuyenMai`, `BatDau`, `KetThuc`, `MoTa`, `DieuKien`, `SoLuongKM`, `IDKhungGio`) VALUES
@@ -401,16 +416,16 @@ INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loaitiennghikhachsan`
+-- Cấu trúc bảng cho bảng `loaitiennghikhachsan`
 --
 
 CREATE TABLE `loaitiennghikhachsan` (
   `ID` int(11) NOT NULL,
   `TenLoai` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `loaitiennghikhachsan`
+-- Đang đổ dữ liệu cho bảng `loaitiennghikhachsan`
 --
 
 INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
@@ -431,16 +446,16 @@ INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loaitiennghiphong`
+-- Cấu trúc bảng cho bảng `loaitiennghiphong`
 --
 
 CREATE TABLE `loaitiennghiphong` (
   `TenLoai` varchar(50) NOT NULL,
   `ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `loaitiennghiphong`
+-- Đang đổ dữ liệu cho bảng `loaitiennghiphong`
 --
 
 INSERT INTO `loaitiennghiphong` (`TenLoai`, `ID`) VALUES
@@ -455,7 +470,7 @@ INSERT INTO `loaitiennghiphong` (`TenLoai`, `ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nguoidung`
+-- Cấu trúc bảng cho bảng `nguoidung`
 --
 
 CREATE TABLE `nguoidung` (
@@ -471,10 +486,10 @@ CREATE TABLE `nguoidung` (
   `MaSoThue` varchar(10) DEFAULT NULL,
   `QuyMo` varchar(100) DEFAULT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `nguoidung`
+-- Đang đổ dữ liệu cho bảng `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaChi`, `MatKhau`, `PhanQuyen`, `TenCongTy`, `MaSoThue`, `QuyMo`, `TrangThai`) VALUES
@@ -489,7 +504,7 @@ INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaC
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nguoinhanphong`
+-- Cấu trúc bảng cho bảng `nguoinhanphong`
 --
 
 CREATE TABLE `nguoinhanphong` (
@@ -497,12 +512,12 @@ CREATE TABLE `nguoinhanphong` (
   `HoTen` varchar(255) NOT NULL,
   `Sdt` varchar(10) NOT NULL,
   `IDKhachHang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phong`
+-- Cấu trúc bảng cho bảng `phong`
 --
 
 CREATE TABLE `phong` (
@@ -514,10 +529,10 @@ CREATE TABLE `phong` (
   `DienTich` int(11) NOT NULL,
   `Gia` int(11) NOT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `phong`
+-- Đang đổ dữ liệu cho bảng `phong`
 --
 
 INSERT INTO `phong` (`ID`, `TenLoaiPhong`, `IDKhachSan`, `SoPhongTrong`, `SoNguoi`, `DienTich`, `Gia`, `TrangThai`) VALUES
@@ -526,18 +541,7 @@ INSERT INTO `phong` (`ID`, `TenLoaiPhong`, `IDKhachSan`, `SoPhongTrong`, `SoNguo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phong_dondatphong`
---
-
-CREATE TABLE `phong_dondatphong` (
-  `IDPhong` int(11) NOT NULL,
-  `MaDonDatPhong` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `taikhoanthanhtoan`
+-- Cấu trúc bảng cho bảng `taikhoanthanhtoan`
 --
 
 CREATE TABLE `taikhoanthanhtoan` (
@@ -547,22 +551,22 @@ CREATE TABLE `taikhoanthanhtoan` (
   `SoTaiKhoan` varchar(50) NOT NULL,
   `NgayHetHan` date NOT NULL,
   `anhQR` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thongtinhuuich`
+-- Cấu trúc bảng cho bảng `thongtinhuuich`
 --
 
 CREATE TABLE `thongtinhuuich` (
   `ID` int(11) NOT NULL,
   `ThongTin` varchar(255) NOT NULL,
   `HinhAnh` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `thongtinhuuich`
+-- Đang đổ dữ liệu cho bảng `thongtinhuuich`
 --
 
 INSERT INTO `thongtinhuuich` (`ID`, `ThongTin`, `HinhAnh`) VALUES
@@ -578,17 +582,17 @@ INSERT INTO `thongtinhuuich` (`ID`, `ThongTin`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thongtinhuuich_ks`
+-- Cấu trúc bảng cho bảng `thongtinhuuich_ks`
 --
 
 CREATE TABLE `thongtinhuuich_ks` (
   `IDKhachSan` int(11) NOT NULL,
   `IDThongTin` int(11) NOT NULL,
   `NoiDung` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `thongtinhuuich_ks`
+-- Đang đổ dữ liệu cho bảng `thongtinhuuich_ks`
 --
 
 INSERT INTO `thongtinhuuich_ks` (`IDKhachSan`, `IDThongTin`, `NoiDung`) VALUES
@@ -666,7 +670,7 @@ INSERT INTO `thongtinhuuich_ks` (`IDKhachSan`, `IDThongTin`, `NoiDung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiennghichung_ks`
+-- Cấu trúc bảng cho bảng `tiennghichung_ks`
 --
 
 CREATE TABLE `tiennghichung_ks` (
@@ -674,10 +678,10 @@ CREATE TABLE `tiennghichung_ks` (
   `Icon` varchar(200) NOT NULL,
   `TenTienNghi` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tiennghichung_ks`
+-- Đang đổ dữ liệu cho bảng `tiennghichung_ks`
 --
 
 INSERT INTO `tiennghichung_ks` (`ID`, `Icon`, `TenTienNghi`, `IDLoai`) VALUES
@@ -730,7 +734,7 @@ INSERT INTO `tiennghichung_ks` (`ID`, `Icon`, `TenTienNghi`, `IDLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiennghichung_phong`
+-- Cấu trúc bảng cho bảng `tiennghichung_phong`
 --
 
 CREATE TABLE `tiennghichung_phong` (
@@ -738,10 +742,10 @@ CREATE TABLE `tiennghichung_phong` (
   `TenTienNghi` varchar(50) NOT NULL,
   `Icon` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tiennghichung_phong`
+-- Đang đổ dữ liệu cho bảng `tiennghichung_phong`
 --
 
 INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
@@ -784,16 +788,16 @@ INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiennghi_khachsan`
+-- Cấu trúc bảng cho bảng `tiennghi_khachsan`
 --
 
 CREATE TABLE `tiennghi_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tiennghi_khachsan`
+-- Đang đổ dữ liệu cho bảng `tiennghi_khachsan`
 --
 
 INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
@@ -991,27 +995,27 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiennghi_phong`
+-- Cấu trúc bảng cho bảng `tiennghi_phong`
 --
 
 CREATE TABLE `tiennghi_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `uudai`
+-- Cấu trúc bảng cho bảng `uudai`
 --
 
 CREATE TABLE `uudai` (
   `ID` int(11) NOT NULL,
   `NoiDung` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `uudai`
+-- Đang đổ dữ liệu cho bảng `uudai`
 --
 
 INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
@@ -1038,20 +1042,20 @@ INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `uudai_phong`
+-- Cấu trúc bảng cho bảng `uudai_phong`
 --
 
 CREATE TABLE `uudai_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDUuDai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `danhgia`
+-- Chỉ mục cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD PRIMARY KEY (`ID`),
@@ -1059,52 +1063,52 @@ ALTER TABLE `danhgia`
   ADD KEY `DanhGia_fk1` (`IDKhachHang`);
 
 --
--- Indexes for table `danhsachyeuthich`
+-- Chỉ mục cho bảng `danhsachyeuthich`
 --
 ALTER TABLE `danhsachyeuthich`
   ADD PRIMARY KEY (`IDKhachHang`,`IDKhachSan`),
   ADD KEY `DanhSachYeuThich_fk1` (`IDKhachSan`);
 
 --
--- Indexes for table `diadiem`
+-- Chỉ mục cho bảng `diadiem`
 --
 ALTER TABLE `diadiem`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `dondatphong`
+-- Chỉ mục cho bảng `dondatphong`
 --
 ALTER TABLE `dondatphong`
   ADD PRIMARY KEY (`MaDatPhong`),
   ADD KEY `DonDatPhong_fk0` (`IDKhachHang`);
 
 --
--- Indexes for table `giuong`
+-- Chỉ mục cho bảng `giuong`
 --
 ALTER TABLE `giuong`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `giuong_phong`
+-- Chỉ mục cho bảng `giuong_phong`
 --
 ALTER TABLE `giuong_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDGiuong`),
   ADD KEY `Giuong_Phong_fk1` (`IDGiuong`);
 
 --
--- Indexes for table `hinhanh_khachsan`
+-- Chỉ mục cho bảng `hinhanh_khachsan`
 --
 ALTER TABLE `hinhanh_khachsan`
   ADD PRIMARY KEY (`IDKhachSan`,`HinhAnh`);
 
 --
--- Indexes for table `hinhanh_phong`
+-- Chỉ mục cho bảng `hinhanh_phong`
 --
 ALTER TABLE `hinhanh_phong`
   ADD PRIMARY KEY (`IDPhong`,`HinhAnh`);
 
 --
--- Indexes for table `khachsan`
+-- Chỉ mục cho bảng `khachsan`
 --
 ALTER TABLE `khachsan`
   ADD PRIMARY KEY (`ID`),
@@ -1114,13 +1118,13 @@ ALTER TABLE `khachsan` ADD FULLTEXT KEY `Ten` (`Ten`);
 ALTER TABLE `khachsan` ADD FULLTEXT KEY `DiaChi` (`DiaChi`);
 
 --
--- Indexes for table `khunggio`
+-- Chỉ mục cho bảng `khunggio`
 --
 ALTER TABLE `khunggio`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `khuyenmai`
+-- Chỉ mục cho bảng `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   ADD PRIMARY KEY (`ID`),
@@ -1128,232 +1132,225 @@ ALTER TABLE `khuyenmai`
   ADD KEY `KhuyenMai_KG_fk1` (`IDKhungGio`);
 
 --
--- Indexes for table `loaitiennghikhachsan`
+-- Chỉ mục cho bảng `loaitiennghikhachsan`
 --
 ALTER TABLE `loaitiennghikhachsan`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `loaitiennghiphong`
+-- Chỉ mục cho bảng `loaitiennghiphong`
 --
 ALTER TABLE `loaitiennghiphong`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `nguoidung`
+-- Chỉ mục cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `nguoinhanphong`
+-- Chỉ mục cho bảng `nguoinhanphong`
 --
 ALTER TABLE `nguoinhanphong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `NguoiNhanPhong_fk0` (`IDKhachHang`);
 
 --
--- Indexes for table `phong`
+-- Chỉ mục cho bảng `phong`
 --
 ALTER TABLE `phong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Phong_fk0` (`IDKhachSan`);
 
 --
--- Indexes for table `phong_dondatphong`
---
-ALTER TABLE `phong_dondatphong`
-  ADD PRIMARY KEY (`IDPhong`,`MaDonDatPhong`),
-  ADD KEY `Phong_DonDatPhong_fk1` (`MaDonDatPhong`);
-
---
--- Indexes for table `taikhoanthanhtoan`
+-- Chỉ mục cho bảng `taikhoanthanhtoan`
 --
 ALTER TABLE `taikhoanthanhtoan`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TaiKhoanThanhToan_fk0` (`IDKhachHang`);
 
 --
--- Indexes for table `thongtinhuuich`
+-- Chỉ mục cho bảng `thongtinhuuich`
 --
 ALTER TABLE `thongtinhuuich`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `thongtinhuuich_ks`
+-- Chỉ mục cho bảng `thongtinhuuich_ks`
 --
 ALTER TABLE `thongtinhuuich_ks`
   ADD PRIMARY KEY (`IDKhachSan`,`IDThongTin`),
   ADD KEY `ThongTinHuuIch_KS_fk1` (`IDThongTin`);
 
 --
--- Indexes for table `tiennghichung_ks`
+-- Chỉ mục cho bảng `tiennghichung_ks`
 --
 ALTER TABLE `tiennghichung_ks`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TienNghiChung_KS_fk0` (`IDLoai`);
 
 --
--- Indexes for table `tiennghichung_phong`
+-- Chỉ mục cho bảng `tiennghichung_phong`
 --
 ALTER TABLE `tiennghichung_phong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TienNghiChung_Phong_fk0` (`IDLoai`);
 
 --
--- Indexes for table `tiennghi_khachsan`
+-- Chỉ mục cho bảng `tiennghi_khachsan`
 --
 ALTER TABLE `tiennghi_khachsan`
   ADD PRIMARY KEY (`IDKhachSan`,`IDTienNghi`),
   ADD KEY `TienNghi_KhachSan_fk1` (`IDTienNghi`);
 
 --
--- Indexes for table `tiennghi_phong`
+-- Chỉ mục cho bảng `tiennghi_phong`
 --
 ALTER TABLE `tiennghi_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDTienNghi`),
   ADD KEY `TienNghi_Phong_fk1` (`IDTienNghi`);
 
 --
--- Indexes for table `uudai`
+-- Chỉ mục cho bảng `uudai`
 --
 ALTER TABLE `uudai`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `uudai_phong`
+-- Chỉ mục cho bảng `uudai_phong`
 --
 ALTER TABLE `uudai_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDUuDai`),
   ADD KEY `UuDai_Phong_fk1` (`IDUuDai`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `danhgia`
+-- AUTO_INCREMENT cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `diadiem`
+-- AUTO_INCREMENT cho bảng `diadiem`
 --
 ALTER TABLE `diadiem`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
--- AUTO_INCREMENT for table `hinhanh_khachsan`
+-- AUTO_INCREMENT cho bảng `hinhanh_khachsan`
 --
 ALTER TABLE `hinhanh_khachsan`
   MODIFY `IDKhachSan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `khachsan`
+-- AUTO_INCREMENT cho bảng `khachsan`
 --
 ALTER TABLE `khachsan`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `khunggio`
+-- AUTO_INCREMENT cho bảng `khunggio`
 --
 ALTER TABLE `khunggio`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `khuyenmai`
+-- AUTO_INCREMENT cho bảng `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `loaitiennghikhachsan`
+-- AUTO_INCREMENT cho bảng `loaitiennghikhachsan`
 --
 ALTER TABLE `loaitiennghikhachsan`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `loaitiennghiphong`
+-- AUTO_INCREMENT cho bảng `loaitiennghiphong`
 --
 ALTER TABLE `loaitiennghiphong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `nguoidung`
+-- AUTO_INCREMENT cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `nguoinhanphong`
+-- AUTO_INCREMENT cho bảng `nguoinhanphong`
 --
 ALTER TABLE `nguoinhanphong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `phong`
+-- AUTO_INCREMENT cho bảng `phong`
 --
 ALTER TABLE `phong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `taikhoanthanhtoan`
+-- AUTO_INCREMENT cho bảng `taikhoanthanhtoan`
 --
 ALTER TABLE `taikhoanthanhtoan`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `thongtinhuuich`
+-- AUTO_INCREMENT cho bảng `thongtinhuuich`
 --
 ALTER TABLE `thongtinhuuich`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `tiennghichung_ks`
+-- AUTO_INCREMENT cho bảng `tiennghichung_ks`
 --
 ALTER TABLE `tiennghichung_ks`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
--- AUTO_INCREMENT for table `tiennghichung_phong`
+-- AUTO_INCREMENT cho bảng `tiennghichung_phong`
 --
 ALTER TABLE `tiennghichung_phong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
--- AUTO_INCREMENT for table `uudai`
+-- AUTO_INCREMENT cho bảng `uudai`
 --
 ALTER TABLE `uudai`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `danhgia`
+-- Các ràng buộc cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD CONSTRAINT `DanhGia_fk0` FOREIGN KEY (`IDKhachSan`) REFERENCES `khachsan` (`ID`),
   ADD CONSTRAINT `DanhGia_fk1` FOREIGN KEY (`IDKhachHang`) REFERENCES `nguoidung` (`ID`);
 
 --
--- Constraints for table `danhsachyeuthich`
+-- Các ràng buộc cho bảng `danhsachyeuthich`
 --
 ALTER TABLE `danhsachyeuthich`
   ADD CONSTRAINT `danhsachyeuthich_ibfk_1` FOREIGN KEY (`IDKhachHang`) REFERENCES `nguoidung` (`ID`),
   ADD CONSTRAINT `danhsachyeuthich_ibfk_2` FOREIGN KEY (`IDKhachSan`) REFERENCES `khachsan` (`ID`);
 
 --
--- Constraints for table `khachsan`
+-- Các ràng buộc cho bảng `khachsan`
 --
 ALTER TABLE `khachsan`
   ADD CONSTRAINT `khachsan_ibfk_1` FOREIGN KEY (`IDChuKhachSan`) REFERENCES `nguoidung` (`ID`),
   ADD CONSTRAINT `khachsan_ibfk_2` FOREIGN KEY (`IDDiaDiem`) REFERENCES `diadiem` (`ID`);
 
 --
--- Constraints for table `phong`
+-- Các ràng buộc cho bảng `phong`
 --
 ALTER TABLE `phong`
   ADD CONSTRAINT `phong_ibfk_1` FOREIGN KEY (`IDKhachSan`) REFERENCES `khachsan` (`ID`);
