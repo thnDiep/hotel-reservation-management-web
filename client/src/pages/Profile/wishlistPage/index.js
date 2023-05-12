@@ -102,9 +102,9 @@ function Wishlist() {
                 )}
 
                 {!isEmpty && (
-                    <NavLink to="/detail">
-                        <PlacesList items={wishlist} />
-                    </NavLink>
+                    // <NavLink to="/detail">
+                    <PlacesList items={wishlist} />
+                    /* </NavLink> */
                 )}
             </div>
         </Profile>

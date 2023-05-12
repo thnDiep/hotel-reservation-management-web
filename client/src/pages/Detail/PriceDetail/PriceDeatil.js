@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import classes from './PriceDetail.module.scss'
 import {
     faBath,
@@ -45,8 +45,12 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import AllFacility from './AllFacility/AllFacility'
 import { Link } from 'react-router-dom'
+import Axios from 'axios'
+import Star from '~/components/Star/Star'
 const MySwal = withReactContent(Swal)
-const PriceDetail = () => {
+
+const PriceDetail = ({ infor }) => {
+    const [star, setStar] = useState(0)
     const handleButtonClick = () =>
         MySwal.fire({
             title: 'Tiện nghi Khách sạn',
@@ -62,6 +66,7 @@ const PriceDetail = () => {
         const roomListContainer = document.getElementById('roomListContainer')
         roomListContainer.scrollIntoView({ behavior: 'smooth' })
     }
+
     return (
         <div className={classes.content}>
             <div className="row">
@@ -75,18 +80,14 @@ const PriceDetail = () => {
                                             <div className={classes['box-info']}>
                                                 <span className={classes.boxTitle}>Khách sạn</span>
                                                 <span className={classes['box-star']}>
-                                                    <FontAwesomeIcon icon={faStar} className={classes.icon} />
-                                                    <FontAwesomeIcon icon={faStar} className={classes.icon} />
-                                                    <FontAwesomeIcon icon={faStar} className={classes.icon} />
-                                                    <FontAwesomeIcon icon={faStar} className={classes.icon} />
-                                                    <FontAwesomeIcon icon={faStar} className={classes.icon} />
+                                                    <Star number={infor.soSao}></Star>
                                                 </span>
                                             </div>
                                             <div className={classes.hotelTitle}>
-                                                <h1>Khách sạn Vias Vũng Tàu</h1>
+                                                <h1>{infor.Ten}</h1>
                                             </div>
                                             <div className={classes.boxAddress}>
-                                                <h3>179 Thùy Vân, Phường 8, Thành phố Vũng Tàu, Bà Rịa - Vũng Tàu</h3>
+                                                <h3>{infor.DiaChi}</h3>
                                             </div>
                                         </td>
                                         <td className={`${classes['col-right']} ${classes['box-info']}`}>

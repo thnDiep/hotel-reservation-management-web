@@ -8,10 +8,17 @@ import userRouter from "./user.js";
 
 import hotelModel from "../models/hotelModel.js";
 import authModel from "../models/authModel.js";
-import rateModal from "..//models/rateModal.js";
-import facilityModel from "../models/facilityModel.js";
-import roomModel from "../models/roomModel.js";
+import rateModal from "../models/rateModal.js";
 import placeModal from "../models/placeModel.js";
+import roomModel from "../models/roomModel.js";
+import promotionModel from "../models/promotionModel.js";
+
+// import hotelModel from "../models/hotelModel.js";
+// import authModel from "../models/authModel.js";
+// import rateModal from "..//models/rateModal.js";
+import facilityModel from "../models/facilityModel.js";
+// import roomModel from "../models/roomModel.js";
+// import placeModal from "../models/placeModel.js";
 export default function route(app) {
   app.use("/auth", authRouter);
   app.use("/cks/promotion", promotionRouter);
@@ -36,21 +43,8 @@ export default function route(app) {
     try {
       const idUser = req.query.idUser || 5;
       const curUser = await authModel.findById(idUser);
-      if (curUser.PhanQuyen === 2) {
-        const hotels = await hotelModel.getAll();
-        hotels.map(async (hotel) => {
-          hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan);
-          hotel.DanhGia = await rateModal.getAvgRate(hotel.ID);
-          if (hotel.DanhGia) {
-            hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2);
-          } else {
-            hotel.DanhGia = Number(0).toFixed(2);
-          }
-        });
-        const users = await authModel.getAll();
-        const rates = await rateModal.getAll();
-        res.json({ hotels, users, rates });
-      } else if (curUser.PhanQuyen === 1) {
+      // chur khach san
+      if (curUser.PhanQuyen === 1) {
         const hotels = await hotelModel.getHotelByIDCKS(idUser);
         // thêm tên tiện nghi
         for (const hotel of hotels) {
@@ -80,8 +74,36 @@ export default function route(app) {
 
         res.json({ hotels });
       } else {
+        const idUser = req.query.idUser || 1;
+        const curUser = await authModel.findById(idUser);
+
         const hotels = await hotelModel.getAll();
-        res.json({ hotels });
+        hotels.map(async (hotel) => {
+          hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan);
+          hotel.DanhGia = await rateModal.getAvgRate(hotel.ID);
+
+          if (hotel.DanhGia) {
+            hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2);
+          } else {
+            hotel.DanhGia = Number(0).toFixed(1);
+          }
+        });
+        const users = await authModel.getAll();
+        const rates = await rateModal.getAll();
+        const hotelImages = await hotelModel.getAllImage();
+        const places = await placeModal.getAll();
+        const rooms = await roomModel.getAll();
+        const promotions = await promotionModel.getAll();
+
+        res.json({
+          hotels,
+          users,
+          rates,
+          hotelImages,
+          places,
+          rooms,
+          promotions,
+        });
       }
     } catch (err) {
       next(err);

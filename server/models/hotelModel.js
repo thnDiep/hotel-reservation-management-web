@@ -13,6 +13,10 @@ export default {
 
   async findById(id) {
     const list = await db("khachsan").where("ID", id);
+  },
+
+  async findById(id) {
+    const list = await db("khachsan").where("ID", 8);
     if (list.length === 0) return null;
 
     return list[0];
@@ -30,7 +34,32 @@ export default {
       ids.push(hotel.IDKhachSan);
     });
     return await db("khachsan").whereIn("ID", ids);
+    // const ids = []
+    // hotels.forEach((hotel) => {
+    //   ids.push(hotel.IDKhachSan)
+    // })
+    // return await db("khachsan").whereIn("ID", ids)
     // .andWhere("TrangThai", 0);
+    return await db("khachsan").where("IDChuKhachSan", hotelierID);
+  },
+
+  async getPicByHotelId(id) {
+    return await db("hinhanh_khachsan").where("IDKhachSan", id);
+  },
+
+  async getFeedBackByHotelId(id) {
+    const result = await db.raw(
+      `SELECT * FROM danhgia, nguoidung WHERE danhgia.IDKhachHang = nguoidung.ID and danhgia.IDKhachSan=?`,
+      id
+    );
+    return result[0];
+  },
+  async getAllImage() {
+    return await db("HinhAnh_KhachSan");
+  },
+
+  async getImage(id) {
+    return await db("HinhAnh_KhachSan").where("IDKhachSan", id);
   },
 
   addHinhAnhKhachSan(hinhanh) {

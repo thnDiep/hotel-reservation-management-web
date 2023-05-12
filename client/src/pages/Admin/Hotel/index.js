@@ -9,7 +9,6 @@ import { DropdownButton, NavHandle, ConformModal } from '~/components'
 import HotelTable from '~/components/Table/Hotel'
 import styles from './Hotel.module.scss'
 import hotel from '~/assets/jsons/Admin/hotel.json'
-import { faL } from '@fortawesome/free-solid-svg-icons'
 
 function Hotel() {
     const navigate = useNavigate()

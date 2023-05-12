@@ -91,6 +91,7 @@ function VoucherTable({ header, option, data }) {
                                             voucher.TrangThai === 2,
                                             voucher.TrangThai !== 2,
                                         ]}
+                                        hides={[false, false, false]}
                                     />
                                 </td>
                             </tr>

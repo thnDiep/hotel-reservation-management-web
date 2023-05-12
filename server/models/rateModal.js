@@ -12,4 +12,12 @@ export default {
     )
     return rate.avgRate
   },
+
+  async getCount(id) {
+    const [[rate], ...h] = await db.raw(
+      `SELECT COUNT(ID) as count FROM danhgia WHERE danhgia.IDKhachSan = ?`,
+      id
+    )
+    return rate.count
+  },
 }

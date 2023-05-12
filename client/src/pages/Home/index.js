@@ -1,16 +1,24 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, useContext } from 'react'
 import Slider from 'react-slick'
 import clsx from 'clsx'
 import moment from 'moment'
 
 import styles from './Home.module.scss'
+import DataContext from '~/contexts/DataContext'
 import notableDes from '~/assets/jsons/notable.json'
 import vinpearlDes from '~/assets/jsons/vinpearl.json'
 import { PlaceBar, CardHotel, CardVinpearl, ButtonPrimary, Search, RecentViews, SliderHotels } from '~/components'
 import { NextArrow, PrevArrow } from '~/components/Slider'
 import { Vouchers, ConditionModal, Banner } from './components'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Home() {
+    const data = useContext(DataContext)
+    const navigate = useNavigate()
+    // const [hotels, setHotels] = useState()
+    const [shockPrices, setShockPrices] = useState([])
+    const [vinPearls, setVinPearls] = useState([])
+    const [trendings, setTrendings] = useState([])
     const intervalRef = useRef()
     const vidRef = useRef()
     const today = useRef(new Date())
@@ -76,6 +84,48 @@ function Home() {
         }
     }, [timeLeft])
 
+    useEffect(() => {
+        if (data) {
+            const shockPrices = []
+            const vinPearls = []
+
+            data.hotels.map((hotel) => {
+                const HinhAnh = data.hotelImages.find((item) => item.IDKhachSan === hotel.ID)
+                if (HinhAnh) hotel.HinhAnh = HinhAnh.HinhAnh
+
+                const DiaDiem = data.places.find((item) => item.ID === hotel.IDDiaDiem)
+                if (DiaDiem) hotel.DiaDiem = DiaDiem.TenDiaDiem
+
+                let SoDanhGia = 0
+                data.rates.map((rate) => {
+                    if (rate.IDKhachSan === hotel.ID) SoDanhGia++
+                })
+                hotel.SoDanhGia = SoDanhGia
+
+                const PhongTieuChuan = data.rooms.find((item) => item.IDKhachSan === hotel.ID)
+                if (PhongTieuChuan) hotel.GiaTieuChuan = PhongTieuChuan.Gia
+
+                if (hotel.GiamGia !== 0 && hotel.TrangThai === 1) {
+                    hotel.GiaSauKhiGiam = hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * hotel.GiamGia
+                    shockPrices.push(hotel)
+                }
+
+                if (hotel.IDChuKhachSan === 2 && hotel.TrangThai === 1) {
+                    hotel.type = 'Đối tác độc quyền'
+                    vinPearls.push(hotel) // VinPearl có ID là 2
+                }
+            })
+
+            const trendings = data.hotels.sort((a, b) => {
+                return b.DanhGia - a.DanhGia
+            })
+
+            setShockPrices(shockPrices)
+            setVinPearls(vinPearls)
+            setTrendings(trendings)
+        }
+    }, [data])
+
     function handleChooseShockPricePlace(index) {
         setIndexShockPrice(index)
     }
@@ -118,6 +168,7 @@ function Home() {
             <Vouchers onClick={() => setShowConditionModal(true)} />
             <ConditionModal show={showConditionModal} onHide={() => setShowConditionModal(false)} />
 
+            {/* FlashSale */}
             <div className={clsx(styles.flashSale, 'part')}>
                 <div className="part__content">
                     <div className="part__header">
@@ -186,21 +237,25 @@ function Home() {
                 </div>
             </div>
 
+            {/* Đang thịnh hành */}
             <div className={clsx(styles.trending, 'part')}>
                 <div className="part__content">
                     <h1 className="part__title">Đang thịnh hành</h1>
-                    <h6 className="part__subTitle">Các khách sạn được tìm kiếm & đặt nhiều nhất do Mytour đề xuất</h6>
+                    <h6 className="part__subTitle">
+                        Các khách sạn được tìm kiếm & đặt nhiều nhất do My Travel đề xuất
+                    </h6>
 
-                    <SliderHotels hotels={notableDes} />
+                    <SliderHotels hotels={trendings} />
                 </div>
             </div>
 
+            {/* Khách sạn giá sốc */}
             <div className={clsx(styles.shockPrice, 'part')}>
                 <div className="part__content">
-                    <h1 className="part__title">Khách sạn giá sốc chỉ có trên Evivu</h1>
+                    <h1 className="part__title">Khách sạn giá sốc chỉ có trên My Travel</h1>
                     <h6 className="part__subTitle">
-                        Tiết kiệm chi phí với các khách sạn hợp tác chiến lược cùng Evivu, cam kết giá tốt nhất và chất
-                        lượng dịch vụ tốt nhất dành cho bạn.
+                        Tiết kiệm chi phí với các khách sạn hợp tác chiến lược cùng My Travel, cam kết giá tốt nhất và
+                        chất lượng dịch vụ tốt nhất dành cho bạn.
                     </h6>
 
                     <PlaceBar
@@ -219,26 +274,27 @@ function Home() {
                     </div>
 
                     <div className="part__hotels">
-                        {notableDes.slice(0, 4).map((des, index) => (
-                            <CardHotel
-                                key={index}
-                                image={des.image}
-                                name="Sailing Club Signature Resort Phú Quốc"
-                                percentDiscount={14}
-                                promotion={['Ưu đãi chớp nhoáng']}
-                                rate={3}
-                                liked={true}
-                                type="Khu nghỉ dưỡng"
-                                numberFeedback={123}
-                                place={notableDes[indexShockPrice].name}
-                                point={8.5}
-                                oldPrice="6.677.411"
-                                curPrice="5.763.274"
-                                voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
-                                memberDiscount={19}
-                            />
-                        ))}
-                        {notableDes.slice(0, 4).map((des, index) => (
+                        {shockPrices &&
+                            shockPrices.slice(0, 8).map((hotel, index) => (
+                                <CardHotel
+                                    key={hotel.ID}
+                                    ID={hotel.ID}
+                                    image={hotel.HinhAnh}
+                                    name={hotel.Ten}
+                                    percentDiscount={hotel.GiamGia}
+                                    promotion={[hotel.Nhan]}
+                                    rate={hotel.soSao}
+                                    liked={true}
+                                    type={hotel.type}
+                                    numberFeedback={hotel.SoDanhGia}
+                                    place={hotel.DiaDiem}
+                                    point={hotel.DanhGia}
+                                    oldPrice={hotel.GiaTieuChuan}
+                                    curPrice={hotel.GiaSauKhiGiam}
+                                    // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                />
+                            ))}
+                        {/* {notableDes.slice(0, 4).map((des, index) => (
                             <CardHotel
                                 key={index}
                                 image={des.image}
@@ -252,7 +308,7 @@ function Home() {
                                 curPrice="5.763.274"
                                 voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
                             />
-                        ))}
+                        ))} */}
                     </div>
 
                     {/* <div className="part__footer">
@@ -261,6 +317,7 @@ function Home() {
                 </div>
             </div>
 
+            {/* Đối tác chiến lược */}
             <div className={clsx(styles.vinpearl, 'part')}>
                 <div className="part__content">
                     <div className="part__header">
@@ -276,24 +333,45 @@ function Home() {
 
                     <Slider {...settings} className="home">
                         <div className={styles.hotels}>
-                            {vinpearlDes.slice(0, 4).map((des, index) => (
+                            {vinPearls.slice(0, 4).map((des, index) => (
                                 <CardVinpearl
+                                    ID={des.ID}
                                     key={index}
-                                    image={des.image}
-                                    name={des.name}
-                                    percentDiscount={14}
-                                    promotion={['Ưu đãi chớp nhoáng']}
-                                    rate={3}
-                                    type="Khu nghỉ dưỡng"
-                                    numberFeedback={123}
-                                    point={8.5}
-                                    oldPrice="6.677.411"
-                                    curPrice="5.763.274"
+                                    image={des.HinhAnh}
+                                    name={des.Ten}
+                                    percentDiscount={des.GiamGia}
+                                    promotion={[des.Nhan]}
+                                    rate={des.soSao}
+                                    type={des.type}
+                                    numberFeedback={des.SoDanhGia}
+                                    point={des.DanhGia}
+                                    oldPrice={des.GiaTieuChuan}
+                                    curPrice={des.GiaSauKhiGiam}
                                 />
                             ))}
                         </div>
 
-                        <div className={styles.hotels}>
+                        {vinPearls[4] && (
+                            <div className={styles.hotels}>
+                                {vinPearls.slice(4, 8).map((des, index) => (
+                                    <CardVinpearl
+                                        key={index}
+                                        image={des.HinhAnh}
+                                        name={des.Ten}
+                                        percentDiscount={des.GiamGia}
+                                        promotion={[des.Nhan]}
+                                        rate={des.soSao}
+                                        type={des.type}
+                                        numberFeedback={des.SoDanhGia}
+                                        point={des.DanhGia}
+                                        oldPrice={des.GiaTieuChuan}
+                                        curPrice={des.GiaSauKhiGiam}
+                                    />
+                                ))}
+                            </div>
+                        )}
+
+                        {/* <div className={styles.hotels}>
                             {vinpearlDes.slice(4, 8).map((des, index) => (
                                 <CardVinpearl
                                     key={index}
@@ -307,32 +385,37 @@ function Home() {
                                     point={8.5}
                                     oldPrice="6.677.411"
                                     curPrice="5.763.274"
+                                    price="5.763.274"
                                 />
                             ))}
-                        </div>
+                        </div> */}
                     </Slider>
                 </div>
             </div>
 
+            {/* Xem gần đây */}
             <RecentViews />
 
+            {/* Điểm đến yêu thích */}
             <div className={clsx(styles.favoriteDestination, 'part')}>
                 <h1 className={styles.title}>Điểm đến yêu thích</h1>
-                <h6 className={styles.subTitle}>Địa điểm hot nhất do Evivu đề xuất</h6>
+                <h6 className={styles.subTitle}>Địa điểm hot nhất do My Travel đề xuất</h6>
 
                 <div className={clsx(styles.destinations)}>
-                    {notableDes.slice(0, 12).map((des, index) => (
-                        <div key={index} className={clsx(styles.destination, styles[`id-${index}`])}>
-                            <a href=""></a>
-                            <div
-                                className={styles.imageDestination}
-                                style={{ backgroundImage: `url(${des.image})` }}
-                            ></div>
-                            <div className={styles.nameDestination}>
-                                <p>{des.name}</p>
-                            </div>
-                        </div>
-                    ))}
+                    {data &&
+                        data.places.slice(58, 70).map((des, index) => (
+                            <Link to={`hotels/${des.TenDiaDiem}`} key={index}>
+                                <div className={clsx(styles.destination, styles[`id-${index}`])}>
+                                    <div
+                                        className={styles.imageDestination}
+                                        style={{ backgroundImage: `url(${des.HinhAnh})` }}
+                                    ></div>
+                                    <div className={styles.nameDestination}>
+                                        <p>{des.TenDiaDiem}</p>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
                 </div>
             </div>
 

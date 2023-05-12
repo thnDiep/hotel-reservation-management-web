@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 import styles from './CardVinpearl.module.scss'
@@ -17,6 +18,8 @@ function CardVinpearl(props) {
 
     return (
         <div className={styles.container}>
+            <Link to={`/hotels/detail/${props.ID}`} className="link"></Link>
+
             <div className={styles.image} style={{ backgroundImage: `url(${props.image})` }}>
                 <div className={styles.logoWrapper}>
                     <div
@@ -27,7 +30,7 @@ function CardVinpearl(props) {
                     ></div>
                 </div>
 
-                {props.percentDiscount && (
+                {props.percentDiscount !== 0 && (
                     <div className={styles.percentDiscount}>
                         <div className={styles.percent}>
                             -{props.percentDiscount}
@@ -86,15 +89,23 @@ function CardVinpearl(props) {
                                     <span>{props.point}</span>
                                 </div>
                                 <div className={styles.evaluate}>{evaluate}</div>
-                                {props.numberFeedback && (
+                                {props.numberFeedback !== 0 && (
                                     <div className={styles.numberFeedback}>({props.numberFeedback} đánh giá)</div>
                                 )}
                             </div>
                         </div>
 
                         <div className="d-flex-column-r">
-                            {props.oldPrice && <div className={styles.oldPrice}>{props.oldPrice} ₫</div>}
-                            <div className={styles.curPrice}>{props.curPrice} ₫</div>
+                            {props.oldPrice ? (
+                                <div className={styles.oldPrice}>{props.oldPrice.toLocaleString()} ₫</div>
+                            ) : (
+                                <div></div>
+                            )}
+                            {props.curPrice ? (
+                                <div className={styles.curPrice}>{props.curPrice.toLocaleString()} ₫</div>
+                            ) : (
+                                <div></div>
+                            )}
                         </div>
                     </div>
                 </div>

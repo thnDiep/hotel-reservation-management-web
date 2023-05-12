@@ -32,7 +32,7 @@ export const publicRoutes = [
 
     // Hotel
     { path: '/hotels/detail/:id', component: Detail },
-    { path: '/hotels/:search', component: ListByPlace },
+    { path: '/hotels/:diadiem', component: ListByPlace },
     { path: '/hotels', component: ListByPlace },
 
     // Profile
