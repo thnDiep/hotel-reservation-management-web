@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3307
--- Generation Time: May 11, 2023 at 07:18 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Host: 127.0.0.1
+-- Generation Time: May 12, 2023 at 08:05 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `khachsan`
+-- Database: `hotel`
 --
 
 -- --------------------------------------------------------
@@ -35,7 +35,7 @@ CREATE TABLE `danhgia` (
   `NoiDung` text NOT NULL,
   `Diem` int(11) NOT NULL,
   `ThoiGian` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `danhgia`
@@ -53,7 +53,7 @@ INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `
 CREATE TABLE `danhsachyeuthich` (
   `IDKhachHang` int(11) NOT NULL,
   `IDKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `danhsachyeuthich`
@@ -72,7 +72,7 @@ CREATE TABLE `diadiem` (
   `ID` int(11) NOT NULL,
   `TenDiaDiem` varchar(255) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `diadiem`
@@ -166,7 +166,7 @@ CREATE TABLE `dondatphong` (
   `TongTien` decimal(10,0) NOT NULL,
   `TrangThai` int(11) NOT NULL,
   `IDKhachHang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -177,7 +177,7 @@ CREATE TABLE `dondatphong` (
 CREATE TABLE `giuong` (
   `ID` int(11) NOT NULL,
   `LoaiGiuong` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `giuong`
@@ -197,7 +197,7 @@ CREATE TABLE `giuong_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDGiuong` int(11) NOT NULL,
   `SoLuongGiuong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -208,7 +208,7 @@ CREATE TABLE `giuong_phong` (
 CREATE TABLE `hinhanh_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `HinhAnh` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `hinhanh_khachsan`
@@ -307,7 +307,7 @@ INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
 CREATE TABLE `hinhanh_phong` (
   `IDPhong` int(11) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -321,7 +321,7 @@ CREATE TABLE `khachsan` (
   `DiaChi` varchar(100) NOT NULL,
   `GiamGia` int(100) NOT NULL DEFAULT 0,
   `soSao` int(11) NOT NULL,
-  `ChinhSach` varchar(100) NOT NULL,
+  `ChinhSach` text NOT NULL,
   `GioiThieu` text NOT NULL,
   `TrangThai` int(10) NOT NULL,
   `IDDiaDiem` int(11) NOT NULL,
@@ -329,7 +329,7 @@ CREATE TABLE `khachsan` (
   `GioNhanPhong` int(20) NOT NULL,
   `GioTraPhong` int(20) NOT NULL,
   `IDChuKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `khachsan`
@@ -356,7 +356,7 @@ CREATE TABLE `khunggio` (
   `ID` int(11) NOT NULL,
   `GioBatDau` time NOT NULL,
   `GioKetThuc` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `khunggio`
@@ -386,7 +386,7 @@ CREATE TABLE `khuyenmai` (
   `DieuKien` text DEFAULT NULL,
   `SoLuongKM` int(11) DEFAULT NULL,
   `IDKhungGio` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `khuyenmai`
@@ -406,7 +406,7 @@ INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`
 CREATE TABLE `loaitiennghikhachsan` (
   `ID` int(11) NOT NULL,
   `TenLoai` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `loaitiennghikhachsan`
@@ -436,7 +436,7 @@ INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
 CREATE TABLE `loaitiennghiphong` (
   `TenLoai` varchar(50) NOT NULL,
   `ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `loaitiennghiphong`
@@ -470,7 +470,7 @@ CREATE TABLE `nguoidung` (
   `MaSoThue` varchar(10) DEFAULT NULL,
   `QuyMo` varchar(100) DEFAULT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `nguoidung`
@@ -496,7 +496,7 @@ CREATE TABLE `nguoinhanphong` (
   `HoTen` varchar(255) NOT NULL,
   `Sdt` varchar(10) NOT NULL,
   `IDKhachHang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -513,7 +513,7 @@ CREATE TABLE `phong` (
   `DienTich` int(11) NOT NULL,
   `Gia` int(11) NOT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `phong`
@@ -531,7 +531,7 @@ INSERT INTO `phong` (`ID`, `TenLoaiPhong`, `IDKhachSan`, `SoPhongTrong`, `SoNguo
 CREATE TABLE `phong_dondatphong` (
   `IDPhong` int(11) NOT NULL,
   `MaDonDatPhong` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -546,7 +546,7 @@ CREATE TABLE `taikhoanthanhtoan` (
   `SoTaiKhoan` varchar(50) NOT NULL,
   `NgayHetHan` date NOT NULL,
   `anhQR` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -558,7 +558,7 @@ CREATE TABLE `thongtinhuuich` (
   `ID` int(11) NOT NULL,
   `ThongTin` varchar(255) NOT NULL,
   `HinhAnh` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `thongtinhuuich`
@@ -584,7 +584,7 @@ CREATE TABLE `thongtinhuuich_ks` (
   `IDKhachSan` int(11) NOT NULL,
   `IDThongTin` int(11) NOT NULL,
   `NoiDung` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `thongtinhuuich_ks`
@@ -673,7 +673,7 @@ CREATE TABLE `tiennghichung_ks` (
   `Icon` varchar(200) NOT NULL,
   `TenTienNghi` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tiennghichung_ks`
@@ -737,7 +737,7 @@ CREATE TABLE `tiennghichung_phong` (
   `TenTienNghi` varchar(50) NOT NULL,
   `Icon` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tiennghichung_phong`
@@ -789,7 +789,7 @@ INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
 CREATE TABLE `tiennghi_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tiennghi_khachsan`
@@ -996,7 +996,7 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 CREATE TABLE `tiennghi_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1007,7 +1007,32 @@ CREATE TABLE `tiennghi_phong` (
 CREATE TABLE `uudai` (
   `ID` int(11) NOT NULL,
   `NoiDung` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `uudai`
+--
+
+INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
+(1, ' Bữa sáng miễn phí'),
+(2, 'Sử dụng miễn phí hồ bơi'),
+(3, 'Dọn phòng hàng ngày'),
+(4, 'Phòng có ban công'),
+(5, 'TV truyền hình cáp'),
+(7, 'Miễn phí phòng tập thể dục'),
+(8, 'Sử dụng miễn phí phòng gym'),
+(9, 'Chỗ đậu xe'),
+(10, 'Sử dụng 2 chai nước'),
+(11, 'Truy cập wifi miễn phí'),
+(12, 'Nước uống đóng chai miễn phí'),
+(13, 'Cho thuê xe máy'),
+(14, 'Trà/cà phê miễn phí'),
+(15, 'Dịch vụ đánh giày miễn phí'),
+(16, 'Dịch vụ giặt ủi miễn phí'),
+(17, 'Dịch vụ thuê nấu ăn miễn phí'),
+(18, 'Mượn đồ'),
+(19, 'Quà tặng miễn phí'),
+(20, 'Dịch vụ đỗ xe và đưa đón miễn phí');
 
 -- --------------------------------------------------------
 
@@ -1018,7 +1043,7 @@ CREATE TABLE `uudai` (
 CREATE TABLE `uudai_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDUuDai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -1299,7 +1324,7 @@ ALTER TABLE `tiennghichung_phong`
 -- AUTO_INCREMENT for table `uudai`
 --
 ALTER TABLE `uudai`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
