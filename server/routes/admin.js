@@ -1,31 +1,16 @@
-import express from "express";
-import adminModel from "../models/adminModel.js";
+import express from "express"
+import authModel from "../models/authModel.js"
 
-const router = express.Router();
+const router = express.Router()
 
-// Lấy dữ liệu tất cả tài khoản người dùng
+// Lấy tất cả người dùng
 router.get("/account", async (req, res, next) => {
   try {
-    const allAccount = await adminModel.getAllAccount();
-    res.json(allAccount);
+    const allAccount = await authModel.getAll()
+    res.json(allAccount)
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
-// Thực hiện update thông tin người dùng
-// router.post("/update", async (req, res, next) => {
-//   try {
-//     // const ID = req.query.ID || 4;
-//     const info = req.body.info;
-//     console.log(info);
-
-//     await profileModel.update(info);
-
-//     res.json({});
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
-export default router;
+export default router

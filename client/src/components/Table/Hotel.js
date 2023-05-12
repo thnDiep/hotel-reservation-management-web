@@ -34,8 +34,11 @@ function HotelTable({ header, option, data, filter }) {
                                         </td>
                                         <td style={{ width: '300px' }}>
                                             <div className="d-flex-js">
-                                                <img src="https://travl.dexignlab.com/react/demo/static/media/room4.f452c0a5f4a4a74cef98.jpg" />
-                                                <div className={styles.text1}>
+                                                <div
+                                                    style={{ backgroundImage: `url(${hotel.HinhAnh})` }}
+                                                    className={styles.img}
+                                                ></div>
+                                                <div className={styles.text1} style={{ maxWidth: '180px' }}>
                                                     <span>#{hotel.ID}</span>
                                                     <br />
                                                     <span>{hotel.Ten}</span>

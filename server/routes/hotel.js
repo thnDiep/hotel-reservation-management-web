@@ -1,6 +1,6 @@
 import express from "express"
 import hotelModel from "../models/hotelModel.js"
-import profileModel from "../models/profileModel.js"
+import profileModel from "../models/wishListModel.js"
 import {
   facility,
   addHotel,

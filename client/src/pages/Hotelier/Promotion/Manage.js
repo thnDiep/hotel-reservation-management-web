@@ -10,11 +10,13 @@ import promotion from '~/assets/jsons/promotion.json'
 import { DropdownButton, NavHandle, ConformModal } from '~/components'
 import { VoucherTable, FlashSaleTable } from '~/components/Table'
 import styles from './Promotion.module.scss'
+import DataContext from '~/contexts/DataContext'
 
 function ManageVoucher() {
     const navigate = useNavigate()
     const { state } = useLocation()
     const { preActive } = useParams()
+    const context = useContext(DataContext)
 
     // Conform modal
     const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -35,41 +37,73 @@ function ManageVoucher() {
         }
         return 0
     })
+    // // Dữ liệu cho bảng
+    // useEffect(() => {
+    //     Axios.get('http://localhost:8800/cks/promotion', { params: { idCKS: 2 } })
+    //         .then((response) => {
+    //             const result = handleGetPromotion(response.data)
+    //             setData(result)
+    //             setOption([
+    //                 {
+    //                     name: 'Chỉnh sửa',
+    //                     handle: function (idActive, type) {
+    //                         navigate(`/cks/voucher/add/${type}/${idActive}`)
+    //                     },
+    //                 },
+    //                 {
+    //                     name: 'Ngừng khuyến mãi',
+    //                     handle: function (idActive) {
+    //                         const promotion = result.promotions.find((key) => key.ID === idActive)
+    //                         setPromotionActive(promotion)
+    //                         setShowStopModal(true)
+    //                     },
+    //                 },
+    //                 {
+    //                     name: 'Xóa',
+    //                     handle: function (idActive) {
+    //                         const promotion = result.promotions.find((key) => key.ID === idActive)
+    //                         setPromotionActive(promotion)
+    //                         setShowDeleteModal(true)
+    //                     },
+    //                 },
+    //             ])
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    // }, [])
+
     // Dữ liệu cho bảng
     useEffect(() => {
-        Axios.get('http://localhost:8800/cks/promotion', { params: { idCKS: 2 } })
-            .then((response) => {
-                const result = handleGetPromotion(response.data)
-                setData(result)
-                setOption([
-                    {
-                        name: 'Chỉnh sửa',
-                        handle: function (idActive, type) {
-                            navigate(`/cks/voucher/add/${type}/${idActive}`)
-                        },
+        if (context.data) {
+            const result = handleGetPromotion(context.data)
+            setData(result)
+            setOption([
+                {
+                    name: 'Chỉnh sửa',
+                    handle: function (idActive, type) {
+                        navigate(`/cks/voucher/add/${type}/${idActive}`)
                     },
-                    {
-                        name: 'Ngừng khuyến mãi',
-                        handle: function (idActive) {
-                            const promotion = result.promotions.find((key) => key.ID === idActive)
-                            setPromotionActive(promotion)
-                            setShowStopModal(true)
-                        },
+                },
+                {
+                    name: 'Ngừng khuyến mãi',
+                    handle: function (idActive) {
+                        const promotion = result.promotions.find((key) => key.ID === idActive)
+                        setPromotionActive(promotion)
+                        setShowStopModal(true)
                     },
-                    {
-                        name: 'Xóa',
-                        handle: function (idActive) {
-                            const promotion = result.promotions.find((key) => key.ID === idActive)
-                            setPromotionActive(promotion)
-                            setShowDeleteModal(true)
-                        },
+                },
+                {
+                    name: 'Xóa',
+                    handle: function (idActive) {
+                        const promotion = result.promotions.find((key) => key.ID === idActive)
+                        setPromotionActive(promotion)
+                        setShowDeleteModal(true)
                     },
-                ])
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }, [])
+                },
+            ])
+        }
+    }, [context])
 
     function handleGetPromotion(data) {
         const periods = data.periods
