@@ -8,10 +8,8 @@ export const facility = async (req, res, next) => {
     for (let type of types) {
       const n = await facilityModel.getNameOfLoai(type.ID);
       type.TienNghi = n;
-      // console.log(type)
     }
     const useFull = await facilityModel.getThongTinHuuIch();
-    // console.log(types)
     res.json({ types, useFull });
   } catch (err) {
     next(err);
@@ -19,15 +17,12 @@ export const facility = async (req, res, next) => {
 };
 export const facilityRoom = async (req, res, next) => {
   try {
-    console.log("hêloo");
     const types = await facilityModel.getLoaiTienNghiRoom();
     for (let type of types) {
       const n = await facilityModel.getNameOfLoaiPhong(type.ID);
       type.TienNghi = n;
-      // console.log(type)
     }
     const endow = await facilityModel.getUuDai();
-    // console.log(types)
     res.json({ types, endow });
   } catch (err) {
     next(err);
