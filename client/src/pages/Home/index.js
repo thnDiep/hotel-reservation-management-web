@@ -13,7 +13,8 @@ import { Vouchers, ConditionModal, Banner } from './components'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Home() {
-    const data = useContext(DataContext)
+    const { data, handleData } = useContext(DataContext)
+    console.log(data)
     const navigate = useNavigate()
     // const [hotels, setHotels] = useState()
     const [shockPrices, setShockPrices] = useState([])

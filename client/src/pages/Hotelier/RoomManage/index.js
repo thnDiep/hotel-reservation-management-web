@@ -3,7 +3,7 @@ import styles from './RoomManage.module.scss'
 import { ButtonPrimary, ConformModal } from '~/components'
 import Select from 'react-select'
 import RoomCKS from '~/components/Table/RoomCKS'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import DataContext from '~/contexts/DataContext'
 import { useContext } from 'react'
 import { useEffect } from 'react'
@@ -132,9 +132,9 @@ const RoomManage = () => {
                     />
                     <div className="d-flex justify-content-between mb-2">
                         <div></div>
-                        <a href="/cks/addRoom">
+                        <Link to="/cks/addRoom">
                             <ButtonPrimary className="btnLarge1">+ Thêm phòng</ButtonPrimary>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
