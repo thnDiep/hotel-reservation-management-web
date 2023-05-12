@@ -111,14 +111,18 @@
         font-size: 16px;
     }
 
-    // .css-1nmdiq5-menu {
-    //     height: 100px;
-    //     min-height: 100px;
-    //     overflow: hidden;
-    // }
+    .css-1nmdiq5-menu {
+        // height: 100px;
+        // min-height: 100px;
+        // overflow: hidden;
+        z-index: 10;
+    }
 
     .css-16xfy0z-control {
         background-color: hsl(0, 0%, 95%);
         border-color: hsl(0, 0%, 90%);
     }
+}
+.tox-editor-header {
+    // z-index: 0;
 }

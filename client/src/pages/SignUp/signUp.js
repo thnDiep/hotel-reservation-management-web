@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, isValidElement } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './signUp.module.scss'
 import { useNavigate } from 'react-router-dom'
@@ -6,27 +6,65 @@ import axios from 'axios'
 
 function SignUp() {
     const [data, setData] = useState(() => {
-        return { name: '', phoneNumber: '', email: '', pass: '', isValid: false }
+        // name: giá trị input, nameValid: đánh dấu người dùng nhập vào
+        return {
+            name: '',
+            phoneNumber: '',
+            email: '',
+            pass: '',
+            nameValid: false,
+            phoneNumberValid: false,
+            emailValid: false,
+            passValid: false,
+        }
     })
-    const [email, setEmail] = useState(() => {
-        return { value: '', error: ' ', isValid: false }
+    const [err, setErr] = useState(() => {
+        // thông báo lỗi của mỗi input
+        return { name: ' ', phoneNumber: ' ', email: ' ', pass: ' ' }
     })
-    const [valid, setValid] = useState(false)
 
     const Nav = useNavigate()
+
+    useEffect(() => {
+        if (data.nameValid === true) {
+            const identifier = setTimeout(() => {
+                if (data.name.length === 0) {
+                    setErr({ ...err, name: 'Thông tin bắt buộc' })
+                } else {
+                    setErr({ ...err, name: ' ' })
+                }
+            }, 500)
+            return () => {
+                clearTimeout(identifier)
+            }
+        }
+    }, [data.name])
+
+    useEffect(() => {
+        if (data.phoneNumberValid === true) {
+            const identifier = setTimeout(() => {
+                if (data.phoneNumber.length === 0) {
+                    setErr({ ...err, phoneNumber: 'Thông tin bắt buộc' })
+                } else {
+                    setErr({ ...err, phoneNumber: ' ' })
+                }
+            }, 500)
+            return () => {
+                clearTimeout(identifier)
+            }
+        }
+    }, [data.phoneNumber])
+
     useEffect(() => {
         const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
-        if (data.isValid === true) {
+        if (data.emailValid === true) {
             const identifier = setTimeout(() => {
-                if (!filter.test(data.email)) {
-                    setEmail({ ...email, error: 'Email không đúng định dạng' })
-                    setValid(false)
-                } else if (data.email.length === 0) {
-                    setEmail({ ...email, error: 'Thông tin bắt buộc' })
-                    setValid(false)
+                if (data.email.length === 0) {
+                    setErr({ ...err, email: 'Thông tin bắt buộc' })
+                } else if (!filter.test(data.email)) {
+                    setErr({ ...err, email: 'Email không đúng định dạng' })
                 } else {
-                    setEmail({ ...email, error: ' ' })
-                    setValid(true)
+                    setErr({ ...err, email: ' ' })
                 }
             }, 500)
             return () => {
@@ -35,22 +73,48 @@ function SignUp() {
         }
     }, [data.email])
 
+    useEffect(() => {
+        if (data.passValid === true) {
+            const identifier = setTimeout(() => {
+                if (data.pass.length === 0) {
+                    setErr({ ...err, pass: 'Thông tin bắt buộc' })
+                } else {
+                    setErr({ ...err, pass: ' ' })
+                }
+            }, 500)
+            return () => {
+                clearTimeout(identifier)
+            }
+        }
+    }, [data.pass])
+
     const handleClick = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('http://localhost:8800/auth/signup', {
-                HoTen: data.name,
-                SoDienThoai: data.phoneNumber,
-                Email: data.email,
-                MatKhau: data.pass,
-                PhanQuyen:0,
-            })
-            Nav('/login')
+            if (
+                data.nameValid &&
+                data.emailValid &&
+                data.phoneNumberValid &&
+                data.passValid &&
+                err.name == ' ' &&
+                err.phoneNumber == ' ' &&
+                err.email == ' ' &&
+                err.name == ' '
+            ) {
+                const res = await axios.post('http://localhost:8800/auth/signup', {
+                    HoTen: data.name,
+                    SoDienThoai: data.phoneNumber,
+                    Email: data.email,
+                    MatKhau: data.pass,
+                    PhanQuyen: 0,
+                })
+                Nav('/login')
+            }
         } catch (err) {
             console.log(err.response.data)
-            console.log('sai')
         }
     }
+
     return (
         <div className={styles.wrap}>
             <div className={styles.form}>
@@ -68,10 +132,14 @@ function SignUp() {
                 <p className={styles.title1}>Đăng ký tài khoản</p>
                 <div>
                     <div>
-                        <label htmlFor="field-name" className={styles.label}>
-                            Họ tên
-                            <span>*</span>
-                        </label>
+                        <div className="d-flex align-items-end">
+                            <label htmlFor="field-name" className={styles.label}>
+                                Họ tên
+                                <span>*</span>
+                            </label>
+                            <p className={styles.err}>{err.name}</p>
+                        </div>
+
                         <div>
                             <input
                                 className={styles.fieldInput}
@@ -79,16 +147,20 @@ function SignUp() {
                                 name="name"
                                 type="text"
                                 placeholder="Nhập tên người dùng"
-                                onChange={(e) => setData({ ...data, name: e.target.value })}
+                                onChange={(e) => setData({ ...data, name: e.target.value, nameValid: true })}
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="field-name" className={styles.label}>
-                            Số điện thoại
-                            <span>*</span>
-                        </label>
+                        <div className="d-flex align-items-end">
+                            <label htmlFor="field-name" className={styles.label}>
+                                Số điện thoại
+                                <span>*</span>
+                            </label>
+                            <p className={styles.err}>{err.phoneNumber}</p>
+                        </div>
+
                         <div>
                             <input
                                 className={styles.fieldInput}
@@ -96,16 +168,22 @@ function SignUp() {
                                 name="name"
                                 type="text"
                                 placeholder="Nhập số điện thoại"
-                                onChange={(e) => setData({ ...data, phoneNumber: e.target.value })}
+                                onChange={(e) =>
+                                    setData({ ...data, phoneNumber: e.target.value, phoneNumberValid: true })
+                                }
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label className={styles.label}>
-                            Email
-                            <span>*</span>
-                        </label>
+                        <div className="d-flex align-items-end">
+                            <label className={styles.label}>
+                                Email
+                                <span>*</span>
+                            </label>
+                            <p className={styles.err}>{err.email}</p>
+                        </div>
+
                         <div>
                             <input
                                 className={styles.fieldInput}
@@ -113,17 +191,20 @@ function SignUp() {
                                 name="email"
                                 type="text"
                                 placeholder="Nhập email"
-                                onChange={(e) => setData({ ...data, email: e.target.value, isValid: true })}
+                                onChange={(e) => setData({ ...data, email: e.target.value, emailValid: true })}
                             />
                         </div>
-                        <p className={styles.err}>{email.error}</p>
                     </div>
 
                     <div>
-                        <label htmlFor="field-password" className={styles.label2}>
-                            Mật khẩu
-                            <span>*</span>
-                        </label>
+                        <div className="d-flex align-items-end">
+                            <label htmlFor="field-password" className={styles.label}>
+                                Mật khẩu
+                                <span>*</span>
+                            </label>
+                            <p className={styles.err}>{err.pass}</p>
+                        </div>
+
                         <div>
                             <input
                                 className={styles.fieldInput}
@@ -131,7 +212,7 @@ function SignUp() {
                                 name="password"
                                 type="text"
                                 placeholder="Nhập mật khẩu"
-                                onChange={(e) => setData({ ...data, pass: e.target.value })}
+                                onChange={(e) => setData({ ...data, pass: e.target.value, passValid: true })}
                             />
                         </div>
                     </div>

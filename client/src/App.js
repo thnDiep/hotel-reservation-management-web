@@ -10,7 +10,6 @@ function App() {
     const handleData = (data) => {
         setData(data)
     }
-
     useEffect(() => {
         Axios.get('http://localhost:8800', { params: { idUser: 5 } }) //
             .then((response) => {

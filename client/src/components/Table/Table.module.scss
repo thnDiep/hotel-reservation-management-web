@@ -34,7 +34,13 @@
             // border-radius: 0.75rem;
             // margin-right: 1rem;
         }
-
+        .imgLarge {
+            height: 6.5rem;
+            width: 13rem;
+            border-radius: 0.75rem;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
         .title {
             font-size: 1.6rem;
             line-height: 1.6;
@@ -73,8 +79,17 @@
                 color: #ff3366;
                 font-weight: 400;
             }
+            .text1Name {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
-
+        .checkImg {
+            width: 50%;
+        }
         .icon {
             font-size: 1.4rem;
             position: relative;
@@ -97,7 +112,13 @@
             display: block;
             max-width: 180px;
         }
-
+        .text2Name {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
         .memberRow {
             td {
                 border: none;
@@ -106,7 +127,14 @@
                 vertical-align: middle;
             }
         }
-
+        .tablesFlex {
+            td {
+                border: none;
+                // padding: 20px 5px;
+                padding: 1.25rem 0.9375rem;
+                vertical-align: middle;
+            }
+        }
         .center {
             text-align: center;
             // display: flex;

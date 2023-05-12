@@ -34,7 +34,7 @@ export default {
   //   // .andWhere("TrangThai", 0);
   // },
 
-  async getWishList(id) {
+  async getWishList1(id) {
     return await db("danhsachyeuthich").where("IDKhachHang", id)
   },
   //thêm ks vào danh sách yêu thích
@@ -48,5 +48,22 @@ export default {
       .where("IDKhachHang", data.IDKhachHang)
       .where("IDKhachSan", data.IDKhachSan)
       .del()
+  },
+
+  // lấy danh sách khách sạn yêu thích
+  //data: userID
+  async getWishList(ID) {
+    const hotels = await db("danhsachyeuthich").where("IDKhachHang", ID)
+    if (hotels.length === 0) return null
+
+    const ids = []
+    hotels.forEach((hotel) => {
+      ids.push(hotel.IDKhachSan)
+    })
+    console.log(ids)
+
+    const result = await db("khachsan").whereIn("ID", ids)
+    console.log(result)
+    return result
   },
 }
