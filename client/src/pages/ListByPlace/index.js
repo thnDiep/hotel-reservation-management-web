@@ -94,7 +94,7 @@ function ListByPlace() {
             console.log(state.hotels)
             console.log(state.searchBar) // Trạng thái thanh tìm kiếm hiện tại
         }
-    }, [])
+    }, [state])
 
     const handleChangeIndex = (index) => {
         setIndexSort(index)

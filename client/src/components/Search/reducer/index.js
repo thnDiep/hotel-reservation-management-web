@@ -34,7 +34,6 @@ function reducer(state, action) {
         case CHANGE_ALL:
             return {
                 ...action.payload,
-                show: null,
             }
         case CHANGE_SHOW:
             return {

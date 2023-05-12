@@ -11,7 +11,7 @@ import authModel from "../models/authModel.js";
 import rateModal from "..//models/rateModal.js";
 import facilityModel from "../models/facilityModel.js";
 import roomModel from "../models/roomModel.js";
-
+import placeModal from "../models/placeModel.js";
 export default function route(app) {
   app.use("/auth", authRouter);
   app.use("/cks/promotion", promotionRouter);
@@ -21,11 +21,21 @@ export default function route(app) {
   app.use("/user", userRouter);
   app.use("/hotel", hotelRouter);
 
+  app.get("/place", async (req, res, next) => {
+    try {
+      const limit = req.query.limit || 10;
+
+      const places = await placeModal.getLimit(limit);
+      res.json(places);
+    } catch (err) {
+      next(err);
+    }
+  });
+
   app.get("/", async (req, res, next) => {
     try {
       const idUser = req.query.idUser || 5;
       const curUser = await authModel.findById(idUser);
-      console.log(curUser.PhanQuyen);
       if (curUser.PhanQuyen === 2) {
         const hotels = await hotelModel.getAll();
         hotels.map(async (hotel) => {
@@ -45,22 +55,29 @@ export default function route(app) {
         // thêm tên tiện nghi
         for (const hotel of hotels) {
           const id = await facilityModel.getTienIchKhachSan(hotel.ID);
-          const phong = await roomModel.getAll(hotel.ID);
+          const phongs = await roomModel.getAll(hotel.ID);
           const image = await hotelModel.getImage(hotel.ID);
           let check = "";
           for (const i of id) {
             const ten = await facilityModel.getTenTienNghi(i.IDTienNghi);
             check += ten.TenTienNghi + ", ";
           }
-          // console.log(phong);
-          hotel.tienNghi = check;
-          hotel.phong = phong;
-          hotel.HinhAnh = image;
 
-          console.log(image);
+          for (const phong of phongs) {
+            const id = await facilityModel.getTienIchPhong(phong.ID);
+            let check = "";
+            for (const i of id) {
+              const ten = await facilityModel.getTenTienNghiPhong(i.IDTienNghi);
+              check += ten.TenTienNghi + ", ";
+            }
+            phong.TienNghi = check;
+          }
+
+          hotel.tienNghi = check;
+          hotel.phong = phongs;
+          hotel.HinhAnh = image;
         }
 
-        console.log(hotels);
         res.json({ hotels });
       } else {
         const hotels = await hotelModel.getAll();

@@ -7,14 +7,11 @@ import FooterPaging from '../FooterPaging/FooterPaging'
 import DataContext from '~/contexts/DataContext'
 
 import Star from '../Star/Star'
-function HotelCKSTable() {
+function HotelCKSTable({ option, hotels }) {
     const [allChecked, setAllChecked] = useState(false)
     const [checkboxState, setCheckboxState] = useState({})
     // const hotel1 = useContext(DataContext)
-    // console.log(hotel1)
-    const hotels = useContext(DataContext)
-
-    // console.log(hotels)
+    // const hotels = useContext(DataContext)
 
     const handleAllChecked = (event) => {
         const updatedState = {}
@@ -23,7 +20,6 @@ function HotelCKSTable() {
         })
         setCheckboxState(updatedState)
         setAllChecked(event.target.checked)
-        console.log(hotels.hotels)
     }
 
     const handleCheckboxChange = (event) => {
@@ -131,7 +127,7 @@ function HotelCKSTable() {
                                     <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
                                 </td>
                                 <td className={styles.last}>
-                                    <DropdownOption list={['Chỉnh sửa', 'Xóa']} />
+                                    <DropdownOption type={9} idActive={hotel.ID} list={option} hides={true} />
                                 </td>
                             </tr>
                         ))}
