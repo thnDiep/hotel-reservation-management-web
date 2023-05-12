@@ -7,7 +7,10 @@ const PlacesList = (props) => {
     }
     return (
         <div className="Places-list">
-            {props.items.map((Place) => Place.checked && <PlaceItem key={Place.ID} item={Place} />)}
+            {props.items.map((Place) => {
+                Place.GiaMoi = Place.Gia - (Place.Gia * Place.GiamGia) / 100
+                return Place.checked && <PlaceItem key={Place.ID} item={Place} />
+            })}
         </div>
     )
 }

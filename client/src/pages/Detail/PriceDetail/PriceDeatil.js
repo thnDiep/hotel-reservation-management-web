@@ -49,7 +49,7 @@ import Axios from 'axios'
 import Star from '~/components/Star/Star'
 const MySwal = withReactContent(Swal)
 
-const PriceDetail = ({ infor }) => {
+const PriceDetail = ({ infor, types }) => {
     const [star, setStar] = useState(0)
     const handleButtonClick = () =>
         MySwal.fire({

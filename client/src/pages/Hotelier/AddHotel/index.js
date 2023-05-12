@@ -246,7 +246,7 @@ const AddHotel = () => {
             }
             const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '')
             hotel.nhan = nhan
-            hotel.IDChuKhachSan = 9
+            hotel.IDChuKhachSan = 2
             if (id) hotel.ID = id
 
             const res = await axios.post(`http://localhost:8800/cks/hotel/${id ? 'update' : 'insert'}`, {

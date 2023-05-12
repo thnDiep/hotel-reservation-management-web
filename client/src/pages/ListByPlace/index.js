@@ -46,6 +46,7 @@ function ListByPlace() {
     useEffect(() => {
         if (state) {
             setHotels(state.hotels)
+            console.log(state.hotels)
         }
     }, [state])
 
@@ -81,14 +82,11 @@ function ListByPlace() {
         if (hotels) {
             const filteredHotels = hotels.map((hotel) => {
                 let priceInRange = hotel.Gia >= filterGia[0] && hotel.Gia <= filterGia[1]
-                // const ratingMatch = filterSao.length === 0 || filterSao.includes(hotel.soSao)
-                // const reviewScoreMatch = filterDanhGia.length === 0 || filterDanhGia.some((point) => point >= hotel.Gia)
-                priceInRange = true
                 let ratingMatch = true
                 let reviewScoreMatch = true
                 if (filterSao.length !== 0) ratingMatch = filterSao.includes(hotel.soSao)
                 if (filterDanhGia.length !== 0) {
-                    reviewScoreMatch = filterDanhGia.some((point) => point >= +hotel.DanhGia)
+                    reviewScoreMatch = filterDanhGia.some((point) => point <= +hotel.DanhGia)
                 }
                 console.log('ratingMatch')
                 console.log(ratingMatch)
@@ -111,10 +109,11 @@ function ListByPlace() {
         }
     }
     const handleFilterDanhGia = (value, index) => {
+        console.log(value)
         if (index === 1) {
-            setFilterDanhGia([...filterDanhGia, value])
+            setFilterDanhGia([...filterDanhGia, +value])
         } else {
-            const removedArr = filterDanhGia.filter((item) => item !== value)
+            const removedArr = filterDanhGia.filter((item) => item !== +value)
             setFilterDanhGia(removedArr)
         }
     }

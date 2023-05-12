@@ -12,6 +12,7 @@ import rateModal from "../models/rateModal.js";
 import placeModal from "../models/placeModel.js";
 import roomModel from "../models/roomModel.js";
 import promotionModel from "../models/promotionModel.js";
+import profileModel from "../models/profileModel.js";
 
 // import hotelModel from "../models/hotelModel.js";
 // import authModel from "../models/authModel.js";
@@ -42,6 +43,7 @@ export default function route(app) {
   app.get("/", async (req, res, next) => {
     try {
       const idUser = req.query.idUser || 5;
+      console.log(idUser);
       const curUser = await authModel.findById(idUser);
       // chur khach san
       if (curUser.PhanQuyen === 1) {
@@ -71,7 +73,6 @@ export default function route(app) {
           hotel.phong = phongs;
           hotel.HinhAnh = image;
         }
-
         res.json({ hotels });
       } else {
         // console.log("asfasdfadsf");
@@ -95,7 +96,8 @@ export default function route(app) {
         const places = await placeModal.getAll();
         const rooms = await roomModel.getAll();
         const promotions = await promotionModel.getAll();
-        console.log("helloo");
+        const periods = await promotionModel.getPeriods();
+        const likes = await profileModel.getWishList1(idUser);
 
         res.json({
           hotels,
@@ -105,6 +107,8 @@ export default function route(app) {
           places,
           rooms,
           promotions,
+          periods,
+          likes,
         });
       }
     } catch (err) {

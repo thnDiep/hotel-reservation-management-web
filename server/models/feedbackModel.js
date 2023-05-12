@@ -7,8 +7,7 @@ export default {
   // điểm tb làm tròn 1 chữ số
   async getAvgScore(id) {
     return db.raw(
-      `SELECT ROUND(AVG(CAST(Diem AS FLOAT)), 1) FROM danhgia
-    WHERE IDKhachSan = ?`,
+      `SELECT ROUND(AVG(CAST(Diem AS FLOAT)), 1) FROM danhgia WHERE IDKhachSan=?`,
       id
     );
   },

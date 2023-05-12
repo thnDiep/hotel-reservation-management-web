@@ -8,10 +8,15 @@ export default {
     return db("phong").where("IDKhachSan", id);
   },
   getGiaMin(id) {
-    return db("phong").where("IDKhachSan", id).min("Gia");
+    return db("phong").where("IDKhachSan", id).min("Gia").as("Gia");
   },
   getGiaMax(id) {
-    return db("phong").where("IDKhachSan", id).max("Gia");
+    return db("phong")
+      .select("TenLoaiPhong")
+      .where("IDKhachSan", id)
+      .orderBy("Gia", "desc")
+      .limit(1)
+      .first();
   },
   async add(phong) {
     // console.log(user.password);

@@ -49,7 +49,7 @@ export default {
 
   async getFeedBackByHotelId(id) {
     const result = await db.raw(
-      `SELECT * FROM danhgia, nguoidung WHERE danhgia.IDKhachHang = nguoidung.ID and danhgia.IDKhachSan=?`,
+      `SELECT * FROM danhgia, nguoidung WHERE danhgia.IDKhachHang = nguoidung.ID and danhgia.IDKhachSan = ? `,
       id
     );
     return result[0];

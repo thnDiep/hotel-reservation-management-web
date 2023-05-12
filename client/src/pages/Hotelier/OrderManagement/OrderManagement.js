@@ -100,49 +100,6 @@ function HotelTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {!enteredDel && (
-                        <tr className={styles.memberRow}>
-                            <td className={styles.center}>
-                                <input type="checkbox" className={styles.checkBox} />
-                            </td>
-                            <td>
-                                <div className="d-flex-js">
-                                    <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
-                                    <div className={styles.text1}>
-                                        <span className={styles.codeOrder}>#H12345678</span>
-                                        <h4>Phạm Thị Thanh Thảo</h4>
-                                        <br />
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span className={`${styles.text2} text-left`}>Mường Thanh Holiday Mũi Né</span>
-                            </td>
-                            <td>
-                                <span className={`${styles.text2} text-left`}>Grand Suite</span>
-                            </td>
-                            <td>
-                                <span className={styles.date}>Nov 2th, 2022</span>
-                            </td>
-                            <td>
-                                <span className={styles.date}>Nov 4th, 2022</span>
-                            </td>
-                            <td>
-                                <span className={styles.text2}>0342221667</span>
-                            </td>
-                            <td>
-                                <h3 className={clsx(styles.text1, styles.primary)}>
-                                    1.550.000 <sup>VND</sup>
-                                </h3>
-                            </td>
-                            <td>
-                                <div className={clsx('btn-1', 'active', styles.status)}>Đã duyệt</div>
-                            </td>
-                            <td className={styles.relative}>
-                                <DropdownOption />
-                            </td>
-                        </tr>
-                    )} */}
                     {data &&
                         data.map((data) => {
                             return (
@@ -152,7 +109,7 @@ function HotelTable() {
                                     </td>
                                     <td>
                                         <div className="d-flex-js">
-                                            <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
+                                            <img src={data.HinhAnh} />
                                             <div className={styles.text1}>
                                                 <span className={styles.codeOrder}>#{data.MaDatPhong}</span>
                                                 <h4>{data.HoTen}</h4>

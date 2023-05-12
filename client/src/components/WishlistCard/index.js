@@ -13,52 +13,6 @@ import Axios from 'axios'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function WishlistCard({ list, liked, onEmpty }) {
     const [data, setData] = useState(list)
-    const [currentSlide, setCurrentSlide] = useState(0) // Khởi tạo state lưu giá trị của currentSlide
-    const handleAfterChange = (currentSlide) => {
-        setCurrentSlide(currentSlide)
-    }
-    const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
-        <button
-            {...props}
-            className={'slick-prev slick-arrow' + (currentSlide === 0 ? ' slick-disabled' : '')}
-            aria-hidden="true"
-            aria-disabled={currentSlide === 0 ? true : false}
-            type="button"
-        >
-            <svg width="8" height="14" fill="none" style={{ transform: 'rotate(180deg)' }}>
-                <path d="M1 1l6 6-6 6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-            </svg>
-        </button>
-    )
-    const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
-        <button
-            {...props}
-            className={'slick-next slick-arrow' + (currentSlide === slideCount - 1 ? ' slick-disabled' : '')}
-            aria-hidden="true"
-            aria-disabled={currentSlide === slideCount - 1 ? true : false}
-            type="button"
-        >
-            <svg width="8" height="14" fill="none">
-                <path d="M1 1l6 6-6 6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-            </svg>
-        </button>
-    )
-
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        // slidesToShow: 3,
-        slidesToScroll: 1,
-        prevArrow: <SlickArrowLeft />,
-        nextArrow: <SlickArrowRight />,
-        // "data-currentslide": currentSlide,
-    }
-    // const renderSlides = item.HinhAnh.map((image) => (
-    // <div className="image" key={image.id}>
-    //     <img className="image" src={image.image} alt="Anh khach san" />
-    // </div>
-    // ))
 
     function handleClickHeart(id, isLike) {
         // setIsLike(!isLike)
@@ -105,7 +59,6 @@ function WishlistCard({ list, liked, onEmpty }) {
                             {' '}
                         </Link>
                         <div className="place__img">
-                            {/* <Slider {...settings}>{renderSlides}</Slider> */}
                             <div className="image">
                                 <img
                                     className="image"

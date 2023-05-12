@@ -10,6 +10,9 @@ import HeartButton from '~/components/Button/HeartButton'
 import Star from '~/components/Star/Star'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const PlaceItem = ({ item, liked }) => {
+    const formatMoney = (amount) => {
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
+    }
     const [currentSlide, setCurrentSlide] = useState(0) // Khởi tạo state lưu giá trị của currentSlide
     const handleAfterChange = (currentSlide) => {
         setCurrentSlide(currentSlide)
@@ -178,9 +181,9 @@ const PlaceItem = ({ item, liked }) => {
                     <div className="price__discount">
                         -{item.GiamGia}%<span className="price__discount1"></span>
                     </div>
-                    <span className="price__new">2.722.909 ₫</span>
+                    <span className="price__new"> {formatMoney(item.Gia)}</span>
                     <span className="price__old" style={{ color: 'rgb(26, 32, 44)' }}>
-                        {item.Gia} ₫
+                        {formatMoney(item.GiaMoi)}
                     </span>
                 </div>
             </div>

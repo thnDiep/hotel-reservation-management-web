@@ -2,14 +2,14 @@ import React, { Fragment, useState } from 'react'
 import { Slider } from '@material-ui/core'
 import './Price.scss'
 // import styles from './Price.module.scss';
-function PriceSlider({ filterPrice }) {
+function PriceSlider({ handleFilterGia }) {
     const [value, setValue] = useState([0, 1000])
     const formatMoney = (amount) => {
         return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
     }
     const handleChange = (event, newValue) => {
         setValue(newValue)
-        filterPrice(newValue[0] * 5000, newValue[1] * 5000)
+        handleFilterGia(newValue[0] * 5000, newValue[1] * 5000)
         // const minAmount = newValue[0] * 5000;
         // const maxAmount = newValue[1] * 5000;
         // const formattedMinAmount = formatMoney(minAmount);
