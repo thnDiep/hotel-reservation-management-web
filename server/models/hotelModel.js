@@ -13,18 +13,13 @@ export default {
   },
 
   async findByHotelierId(hotelierID) {
-    const hotels = await db("chukhachsan_khachsan").where(
-      "IDChuKhachSan",
-      hotelierID
-    );
-    if (hotels.length === 0) return null;
-
-    const ids = [];
-    hotels.forEach((hotel) => {
-      ids.push(hotel.IDKhachSan);
-    });
-    return await db("khachsan").whereIn("ID", ids);
+    // const ids = []
+    // hotels.forEach((hotel) => {
+    //   ids.push(hotel.IDKhachSan)
+    // })
+    // return await db("khachsan").whereIn("ID", ids)
     // .andWhere("TrangThai", 0);
+    return await db("khachsan").where("IDChuKhachSan", hotelierID);
   },
 
   async getPicByHotelId(id) {

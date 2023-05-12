@@ -37,7 +37,7 @@ function ManageVoucher() {
     })
     // Dữ liệu cho bảng
     useEffect(() => {
-        Axios.get('http://localhost:8800/cks/promotion', { params: { idCKS: 1 } })
+        Axios.get('http://localhost:8800/cks/promotion', { params: { idCKS: 2 } })
             .then((response) => {
                 const result = handleGetPromotion(response.data)
                 setData(result)
@@ -220,7 +220,7 @@ function ManageVoucher() {
             <div className={styles.content}>
                 <div className="d-flex">
                     <NavHandle list={promotion.menu} active={active} onActive={setActive} />
-                    <DropdownButton list={promotion.state} width={150} />
+                    {/* <DropdownButton list={promotion.state} width={150} /> */}
                 </div>
 
                 {active === 0 && (

@@ -13,6 +13,7 @@ import { NavHandle } from '~/components'
 import promotion from '~/assets/jsons/promotion.json'
 
 function AddPromotion() {
+    const idCKS = useRef(2)
     const navigate = useNavigate()
     const { active, id } = useParams()
 
@@ -26,19 +27,28 @@ function AddPromotion() {
 
     const [formData, setFormData] = useState({})
     const [voucherState, setVoucherState] = useState({
-        fields: { BatDau: new Date(), IDKhachSan: 1 },
+        fields: { BatDau: new Date() },
         errors: {},
     })
     const [flashSaleState, setFlashSaleState] = useState({
-        fields: { BatDau: new Date(), IDKhungGio: 1, IDKhachSan: 1 },
+        fields: { BatDau: new Date(), IDKhungGio: 1 },
         errors: {},
     })
 
     // Lấy dữ liệu cho form  ============================> có thể thay thế bằng useContext =====> xử lý sau
     useEffect(() => {
-        Axios.get('http://localhost:8800/cks/promotion/insert', { params: { idCKS: 1 } })
+        Axios.get('http://localhost:8800/cks/promotion/insert', { params: { idCKS: idCKS.current } })
             .then((response) => {
                 setFormData(response.data)
+                setVoucherState({
+                    fields: { BatDau: new Date(), IDKhachSan: response.data.hotels[0].ID },
+                    errors: {},
+                })
+                setFlashSaleState({
+                    fields: { BatDau: new Date(), IDKhachSan: response.data.hotels[0].ID, IDKhungGio: 1 },
+                    errors: {},
+                })
+                console.log('Dữ liệu cho form: ', response.data)
             })
             .catch((error) => {
                 console.log(error)
@@ -48,7 +58,9 @@ function AddPromotion() {
     // Lấy dữ liệu từ promotion để chỉnh sửa
     useEffect(() => {
         if (id !== undefined) {
-            Axios.get('http://localhost:8800/cks/promotion/update', { params: { idPromotion: id, idCKS: 1 } })
+            Axios.get('http://localhost:8800/cks/promotion/update', {
+                params: { idPromotion: id, idCKS: idCKS.current },
+            })
                 .then((response) => {
                     const data = response.data
                     data.BatDau = new Date(data.BatDau)
@@ -79,8 +91,6 @@ function AddPromotion() {
     // Add / update
     function handleSubmit() {
         if (showForm === 0 && handleAddVoucher()) {
-            console.log(voucherState.fields)
-
             Axios.post(`http://localhost:8800/cks/promotion/${id ? 'update' : 'insert'}`, {
                 khuyenmai: voucherState.fields,
             })
@@ -91,6 +101,8 @@ function AddPromotion() {
                         setShowInformModal(false)
                         navigate('/cks/voucher', { state: { active: 0 } })
                     }, 1000)
+
+                    console.log('Thông tin update thành công: ', voucherState.fields)
                 })
                 .catch((error) => console.log(error))
         } else if (showForm === 1 && handleAddFlashSale()) {
