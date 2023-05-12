@@ -80,7 +80,7 @@ const Detail = () => {
                     <div className={classes.subContainer}>
                         <PictureDetail picHotel={data.picHotel} />
                     </div>
-                    <PriceDetail infor={data.infor} />
+                    <PriceDetail infor={data.infor} types={data.types} />
 
                     <div className={classes.container}>
                         <div className="row">

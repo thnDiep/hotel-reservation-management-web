@@ -10,7 +10,12 @@ export default {
   getLoaiTienNghiRoom() {
     return db("loaitiennghiphong");
   },
+
   async getNameOfLoai(id) {
+    // const facility = await db.raw(
+    //   `SELECT tiennghichung_ks.ID, tiennghichung_ks.IDLoai, tiennghichung_ks.Icon, tiennghichung_ks.TenTienNghi FROM tiennghichung_ks WHERE tiennghichung_ks.IDLoai = ?`,
+    //   id
+    // );
     const facility = await db("tiennghichung_ks").where("IDLoai", id);
     return facility;
   },
@@ -18,6 +23,12 @@ export default {
     const facility = await db("tiennghichung_phong").where("IDLoai", id);
     return facility;
   },
+
+  async getFacilityOfHotel(id) {
+    const fac = await db("tiennghi_khachsan").where("IDTienNghi", id);
+    return fac;
+  },
+
   async getThongTinHuuIch() {
     return db("thongtinhuuich");
   },

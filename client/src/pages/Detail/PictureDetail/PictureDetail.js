@@ -8,7 +8,6 @@ import withReactContent from 'sweetalert2-react-content'
 import Popup from '~/components/DetailRoom/Popup/Popup'
 const MySwal = withReactContent(Swal)
 const PictureDetail = ({ picHotel }) => {
-    console.log(picHotel[3].HinhAnh)
     const handleButtonClick = (index) => {
         MySwal.fire({
             title: 'Hình ảnh khách sạn',

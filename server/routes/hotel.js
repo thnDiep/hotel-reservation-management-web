@@ -9,6 +9,7 @@ import {
   order,
 } from "../controller/hotelier.js";
 import feedbackModel from "../models/feedbackModel.js";
+import facilityModel from "../models/facilityModel.js";
 
 const router = express.Router();
 
@@ -44,9 +45,27 @@ router.get("/detail", async (req, res, next) => {
     const feedbackHotel = await hotelModel.getFeedBackByHotelId(idHotel);
     const picHotel = await hotelModel.getPicByHotelId(idHotel);
     const infor = await hotelModel.findById(idHotel);
-    const score = await feedbackModel.getAvgScore();
+    const score = await feedbackModel.getAvgScore(idHotel);
     infor.avgScore = score[0][0]["ROUND(AVG(CAST(Diem AS FLOAT)), 1)"];
-    res.json({ infor, picHotel, feedbackHotel });
+
+    const types = await facilityModel.getLoaiTienNghi();
+    console.log(types);
+    for (let typeKS of types) {
+      const facilityOfHotels = await facilityModel.getNameOfLoai(typeKS.ID);
+      // console.log(facilityOfHotels);
+      const tienNghi = [];
+      for (let i = 0; i < facilityOfHotels.length; i++) {
+        const facHotel = await facilityModel.getFacilityOfHotel(
+          facilityOfHotels[i].ID
+        );
+        console.log(tienNghi);
+        //facHotel.Ten = facilityOfHotels[i].TenTienNghi;
+        if (facHotel !== null) tienNghi.push(facHotel);
+        //console.log(tienNghi);
+      }
+      typeKS.tienNghi = tienNghi;
+    }
+    res.json({ infor, picHotel, feedbackHotel, types });
   } catch (err) {
     next(err);
   }
