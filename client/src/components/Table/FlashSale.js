@@ -87,6 +87,7 @@ function FlashSaleTable({ header, option, data }) {
                                             flashSale.TrangThai === 2,
                                             flashSale.TrangThai !== 2,
                                         ]}
+                                        hides={[false, false, false]}
                                     />
                                 </td>
                             </tr>

@@ -20,6 +20,13 @@ function VoucherForm({ data, onEdit, formData, styles }) {
             onEdit({ errors: { ...data.errors, [type]: null }, fields: { ...data.fields, [type]: e } })
             return
         }
+        if (type === 'DieuKien') {
+            onEdit({
+                errors: { ...data.errors, [type]: null },
+                fields: { ...data.fields, [type]: e.target.getContent() },
+            })
+            return
+        }
         onEdit({ errors: { ...data.errors, [type]: null }, fields: { ...data.fields, [type]: e.target.value } })
     }
 

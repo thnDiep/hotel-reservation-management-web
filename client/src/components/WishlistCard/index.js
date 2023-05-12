@@ -121,7 +121,6 @@ function WishlistCard({ list, liked, onEmpty }) {
                                     <div className="place__detail--endow1">{item.Nhan}</div>
                                 </div>
                                 <div className="place__detail--title">{item.Ten}</div>
-                                <div className="place__detail--rate">{item.Ten}</div>
                                 <div className="place__detail--star">
                                     <FontAwesomeIcon className="fa-star" icon={faStar} />
                                     <FontAwesomeIcon className="fa-star" icon={faStar} />

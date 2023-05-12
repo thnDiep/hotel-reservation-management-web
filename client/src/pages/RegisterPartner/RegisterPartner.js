@@ -209,30 +209,38 @@ const RegisterPartner = () => {
         e.preventDefault()
         if (enteredNameCompany.value.length === 0) {
             setEnteredNameCompany({ ...enteredNameCompany, error: 'Thông tin bắt buộc' })
+            return
         }
         if (enteredAddress.value.length === 0) {
             setEnteredAddress({ ...enteredAddress, error: 'Thông tin bắt buộc' })
+            return
         }
         if (enteredTaxCode.value.length === 0) {
             setEnteredTaxCode({ ...enteredTaxCode, error: 'Thông tin bắt buộc' })
+            return
         }
         if (enteredUserName.value.length === 0) {
             setEnteredUserName({ ...enteredUserName, error: 'Thông tin bắt buộc' })
+            return
         }
         if (enteredPhoneNumber.value.length === 0) {
             setEnteredPhoneNumber({ ...enteredPhoneNumber, error: 'Thông tin bắt buộc' })
+            return
         }
         if (enteredEmail.value.length === 0) {
             setEnteredEmail({ ...enteredEmail, error: 'Thông tin bắt buộc' })
+            return
         }
         if (enteredPass.value.length === 0) {
             setEnteredPass({ ...enteredPass, error: 'Thông tin bắt buộc' })
+            return
         }
         if (enteredRePass.value.length === 0) {
             setEnteredRePass({ ...enteredRePass, error: 'Thông tin bắt buộc' })
+            return
         }
         try {
-            const res = await axios.post('auth/signUp', {
+            const res = await axios.post('http://localhost:8800/auth/signup', {
                 HoTen: enteredUserName.value,
                 TenCongTy: enteredNameCompany.value,
                 DiaChi: enteredAddress.value,
