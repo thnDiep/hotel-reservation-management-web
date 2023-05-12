@@ -60,6 +60,7 @@ const PriceDetail = ({ infor }) => {
             width: '784px',
             height: '530px',
             backdrop: '#fffff',
+            customClass: 'popup-wrapper',
         })
     function scrollToRoomList() {
         console.log(scrollToRoomList)

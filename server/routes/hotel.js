@@ -1,5 +1,7 @@
 import express from "express";
 import hotelModel from "../models/hotelModel.js";
+import authModel from "../models/authModel.js";
+import rateModal from "../models/rateModal.js";
 import profileModel from "../models/profileModel.js";
 import {
   facility,
@@ -9,6 +11,7 @@ import {
   order,
 } from "../controller/hotelier.js";
 import feedbackModel from "../models/feedbackModel.js";
+import roomModel from "../models/roomModel.js";
 
 const router = express.Router();
 
@@ -17,6 +20,29 @@ router.get("/search", async (req, res, next) => {
   try {
     const key = req.query.key;
     const result = await hotelModel.search(key.place);
+    for (const hotel of result) {
+      hotel.checked = true;
+      hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan);
+      hotel.DanhGia = await rateModal.getAvgRate(hotel.ID);
+      hotel.DanhGia = +hotel.DanhGia;
+      hotel.HinhAnh = await hotelModel.getImage(hotel.ID);
+      const DiaChi = hotel.DiaChi.replace(/Xã |Thành phố|Phường /g, "");
+      const parts = DiaChi.split(",");
+      const district = parts[parts.length - 2].trim().replace(/ +/g, " ");
+      const ward = parts[parts.length - 3].trim().replace(/ +/g, " ");
+      hotel.DiaChi = ward + ", " + district;
+      const [min] = await roomModel.getGiaMin(hotel.ID);
+      console.log(min);
+      hotel.Gia = min.Gia;
+      const [max] = await roomModel.getGiaMax(hotel.ID);
+      hotel.phong = max.TenLoaiPhong;
+      if (hotel.DanhGia) {
+        hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2);
+      } else {
+        hotel.DanhGia = Number(0).toFixed(1);
+      }
+    }
+    console.log(result);
     res.json(result);
   } catch (err) {
     next(err);

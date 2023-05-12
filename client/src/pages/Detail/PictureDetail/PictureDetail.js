@@ -18,6 +18,7 @@ const PictureDetail = ({ picHotel }) => {
             width: '1140px',
             height: '80vh',
             backdrop: 'rgba(39,46,52,1)',
+            customClass: 'khachsan',
         })
     }
 

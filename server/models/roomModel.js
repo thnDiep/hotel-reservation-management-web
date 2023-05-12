@@ -7,6 +7,12 @@ export default {
   getAllByKhachSan(id) {
     return db("phong").where("IDKhachSan", id);
   },
+  getGiaMin(id) {
+    return db("phong").where("IDKhachSan", id).min("Gia");
+  },
+  getGiaMax(id) {
+    return db("phong").where("IDKhachSan", id).max("Gia");
+  },
   async add(phong) {
     // console.log(user.password);
     const result = await db("phong").insert(phong);
