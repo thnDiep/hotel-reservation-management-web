@@ -23,13 +23,18 @@
 }
 
 .carousel-control-prev-icon:before {
-    content: "\e079";
+    content: '\e079';
 }
 
 .carousel-control-prev {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, .0001) 100%);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.0001) 100%);
 }
 
 .carousel-control-next {
-    background-image: linear-gradient(to left, rgba(0, 0, 0, .5) 0, rgba(0, 0, 0, .0001) 100%);
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.0001) 100%);
+}
+.khachsan {
+    .swal2-title {
+        color: white !important;
+    }
 }

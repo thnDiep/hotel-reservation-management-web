@@ -127,7 +127,7 @@ const Detail = () => {
                     <div className={classes.subContainer}>
                         <PictureDetail picHotel={hotel.picHotel} />
                     </div>
-                    <PriceDetail infor={hotel.infor} />
+                    <PriceDetail infor={hotel.infor} types={hotel.types} />
 
                     <div className={classes.container}>
                         <div className="row">

@@ -5,6 +5,29 @@ export default {
   getAll() {
     return db("phong")
   },
+  getAllByKhachSan(id) {
+    return db("phong").where("IDKhachSan", id)
+  },
+  getGiaMin(id) {
+    return db("phong").where("IDKhachSan", id).min("Gia").as("Gia")
+  },
+  getGiaMax(id) {
+    return db("phong")
+      .select("TenLoaiPhong")
+      .where("IDKhachSan", id)
+      .orderBy("Gia", "desc")
+      .limit(1)
+      .first()
+  },
+  async add(phong) {
+    // console.log(user.password);
+    const result = await db("phong").insert(phong)
+    console.log(result)
+    return result[0]
+  },
+  updateRoom(phong) {
+    return db("phong").where("ID", phong.ID).update(phong)
+  },
 
   // Lấy phòng theo ID
   getRoomByID(id) {

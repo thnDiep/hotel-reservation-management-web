@@ -2,7 +2,7 @@
     margin: 12px 0px;
     color: #1a202c;
     width: 100%;
-    border: 1px solid #EDF2F7;
+    border: 1px solid #edf2f7;
     display: flex;
     padding: 16px;
     font-size: 14px;
@@ -21,7 +21,7 @@
     }
 
     &:hover .place__detail--title {
-        color: #00B6F3;
+        color: #00b6f3;
         transition: all 0.2s;
     }
 
@@ -50,7 +50,6 @@
             z-index: 2;
             position: absolute;
         }
-
     }
 
     &__detail {
@@ -62,7 +61,6 @@
         &--content {
             width: 60%;
         }
-
 
         &--price {
             width: 40%;
@@ -76,11 +74,10 @@
                 margin-top: 2px;
                 font-weight: 600;
                 line-height: 24px;
-
             }
 
             .price__new {
-                color: #4A5568;
+                color: #4a5568;
                 margin-top: 4px;
                 text-decoration-line: line-through;
             }
@@ -89,7 +86,7 @@
                 color: #ffffff;
                 padding: 2px 4px;
                 position: relative;
-                background: #FF3366;
+                background: #ff3366;
                 font-weight: 600;
                 border-radius: 3px 3px 0px 3px;
             }
@@ -100,7 +97,7 @@
                 bottom: -4px;
                 height: 0;
                 position: absolute;
-                border-color: transparent #FF1284 transparent transparent;
+                border-color: transparent #ff1284 transparent transparent;
                 border-style: solid;
                 border-width: 0px 5px 5px 0;
             }
@@ -125,7 +122,7 @@
         }
 
         &--endow2 {
-            background-color: #8547EC;
+            background-color: #8547ec;
             margin-right: 6px;
             color: #ffffff;
             padding: 2px 4px;
@@ -149,14 +146,10 @@
             -webkit-line-clamp: 3;
         }
 
-
-
-       
-
         &--star {
             position: relative;
             white-space: nowrap;
-
+            margin-bottom: 7px;
             .overlay--star {
                 background: #fff;
                 height: 100%;
@@ -176,7 +169,7 @@
             margin-bottom: 6px;
 
             &1 {
-                color: #FF3366;
+                color: #ff3366;
                 display: flex;
                 padding: 2px 4px 0;
                 background: rgba(255, 51, 102, 0.1);
@@ -199,7 +192,7 @@
             transition: all 0.3s;
 
             &:hover {
-                color: #00B6F3;
+                color: #00b6f3;
                 text-decoration: underline;
                 cursor: pointer;
             }
@@ -224,7 +217,7 @@
         }
 
         &--map2 {
-            color: #00B6F3;
+            color: #00b6f3;
             padding-left: 22px;
             margin-bottom: 6px;
         }
@@ -248,14 +241,12 @@
         }
 
         &--service {
-            color: #48BB78;
+            color: #48bb78;
             display: flex;
             align-items: center;
             margin-bottom: 6px;
         }
     }
-
-
 
     .slick-prev {
         background: white !important;
@@ -273,8 +264,7 @@
         border: 1px solid rgb(237, 242, 247) !important;
         left: 26px !important;
         opacity: 0;
-        transition: all ease .2s;
-
+        transition: all ease 0.2s;
 
         svg {
             display: block;
@@ -282,8 +272,8 @@
         }
 
         &:hover svg {
-            stroke: #FF3366;
-            transition: all ease .2s;
+            stroke: #ff3366;
+            transition: all ease 0.2s;
         }
     }
 
@@ -303,9 +293,7 @@
         border: 1px solid rgb(237, 242, 247) !important;
         right: -10px !important;
         opacity: 0;
-        transition: all ease .2s;
-
-
+        transition: all ease 0.2s;
 
         svg {
             display: block;
@@ -313,8 +301,8 @@
         }
 
         &:hover svg {
-            stroke: #FF3366;
-            transition: all ease .2s;
+            stroke: #ff3366;
+            transition: all ease 0.2s;
         }
     }
 
@@ -323,13 +311,10 @@
     }
 
     .slick-list {
-
         height: 100%;
     }
 
     .slick-slider {
-
-
         position: relative;
         width: 286px;
         height: 214px;
@@ -340,14 +325,13 @@
         bottom: 0 !important;
 
         .slick-slide {
-            &>div {
+            & > div {
                 height: 100% !important;
             }
         }
     }
 
     .slick-dots {
-
         bottom: 23px !important;
         height: 2px;
         margin: 0px;
@@ -372,12 +356,12 @@
     }
 
     .slick-dots li.slick-active button:before {
-        opacity: .75;
+        opacity: 0.75;
         color: #fff;
     }
 
     .fa-angle-right {
-        color: #48BB78;
+        color: #48bb78;
         z-index: 3;
     }
 
@@ -385,5 +369,4 @@
     .slick-prev:before {
         display: none;
     }
-
 }

@@ -7,97 +7,115 @@ import Service from '~/components/Place/Filter/Rate/Service/Service'
 import UserRate from '~/components/Place/Filter/Rate/UserRate/UserRate'
 import Search from '~/components/Search'
 import { useLocation } from 'react-router-dom'
+import { useContext } from 'react'
+import DataContext from '~/contexts/DataContext'
 const listPlace = [
     {
-        imgs: [
+        HinhAnh: [
             {
                 id: 1,
-                image: 'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://www.googleapis.com/download/storage/v1/b/hotelcdn/o/40454%2F3A1O4S311J_ICPQ_Resort%20Exterior(2).jpg?generation=1593766513879962&alt=media',
+                HinhAnh:
+                    'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://www.googleapis.com/download/storage/v1/b/hotelcdn/o/40454%2F3A1O4S311J_ICPQ_Resort%20Exterior(2).jpg?generation=1593766513879962&alt=media',
             },
             {
                 id: 2,
-                image: 'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://storage.googleapis.com/hms_prod/photo/thumb/458955zvd/150592923.jpg',
+                HinhAnh:
+                    'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://storage.googleapis.com/hms_prod/photo/thumb/458955zvd/150592923.jpg',
             },
         ],
-        id: 1,
-        endow: ['Miễn phí thu trẻ em', 'Hô bơi vô cực'],
-        title: 'InterContinental Phú Quốc Long Beach Resort',
-        rate: 3,
-        scored: 9.2,
-        map: 'Dương Tơ, Phú Quốc',
+        ID: 1,
+        Nhan: 'Hô bơi vô cực',
+        Ten: 'InterContinental Phú Quốc Long Beach Resort',
+        soSao: 3,
+        DanhGia: 9.2,
+        DiaChi: 'Dương Tơ, Phú Quốc',
         status: 'Classic Garden View',
-        service: 'Bữa sáng miễn phí',
-        priceOld: 3336610,
-        discount: 0.2,
-    },
-    {
-        imgs: [
-            {
-                id: 1,
-                image: 'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://www.googleapis.com/download/storage/v1/b/hotelcdn/o/40454%2F3A1O4S311J_ICPQ_Resort%20Exterior(2).jpg?generation=1593766513879962&alt=media',
-            },
-            {
-                id: 2,
-                image: 'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://storage.googleapis.com/hms_prod/photo/thumb/458955zvd/150592923.jpg',
-            },
-            {
-                id: 3,
-                image: 'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://storage.googleapis.com/hms_prod/photo/thumb/458955zvd/150592923.jpg',
-            },
-        ],
-        id: 2,
-        endow: ['Miễn phí thu trẻ em', 'Hô bơi vô cực'],
-        title: 'InterContinental Phú Quốc Long Beach Resort',
-        rate: 3,
-        scored: 9.2,
-        map: 'Dương Tơ, Phú Quốc',
-        status: 'Classic Garden View',
-        service: 'Bữa sáng miễn phí',
-        priceOld: 3336610,
-        discount: 0.2,
-    },
-    {
-        imgs: [
-            {
-                id: 1,
-                image: 'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://www.googleapis.com/download/storage/v1/b/hotelcdn/o/40454%2F3A1O4S311J_ICPQ_Resort%20Exterior(2).jpg?generation=1593766513879962&alt=media',
-            },
-            {
-                id: 2,
-                image: 'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://storage.googleapis.com/hms_prod/photo/thumb/458955zvd/150592923.jpg',
-            },
-            {
-                id: 3,
-                image: 'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://storage.googleapis.com/hms_prod/photo/thumb/458955zvd/150592923.jpg',
-            },
-        ],
-        id: 3,
-        endow: ['Miễn phí thu trẻ em', 'Hô bơi vô cực'],
-        title: 'InterContinental Phú Quốc Long Beach Resort',
-        rate: 3,
-        scored: 9.2,
-        map: 'Dương Tơ, Phú Quốc',
-        status: 'Classic Garden View',
-        service: 'Bữa sáng miễn phí',
-        priceOld: 3336610,
-        discount: 0.2,
+        UuDai: 'Bữa sáng miễn phí',
+        Gia: 3336610,
+        GiamGia: 0.2,
     },
 ]
+
 const sort = ['Phù hợp nhất', 'Rẻ nhất', 'Đắt nhất', 'Xếp hạng sao', 'Đánh giá cao nhất']
 function ListByPlace() {
     const [indexSort, setIndexSort] = useState(0)
-
+    const { data, handleData } = useContext(DataContext)
     // Khách sạn lấy được từ thanh tìm kiếm
     const { state } = useLocation()
+    const [hotels, setHotels] = useState()
     useEffect(() => {
         if (state) {
+            setHotels(state.hotels)
             console.log(state.hotels)
-            console.log(state.searchBar) // Trạng thái thanh tìm kiếm hiện tại
         }
     }, [state])
 
     const handleChangeIndex = (index) => {
+        let sortedHotels = [...hotels] // Tạo một bản sao của mảng hotels để tránh thay đổi giá trị gốc
+        switch (index) {
+            case 1:
+                sortedHotels.sort((a, b) => a.Gia - b.Gia)
+                break
+            case 2:
+                sortedHotels.sort((a, b) => b.Gia - a.Gia)
+                break
+            case 3:
+                sortedHotels.sort((a, b) => b.soSao - a.soSao)
+                break
+            case 4:
+                sortedHotels.sort((a, b) => +b.DanhGia - +a.DanhGia)
+                break
+            case 0:
+                sortedHotels = state.hotels
+                break
+            default:
+                break
+        }
         setIndexSort(index)
+        setHotels(sortedHotels) // Cập nhật state hotels với mảng đã sắp xếp
+    }
+    const [filterSao, setFilterSao] = useState([])
+    const [filterDanhGia, setFilterDanhGia] = useState([])
+    const [filterGia, setFilterGia] = useState([0, 50000000])
+
+    useEffect(() => {
+        if (hotels) {
+            const filteredHotels = hotels.map((hotel) => {
+                let priceInRange = hotel.Gia >= filterGia[0] && hotel.Gia <= filterGia[1]
+                let ratingMatch = true
+                let reviewScoreMatch = true
+                if (filterSao.length !== 0) ratingMatch = filterSao.includes(hotel.soSao)
+                if (filterDanhGia.length !== 0) {
+                    reviewScoreMatch = filterDanhGia.some((point) => point <= +hotel.DanhGia)
+                }
+                console.log('ratingMatch')
+                console.log(ratingMatch)
+                const checked = priceInRange && ratingMatch && reviewScoreMatch
+
+                return { ...hotel, checked }
+            })
+            setHotels(filteredHotels)
+        }
+    }, [filterSao, filterDanhGia, filterGia])
+    const handleFilterGia = (min, max) => {
+        setFilterGia([min, max])
+    }
+    const handleFilterSao = (value, index) => {
+        if (index === 1) {
+            setFilterSao([...filterSao, value])
+        } else {
+            const removedArr = filterSao.filter((item) => item !== value)
+            setFilterSao(removedArr)
+        }
+    }
+    const handleFilterDanhGia = (value, index) => {
+        console.log(value)
+        if (index === 1) {
+            setFilterDanhGia([...filterDanhGia, +value])
+        } else {
+            const removedArr = filterDanhGia.filter((item) => item !== +value)
+            setFilterDanhGia(removedArr)
+        }
     }
 
     return (
@@ -141,22 +159,22 @@ function ListByPlace() {
                             <div className={classes.filter__price}>
                                 <h4>Khoảng giá (1 đêm)</h4>
                                 {/* <div className={classes['filter__price--sub']} style={{ fontWeight: 'normal', marginTop: '8px' }}>0 ₫ - 5.000.000 ₫+ </div> */}
-                                <PriceSlider />
+                                <PriceSlider handleFilterGia={handleFilterGia} />
                             </div>
                             <div className={classes.filter__hr}></div>
                             <div className={classes.filter__star}>
                                 <span className={classes['filter__star--title']}>Hạng khách sạn</span>
-                                <Star />
+                                <Star handleFilterSao={handleFilterSao} />
                             </div>
                             <div className={classes.filter__hr}></div>
-                            <div className={classes.filter__star}>
+                            {/* <div className={classes.filter__star}>
                                 <span className={classes['filter__star--title']}>Dịch vụ đi kèm</span>
                                 <Service />
-                            </div>
+                            </div> */}
                             <div className={classes.filter__hr}></div>
                             <div className={classes.filter__star}>
                                 <span className={classes['filter__star--title']}>Người dùng đánh giá</span>
-                                <UserRate />
+                                <UserRate handleFilterDanhGia={handleFilterDanhGia} />
                             </div>
                         </div>
                     </div>
@@ -197,7 +215,7 @@ function ListByPlace() {
                             </span> */}
                             </div>
                         </div>
-                        <PlacesList items={listPlace} />
+                        {hotels && <PlacesList items={hotels} />}
                     </div>
                 </div>
             </div>
