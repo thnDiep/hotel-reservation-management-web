@@ -17,6 +17,7 @@ const router = express.Router();
 router.get("/search", async (req, res, next) => {
   try {
     const key = req.query.key;
+
     const result = await hotelModel.search(key.place);
     res.json(result);
   } catch (err) {
@@ -41,7 +42,8 @@ router.post("/update", async (req, res, next) => {
 router.get("/detail", async (req, res, next) => {
   try {
     //const key = req.query.key;
-    const idHotel = 8;
+    const idHotel = req.query.idKs || 8;
+    //const idHotel = 8;
     const feedbackHotel = await hotelModel.getFeedBackByHotelId(idHotel);
     const picHotel = await hotelModel.getPicByHotelId(idHotel);
     const infor = await hotelModel.findById(idHotel);

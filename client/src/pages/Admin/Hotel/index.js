@@ -17,7 +17,7 @@ function Hotel() {
     const [showConformModal, setShowConformModal] = useState(false)
     const [showInformModal, setShowInformModal] = useState(false)
 
-    const data = useContext(DataContext)
+    const { data } = useContext(DataContext)
     const [option, setOption] = useState([])
     const [hotels, setHotels] = useState()
     const [hotelActive, setHotelActive] = useState(null)
