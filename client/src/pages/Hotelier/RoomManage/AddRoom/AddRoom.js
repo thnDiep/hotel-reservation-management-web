@@ -6,12 +6,17 @@ import { ButtonPrimary } from '~/components'
 import AddMultiple from '~/components/AddMultiple/AddMultiple'
 import { NumericFormat } from 'react-number-format'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 const AddRoom = () => {
-    const [selectedSite, setSelectedSite] = useState(2)
+    const { active, id } = useParams()
+    // console.log(id)
+    // const { active } = useParams()
+
+    const [selectedSite, setSelectedSite] = useState(1)
 
     const [hotel, setHotel] = useState(() => {
         return {
-            Ten: '',
+            TenLoaiPhong: '',
             SoPhongTrong: '',
             DienTich: '',
             SoNguoi: '',
@@ -49,6 +54,7 @@ const AddRoom = () => {
     const handlePrev = () => {
         if (selectedSite > 1) setSelectedSite(selectedSite - 1)
     }
+    const [data, setData] = useState(null)
     //image
     const [selectedFiles, setSelectedFiles] = useState([])
     const handleImagesChange = (event) => {
@@ -62,8 +68,9 @@ const AddRoom = () => {
         axios
             .get('http://localhost:8800/cks/room/facility')
             .then((response) => {
+                setData(response.data)
                 for (let check of response.data.types) {
-                    check.checked = false
+                    for (const checked of check.TienNghi) checked.checked = false
                 }
                 for (let check of response.data.endow) {
                     check.checked = false
@@ -104,32 +111,23 @@ const AddRoom = () => {
             const formData = new FormData()
             formData.append('upload_preset', PRESET_NAME)
             formData.append('folder', FOLDER_NAME)
-            for (const file of selectedFiles) {
-                formData.append('file', file)
-                const res = await axios.post(api, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                })
-                url.push(res.data.url)
-            }
+
             console.log(url)
-            if (url.length === 0) return
             const IDTienNghi = []
             const IDUuDai = []
-            const filteredTienNghi = tienNghi?.filter((item) => item.checked)
+            const filteredTienNghi = tienNghi?.flatMap((item) => {
+                return item.TienNghi.filter((items) => items.checked)
+            })
             const filteredUuDai = uuDai?.filter((item) => item.checked)
             for (const loai of filteredTienNghi) {
-                for (const tiennghi of loai.TienNghi) {
-                    IDTienNghi.push(tiennghi.ID)
-                }
+                IDTienNghi.push(loai.ID)
             }
             for (const ID of filteredUuDai) {
                 IDUuDai.push(ID.ID)
             }
-            console.log(hotel)
-            hotel.IDKhachSan = 1
-            const res = await axios.post('http://localhost:8800/cks/addRoom', {
+            hotel.IDKhachSan = active
+            if (id) hotel.ID = id
+            const res = await axios.post(`http://localhost:8800/cks/room/${id ? 'update' : 'insert'}`, {
                 HinhAnh: url,
                 Room: hotel,
                 tienNghi: IDTienNghi,
@@ -140,7 +138,46 @@ const AddRoom = () => {
             console.log('sai')
         }
     }
+    const [image, setImage] = useState(null)
 
+    // Lấy dữ liệu từ hotel để chỉnh sửa
+    useEffect(() => {
+        if (id !== undefined && data !== null) {
+            axios
+                .get('http://localhost:8800/cks/room/update', { params: { IDKhachSan: active, IDPhong: id } })
+                .then((response) => {
+                    setHotel({
+                        ...response.data.room,
+                    })
+
+                    setImage(response.data.HinhAnh)
+                    setTienNghi((prevTienNghi) =>
+                        prevTienNghi.map((item) => {
+                            item.TienNghi.map((tiennghi) => {
+                                if (response.data.idTienNghi.includes(tiennghi.ID)) {
+                                    tiennghi.checked = true
+                                }
+                                return tienNghi
+                            })
+
+                            return item
+                        }),
+                    )
+                    setUuDai((prevUuDai) =>
+                        prevUuDai.map((item) => {
+                            if (response.data.idUuDai.includes(item.ID)) {
+                                item.checked = true
+                            }
+                            return item
+                        }),
+                    )
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+    }, [data])
+    console.log(tienNghi)
     return (
         <section>
             <div className={`${styles.title} container`}>Đăng ký phòng của bạn với mytour chỉ 2 bước đơn giản</div>
@@ -154,7 +191,7 @@ const AddRoom = () => {
                             <div className={styles.cardBody}>
                                 <ul id="progressbar">
                                     <li className={`check ${selectedSite >= 1 && 'active'}`} id="account"></li>
-                                    <li id="personal" className={`check ${selectedSite >= 2 && 'active'}`}></li>
+                                    <li id="personal" className={`check ${selectedSite === 2 && 'active'}`}></li>
                                     {/* <li id="confirm" className={`check ${selectedSite >= 3 && 'active'}`}></li> */}
                                 </ul>
 
@@ -175,11 +212,12 @@ const AddRoom = () => {
                                                     type="text"
                                                     name="firstName"
                                                     className={`form-control ${styles.formControl} ${
-                                                        hotel.Ten === '' && nextCheck && styles.inputRed
+                                                        hotel.TenLoaiPhong === '' && nextCheck && styles.inputRed
                                                     }`}
+                                                    value={hotel.TenLoaiPhong}
                                                     placeholder="Tên phòng"
                                                     onChange={(e) => {
-                                                        handleChange(e.target.value, 'Ten')
+                                                        handleChange(e.target.value, 'TenLoaiPhong')
                                                     }}
                                                     required=""
                                                 />
@@ -308,7 +346,11 @@ const AddRoom = () => {
                                                         <span>*</span>
                                                     </span>
                                                 </label>
-                                                <AddMultiple handleImagesChange={handleImagesChange} />
+                                                <AddMultiple
+                                                    check={id ? true : false}
+                                                    HinhAnh={image}
+                                                    handleImagesChange={handleImagesChange}
+                                                />
                                             </div>
                                         </div>
                                     </div>

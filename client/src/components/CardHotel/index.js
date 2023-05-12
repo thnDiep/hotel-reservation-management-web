@@ -23,7 +23,7 @@ function CardHotel(props) {
             <Link to={`/hotels/detail/${props.ID}`} className="link"></Link>
 
             <div className={styles.image} style={{ backgroundImage: `url(${props.image})` }}>
-                <HeartButton liked={props.liked} />
+                <HeartButton liked={props.liked} IDKhachSan={props.ID} />
                 {props.percentDiscount !== 0 && (
                     <div className={styles.percentDiscount}>
                         <div className={styles.percent}>

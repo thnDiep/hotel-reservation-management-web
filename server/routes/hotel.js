@@ -16,7 +16,6 @@ const router = express.Router();
 router.get("/search", async (req, res, next) => {
   try {
     const key = req.query.key;
-
     const result = await hotelModel.search(key.place);
     res.json(result);
   } catch (err) {

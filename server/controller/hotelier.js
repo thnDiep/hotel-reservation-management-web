@@ -9,10 +9,8 @@ export const facility = async (req, res, next) => {
     for (let type of types) {
       const n = await facilityModel.getNameOfLoai(type.ID);
       type.TienNghi = n;
-      // console.log(type)
     }
     const useFull = await facilityModel.getThongTinHuuIch();
-    // console.log(types)
     res.json({ types, useFull });
   } catch (err) {
     next(err);
@@ -20,15 +18,12 @@ export const facility = async (req, res, next) => {
 };
 export const facilityRoom = async (req, res, next) => {
   try {
-    console.log("hêloo");
     const types = await facilityModel.getLoaiTienNghiRoom();
     for (let type of types) {
       const n = await facilityModel.getNameOfLoaiPhong(type.ID);
       type.TienNghi = n;
-      // console.log(type)
     }
     const endow = await facilityModel.getUuDai();
-    // console.log(types)
     res.json({ types, endow });
   } catch (err) {
     next(err);
@@ -48,7 +43,7 @@ export const addHotel = async (req, res, next) => {
       hotel.IDDiaDiem = ID;
     }
     const [oldHotel] = await hotelModel.getHotelTrung(hotel.DiaChi);
-    console.log(oldHotel);
+
     if (oldHotel === undefined) {
       const id = await hotelModel.add(hotel);
       for (const ID of req.body.tienNghi) {
@@ -57,9 +52,7 @@ export const addHotel = async (req, res, next) => {
           IDKhachSan: id,
         });
       }
-      console.log(req.body.thongTin);
       for (const ID of req.body.thongTin) {
-        console.log(ID);
         await facilityModel.addThongTinKhachSan({
           IDThongTin: ID.ID,
           IDKhachSan: id,
@@ -72,8 +65,56 @@ export const addHotel = async (req, res, next) => {
           HinhAnh: HinhAnh,
         });
       }
-      // console.log(req.body)
       res.status(200).send("hotel has been created.");
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const updateHotel = async (req, res, next) => {
+  console.log(req.body.tienNghi);
+  try {
+    const hotel = {
+      ...req.body.hotel,
+      soSao: parseInt(req.body.hotel.soSao),
+      GioTraPhong: req.body.hotel.GioTraPhong.value,
+      GioNhanPhong: req.body.hotel.GioNhanPhong.value,
+    };
+
+    const ID = await hotelModel.getIDDiaDiem(hotel.DiaChi);
+    if (ID > 0) {
+      hotel.IDDiaDiem = ID;
+    }
+    const [oldHotel] = await hotelModel.getHotelTrung(hotel.DiaChi);
+    const idKhachSan = req.query.idKhachSan || 5;
+
+    if (oldHotel === undefined || oldHotel.DiaChi === hotel.DiaChi) {
+      await hotelModel.update(hotel);
+      console.log(hotel.ID);
+      for (const ID of req.body.tienNghi) {
+        await facilityModel.updateTIenNghiKhachSan({
+          IDTienNghi: ID,
+          IDKhachSan: hotel.ID,
+        });
+      }
+      // console.log("ádafsđs");
+      for (const ID of req.body.thongTin) {
+        // console.log(ID);
+        await facilityModel.updateThongTinKhachSan({
+          IDThongTin: ID.ID,
+          IDKhachSan: hotel.ID,
+          NoiDung: ID.NoiDung,
+        });
+      }
+      // console.log("ádafsđs");
+      for (const HinhAnh of req.body.HinhAnh) {
+        await hotelModel.addHinhAnhKhachSan({
+          IDKhachSan: hotel.ID,
+          HinhAnh: HinhAnh,
+        });
+      }
+      res.status(200).send("hotel has been inserted.");
     }
   } catch (err) {
     next(err);
@@ -92,17 +133,14 @@ export const addRoom = async (req, res, next) => {
     };
 
     const id = await roomModel.add(room);
-    console.log(id);
+    console.log(req.body.tienNghi);
     for (const ID of req.body.tienNghi) {
       await facilityModel.addTIenNghiPhong({
         IDTienNghi: ID,
         IDPhong: id,
       });
     }
-    console.log(req.body.uuDai);
     for (const ID of req.body.uuDai) {
-      console.log("dsdsdasdasdasda");
-      console.log(ID);
       await facilityModel.addUuDaiPhong({
         IDPhong: id,
         IDUuDai: ID,
@@ -122,36 +160,58 @@ export const addRoom = async (req, res, next) => {
         SoLuongGiuong: req.body.Room.GiuongDoi,
       });
     }
-    const [oldHotel] = await hotelModel.getHotelTrung(hotel.DiaChi);
-    if (oldHotel === undefined) {
-      const id = await hotelModel.add(hotel);
-      for (const ID of req.body.tienNghi) {
-        await facilityModel.addTIenNghiKhachSan({
-          idTienNghi: ID,
-          IDKhachSan: id,
-        });
-      }
-      for (const ID of req.body.thongTin) {
-        await facilityModel.addThongTinKhachSan({
-          idThongTin: ID.ThongTin,
-          IDKhachSan: id,
-          NoiDung: ID.NoiDung,
-        });
-      }
-      for (const HinhAnh of req.body.HinhAnh) {
-        await hotelModel.addHinhAnhKhachSan({
-          IDKhachSan: id,
-          HinhAnh: HinhAnh,
-        });
-      }
-      // console.log(req.body)
-      res.status(200).send("hotel has been created.");
-    }
+
+    res.status(200).send("hotel has been created.");
   } catch (err) {
     next(err);
   }
 };
+export const updateRoom = async (req, res, next) => {
+  try {
+    const room = {
+      ID: req.body.room.ID,
+      TenLoaiPhong: req.body.Room.Ten,
+      IDKhachSan: req.body.Room.IDKhachSan,
+      SoPhongTrong: req.body.Room.SoPhongTrong,
+      SoNguoi: req.body.Room.SoNguoi,
+      DienTich: req.body.Room.DienTich,
+      Gia: req.body.Room.Gia,
+    };
 
+    await roomModel.updateRoom(room);
+    console.log(req.body.tienNghi);
+    for (const ID of req.body.tienNghi) {
+      await facilityModel.updateTIenNghiPhong({
+        IDTienNghi: ID,
+        IDPhong: room.ID,
+      });
+    }
+    for (const ID of req.body.uuDai) {
+      await facilityModel.updateUuDaiPhong({
+        IDPhong: room.ID,
+        IDUuDai: ID,
+      });
+    }
+    if (req.body.Room.GiuongDon > 0) {
+      await hotelModel.updateGiuongPhong({
+        IDPhong: room.ID,
+        IDGiuong: 1,
+        SoLuongGiuong: req.body.Room.GiuongDon,
+      });
+    }
+    if (req.body.Room.GiuongDoi > 0) {
+      await hotelModel.updateGiuongPhong({
+        IDPhong: room.ID,
+        IDGiuong: 2,
+        SoLuongGiuong: req.body.Room.GiuongDoi,
+      });
+    }
+
+    res.status(200).send("hotel has been created.");
+  } catch (err) {
+    next(err);
+  }
+};
 export const order = async (req, res, next) => {
   try {
     const idCKS = req.query.idCKS || 1;

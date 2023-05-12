@@ -4,6 +4,16 @@ export default {
   getAll() {
     return db("khachsan");
   },
+  getHotelByID(id) {
+    return db("khachsan").where("ID", id);
+  },
+  getHotelByIDCKS(id) {
+    return db("khachsan").where("IDChuKhachSan", id);
+  },
+
+  async findById(id) {
+    const list = await db("khachsan").where("ID", id);
+  },
 
   async findById(id) {
     const list = await db("khachsan").where("ID", 8);
@@ -13,6 +23,17 @@ export default {
   },
 
   async findByHotelierId(hotelierID) {
+    const hotels = await db("chukhachsan_khachsan").where(
+      "IDChuKhachSan",
+      hotelierID
+    );
+    if (hotels.length === 0) return null;
+
+    const ids = [];
+    hotels.forEach((hotel) => {
+      ids.push(hotel.IDKhachSan);
+    });
+    return await db("khachsan").whereIn("ID", ids);
     // const ids = []
     // hotels.forEach((hotel) => {
     //   ids.push(hotel.IDKhachSan)
@@ -63,6 +84,9 @@ export default {
     const result = await db("khachsan").insert(khachsan);
     return result[0];
   },
+  update(khachsan) {
+    return db("khachsan").where("ID", khachsan.ID).update(khachsan);
+  },
 
   update(khachsan) {
     return db("khachsan").where("ID", khachsan.ID).update(khachsan);
@@ -73,6 +97,12 @@ export default {
   addGiuongPhong(giuong) {
     return db("giuong_phong").insert(giuong);
   },
+  updateGiuongPhong(giuong) {
+    return db("giuong_phong")
+      .where("IDPhong", giuong.IDPhong)
+      .andWhere("IDGiuong", giuong.IDGiuong)
+      .update(giuong);
+  },
   async getHotelTrung(name) {
     return await db("khachsan").where("DiaChi", name);
   },
@@ -80,5 +110,14 @@ export default {
     const [ID] = await db.raw(`SELECT ID FROM diadiem WHERE 
     '${name}' LIKE CONCAT('%', TenDiaDiem, '%');`);
     return ID[0].ID;
+  },
+  async getImage(id) {
+    return await db("hinhanh_khachsan").where("IDKhachSan", id);
+  },
+  del(id) {
+    return db("khachsan").where("ID", id).del();
+  },
+  delRoom(id) {
+    return db("phong").where("ID", id).del();
   },
 };

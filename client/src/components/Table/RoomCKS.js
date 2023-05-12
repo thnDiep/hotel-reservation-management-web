@@ -5,7 +5,7 @@ import styles from './Table.module.scss'
 import { useState } from 'react'
 import FooterPaging from '../FooterPaging/FooterPaging'
 import Star from '../Star/Star'
-function RoomCKS() {
+function RoomCKS({ rooms, option }) {
     const [allChecked, setAllChecked] = useState(false)
     const [checkboxState, setCheckboxState] = useState({})
 
@@ -27,28 +27,28 @@ function RoomCKS() {
         setAllChecked(Object.keys(checkboxState).every((key) => checkboxState[key]))
     }
 
-    const hotels = [
-        {
-            HoTen: 'Đoàn văn bơ Quận 5',
-            SoNguoi: 2,
-            SoPhongTrong: 3,
-            TienIch: "AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi",
-            DanhGia: 4,
-            Gia: 100,
-            DienTich: 10,
-            TrangThai: 'Active',
-        },
-        {
-            HoTen: 'Đoàn văn bơ Quận 5',
-            SoNguoi: 2,
-            SoPhongTrong: 3,
-            TienIch: "AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi",
-            DanhGia: 4,
-            Gia: 100,
-            DienTich: 10,
-            TrangThai: 'Active',
-        },
-    ]
+    // const rooms = [
+    //     {
+    //         TenLoaiPhong: 'Đoàn văn bơ Quận 5',
+    //         SoNguoi: 2,
+    //         SoPhongTrong: 3,
+    //         TienIch: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
+    //         DanhGia: 4,
+    //         Gia: 100,
+    //         DienTich: 10,
+    //         TrangThai: 'Active',
+    //     },
+    //     {
+    //         TenLoaiPhong: 'Đoàn văn bơ Quận 5',
+    //         SoNguoi: 2,
+    //         SoPhongTrong: 3,
+    //         TienIch: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
+    //         DanhGia: 4,
+    //         Gia: 100,
+    //         DienTich: 10,
+    //         TrangThai: 'Active',
+    //     },
+    // ]
 
     return (
         <div className={styles.tableWrapper}>
@@ -91,7 +91,7 @@ function RoomCKS() {
                     </tr>
                 </thead>
                 <tbody>
-                    {hotels.map((hotel, index) => (
+                    {rooms.map((room, index) => (
                         <tr key={index} className={styles.memberRow}>
                             <td className={styles.center}>
                                 <input
@@ -108,15 +108,15 @@ function RoomCKS() {
                                     <div className={styles.text1}>
                                         <span>{index + 1}</span>
                                         <br />
-                                        <span>{hotel.HoTen}</span>
+                                        <span>{room.TenLoaiPhong}</span>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div className={`${styles.point} ${styles.text}`}>{hotel.SoNguoi}</div>
+                                <div className={`${styles.point} ${styles.text}`}>{room.SoNguoi}</div>
                             </td>
                             <td>
-                                <span className={styles.text2}>{hotel.SoPhongTrong}/10</span>
+                                <span className={styles.text2}>{room.SoPhongTrong}/10</span>
                             </td>
                             <td>
                                 <div className={`${styles.point} d-flex mx-0`}>
@@ -140,27 +140,28 @@ function RoomCKS() {
                                             fill="#F36"
                                         ></path>
                                     </svg>
-                                    <span>{hotel.DanhGia}</span>
+                                    <span>{room.DanhGia}</span>
                                 </div>
                             </td>
                             <td>
-                                <span className={styles.text2}>{hotel.TienIch}</span>
+                                <span className={styles.text2}>{room.TienNghi}</span>
                             </td>
 
                             <td className={styles.center}>
                                 <h3 className={clsx(styles.text1, styles.primary)}>
-                                    {hotel.Gia} <sup>VND</sup>
+                                    {room.Gia} <sup>VND</sup>
                                 </h3>
                             </td>
                             <td>
-                                <span className={styles.text}>{hotel.DienTich} m <sup>2</sup></span>
-
+                                <span className={styles.text}>
+                                    {room.DienTich} m <sup>2</sup>
+                                </span>
                             </td>
                             <td>
                                 <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
                             </td>
                             <td className={styles.last}>
-                                <DropdownOption list={['Chỉnh sửa', 'Xóa', 'vô hiệu hóa']} />
+                                <DropdownOption type={9} idActive={room.ID} list={option} hides={true} />
                             </td>
                         </tr>
                     ))}
