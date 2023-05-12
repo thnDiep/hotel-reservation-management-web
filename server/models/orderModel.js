@@ -5,7 +5,7 @@ export default {
   },
   async getAllInformation() {
     return await db.raw(
-      `SELECT nguoidung.HoTen, khachsan.Ten, phong.TenLoaiPhong, dondatphong.NgayNhanPhong, dondatphong.NgayTraPhong, nguoidung.SoDienThoai, dondatphong.TongTien, dondatphong.TrangThai, dondatphong.MaDatPhong
+      `SELECT nguoidung.HoTen,nguoidung.HinhAnh, khachsan.Ten, phong.TenLoaiPhong, dondatphong.NgayNhanPhong, dondatphong.NgayTraPhong, nguoidung.SoDienThoai, dondatphong.TongTien, dondatphong.TrangThai, dondatphong.MaDatPhong
       FROM dondatphong
       INNER JOIN nguoidung ON dondatphong.IDKhachHang = nguoidung.ID
       INNER JOIN phong_dondatphong ON dondatphong.MaDatPhong = phong_dondatphong.MaDonDatPhong
