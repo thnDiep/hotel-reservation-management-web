@@ -7,11 +7,11 @@ import FooterPaging from '../FooterPaging/FooterPaging'
 import DataContext from '~/contexts/DataContext'
 
 import Star from '../Star/Star'
-function HotelCKSTable() {
+function HotelCKSTable({ option, hotels }) {
     const [allChecked, setAllChecked] = useState(false)
     const [checkboxState, setCheckboxState] = useState({})
     // const hotel1 = useContext(DataContext)
-    // console.log(hotel1)
+    // const hotels = useContext(DataContext)
 
     const handleAllChecked = (event) => {
         const updatedState = {}
@@ -31,25 +31,25 @@ function HotelCKSTable() {
         setAllChecked(Object.keys(checkboxState).every((key) => checkboxState[key]))
     }
 
-    const hotels = [
-        {
-            HoTen: 'Đoàn văn bơ Quận 5',
-            TenPhong: ['deluxe', 'public', 'yeu duong'],
-            DiaChi: '77 Chuyên dùng 9 Phường Phú Mỹ quận 7 TPhCm',
-            TienIch: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-            Sao: 4,
-            TrangThai: 'Active',
-        },
-        {
-            HoTen: 'Hotel A',
-            TenPhong: ['deluxe', 'public', 'yeu duong'],
+    // const hotels = [
+    //     {
+    //         HoTen: 'Đoàn văn bơ Quận 5',
+    //         TenPhong: ['deluxe', 'public', 'yeu duong'],
+    //         DiaChi: '77 Chuyên dùng 9 Phường Phú Mỹ quận 7 TPhCm',
+    //         TienIch: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
+    //         Sao: 4,
+    //         TrangThai: 'Active',
+    //     },
+    //     {
+    //         HoTen: 'Hotel A',
+    //         TenPhong: ['deluxe', 'public', 'yeu duong'],
 
-            DiaChi: '77 Chuyên dùng 9 Phường Phú Mỹ quận 7 TPhCm',
-            TienIch: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-            Sao: 4,
-            TrangThai: 'Active',
-        },
-    ]
+    //         DiaChi: '77 Chuyên dùng 9 Phường Phú Mỹ quận 7 TPhCm',
+    //         TienIch: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
+    //         Sao: 4,
+    //         TrangThai: 'Active',
+    //     },
+    // ]
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={styles.cusTable}>
@@ -86,50 +86,51 @@ function HotelCKSTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {hotels.map((hotel, index) => (
-                        <tr key={index} className={styles.memberRow}>
-                            <td className={styles.center}>
-                                <input
-                                    type="checkbox"
-                                    className={styles.checkBox}
-                                    checked={checkboxState[index]}
-                                    onChange={handleCheckboxChange}
-                                    name={index}
-                                />
-                            </td>
-                            <td className={styles.nameTitle}>
-                                <div className="d-flex-js">
-                                    <img src="https://travl.dexignlab.com/react/demo/static/media/room4.f452c0a5f4a4a74cef98.jpg" />
-                                    <div className={styles.text1}>
-                                        <span>{index + 1}</span>
-                                        <br />
-                                        <span>{hotel.HoTen}</span>
+                    {hotels &&
+                        hotels.hotels.map((hotel, index) => (
+                            <tr key={index} className={`${styles.memberRow} ${styles.tablesFlex}`}>
+                                <td className={styles.center}>
+                                    <input
+                                        type="checkbox"
+                                        className={styles.checkBox}
+                                        checked={checkboxState[index]}
+                                        onChange={handleCheckboxChange}
+                                        name={index}
+                                    />
+                                </td>
+                                <td className={styles.nameTitle}>
+                                    <div className="d-flex">
+                                        <img className={styles.imgLarge} src={hotel.HinhAnh[0].HinhAnh} alt="khoong " />
+                                        <div className={`${styles.text1} ${styles.checkImg}`}>
+                                            <span>{index + 1}</span>
+                                            <br />
+                                            <span className={styles.text1Name}>{hotel.Ten}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div className={styles.text}>{hotel.TenPhong[0]}</div>
-                                <div className={styles.text}>{hotel.TenPhong[1]}</div>
-                            </td>
-                            <td>
-                                <span className={styles.text2}>{hotel.DiaChi}</span>
-                            </td>
-                            <td>
-                                <span className={styles.text2}>{hotel.TienIch}</span>
-                            </td>
-                            <td>
-                                <div>
-                                    <Star number={4} />
-                                </div>
-                            </td>
-                            <td>
-                                <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
-                            </td>
-                            <td className={styles.last}>
-                                <DropdownOption list={['Chỉnh sửa', 'Xóa']} />
-                            </td>
-                        </tr>
-                    ))}
+                                </td>
+                                <td>
+                                    <div className={styles.text}>d</div>
+                                    <div className={styles.text}>s</div>
+                                </td>
+                                <td>
+                                    <span className={`${styles.text2} ${styles.text2Name}`}>{hotel.DiaChi}</span>
+                                </td>
+                                <td>
+                                    <span className={`${styles.text2} ${styles.text2Name}`}>{hotel.tienNghi}</span>
+                                </td>
+                                <td>
+                                    <div>
+                                        <Star number={hotel.soSao} />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
+                                </td>
+                                <td className={styles.last}>
+                                    <DropdownOption type={9} idActive={hotel.ID} list={option} hides={true} />
+                                </td>
+                            </tr>
+                        ))}
                 </tbody>
             </Table>
             <FooterPaging />

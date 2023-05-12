@@ -24,6 +24,7 @@ function DropdownOption({ list, idActive, phoneActive, type, disables, hides }) 
     function handleClick(item, index) {
         if (disables && disables[index]) return
         setShow(!show)
+
         item.handle(idActive, type)
     }
     // show dropdown option
@@ -40,6 +41,7 @@ function DropdownOption({ list, idActive, phoneActive, type, disables, hides }) 
             {show && (
                 <div className={clsx(styles.dropdownMenu)}>
                     {list.map((item, index) => {
+                        // console.log(!hides[index])
                         if (hides && !hides[index]) {
                             if (item.link) {
                                 return (

@@ -18,6 +18,25 @@ export default {
     return db("nguoidung").where("ID", id).del();
   },
 
+  // async getHotelInWishList(ID) {
+  //   const hotels = await db("danhsachyeuthich").where("IDKhachHang", ID);
+  //   if (hotels.length === 0) return null;
+
+  //   const allHotels = {};
+  //   hotels.forEach((hotel) => {
+  //     const item = await db("khachsan").where("ID", hotel.IDKhachSan);
+  //     allHotels.push(item);
+  //   });
+
+  //   return await db("khachsan").where(function () {
+  //     this.whereIn("IDKhachSan", ids).whereNotNull("MaKhuyenMai");
+  //   });
+  //   // .andWhere("TrangThai", 0);
+  // },
+
+  async getWishList1(id) {
+    return await db("danhsachyeuthich").where("IDKhachHang", id);
+  },
   //thêm ks vào danh sách yêu thích
   async addToWishList(data) {
     return db("danhsachyeuthich").insert(data);
@@ -86,7 +105,6 @@ export default {
     orderInfo[0].TenKhachSan = hotelInfo[0].Ten;
     orderInfo[0].TenLoaiPhong = room[0].TenLoaiPhong;
     orderInfo[0].SoNguoi = room[0].SoNguoi;
-    console.log(orderInfo);
     return orderInfo;
   },
 
@@ -124,7 +142,6 @@ export default {
     orderInfo[0].SoDienThoaiKhachHang = user[0].SoDienThoai;
     orderInfo[0].EmailKhachHang = user[0].Email;
 
-    console.log(orderInfo);
     return orderInfo;
   },
 };

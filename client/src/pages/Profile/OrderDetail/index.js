@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faCheckCircle, faMarsDouble, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faCheckCircle, faStar } from '@fortawesome/free-solid-svg-icons'
 import clsx from 'clsx'
 import styles from './OrderDetail.module.scss'
 import moment from 'moment'

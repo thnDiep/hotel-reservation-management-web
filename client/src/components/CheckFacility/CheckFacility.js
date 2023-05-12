@@ -29,9 +29,15 @@ const CheckFacility = (props) => {
     const handleCheckboxChangeTienNghi = (event, index) => {
         const { checked } = event.target
 
-        props.handleChangeTienNghi((prevTienNghi) =>
-            prevTienNghi.map((tienNghi, i) => (i === index ? { ...tienNghi, checked } : tienNghi)),
-        )
+        props.handleChangeTienNghi((prevTienNghi) => {
+            const newTienNghi = prevTienNghi.map((tienNghi, i) => {
+                const newTN = tienNghi.TienNghi.map((check) =>
+                    check.ID === index ? { ...check, checked: checked } : check,
+                )
+                return { ...tienNghi, TienNghi: newTN }
+            })
+            return newTienNghi
+        })
     }
     const handleCheckboxChangeUuDai = (event, index) => {
         const { checked } = event.target
@@ -56,7 +62,7 @@ const CheckFacility = (props) => {
                 Chọn các loại tiện nghi<span>*</span>
             </div>
             {props.tienNghi !== null &&
-                props.tienNghi.map((data) => {
+                props.tienNghi.map((data, index1) => {
                     return (
                         <div key={data.ID}>
                             <div className={styles.chooseTitle1}>{data.TenLoai}</div>
@@ -74,7 +80,9 @@ const CheckFacility = (props) => {
                                                         icon={<span className="iconCheckBox"></span>}
                                                         checkedIcon={<span className="iconCheckBox checked"></span>}
                                                         value={tienNghi.TenTienNghi}
-                                                        onChange={(event) => handleCheckboxChangeTienNghi(event, index)}
+                                                        onChange={(event) =>
+                                                            handleCheckboxChangeTienNghi(event, tienNghi.ID)
+                                                        }
                                                     />
                                                 }
                                             />
@@ -126,6 +134,7 @@ const CheckFacility = (props) => {
                                                 className={styles.input}
                                                 type="number"
                                                 name="name"
+                                                value={data.NoiDung}
                                             />
                                             <span dangerouslySetInnerHTML={{ __html: data.HinhAnh }} />
                                         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Search from '~/components/Search'
 import classes from './Detail.module.scss'
 import {
@@ -54,20 +54,67 @@ import { RecentViews, SliderHotels } from '~/components'
 import notableDes from '~/assets/jsons/notable.json'
 import PictureDetail from './PictureDetail/PictureDetail'
 import Rating from './Rating/Rating'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import Axios from 'axios'
+import DataContext from '~/contexts/DataContext'
 const Detail = () => {
-    const [data, setData] = useState(null)
+    const { data, handleData } = useContext(DataContext)
+    const [similarHotels, setSimilarHotels] = useState([])
+    const { id } = useParams()
+
+    // UI Homepage
     useEffect(() => {
-        Axios.get('http://localhost:8800/hotel/detail', { params: { idKs: 8 } })
+        if (data) {
+            data.hotels.map((hotel) => {
+                const HinhAnh = data.hotelImages.find((item) => item.IDKhachSan === hotel.ID)
+                if (HinhAnh) hotel.HinhAnh = HinhAnh.HinhAnh
+
+                const DiaDiem = data.places.find((item) => item.ID === hotel.IDDiaDiem)
+                if (DiaDiem) hotel.DiaDiem = DiaDiem.TenDiaDiem
+
+                const YeuThich = data.likes.find((item) => item.IDKhachSan === hotel.ID)
+                if (YeuThich) {
+                    hotel.YeuThich = true
+                } else {
+                    hotel.YeuThich = false
+                }
+
+                let SoDanhGia = 0
+                data.rates.map((rate) => {
+                    if (rate.IDKhachSan === hotel.ID) SoDanhGia++
+                })
+                hotel.SoDanhGia = SoDanhGia
+
+                const PhongTieuChuan = data.rooms.find((item) => item.IDKhachSan === hotel.ID)
+                if (PhongTieuChuan) hotel.GiaTieuChuan = PhongTieuChuan.Gia
+
+                if (hotel.GiamGia !== 0 && hotel.TrangThai === 1) {
+                    hotel.GiaSauKhiGiam = hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * hotel.GiamGia
+                }
+
+                if (hotel.IDChuKhachSan === 2 && hotel.TrangThai === 1) {
+                    hotel.type = 'Đối tác độc quyền'
+                }
+            })
+        }
+        console.log('render')
+    }, [data])
+
+    const [hotel, setHotel] = useState(null)
+    useEffect(() => {
+        Axios.get('http://localhost:8800/hotel/detail', { params: { idKs: id } })
             .then((response) => {
-                setData(response.data)
-                console.log(response.data)
+                setHotel(response.data)
+                console.log('chi tiết khách sạn: ', response.data)
+                if (data) {
+                    setSimilarHotels(data.hotels.filter((item) => item.IDDiaDiem === response.data.infor.IDDiaDiem))
+                }
+                window.scrollTo(0, 0)
             })
             .catch((error) => {
                 console.log(error)
             })
-    }, [])
+    }, [id])
     return (
         <React.Fragment>
             <div className={classes.spacing}> </div>
@@ -75,12 +122,12 @@ const Detail = () => {
             {/* <div className={classes.container}>
                 <ImageHotel />
             </div> */}
-            {data && (
+            {hotel && (
                 <>
                     <div className={classes.subContainer}>
-                        <PictureDetail picHotel={data.picHotel} />
+                        <PictureDetail picHotel={hotel.picHotel} />
                     </div>
-                    <PriceDetail infor={data.infor} />
+                    <PriceDetail infor={hotel.infor} />
 
                     <div className={classes.container}>
                         <div className="row">
@@ -136,7 +183,7 @@ const Detail = () => {
                                             <div className={classes.CheckInAndOut}>
                                                 <div>Nhận phòng</div>
                                                 <div className={classes.hourPolicy}>
-                                                    Từ {data.infor.GioNhanPhong}:00
+                                                    Từ {hotel.infor.GioNhanPhong}:00
                                                 </div>
                                             </div>
                                         </div>
@@ -144,7 +191,7 @@ const Detail = () => {
                                             <div className={classes.CheckInAndOut}>
                                                 <div>Trả phòng</div>
                                                 <div className={classes.hourPolicy}>
-                                                    Trước {data.infor.GioTraPhong}:00
+                                                    Trước {hotel.infor.GioTraPhong}:00
                                                 </div>
                                             </div>
                                         </div>
@@ -153,7 +200,7 @@ const Detail = () => {
                                         <div className={classes.regular}>
                                             {/* <span className={classes.regularTitle}>Chính sách chung</span> */}
                                             <div className={classes.regularContent}>
-                                                <div dangerouslySetInnerHTML={{ __html: data.infor.ChinhSach }} />
+                                                <div dangerouslySetInnerHTML={{ __html: hotel.infor.ChinhSach }} />
                                             </div>
                                         </div>
                                     </div>
@@ -255,22 +302,25 @@ const Detail = () => {
                                     <h3>Giới thiệu về khách sạn</h3>
                                 </div>
                                 <p>
-                                    <div dangerouslySetInnerHTML={{ __html: data.infor.GioiThieu }} />
+                                    <div dangerouslySetInnerHTML={{ __html: hotel.infor.GioiThieu }} />
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <RecentViews />
-                    <div className="part">
-                        <div className="part__content">
-                            <h1 className="part__title">Các khách sạn tương tự</h1>
+                    <RecentViews data={data && data.hotels} />
 
-                            <SliderHotels hotels={notableDes} />
+                    {similarHotels && (
+                        <div className="part">
+                            <div className="part__content">
+                                <h1 className="part__title">Các khách sạn tương tự</h1>
+
+                                <SliderHotels hotels={similarHotels} />
+                            </div>
                         </div>
-                    </div>
+                    )}
 
-                    <Rating feedback={data.feedbackHotel} infor={data.infor} />
+                    <Rating feedback={hotel.feedbackHotel} infor={hotel.infor} />
                 </>
             )}
         </React.Fragment>
