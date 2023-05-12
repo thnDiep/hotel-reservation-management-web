@@ -49,7 +49,7 @@ export default function route(app) {
         // thêm tên tiện nghi
         for (const hotel of hotels) {
           const id = await facilityModel.getTienIchKhachSan(hotel.ID);
-          const phongs = await roomModel.getAll(hotel.ID);
+          const phongs = await roomModel.getAllByKhachSan(hotel.ID);
           const image = await hotelModel.getImage(hotel.ID);
           let check = "";
           for (const i of id) {
@@ -74,8 +74,9 @@ export default function route(app) {
 
         res.json({ hotels });
       } else {
-        const idUser = req.query.idUser || 1;
-        const curUser = await authModel.findById(idUser);
+        // console.log("asfasdfadsf");
+        // const idUser = req.query.idUser || 1;
+        // const curUser = await authModel.findById(idUser);
 
         const hotels = await hotelModel.getAll();
         hotels.map(async (hotel) => {
@@ -94,6 +95,7 @@ export default function route(app) {
         const places = await placeModal.getAll();
         const rooms = await roomModel.getAll();
         const promotions = await promotionModel.getAll();
+        console.log("helloo");
 
         res.json({
           hotels,

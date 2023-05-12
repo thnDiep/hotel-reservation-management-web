@@ -1,7 +1,10 @@
 import db from "../utils/db.js";
 
 export default {
-  getAll(id) {
+  getAll() {
+    return db("phong");
+  },
+  getAllByKhachSan(id) {
     return db("phong").where("IDKhachSan", id);
   },
   async add(phong) {
