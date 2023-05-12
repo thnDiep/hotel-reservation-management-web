@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2023 at 05:26 PM
+-- Generation Time: May 12, 2023 at 05:55 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -167,16 +167,17 @@ CREATE TABLE `dondatphong` (
   `SoLuongPhong` int(100) NOT NULL,
   `TongTien` decimal(10,0) NOT NULL,
   `TrangThai` int(11) NOT NULL,
-  `IDKhachHang` int(11) NOT NULL
+  `IDKhachHang` int(11) NOT NULL,
+  `IDPhong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dondatphong`
 --
 
-INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhachHang`) VALUES
-('F23214', '2023-05-12', '2023-05-13', '2023-05-15', 1, '200000', 1, 4),
-('H12121', '2023-05-16', '2023-05-18', '2023-05-21', 2, '20000000', 1, 5);
+INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhachHang`, `IDPhong`) VALUES
+('5743539', '2023-05-02', '2023-05-10', '2023-05-11', 1, '1399000', 1, 4, 1),
+('F23214', '2023-05-12', '2023-05-14', '2023-05-17', 2, '20000000', 1, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -208,6 +209,13 @@ CREATE TABLE `giuong_phong` (
   `IDGiuong` int(11) NOT NULL,
   `SoLuongGiuong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `giuong_phong`
+--
+
+INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
+(1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -398,7 +406,7 @@ INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, 
 (9, 'Sol by Meliá Phú Quốc Resort', 'Đt 975, Đường Bào, Xã Dương Tơ, Thành phố Phú Quốc, Tỉnh Kiên Giang', 30, 5, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/new-world-phu-quoc-resort.html\">New World Ph&uacute; Quốc</a>&nbsp;</strong>l&agrave; khu nghỉ dưỡng tọa lạc b&ecirc;n b&ecirc;n b&atilde;i biển Khem nổi tiếng xinh đẹp, thơ mộng. Resort đạt chuẩn 5 sao quốc tế với thiết kế c&ugrave;ng những dịch vụ tiện nghi v&agrave; b&atilde;i biển ri&ecirc;ng trong xanh. Từ khu nghỉ dưỡng, bạn c&oacute; thể đi tham quan c&aacute;c địa danh của đảo Ph&uacute; Quốc như: C&aacute;p treo (5km), nh&agrave; t&ugrave; Ph&uacute; Quốc (11km),...</p>\n<p><strong>New World Ph&uacute; Quốc</strong>&nbsp;bao gồm 375 căn biệt thự c&oacute; hồ bơi 3 hoặc 4 ph&ograve;ng ngủ d&agrave;nh cho cặp đ&ocirc;i, nh&oacute;m bạn hoặc gia đ&igrave;nh. Trong mỗi căn sẽ chia ra c&aacute;c ph&ograve;ng như ph&ograve;ng ngủ, nh&agrave; bếp, ph&ograve;ng kh&aacute;ch. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c vật dụng cần thiết: TV truyền h&igrave;nh c&aacute;p, tủ lạnh, m&aacute;y pha c&agrave; ph&ecirc;, mấy sấy t&oacute;c,...</p>\n<p><strong>New World Ph&uacute; Quốc</strong>&nbsp;c&ograve;n sở hữu nh&agrave; h&agrave;ng, hồ bơi ngo&agrave;i trời, trung t&acirc;m thể thao v&agrave; một khu vườn với b&agrave;n ghế ngo&agrave;i trời. Qu&yacute; kh&aacute;ch c&oacute; thể tận hưởng kỳ nghỉ dưỡng l&yacute; tượng với việc tắm bồn nước nước hoặc spa. Kh&aacute;ch sạn cung cấp Wifi miễn ph&iacute; khắp khu&ocirc;n vi&ecirc;n.</p>', 1, 34, 'Ưu đãi chớp nhoáng', 14, 12, 8),
 (10, 'Khách Sạn Mường Thanh Holiday Mũi Né', '12 Quang Văn Chuẩn, Phường Phú Thủy, Thành phố Phan Thiết, Tỉnh Bình Thuận', 10, 5, '<div class=\"MuiBox-root jss502\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-root jss506\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss507 jss487\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss508\"><strong><span class=\"MuiBox-root jss509\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss510 jss487\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/khu-nghi-duong-jw-marriott-phu-quoc-emerald-bay.html\" target=\"_blank\" rel=\"noopener\">JW Marriott Ph&uacute; Quốc Emerald Bay</a></strong>&nbsp;l&agrave; khu nghỉ dưỡng đạt ti&ecirc;u chuẩn quốc tế 5 sao, tọa lạc tại bờ biển của khu vực B&atilde;i Khem.</p>\n<p>Khu nghỉ dưỡng c&oacute; tổng cộng tất cả l&agrave; 244 ph&ograve;ng nghỉ được thiết kế độc đ&aacute;o bởi&nbsp;<strong>kiến tr&uacute;c sư nổi tiếng Bill Bensley</strong>&nbsp;dựa tr&ecirc;n &yacute; tưởng kiến tr&uacute;c của đại học Lamarck University. Tất cả c&aacute;c ph&ograve;ng tại đ&acirc;y đều được cung cấp đầy đủ trang bị c&aacute;c tiện nghi cần thiết, hiện đại cao cấp như: m&aacute;y lạnh, tủ lạnh, truyền h&igrave;nh c&aacute;p, mini bar, dụng cụ giặt ủi &aacute;o quần, sofa, b&agrave;n trang điểm, mấy sấy t&oacute;c, ph&ograve;ng tắm ri&ecirc;ng sang trọng c&oacute; bồn tắm ri&ecirc;ng v&agrave; v&ograve;i sen hiện đại.</p>\n<p>Ngo&agrave;i việc an dưỡng, tận hưởng bầu kh&ocirc;ng kh&iacute; trong l&agrave;nh, khi đặt ph&ograve;ng trực tuyến tại&nbsp;<strong>JW Marriott Ph&uacute; Quốc Emerald Bay</strong>, du kh&aacute;ch c&ograve;n c&oacute; thể tận hưởng&nbsp;<strong>c&aacute;c dịch vụ cao cấp</strong>&nbsp;kh&aacute;c. Một số dịch vụ ti&ecirc;u biểu&nbsp;như: spa chăm s&oacute;c sức khỏe v&agrave; sắc đẹp, hồ bơi ngo&agrave;i trời, dịch vụ cho thu&ecirc; xe, c&aacute;c hoạt động giải tr&iacute; dưới nước&hellip; Kh&ocirc;ng dừng lại ở đ&oacute;, khu nghỉ dưỡng c&ograve;n cung cấp đến 3 nh&agrave; h&agrave;ng v&agrave; bar với h&agrave;ng loạt c&aacute;c m&oacute;n hải sản tươi ngon của địa phương v&agrave; quốc tế c&ugrave;ng với</p>', 1, 11, 'Ưu đãi chớp nhoáng', 14, 12, 9),
 (11, 'Khách Sạn Hilton Đà Nẵng', '50, Bạch Đằng,, Phường Hòa Cường Bắc, Quận Hải Châu, Thành phố Đà Nẵng', 20, 3, '<div class=\"MuiBox-root jss502\"><strong><span class=\"MuiBox-root jss503\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 15, 'Ưu đãi chớp nhoáng', 14, 12, 9),
-(12, 'Khách sạn Pao\'s Sapa Leisure', 'Đường Mường Hoa, Phường Sa Pa, Thị xã Sa Pa, Tỉnh Lào Cai', 25, 5, '<div class=\"MuiBox-root jss504 jss476\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 37, 'Vị trí đẹp', 15, 12, 9),
+(12, 'Khách sạn Paos Sapa Leisure', 'Đường Mường Hoa, Phường Sa Pa, Thị xã Sa Pa, Tỉnh Lào Cai', 25, 5, '<div class=\"MuiBox-root jss504 jss476\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 37, 'Vị trí đẹp', 15, 12, 9),
 (13, 'Binh An Village Đà Lạt Resort', 'Hồ Tuyền Lâm, Hồ Tuyền Lâm, Xã Tà Nung, Thành phố Đà Lạt, Tỉnh Lâm Đồng', 12, 4, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 39, 'Vị trí đẹp', 15, 12, 9),
 (14, 'Movenpick Resort Phan Thiết', 'Đường Hòn Giồ, Thuận Qúy , Phường Mũi Né, Thành phố Phan Thiết, Tỉnh Bình Thuận', 35, 4, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/poshanu-resort-phan-thiet.html\">Poshanu Resort</a>&nbsp;</strong>sở hữu một lối đi để ra khu vực b&atilde;i biển ri&ecirc;ng v&agrave; hệ thống những bungalow với diện t&iacute;ch rộng r&atilde;i&nbsp;gi&uacute;p du kh&aacute;ch tận hưởng chuyến đi một c&aacute;ch thoải m&aacute;i v&agrave; trọn vẹn nhất. Đặc biệt, những tiện nghi như&nbsp;<strong>s&agrave;n gỗ, giường 4 cọc v&agrave; quạt trần</strong>&nbsp;được trang bị tại đ&acirc;y đ&atilde; to&aacute;t l&ecirc;n được vẻ độc đ&aacute;o v&agrave; gần gũi với thi&ecirc;n nhi&ecirc;n, tạo n&ecirc;n kh&ocirc;ng gian l&yacute; tưởng cho việc nghỉ dưỡng.</p>\n<p>B&ecirc;n cạnh vẻ truyền thống th&igrave; những vật dụng hiện đại như k&eacute;t an to&agrave;n, v&ograve;i hoa sen, tivi truyền h&igrave;nh c&aacute;p m&agrave;n h&igrave;nh phẳng, minibar,.. cũng c&oacute; trong mỗi Bungalow. Ngo&agrave;i ra, để mang lại sự thuận tiện cho du kh&aacute;ch th&igrave; resort cũng cung cấp &aacute;p cho&agrave;ng tắm v&agrave; d&eacute;p. Kh&ocirc;ng dừng lại ở đ&oacute;, du kh&aacute;ch sẽ được tận hưởng l&agrave;n nước m&aacute;t l&agrave;nh ở trong&nbsp;<strong>bể bơi ngo&agrave;i trời&nbsp;</strong>hoặc vươn m&igrave;nh dưới hơi ấm của mặt trời khi nằm tr&ecirc;n c&acirc;c ghế phơi nắng tại resort.</p>', 1, 11, 'Khách sạn yêu thích', 13, 12, 9),
 (15, 'New World Phú Quốc Resort', 'Bãi Khem, An Thới, Phường An Thới, Thành phố Phú Quốc, Tỉnh Kiên Giang', 13, 4, '<p><strong>Ch&iacute;nh s&aacute;ch chung:</strong></p>\n<div>\n<ul>\n<li>Kh&ocirc;ng cho ph&eacute;p h', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 34, 'Ưu đãi chớp nhoáng', 14, 12, 9),
@@ -598,25 +606,6 @@ INSERT INTO `phong` (`ID`, `TenLoaiPhong`, `IDKhachSan`, `SoPhongTrong`, `SoNguo
 (12, 'Phòng Hướng Sông', 19, 30, 2, 35, 7091607, 1),
 (13, 'Deluxe Twin Ocean View', 20, 47, 2, 46, 2825975, 1),
 (14, 'GRAND DELUXE TWIN BED', 21, 33, 2, 42, 2234286, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `phong_dondatphong`
---
-
-CREATE TABLE `phong_dondatphong` (
-  `IDPhong` int(11) NOT NULL,
-  `MaDonDatPhong` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `phong_dondatphong`
---
-
-INSERT INTO `phong_dondatphong` (`IDPhong`, `MaDonDatPhong`) VALUES
-(1, 'F23214'),
-(2, 'H12121');
 
 -- --------------------------------------------------------
 
@@ -1398,13 +1387,6 @@ ALTER TABLE `phong`
   ADD KEY `Phong_fk0` (`IDKhachSan`);
 
 --
--- Indexes for table `phong_dondatphong`
---
-ALTER TABLE `phong_dondatphong`
-  ADD PRIMARY KEY (`IDPhong`,`MaDonDatPhong`),
-  ADD KEY `Phong_DonDatPhong_fk1` (`MaDonDatPhong`);
-
---
 -- Indexes for table `taikhoanthanhtoan`
 --
 ALTER TABLE `taikhoanthanhtoan`
@@ -1582,12 +1564,6 @@ ALTER TABLE `danhgia`
 ALTER TABLE `khachsan`
   ADD CONSTRAINT `khachsan_ibfk_1` FOREIGN KEY (`IDChuKhachSan`) REFERENCES `nguoidung` (`ID`),
   ADD CONSTRAINT `khachsan_ibfk_2` FOREIGN KEY (`IDDiaDiem`) REFERENCES `diadiem` (`ID`);
-
---
--- Constraints for table `phong`
---
-ALTER TABLE `phong`
-  ADD CONSTRAINT `phong_ibfk_1` FOREIGN KEY (`IDKhachSan`) REFERENCES `khachsan` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

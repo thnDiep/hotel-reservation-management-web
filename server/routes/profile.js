@@ -77,4 +77,26 @@ router.get("/wishlist", async (req, res, next) => {
   }
 });
 
+router.get("/order", async (req, res, next) => {
+  try {
+    const id = req.body.ID || 4;
+    const order = await profileModel.getOrder(id);
+    res.json(order);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/order/detail", async (req, res, next) => {
+  try {
+    const MaDatPhong = req.body.MaDatPhong || 5743539;
+    const result = await profileModel.getOrderByOrderCode(MaDatPhong);
+    console.log("1111");
+    console.log(result);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 export default router;

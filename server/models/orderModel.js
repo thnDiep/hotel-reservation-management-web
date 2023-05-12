@@ -8,8 +8,7 @@ export default {
       `SELECT nguoidung.HoTen,nguoidung.HinhAnh, khachsan.Ten, phong.TenLoaiPhong, dondatphong.NgayNhanPhong, dondatphong.NgayTraPhong, nguoidung.SoDienThoai, dondatphong.TongTien, dondatphong.TrangThai, dondatphong.MaDatPhong
       FROM dondatphong
       INNER JOIN nguoidung ON dondatphong.IDKhachHang = nguoidung.ID
-      INNER JOIN phong_dondatphong ON dondatphong.MaDatPhong = phong_dondatphong.MaDonDatPhong
-      INNER JOIN phong ON phong_dondatphong.IDPhong = phong.ID
+      INNER JOIN phong ON dondatphong.IDPhong = phong.ID
       INNER JOIN khachsan ON phong.IDKhachSan = khachsan.ID;`
     );
   },
