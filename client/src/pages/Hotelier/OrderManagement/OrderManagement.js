@@ -25,7 +25,8 @@ function HotelTable() {
     useEffect(() => {
         Axios.get('http://localhost:8800/cks/order', { params: { idCKS: 1 } })
             .then((response) => {
-                setData(response.data.orders)
+                setData(response.data.orders[0])
+                console.log(response.data.orders[0])
                 setOption([
                     {
                         name: 'Xóa',
@@ -59,6 +60,10 @@ function HotelTable() {
         e.stopPropagation()
         pendingBtnChangeHandler()
     }
+    const numberFormat = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    })
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={styles.cusTable}>
@@ -149,31 +154,44 @@ function HotelTable() {
                                         <div className="d-flex-js">
                                             <img src="https://i.pinimg.com/originals/2e/35/a6/2e35a66dc08e778e1b7fb130c9cc026e.jpg" />
                                             <div className={styles.text1}>
-                                                <span className={styles.codeOrder}>{data.MaDatPhong}</span>
-                                                <h4>Phạm Thị Thanh Thảo</h4>
+                                                <span className={styles.codeOrder}>#{data.MaDatPhong}</span>
+                                                <h4>{data.HoTen}</h4>
                                                 <br />
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <span className={`${styles.text2} text-left`}>Mường Thanh Holiday Mũi Né</span>
+                                        <span className={`${styles.text2} text-left`}>{data.Ten}</span>
                                     </td>
                                     <td>
-                                        <span className={`${styles.text2} text-left`}>Grand Suite</span>
+                                        <span className={`${styles.text2} text-left`}>{data.TenLoaiPhong}</span>
                                     </td>
 
                                     <td>
-                                        <span className={styles.date}>{data.NgayNhanPhong}</span>
+                                        <span className={styles.date}>
+                                            {new Date(data.NgayNhanPhong).toLocaleDateString('en-SG', {
+                                                day: '2-digit',
+                                                month: '2-digit',
+                                                year: 'numeric',
+                                            })}
+                                        </span>
                                     </td>
                                     <td>
-                                        <span className={styles.date}>{data.NgayTraPhong}</span>
+                                        <span className={styles.date}>
+                                            {new Date(data.NgayTraPhong).toLocaleDateString('en-SG', {
+                                                day: '2-digit',
+                                                month: '2-digit',
+                                                year: 'numeric',
+                                            })}
+                                        </span>
                                     </td>
                                     <td>
-                                        <span className={styles.text2}>0342221667</span>
+                                        <span className={styles.text2}>{data.SoDienThoai}</span>
                                     </td>
                                     <td>
                                         <h3 className={clsx(styles.text1, styles.primary)}>
-                                            {data.TongTien} <sup>VND</sup>
+                                            {numberFormat.format(data.TongTien).replace('₫', '')}
+                                            <sup>VND</sup>
                                         </h3>
                                     </td>
                                     <td>
@@ -182,8 +200,8 @@ function HotelTable() {
                                                 className={clsx(
                                                     'btn-1',
                                                     {
-                                                        active: enteredPendingBtn,
-                                                        pending: !enteredPendingBtn,
+                                                        active: enteredPendingBtn && data.TrangThai === 0,
+                                                        pending: !enteredPendingBtn && data.TrangThai === 1,
                                                     },
                                                     styles.statusPending,
                                                     !enteredPendingBtn && styles.statusPending1,

@@ -32,7 +32,11 @@ export default {
   },
 
   async getFeedBackByHotelId(id) {
-    return await db("danhgia").where("IDKhachSan", id);
+    const result = await db.raw(
+      `SELECT * FROM danhgia, nguoidung WHERE danhgia.IDKhachHang = nguoidung.ID and danhgia.IDKhachSan=?`,
+      id
+    );
+    return result[0];
   },
   async getAllImage() {
     return await db("HinhAnh_KhachSan");

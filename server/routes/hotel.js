@@ -1,5 +1,6 @@
 import express from "express";
 import hotelModel from "../models/hotelModel.js";
+import profileModel from "../models/profileModel.js";
 import {
   facility,
   addHotel,
@@ -7,6 +8,7 @@ import {
   facilityRoom,
   order,
 } from "../controller/hotelier.js";
+import feedbackModel from "../models/feedbackModel.js";
 
 const router = express.Router();
 
@@ -43,7 +45,8 @@ router.get("/detail", async (req, res, next) => {
     const feedbackHotel = await hotelModel.getFeedBackByHotelId(idHotel);
     const picHotel = await hotelModel.getPicByHotelId(idHotel);
     const infor = await hotelModel.findById(idHotel);
-    console.log(infor);
+    const score = await feedbackModel.getAvgScore();
+    infor.avgScore = score[0][0]["ROUND(AVG(CAST(Diem AS FLOAT)), 1)"];
     res.json({ infor, picHotel, feedbackHotel });
   } catch (err) {
     next(err);
