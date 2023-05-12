@@ -12,6 +12,7 @@ import rateModal from "../models/rateModal.js"
 import placeModal from "../models/placeModel.js"
 import roomModel from "../models/roomModel.js"
 import promotionModel from "../models/promotionModel.js"
+import profileModel from "../models/profileModel.js"
 
 export default function route(app) {
   app.use("/auth", authRouter)
@@ -55,8 +56,20 @@ export default function route(app) {
       const places = await placeModal.getAll()
       const rooms = await roomModel.getAll()
       const promotions = await promotionModel.getAll()
+      const periods = await promotionModel.getPeriods()
+      const likes = await profileModel.getWishList(idUser)
 
-      res.json({ hotels, users, rates, hotelImages, places, rooms, promotions })
+      res.json({
+        hotels,
+        users,
+        rates,
+        hotelImages,
+        places,
+        rooms,
+        promotions,
+        periods,
+        likes,
+      })
     } catch (err) {
       next(err)
     }

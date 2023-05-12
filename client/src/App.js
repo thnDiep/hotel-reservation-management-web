@@ -7,9 +7,12 @@ import Axios from 'axios'
 
 function App() {
     const [data, setData] = useState()
+    const handleData = (data) => {
+        setData(data)
+    }
 
     useEffect(() => {
-        Axios.get('http://localhost:8800', { params: { idUser: 1 } }) //
+        Axios.get('http://localhost:8800', { params: { idUser: 5 } }) //
             .then((response) => {
                 console.log(response.data)
                 setData(response.data)
@@ -22,7 +25,7 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <DataContext.Provider value={data}>
+                <DataContext.Provider value={{ data, handleData }}>
                     <Routes>
                         {publicRoutes.map((route, index) => {
                             let Layout = DefaultLayout

@@ -17,50 +17,98 @@ function SliderHotels(props) {
     return (
         <Slider {...settings} className="home">
             <div className="part__hotels">
-                {props.hotels.slice(0, 4).map((des, index) => (
-                    <CardHotel
-                        key={index}
-                        ID={des.ID}
-                        image={des.HinhAnh}
-                        name={des.Ten}
-                        percentDiscount={des.GiamGia}
-                        promotion={[des.Nhan]}
-                        rate={des.soSao}
-                        liked={true}
-                        type={des.type}
-                        numberFeedback={des.SoDanhGia}
-                        place={des.DiaDiem}
-                        point={des.DanhGia}
-                        oldPrice={des.GiaTieuChuan}
-                        curPrice={des.GiaSauKhiGiam}
-                        // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
-                        // memberDiscount={19}
-                    />
-                ))}
+                {props.hotels.slice(0, 4).map((des, index) => {
+                    if (des.GiamGia !== 0) {
+                        return (
+                            <CardHotel
+                                key={index}
+                                ID={des.ID}
+                                image={des.HinhAnh}
+                                name={des.Ten}
+                                percentDiscount={des.GiamGia}
+                                promotion={[des.Nhan]}
+                                rate={des.soSao}
+                                liked={des.YeuThich}
+                                type={des.type}
+                                numberFeedback={des.SoDanhGia}
+                                place={des.DiaDiem}
+                                point={des.DanhGia}
+                                oldPrice={des.GiaTieuChuan}
+                                curPrice={des.GiaSauKhiGiam}
+                                // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                // memberDiscount={19}
+                            />
+                        )
+                    } else {
+                        return (
+                            <CardHotel
+                                key={index}
+                                ID={des.ID}
+                                image={des.HinhAnh}
+                                name={des.Ten}
+                                percentDiscount={des.GiamGia}
+                                promotion={[des.Nhan]}
+                                rate={des.soSao}
+                                liked={des.YeuThich}
+                                type={des.type}
+                                numberFeedback={des.SoDanhGia}
+                                place={des.DiaDiem}
+                                point={des.DanhGia}
+                                curPrice={des.GiaTieuChuan}
+                                // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                // memberDiscount={19}
+                            />
+                        )
+                    }
+                })}
             </div>
 
             {props.hotels[4] && (
                 <div className="part__hotels">
-                    {props.hotels.slice(4, 8).map((des, index) => (
-                        <CardHotel
-                            key={index}
-                            ID={des.ID}
-                            image={des.HinhAnh}
-                            name={des.Ten}
-                            percentDiscount={des.GiamGia}
-                            promotion={[des.Nhan]}
-                            rate={des.soSao}
-                            liked={true}
-                            type={des.type}
-                            numberFeedback={des.SoDanhGia}
-                            place={des.DiaDiem}
-                            point={des.DanhGia}
-                            oldPrice={des.GiaTieuChuan}
-                            curPrice={des.GiaSauKhiGiam}
-                            // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
-                            // memberDiscount={19}
-                        />
-                    ))}
+                    {props.hotels.slice(4, 8).map((des, index) => {
+                        if (des.GiamGia !== 0) {
+                            return (
+                                <CardHotel
+                                    key={index}
+                                    ID={des.ID}
+                                    image={des.HinhAnh}
+                                    name={des.Ten}
+                                    percentDiscount={des.GiamGia}
+                                    promotion={[des.Nhan]}
+                                    rate={des.soSao}
+                                    liked={des.YeuThich}
+                                    type={des.type}
+                                    numberFeedback={des.SoDanhGia}
+                                    place={des.DiaDiem}
+                                    point={des.DanhGia}
+                                    oldPrice={des.GiaTieuChuan}
+                                    curPrice={des.GiaSauKhiGiam}
+                                    // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                    // memberDiscount={19}
+                                />
+                            )
+                        } else {
+                            return (
+                                <CardHotel
+                                    key={index}
+                                    ID={des.ID}
+                                    image={des.HinhAnh}
+                                    name={des.Ten}
+                                    percentDiscount={des.GiamGia}
+                                    promotion={[des.Nhan]}
+                                    rate={des.soSao}
+                                    liked={des.YeuThich}
+                                    type={des.type}
+                                    numberFeedback={des.SoDanhGia}
+                                    place={des.DiaDiem}
+                                    point={des.DanhGia}
+                                    curPrice={des.GiaTieuChuan}
+                                    // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                    // memberDiscount={19}
+                                />
+                            )
+                        }
+                    })}
                 </div>
             )}
         </Slider>

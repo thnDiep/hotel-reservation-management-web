@@ -13,15 +13,17 @@ import { Vouchers, ConditionModal, Banner } from './components'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Home() {
-    const data = useContext(DataContext)
-    const navigate = useNavigate()
-    // const [hotels, setHotels] = useState()
-    const [shockPrices, setShockPrices] = useState([])
-    const [vinPearls, setVinPearls] = useState([])
-    const [trendings, setTrendings] = useState([])
+    const { data, handleData } = useContext(DataContext)
+    const [shockPriceHotels, setShockPriceHotels] = useState([])
+    const [vinPearlHotels, setVinPearlHotels] = useState([])
+    const [trendingHotels, setTrendingHotels] = useState([])
+    const [flashSaleHotels, setFlashSaleHotels] = useState([])
+    const [vouchers, setVouchers] = useState([])
+
     const intervalRef = useRef()
     const vidRef = useRef()
     const today = useRef(new Date())
+
     const periodFlashSale = useRef([
         {
             start: new Date(new Date().setHours(9, 0, 0, 0)),
@@ -44,7 +46,6 @@ function Home() {
             end: new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(16, 0, 0, 0)),
         },
     ])
-
     const [indexPeriod, setIndexPeriod] = useState(() => {
         let lastIndex = -1
         periodFlashSale.current.map((period, index) => {
@@ -67,7 +68,6 @@ function Home() {
         }
     })
     const [indexShockPrice, setIndexShockPrice] = useState(0)
-    const [showConditionModal, setShowConditionModal] = useState(false) // Modal Điều kiện & thể lệ chương trình
 
     // Count down
     useEffect(() => {
@@ -84,10 +84,49 @@ function Home() {
         }
     }, [timeLeft])
 
+    // UI Homepage
     useEffect(() => {
         if (data) {
-            const shockPrices = []
-            const vinPearls = []
+            const shockPriceHotels = []
+            const vinPearlHotels = []
+            const flashSaleHotels = []
+            const vouchers = data.promotions.filter((item) => item.MaKhuyenMai !== null)
+            const flashSales = data.promotions.filter((item) => item.MaKhuyenMai === null)
+
+            flashSales.map((flashSale) => {
+                const BatDau = new Date(flashSale.BatDau)
+                flashSale.BatDau = BatDau
+                const KetThuc = new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(23, 59, 59, 0))
+                flashSale.KetThuc = KetThuc
+                const now = new Date()
+
+                // console.log('Bat dau: ', moment(BatDau).format('DD/MM/YYYY HH:mm:ss'))
+                // console.log('Ket thuc: ', moment(KetThuc).format('DD/MM/YYYY HH:mm:ss'))
+                // console.log('Hien Tai: ', moment(now).format('DD/MM/YYYY HH:mm:ss'))
+                // if (flashSale.KetThuc) {
+                //     KetThuc = new Date(flashSale.KetThuc)
+                //     flashSale.KetThuc = KetThuc
+                // } else {
+                //     KetThuc = new Date()
+                // }
+
+                const period = data.periods.find((key) => key.ID === flashSale.IDKhungGio)
+                const start = period.GioBatDau.toString()
+                const end = period.GioKetThuc.toString()
+
+                flashSale.GioBatDau = start.slice(0, 5)
+                flashSale.GioKetThuc = end.slice(0, 5)
+
+                // Chỉ lấy những FlashSale đang diễn ra
+                if (now >= BatDau && now <= KetThuc) {
+                    const stringTime = now.toTimeString()
+                    const nowTime = stringTime.slice(0, 8)
+                    if (nowTime >= start && nowTime <= end) {
+                        flashSale.TrangThai = 1
+                        flashSaleHotels.push(data.hotels.find((key) => key.ID === flashSale.IDKhachSan))
+                    }
+                }
+            })
 
             data.hotels.map((hotel) => {
                 const HinhAnh = data.hotelImages.find((item) => item.IDKhachSan === hotel.ID)
@@ -95,6 +134,13 @@ function Home() {
 
                 const DiaDiem = data.places.find((item) => item.ID === hotel.IDDiaDiem)
                 if (DiaDiem) hotel.DiaDiem = DiaDiem.TenDiaDiem
+
+                const YeuThich = data.likes.find((item) => item.IDKhachSan === hotel.ID)
+                if (YeuThich) {
+                    hotel.YeuThich = true
+                } else {
+                    hotel.YeuThich = false
+                }
 
                 let SoDanhGia = 0
                 data.rates.map((rate) => {
@@ -107,22 +153,28 @@ function Home() {
 
                 if (hotel.GiamGia !== 0 && hotel.TrangThai === 1) {
                     hotel.GiaSauKhiGiam = hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * hotel.GiamGia
-                    shockPrices.push(hotel)
+                    shockPriceHotels.push(hotel)
                 }
 
                 if (hotel.IDChuKhachSan === 2 && hotel.TrangThai === 1) {
                     hotel.type = 'Đối tác độc quyền'
-                    vinPearls.push(hotel) // VinPearl có ID là 2
+                    vinPearlHotels.push(hotel) // VinPearl có ID là 2
                 }
             })
 
-            const trendings = data.hotels.sort((a, b) => {
+            const trendingHotels = data.hotels.sort((a, b) => {
                 return b.DanhGia - a.DanhGia
             })
 
-            setShockPrices(shockPrices)
-            setVinPearls(vinPearls)
-            setTrendings(trendings)
+            trendingHotels.filter((item) => item.TrangThai === 1)
+
+            // console.log(vinPearls)
+
+            setShockPriceHotels(shockPriceHotels)
+            setVinPearlHotels(vinPearlHotels)
+            setTrendingHotels(trendingHotels)
+            setVouchers(vouchers)
+            setFlashSaleHotels(flashSaleHotels)
         }
     }, [data])
 
@@ -162,11 +214,12 @@ function Home() {
 
                 <p>Đăng nhập để nhận thêm ưu đãi 15% khi đặt phòng khách sạn, vé máy bay</p>
 
-                <ButtonPrimary className="btnIntroduction">Đăng nhập/Đăng ký</ButtonPrimary>
+                <Link to={'/login'}>
+                    <ButtonPrimary className="btnIntroduction">Đăng nhập/Đăng ký</ButtonPrimary>
+                </Link>
             </div>
 
-            <Vouchers onClick={() => setShowConditionModal(true)} />
-            <ConditionModal show={showConditionModal} onHide={() => setShowConditionModal(false)} />
+            <Vouchers data={vouchers} />
 
             {/* FlashSale */}
             <div className={clsx(styles.flashSale, 'part')}>
@@ -229,7 +282,7 @@ function Home() {
                         </div>
                     </div>
 
-                    <SliderHotels hotels={notableDes} />
+                    <SliderHotels hotels={flashSaleHotels} />
 
                     {/* <div className="part__footer">
                         <ButtonPrimary className="btnSeeMore-m">Xem thêm</ButtonPrimary>
@@ -245,7 +298,7 @@ function Home() {
                         Các khách sạn được tìm kiếm & đặt nhiều nhất do My Travel đề xuất
                     </h6>
 
-                    <SliderHotels hotels={trendings} />
+                    <SliderHotels hotels={trendingHotels} />
                 </div>
             </div>
 
@@ -274,26 +327,49 @@ function Home() {
                     </div>
 
                     <div className="part__hotels">
-                        {shockPrices &&
-                            shockPrices.slice(0, 8).map((hotel, index) => (
-                                <CardHotel
-                                    key={hotel.ID}
-                                    ID={hotel.ID}
-                                    image={hotel.HinhAnh}
-                                    name={hotel.Ten}
-                                    percentDiscount={hotel.GiamGia}
-                                    promotion={[hotel.Nhan]}
-                                    rate={hotel.soSao}
-                                    liked={true}
-                                    type={hotel.type}
-                                    numberFeedback={hotel.SoDanhGia}
-                                    place={hotel.DiaDiem}
-                                    point={hotel.DanhGia}
-                                    oldPrice={hotel.GiaTieuChuan}
-                                    curPrice={hotel.GiaSauKhiGiam}
-                                    // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
-                                />
-                            ))}
+                        {shockPriceHotels &&
+                            shockPriceHotels.slice(0, 8).map((hotel, index) => {
+                                if (hotel.GiamGia !== 0) {
+                                    return (
+                                        <CardHotel
+                                            key={hotel.ID}
+                                            ID={hotel.ID}
+                                            image={hotel.HinhAnh}
+                                            name={hotel.Ten}
+                                            percentDiscount={hotel.GiamGia}
+                                            promotion={[hotel.Nhan]}
+                                            rate={hotel.soSao}
+                                            liked={hotel.YeuThich}
+                                            type={hotel.type}
+                                            numberFeedback={hotel.SoDanhGia}
+                                            place={hotel.DiaDiem}
+                                            point={hotel.DanhGia}
+                                            oldPrice={hotel.GiaTieuChuan}
+                                            curPrice={hotel.GiaSauKhiGiam}
+                                            // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                        />
+                                    )
+                                } else {
+                                    return (
+                                        <CardHotel
+                                            key={hotel.ID}
+                                            ID={hotel.ID}
+                                            image={hotel.HinhAnh}
+                                            name={hotel.Ten}
+                                            percentDiscount={hotel.GiamGia}
+                                            promotion={[hotel.Nhan]}
+                                            rate={hotel.soSao}
+                                            liked={hotel.YeuThich}
+                                            type={hotel.type}
+                                            numberFeedback={hotel.SoDanhGia}
+                                            place={hotel.DiaDiem}
+                                            point={hotel.DanhGia}
+                                            curPrice={hotel.GiaTieuChuan}
+                                            // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                        />
+                                    )
+                                }
+                            })}
                         {/* {notableDes.slice(0, 4).map((des, index) => (
                             <CardHotel
                                 key={index}
@@ -333,41 +409,82 @@ function Home() {
 
                     <Slider {...settings} className="home">
                         <div className={styles.hotels}>
-                            {vinPearls.slice(0, 4).map((des, index) => (
-                                <CardVinpearl
-                                    ID={des.ID}
-                                    key={index}
-                                    image={des.HinhAnh}
-                                    name={des.Ten}
-                                    percentDiscount={des.GiamGia}
-                                    promotion={[des.Nhan]}
-                                    rate={des.soSao}
-                                    type={des.type}
-                                    numberFeedback={des.SoDanhGia}
-                                    point={des.DanhGia}
-                                    oldPrice={des.GiaTieuChuan}
-                                    curPrice={des.GiaSauKhiGiam}
-                                />
-                            ))}
+                            {vinPearlHotels.slice(0, 4).map((des, index) => {
+                                if (des.GiamGia !== 0) {
+                                    return (
+                                        <CardVinpearl
+                                            ID={des.ID}
+                                            key={index}
+                                            image={des.HinhAnh}
+                                            name={des.Ten}
+                                            percentDiscount={des.GiamGia}
+                                            promotion={[des.Nhan]}
+                                            rate={des.soSao}
+                                            type={des.type}
+                                            numberFeedback={des.SoDanhGia}
+                                            point={des.DanhGia}
+                                            oldPrice={des.GiaTieuChuan}
+                                            curPrice={des.GiaSauKhiGiam}
+                                        />
+                                    )
+                                } else {
+                                    return (
+                                        <CardVinpearl
+                                            ID={des.ID}
+                                            key={index}
+                                            image={des.HinhAnh}
+                                            name={des.Ten}
+                                            percentDiscount={des.GiamGia}
+                                            promotion={[des.Nhan]}
+                                            rate={des.soSao}
+                                            type={des.type}
+                                            numberFeedback={des.SoDanhGia}
+                                            point={des.DanhGia}
+                                            curPrice={des.GiaTieuChuan}
+                                        />
+                                    )
+                                }
+                            })}
                         </div>
 
-                        {vinPearls[4] && (
+                        {vinPearlHotels[4] && (
                             <div className={styles.hotels}>
-                                {vinPearls.slice(4, 8).map((des, index) => (
-                                    <CardVinpearl
-                                        key={index}
-                                        image={des.HinhAnh}
-                                        name={des.Ten}
-                                        percentDiscount={des.GiamGia}
-                                        promotion={[des.Nhan]}
-                                        rate={des.soSao}
-                                        type={des.type}
-                                        numberFeedback={des.SoDanhGia}
-                                        point={des.DanhGia}
-                                        oldPrice={des.GiaTieuChuan}
-                                        curPrice={des.GiaSauKhiGiam}
-                                    />
-                                ))}
+                                {vinPearlHotels.slice(4, 8).map((des, index) => {
+                                    if (des.GiamGia !== 0) {
+                                        return (
+                                            <CardVinpearl
+                                                ID={des.ID}
+                                                key={index}
+                                                image={des.HinhAnh}
+                                                name={des.Ten}
+                                                percentDiscount={des.GiamGia}
+                                                promotion={[des.Nhan]}
+                                                rate={des.soSao}
+                                                type={des.type}
+                                                numberFeedback={des.SoDanhGia}
+                                                point={des.DanhGia}
+                                                oldPrice={des.GiaTieuChuan}
+                                                curPrice={des.GiaSauKhiGiam}
+                                            />
+                                        )
+                                    } else {
+                                        return (
+                                            <CardVinpearl
+                                                ID={des.ID}
+                                                key={index}
+                                                image={des.HinhAnh}
+                                                name={des.Ten}
+                                                percentDiscount={des.GiamGia}
+                                                promotion={[des.Nhan]}
+                                                rate={des.soSao}
+                                                type={des.type}
+                                                numberFeedback={des.SoDanhGia}
+                                                point={des.DanhGia}
+                                                curPrice={des.GiaTieuChuan}
+                                            />
+                                        )
+                                    }
+                                })}
                             </div>
                         )}
 
@@ -394,7 +511,7 @@ function Home() {
             </div>
 
             {/* Xem gần đây */}
-            <RecentViews />
+            <RecentViews data={data && data.hotels} />
 
             {/* Điểm đến yêu thích */}
             <div className={clsx(styles.favoriteDestination, 'part')}>

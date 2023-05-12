@@ -33,6 +33,10 @@ export default {
   //   });
   //   // .andWhere("TrangThai", 0);
   // },
+
+  async getWishList(id) {
+    return await db("danhsachyeuthich").where("IDKhachHang", id)
+  },
   //thêm ks vào danh sách yêu thích
   async addToWishList(data) {
     return db("danhsachyeuthich").insert(data)
