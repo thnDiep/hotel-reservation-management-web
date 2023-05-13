@@ -23,6 +23,7 @@ import { AddPromotion, ManagePromotion } from '~/pages/Hotelier'
 import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
 
 import CheckOrder from '~/pages/CheckOrder/CheckOrder'
+import NotFound from '~/pages/NotFound'
 export const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
     { path: '/detail', component: Detail },
@@ -74,4 +75,6 @@ export const publicRoutes = [
     { path: '/admin/account/blocked', component: BlockedAccount, layout: ManageLayout },
     { path: '/admin/account/active', component: ActiveAccount, layout: ManageLayout },
     { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
+
+    { path: '/*', component: NotFound, layout: null },
 ]
