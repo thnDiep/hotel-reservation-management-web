@@ -23,7 +23,7 @@ router.get("/insert", async (req, res, next) => {
   try {
     const idCKS = req.query.idCKS || 2
 
-    const hotels = await hotelModel.findByHotelierId(idCKS)
+    const hotels = await hotelModel.getHotelByIDCKS(idCKS)
     const periods = await promotionModel.getPeriods()
 
     res.json({ hotels, periods })
@@ -37,9 +37,9 @@ router.post("/insert", async (req, res, next) => {
   try {
     const khuyenmai = req.body.khuyenmai
 
-    await promotionModel.add(khuyenmai)
+    const result = await promotionModel.add(khuyenmai)
 
-    res.json(khuyenmai)
+    res.json(result)
   } catch (err) {
     next(err)
   }
@@ -63,7 +63,7 @@ router.get("/del", async (req, res, next) => {
 // Chỉnh sửa khuyến mãi
 router.get("/update", async (req, res, next) => {
   try {
-    const idCKS = req.query.idCKS || 2
+    // const idCKS = req.query.idCKS || 2
     const idPromotion = req.query.idPromotion || 1
 
     // const hotels = await hotelModel.findByHotelierId(idCKS)

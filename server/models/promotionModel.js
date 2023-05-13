@@ -25,8 +25,9 @@ export default {
     return await db("khuyenmai").whereIn("IDKhachSan", ids)
   },
 
-  add(promotion) {
-    return db("khuyenmai").insert(promotion)
+  async add(promotion) {
+    const result = await db("khuyenmai").insert(promotion)
+    return result[0]
   },
 
   del(id) {
