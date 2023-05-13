@@ -161,5 +161,21 @@ router.get("/hotel/stop", async (req, res, next) => {
     next(err);
   }
 });
+router.get("/room/stop", async (req, res, next) => {
+  try {
+    const IDPhong = req.query.IDPhong;
+    const TrangThai = req.query.TrangThai;
+    console.log(IDPhong);
+    if (IDPhong) {
+      await hotelModel.updateTrangThai(IDPhong, TrangThai);
+      if (TrangThai === 2) res.status(200).send("Tạm ngưng thành công.");
+      else res.status(200).send("Tiếp tục hoạt động thành công.");
+    } else {
+      next(res.status(400).send("Bạn phải xóa phòng trước khi xóa khách sạn"));
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default router;

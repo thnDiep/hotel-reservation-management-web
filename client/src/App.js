@@ -11,7 +11,7 @@ function App() {
         setData(data)
     }
     useEffect(() => {
-        Axios.get('http://localhost:8800', { params: { idUser: 11 } }) //
+        Axios.get('http://localhost:8800', { params: { idUser: 9 } }) //
             .then((response) => {
                 console.log(response.data)
                 setData(response.data)

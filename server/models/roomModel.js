@@ -75,4 +75,8 @@ export default {
   delRoom(id) {
     return db("phong").where("ID", id).del();
   },
+
+  updateTrangThai(id, trangthai) {
+    return db("phong").where("ID", id).update({ TrangThai: trangthai });
+  },
 };
