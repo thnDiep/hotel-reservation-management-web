@@ -89,46 +89,7 @@ function Home() {
         if (data) {
             const shockPriceHotels = []
             const vinPearlHotels = []
-            const flashSaleHotels = []
             const vouchers = data.promotions.filter((item) => item.MaKhuyenMai !== null)
-            const flashSales = data.promotions.filter((item) => item.MaKhuyenMai === null)
-
-            flashSales.map((flashSale) => {
-                const BatDau = new Date(flashSale.BatDau)
-                flashSale.BatDau = BatDau
-                const KetThuc = new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000).setHours(23, 59, 59, 0))
-                flashSale.KetThuc = KetThuc
-                const now = new Date()
-
-                // console.log('Bat dau: ', moment(BatDau).format('DD/MM/YYYY HH:mm:ss'))
-                // console.log('Ket thuc: ', moment(KetThuc).format('DD/MM/YYYY HH:mm:ss'))
-                // console.log('Hien Tai: ', moment(now).format('DD/MM/YYYY HH:mm:ss'))
-                // if (flashSale.KetThuc) {
-                //     KetThuc = new Date(flashSale.KetThuc)
-                //     flashSale.KetThuc = KetThuc
-                // } else {
-                //     KetThuc = new Date()
-                // }
-
-                const period = data.periods.find((key) => key.ID === flashSale.IDKhungGio)
-                const start = period.GioBatDau.toString()
-                const end = period.GioKetThuc.toString()
-
-                flashSale.GioBatDau = start.slice(0, 5)
-                flashSale.GioKetThuc = end.slice(0, 5)
-
-                // Chỉ lấy những FlashSale đang diễn ra
-                if (now >= BatDau && now <= KetThuc) {
-                    const stringTime = now.toTimeString()
-                    const nowTime = stringTime.slice(0, 8)
-                    if (nowTime >= start && nowTime <= end) {
-                        flashSale.TrangThai = 1
-                        const hotel = data.hotels.find((key) => key.ID === flashSale.IDKhachSan)
-                        console.log(hotel)
-                        // flashSaleHotels.push()
-                    }
-                }
-            })
 
             data.hotels.map((hotel) => {
                 const HinhAnh = data.hotelImages.find((item) => item.IDKhachSan === hotel.ID)
@@ -162,6 +123,12 @@ function Home() {
                     hotel.type = 'Đối tác độc quyền'
                     vinPearlHotels.push(hotel) // VinPearl có ID là 2
                 }
+
+                for (const voucher of vouchers) {
+                    if (voucher.IDKhachSan === hotel.ID) {
+                        hotel.voucher = voucher
+                    }
+                }
             })
 
             const trendingHotels = data.hotels.sort((a, b) => {
@@ -170,15 +137,72 @@ function Home() {
 
             trendingHotels.filter((item) => item.TrangThai === 1)
 
-            // console.log(vinPearls)
-
             setShockPriceHotels(shockPriceHotels)
             setVinPearlHotels(vinPearlHotels)
             setTrendingHotels(trendingHotels)
             setVouchers(vouchers)
-            setFlashSaleHotels(flashSaleHotels)
+            // setFlashSaleHotels(flashSaleHotels)
         }
     }, [data])
+
+    useEffect(() => {
+        if (data) {
+            const flashSales = data.promotions.filter((item) => item.MaKhuyenMai === null)
+            const today = new Date()
+            today.setHours(0, 0, 0, 0)
+            const tomorrow = new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000))
+            tomorrow.setHours(0, 0, 0, 0)
+
+            const flashSaleHotels = []
+
+            flashSales.map((flashSale) => {
+                const period = data.periods.find((key) => key.ID === flashSale.IDKhungGio)
+
+                flashSale.GioBatDau = period.GioBatDau.toString().slice(0, 5)
+                flashSale.GioKetThuc = period.GioKetThuc.toString().slice(0, 5)
+
+                // Ngày bắt đầu
+                let BatDau = new Date(flashSale.BatDau)
+                flashSale.BatDau = new Date(BatDau.getFullYear(), BatDau.getMonth(), BatDau.getDate())
+
+                // Nếu không có ngày kết thúc -> là cuối ngày mai
+                let KetThuc = new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000))
+                // Nếu có ngày kết thúc -> Ngày kết thúc
+                if (flashSale.KetThuc) {
+                    KetThuc = new Date(flashSale.KetThuc)
+                }
+                flashSale.KetThuc = new Date(KetThuc.getFullYear(), KetThuc.getMonth(), KetThuc.getDate())
+
+                const start = periodFlashSale.current[indexPeriod.active].start
+                const end = periodFlashSale.current[indexPeriod.active].end
+
+                const activeDate = new Date(start.getFullYear(), start.getMonth(), start.getDate())
+                const activeStart = start.toTimeString().slice(0, 5)
+                const activeEnd = end.toTimeString().slice(0, 5)
+
+                if (activeDate >= flashSale.BatDau && activeDate <= flashSale.KetThuc) {
+                    if (activeStart === flashSale.GioBatDau) {
+                        let hotel = data.hotels.find((key) => key.ID === flashSale.IDKhachSan)
+                        if (hotel.TrangThai === 1) {
+                            if (hotel.GiamGia !== 0) {
+                                hotel.GiaSauKhiGiam = Math.round(
+                                    hotel.GiaTieuChuan -
+                                        (hotel.GiaTieuChuan / 100) * hotel.GiamGia -
+                                        (hotel.GiaTieuChuan / 100) * flashSale.PhanTramKM,
+                                )
+                            } else {
+                                hotel.GiaSauKhiGiam = Math.round(
+                                    hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * flashSale.PhanTramKM,
+                                )
+                            }
+                            flashSaleHotels.push(hotel)
+                        }
+                    }
+                }
+            })
+            setFlashSaleHotels(flashSaleHotels)
+        }
+    }, [data, indexPeriod])
 
     function handleChooseShockPricePlace(index) {
         setIndexShockPrice(index)
@@ -348,7 +372,7 @@ function Home() {
                                             point={hotel.DanhGia}
                                             oldPrice={hotel.GiaTieuChuan}
                                             curPrice={hotel.GiaSauKhiGiam}
-                                            // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                            voucher={hotel.voucher}
                                         />
                                     )
                                 } else {
@@ -367,26 +391,11 @@ function Home() {
                                             place={hotel.DiaDiem}
                                             point={hotel.DanhGia}
                                             curPrice={hotel.GiaTieuChuan}
-                                            // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
+                                            voucher={hotel.voucher}
                                         />
                                     )
                                 }
                             })}
-                        {/* {notableDes.slice(0, 4).map((des, index) => (
-                            <CardHotel
-                                key={index}
-                                image={des.image}
-                                name="Khách sạn Quốc Vinh"
-                                rate={3}
-                                type="Khu nghỉ dưỡng"
-                                numberFeedback={123}
-                                place={notableDes[indexShockPrice].name}
-                                point={8.5}
-                                oldPrice="6.677.411"
-                                curPrice="5.763.274"
-                                voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
-                            />
-                        ))} */}
                     </div>
 
                     {/* <div className="part__footer">
@@ -489,25 +498,6 @@ function Home() {
                                 })}
                             </div>
                         )}
-
-                        {/* <div className={styles.hotels}>
-                            {vinpearlDes.slice(4, 8).map((des, index) => (
-                                <CardVinpearl
-                                    key={index}
-                                    image={des.image}
-                                    name={des.name}
-                                    percentDiscount={14}
-                                    promotion={['Ưu đãi chớp nhoáng']}
-                                    rate={3}
-                                    type="Khu nghỉ dưỡng"
-                                    numberFeedback={123}
-                                    point={8.5}
-                                    oldPrice="6.677.411"
-                                    curPrice="5.763.274"
-                                    price="5.763.274"
-                                />
-                            ))}
-                        </div> */}
                     </Slider>
                 </div>
             </div>
@@ -522,6 +512,7 @@ function Home() {
 
                 <div className={clsx(styles.destinations)}>
                     {data &&
+                        data.places &&
                         data.places.slice(58, 70).map((des, index) => (
                             <Link to={`hotels/${des.TenDiaDiem}`} key={index}>
                                 <div className={clsx(styles.destination, styles[`id-${index}`])}>

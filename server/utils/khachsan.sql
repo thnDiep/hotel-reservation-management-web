@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: May 13, 2023 at 11:33 AM
+-- Generation Time: May 13, 2023 at 01:15 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -62,7 +62,10 @@ CREATE TABLE `danhsachyeuthich` (
 --
 
 INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
-(4, 1);
+(4, 1),
+(4, 14),
+(4, 15),
+(4, 16);
 
 -- --------------------------------------------------------
 
@@ -466,10 +469,10 @@ CREATE TABLE `khuyenmai` (
 INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`, `MaKhuyenMai`, `BatDau`, `KetThuc`, `MoTa`, `DieuKien`, `SoLuongKM`, `IDKhungGio`) VALUES
 (3, 'Khách sạn giảm đến 200K', 8, 4, 0, 'CHAOHE23', '2023-05-09 00:00:00', '2023-05-30 00:00:00', 'Khách sạn giảm đến 200K', '<div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>', 100, NULL),
 (4, 'Khuyến mãi mùa hè', 16, 5, 0, 'CHAOHE22', '2023-05-11 00:00:00', '0000-00-00 00:00:00', 'Khuyến mãi mùa hè', '<div class=\"MuiBox-root jss947 jss942\"><strong>Khuyến m&atilde;i m&ugrave;a h&egrave;</strong><br>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>', NULL, NULL),
-(7, 'Bùng nổ ngày hè', 8, 5, 0, NULL, '2023-05-14 03:00:00', '2023-05-31 03:00:00', NULL, NULL, NULL, 2),
-(8, 'Bùng nổ ngày hè 2', 16, 5, 0, NULL, '2023-05-14 10:00:00', '2023-05-31 10:00:00', NULL, NULL, NULL, 2),
-(9, 'Bùng nổ ngày hè 3', 20, 5, 0, NULL, '2023-05-14 06:00:00', '2023-05-31 06:00:00', NULL, NULL, NULL, 2),
-(10, 'Bùng nổ ngày hè 4', 21, 5, 0, NULL, '2023-05-14 06:00:00', '2023-05-31 06:00:00', NULL, NULL, NULL, 2),
+(7, 'Bùng nổ ngày hè', 8, 5, 0, NULL, '2023-05-14 00:00:00', '2023-05-14 00:00:00', NULL, NULL, NULL, 2),
+(8, 'Bùng nổ ngày hè 2', 16, 5, 0, NULL, '2023-05-14 00:00:00', '2023-05-31 10:00:00', NULL, NULL, NULL, 2),
+(9, 'Bùng nổ ngày hè 3', 20, 5, 0, NULL, '2023-05-14 00:00:00', '2023-05-31 06:00:00', NULL, NULL, NULL, 2),
+(10, 'Bùng nổ ngày hè 4', 21, 5, 0, NULL, '2023-05-14 00:00:00', '2023-05-31 06:00:00', NULL, NULL, NULL, 2),
 (15, 'Quốc tế thiếu nhi ', 8, 5, 0, 'THIEUNHI23', '2023-05-12 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL),
 (16, 'Quốc tế thiếu nhi', 20, 3, 0, 'THIEUNHI23', '2023-05-13 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL),
 (17, 'Bùng nổ ngày hè 5', 8, 4, 0, NULL, '2023-05-13 09:29:16', '0000-00-00 00:00:00', NULL, NULL, NULL, 1);
