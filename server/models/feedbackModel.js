@@ -13,6 +13,15 @@ export default {
       id
     )
   },
+
+  async getFeedBackByHotelId(id) {
+    const result = await db.raw(
+      `SELECT * FROM danhgia, nguoidung WHERE danhgia.IDKhachHang = nguoidung.ID and danhgia.IDKhachSan = ? `,
+      id
+    )
+    return result[0]
+  },
+
   async findById(id) {
     const list = await db("danhgia").where("id", id)
     if (list.length === 0) return null

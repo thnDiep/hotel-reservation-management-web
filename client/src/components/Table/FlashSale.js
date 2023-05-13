@@ -16,8 +16,8 @@ function FlashSaleTable({ header, option, data }) {
 
     useEffect(() => {
         if (data) {
-            let total = Math.floor(data.length / 4)
-            if (data.length % 4 !== 0) total++
+            let total = Math.floor(data.length / 5)
+            if (data.length % 5 !== 0) total++
             setTotalPage(total)
         }
     }, [data])
@@ -39,7 +39,7 @@ function FlashSaleTable({ header, option, data }) {
                 </thead>
                 <tbody>
                     {data &&
-                        data.slice((page - 1) * 4, page * 4).map((flashSale, index) => (
+                        data.slice((page - 1) * 5, page * 5).map((flashSale, index) => (
                             <tr key={index} className={styles.memberRow}>
                                 <td className={styles.center}>
                                     <input type="checkbox" className={styles.checkBox} />
