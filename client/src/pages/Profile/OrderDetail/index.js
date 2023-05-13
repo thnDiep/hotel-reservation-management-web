@@ -7,18 +7,23 @@ import Profile from '../profile'
 import { NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 function OrderDetail() {
     const [data, setData] = useState()
+    const { id } = useParams()
+    console.log(id)
+
     useEffect(() => {
-        Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: 5743539 } })
+        Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: id } })
             .then((response) => {
                 setData(response.data)
+                console.log(response.data)
             })
             .catch((error) => {
                 console.log(error)
             })
-    }, [])
+    }, [id])
 
     return (
         <Profile>
@@ -112,7 +117,7 @@ function OrderDetail() {
                             <div className={styles.checkoutInfo}>
                                 <div className={styles.time}>
                                     <span>
-                                        Vui lòng thanh toán trước 22:35,{' '}
+                                        Vui lòng thanh toán trước 00.00,{' '}
                                         {moment(item.NgayNhanPhong).format('DD/MM/yyyy')}
                                     </span>
                                 </div>
@@ -122,9 +127,7 @@ function OrderDetail() {
                                     <div className={styles.info__part}>
                                         <span className={styles.subTitle}>Ngân hàng</span>
                                         <div className="d-flex-js">
-                                            <span className={styles.title}>
-                                                Ngân hàng TMCP Kỹ Thương Việt Nam – CN Thăng Long
-                                            </span>
+                                            <span className={styles.title}>{item.TenNganHang}</span>
                                             <img src="https://storage.googleapis.com/tripi-assets/images/banks_list/techcombank_logo.png" />
                                         </div>
                                     </div>
@@ -132,7 +135,7 @@ function OrderDetail() {
                                     <div className={styles.info__part}>
                                         <span className={styles.subTitle}>Số tài khoản</span>
                                         <div className="d-flex-js">
-                                            <span className={styles.title}>M555P553392</span>
+                                            <span className={styles.title}>{item.SoTaiKhoan}</span>
                                             <div className={styles.copy}>
                                                 <svg width="16" height="16" fill="none">
                                                     <path
@@ -158,7 +161,7 @@ function OrderDetail() {
                                     <div className={styles.info__part}>
                                         <span className={styles.subTitle}>Tên chủ tài khoản</span>
                                         <div className="d-flex-js">
-                                            <span className={styles.title}>Ctcp Du Lich Vn Vntravel H1219655</span>
+                                            <span className={styles.title}>{item.TenChuTaiKhoan}</span>
                                         </div>
                                     </div>
 
@@ -220,7 +223,7 @@ function OrderDetail() {
 
                             <div className={styles.orderInfo}>
                                 <div className={styles.hotelImage}>
-                                    <img src="https://img.tripi.vn/cdn-cgi/image/width=320/https://www.googleapis.com/download/storage/v1/b/hotel_image/o/logo%2F4%2F736941.jpg?generation=1563772721779376&alt=media" />
+                                    <img src={item.HinhAnhKhachSan} />
                                 </div>
                                 <div className={styles.info}>
                                     <div className={styles.info__hotel}>
@@ -398,7 +401,9 @@ function OrderDetail() {
                                                     <span className={styles.subTitle2}>
                                                         Thời gian nhận phòng dự kiến: &nbsp;
                                                     </span>
-                                                    <span className={styles.subTitle3}>Tôi chưa biết</span>
+                                                    <span className={styles.subTitle3}>
+                                                        {moment(item.NgayNhanPhong).format('DD/MM/yyyy')}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -408,52 +413,61 @@ function OrderDetail() {
                                             <div className={clsx(styles.content1, 'flex-1')}>
                                                 <div className={styles.price}>
                                                     <span>
-                                                        {item.SoLuongPhong} phòng x{' '}
+                                                        {item.SoLuongPhong} phòng x
                                                         {moment(item.NgayTraPhong).diff(item.NgayNhanPhong, 'days')} đêm
                                                     </span>
                                                     <span>
-                                                        {item.Gia} <sup>₫</sup>
+                                                        {item.Gia.toLocaleString()} <sup>₫</sup>
                                                     </span>
                                                 </div>
                                                 <div className={styles.price}>
                                                     <span>Phụ phí</span>
                                                     <span>
-                                                        700.000 <sup>₫</sup>
+                                                        {item.PhuPhi.toLocaleString()}
+                                                        <sup> ₫</sup>
                                                     </span>
                                                 </div>
                                                 <div className={styles.price}>
                                                     <span>Thuế và phí dịch vụ khách sạn</span>
                                                     <span>
-                                                        2.738.203 <sup>₫</sup>
+                                                        {item.ThueVaDichVuKhachSan.toLocaleString()} <sup>₫</sup>
                                                     </span>
                                                 </div>
-                                                <div className={styles.price}>
-                                                    <span className={styles.green}>Chúng tôi khớp giá, giảm thêm</span>
-                                                    <span className={styles.green}>
-                                                        -910.025 <sup>₫</sup>
-                                                    </span>
-                                                </div>
-                                                <div className={styles.price}>
-                                                    <div>
-                                                        <span className={styles.green}>Mã giảm giá</span>
-                                                        <span className={styles.code}>CHAOHE2023</span>
+                                                {item.GiamGia < 0 && (
+                                                    <div className={styles.price}>
+                                                        <span className={styles.green}>
+                                                            Chúng tôi khớp giá, giảm thêm
+                                                        </span>
+                                                        <span className={styles.green}>
+                                                            {item.GiamThem.toLocaleString()} <sup>₫</sup>
+                                                        </span>
                                                     </div>
-                                                    <span className={styles.green}>
-                                                        -200.000 <sup>₫</sup>
-                                                    </span>
-                                                </div>
+                                                )}
+
+                                                {item.GiamGiaKhuyenMai < 0 && (
+                                                    <div className={styles.price}>
+                                                        <div>
+                                                            <span className={styles.green}>Mã giảm giá</span>
+                                                            <span className={styles.code}>{item.TenKhuyenMai}</span>
+                                                        </div>
+                                                        <span className={styles.green}>
+                                                            {item.GiamGiaKhuyenMai.toLocaleString()} <sup>₫</sup>
+                                                        </span>
+                                                    </div>
+                                                )}
+
                                                 <div className={clsx(styles.price, styles.total)}>
                                                     <span className={styles.subTitle2}>Tổng tiền</span>
                                                     <span className={styles.subTitle2}>
-                                                        19.294.000 <sup>₫</sup>
+                                                        {item.TongTien.toLocaleString()} <sup>₫</sup>
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
+                                        {item.TrangThai === 0 && (
+                                            <div className={styles.info__order__part}>
+                                                <h3 className={styles.title}>Thanh toán</h3>
 
-                                        <div className={styles.info__order__part}>
-                                            <h3 className={styles.title}>Thanh toán</h3>
-                                            {item.TrangThai === 0 && (
                                                 <div className={clsx(styles.content1, 'flex-1')}>
                                                     <div className={styles.checkout}>
                                                         <span>Phương thức thanh toán</span>
@@ -466,8 +480,7 @@ function OrderDetail() {
                                                         </span>
                                                     </div>
                                                 </div>
-                                            )}
-                                            {item.TrangThai === 1 && (
+                                                {/* {item.TrangThai === 1 && (
                                                 <div className={clsx(styles.content1, 'flex-1')}>
                                                     <div className={styles.checkout}>
                                                         <span>Trạng thái</span>
@@ -476,8 +489,9 @@ function OrderDetail() {
                                                         </span>
                                                     </div>
                                                 </div>
-                                            )}
-                                        </div>
+                                            )} */}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>

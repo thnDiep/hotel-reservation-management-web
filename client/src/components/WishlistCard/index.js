@@ -15,14 +15,11 @@ function WishlistCard({ list, liked, onEmpty }) {
     const [data, setData] = useState(list)
 
     function handleClickHeart(id, isLike) {
-        // setIsLike(!isLike)
-        // console.log(isLike)
         const data = { IDKhachHang: 4, IDKhachSan: id }
 
         if (!isLike) {
             Axios.post('http://localhost:8800/profile/addToWishList', { data })
                 .then(() => {
-                    alert('them vao ds yeu thich thanh cong')
                     // const newList = list.filter((item) => item.ID !== IDKhachSan)
                     // setList(newList)
                 })
@@ -30,7 +27,6 @@ function WishlistCard({ list, liked, onEmpty }) {
         } else {
             Axios.post('http://localhost:8800/profile/removeFromWishList', { data })
                 .then(() => {
-                    alert('xoa khoi ds yeu thich thanh cong')
                     const newList = list.filter((item) => item.ID !== id)
                     setData(newList)
                 })
@@ -60,11 +56,7 @@ function WishlistCard({ list, liked, onEmpty }) {
                         </Link>
                         <div className="place__img">
                             <div className="image">
-                                <img
-                                    className="image"
-                                    src="https://www.ecoamenities.vn/uploads/3/khach-san-pullman-ha-noi.jpg"
-                                    alt="Anh khach san"
-                                />
+                                <img className="image" src={item.HinhAnh} alt="Anh khach san" />
                             </div>
                             <HeartButton liked handleClick={handleClickHeart} IDKhachSan={item.ID} />
                         </div>

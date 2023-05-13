@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 12, 2023 at 05:55 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 13, 2023 lúc 10:13 PM
+-- Phiên bản máy phục vụ: 10.4.25-MariaDB
+-- Phiên bản PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hotel`
+-- Cơ sở dữ liệu: `khachsan`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhgia`
+-- Cấu trúc bảng cho bảng `danhgia`
 --
 
 CREATE TABLE `danhgia` (
@@ -38,18 +38,21 @@ CREATE TABLE `danhgia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `danhgia`
+-- Đang đổ dữ liệu cho bảng `danhgia`
 --
 
 INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `Diem`, `ThoiGian`) VALUES
 (2, 9, 3, 'Test đánh giá', 'Tôi rất thích khách sạn', 8, '0000-00-00'),
 (3, 8, 3, 'Cungc đươc', 'OKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK', 9, '2023-05-12'),
-(4, 8, 11, 'Tuyệt vời', 'Hợp lý', 9, '2023-05-12');
+(4, 8, 11, 'Tuyệt vời', 'Hợp lý', 9, '2023-05-12'),
+(5, 22, 11, 'Giá phù hợp sinh viên Rmit', 'Ổn hợp lý lần sau tôi ghé tiếp', 9, '2023-05-13'),
+(6, 22, 4, 'Cũng được mà tạm thôi', 'Lễ tân vui vẻ, nhân viên mến khách. I likeeeeeeeeee <3', 9, '2023-05-09'),
+(7, 22, 3, 'OKe lắm', 'Mọi người nên ghé trải nghiệm nha', 10, '2023-05-07');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhsachyeuthich`
+-- Cấu trúc bảng cho bảng `danhsachyeuthich`
 --
 
 CREATE TABLE `danhsachyeuthich` (
@@ -58,16 +61,17 @@ CREATE TABLE `danhsachyeuthich` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `danhsachyeuthich`
+-- Đang đổ dữ liệu cho bảng `danhsachyeuthich`
 --
 
 INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
-(4, 1);
+(4, 8),
+(4, 12);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diadiem`
+-- Cấu trúc bảng cho bảng `diadiem`
 --
 
 CREATE TABLE `diadiem` (
@@ -77,7 +81,7 @@ CREATE TABLE `diadiem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `diadiem`
+-- Đang đổ dữ liệu cho bảng `diadiem`
 --
 
 INSERT INTO `diadiem` (`ID`, `TenDiaDiem`, `HinhAnh`) VALUES
@@ -138,7 +142,7 @@ INSERT INTO `diadiem` (`ID`, `TenDiaDiem`, `HinhAnh`) VALUES
 (55, 'Thái Bình', 'https://znews-photo.zingcdn.me/w1920/Uploaded/lerl/2020_08_28/dong_chau_zing_6.jpg'),
 (56, 'Thái Nguyên', 'https://dankogroup.com.vn/pic/News/images/1.png'),
 (57, 'Thanh Hóa', 'https://ik.imagekit.io/tvlk/blog/2022/02/dia-diem-du-lich-thanh-hoa-12.jpg?tr=dpr-2,w-675'),
-(58, 'Thừa Thiên - Huế', 'https://znews-photo.zingcdn.me/w1920/Uploaded/lerl/2020_08_28/SAM1010_zing.jpg'),
+(58, 'Thừa Thiên Huế', 'https://znews-photo.zingcdn.me/w1920/Uploaded/lerl/2020_08_28/SAM1010_zing.jpg'),
 (59, 'Tiền Giang', 'https://tourcantho.vn/wp-content/uploads/du-lich-tien-giang-bang-xe-may.jpg'),
 (60, 'Trà Vinh', 'https://ik.imagekit.io/tvlk/blog/2022/02/dia-diem-du-lich-tra-vinh-cover.jpeg'),
 (61, 'Tuyên Quang', 'https://znews-photo.zingcdn.me/w1920/Uploaded/lerl/2020_08_28/DJI_0780_04_zing_1.jpg'),
@@ -156,7 +160,7 @@ INSERT INTO `diadiem` (`ID`, `TenDiaDiem`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dondatphong`
+-- Cấu trúc bảng cho bảng `dondatphong`
 --
 
 CREATE TABLE `dondatphong` (
@@ -172,17 +176,17 @@ CREATE TABLE `dondatphong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `dondatphong`
+-- Đang đổ dữ liệu cho bảng `dondatphong`
 --
 
 INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhachHang`, `IDPhong`) VALUES
-('5743539', '2023-05-02', '2023-05-10', '2023-05-11', 1, '1399000', 1, 4, 1),
-('F23214', '2023-05-12', '2023-05-14', '2023-05-17', 2, '20000000', 1, 5, 2);
+('5743539', '2023-05-02', '2023-05-10', '2023-05-11', 1, '1399000', 1, 4, 21),
+('F23214', '2023-05-12', '2023-05-14', '2023-05-17', 2, '20000000', 1, 4, 19);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `giuong`
+-- Cấu trúc bảng cho bảng `giuong`
 --
 
 CREATE TABLE `giuong` (
@@ -191,7 +195,7 @@ CREATE TABLE `giuong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `giuong`
+-- Đang đổ dữ liệu cho bảng `giuong`
 --
 
 INSERT INTO `giuong` (`ID`, `LoaiGiuong`) VALUES
@@ -201,7 +205,7 @@ INSERT INTO `giuong` (`ID`, `LoaiGiuong`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `giuong_phong`
+-- Cấu trúc bảng cho bảng `giuong_phong`
 --
 
 CREATE TABLE `giuong_phong` (
@@ -211,16 +215,30 @@ CREATE TABLE `giuong_phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `giuong_phong`
+-- Đang đổ dữ liệu cho bảng `giuong_phong`
 --
 
 INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
-(1, 2, 2);
+(1, 2, 2),
+(15, 1, 2),
+(17, 1, 2),
+(18, 1, 1),
+(19, 2, 1),
+(20, 2, 1),
+(21, 1, 2),
+(22, 1, 2),
+(25, 2, 1),
+(26, 2, 2),
+(27, 1, 2),
+(28, 1, 2),
+(29, 2, 1),
+(30, 2, 1),
+(31, 1, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hinhanh_khachsan`
+-- Cấu trúc bảng cho bảng `hinhanh_khachsan`
 --
 
 CREATE TABLE `hinhanh_khachsan` (
@@ -229,7 +247,7 @@ CREATE TABLE `hinhanh_khachsan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `hinhanh_khachsan`
+-- Đang đổ dữ liệu cho bảng `hinhanh_khachsan`
 --
 
 INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
@@ -362,12 +380,18 @@ INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
 (21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683902780/khachsan/65153_14071815580020343718_result_ouajdw.jpg'),
 (21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683902782/khachsan/7078c01c2332fbf58c9d56f515d0bece_result_tb9yoo.jpg'),
 (21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683902783/khachsan/2_138669_result_gj7ngq.jpg'),
-(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683902784/khachsan/68bf9b4627446fdf0ce30359a74980bf_result_caohef.jpg');
+(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683902784/khachsan/68bf9b4627446fdf0ce30359a74980bf_result_caohef.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683982669/khachsan/photos_0KWE2R24U5__tmp_playtemp1224286142787402425_multipartBody7016061759964787477asTemporaryFile_tdn9rt.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683982670/khachsan/photos_9O9KZ3LLSB__tmp_playtemp1224286142787402425_multipartBody4954851885351094962asTemporaryFile_qxh9gy.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683982672/khachsan/photos_3GJSK19F6V__tmp_playtemp1224286142787402425_multipartBody8560084940778672038asTemporaryFile_o5xckq.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683982672/khachsan/photos_9N1GC09YEX__tmp_playtemp1224286142787402425_multipartBody6985146093265126070asTemporaryFile_ovzf6p.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683982673/khachsan/photos_LW5HQYF9VM__tmp_playtemp1224286142787402425_multipartBody3753870017609995931asTemporaryFile_wjpobg.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683982674/khachsan/photos_CAENB3L56Z__tmp_playtemp1224286142787402425_multipartBody8736594628561045354asTemporaryFile_zz9hyt.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hinhanh_phong`
+-- Cấu trúc bảng cho bảng `hinhanh_phong`
 --
 
 CREATE TABLE `hinhanh_phong` (
@@ -375,10 +399,81 @@ CREATE TABLE `hinhanh_phong` (
   `HinhAnh` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `hinhanh_phong`
+--
+
+INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971438/khachsan/23812_88QE6SO5KT_Beach_House_Room_1_feeyvn.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971440/khachsan/23812_OUACWIQD8O_Beach_House_Room_3_hya5df.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971441/khachsan/130487906_j5grgh.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971441/khachsan/23812_MLZ4Y0BL1E_Beach_House_Room_dw7g5q.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973374/khachsan/photos_R6ZMOILXW3__tmp_playtemp5872956675624463109_multipartBody227198169022671206asTemporaryFile_y3ek0d.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973375/khachsan/img_4460_zjkexl.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973376/khachsan/img_4465_gsm0uf.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973377/khachsan/1235_SAFUR73I7V_55106039_q1kwtl.jpg'),
+(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974090/khachsan/a9e82cab_z_gxqrnb.jpg'),
+(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974091/khachsan/095ae6fb_z_qb8x05.jpg'),
+(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974091/khachsan/52776a1a_z_btafce.jpg'),
+(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974092/khachsan/7079a171_z_jzw7ff.jpg'),
+(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974623/khachsan/classic_jdiu3a.jpg'),
+(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974624/khachsan/photos_JNDTP9CH86__tmp_playtemp6021156645283393444_multipartBody4564599876000732013asTemporaryFile_clquex.jpg'),
+(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974625/khachsan/40714_GUT7T7S91Q_11_kwjrr5.jpg'),
+(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974626/khachsan/photos_MSS6S0TJVZ__tmp_playtemp6021156645283393444_multipartBody4657972048723225173asTemporaryFile_otqbs2.jpg'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974924/khachsan/9186_FK6PQ86P30_12_pyi52c.jpg'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974924/khachsan/9186_JMBXKBLDJV_13_fdn35y.jpg'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974925/khachsan/hibiscus-suite-4_cmhft5.jpg'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974926/khachsan/hibiscus-suite-3_zvitek.jpg'),
+(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975133/khachsan/deluxe-king-room4_dvypvz.jpg'),
+(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975134/khachsan/superior-king-room-with-seaview_02-copy_stsxq8.jpg'),
+(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975135/khachsan/superior-king-room-with-seaview_03-copy_svlspm.jpg'),
+(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975136/khachsan/superior-king-room-with-seaview_04-copy_scncob.jpg'),
+(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975377/khachsan/z2571515924120_6b841d7467c951fbcbf885ec7bb19847_iz2wwo.jpg'),
+(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975378/khachsan/june-01-8_gmr8dm.jpg'),
+(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975378/khachsan/master-bedroom-2_vcv7r8.jpg'),
+(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975379/khachsan/master-bedroom-5_onavxr.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975702/khachsan/villa-studio-1602_irmpnu.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975703/khachsan/villa-studio-2_xhqktz.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975703/khachsan/villa-studio-3_ogojsn.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975704/khachsan/villa-studio-5_zmdscw.jpg'),
+(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976333/khachsan/photos_NAXS1UVXJO__tmp_playtemp6906352608116898789_multipartBody1746072418037971232asTemporaryFile_sa1n1l.jpg'),
+(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976334/khachsan/four-bedroom_12_wfdh3z.jpg'),
+(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976335/khachsan/four-bedroom_9_upy0xl.jpg'),
+(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976335/khachsan/junior_14_zqjcii.jpg'),
+(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976597/khachsan/42050_E7ZMVE82JO_146735057_ovmeds.jpg'),
+(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976598/khachsan/42050_HZ4M7I3B4Z_199216564_dr4mzx.jpg'),
+(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976599/khachsan/42050_BK02G7YHTV_199216621_cacatf.jpg'),
+(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976599/khachsan/42050_QLUK6A0KYC_199216598_orx55j.jpg'),
+(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977024/khachsan/050250-f59743fc-efe4-4856-a4cd-697388969b87_ygg4uu.jpg'),
+(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977026/khachsan/050250-5cf22145-5246-494e-acfd-4381bba1e68d_p6ahhh.jpg'),
+(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977027/khachsan/050250-06253066-bdaa-4bef-9a02-f86bf3b5573b_jwgzbv.jpg'),
+(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978011/khachsan/041003-75de4a45-c607-4872-ac0e-d1d104956a4b_ohk5kz.jpg'),
+(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978012/khachsan/041003-25a111c8-28fd-4fe7-8451-d9b60283e5e8_yhvtgk.jpg'),
+(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978012/khachsan/041003-5e3417dc-4d9d-4209-94fd-b10c18f50f11_nk9kul.jpg'),
+(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978013/khachsan/041003-d90f55eb-6cf5-40f9-bfdd-105e2a2e24a0_hh7ixg.jpg'),
+(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978351/khachsan/042430-ff578d5e-9afe-438f-bbfd-5195f008cae7_yyxgym.jpg'),
+(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978352/khachsan/4b0af647-38a8-4f87-b60f-158bc16c024d_201603103_vpl_vppqr_3br_lake_view_villa_2_enhanced_ovfqet.jpg'),
+(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978353/khachsan/042749-d14cdec4-cda9-4ba0-8032-8abcdca6bbea_d0qk3l.jpg'),
+(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978520/khachsan/135846-263ef592-fa2c-4b0d-a09a-5dc02dfea8b8_ertzkf.jpg'),
+(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978520/khachsan/135846-a90e86f2-2ae0-4835-a7c4-65f718a5f5fa_bxozog.jpg'),
+(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978521/khachsan/135846-abfe5109-90b0-416c-8e1e-76ef610af1e5_imuo2o.jpg'),
+(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978522/khachsan/135911-37fa97ae-a45b-4248-8945-41f5ee15ff59_c7jyrs.jpg'),
+(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985492/khachsan/photos_DPSXH24VQ9__tmp_playtemp1224286142787402425_multipartBody1022593404496592554asTemporaryFile_pyhrvn.jpg'),
+(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985492/khachsan/photos_VGE3NV8XK3__tmp_playtemp1224286142787402425_multipartBody552396680483974623asTemporaryFile_tl4bkb.jpg'),
+(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985493/khachsan/photos_CEG12P0AR9__tmp_playtemp1224286142787402425_multipartBody5603883490680910495asTemporaryFile_leolez.jpg'),
+(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985494/khachsan/photos_N1CO20G8DA__tmp_playtemp1224286142787402425_multipartBody7482133511159264608asTemporaryFile_zokvjo.jpg'),
+(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988839/khachsan/photos_VGT0BWGVT2__tmp_playtemp1224286142787402425_multipartBody3364216258320482160asTemporaryFile_nbaprp.jpg'),
+(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988840/khachsan/photos_CJMDQSEOLU__tmp_playtemp1224286142787402425_multipartBody3713598672589806590asTemporaryFile_y30tp4.jpg'),
+(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988841/khachsan/photos_3GJSK19F6V__tmp_playtemp1224286142787402425_multipartBody8560084940778672038asTemporaryFile_1_ujdia5.jpg'),
+(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988842/khachsan/photos_4NXSPTW4IJ__tmp_playtemp1224286142787402425_multipartBody2022326375395409877asTemporaryFile_npqoe1.jpg'),
+(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989148/khachsan/photos_Z4P521DXCA__tmp_playtemp1224286142787402425_multipartBody2075278788761802505asTemporaryFile_nbt6qc.jpg'),
+(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989149/khachsan/photos_ZZGCQGVMLS__tmp_playtemp1224286142787402425_multipartBody7032137161637455740asTemporaryFile_u9rtm9.jpg'),
+(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989150/khachsan/photos_827EIEW7PU__tmp_playtemp1224286142787402425_multipartBody2634311597936846161asTemporaryFile_lkc3s4.jpg');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khachsan`
+-- Cấu trúc bảng cho bảng `khachsan`
 --
 
 CREATE TABLE `khachsan` (
@@ -398,7 +493,7 @@ CREATE TABLE `khachsan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `khachsan`
+-- Đang đổ dữ liệu cho bảng `khachsan`
 --
 
 INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, `GioiThieu`, `TrangThai`, `IDDiaDiem`, `Nhan`, `GioNhanPhong`, `GioTraPhong`, `IDChuKhachSan`) VALUES
@@ -415,12 +510,13 @@ INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, 
 (18, 'Stelia Beach Resort Phú Yên', 'Độc Lập, Phường 9, Thành phố Tuy Hoà, Tỉnh Phú Yên', 20, 5, '<div class=\"MuiBox-root jss5438\"><strong><span class=\"MuiBox-root jss5439\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss5440 jss5420\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss5441\"><strong><span class=\"MuiBox-root jss5442\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss5443 jss5420\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p class=\"MsoNormal\"><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/stelia-beach-resort-phu-yen.html\" target=\"_blank\" rel=\"noopener\">Stelia Beach Resort Ph&uacute; Y&ecirc;n</a></strong>&nbsp;l&agrave; khu biệt thự nghỉ dưỡng hiện đại nằm giữa thi&ecirc;n nhi&ecirc;n trong l&agrave;nh xanh m&aacute;t, Diện t&iacute;ch l&ecirc;n đến 9 hecta với b&atilde;i biển ri&ecirc;ng, resort được thiết kế theo phong c&aacute;ch Địa Trung Hải Santorini sẽ mang đến cho du kh&aacute;ch trải nghiệm nghỉ dưỡng đẳng cấp 5 sao. Resort nằm c&aacute;ch s&acirc;n bay Tuy H&ograve;a 8 km, th&aacute;p Nghinh Phong,&nbsp;Quảng Trường 1-4,&nbsp;N&uacute;i Nhạn, ch&ugrave;a Bảo L&acirc;m, G&agrave;nh &Ocirc;ng, G&agrave;nh B&agrave; c&ugrave;ng nhiều địa điểm tham quan du lịch kh&aacute;c của Ph&uacute; Y&ecirc;n chỉ với v&agrave;i ph&uacute;t di chuyển bằng xe.&nbsp;</p>\n<p class=\"MsoNormal\">Đến với&nbsp;<strong>Stelia Beach Resort Ph&uacute; Y&ecirc;n</strong>&nbsp;qu&yacute; kh&aacute;ch sẽ bị đắm ch&igrave;m v&agrave;o cảnh sắc thi&ecirc;n nhi&ecirc;n tuyệt đẹp h&ograve;a hợp với kiệt t&aacute;c s&aacute;ng tạo của con người. Với thiết kế 41 ph&ograve;ng v&agrave; biệt thự nghỉ dưỡng với hai t&ocirc;ng m&agrave;u xanh trắng chủ đạo, tối giản nhưng tinh tế h&agrave;i h&ograve;a với thi&ecirc;n nhi&ecirc;n. Được trang bị nội thất cao cấp, sang trọng phục vụ cho nhu cầu nghỉ dưỡng của du kh&aacute;ch c&ugrave;ng với c&aacute;c tiện t&iacute;ch miễn ph&iacute; c&oacute; tại Resort qu&yacute; kh&aacute;ch c&oacute; thể tận hưởng chuyến đi v&agrave; vui chơi c&ugrave;ng gia đ&igrave;nh v&agrave; người th&acirc;n với c&aacute;c hoạt động ngo&agrave;i trời như bể bơi v&ocirc; cực, đạp xe dạo quanh, khu vui chơi trẻ em, xem phim, chạy bộ tr&ecirc;n b&atilde;i biển, ph&ograve;ng tập thể dục...&nbsp;</p>\n<p class=\"MsoNormal\">Khu vực nh&agrave; h&agrave;ng Gozo được thiết kế rất đặc biệt với h&igrave;nh d&aacute;ng c&aacute;nh diều đ&oacute;n gi&oacute; hướng ra biển, Gozo Brew House l&agrave; nh&agrave; h&agrave;ng tre lớn nhất Việt Nam với diện t&iacute;ch l&ecirc;n đến 1900m2, được gh&eacute;p từ hơn 40.000 c&acirc;y tầm v&ocirc;ng v&agrave; m&aacute;i v&ograve;m được lợp từ h&agrave;ng trăm l&aacute; dừa nước rất độc đ&aacute;o. Nh&agrave; h&agrave;ng phục vụ c&aacute;c m&oacute;n ăn mang phong c&aacute;ch từ &Acirc;u đến &Aacute; v&agrave; c&aacute;c m&oacute;n hải sản tươi sống đặc sản của v&ugrave;ng biển Ph&uacute; Y&ecirc;n, đặc biệt hơn nữa nơi d&acirc;y c&ograve;n sở hữu d&acirc;y chuyền nấu bia truyền thống ngay trong nh&agrave; h&agrave;ng, Gozo Brew House tạo ra những ly bia tươi ngon trọn vị kh&oacute; qu&ecirc;n. Ngo&agrave;i ra&nbsp;Stelia Beach Resort Ph&uacute; Y&ecirc;n&nbsp;c&ograve;n c&oacute; khu vực Aura Spa gi&uacute;p bạn c&oacute; thời gian thư giản xua tan những mệt mỏi c&ugrave;ng với dịch vụ x&ocirc;ng hơi, massage chuy&ecirc;n nghiệp nhất sẽ l&agrave;m h&agrave;i l&ograve;ng tuyệt đối d&ugrave; l&agrave; vị kh&aacute;ch kh&oacute; t&iacute;nh nhất.</p>', 0, 46, 'Giá độc quyền', 14, 12, 9),
 (19, 'Azerai Cần Thơ', 'Cồn Ấu, Phường Hưng Phú, Quận Cái Răng, Thành phố Cần Thơ', 10, 5, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss508 jss488\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n<p>Hạn chế người Việt Nam v&agrave; người nước ngo&agrave;i check-in c&ugrave;ng 1 ph&ograve;ng, nếu kh&ocirc;ng xuất tr&igrave;nh giấy đăng k&yacute; kết h&ocirc;n</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss509\"><strong><span class=\"MuiBox-root jss510\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss511 jss488\">\n<p>Trẻ em từ 13 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/khu-nghi-duong-azerai-can-tho.html\">Khu nghỉ dưỡng&nbsp;Azerai Cần Thơ</a></strong>&nbsp;tọa lạc tại vị tr&iacute; tuyệt đẹp của Cồn Ấu, gần trung t&acirc;m th&agrave;nh phố Cần Thơ.&nbsp;<strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong>&nbsp;mang d&aacute;ng vẻ phương Đ&ocirc;ng đặc trưng h&ograve;a c&ugrave;ng khung cảnh thi&ecirc;n nhi&ecirc;n b&ecirc;n d&ograve;ng s&ocirc;ng Hậu đầy thơ mộng. &ldquo;Ốc đảo b&igrave;nh dị độc đ&aacute;o&rdquo; n&agrave;y ẩn m&igrave;nh dưới h&agrave;ng c&acirc;y trăm tuổi được giữ lại nguy&ecirc;n vẹn trong qu&aacute; tr&igrave;nh x&acirc;y dựng.&nbsp;</p>\n<p><strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong>&nbsp;l&agrave; sản phẩm cao cấp kết hợp của tập đo&agrave;n Novaland c&ugrave;ng tập đo&agrave;n danh tiếng thế giới Adrian Zecha với tham vọng ph&aacute;t triển Cần Thơ th&agrave;nh ng&ocirc;i sao s&aacute;ng tr&ecirc;n bản đồ du lịch thế giới.</p>\n<p><strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong>&nbsp;c&oacute; tất cả 60 bungalow với kh&ocirc;ng gian mở, chan h&ograve;a &aacute;nh s&aacute;ng, nội thất nền n&atilde; v&agrave; sang trọng. Đặc biệt,&nbsp;<strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong> c&ograve;n cung cấp nhiều dịch vụ đi k&egrave;m đạt chuẩn 5 sao như hồ bơi ngo&agrave;i trời, spa thư gi&atilde;n, ph&ograve;ng gym, yoga, tennis, nh&agrave; h&agrave;ng với ẩm thực phong ph&uacute;, cửa h&agrave;ng lưu niệm.</p>', 0, 14, 'Vị trí đẹp', 15, 12, 9),
 (20, 'Vinpearl Resort & Spa Phú Quốc', 'Bãi Dài, Xã Gành Dầu, Thành phố Phú Quốc, Tỉnh Kiên Giang', 25, 5, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss505 jss485\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss508 jss485\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/vinpearl-resort-spa-phu-quoc.html\">Vinpearl Resort &amp; Spa Ph&uacute; Quốc</a>&nbsp;</strong>nằm ở ph&iacute;a Bắc của đảo Ph&uacute; Quốc,&nbsp;l&agrave; lựa chọn tuyệt vời d&agrave;nh cho du kh&aacute;ch mỗi khi đến tham quan h&ograve;n đảo Ph&uacute; Quốc xinh đẹp.&nbsp;Khu nghỉ dưỡng chỉ c&aacute;ch s&acirc;n bay Ph&uacute; Quốc khoảng 24 km, c&aacute;ch chợ đ&ecirc;m Ph&uacute; Quốc 18 km, c&aacute;ch s&ograve;ng bạc Corona Casino 1 km...</p>\n<p><strong>Vinpearl Resort &amp; Spa Ph&uacute; Quốc</strong>&nbsp;mang đậm n&eacute;t kiến tr&uacute;c Đ&ocirc;ng Dương với h&igrave;nh ảnh những t&ograve;a nh&agrave; m&aacute;i ng&oacute;i đỏ đặc trưng. C&aacute;c ph&ograve;ng đều được trang bị đầy đủ tiện nghi đ&aacute;p ứng c&aacute;c nhu cầu của kh&aacute;ch h&agrave;ng. Đến đ&acirc;y, bạn sẽ kh&ocirc;ng khỏi ngạc nhi&ecirc;n trước sự sang trọng bậc nhất m&agrave; kh&ocirc;ng t&igrave;m thấy ở nơi kh&aacute;c.</p>\n<p>Khu nghỉ dưỡng được kết nối thuận tiện với c&aacute;c khu resort kh&aacute;c của Vinpearl tr&ecirc;n đảo Ph&uacute; Quốc. Hệ thống nh&agrave; h&agrave;ng với sự đa dạng trong ẩm thực hứa hẹn sẽ l&agrave;m h&agrave;i l&ograve;ng bất kỳ ai.&nbsp;<strong>Vinpearl Resort &amp; Spa Ph&uacute; Quốc</strong>&nbsp;được c&aacute;c gia đ&igrave;nh, nh&oacute;m bạn v&agrave; cặp đ&ocirc;i rất ưa chuộng.</p>\n<p>Nếu như bạn c&oacute; bất kỳ thắc mắc n&agrave;o về dịch vụ&nbsp;đặt ph&ograve;ng<strong>&nbsp;<a href=\"https://www.vietnambooking.com/hotel/vietnam/khach-san-phu-quoc.html\">kh&aacute;ch sạn Ph&uacute; Quốc</a></strong>, vui l&ograve;ng li&ecirc;n hệ số tổng đ&agrave;i&nbsp;<span>1900 4698</span>&nbsp;để được hỗ trợ v&agrave; tư vấn chi tiết nhất.</p>', 0, 34, 'Giá cực tốt', 14, 12, 2),
-(21, 'Vinpearl Resort Nha Trang', 'Lê Thánh Tôn, Phường Lộc Thọ, Thành phố Nha Trang, Tỉnh Khánh Hòa', 10, 5, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss505 jss485\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss508 jss485\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><a href=\"https://www.vietnambooking.com/hotel/vietnam/melia-vinpearl-nha-trang-empire.html\"><strong>Melia Vinpearl Nha Trang Empire</strong></a>&nbsp;l&agrave; sản phẩm căn hộ kh&aacute;ch sạn đẳng cấp mang đến cho kh&aacute;ch h&agrave;ng kh&ocirc;ng gian lưu tr&uacute; tiện nghi nhất. Đến đ&acirc;y qu&yacute; kh&aacute;ch sẽ được tận hưởng trải nghiệm du lịch sinh th&aacute;i ngay trong kh&ocirc;ng gian th&agrave;nh phố biển. Với quy m&ocirc; 41 tầng đẳng cấp tọa lạc ngay&nbsp;<strong>trung t&acirc;m th&agrave;nh phố Nha Trang,</strong>&nbsp;hứa hẹn<strong>&nbsp;</strong>đem đến cho du kh&aacute;ch những cảm nhận trọn vẹn nhất về nhịp sống hiện đại.&nbsp;</p>\n<p>Điểm đặc biệt tại&nbsp;<strong>Melia Vinpearl Nha Trang Empire</strong>&nbsp;đ&oacute; l&agrave; đa số c&aacute;c&nbsp;<strong>ph&ograve;ng đều c&oacute; view biển</strong>&nbsp;v&agrave; Vingroup c&ograve;n thu&ecirc; cho kh&aacute;ch một&nbsp;<strong>b&atilde;i biển ri&ecirc;ng&nbsp;</strong>đ&atilde; được k&ecirc; ghế d&ugrave; đầy đủ. Ngo&agrave;i ra, qu&yacute; kh&aacute;ch c&ograve;n c&oacute; thể vui chơi, mua sắm thỏa th&iacute;ch tại Trung t&acirc;m thương mại Vincom, khu giải tr&iacute; Vinpearl Land, Vinpearl Golf, Trung t&acirc;m ẩm thực &amp; giải tr&iacute; Ocean Hill&hellip; của hệ sinh th&aacute;i Vinpearl.</p>\n<div>\n<div>Kh&ocirc;ng chỉ c&oacute; thế,<strong>&nbsp;</strong><strong>Melia Vinpearl Nha Trang Empire</strong>&nbsp;c&ograve;n nằm gần nhiều địa điểm nổi tiếng như:&nbsp;<strong>Th&aacute;p Trầm Hương, Viện Hải dương học,</strong>&nbsp;Th&aacute;p b&agrave; Ponagar,... Nếu như bạn đang muốn t&igrave;m kiếm một kh&aacute;ch sạn 5 sao chuẩn quốc tế theo m&ocirc; h&igrave;nh căn hộ, tận hưởng kh&ocirc;ng gian nghỉ dưỡng sang trọng v&agrave; ri&ecirc;ng tư giống như ở nh&agrave; th&igrave; đ&acirc;y l&agrave; lựa chọn l&yacute; tưởng d&agrave;nh cho bạn.&nbsp;</div>\n</div>', 0, 33, 'Khách sạn yêu thích', 14, 12, 2);
+(21, 'Vinpearl Resort Nha Trang', 'Lê Thánh Tôn, Phường Lộc Thọ, Thành phố Nha Trang, Tỉnh Khánh Hòa', 10, 5, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss505 jss485\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss508 jss485\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><a href=\"https://www.vietnambooking.com/hotel/vietnam/melia-vinpearl-nha-trang-empire.html\"><strong>Melia Vinpearl Nha Trang Empire</strong></a>&nbsp;l&agrave; sản phẩm căn hộ kh&aacute;ch sạn đẳng cấp mang đến cho kh&aacute;ch h&agrave;ng kh&ocirc;ng gian lưu tr&uacute; tiện nghi nhất. Đến đ&acirc;y qu&yacute; kh&aacute;ch sẽ được tận hưởng trải nghiệm du lịch sinh th&aacute;i ngay trong kh&ocirc;ng gian th&agrave;nh phố biển. Với quy m&ocirc; 41 tầng đẳng cấp tọa lạc ngay&nbsp;<strong>trung t&acirc;m th&agrave;nh phố Nha Trang,</strong>&nbsp;hứa hẹn<strong>&nbsp;</strong>đem đến cho du kh&aacute;ch những cảm nhận trọn vẹn nhất về nhịp sống hiện đại.&nbsp;</p>\n<p>Điểm đặc biệt tại&nbsp;<strong>Melia Vinpearl Nha Trang Empire</strong>&nbsp;đ&oacute; l&agrave; đa số c&aacute;c&nbsp;<strong>ph&ograve;ng đều c&oacute; view biển</strong>&nbsp;v&agrave; Vingroup c&ograve;n thu&ecirc; cho kh&aacute;ch một&nbsp;<strong>b&atilde;i biển ri&ecirc;ng&nbsp;</strong>đ&atilde; được k&ecirc; ghế d&ugrave; đầy đủ. Ngo&agrave;i ra, qu&yacute; kh&aacute;ch c&ograve;n c&oacute; thể vui chơi, mua sắm thỏa th&iacute;ch tại Trung t&acirc;m thương mại Vincom, khu giải tr&iacute; Vinpearl Land, Vinpearl Golf, Trung t&acirc;m ẩm thực &amp; giải tr&iacute; Ocean Hill&hellip; của hệ sinh th&aacute;i Vinpearl.</p>\n<div>\n<div>Kh&ocirc;ng chỉ c&oacute; thế,<strong>&nbsp;</strong><strong>Melia Vinpearl Nha Trang Empire</strong>&nbsp;c&ograve;n nằm gần nhiều địa điểm nổi tiếng như:&nbsp;<strong>Th&aacute;p Trầm Hương, Viện Hải dương học,</strong>&nbsp;Th&aacute;p b&agrave; Ponagar,... Nếu như bạn đang muốn t&igrave;m kiếm một kh&aacute;ch sạn 5 sao chuẩn quốc tế theo m&ocirc; h&igrave;nh căn hộ, tận hưởng kh&ocirc;ng gian nghỉ dưỡng sang trọng v&agrave; ri&ecirc;ng tư giống như ở nh&agrave; th&igrave; đ&acirc;y l&agrave; lựa chọn l&yacute; tưởng d&agrave;nh cho bạn.&nbsp;</div>\n</div>', 0, 33, 'Khách sạn yêu thích', 14, 12, 2),
+(22, 'Khách sạn Melia Vinpearl Huế', '50A Hùng Vương, Phường Phú Nhuận, Thành phố Huế, Tỉnh Thừa Thiên Huế', 10, 5, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss508 jss488\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss509\"><strong><span class=\"MuiBox-root jss510\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss511 jss488\">\n<p>Trẻ em từ 13 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><a href=\"https://www.vietnambooking.com/hotel/vietnam/khach-san-melia-vinpearl-hue.html\"><strong>Melia Vinpearl Huế</strong></a><strong>&nbsp;</strong>tọa lạc tại&nbsp;<strong>trung t&acirc;m th&agrave;nh phố Huế&nbsp;</strong>cổ k&iacute;nh với vị tr&iacute; hướng s&ocirc;ng Hương - tựa n&uacute;i Ngự. Từ kh&aacute;ch sạn bạn c&oacute; thể dễ d&agrave;ng di chuyển tới nhiều điểm tham quan nổi tiếng như: Đại nội Huế, ch&ugrave;a Thi&ecirc;n Mụ, ph&aacute; Tam Giang,...</p>\n<p><strong>Melia Vinpearl Huế</strong>&nbsp;với&nbsp;<strong>33 tầng cao</strong>, gồm 240 ph&ograve;ng nghỉ ti&ecirc;u chuẩn quốc tế 5 sao cao cấp được thiết kế trang nh&atilde;, sang trọng, với tầm nh&igrave;n nh&igrave;n to&agrave;n cảnh th&agrave;nh phố Huế v&agrave; s&ocirc;ng Hương thơ mộng.&nbsp;</p>\n<p>Tại đ&acirc;y c&oacute; nhiều tiện &iacute;ch nổi bật để bạn kh&aacute;m ph&aacute; như:&nbsp;<strong>Nh&agrave; h&agrave;ng Cung Đ&igrave;nh,&nbsp;Sky bar đẳng cấp</strong>,&nbsp;ph&ograve;ng tập gym, spa, bể bơi hiện đại&hellip;</p>', 1, 58, 'Khách sạn yêu thích', 14, 12, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khunggio`
+-- Cấu trúc bảng cho bảng `khunggio`
 --
 
 CREATE TABLE `khunggio` (
@@ -430,7 +526,7 @@ CREATE TABLE `khunggio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `khunggio`
+-- Đang đổ dữ liệu cho bảng `khunggio`
 --
 
 INSERT INTO `khunggio` (`ID`, `GioBatDau`, `GioKetThuc`) VALUES
@@ -441,7 +537,7 @@ INSERT INTO `khunggio` (`ID`, `GioBatDau`, `GioKetThuc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khuyenmai`
+-- Cấu trúc bảng cho bảng `khuyenmai`
 --
 
 CREATE TABLE `khuyenmai` (
@@ -460,18 +556,18 @@ CREATE TABLE `khuyenmai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `khuyenmai`
+-- Đang đổ dữ liệu cho bảng `khuyenmai`
 --
 
 INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`, `MaKhuyenMai`, `BatDau`, `KetThuc`, `MoTa`, `DieuKien`, `SoLuongKM`, `IDKhungGio`) VALUES
 (3, 'Khách sạn giảm đến 200K', 8, 4, 0, 'CHAOHE23', '2023-05-09 13:00:00', '2023-05-30 12:59:00', 'Khách sạn giảm đến 200K', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><span style=\"color: rgb(224, 62, 45);\"><strong><span class=\"MuiBox-root jss946 jss944\">Điều kiện v&agrave; thể lệ chương tr&igrave;nh</span></strong></span></div>\n<div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
-(4, 'Khuyến mãi mùa hè', 16, 5, 0, 'CHAOHE22', '2023-05-11 09:13:28', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL),
+(4, 'Khuyến mãi mùa hè', 13, 5, 0, 'CHAOHE22', '2023-05-11 09:13:28', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL),
 (7, 'Flash Sale bùng nổ ngày hè', 8, 5, 0, NULL, '2023-05-13 00:00:00', '2023-05-30 00:00:00', NULL, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loaitiennghikhachsan`
+-- Cấu trúc bảng cho bảng `loaitiennghikhachsan`
 --
 
 CREATE TABLE `loaitiennghikhachsan` (
@@ -480,7 +576,7 @@ CREATE TABLE `loaitiennghikhachsan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `loaitiennghikhachsan`
+-- Đang đổ dữ liệu cho bảng `loaitiennghikhachsan`
 --
 
 INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
@@ -501,7 +597,7 @@ INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loaitiennghiphong`
+-- Cấu trúc bảng cho bảng `loaitiennghiphong`
 --
 
 CREATE TABLE `loaitiennghiphong` (
@@ -510,7 +606,7 @@ CREATE TABLE `loaitiennghiphong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `loaitiennghiphong`
+-- Đang đổ dữ liệu cho bảng `loaitiennghiphong`
 --
 
 INSERT INTO `loaitiennghiphong` (`TenLoai`, `ID`) VALUES
@@ -525,7 +621,7 @@ INSERT INTO `loaitiennghiphong` (`TenLoai`, `ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nguoidung`
+-- Cấu trúc bảng cho bảng `nguoidung`
 --
 
 CREATE TABLE `nguoidung` (
@@ -544,7 +640,7 @@ CREATE TABLE `nguoidung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `nguoidung`
+-- Đang đổ dữ liệu cho bảng `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaChi`, `MatKhau`, `PhanQuyen`, `TenCongTy`, `MaSoThue`, `QuyMo`, `TrangThai`) VALUES
@@ -560,7 +656,7 @@ INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaC
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nguoinhanphong`
+-- Cấu trúc bảng cho bảng `nguoinhanphong`
 --
 
 CREATE TABLE `nguoinhanphong` (
@@ -570,10 +666,17 @@ CREATE TABLE `nguoinhanphong` (
   `IDKhachHang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `nguoinhanphong`
+--
+
+INSERT INTO `nguoinhanphong` (`ID`, `HoTen`, `Sdt`, `IDKhachHang`) VALUES
+(1, 'Nguyễn Thanh Mai', '099232383', 4);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phong`
+-- Cấu trúc bảng cho bảng `phong`
 --
 
 CREATE TABLE `phong` (
@@ -588,44 +691,57 @@ CREATE TABLE `phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `phong`
+-- Đang đổ dữ liệu cho bảng `phong`
 --
 
 INSERT INTO `phong` (`ID`, `TenLoaiPhong`, `IDKhachSan`, `SoPhongTrong`, `SoNguoi`, `DienTich`, `Gia`, `TrangThai`) VALUES
-(1, 'Deluxe King', 8, 25, 2, 38, 2389716, 1),
-(2, 'Standard Room', 9, 32, 2, 33, 1556718, 1),
-(3, 'Deluxe Family Triple Room', 10, 22, 3, 32, 1771571, 1),
-(4, 'Phòng, 1 giường cỡ king, Quang cảnh sông', 11, 17, 3, 37, 2500400, 1),
-(5, 'Phòng Deluxe View Vườn (Hướng Núi)', 12, 5, 2, 30, 1385982, 1),
-(6, 'Deluxe Suite', 13, 8, 2, 50, 4017339, 1),
-(7, 'Superior Room With Sea View', 14, 26, 2, 35, 1973758, 1),
-(8, 'Garden Pool Villa 02-Bedroom', 15, 12, 4, 125, 5272756, 1),
-(9, 'Deluxe King Ocean View', 16, 34, 2, 39, 2760845, 1),
-(10, 'Villa Studio', 17, 5, 2, 40, 2729782, 1),
-(11, 'Premium Twin with Balcony - Garden View', 18, 13, 2, 45, 1807802, 1),
-(12, 'Phòng Hướng Sông', 19, 30, 2, 35, 7091607, 1),
-(13, 'Deluxe Twin Ocean View', 20, 47, 2, 46, 2825975, 1),
-(14, 'GRAND DELUXE TWIN BED', 21, 33, 2, 42, 2234286, 1);
+(15, 'Standard Room', 9, 15, 2, 33, 1738000, 1),
+(16, 'Deluxe Twin Room', 10, 8, 2, 30, 1226073, 1),
+(17, 'Phòng, 1 giường cỡ king, Quang cảnh sông', 11, 7, 3, 37, 1987000, 1),
+(18, 'Phòng Deluxe View Vườn (Hướng Núi)', 12, 9, 2, 30, 1200380, 1),
+(19, 'Deluxe Suite', 13, 17, 2, 50, 3816000, 1),
+(20, 'Superior Room With Sea View', 14, 14, 2, 35, 2193000, 1),
+(21, 'Garden Pool Villa 01-Bedroom', 15, 15, 2, 125, 3245000, 1),
+(22, 'Villa Studio', 17, 12, 2, 40, 2368000, 1),
+(23, 'Premium Deluxe King with Balcony - Garden View', 18, 19, 2, 55, 2239000, 1),
+(24, 'Phòng Hướng Vườn', 19, 7, 2, 35, 2356000, 1),
+(25, 'Deluxe King Ocean View', 8, 6, 2, 38, 3783000, 1),
+(26, 'Junior Suite King', 16, 12, 2, 99, 4128000, 1),
+(27, 'Deluxe Twin Ocean View', 20, 7, 2, 46, 2747000, 1),
+(28, 'Executive Suite King Ocean View', 21, 8, 2, 90, 4900000, 1),
+(29, 'Premium Room With Views', 22, 15, 2, 47, 2353000, 1),
+(30, 'Suite Room', 22, 12, 2, 81, 3990000, 1),
+(31, 'Deluxe Room', 22, 11, 2, 36, 1628000, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taikhoanthanhtoan`
+-- Cấu trúc bảng cho bảng `taikhoanthanhtoan`
 --
 
 CREATE TABLE `taikhoanthanhtoan` (
   `IDKhachHang` int(11) NOT NULL,
   `ID` int(11) NOT NULL,
+  `TenNganHang` varchar(100) NOT NULL,
   `HoTenTK` varchar(100) NOT NULL,
   `SoTaiKhoan` varchar(50) NOT NULL,
   `NgayHetHan` date NOT NULL,
   `anhQR` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `taikhoanthanhtoan`
+--
+
+INSERT INTO `taikhoanthanhtoan` (`IDKhachHang`, `ID`, `TenNganHang`, `HoTenTK`, `SoTaiKhoan`, `NgayHetHan`, `anhQR`) VALUES
+(2, 1, 'Ngân hàng VCB - Thăng Long', 'Trần Minh Việt', ' M555P553392', '2028-04-10', NULL),
+(8, 2, 'Ngân hàng Agribank - Ngân hàng nông thôn Việt Nam', 'Nguyễn Thanh Mai', ' M990923942', '2028-04-01', NULL),
+(9, 3, 'Ngân hàng ViettinBank - chi nhánh Tân Phú', 'Trần Trương Trọng Nghĩa', ' P50553990', '0205-09-01', NULL);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thongtinhuuich`
+-- Cấu trúc bảng cho bảng `thongtinhuuich`
 --
 
 CREATE TABLE `thongtinhuuich` (
@@ -635,7 +751,7 @@ CREATE TABLE `thongtinhuuich` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `thongtinhuuich`
+-- Đang đổ dữ liệu cho bảng `thongtinhuuich`
 --
 
 INSERT INTO `thongtinhuuich` (`ID`, `ThongTin`, `HinhAnh`) VALUES
@@ -651,7 +767,7 @@ INSERT INTO `thongtinhuuich` (`ID`, `ThongTin`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thongtinhuuich_ks`
+-- Cấu trúc bảng cho bảng `thongtinhuuich_ks`
 --
 
 CREATE TABLE `thongtinhuuich_ks` (
@@ -661,7 +777,7 @@ CREATE TABLE `thongtinhuuich_ks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `thongtinhuuich_ks`
+-- Đang đổ dữ liệu cho bảng `thongtinhuuich_ks`
 --
 
 INSERT INTO `thongtinhuuich_ks` (`IDKhachSan`, `IDThongTin`, `NoiDung`) VALUES
@@ -767,12 +883,20 @@ INSERT INTO `thongtinhuuich_ks` (`IDKhachSan`, `IDThongTin`, `NoiDung`) VALUES
 (21, 5, '4'),
 (21, 6, '476'),
 (21, 7, '4'),
-(21, 8, '5');
+(21, 8, '5'),
+(22, 1, '5'),
+(22, 2, '10.3'),
+(22, 3, '5'),
+(22, 4, '2013'),
+(22, 5, '4'),
+(22, 6, '213'),
+(22, 7, '5'),
+(22, 8, '32');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiennghichung_ks`
+-- Cấu trúc bảng cho bảng `tiennghichung_ks`
 --
 
 CREATE TABLE `tiennghichung_ks` (
@@ -783,7 +907,7 @@ CREATE TABLE `tiennghichung_ks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tiennghichung_ks`
+-- Đang đổ dữ liệu cho bảng `tiennghichung_ks`
 --
 
 INSERT INTO `tiennghichung_ks` (`ID`, `Icon`, `TenTienNghi`, `IDLoai`) VALUES
@@ -836,7 +960,7 @@ INSERT INTO `tiennghichung_ks` (`ID`, `Icon`, `TenTienNghi`, `IDLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiennghichung_phong`
+-- Cấu trúc bảng cho bảng `tiennghichung_phong`
 --
 
 CREATE TABLE `tiennghichung_phong` (
@@ -847,7 +971,7 @@ CREATE TABLE `tiennghichung_phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tiennghichung_phong`
+-- Đang đổ dữ liệu cho bảng `tiennghichung_phong`
 --
 
 INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
@@ -890,7 +1014,7 @@ INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiennghi_khachsan`
+-- Cấu trúc bảng cho bảng `tiennghi_khachsan`
 --
 
 CREATE TABLE `tiennghi_khachsan` (
@@ -899,7 +1023,7 @@ CREATE TABLE `tiennghi_khachsan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tiennghi_khachsan`
+-- Đang đổ dữ liệu cho bảng `tiennghi_khachsan`
 --
 
 INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
@@ -1202,12 +1326,38 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 (21, 112),
 (21, 113),
 (21, 114),
-(21, 115);
+(21, 115),
+(22, 1),
+(22, 3),
+(22, 4),
+(22, 5),
+(22, 11),
+(22, 21),
+(22, 22),
+(22, 31),
+(22, 41),
+(22, 44),
+(22, 46),
+(22, 47),
+(22, 51),
+(22, 71),
+(22, 72),
+(22, 81),
+(22, 82),
+(22, 84),
+(22, 85),
+(22, 86),
+(22, 91),
+(22, 101),
+(22, 111),
+(22, 112),
+(22, 113),
+(22, 114);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tiennghi_phong`
+-- Cấu trúc bảng cho bảng `tiennghi_phong`
 --
 
 CREATE TABLE `tiennghi_phong` (
@@ -1216,7 +1366,7 @@ CREATE TABLE `tiennghi_phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tiennghi_phong`
+-- Đang đổ dữ liệu cho bảng `tiennghi_phong`
 --
 
 INSERT INTO `tiennghi_phong` (`IDPhong`, `IDTienNghi`) VALUES
@@ -1224,12 +1374,426 @@ INSERT INTO `tiennghi_phong` (`IDPhong`, `IDTienNghi`) VALUES
 (1, 2),
 (1, 3),
 (1, 4),
-(1, 5);
+(1, 5),
+(15, 1),
+(15, 2),
+(15, 3),
+(15, 4),
+(15, 5),
+(15, 54),
+(15, 55),
+(15, 56),
+(15, 57),
+(15, 58),
+(15, 60),
+(15, 61),
+(15, 62),
+(15, 63),
+(15, 65),
+(15, 67),
+(15, 75),
+(15, 76),
+(15, 77),
+(15, 79),
+(15, 82),
+(15, 83),
+(15, 84),
+(15, 85),
+(15, 86),
+(16, 1),
+(16, 2),
+(16, 4),
+(16, 5),
+(16, 6),
+(16, 54),
+(16, 55),
+(16, 56),
+(16, 58),
+(16, 61),
+(16, 62),
+(16, 64),
+(16, 65),
+(16, 67),
+(16, 73),
+(16, 74),
+(16, 76),
+(16, 77),
+(16, 78),
+(16, 80),
+(16, 82),
+(17, 1),
+(17, 2),
+(17, 4),
+(17, 5),
+(17, 6),
+(17, 54),
+(17, 55),
+(17, 57),
+(17, 58),
+(17, 60),
+(17, 61),
+(17, 62),
+(17, 67),
+(17, 73),
+(17, 76),
+(17, 77),
+(17, 82),
+(17, 83),
+(17, 85),
+(17, 86),
+(18, 1),
+(18, 2),
+(18, 3),
+(18, 4),
+(18, 5),
+(18, 54),
+(18, 55),
+(18, 56),
+(18, 58),
+(18, 59),
+(18, 63),
+(18, 64),
+(18, 65),
+(18, 67),
+(18, 72),
+(18, 73),
+(18, 75),
+(18, 76),
+(18, 77),
+(18, 78),
+(18, 79),
+(18, 82),
+(18, 83),
+(18, 84),
+(18, 85),
+(18, 86),
+(19, 1),
+(19, 2),
+(19, 4),
+(19, 5),
+(19, 54),
+(19, 55),
+(19, 56),
+(19, 58),
+(19, 62),
+(19, 63),
+(19, 64),
+(19, 67),
+(19, 72),
+(19, 73),
+(19, 74),
+(19, 75),
+(19, 76),
+(19, 77),
+(19, 78),
+(19, 81),
+(19, 82),
+(19, 83),
+(19, 84),
+(20, 1),
+(20, 2),
+(20, 3),
+(20, 4),
+(20, 5),
+(20, 54),
+(20, 55),
+(20, 56),
+(20, 57),
+(20, 58),
+(20, 61),
+(20, 62),
+(20, 64),
+(20, 65),
+(20, 67),
+(20, 73),
+(20, 75),
+(20, 76),
+(20, 77),
+(20, 78),
+(20, 79),
+(20, 82),
+(20, 83),
+(20, 84),
+(20, 85),
+(20, 86),
+(21, 1),
+(21, 2),
+(21, 4),
+(21, 5),
+(21, 6),
+(21, 54),
+(21, 55),
+(21, 56),
+(21, 57),
+(21, 58),
+(21, 60),
+(21, 61),
+(21, 62),
+(21, 63),
+(21, 64),
+(21, 67),
+(21, 72),
+(21, 73),
+(21, 75),
+(21, 76),
+(21, 77),
+(21, 78),
+(21, 81),
+(21, 82),
+(21, 83),
+(21, 84),
+(21, 85),
+(21, 86),
+(22, 1),
+(22, 2),
+(22, 3),
+(22, 5),
+(22, 6),
+(22, 54),
+(22, 55),
+(22, 56),
+(22, 58),
+(22, 62),
+(22, 63),
+(22, 64),
+(22, 67),
+(22, 73),
+(22, 74),
+(22, 75),
+(22, 76),
+(22, 77),
+(22, 78),
+(22, 82),
+(22, 83),
+(22, 84),
+(22, 85),
+(23, 1),
+(23, 2),
+(23, 3),
+(23, 4),
+(23, 5),
+(23, 54),
+(23, 55),
+(23, 56),
+(23, 57),
+(23, 58),
+(23, 59),
+(23, 62),
+(23, 63),
+(23, 64),
+(23, 67),
+(23, 73),
+(23, 74),
+(23, 76),
+(23, 78),
+(23, 81),
+(23, 82),
+(23, 83),
+(23, 85),
+(23, 86),
+(24, 1),
+(24, 2),
+(24, 4),
+(24, 5),
+(24, 54),
+(24, 55),
+(24, 56),
+(24, 57),
+(24, 58),
+(24, 61),
+(24, 62),
+(24, 65),
+(24, 67),
+(24, 73),
+(24, 74),
+(24, 75),
+(24, 76),
+(24, 77),
+(24, 78),
+(24, 81),
+(24, 82),
+(24, 83),
+(24, 84),
+(24, 85),
+(24, 86),
+(25, 1),
+(25, 2),
+(25, 3),
+(25, 4),
+(25, 5),
+(25, 54),
+(25, 55),
+(25, 56),
+(25, 57),
+(25, 58),
+(25, 62),
+(25, 64),
+(25, 65),
+(25, 67),
+(25, 73),
+(25, 74),
+(25, 75),
+(25, 76),
+(25, 77),
+(25, 78),
+(25, 79),
+(25, 82),
+(25, 83),
+(25, 84),
+(26, 1),
+(26, 2),
+(26, 3),
+(26, 4),
+(26, 5),
+(26, 54),
+(26, 55),
+(26, 56),
+(26, 57),
+(26, 58),
+(26, 62),
+(26, 63),
+(26, 64),
+(26, 66),
+(26, 72),
+(26, 73),
+(26, 74),
+(26, 76),
+(26, 77),
+(26, 78),
+(26, 82),
+(26, 83),
+(26, 84),
+(27, 1),
+(27, 2),
+(27, 3),
+(27, 4),
+(27, 5),
+(27, 54),
+(27, 55),
+(27, 56),
+(27, 57),
+(27, 58),
+(27, 61),
+(27, 63),
+(27, 64),
+(27, 65),
+(27, 66),
+(27, 73),
+(27, 74),
+(27, 76),
+(27, 77),
+(27, 78),
+(27, 82),
+(27, 83),
+(27, 84),
+(27, 86),
+(28, 1),
+(28, 2),
+(28, 3),
+(28, 4),
+(28, 5),
+(28, 54),
+(28, 55),
+(28, 56),
+(28, 57),
+(28, 58),
+(28, 62),
+(28, 63),
+(28, 64),
+(28, 65),
+(28, 67),
+(28, 73),
+(28, 74),
+(28, 75),
+(28, 76),
+(28, 77),
+(28, 78),
+(28, 79),
+(28, 81),
+(28, 82),
+(28, 83),
+(28, 84),
+(28, 86),
+(29, 1),
+(29, 2),
+(29, 4),
+(29, 6),
+(29, 54),
+(29, 55),
+(29, 56),
+(29, 57),
+(29, 58),
+(29, 59),
+(29, 62),
+(29, 64),
+(29, 67),
+(29, 72),
+(29, 73),
+(29, 76),
+(29, 78),
+(29, 81),
+(29, 82),
+(29, 83),
+(29, 84),
+(29, 85),
+(29, 86),
+(30, 1),
+(30, 2),
+(30, 3),
+(30, 4),
+(30, 5),
+(30, 54),
+(30, 55),
+(30, 56),
+(30, 57),
+(30, 58),
+(30, 59),
+(30, 61),
+(30, 62),
+(30, 64),
+(30, 65),
+(30, 67),
+(30, 73),
+(30, 74),
+(30, 76),
+(30, 77),
+(30, 78),
+(30, 82),
+(30, 83),
+(30, 84),
+(30, 85),
+(30, 86),
+(31, 1),
+(31, 2),
+(31, 3),
+(31, 4),
+(31, 5),
+(31, 54),
+(31, 55),
+(31, 56),
+(31, 57),
+(31, 58),
+(31, 59),
+(31, 62),
+(31, 63),
+(31, 64),
+(31, 65),
+(31, 66),
+(31, 72),
+(31, 73),
+(31, 76),
+(31, 78),
+(31, 79),
+(31, 81),
+(31, 82),
+(31, 83),
+(31, 85),
+(31, 86);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `uudai`
+-- Cấu trúc bảng cho bảng `uudai`
 --
 
 CREATE TABLE `uudai` (
@@ -1238,7 +1802,7 @@ CREATE TABLE `uudai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `uudai`
+-- Đang đổ dữ liệu cho bảng `uudai`
 --
 
 INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
@@ -1265,7 +1829,7 @@ INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `uudai_phong`
+-- Cấu trúc bảng cho bảng `uudai_phong`
 --
 
 CREATE TABLE `uudai_phong` (
@@ -1274,11 +1838,170 @@ CREATE TABLE `uudai_phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Đang đổ dữ liệu cho bảng `uudai_phong`
+--
+
+INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
+(15, 1),
+(15, 4),
+(15, 5),
+(15, 8),
+(15, 9),
+(15, 10),
+(15, 11),
+(15, 13),
+(15, 14),
+(15, 16),
+(15, 17),
+(15, 18),
+(16, 1),
+(16, 3),
+(16, 4),
+(16, 5),
+(16, 11),
+(16, 16),
+(17, 1),
+(17, 3),
+(17, 5),
+(17, 9),
+(17, 10),
+(17, 11),
+(17, 16),
+(18, 1),
+(18, 3),
+(18, 4),
+(18, 5),
+(18, 9),
+(18, 12),
+(18, 16),
+(19, 1),
+(19, 4),
+(19, 5),
+(19, 9),
+(19, 10),
+(19, 11),
+(19, 12),
+(19, 16),
+(20, 1),
+(20, 2),
+(20, 3),
+(20, 4),
+(20, 5),
+(20, 7),
+(20, 9),
+(20, 10),
+(20, 11),
+(21, 1),
+(21, 2),
+(21, 3),
+(21, 4),
+(21, 5),
+(21, 9),
+(21, 12),
+(21, 16),
+(21, 20),
+(22, 1),
+(22, 3),
+(22, 4),
+(22, 5),
+(22, 11),
+(22, 12),
+(22, 13),
+(22, 20),
+(23, 1),
+(23, 3),
+(23, 4),
+(23, 5),
+(23, 9),
+(23, 10),
+(23, 11),
+(23, 12),
+(23, 16),
+(23, 20),
+(24, 1),
+(24, 2),
+(24, 3),
+(24, 9),
+(24, 11),
+(24, 14),
+(24, 16),
+(24, 20),
+(25, 1),
+(25, 3),
+(25, 4),
+(25, 5),
+(25, 9),
+(25, 11),
+(25, 16),
+(26, 1),
+(26, 2),
+(26, 3),
+(26, 4),
+(26, 5),
+(26, 7),
+(26, 8),
+(26, 9),
+(26, 11),
+(26, 12),
+(26, 16),
+(27, 1),
+(27, 3),
+(27, 4),
+(27, 5),
+(27, 11),
+(27, 12),
+(27, 14),
+(27, 16),
+(28, 1),
+(28, 2),
+(28, 3),
+(28, 4),
+(28, 5),
+(28, 7),
+(28, 9),
+(28, 11),
+(28, 14),
+(28, 16),
+(28, 19),
+(29, 1),
+(29, 2),
+(29, 3),
+(29, 4),
+(29, 5),
+(29, 8),
+(29, 9),
+(29, 12),
+(29, 14),
+(29, 16),
+(29, 17),
+(30, 1),
+(30, 2),
+(30, 3),
+(30, 4),
+(30, 5),
+(30, 8),
+(30, 9),
+(30, 11),
+(30, 14),
+(30, 17),
+(30, 19),
+(31, 1),
+(31, 3),
+(31, 4),
+(31, 5),
+(31, 8),
+(31, 9),
+(31, 11),
+(31, 12),
+(31, 14),
+(31, 19);
+
+--
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `danhgia`
+-- Chỉ mục cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD PRIMARY KEY (`ID`),
@@ -1286,52 +2009,52 @@ ALTER TABLE `danhgia`
   ADD KEY `DanhGia_fk1` (`IDKhachHang`);
 
 --
--- Indexes for table `danhsachyeuthich`
+-- Chỉ mục cho bảng `danhsachyeuthich`
 --
 ALTER TABLE `danhsachyeuthich`
   ADD PRIMARY KEY (`IDKhachHang`,`IDKhachSan`),
   ADD KEY `DanhSachYeuThich_fk1` (`IDKhachSan`);
 
 --
--- Indexes for table `diadiem`
+-- Chỉ mục cho bảng `diadiem`
 --
 ALTER TABLE `diadiem`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `dondatphong`
+-- Chỉ mục cho bảng `dondatphong`
 --
 ALTER TABLE `dondatphong`
   ADD PRIMARY KEY (`MaDatPhong`),
   ADD KEY `DonDatPhong_fk0` (`IDKhachHang`);
 
 --
--- Indexes for table `giuong`
+-- Chỉ mục cho bảng `giuong`
 --
 ALTER TABLE `giuong`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `giuong_phong`
+-- Chỉ mục cho bảng `giuong_phong`
 --
 ALTER TABLE `giuong_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDGiuong`),
   ADD KEY `Giuong_Phong_fk1` (`IDGiuong`);
 
 --
--- Indexes for table `hinhanh_khachsan`
+-- Chỉ mục cho bảng `hinhanh_khachsan`
 --
 ALTER TABLE `hinhanh_khachsan`
   ADD PRIMARY KEY (`IDKhachSan`,`HinhAnh`);
 
 --
--- Indexes for table `hinhanh_phong`
+-- Chỉ mục cho bảng `hinhanh_phong`
 --
 ALTER TABLE `hinhanh_phong`
   ADD PRIMARY KEY (`IDPhong`,`HinhAnh`);
 
 --
--- Indexes for table `khachsan`
+-- Chỉ mục cho bảng `khachsan`
 --
 ALTER TABLE `khachsan`
   ADD PRIMARY KEY (`ID`),
@@ -1341,13 +2064,13 @@ ALTER TABLE `khachsan` ADD FULLTEXT KEY `Ten` (`Ten`);
 ALTER TABLE `khachsan` ADD FULLTEXT KEY `DiaChi` (`DiaChi`);
 
 --
--- Indexes for table `khunggio`
+-- Chỉ mục cho bảng `khunggio`
 --
 ALTER TABLE `khunggio`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `khuyenmai`
+-- Chỉ mục cho bảng `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   ADD PRIMARY KEY (`ID`),
@@ -1355,211 +2078,211 @@ ALTER TABLE `khuyenmai`
   ADD KEY `KhuyenMai_KG_fk1` (`IDKhungGio`);
 
 --
--- Indexes for table `loaitiennghikhachsan`
+-- Chỉ mục cho bảng `loaitiennghikhachsan`
 --
 ALTER TABLE `loaitiennghikhachsan`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `loaitiennghiphong`
+-- Chỉ mục cho bảng `loaitiennghiphong`
 --
 ALTER TABLE `loaitiennghiphong`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `nguoidung`
+-- Chỉ mục cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `nguoinhanphong`
+-- Chỉ mục cho bảng `nguoinhanphong`
 --
 ALTER TABLE `nguoinhanphong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `NguoiNhanPhong_fk0` (`IDKhachHang`);
 
 --
--- Indexes for table `phong`
+-- Chỉ mục cho bảng `phong`
 --
 ALTER TABLE `phong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Phong_fk0` (`IDKhachSan`);
 
 --
--- Indexes for table `taikhoanthanhtoan`
+-- Chỉ mục cho bảng `taikhoanthanhtoan`
 --
 ALTER TABLE `taikhoanthanhtoan`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TaiKhoanThanhToan_fk0` (`IDKhachHang`);
 
 --
--- Indexes for table `thongtinhuuich`
+-- Chỉ mục cho bảng `thongtinhuuich`
 --
 ALTER TABLE `thongtinhuuich`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `thongtinhuuich_ks`
+-- Chỉ mục cho bảng `thongtinhuuich_ks`
 --
 ALTER TABLE `thongtinhuuich_ks`
   ADD PRIMARY KEY (`IDKhachSan`,`IDThongTin`),
   ADD KEY `ThongTinHuuIch_KS_fk1` (`IDThongTin`);
 
 --
--- Indexes for table `tiennghichung_ks`
+-- Chỉ mục cho bảng `tiennghichung_ks`
 --
 ALTER TABLE `tiennghichung_ks`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TienNghiChung_KS_fk0` (`IDLoai`);
 
 --
--- Indexes for table `tiennghichung_phong`
+-- Chỉ mục cho bảng `tiennghichung_phong`
 --
 ALTER TABLE `tiennghichung_phong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TienNghiChung_Phong_fk0` (`IDLoai`);
 
 --
--- Indexes for table `tiennghi_khachsan`
+-- Chỉ mục cho bảng `tiennghi_khachsan`
 --
 ALTER TABLE `tiennghi_khachsan`
   ADD PRIMARY KEY (`IDKhachSan`,`IDTienNghi`),
   ADD KEY `TienNghi_KhachSan_fk1` (`IDTienNghi`);
 
 --
--- Indexes for table `tiennghi_phong`
+-- Chỉ mục cho bảng `tiennghi_phong`
 --
 ALTER TABLE `tiennghi_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDTienNghi`),
   ADD KEY `TienNghi_Phong_fk1` (`IDTienNghi`);
 
 --
--- Indexes for table `uudai`
+-- Chỉ mục cho bảng `uudai`
 --
 ALTER TABLE `uudai`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `uudai_phong`
+-- Chỉ mục cho bảng `uudai_phong`
 --
 ALTER TABLE `uudai_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDUuDai`),
   ADD KEY `UuDai_Phong_fk1` (`IDUuDai`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `danhgia`
+-- AUTO_INCREMENT cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `diadiem`
+-- AUTO_INCREMENT cho bảng `diadiem`
 --
 ALTER TABLE `diadiem`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
--- AUTO_INCREMENT for table `hinhanh_khachsan`
+-- AUTO_INCREMENT cho bảng `hinhanh_khachsan`
 --
 ALTER TABLE `hinhanh_khachsan`
-  MODIFY `IDKhachSan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `IDKhachSan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `khachsan`
+-- AUTO_INCREMENT cho bảng `khachsan`
 --
 ALTER TABLE `khachsan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `khunggio`
+-- AUTO_INCREMENT cho bảng `khunggio`
 --
 ALTER TABLE `khunggio`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `khuyenmai`
+-- AUTO_INCREMENT cho bảng `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `loaitiennghikhachsan`
+-- AUTO_INCREMENT cho bảng `loaitiennghikhachsan`
 --
 ALTER TABLE `loaitiennghikhachsan`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `loaitiennghiphong`
+-- AUTO_INCREMENT cho bảng `loaitiennghiphong`
 --
 ALTER TABLE `loaitiennghiphong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `nguoidung`
+-- AUTO_INCREMENT cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `nguoinhanphong`
+-- AUTO_INCREMENT cho bảng `nguoinhanphong`
 --
 ALTER TABLE `nguoinhanphong`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `phong`
+-- AUTO_INCREMENT cho bảng `phong`
 --
 ALTER TABLE `phong`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT for table `taikhoanthanhtoan`
+-- AUTO_INCREMENT cho bảng `taikhoanthanhtoan`
 --
 ALTER TABLE `taikhoanthanhtoan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `thongtinhuuich`
+-- AUTO_INCREMENT cho bảng `thongtinhuuich`
 --
 ALTER TABLE `thongtinhuuich`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `tiennghichung_ks`
+-- AUTO_INCREMENT cho bảng `tiennghichung_ks`
 --
 ALTER TABLE `tiennghichung_ks`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
--- AUTO_INCREMENT for table `tiennghichung_phong`
+-- AUTO_INCREMENT cho bảng `tiennghichung_phong`
 --
 ALTER TABLE `tiennghichung_phong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
--- AUTO_INCREMENT for table `uudai`
+-- AUTO_INCREMENT cho bảng `uudai`
 --
 ALTER TABLE `uudai`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `danhgia`
+-- Các ràng buộc cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD CONSTRAINT `DanhGia_fk0` FOREIGN KEY (`IDKhachSan`) REFERENCES `khachsan` (`ID`),
   ADD CONSTRAINT `DanhGia_fk1` FOREIGN KEY (`IDKhachHang`) REFERENCES `nguoidung` (`ID`);
 
 --
--- Constraints for table `khachsan`
+-- Các ràng buộc cho bảng `khachsan`
 --
 ALTER TABLE `khachsan`
   ADD CONSTRAINT `khachsan_ibfk_1` FOREIGN KEY (`IDChuKhachSan`) REFERENCES `nguoidung` (`ID`),

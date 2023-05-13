@@ -156,7 +156,6 @@
 
 
 .orderInfo {
-    display: flex;
     padding-top: 20px;
     padding-left: 1rem;
     padding-right: 5px;
@@ -295,6 +294,7 @@
         padding-bottom: 8px;
         margin-right: 1rem;
         align-items: center;
+        margin-top: 1rem;
 
         span {
             margin-left: 6px;
