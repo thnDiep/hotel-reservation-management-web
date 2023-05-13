@@ -9,7 +9,7 @@ export const facility = async (req, res, next) => {
   try {
     const types = await facilityModel.getLoaiTienNghi();
     for (let type of types) {
-      const n = await facilityModel.getNameOfLoai(type.ID);
+      const n = await facilityModel.getNameOfLoaiKhachSan(type.ID);
       type.TienNghi = n;
     }
     const useFull = await facilityModel.getThongTinHuuIch();
@@ -44,9 +44,12 @@ export const addHotel = async (req, res, next) => {
     };
 
     const ID = await placeModel.getIDDiaDiem(hotel.DiaChi);
-    if (ID > 0) {
+    if (ID !== undefined) {
       hotel.IDDiaDiem = ID;
-    }
+    } else
+      return next(
+        res.status(400).send("Trang web của chúng tôi không hỗ trợ vị trí này")
+      );
     const [oldHotel] = await hotelModel.getHotelTrung(hotel.DiaChi);
 
     if (oldHotel === undefined) {
@@ -231,8 +234,10 @@ export const updateRoom = async (req, res, next) => {
 
 export const order = async (req, res, next) => {
   try {
-    const idCKS = req.query.idCKS || 1;
-    const orders = await orderModel.getAllInformation();
+    const idCKS = req.query.idCKS || 2;
+    const [orders] = await orderModel.getRareInformationOfOrder(idCKS);
+    console.log(orders);
+    if (orders.length === 0) return null;
     res.json({ orders });
   } catch (err) {
     next(err);

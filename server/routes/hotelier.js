@@ -11,6 +11,7 @@ import {
 } from "../controller/hotelier.js";
 import facilityModel from "../models/facilityModel.js";
 import roomModel from "../models/roomModel.js";
+import orderModel from "../models/orderModel.js";
 const router = express.Router();
 
 // Lấy dữ liệu hiện danh sách tiện ích
@@ -25,6 +26,16 @@ router.post("/hotel/update", updateHotel);
 
 // Lấy dữ liệu hiện các đơn đặt phòng
 router.get("/order", order);
+// duyệt
+router.get("/order/update", async (req, res, next) => {
+  try {
+    const MaDatPhong = req.query.MaDatPhong;
+    await orderModel.updateTrangThai(MaDatPhong);
+    res.json({ MaDatPhong });
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Thực hiện thêm phong
 router.post("/room/insert", addRoom);
@@ -69,6 +80,20 @@ router.get("/room/del", async (req, res, next) => {
     }
 
     res.json({ idPhong });
+  } catch (err) {
+    next(err);
+  }
+});
+router.get("/order/del", async (req, res, next) => {
+  try {
+    const MaDatPhong = req.query.MaDatPhong;
+    console.log("Nó nữa meeeeeeeeeeeeeeeeee:", MaDatPhong);
+
+    if (MaDatPhong) {
+      await hotelModel.delOrder(MaDatPhong);
+    }
+
+    res.json({ MaDatPhong });
   } catch (err) {
     next(err);
   }
@@ -131,6 +156,22 @@ router.get("/hotel/stop", async (req, res, next) => {
     if (IDKhachSan) {
       await hotelModel.updateTrangThai(IDKhachSan, TrangThai);
       res.json({ IDKhachSan });
+    } else {
+      next(res.status(400).send("Bạn phải xóa phòng trước khi xóa khách sạn"));
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+router.get("/room/stop", async (req, res, next) => {
+  try {
+    const IDPhong = req.query.IDPhong;
+    const TrangThai = req.query.TrangThai;
+    console.log(IDPhong);
+    if (IDPhong) {
+      await hotelModel.updateTrangThai(IDPhong, TrangThai);
+      if (TrangThai === 2) res.status(200).send("Tạm ngưng thành công.");
+      else res.status(200).send("Tiếp tục hoạt động thành công.");
     } else {
       next(res.status(400).send("Bạn phải xóa phòng trước khi xóa khách sạn"));
     }

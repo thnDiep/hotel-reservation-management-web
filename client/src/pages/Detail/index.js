@@ -128,7 +128,7 @@ const Detail = () => {
                     <div className={classes.subContainer}>
                         <PictureDetail picHotel={hotel.picHotel} />
                     </div>
-                    <PriceDetail infor={hotel.infor} types={hotel.types} />
+                    <PriceDetail infor={hotel.infor} types={hotel.types} typesHotel={hotel.typesHotel} />
 
                     <div className={classes.container}>
                         <div className="row">
@@ -169,7 +169,7 @@ const Detail = () => {
                     </div>
                     <hr className={classes.spacing2} />
                     <div id="roomListContainer">
-                        <RoomsList />
+                        <RoomsList rooms={hotel.rooms} />
                     </div>
 
                     <div className={classes.subContainer}>
@@ -216,78 +216,17 @@ const Detail = () => {
                                         <h3>Thông tin hữu ích </h3>
                                     </div>
                                     <div className={classes.usefulInformation}>
-                                        <div className={classes.item}>
-                                            <div className={classes.partOfItem}>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faBuilding} />
-                                                </span>
-                                                <span className={classes.text}>Khoảng cách tới trung tâm</span>
-                                            </div>
-                                            <span>--:--km</span>
-                                        </div>
-                                        <div className={classes.item}>
-                                            <div className={classes.partOfItem}>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faPlaneDeparture} />
-                                                </span>
-                                                <span className={classes.text}>Khoảng cách tới sân bay</span>
-                                            </div>
-                                            <span>--:--km</span>
-                                        </div>
-                                        <div className={classes.item}>
-                                            <div className={classes.partOfItem}>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faMapMarkedAlt} />
-                                                </span>
-                                                <span className={classes.text}>Khoảng cách tới trung tâm thị trấn</span>
-                                            </div>
-                                            <span>--:--km</span>
-                                        </div>
-                                        <div className={classes.item}>
-                                            <div className={classes.partOfItem}>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faCalendar} />
-                                                </span>
-                                                <span className={classes.text}>Năm khách sạn xây dựng</span>
-                                            </div>
-                                            <span>2018</span>
-                                        </div>
-                                        <div className={classes.item}>
-                                            <div className={classes.partOfItem}>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faWineGlassAlt} />
-                                                </span>
-                                                <span className={classes.text}>Số quán bar</span>
-                                            </div>
-                                            <span>2</span>
-                                        </div>
-                                        <div className={classes.item}>
-                                            <div className={classes.partOfItem}>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faBed} />
-                                                </span>
-                                                <span className={classes.text}>Số phòng khách sạn</span>
-                                            </div>
-                                            <span>80</span>
-                                        </div>
-                                        <div className={classes.item}>
-                                            <div className={classes.partOfItem}>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faUtensils} />
-                                                </span>
-                                                <span className={classes.text}>Số nhà hàng</span>
-                                            </div>
-                                            <span>2</span>
-                                        </div>
-                                        <div className={classes.item}>
-                                            <div className={classes.partOfItem}>
-                                                <span>
-                                                    <FontAwesomeIcon icon={faRulerCombined} />
-                                                </span>
-                                                <span className={classes.text}>Số tầng khách sạn</span>
-                                            </div>
-                                            <span>15</span>
-                                        </div>
+                                        {hotel.thongTinHuuIch.map((thongTin) => {
+                                            return (
+                                                <div key={thongTin.ID} className={classes.item}>
+                                                    <div className={classes.partOfItem}>
+                                                        <span dangerouslySetInnerHTML={{ __html: thongTin.HinhAnh }} />
+                                                        <span className={classes.text}>{thongTin.ThongTin}</span>
+                                                    </div>
+                                                    <span>{thongTin.NoiDung}</span>
+                                                </div>
+                                            )
+                                        })}
                                     </div>
 
                                     <hr />

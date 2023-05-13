@@ -29,12 +29,13 @@ const RoomManage = () => {
     const [roomActive, setRoomActive] = useState(null)
 
     const [showDeleteModal, setShowDeleteModal] = useState(false)
+    const [showStopModal, setShowStopModal] = useState(false)
     const { data, handleData } = useContext(DataContext)
     const [errorMessage, setErrorMessage] = useState({ value: '', check: false })
 
     useEffect(() => {
         // if (hotels) {
-        // console.log(hotels)
+        // console.log(hotel)
         if (data) {
             const optionHotel1 = []
             console.log(data)
@@ -66,12 +67,39 @@ const RoomManage = () => {
                         setShowDeleteModal(true)
                     },
                 },
+                {
+                    name: 'Tạm ngưng',
+                    handle: function (idActive, index) {
+                        const room = data.hotels.reduce((foundRoom, hotel) => {
+                            if (!foundRoom) {
+                                const roomInHotel = hotel.phong.find((room) => room.ID === idActive)
+                                return roomInHotel ? roomInHotel : foundRoom
+                            }
+                            return foundRoom
+                        }, null)
+                        setRoomActive(room)
+                        setShowStopModal(true)
+                    },
+                },
+                {
+                    name: 'Tiếp tục',
+                    handle: function (idActive) {
+                        const hotelActive = data.hotels.reduce((foundRoom, hotel) => {
+                            if (!foundRoom) {
+                                const roomInHotel = hotel.phong.find((room) => room.ID === idActive)
+                                return roomInHotel ? roomInHotel : foundRoom
+                            }
+                            return foundRoom
+                        }, null)
+                        handleStopRoom(1, hotelActive.ID)
+                    },
+                },
             ])
         }
         // }
     }, [data])
     const [showInformModal, setShowInformModal] = useState(false)
-    console.log(data)
+    //console.log(data)
     function handleDeleteRoom() {
         axios
             .get('http://localhost:8800/cks/room/del', { params: { IDPhong: roomActive.ID } })
@@ -103,7 +131,46 @@ const RoomManage = () => {
                 }, 1000)
             })
     }
-    // console.log(hotel?.value?.phong)
+    function handleStopRoom(TrangThai, IDPhong) {
+        axios
+            .get('http://localhost:8800/cks/room/stop', {
+                params: { IDPhong: IDPhong, TrangThai: TrangThai },
+            })
+            .then((response) => {
+                setErrorMessage({ value: response.data, check: true })
+                console.log('helllo')
+
+                handleData({
+                    hotels: data.hotels.map((hotel) => {
+                        const updatedRooms = hotel.phong.map((room) =>
+                            room.ID === IDPhong ? { ...room, TrangThai: TrangThai } : room,
+                        )
+                        return {
+                            ...hotel,
+                            phong: updatedRooms,
+                        }
+                    }),
+                })
+
+                setRoomActive(null)
+                setShowStopModal(false)
+            })
+            .catch((error) => {
+                // console
+                setErrorMessage({ value: error.response.data, check: false })
+                // setErrorMessage(error.response.data)
+                setShowStopModal(false)
+            })
+            .finally(() => {
+                setShowInformModal(true)
+                window.setTimeout(function () {
+                    setShowInformModal(false)
+                }, 1000)
+            })
+    }
+    //console.log('HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH')
+    //console.log(hotel?.value?.phong)
+    //console.log(hotel?.value?.hinhanh_phong)
     return (
         <div className={styles.content}>
             <div className="mt-4 d-flex justify-content-between align-items-center flex-wrap">
@@ -154,6 +221,14 @@ const RoomManage = () => {
                 onClose={() => setShowDeleteModal(false)}
                 onConform={() => handleDeleteRoom()}
                 content={`Bạn chắc chắn muốn xóa khách sạn`}
+                highlight={roomActive && roomActive.TieuDe}
+            />
+            {/* Xác nhận khóa */}
+            <ConformModal
+                show={showStopModal}
+                onClose={() => setShowStopModal(false)}
+                onConform={() => handleStopRoom(2, roomActive.ID)}
+                content={`Bạn chắc chắn muốn khóa phòng`}
                 highlight={roomActive && roomActive.TieuDe}
             />
             {/* Thông báo thành công */}

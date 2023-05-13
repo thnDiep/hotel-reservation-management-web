@@ -11,7 +11,7 @@ export default {
     return db("loaitiennghiphong");
   },
 
-  async getNameOfLoai(id) {
+  async getNameOfLoaiKhachSan(id) {
     // const facility = await db.raw(
     //   `SELECT tiennghichung_ks.ID, tiennghichung_ks.IDLoai, tiennghichung_ks.Icon, tiennghichung_ks.TenTienNghi FROM tiennghichung_ks WHERE tiennghichung_ks.IDLoai = ?`,
     //   id
@@ -24,13 +24,39 @@ export default {
     return facility;
   },
 
-  async getFacilityOfHotel(id) {
-    const fac = await db("tiennghi_khachsan").where("IDTienNghi", id);
+  async getFacilityOfHotel(faciity, idks) {
+    const [fac] = await db("tiennghi_khachsan")
+      .where("IDTienNghi", faciity.ID)
+      .andWhere("IDKhachSan", idks);
+    if (fac !== undefined) {
+      fac.TenTienNghi = faciity.TenTienNghi;
+      fac.Icon = faciity.Icon;
+    }
+    return fac;
+  },
+  async getFacilityOfRoom(faciity, idPhong) {
+    const [fac] = await db("tiennghi_phong")
+      .where("IDTienNghi", faciity.ID)
+      .andWhere("IDPhong", idPhong);
+    if (fac !== undefined) {
+      fac.TenTienNghi = faciity.TenTienNghi;
+      fac.Icon = faciity.Icon;
+    }
     return fac;
   },
 
   async getThongTinHuuIch() {
     return db("thongtinhuuich");
+  },
+  async getThongTinHuuIcKhachSan(idKs, IDTT) {
+    const [[NoiDung]] = await db.raw(
+      `SELECT NoiDung FROM thongtinhuuich_ks WHERE IDKhachSan=${idKs} AND IDThongTin=${IDTT.ID};`
+    );
+    console.log(NoiDung);
+    if (NoiDung !== undefined) {
+      if (IDTT.ThongTin.includes("Khoảng cách")) return NoiDung.NoiDung + " km";
+      else return NoiDung.NoiDung;
+    } else return "--:--";
   },
   async getUuDai() {
     return db("uudai");

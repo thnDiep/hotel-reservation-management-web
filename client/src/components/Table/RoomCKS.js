@@ -2,7 +2,7 @@ import { Table } from 'react-bootstrap'
 import clsx from 'clsx'
 import { DropdownOption } from '~/components'
 import styles from './Table.module.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FooterPaging from '../FooterPaging/FooterPaging'
 import Star from '../Star/Star'
 function RoomCKS({ rooms, option }) {
@@ -27,6 +27,11 @@ function RoomCKS({ rooms, option }) {
         setAllChecked(Object.keys(checkboxState).every((key) => checkboxState[key]))
     }
 
+    const numberFormat = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    })
+
     // const rooms = [
     //     {
     //         TenLoaiPhong: 'Đoàn văn bơ Quận 5',
@@ -49,7 +54,15 @@ function RoomCKS({ rooms, option }) {
     //         TrangThai: 'Active',
     //     },
     // ]
-
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState()
+    useEffect(() => {
+        if (rooms) {
+            let total = Math.floor(rooms.length / 4)
+            if (rooms.length % 4 !== 0) total++
+            setTotalPage(total)
+        }
+    }, [rooms])
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={styles.cusTable}>
@@ -91,8 +104,8 @@ function RoomCKS({ rooms, option }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {rooms.map((room, index) => (
-                        <tr key={index} className={styles.memberRow}>
+                    {rooms.slice((page - 1) * 4, page * 4).map((room, index) => (
+                        <tr key={index} className={`${styles.memberRow} ${styles.tablesFlex}`}>
                             <td className={styles.center}>
                                 <input
                                     type="checkbox"
@@ -104,19 +117,19 @@ function RoomCKS({ rooms, option }) {
                             </td>
                             <td className={styles.nameTitle}>
                                 <div className="d-flex-js">
-                                    <img src="https://travl.dexignlab.com/react/demo/static/media/room4.f452c0a5f4a4a74cef98.jpg" />
-                                    <div className={styles.text1}>
-                                        <span>{index + 1}</span>
+                                    <img className={styles.imgLarge} src={room.HinhAnh[0].HinhAnh} alt="" />
+                                    <div className={`${styles.text1} ${styles.checkImg}`}>
+                                        <span>#{index + 1}</span>
                                         <br />
                                         <span>{room.TenLoaiPhong}</span>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div className={`${styles.point} ${styles.text}`}>{room.SoNguoi}</div>
+                                <div className={`${styles.point} ${styles.text}`}>{room.SoNguoi} người</div>
                             </td>
                             <td>
-                                <span className={styles.text2}>{room.SoPhongTrong}/10</span>
+                                <span className={styles.text2}>{room.SoPhongTrong}</span>
                             </td>
                             <td>
                                 <div className={`${styles.point} d-flex mx-0`}>
@@ -144,12 +157,12 @@ function RoomCKS({ rooms, option }) {
                                 </div>
                             </td>
                             <td>
-                                <span className={styles.text2}>{room.TienNghi}</span>
+                                <span className={`${styles.text2} ${styles.text2Name}`}>{room.TienNghi}</span>
                             </td>
 
                             <td className={styles.center}>
                                 <h3 className={clsx(styles.text1, styles.primary)}>
-                                    {room.Gia} <sup>VND</sup>
+                                    {numberFormat.format(room.Gia).replace('₫', '')} <sup>VND</sup>
                                 </h3>
                             </td>
                             <td>
@@ -158,7 +171,15 @@ function RoomCKS({ rooms, option }) {
                                 </span>
                             </td>
                             <td>
-                                <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
+                                {room.TrangThai === 0 && (
+                                    <div className={clsx('btn-1', 'pending', styles.status)}>Hết phòng</div>
+                                )}
+                                {room.TrangThai === 1 && (
+                                    <div className={clsx('btn-1', 'active', styles.status)}>Còn phòng</div>
+                                )}
+                                {room.TrangThai === 2 && (
+                                    <div className={clsx('btn-1', 'blocked', styles.status)}>Bị khóa</div>
+                                )}
                             </td>
                             <td className={styles.last}>
                                 <DropdownOption type={9} idActive={room.ID} list={option} hides={true} />
@@ -167,7 +188,7 @@ function RoomCKS({ rooms, option }) {
                     ))}
                 </tbody>
             </Table>
-            <FooterPaging />
+            <FooterPaging curPage={page} handleChangePage={setPage} totalPage={totalPage} />
         </div>
     )
 }

@@ -2,7 +2,7 @@ import { Table } from 'react-bootstrap'
 import clsx from 'clsx'
 import { DropdownOption } from '~/components'
 import styles from './Table.module.scss'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import FooterPaging from '../FooterPaging/FooterPaging'
 import DataContext from '~/contexts/DataContext'
 
@@ -31,25 +31,16 @@ function HotelCKSTable({ option, hotels }) {
         setAllChecked(Object.keys(checkboxState).every((key) => checkboxState[key]))
     }
 
-    // const hotels = [
-    //     {
-    //         HoTen: 'Đoàn văn bơ Quận 5',
-    //         TenPhong: ['deluxe', 'public', 'yeu duong'],
-    //         DiaChi: '77 Chuyên dùng 9 Phường Phú Mỹ quận 7 TPhCm',
-    //         TienIch: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-    //         Sao: 4,
-    //         TrangThai: 'Active',
-    //     },
-    //     {
-    //         HoTen: 'Hotel A',
-    //         TenPhong: ['deluxe', 'public', 'yeu duong'],
-
-    //         DiaChi: '77 Chuyên dùng 9 Phường Phú Mỹ quận 7 TPhCm',
-    //         TienIch: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-    //         Sao: 4,
-    //         TrangThai: 'Active',
-    //     },
-    // ]
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState()
+    useEffect(() => {
+        if (hotels) {
+            let total = Math.floor(hotels.length / 4)
+            if (hotels.length % 4 !== 0) total++
+            setTotalPage(total)
+            setPage(1)
+        }
+    }, [hotels])
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={styles.cusTable}>
@@ -87,7 +78,7 @@ function HotelCKSTable({ option, hotels }) {
                 </thead>
                 <tbody>
                     {hotels &&
-                        hotels.map((hotel, index) => (
+                        hotels.slice((page - 1) * 4, page * 4).map((hotel, index) => (
                             <tr key={index} className={`${styles.memberRow} ${styles.tablesFlex}`}>
                                 <td className={styles.center}>
                                     <input
@@ -102,15 +93,20 @@ function HotelCKSTable({ option, hotels }) {
                                     <div className="d-flex">
                                         <img className={styles.imgLarge} src={hotel.HinhAnh[0].HinhAnh} alt="khoong " />
                                         <div className={`${styles.text1} ${styles.checkImg}`}>
-                                            <span>{index + 1}</span>
+                                            <span>#{index + 1}</span>
                                             <br />
                                             <span className={styles.text1Name}>{hotel.Ten}</span>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <div className={styles.text}>d</div>
-                                    <div className={styles.text}>s</div>
+                                    {hotel.phong.slice(0, 3).map((loaiPhong) => {
+                                        return (
+                                            <div key={loaiPhong.ID} className={styles.text}>
+                                                {loaiPhong.TenLoaiPhong}
+                                            </div>
+                                        )
+                                    })}
                                 </td>
                                 <td>
                                     <span className={`${styles.text2} ${styles.text2Name}`}>{hotel.DiaChi}</span>
@@ -158,7 +154,7 @@ function HotelCKSTable({ option, hotels }) {
                         ))}
                 </tbody>
             </Table>
-            <FooterPaging />
+            <FooterPaging curPage={page} handleChangePage={setPage} totalPage={totalPage} />
         </div>
     )
 }

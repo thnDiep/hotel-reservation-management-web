@@ -91,6 +91,11 @@ export default {
     return await db("hinhanh_khachsan").where("IDKhachSan", id);
   },
 
+  // Lấy hình ảnh theo ID phòng
+  async getImageRoom(id) {
+    return await db("hinhanh_phong").where("IDPhong", id);
+  },
+
   del(id) {
     return db("khachsan").where("ID", id).del();
   },
@@ -122,6 +127,9 @@ export default {
   },
   delRoom(id) {
     return db("phong").where("ID", id).del();
+  },
+  delOrder(id) {
+    return db("dondatphong").where("MaDatPhong", id).del();
   },
   updateTrangThai(id, trangthai) {
     return db("khachsan").where("ID", id).update({ TrangThai: trangthai });

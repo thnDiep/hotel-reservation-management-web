@@ -28,21 +28,26 @@
         color: #333333;
         margin-left: 5px;
         &-detail {
-            font-size: 20px;
-            margin-right: 5px;
-            font-family: icons;
-            display: inline-block;
-            vertical-align: text-top;
-            line-height: 1;
-            font-weight: 400;
-            font-style: normal;
-            text-decoration: inherit;
-            text-transform: none;
-            text-rendering: optimizeLegibility;
-            margin-bottom: 25px;
+            // font-size: 20px;
+            // margin-right: 5px;
+            // font-family: icons;
+            // display: inline-block;
+            // line-height: 1;
+            // font-weight: 400;
+            // font-style: normal;
+            // text-decoration: inherit;
+            // text-transform: none;
+            // text-rendering: optimizeLegibility;
+            // margin-bottom: 25px;
+            width: 30px;
+            height: 30px;
+            margin-right: 13px;
         }
     }
 }
-.detailName {
-    margin-top: 9px;
+.fontsize {
+    font-size: 15px;
 }
+// .detailName {
+//     margin-top: 9px;
+// }
