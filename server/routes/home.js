@@ -93,11 +93,11 @@ router.get("/", async (req, res, next) => {
       const users = await authModel.getAll()
       const rates = await feedbackModel.getAll()
       const hotelImages = await hotelModel.getAllImage()
-      // const places = await placeModal.getAll()
-      // const rooms = await roomModel.getAll()
+      const places = await placeModal.getAll()
+      const rooms = await roomModel.getAll()
       const promotions = await promotionModel.getAll()
       const periods = await promotionModel.getPeriods()
-      // const likes = await wishListModel.getWishList1(idUser)
+      const likes = await wishListModel.getWishList1(idUser)
 
       for (const hotel of hotels) {
         hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan)
@@ -118,11 +118,11 @@ router.get("/", async (req, res, next) => {
         users,
         rates,
         hotelImages,
-        // places,
-        // rooms,
+        places,
+        rooms,
         promotions,
         periods,
-        // likes,
+        likes,
       })
     }
   } catch (err) {
