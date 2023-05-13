@@ -11,6 +11,7 @@ import {
 } from "../controller/hotelier.js";
 import facilityModel from "../models/facilityModel.js";
 import roomModel from "../models/roomModel.js";
+import orderModel from "../models/orderModel.js";
 const router = express.Router();
 
 // Lấy dữ liệu hiện danh sách tiện ích
@@ -25,9 +26,19 @@ router.post("/hotel/update", updateHotel);
 
 // Lấy dữ liệu hiện các đơn đặt phòng
 router.get("/order", order);
+// duyệt
+router.get("/order/update", async (req, res, next) => {
+  try {
+    const MaDatPhong = req.query.MaDatPhong;
+    await orderModel.updateTrangThai(MaDatPhong);
+    res.json({ MaDatPhong });
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Thực hiện thêm phong
-router.post("/addRoom", addRoom);
+router.post("/room/insert", addRoom);
 // router.post("/room/update", addRoom);
 
 router.get("/hotel/del", async (req, res, next) => {

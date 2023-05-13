@@ -122,10 +122,19 @@ function CardHotel(props) {
                             <div className={clsx(styles.voucher, 'd-flex')}>
                                 <div>
                                     <span>Mã: </span>
-                                    <span className={styles.voucherCode}>{props.voucher.code}</span>
-                                    <span className={styles.voucherPercent}>- {props.voucher.percent}%</span>
+                                    <span className={styles.voucherCode}>{props.voucher.MaKhuyenMai}</span>
+                                    <span className={styles.voucherPercent}>- {props.voucher.PhanTramKM}%</span>
                                 </div>
-                                <span className={styles.voucherPrice}>{props.voucher.price} ₫</span>
+                                {props.curPrice ? (
+                                    <span className={styles.voucherPrice}>
+                                        {Math.floor(
+                                            props.curPrice - (props.curPrice * props.voucher.PhanTramKM) / 100,
+                                        ).toLocaleString()}{' '}
+                                        ₫
+                                    </span>
+                                ) : (
+                                    <span></span>
+                                )}
                             </div>
                         )}
                     </div>

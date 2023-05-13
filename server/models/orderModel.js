@@ -83,7 +83,12 @@ export default {
     orderInfo[0].SoNguoi = room[0].SoNguoi;
     return orderInfo;
   },
-
+  // update modal
+  async updateTrangThai(MaDatPhong) {
+    return await db("dondatphong")
+      .where("MaDatPhong", MaDatPhong)
+      .update({ TrangThai: 0 });
+  },
   //lấy thông tin đơn đặt hàng
   async getOrderByOrderCode(MaDatPhong) {
     //thông tin đơn đặt phòng

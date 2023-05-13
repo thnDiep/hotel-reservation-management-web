@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import clsx from 'clsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,11 +11,12 @@ import FlashSaleForm from './FlashSaleForm'
 import styles from '../Promotion.module.scss'
 import { NavHandle } from '~/components'
 import promotion from '~/assets/jsons/promotion.json'
+import DataContext from '~/contexts/DataContext'
 
 function AddPromotion() {
-    const idCKS = useRef(2)
     const navigate = useNavigate()
-    const { active, id } = useParams()
+    const { active, id } = useParams() // active: 0 - Voucher | 1 - FlashSale, id: 0 - add | 1 - update
+    const { data, handleData } = useContext(DataContext)
 
     const [showInformModal, setShowInformModal] = useState(false)
     const [showForm, setShowForm] = useState(() => {
@@ -35,34 +36,50 @@ function AddPromotion() {
         errors: {},
     })
 
+    // // Lấy dữ liệu cho form  ============================> có thể thay thế bằng useContext =====> xử lý sau
+    // useEffect(() => {
+    //     Axios.get('http://localhost:8800/cks/promotion/insert', { params: { idCKS: idCKS.current } })
+    //         .then((response) => {
+    //             setFormData(response.data)
+    //             setVoucherState({
+    //                 fields: { BatDau: new Date(), IDKhachSan: response.data.hotels[0].ID },
+    //                 errors: {},
+    //             })
+    //             setFlashSaleState({
+    //                 fields: { BatDau: new Date(), IDKhachSan: response.data.hotels[0].ID, IDKhungGio: 1 },
+    //                 errors: {},
+    //             })
+    //             console.log('Dữ liệu cho form: ', response.data)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    // }, [])
+
     // Lấy dữ liệu cho form  ============================> có thể thay thế bằng useContext =====> xử lý sau
     useEffect(() => {
-        Axios.get('http://localhost:8800/cks/promotion/insert', { params: { idCKS: idCKS.current } })
-            .then((response) => {
-                setFormData(response.data)
-                setVoucherState({
-                    fields: { BatDau: new Date(), IDKhachSan: response.data.hotels[0].ID },
-                    errors: {},
-                })
-                setFlashSaleState({
-                    fields: { BatDau: new Date(), IDKhachSan: response.data.hotels[0].ID, IDKhungGio: 1 },
-                    errors: {},
-                })
-                console.log('Dữ liệu cho form: ', response.data)
+        if (data) {
+            setFormData(data)
+            setVoucherState({
+                fields: { BatDau: new Date(), IDKhachSan: data.hotels[0].ID },
+                errors: {},
             })
-            .catch((error) => {
-                console.log(error)
+            setFlashSaleState({
+                fields: { BatDau: new Date(), IDKhachSan: data.hotels[0].ID, IDKhungGio: data.periods[0].ID },
+                errors: {},
             })
-    }, [])
+        }
+    }, [data])
 
     // Lấy dữ liệu từ promotion để chỉnh sửa
     useEffect(() => {
         if (id !== undefined) {
             Axios.get('http://localhost:8800/cks/promotion/update', {
-                params: { idPromotion: id, idCKS: idCKS.current },
+                params: { idPromotion: id },
             })
                 .then((response) => {
                     const data = response.data
+                    // console.log(data)
                     data.BatDau = new Date(data.BatDau)
 
                     if (data.KetThuc) {
@@ -70,7 +87,6 @@ function AddPromotion() {
                     }
 
                     if (showForm === 0) {
-                        console.log(data)
                         setVoucherState({
                             fields: data,
                             errors: {},
@@ -91,10 +107,14 @@ function AddPromotion() {
     // Add / update
     function handleSubmit() {
         if (showForm === 0 && handleAddVoucher()) {
+            // voucherState.fields.BatDau.setUTCHours(0, 0, 0, 0)
+            // if (voucherState.fields.KetThuc) voucherState.fields.KetThuc.setUTCHours(0, 0, 0, 0)
+
             Axios.post(`http://localhost:8800/cks/promotion/${id ? 'update' : 'insert'}`, {
                 khuyenmai: voucherState.fields,
             })
-                .then(() => {
+                .then((response) => {
+                    console.log(response.data)
                     setShowInformModal(true)
 
                     window.setTimeout(function () {
@@ -106,27 +126,39 @@ function AddPromotion() {
                 })
                 .catch((error) => console.log(error))
         } else if (showForm === 1 && handleAddFlashSale()) {
-            flashSaleState.fields.BatDau.setUTCHours(0, 0, 0, 0)
-            if (flashSaleState.fields.KetThuc) flashSaleState.fields.KetThuc.setUTCHours(0, 0, 0, 0)
+            // flashSaleState.fields.BatDau.setUTCHours(0, 0, 0, 0)
+            // if (flashSaleState.fields.KetThuc)
+            // flashSaleState.fields.KetThuc.setUTCHours(0, 0, 0, 0)
 
             Axios.post(`http://localhost:8800/cks/promotion/${id ? 'update' : 'insert'}`, {
                 khuyenmai: flashSaleState.fields,
             })
                 .then(() => {
-                    console.log(flashSaleState.fields)
-
                     setShowInformModal(true)
 
                     window.setTimeout(function () {
                         setShowInformModal(false)
                         navigate('/cks/voucher', { state: { active: 1 } })
                     }, 1000)
+
+                    // if (id) {
+                    //     const updatedPromotionIndex = data.promotions.findIndex(
+                    //         (promotion) => promotion.ID === flashSaleState.fields.ID,
+                    //     )
+                    //     data.promotions[updatedPromotionIndex] = flashSaleState.fields
+                    // } else {
+                    //     data.promotions.push(flashSaleState.fields)
+                    //     console.log('data cũ: ', data.promotions)
+                    // }
+
+                    console.log('Thông tin update thành công: ', flashSaleState.fields)
                 })
                 .catch((error) => console.log(error))
         } else {
             window.scrollTo(0, 0)
         }
     }
+
     // Validation
     function handleAddVoucher() {
         let validForm = true
@@ -213,7 +245,9 @@ function AddPromotion() {
 
                 {showForm === 0 && (
                     <div className={styles.form}>
-                        <h3 className={styles.form__header}>Thêm Voucher</h3>
+                        {!id && <h3 className={styles.form__header}>Thêm Voucher</h3>}
+                        {id && <h3 className={styles.form__header}>Chỉnh sửa Voucher</h3>}
+
                         <VoucherForm formData={formData} data={voucherState} onEdit={setVoucherState} styles={styles} />
                     </div>
                 )}

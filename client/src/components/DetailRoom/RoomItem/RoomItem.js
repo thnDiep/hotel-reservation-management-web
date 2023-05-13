@@ -22,10 +22,13 @@ library.add(faHouse, faShop, faSmoking, faBed, faWifi, faMountain, faWater)
 const MySwal = withReactContent(Swal)
 
 const RoomItem = (props) => {
+    const formatMoney = (amount) => {
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
+    }
     const handleButtonClick = (index) =>
         MySwal.fire({
             title: 'Hình ảnh khách sạn',
-            html: <Popup index={index} />,
+            html: <Popup index={index} picHotel={props.item.HinhAnh} check={true} tienNghi={props.item} />,
             showCloseButton: true,
             showConfirmButton: false,
             width: '1140px',
@@ -34,22 +37,36 @@ const RoomItem = (props) => {
         })
     return (
         <div className={classes.BoxRoomItem}>
-            <div className={classes.BoxTitle}>{props.item.title}</div>
+            <div className={classes.BoxTitle}>{props.item.TenLoaiPhong}</div>
             <div className={classes.BoxContent}>
                 <div className={classes.BoxContent__left}>
                     <div className={classes['BoxContent__left--img']}>
-                        <img alt="jell" onClick={handleButtonClick} src={props.item.image} />
+                        <img alt="jell" onClick={handleButtonClick} src={props.item.HinhAnh[0].HinhAnh} />
                     </div>
                     <div className={classes['BoxContent__left--facilities']}>
-                        {props.item.convenient.map((data) => {
-                            return (
-                                <div key={data.title} style={data.icon === 'wifi' ? { color: '#32a923' } : null}>
-                                    <FontAwesomeIcon
-                                        style={data.icon === 'wifi' ? { color: '#32a923' } : null}
-                                        icon={['fas', data.icon]}
-                                    />
-                                    {data.title}
-                                </div>
+                        {props.item.tienNghi.map((data) => {
+                            console.log(data.TenLoai)
+                            return data.TenLoai === 'Tiện Nghi' ? (
+                                data.tienNghi.map((tiennghi) => {
+                                    console.log(tiennghi)
+                                    return tiennghi === null ? (
+                                        <></>
+                                    ) : (
+                                        <div
+                                            key={data.IDTienNghi}
+                                            style={tiennghi.Icon === 'wifi' ? { color: '#32a923' } : null}
+                                        >
+                                            <FontAwesomeIcon
+                                                style={tiennghi.Icon === 'wifi' ? { color: '#32a923' } : null}
+                                                icon={['fas', tiennghi.Icon]}
+                                                className="mx-3"
+                                            />
+                                            {tiennghi.TenTienNghi}
+                                        </div>
+                                    )
+                                })
+                            ) : (
+                                <div key={data.ID}></div>
                             )
                         })}
                     </div>
@@ -58,7 +75,7 @@ const RoomItem = (props) => {
                     <div className={classes['BoxContent__right--top']}>
                         <div className={classes['box-passenger']}>
                             <div>
-                                <FontAwesomeIcon icon={faUser} /> x 4 người lớn
+                                <FontAwesomeIcon icon={faUser} /> x {props.item.SoNguoi} người lớn
                             </div>
                             <div className={classes.notice}>
                                 1 bé dưới 11 tuổi được ở <span>MIỄN PHÍ</span>
@@ -69,12 +86,12 @@ const RoomItem = (props) => {
                         <div className={classes['box-benefit']}>
                             <div className={classes.title}>Ưu đãi trong phòng</div>
                             <div className={classes.content}>
-                                {props.item.promotion.map((data) => {
+                                {props.item.UuDai.map((data) => {
                                     return (
-                                        <div key={data}>
+                                        <div key={data.IDUuDai}>
                                             {' '}
                                             <FontAwesomeIcon icon={faCheck} />
-                                            {data}
+                                            {data.NoiDung}
                                         </div>
                                     )
                                 })}
@@ -88,13 +105,14 @@ const RoomItem = (props) => {
                     <div className={classes['BoxContent__right--bottom']}>
                         <div className={classes['box-rule-price']}>
                             <span>
-                                <span className={classes.labelEndow}>Giảm {props.item.sale}% hôm nay</span>
+                                <span className={classes.labelEndow}>Giảm {props.item.GiamGia}% hôm nay</span>
                                 <i></i>
                             </span>
                         </div>
                         <div className={classes['box-price']}>
                             <div className={classes['box-price-inner']}>
-                                <div className={classes.old}>3,960,000 VND</div> 2,376,000 VND <span>/ đêm</span>
+                                <div className={classes.old}>{formatMoney(props.item.Gia).replace('₫', '')}VND</div>{' '}
+                                {formatMoney(props.item.GiaSale).replace('₫', '')}VND <span>/ đêm</span>
                             </div>
                             <div>
                                 <ButtonPrimary className="btn__order">Đặt hàng</ButtonPrimary>

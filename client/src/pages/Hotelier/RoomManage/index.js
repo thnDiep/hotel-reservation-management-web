@@ -132,9 +132,11 @@ const RoomManage = () => {
                     />
                     <div className="d-flex justify-content-between mb-2">
                         <div></div>
-                        <Link to="/cks/addRoom">
-                            <ButtonPrimary className="btnLarge1">+ Thêm phòng</ButtonPrimary>
-                        </Link>
+                        {hotel && (
+                            <Link to={`/cks/addRoom/${hotel.value.ID}`}>
+                                <ButtonPrimary className="btnLarge1">+ Thêm phòng</ButtonPrimary>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>

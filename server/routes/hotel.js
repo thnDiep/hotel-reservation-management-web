@@ -71,8 +71,7 @@ router.get("/detail", async (req, res, next) => {
     const infor = await hotelModel.findById(idHotel);
     const score = await feedbackModel.getAvgScore(idHotel);
     infor.avgScore = score[0][0]["ROUND(AVG(CAST(Diem AS FLOAT)), 1)"];
-
-    const typesHotel = await facilityModel.getLoaiTienNghi();
+    //  Lấy thông tin hữu ích
     const thongTinHuuIch = await facilityModel.getThongTinHuuIch();
     for (const thongTin of thongTinHuuIch) {
       thongTin.NoiDung = await facilityModel.getThongTinHuuIcKhachSan(
@@ -80,9 +79,12 @@ router.get("/detail", async (req, res, next) => {
         thongTin
       );
     }
-    //console.log(types);
+    //   lấy danh sách tiện nghi của khách sạn đó
+    const typesHotel = await facilityModel.getLoaiTienNghi();
     for (const type of typesHotel) {
-      const facilityOfHotels = await facilityModel.getNameOfLoai(type.ID);
+      const facilityOfHotels = await facilityModel.getNameOfLoaiKhachSan(
+        type.ID
+      );
       const tienNghi = [];
       for (let i = 0; i < facilityOfHotels.length; i++) {
         //lấy fac
@@ -93,11 +95,48 @@ router.get("/detail", async (req, res, next) => {
         if (facHotel !== null) tienNghi.push(facHotel);
         //console.log(tienNghi);
       }
-
       type.tienNghi = tienNghi;
     }
 
-    res.json({ thongTinHuuIch, infor, picHotel, feedbackHotel, typesHotel });
+    // Thêm các thông tin của phòng
+    const rooms = await roomModel.getAllByKhachSan(idHotel);
+    let minPrice = 1000000000;
+    for (const room of rooms) {
+      const [uuDai] = await roomModel.getEndow(room.ID);
+      room.UuDai = uuDai;
+      room.HinhAnh = await roomModel.getHinhAnh(room.ID);
+      const typesPhong = await facilityModel.getLoaiTienNghiRoom();
+      for (const type of typesPhong) {
+        const facilityOfRooms = await facilityModel.getNameOfLoaiPhong(type.ID);
+        const tienNghi = [];
+        for (let i = 0; i < facilityOfRooms.length; i++) {
+          //lấy fac
+          const facRoom = await facilityModel.getFacilityOfRoom(
+            facilityOfRooms[i],
+            room.ID
+          );
+          if (facRoom !== null) tienNghi.push(facRoom);
+          //console.log(tienNghi);
+        }
+        type.tienNghi = tienNghi;
+      }
+      room.GiamGia = infor.GiamGia;
+      room.tienNghi = typesPhong;
+      room.GiaSale = room.Gia - (room.Gia * room.GiamGia) / 100;
+      if (+room.GiaSale < minPrice) {
+        minPrice = +room.GiaSale;
+        infor.Gia = +room.Gia;
+      }
+    }
+    infor.GiaSale = minPrice;
+    res.json({
+      rooms,
+      thongTinHuuIch,
+      infor,
+      picHotel,
+      feedbackHotel,
+      typesHotel,
+    });
   } catch (err) {
     next(err);
   }

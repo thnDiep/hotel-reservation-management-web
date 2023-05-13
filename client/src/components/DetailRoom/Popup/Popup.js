@@ -4,7 +4,10 @@ import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 import classes from './Popup.module.scss'
 import './Popup.scss'
 import { clsx } from 'clsx'
-const Popup = ({ picHotel }) => {
+const Popup = ({ picHotel, check, tienNghi }) => {
+    const formatMoney = (amount) => {
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
+    }
     return (
         <div className="row">
             <div className="col-8">
@@ -55,180 +58,58 @@ const Popup = ({ picHotel }) => {
                 </div>
             </div>
             <div className={clsx(classes['box-popup-content'], 'col-4')}>
-                <div className={classes.boxContentItem}>
-                    <div className={classes.boxItem}>
-                        <div className={classes.title}>Điểm đặc trưng</div>
-                        <div className={classes.content}>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Diện tích phòng: 32m</span>
-                            </div>
+                {check ? (
+                    <>
+                        <div className={classes.boxContentItem}>
+                            {tienNghi.tienNghi.map((data) => {
+                                console.log(data)
+                                return (
+                                    <div className={classes.boxItem} key={data.ID}>
+                                        <div className={classes.title}>{data.TenLoai}</div>
+                                        <div className={classes.content}>
+                                            {data.tienNghi &&
+                                                data.tienNghi.map((tienNghi1) => {
+                                                    console.log(tienNghi1)
+                                                    return tienNghi1 === null ? (
+                                                        <></>
+                                                    ) : (
+                                                        <div key={tienNghi1.IDTienNghi}>
+                                                            {/* <img
+                                                                src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
+                                                                className={classes.icon}
+                                                                alt=""
+                                                            /> */}
+                                                            <FontAwesomeIcon
+                                                                className={classes.icon}
+                                                                icon={['fas', tienNghi1.Icon]}
+                                                            />
 
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Hướng biển</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Wifi miễn phí</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Ban công / sân hiên</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Không hút thuốc</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Phòng tắm vòi sen & bồn tắm</span>
-                            </div>
+                                                            <span>{tienNghi1.TenTienNghi}</span>
+                                                        </div>
+                                                    )
+                                                })}
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
-                    </div>
-                    <div className={classes.boxItem}>
-                        <div className={classes.title}>Điểm đặc trưng</div>
-                        <div className={classes.content}>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Diện tích phòng: 32m</span>
+                        <div className={classes.boxInfoPrice}>
+                            {tienNghi.GiamGia !== 0 && (
+                                <div className={classes.boxPromo}>
+                                    <span className={classes.title}>Promo giảm {tienNghi.GiamGia}% </span>
+                                </div>
+                            )}
+                            <div className={classes.boxPrice}>
+                                <label>Giá phòng chỉ từ</label> {formatMoney(tienNghi.Gia).replace('₫', '')}VND{' '}
+                                <span className={classes.tag}>/đêm</span>
                             </div>
-
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Hướng biển</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Wifi miễn phí</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Ban công / sân hiên</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Không hút thuốc</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Phòng tắm vòi sen & bồn tắm</span>
-                            </div>
+                            <button className={classes['box-popup-content__button']}>Xem phòng còn trống</button>
                         </div>
-                    </div>
-                    <div className={classes.boxItem}>
-                        <div className={classes.title}>Điểm đặc trưng</div>
-                        <div className={classes.content}>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Diện tích phòng: 32m</span>
-                            </div>
-
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Hướng biển</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Wifi miễn phí</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Ban công / sân hiên</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Không hút thuốc</span>
-                            </div>
-                            <div>
-                                <img
-                                    src="https://storage.googleapis.com/tripi-assets/images/hotels/amenities/internet/Amenities_wifi.png"
-                                    className={classes.icon}
-                                    alt=""
-                                />
-                                <span>Phòng tắm vòi sen & bồn tắm</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={classes.boxInfoPrice}>
-                    <div className={classes.boxPromo}>
-                        <span className={classes.title}>Promo giảm 40% </span>
-                    </div>
-                    <div className={classes.boxPrice}>
-                        <label>Giá phòng chỉ từ</label> 3,234,400 VND <span className={classes.tag}>/đêm</span>
-                    </div>
+                    </>
+                ) : (
                     <button className={classes['box-popup-content__button']}>Xem phòng còn trống</button>
-                </div>
-                {/* <button className={classes['box-popup-content__button']}>Xem phòng còn trống</button> */}
+                )}
+                {/* */}
             </div>
         </div>
     )

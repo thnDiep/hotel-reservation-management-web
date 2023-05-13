@@ -1,5 +1,5 @@
 import { Table } from 'react-bootstrap'
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import clsx from 'clsx'
 import moment from 'moment'
 
@@ -10,6 +10,16 @@ import styles from './Table.module.scss'
 
 function VoucherTable({ header, option, data }) {
     const globalData = useContext(DataContext)
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState()
+
+    useEffect(() => {
+        if (data) {
+            let total = Math.floor(data.length / 4)
+            if (data.length % 4 !== 0) total++
+            setTotalPage(total)
+        }
+    }, [data])
 
     return (
         <div className={styles.tableWrapper}>
@@ -98,7 +108,7 @@ function VoucherTable({ header, option, data }) {
                         ))}
                 </tbody>
             </Table>
-            <FooterPaging />
+            <FooterPaging curPage={page} handleChangePage={setPage} totalPage={totalPage} />
         </div>
     )
 }
