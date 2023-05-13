@@ -223,6 +223,13 @@ body {
         margin-right: 15px;
         font-size: 18px;
     }
+    .modalContentClose {
+        border: 1px solid red;
+    }
+    .close {
+        // background-color: red;
+        color: red;
+    }
     // .modalClose {
     //     color: #aaaaaa;
     //     float: right;
@@ -333,6 +340,11 @@ body {
     &.blocked {
         color: #fff;
         background-color: #e23428;
+        border: none;
+    }
+    &.stoped {
+        color: #fff;
+        background-color: #e22891;
         border: none;
     }
 

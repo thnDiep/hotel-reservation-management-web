@@ -71,6 +71,9 @@ router.get("/", async (req, res, next) => {
           hotel.DanhGia = Number(0).toFixed(1)
         }
       }
+      for (const room of rooms) {
+        room.endows = await roomModel.getEndow(room.ID)
+      }
       res.json({
         hotels,
         users,
