@@ -4,7 +4,6 @@ export default {
     return db("khuyenmai")
   },
 
-  // Lấy khung giờ
   getPeriods() {
     return db("khunggio")
   },
@@ -16,49 +15,14 @@ export default {
     return list[0]
   },
 
-  // async getVoucherByHotelierId(hotelierID) {
-  //   const hotels = await db("chukhachsan_khachsan").where(
-  //     "IDChuKhachSan",
-  //     hotelierID
-  //   )
-  //   if (hotels.length === 0) return null
-
-  //   const ids = []
-  //   hotels.forEach((hotel) => {
-  //     ids.push(hotel.IDKhachSan)
-  //   })
-  //   return await db("khuyenmai").where(function () {
-  //     this.whereIn("IDKhachSan", ids).whereNotNull("MaKhuyenMai")
-  //   })
-  //   // .andWhere("TrangThai", 0);
-  // },
-
-  // async getFlashSaleByHotelierId(hotelierID) {
-  //   const hotels = await db("chukhachsan_khachsan").where(
-  //     "IDChuKhachSan",
-  //     hotelierID
-  //   )
-  //   if (hotels.length === 0) return null
-
-  //   const ids = []
-  //   hotels.forEach((hotel) => {
-  //     ids.push(hotel.IDKhachSan)
-  //   })
-  //   return await db("khuyenmai").where(function () {
-  //     this.whereIn("IDKhachSan", ids).whereNull("MaKhuyenMai")
-  //   })
-  //   // .andWhere("TrangThai", 0);
-  // },
-
   async getPromotionByHotelierId(hotelierID) {
     const hotels = await db("khachsan").where("IDChuKhachSan", hotelierID)
-    if (hotels.length === 0) return null
+    if (hotels.length === 0) return []
     const ids = []
     hotels.forEach((hotel) => {
       ids.push(hotel.ID)
     })
     return await db("khuyenmai").whereIn("IDKhachSan", ids)
-    // .andWhere("TrangThai", 0);
   },
 
   add(promotion) {

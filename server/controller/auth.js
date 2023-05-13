@@ -31,6 +31,7 @@ export const signup = async (req, res, next) => {
     next(err);
   }
 };
+
 export const login = async (req, res, next) => {
   try {
     const check = (name, chec) => {
@@ -55,7 +56,8 @@ export const login = async (req, res, next) => {
         if (!ret) {
           return next(res.status(400).send("Email và Password không đúng"));
         }
-        res.status(200).send("Đăng nhập thành công.");
+        res.json({ emailAvailable });
+        // res.status(200).send("Đăng nhập thành công.");
         // if (ret) {
         //   //req.session.isAuthenticated = true;
         //   // Xét quyền của 3 vai trò

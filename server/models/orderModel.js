@@ -1,5 +1,7 @@
 import db from "../utils/db.js";
+
 export default {
+  // Lấy tất cả đơn đặt phòng
   getAll() {
     return db("dondatphong");
   },
@@ -14,11 +16,14 @@ export default {
     );
   },
 
+  // Tìm đơn đặt phòng bằng id
   async findById(id) {
     const list = await db("dondatphong").where("MaDatPhong", id);
     if (list.length === 0) return null;
     return list[0];
   },
+
+  // Tìm đơn đặt phòng
   async findByIdToCheckPhone(id) {
     let list = null;
     if (this.findById(id) !== null) {
@@ -30,24 +35,89 @@ export default {
 
     return list[0];
   },
-  // async findHotelierByOrder(idCks) {
-  //   let list = null;
-  //   if (this.findById(idCks) !== null) {
-  //     list = await db.raw(
-  //       `SELECT * FROM dondatphong, phong_dondatphong, phong, khachsan, nguoidung WHERE dondatphong.IDKhachHang=nguoidung.ID and dondatphong.MaDatPhong = phong_dondatphong.MaDonDatPhong and phong_dondatphong.IDPhong = phong.ID and phong.IDKhachSan = khachsan.ID and khachsan.IDChuKhachSan=?`,
-  //       idCks
-  //     );
-  //   }
 
-  //   return list[0];
-  // },
+  // Xóa đơn đặt phòng
   del(id) {
-    return db("dondathang").where("MaDatPhong", id).del();
+    return db("dondatphong").where("MaDatPhong", id).del();
   },
-  updateActive(order) {
-    // console.log(user.isActive);
-    return db("nguoidung").where("MaDatPhong", order.id).update({
-      TrangThai: order.isActive,
+
+  //lấy thông tin đơn đặt hàng
+  async getOrder(ID) {
+    //thông tin đơn đặt phòng
+    const orderInfo = await db("dondatphong").where("IDKhachHang", ID);
+
+    if (orderInfo.length === 0) return null;
+
+    //lấy thông tin phòng
+    const room = await db("phong").where("ID", orderInfo[0].IDPhong);
+
+    //lấy thông tin khách sạn
+    const hotelInfo = await db("khachsan").where("ID", room[0].IDKhachSan);
+
+    orderInfo.forEach((item) => {
+      item.TenKhachSan = hotelInfo[0].Ten;
     });
+
+    orderInfo[0].TenKhachSan = hotelInfo[0].Ten;
+    orderInfo[0].TenLoaiPhong = room[0].TenLoaiPhong;
+    orderInfo[0].SoNguoi = room[0].SoNguoi;
+    console.log(orderInfo);
+    return orderInfo;
+  },
+
+  //lấy thông tin đơn đặt hàng
+  async getOrder(ID) {
+    //thông tin đơn đặt phòng
+    const orderInfo = await db("dondatphong").where("IDKhachHang", ID);
+
+    if (orderInfo.length === 0) return null;
+
+    //lấy thông tin phòng
+    const room = await db("phong").where("ID", orderInfo[0].IDPhong);
+
+    //lấy thông tin khách sạn
+    const hotelInfo = await db("khachsan").where("ID", room[0].IDKhachSan);
+
+    orderInfo[0].TenKhachSan = hotelInfo[0].Ten;
+    orderInfo[0].TenLoaiPhong = room[0].TenLoaiPhong;
+    orderInfo[0].SoNguoi = room[0].SoNguoi;
+    return orderInfo;
+  },
+
+  //lấy thông tin đơn đặt hàng
+  async getOrderByOrderCode(MaDatPhong) {
+    //thông tin đơn đặt phòng
+    const orderInfo = await db("dondatphong").where("MaDatPhong", MaDatPhong);
+
+    if (orderInfo.length === 0) return null;
+
+    //thông tin khách hàng
+    const user = await db("NguoiDung").where("ID", orderInfo[0].IDKhachHang);
+
+    //lấy thông tin phòng
+    const room = await db("phong").where("ID", orderInfo[0].IDPhong);
+
+    //lấy thông tin giường
+    const bed = await db("giuong_phong").where("IDPhong", room[0].ID);
+    const bedInfo = await db("giuong").where("ID", bed[0].IDGiuong);
+
+    //lấy thông tin khách sạn
+    const hotelInfo = await db("khachsan").where("ID", room[0].IDKhachSan);
+
+    orderInfo[0].TenKhachSan = hotelInfo[0].Ten;
+    orderInfo[0].DiaChi = hotelInfo[0].DiaChi;
+
+    orderInfo[0].TenLoaiPhong = room[0].TenLoaiPhong;
+    orderInfo[0].SoNguoi = room[0].SoNguoi;
+    orderInfo[0].Gia = room[0].Gia;
+
+    orderInfo[0].SoGiuong = bed[0].SoLuongGiuong;
+    orderInfo[0].TenLoaiGiuong = bedInfo[0].LoaiGiuong;
+
+    orderInfo[0].TenKhachHang = user[0].HoTen;
+    orderInfo[0].SoDienThoaiKhachHang = user[0].SoDienThoai;
+    orderInfo[0].EmailKhachHang = user[0].Email;
+
+    return orderInfo;
   },
 };

@@ -1,5 +1,7 @@
 import express from "express";
-import profileModel from "../models/profileModel.js";
+import wishListModel from "../models/wishListModel.js";
+import authModel from "../models/authModel.js";
+import orderModel from "../models/orderModel.js";
 
 const router = express.Router();
 
@@ -8,7 +10,7 @@ router.get("/", async (req, res, next) => {
   try {
     const ID = req.query.ID || 4;
 
-    const profileInfo = await profileModel.findByID(ID);
+    const profileInfo = await authModel.findById(ID);
 
     res.json(profileInfo);
   } catch (err) {
@@ -22,7 +24,7 @@ router.post("/update", async (req, res, next) => {
     // const ID = req.query.ID || 4;
     const info = req.body.info;
 
-    await profileModel.update(info);
+    await authModel.update(info);
 
     res.json({});
   } catch (err) {
@@ -36,7 +38,7 @@ router.get("/del", async (req, res, next) => {
     const idUser = req.query.idUser;
 
     if (idUser) {
-      await profileModel.del(idUser);
+      await authModel.del(idUser);
     }
 
     res.json({ idUser });
@@ -45,22 +47,22 @@ router.get("/del", async (req, res, next) => {
   }
 });
 
-//thêm khách sạn vào ds yêu thích
+// thêm khách sạn vào ds yêu thích
 router.post("/addToWishList", async (req, res, next) => {
   try {
     const data = req.body.data;
-    await profileModel.addToWishList(data);
+    await wishListModel.addToWishList(data);
     res.json({});
   } catch (err) {
     next(err);
   }
 });
 
-//xóa khách sạn khỏi ds yêu thích
+// xóa khách sạn khỏi ds yêu thích
 router.post("/removeFromWishList", async (req, res, next) => {
   try {
     const data = req.body.data;
-    await profileModel.removeFromWishList(data);
+    await wishListModel.removeFromWishList(data);
     res.json({});
   } catch (err) {
     next(err);
@@ -70,7 +72,7 @@ router.post("/removeFromWishList", async (req, res, next) => {
 router.get("/wishlist", async (req, res, next) => {
   try {
     const id = req.body.ID || 4;
-    const wishlist = await profileModel.getWishList(id);
+    const wishlist = await wishListModel.getWishList(id);
     res.json(wishlist);
   } catch (err) {
     next(err);
@@ -80,7 +82,7 @@ router.get("/wishlist", async (req, res, next) => {
 router.get("/order", async (req, res, next) => {
   try {
     const id = req.body.ID || 4;
-    const order = await profileModel.getOrder(id);
+    const order = await orderModel.getOrder(id);
     res.json(order);
   } catch (err) {
     next(err);
@@ -89,8 +91,10 @@ router.get("/order", async (req, res, next) => {
 
 router.get("/order/detail", async (req, res, next) => {
   try {
-    const MaDatPhong = req.query.MaDatPhong || 5743539;
-    const result = await profileModel.getOrderByOrderCode(MaDatPhong);
+    const MaDatPhong = req.body.MaDatPhong || 5743539;
+    const result = await orderModel.getOrderByOrderCode(MaDatPhong);
+    console.log("1111");
+    console.log(result);
     res.json(result);
   } catch (err) {
     next(err);

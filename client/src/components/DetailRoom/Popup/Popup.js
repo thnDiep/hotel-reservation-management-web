@@ -8,13 +8,15 @@ const Popup = ({ picHotel }) => {
     return (
         <div className="row">
             <div className="col-8">
-                <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
+                <div
+                    id="carouselExampleCaptions"
+                    className="carousel slide"
+                    data-interval="false"
+                    data-bs-ride="carousel"
+                >
                     <div className="carousel-inner">
-                        <div className="carousel-item active">
-                            <img src={picHotel[0].HinhAnh} alt="" />
-                        </div>
-                        {picHotel.slice(1).map((pic) => (
-                            <div className="carousel-item" key={pic.HinhAnh}>
+                        {picHotel.map((pic, index) => (
+                            <div className={index === 0 ? 'carousel-item active' : 'carousel-item'} key={pic.HinhAnh}>
                                 <img src={pic.HinhAnh} alt="" />
                             </div>
                         ))}
@@ -40,11 +42,11 @@ const Popup = ({ picHotel }) => {
                     {/* indicator */}
 
                     <div className={clsx(classes['carousel-indicators-image'], 'carousel-indicators')}>
-                        {picHotel.slice(1).map((pic, index) => (
+                        {picHotel.map((pic, index) => (
                             <div
                                 data-bs-target="#carouselExampleCaptions"
                                 data-bs-slide-to={index}
-                                className={clsx(classes['active'], 'active')}
+                                className={`${classes['active']} ${index === 0 ? 'active' : ''} `}
                             >
                                 <img src={pic.HinhAnh} alt="" />
                             </div>

@@ -49,17 +49,18 @@ import Axios from 'axios'
 import Star from '~/components/Star/Star'
 const MySwal = withReactContent(Swal)
 
-const PriceDetail = ({ infor, types }) => {
+const PriceDetail = ({ infor, types, typesHotel }) => {
     const [star, setStar] = useState(0)
     const handleButtonClick = () =>
         MySwal.fire({
             title: 'Tiện nghi Khách sạn',
-            html: <AllFacility />,
+            html: <AllFacility typesHotel={typesHotel} />,
             showCloseButton: true,
             showConfirmButton: false,
             width: '784px',
             height: '530px',
             backdrop: '#fffff',
+            customClass: 'popup-wrapper',
         })
     function scrollToRoomList() {
         console.log(scrollToRoomList)

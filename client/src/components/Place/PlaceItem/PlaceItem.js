@@ -7,8 +7,12 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import HeartButton from '~/components/Button/HeartButton'
+import Star from '~/components/Star/Star'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const PlaceItem = ({ item, liked }) => {
+    const formatMoney = (amount) => {
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
+    }
     const [currentSlide, setCurrentSlide] = useState(0) // Khởi tạo state lưu giá trị của currentSlide
     const handleAfterChange = (currentSlide) => {
         setCurrentSlide(currentSlide)
@@ -50,9 +54,9 @@ const PlaceItem = ({ item, liked }) => {
         nextArrow: <SlickArrowRight />,
         // "data-currentslide": currentSlide,
     }
-    const renderSlides = item.imgs.map((image) => (
-        <div className="image" key={image.id}>
-            <img className="image" src={image.image} alt="hello" />
+    const renderSlides = item.HinhAnh.map((image, index) => (
+        <div className="image" key={index}>
+            <img className="image" src={image.HinhAnh} alt="hello" />
         </div>
     ))
 
@@ -65,18 +69,18 @@ const PlaceItem = ({ item, liked }) => {
             <div className="place__detail">
                 <div className="place__detail--content">
                     <div className="place__detail--endow">
-                        <div className="place__detail--endow1">{item.endow[0]}</div>
-                        <div className="place__detail--endow2">{item.endow[1]}</div>
+                        <div className="place__detail--endow1">{item.Nhan}</div>
                     </div>
-                    <div className="place__detail--title">{item.title}</div>
-                    <div className="place__detail--rate">{item.title}</div>
+                    <div className="place__detail--title">{item.Ten}</div>
+                    {/* <div className="place__detail--rate">{item.title}</div> */}
                     <div className="place__detail--star">
+                        <Star number={item.soSao} />
+                        {/* <FontAwesomeIcon className="fa-star" icon={faStar} />
                         <FontAwesomeIcon className="fa-star" icon={faStar} />
                         <FontAwesomeIcon className="fa-star" icon={faStar} />
                         <FontAwesomeIcon className="fa-star" icon={faStar} />
                         <FontAwesomeIcon className="fa-star" icon={faStar} />
-                        <FontAwesomeIcon className="fa-star" icon={faStar} />
-                        <div className="overlay--star" style={{ width: `0.8-calc(100% - ${item.rate}/5*100%)` }}></div>
+                        <div className="overlay--star" style={{ width: `0.8-calc(100% - ${item.rate}/5*100%)` }}></div> */}
                     </div>
                     <div className="place__detail--scored">
                         <span className="place__detail--scored1">
@@ -100,7 +104,7 @@ const PlaceItem = ({ item, liked }) => {
                                     fill="#F36"
                                 ></path>
                             </svg>
-                            {item.scored}
+                            {item.DanhGia}
                         </span>
                         <span className="place__detail--scored2">Tuyệt vời</span>
                         <span className="place__detail--scored3">179 đánh giá</span>
@@ -123,7 +127,7 @@ const PlaceItem = ({ item, liked }) => {
                                     ></path>
                                 </svg>
                             </span>
-                            <span className="map1__content">Dương Tơ, Phú Quốc</span>
+                            <span className="map1__content">{item.DiaChi}</span>
                         </div>
                         <div className="place__detail--map2">Xem trên bản đồ</div>
                     </div>
@@ -156,7 +160,7 @@ const PlaceItem = ({ item, liked }) => {
                                 ></path>
                             </svg>
                         </span>
-                        <span className="status__content">{item.status}</span>
+                        <span className="status__content">{item.phong}</span>
                     </div>
                     <div className="place__detail--service place__detail--status">
                         <span className="status__icon">
@@ -170,17 +174,16 @@ const PlaceItem = ({ item, liked }) => {
                                 ></path>
                             </svg>
                         </span>
-                        <span className="status__content">{item.service}</span>
+                        <span className="status__content">{item.UuDai}</span>
                     </div>
                 </div>
                 <div className="place__detail--price">
                     <div className="price__discount">
-                        -{item.discount}
-                        <span className="price__discount1"></span>
+                        -{item.GiamGia}%<span className="price__discount1"></span>
                     </div>
-                    <span className="price__new">2.722.909 ₫</span>
+                    <span className="price__new"> {formatMoney(item.Gia)}</span>
                     <span className="price__old" style={{ color: 'rgb(26, 32, 44)' }}>
-                        2.844.276 ₫
+                        {formatMoney(item.GiaMoi)}
                     </span>
                 </div>
             </div>

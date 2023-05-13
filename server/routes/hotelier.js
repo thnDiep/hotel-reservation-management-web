@@ -33,12 +33,25 @@ router.post("/addRoom", addRoom);
 router.get("/hotel/del", async (req, res, next) => {
   try {
     const idKhachSan = req.query.idKhachSan;
-    console.log(idKhachSan);
+    // console.log(idKhachSan);
     if (idKhachSan) {
-      await hotelModel.del(idKhachSan);
+      const check = await roomModel.getAllByKhachSan(idKhachSan);
+      console.log(check);
+      if (check.length !== 0) {
+        next(
+          res.status(400).send("Bạn phải xóa phòng trước khi xóa khách sạn")
+        );
+      } else {
+        await hotelModel.delRoomByIDKS(idKhachSan);
+        await hotelModel.delWashListIDKS(idKhachSan);
+        await hotelModel.delTienNghiIDKS(idKhachSan);
+        await hotelModel.delKhuyenMaiIDKS(idKhachSan);
+        await hotelModel.delHinhAnhIDKS(idKhachSan);
+        await hotelModel.delThongIDKS(idKhachSan);
+        await hotelModel.del(idKhachSan);
+        res.json({ idKhachSan });
+      }
     }
-
-    res.json({ idKhachSan });
   } catch (err) {
     next(err);
   }
@@ -49,7 +62,10 @@ router.get("/room/del", async (req, res, next) => {
     const idPhong = req.query.IDPhong;
     console.log(idPhong);
     if (idPhong) {
-      await hotelModel.del(idPhong);
+      await hotelModel.delTienNghiIDRoom(idPhong);
+      await hotelModel.delHinhAnhIDPhong(idPhong);
+      await hotelModel.delUuDaiIDPhong(idPhong);
+      await hotelModel.delRoom(idPhong);
     }
 
     res.json({ idPhong });
@@ -104,7 +120,7 @@ router.get("/hotel/update", async (req, res, next) => {
   try {
     const idKhachSan = req.query.IDKhachSan || 1;
     const idCKS = req.query.IDCKS || 1;
-    const [hotel] = await hotelModel.getHotelByID(idKhachSan);
+    const [hotel] = await hotelModel.findById(idKhachSan);
     const hinhAnh = await hotelModel.getImage(idKhachSan);
     const tienNghi = await facilityModel.getTienNghiKhachSan(idKhachSan);
     const thongTin = await facilityModel.getThongTinKhachSan(idKhachSan);
@@ -114,6 +130,22 @@ router.get("/hotel/update", async (req, res, next) => {
     // // const periods = await promotionModel.getPeriods()
     const HinhAnh = hinhAnh.map((image) => image.HinhAnh);
     res.json({ hotel, HinhAnh, idTienNghi, thongTin });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/hotel/stop", async (req, res, next) => {
+  try {
+    const IDKhachSan = req.query.IDKhachSan;
+    const TrangThai = req.query.TrangThai;
+    console.log(IDKhachSan);
+    if (IDKhachSan) {
+      await hotelModel.updateTrangThai(IDKhachSan, TrangThai);
+      res.json({ IDKhachSan });
+    } else {
+      next(res.status(400).send("Bạn phải xóa phòng trước khi xóa khách sạn"));
+    }
   } catch (err) {
     next(err);
   }

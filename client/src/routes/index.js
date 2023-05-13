@@ -27,7 +27,7 @@ export const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
     { path: '/detail', component: Detail },
     { path: '/listByPlace', component: ListByPlace },
-    { path: '/checkout', component: Checkout, layout: HomeLayout },
+    { path: '/checkout/:id', component: Checkout, layout: HomeLayout },
     { path: '/checkout/success', component: SuccessCheckOut, layout: HomeLayout },
 
     // Hotel

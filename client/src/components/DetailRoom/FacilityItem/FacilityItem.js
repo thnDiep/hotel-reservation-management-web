@@ -10,16 +10,21 @@ const FacilityItem = (props) => {
     return (
         <React.Fragment>
             <div className={classes['box-item-fac']}>
-                <h3>{props.item.title}</h3>
+                <h3>{props.item.tienNghi[0] !== null && props.item.TenLoai}</h3>
                 <div className={classes.items}>
-                    {props.item.facility.map((data) => {
+                    {props.item.tienNghi.map((data, index) => {
                         return (
-                            <div key={data.title}>
-                                <FontAwesomeIcon
+                            <div key={index} className={`d-flex align-items-center mb-4 ${classes.fontsize}`}>
+                                {/* <FontAwesomeIcon
                                     icon={['fas', data.icon]}
                                     className={classes['icon-fac-detail']}
-                                ></FontAwesomeIcon>
-                                <span className={classes.detailName}> {data.title}</span>
+                                ></FontAwesomeIcon> */}
+                                {data && (
+                                    <>
+                                        <img src={data.Icon} alt="" className={classes['icon-fac-detail']}></img>
+                                        <span className={classes.detailName}> {data.TenTienNghi}</span>
+                                    </>
+                                )}
                             </div>
                         )
                     })}

@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 const RoomManage = () => {
     const navigate = useNavigate()
     // const optionsHotel = [
@@ -30,6 +30,8 @@ const RoomManage = () => {
 
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const { data, handleData } = useContext(DataContext)
+    const [errorMessage, setErrorMessage] = useState({ value: '', check: false })
+
     useEffect(() => {
         // if (hotels) {
         // console.log(hotels)
@@ -73,13 +75,9 @@ const RoomManage = () => {
     function handleDeleteRoom() {
         axios
             .get('http://localhost:8800/cks/room/del', { params: { IDPhong: roomActive.ID } })
-            .then(() => {
-                setShowInformModal(true)
+            .then((res) => {
+                setErrorMessage({ value: 'Xóa thành công', check: true })
 
-                window.setTimeout(function () {
-                    setShowInformModal(false)
-                }, 1000)
-                console.log('helllo')
                 const updatedHotels = data.hotels.map((hotel) => {
                     const updatedRooms = hotel.phong.filter((room) => room.ID !== roomActive.ID)
                     return {
@@ -87,20 +85,22 @@ const RoomManage = () => {
                         phong: updatedRooms,
                     }
                 })
-
                 handleData({
                     ...data,
                     hotels: updatedHotels,
                 })
-
-                console.log(hotel.value.phong.filter((key) => key.ID !== roomActive.ID))
-
                 setRoomActive(null)
                 setShowDeleteModal(false)
             })
             .catch((error) => {
-                console.log(error)
+                setErrorMessage({ value: error.response.data, check: true })
                 setShowDeleteModal(false)
+            })
+            .finally(() => {
+                setShowInformModal(true)
+                window.setTimeout(function () {
+                    setShowInformModal(false)
+                }, 1000)
             })
     }
     // console.log(hotel?.value?.phong)
@@ -110,11 +110,11 @@ const RoomManage = () => {
                 <div className={styles.leftContent}>
                     <div className="d-flex justify-content-start mt-2">
                         <span className={` ${styles.leftTitle} `}>Khách sạn: </span>
-                        <span className="">Anh yeu ba già khó tính</span>
+                        <span className="">{hotel && hotel.value.Ten}</span>
                     </div>
                     <div className="d-flex justify-content-start mt-2">
                         <span className={` ${styles.leftTitle} `}>Địa chỉ: </span>
-                        <span className="">77 đường chuyên dùng 9, Phường phú mỹ</span>
+                        <span className="">{hotel && hotel.value.DiaChi}</span>
                     </div>
                     <div className="d-flex justify-content-start mt-2">
                         <span className={` ${styles.leftTitle} `}>Điện thoại: </span>
@@ -155,12 +155,17 @@ const RoomManage = () => {
                 highlight={roomActive && roomActive.TieuDe}
             />
             {/* Thông báo thành công */}
+            {/* Thông báo thành công */}
             {showInformModal && (
                 <div id="myModal" className="myModal1">
                     {/* <!-- Modal content --> */}
-                    <div className="modalContent">
-                        <FontAwesomeIcon icon={faCheckCircle} className="modalIcon" />
-                        <div>Thao tác thành công</div>
+                    <div className={`modalContent ${errorMessage.check ? '' : 'modalContentClose'}`}>
+                        {errorMessage.check ? (
+                            <FontAwesomeIcon icon={faCheckCircle} className="modalIcon" />
+                        ) : (
+                            <FontAwesomeIcon icon={faTimesCircle} className="modalIcon close" />
+                        )}
+                        <div>{errorMessage.value}</div>
                     </div>
                 </div>
             )}

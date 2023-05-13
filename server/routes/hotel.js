@@ -1,6 +1,6 @@
 import express from "express";
 import hotelModel from "../models/hotelModel.js";
-import profileModel from "../models/profileModel.js";
+import authModel from "../models/authModel.js";
 import {
   facility,
   addHotel,
@@ -9,6 +9,7 @@ import {
   order,
 } from "../controller/hotelier.js";
 import feedbackModel from "../models/feedbackModel.js";
+import roomModel from "../models/roomModel.js";
 import facilityModel from "../models/facilityModel.js";
 
 const router = express.Router();
@@ -19,6 +20,27 @@ router.get("/search", async (req, res, next) => {
     const key = req.query.key;
 
     const result = await hotelModel.search(key.place);
+    for (const hotel of result) {
+      hotel.checked = true;
+      hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan);
+      hotel.DanhGia = await feedbackModel.getAvgRate(hotel.ID);
+      hotel.DanhGia = +hotel.DanhGia;
+      hotel.HinhAnh = await hotelModel.getImage(hotel.ID);
+      const DiaChi = hotel.DiaChi.replace(/Xã |Thành phố|Phường /g, "");
+      const parts = DiaChi.split(",");
+      const district = parts[parts.length - 2].trim().replace(/ +/g, " ");
+      const ward = parts[parts.length - 3].trim().replace(/ +/g, " ");
+      hotel.DiaChi = ward + ", " + district;
+      const [min] = await roomModel.getGiaMin(hotel.ID);
+      hotel.Gia = min["min(`Gia`)"];
+      const max = await roomModel.getGiaMax(hotel.ID);
+      hotel.phong = max.TenLoaiPhong;
+      if (hotel.DanhGia) {
+        hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2);
+      } else {
+        hotel.DanhGia = Number(0).toFixed(1);
+      }
+    }
     res.json(result);
   } catch (err) {
     next(err);
@@ -50,25 +72,32 @@ router.get("/detail", async (req, res, next) => {
     const score = await feedbackModel.getAvgScore(idHotel);
     infor.avgScore = score[0][0]["ROUND(AVG(CAST(Diem AS FLOAT)), 1)"];
 
-    const types = await facilityModel.getLoaiTienNghi();
+    const typesHotel = await facilityModel.getLoaiTienNghi();
+    const thongTinHuuIch = await facilityModel.getThongTinHuuIch();
+    for (const thongTin of thongTinHuuIch) {
+      thongTin.NoiDung = await facilityModel.getThongTinHuuIcKhachSan(
+        idHotel,
+        thongTin
+      );
+    }
     //console.log(types);
-    for (let typeKS of types) {
-      const facilityOfHotels = await facilityModel.getNameOfLoai(typeKS.ID);
-      //console.log(facilityOfHotels);
+    for (const type of typesHotel) {
+      const facilityOfHotels = await facilityModel.getNameOfLoai(type.ID);
       const tienNghi = [];
       for (let i = 0; i < facilityOfHotels.length; i++) {
+        //lấy fac
         const facHotel = await facilityModel.getFacilityOfHotel(
-          facilityOfHotels[i].ID
+          facilityOfHotels[i],
+          idHotel
         );
-        console.log(facHotel);
-        facHotel.Ten = facilityOfHotels[i].TenTienNghi;
-        facHotel.Icon = facilityOfHotels[i].Icon;
         if (facHotel !== null) tienNghi.push(facHotel);
         //console.log(tienNghi);
       }
-      typeKS.tienNghi = tienNghi;
+
+      type.tienNghi = tienNghi;
     }
-    res.json({ infor, picHotel, feedbackHotel, types });
+
+    res.json({ thongTinHuuIch, infor, picHotel, feedbackHotel, typesHotel });
   } catch (err) {
     next(err);
   }

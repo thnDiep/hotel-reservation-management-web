@@ -87,7 +87,7 @@ function HotelCKSTable({ option, hotels }) {
                 </thead>
                 <tbody>
                     {hotels &&
-                        hotels.hotels.map((hotel, index) => (
+                        hotels.map((hotel, index) => (
                             <tr key={index} className={`${styles.memberRow} ${styles.tablesFlex}`}>
                                 <td className={styles.center}>
                                     <input
@@ -124,10 +124,35 @@ function HotelCKSTable({ option, hotels }) {
                                     </div>
                                 </td>
                                 <td>
-                                    <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
+                                    {hotel.TrangThai === 0 && (
+                                        <div className={clsx('btn-1', 'pending', styles.status)}>Chờ duyệt</div>
+                                    )}
+                                    {hotel.TrangThai === 1 && (
+                                        <div className={clsx('btn-1', 'active', styles.status)}>Hoạt động</div>
+                                    )}
+                                    {hotel.TrangThai === 2 && (
+                                        <div className={clsx('btn-1', 'blocked', styles.status)}>Bị khóa</div>
+                                    )}
+                                    {hotel.TrangThai === 3 && (
+                                        <div className={clsx('btn-1', 'stoped', styles.status)}>Tạm ngưng</div>
+                                    )}
                                 </td>
                                 <td className={styles.last}>
-                                    <DropdownOption type={9} idActive={hotel.ID} list={option} hides={true} />
+                                    <DropdownOption
+                                        type={9}
+                                        idActive={hotel.ID}
+                                        list={option}
+                                        hides={[
+                                            false,
+                                            false,
+                                            false,
+                                            false,
+                                            hotel.TrangThai !== 0,
+                                            hotel.TrangThai !== 1,
+                                            hotel.TrangThai !== 2,
+                                            hotel.TrangThai !== 3,
+                                        ]}
+                                    />
                                 </td>
                             </tr>
                         ))}

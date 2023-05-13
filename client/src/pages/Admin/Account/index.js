@@ -19,7 +19,7 @@ function Account() {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [showInformModal, setShowInformModal] = useState(false)
 
-    const data = useContext(DataContext)
+    const { data } = useContext(DataContext)
     const [users, setUsers] = useState()
     const [userActive, setUserActive] = useState(null)
 

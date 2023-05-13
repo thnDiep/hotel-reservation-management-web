@@ -3,7 +3,8 @@ import facilityModel from "../models/facilityModel.js";
 import hotelModel from "../models/hotelModel.js";
 import roomModel from "../models/roomModel.js";
 import orderModel from "../models/orderModel.js";
-import profileModel from "../models/profileModel.js";
+import placeModel from "../models/placeModel.js";
+
 export const facility = async (req, res, next) => {
   try {
     const types = await facilityModel.getLoaiTienNghi();
@@ -17,6 +18,7 @@ export const facility = async (req, res, next) => {
     next(err);
   }
 };
+
 export const facilityRoom = async (req, res, next) => {
   try {
     const types = await facilityModel.getLoaiTienNghiRoom();
@@ -30,6 +32,8 @@ export const facilityRoom = async (req, res, next) => {
     next(err);
   }
 };
+
+// Thêm khách sạn
 export const addHotel = async (req, res, next) => {
   try {
     const hotel = {
@@ -39,7 +43,7 @@ export const addHotel = async (req, res, next) => {
       GioNhanPhong: req.body.hotel.GioNhanPhong.value,
     };
 
-    const ID = await hotelModel.getIDDiaDiem(hotel.DiaChi);
+    const ID = await placeModel.getIDDiaDiem(hotel.DiaChi);
     if (ID > 0) {
       hotel.IDDiaDiem = ID;
     }
@@ -73,6 +77,7 @@ export const addHotel = async (req, res, next) => {
   }
 };
 
+// Cập nhật khách sạn
 export const updateHotel = async (req, res, next) => {
   console.log(req.body.tienNghi);
   try {
@@ -83,7 +88,7 @@ export const updateHotel = async (req, res, next) => {
       GioNhanPhong: req.body.hotel.GioNhanPhong.value,
     };
 
-    const ID = await hotelModel.getIDDiaDiem(hotel.DiaChi);
+    const ID = await placeModel.getIDDiaDiem(hotel.DiaChi);
     if (ID > 0) {
       hotel.IDDiaDiem = ID;
     }
@@ -92,17 +97,18 @@ export const updateHotel = async (req, res, next) => {
 
     if (oldHotel === undefined || oldHotel.DiaChi === hotel.DiaChi) {
       await hotelModel.update(hotel);
-      console.log(hotel.ID);
+      await facilityModel.delTienNghiKs(hotel.ID);
       for (const ID of req.body.tienNghi) {
-        await facilityModel.updateTIenNghiKhachSan({
+        await facilityModel.addTIenNghiKhachSan({
           IDTienNghi: ID,
           IDKhachSan: hotel.ID,
         });
       }
       // console.log("ádafsđs");
+      await facilityModel.delThongTinKhachSan(hotel.ID);
       for (const ID of req.body.thongTin) {
         // console.log(ID);
-        await facilityModel.updateThongTinKhachSan({
+        await facilityModel.addThongTinKhachSan({
           IDThongTin: ID.ID,
           IDKhachSan: hotel.ID,
           NoiDung: ID.NoiDung,
@@ -167,6 +173,7 @@ export const addRoom = async (req, res, next) => {
     next(err);
   }
 };
+
 export const updateRoom = async (req, res, next) => {
   try {
     const room = {
@@ -181,14 +188,16 @@ export const updateRoom = async (req, res, next) => {
 
     await roomModel.updateRoom(room);
     console.log(req.body.tienNghi);
+    await delTIenNghiPhong(room.ID);
     for (const ID of req.body.tienNghi) {
-      await facilityModel.updateTIenNghiPhong({
+      await facilityModel.addTIenNghiPhong({
         IDTienNghi: ID,
         IDPhong: room.ID,
       });
     }
+    await facilityModel.delUuDaiPhong(room.ID);
     for (const ID of req.body.uuDai) {
-      await facilityModel.updateUuDaiPhong({
+      await facilityModel.addUuDaiPhong({
         IDPhong: room.ID,
         IDUuDai: ID,
       });
@@ -213,6 +222,7 @@ export const updateRoom = async (req, res, next) => {
     next(err);
   }
 };
+
 export const order = async (req, res, next) => {
   try {
     const idCKS = req.query.idCKS || 1;
