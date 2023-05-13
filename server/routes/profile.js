@@ -89,10 +89,8 @@ router.get("/order", async (req, res, next) => {
 
 router.get("/order/detail", async (req, res, next) => {
   try {
-    const MaDatPhong = req.body.MaDatPhong || 5743539;
+    const MaDatPhong = req.query.MaDatPhong || 5743539;
     const result = await profileModel.getOrderByOrderCode(MaDatPhong);
-    console.log("1111");
-    console.log(result);
     res.json(result);
   } catch (err) {
     next(err);

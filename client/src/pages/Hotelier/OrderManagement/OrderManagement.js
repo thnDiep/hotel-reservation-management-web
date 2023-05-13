@@ -2,10 +2,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import clsx from 'clsx'
 import TitleLinkButton from '~/components/Button/TitleButton'
-import { Tag, NavBar, DropdownButton, DropdownOption } from '~/components'
+import { Tag, NavBar, DropdownButton, DropdownOption, ConformModal } from '~/components'
 import { Table } from 'react-bootstrap'
 import styles from './OrderManagement.module.scss'
-
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -18,38 +18,72 @@ const MySwal = withReactContent(Swal)
 function HotelTable() {
     const [enteredPendingBtn, setEnteredPendingBtn] = useState(false)
     // khi nhấn nút xóa của 1 thẻ
-    const [enteredDel, setEnteredDel] = useState(false)
     const [enteredDel1, setEnteredDel1] = useState(false)
     const [data, setData] = useState(null)
     const [option, setOption] = useState([])
     useEffect(() => {
-        Axios.get('http://localhost:8800/cks/order', { params: { idCKS: 1 } })
+        Axios.get('http://localhost:8800/cks/order', { params: { idCKS: 9 } })
             .then((response) => {
                 setData(response.data.orders[0])
                 console.log(response.data.orders[0])
-                setOption([
-                    {
-                        name: 'Xóa',
-                        handle: function () {},
-                    },
-                ])
             })
             .catch((error) => {
                 console.log(error)
             })
     }, [])
+    const [orderActive, setOrderActive] = useState(null)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
+    useEffect(() => {
+        if (data) {
+            setOption([
+                {
+                    name: 'Xóa',
+                    handle: function (idActive, index) {
+                        console.log(idActive)
+                        const order = data.find((key) => key.MaDatPhong === idActive)
+                        console.log(order)
+                        console.log('order')
+                        setOrderActive(order)
+                        setShowDeleteModal(true)
+                    },
+                },
+            ])
+        }
+    }, [data])
+    const [showInformModal, setShowInformModal] = useState(false)
+    function handleDeleteHotel() {
+        Axios.get('http://localhost:8800/cks/order/del', { params: { MaDatPhong: orderActive.MaDatPhong } })
+            .then(() => {
+                setShowInformModal(true)
 
-    const handleButtonClick = () =>
+                window.setTimeout(function () {
+                    setShowInformModal(false)
+                }, 1000)
+                console.log('helllo')
+                setData(data.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong))
+                console.log('ata.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong)')
+                console.log(data.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong))
+
+                setOrderActive(null)
+                setShowDeleteModal(false)
+            })
+            .catch((error) => {
+                console.log(error)
+                setShowDeleteModal(false)
+            })
+    }
+    const handleButtonClick = (ma) => {
+        console.log(ma)
         MySwal.fire({
             title: 'Đơn hàng',
-            html: <OrderDetailCard />,
+            html: <OrderDetailCard MaDatPhong={ma} />,
             showCloseButton: true,
             showConfirmButton: false,
             width: '784px',
             height: '530px',
             backdrop: '#fffff',
         })
-
+    }
     const pendingBtnChangeHandler = () => {
         setEnteredPendingBtn(!enteredPendingBtn)
     }
@@ -91,7 +125,7 @@ function HotelTable() {
                             <h3 className={styles.title}>Số điện thoại</h3>
                         </th>
                         <th>
-                            <h3 className={styles.title}>Số tiền thanh toán</h3>
+                            <h3 className={styles.title}>Tổng tiền</h3>
                         </th>
                         <th>
                             <h3 className={styles.title}>Trạng thái</h3>
@@ -102,8 +136,9 @@ function HotelTable() {
                 <tbody>
                     {data &&
                         data.map((data) => {
+                            console.log(data.MaDatPhong)
                             return (
-                                <tr className={styles.memberRow} onClick={handleButtonClick}>
+                                <tr className={styles.memberRow} onClick={() => handleButtonClick(data.MaDatPhong)}>
                                     <td className={styles.center}>
                                         <input type="checkbox" className={styles.checkBox} />
                                     </td>
@@ -169,7 +204,12 @@ function HotelTable() {
                                         </button>
                                     </td>
                                     <td className={`${styles.relative} ${styles.btnDotted}`}>
-                                        <DropdownOption />
+                                        <DropdownOption
+                                            type={9}
+                                            idActive={data.MaDatPhong}
+                                            list={option}
+                                            hides={true}
+                                        />
                                     </td>
                                 </tr>
                             )
@@ -177,6 +217,24 @@ function HotelTable() {
                 </tbody>
             </Table>
             <FooterPaging />
+            {/* Xác nhận xóa */}
+            <ConformModal
+                show={showDeleteModal}
+                onClose={() => setShowDeleteModal(false)}
+                onConform={() => handleDeleteHotel()}
+                content={`Bạn chắc chắn muốn xóa khách sạn`}
+                highlight={orderActive && orderActive.TieuDe}
+            />
+            {/* Thông báo thành công */}
+            {showInformModal && (
+                <div id="myModal" className="myModal1">
+                    {/* <!-- Modal content --> */}
+                    <div className="modalContent">
+                        <FontAwesomeIcon icon={faCheckCircle} className="modalIcon" />
+                        <div>Thao tác thành công</div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

@@ -51,17 +51,18 @@ router.get("/detail", async (req, res, next) => {
     infor.avgScore = score[0][0]["ROUND(AVG(CAST(Diem AS FLOAT)), 1)"];
 
     const types = await facilityModel.getLoaiTienNghi();
-    console.log(types);
+    //console.log(types);
     for (let typeKS of types) {
       const facilityOfHotels = await facilityModel.getNameOfLoai(typeKS.ID);
-      // console.log(facilityOfHotels);
+      //console.log(facilityOfHotels);
       const tienNghi = [];
       for (let i = 0; i < facilityOfHotels.length; i++) {
         const facHotel = await facilityModel.getFacilityOfHotel(
           facilityOfHotels[i].ID
         );
-        console.log(tienNghi);
-        //facHotel.Ten = facilityOfHotels[i].TenTienNghi;
+        console.log(facHotel);
+        facHotel.Ten = facilityOfHotels[i].TenTienNghi;
+        facHotel.Icon = facilityOfHotels[i].Icon;
         if (facHotel !== null) tienNghi.push(facHotel);
         //console.log(tienNghi);
       }

@@ -3,6 +3,7 @@ import facilityModel from "../models/facilityModel.js";
 import hotelModel from "../models/hotelModel.js";
 import roomModel from "../models/roomModel.js";
 import orderModel from "../models/orderModel.js";
+import profileModel from "../models/profileModel.js";
 export const facility = async (req, res, next) => {
   try {
     const types = await facilityModel.getLoaiTienNghi();
@@ -215,7 +216,8 @@ export const updateRoom = async (req, res, next) => {
 export const order = async (req, res, next) => {
   try {
     const idCKS = req.query.idCKS || 1;
-    const orders = await orderModel.getAllInformation();
+    const orders = await orderModel.getRareInformationOfOrder(idCKS);
+    if (orders.length === 0) return null;
     res.json({ orders });
   } catch (err) {
     next(err);

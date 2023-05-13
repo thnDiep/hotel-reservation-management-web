@@ -120,4 +120,7 @@ export default {
   delRoom(id) {
     return db("phong").where("ID", id).del();
   },
+  delOrder(id) {
+    return db("dondatphong").where("MaDatPhong", MaDatPhong).del();
+  },
 };

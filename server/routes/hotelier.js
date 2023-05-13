@@ -57,6 +57,18 @@ router.get("/room/del", async (req, res, next) => {
     next(err);
   }
 });
+router.get("/order/del", async (req, res, next) => {
+  try {
+    const MaDatPhong = req.query.MaDatPhong;
+    if (MaDatPhong) {
+      await hotelModel.delOrder(MaDatPhong);
+    }
+
+    res.json({ MaDatPhong });
+  } catch (err) {
+    next(err);
+  }
+});
 // HinhAnh: url,
 // hotel: hotel,
 // tienNghi: IDTienNghi,
