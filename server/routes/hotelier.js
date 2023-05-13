@@ -27,7 +27,7 @@ router.post("/hotel/update", updateHotel);
 router.get("/order", order);
 
 // Thực hiện thêm phong
-router.post("/addRoom", addRoom);
+router.post("/room/insert", addRoom);
 // router.post("/room/update", addRoom);
 
 router.get("/hotel/del", async (req, res, next) => {

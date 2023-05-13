@@ -65,7 +65,9 @@ export default {
   addHinhAnhKhachSan(hinhanh) {
     return db("hinhanh_khachsan").insert(hinhanh);
   },
-
+  addHinhAnhPhong(hinhanh) {
+    return db("hinhanh_phong").insert(hinhanh);
+  },
   // Thêm giường
   addGiuongPhong(giuong) {
     return db("giuong_phong").insert(giuong);

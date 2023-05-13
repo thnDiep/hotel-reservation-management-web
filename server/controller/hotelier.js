@@ -131,7 +131,7 @@ export const updateHotel = async (req, res, next) => {
 export const addRoom = async (req, res, next) => {
   try {
     const room = {
-      TenLoaiPhong: req.body.Room.Ten,
+      TenLoaiPhong: req.body.Room.TenLoaiPhong,
       IDKhachSan: req.body.Room.IDKhachSan,
       SoPhongTrong: req.body.Room.SoPhongTrong,
       SoNguoi: req.body.Room.SoNguoi,
@@ -151,6 +151,12 @@ export const addRoom = async (req, res, next) => {
       await facilityModel.addUuDaiPhong({
         IDPhong: id,
         IDUuDai: ID,
+      });
+    }
+    for (const HinhAnh of req.body.HinhAnh) {
+      await hotelModel.addHinhAnhPhong({
+        IDPhong: id,
+        HinhAnh: HinhAnh,
       });
     }
     if (req.body.Room.GiuongDon > 0) {
