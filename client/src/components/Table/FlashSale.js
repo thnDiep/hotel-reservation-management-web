@@ -62,8 +62,9 @@ function FlashSaleTable({ header, option, data }) {
                                 </td>
                                 <td style={{ width: '200px' }}>
                                     <span className={styles.text2}>
-                                        {globalData &&
-                                            globalData.hotels.find((hotel) => hotel.ID === flashSale.IDKhachSan).Ten}
+                                        {globalData.data &&
+                                            globalData.data.hotels.find((hotel) => hotel.ID === flashSale.IDKhachSan)
+                                                .Ten}
                                     </span>
                                 </td>
                                 <td>

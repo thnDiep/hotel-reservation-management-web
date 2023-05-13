@@ -44,10 +44,13 @@ function Hotel() {
 
                         const ChuKhachSan = hotelActive.ChuKhachSan
                         const DanhGia = hotelActive.DanhGia
+                        const HinhAnh = hotelActive.HinhAnh
 
                         delete hotelActive.ChuKhachSan
                         delete hotelActive.DanhGia
-                        updateHotel(hotelActive, ChuKhachSan, DanhGia)
+                        delete hotelActive.HinhAnh
+
+                        updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh)
                     },
                 },
                 {
@@ -66,17 +69,19 @@ function Hotel() {
 
                         const ChuKhachSan = hotelActive.ChuKhachSan
                         const DanhGia = hotelActive.DanhGia
+                        const HinhAnh = hotelActive.HinhAnh
 
                         delete hotelActive.ChuKhachSan
                         delete hotelActive.DanhGia
-                        updateHotel(hotelActive, ChuKhachSan, DanhGia)
+                        delete hotelActive.HinhAnh
+                        updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh)
                     },
                 },
             ])
         }
     }, [data])
 
-    function updateHotel(hotelActive, ChuKhachSan, DanhGia) {
+    function updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh) {
         Axios.post('http://localhost:8800/hotel/update', {
             khachsan: hotelActive,
         })
@@ -89,6 +94,7 @@ function Hotel() {
 
                 hotelActive.ChuKhachSan = ChuKhachSan
                 hotelActive.DanhGia = DanhGia
+                hotelActive.HinhAnh = HinhAnh
 
                 hotels.forEach((hotel) => {
                     if (hotel.ID === hotelActive.ID) {
@@ -111,11 +117,13 @@ function Hotel() {
 
         const ChuKhachSan = hotelActive.ChuKhachSan
         const DanhGia = hotelActive.DanhGia
+        const HinhAnh = hotelActive.HinhAnh
 
         delete hotelActive.ChuKhachSan
         delete hotelActive.DanhGia
+        delete hotelActive.HinhAnh
 
-        updateHotel(hotelActive, ChuKhachSan, DanhGia)
+        updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh)
     }
 
     return (

@@ -31,6 +31,7 @@ export const signup = async (req, res, next) => {
     next(err);
   }
 };
+
 export const login = async (req, res, next) => {
   try {
     const check = (name, chec) => {

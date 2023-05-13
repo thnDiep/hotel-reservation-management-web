@@ -33,7 +33,7 @@ router.post("/addRoom", addRoom);
 router.get("/hotel/del", async (req, res, next) => {
   try {
     const idKhachSan = req.query.idKhachSan;
-    console.log(idKhachSan);
+    // console.log(idKhachSan);
     if (idKhachSan) {
       const check = await roomModel.getAllByKhachSan(idKhachSan);
       console.log(check);
@@ -108,7 +108,7 @@ router.get("/hotel/update", async (req, res, next) => {
   try {
     const idKhachSan = req.query.IDKhachSan || 1;
     const idCKS = req.query.IDCKS || 1;
-    const [hotel] = await hotelModel.getHotelByID(idKhachSan);
+    const [hotel] = await hotelModel.findById(idKhachSan);
     const hinhAnh = await hotelModel.getImage(idKhachSan);
     const tienNghi = await facilityModel.getTienNghiKhachSan(idKhachSan);
     const thongTin = await facilityModel.getThongTinKhachSan(idKhachSan);
