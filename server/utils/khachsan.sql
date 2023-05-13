@@ -35,7 +35,7 @@ CREATE TABLE `danhgia` (
   `NoiDung` text NOT NULL,
   `Diem` int(11) NOT NULL,
   `ThoiGian` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhgia`
@@ -58,7 +58,7 @@ INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `
 CREATE TABLE `danhsachyeuthich` (
   `IDKhachHang` int(11) NOT NULL,
   `IDKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhsachyeuthich`
@@ -78,7 +78,7 @@ CREATE TABLE `diadiem` (
   `ID` int(11) NOT NULL,
   `TenDiaDiem` varchar(255) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `diadiem`
@@ -173,7 +173,7 @@ CREATE TABLE `dondatphong` (
   `TrangThai` int(11) NOT NULL,
   `IDKhachHang` int(11) NOT NULL,
   `IDPhong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `dondatphong`
@@ -192,7 +192,7 @@ INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTr
 CREATE TABLE `giuong` (
   `ID` int(11) NOT NULL,
   `LoaiGiuong` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `giuong`
@@ -212,7 +212,7 @@ CREATE TABLE `giuong_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDGiuong` int(11) NOT NULL,
   `SoLuongGiuong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `giuong_phong`
@@ -244,7 +244,7 @@ INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
 CREATE TABLE `hinhanh_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `HinhAnh` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `hinhanh_khachsan`
@@ -397,7 +397,78 @@ INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
 CREATE TABLE `hinhanh_phong` (
   `IDPhong` int(11) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `hinhanh_phong`
+--
+
+INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971438/khachsan/23812_88QE6SO5KT_Beach_House_Room_1_feeyvn.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971440/khachsan/23812_OUACWIQD8O_Beach_House_Room_3_hya5df.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971441/khachsan/130487906_j5grgh.jpg'),
+(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971441/khachsan/23812_MLZ4Y0BL1E_Beach_House_Room_dw7g5q.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973374/khachsan/photos_R6ZMOILXW3__tmp_playtemp5872956675624463109_multipartBody227198169022671206asTemporaryFile_y3ek0d.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973375/khachsan/img_4460_zjkexl.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973376/khachsan/img_4465_gsm0uf.jpg'),
+(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973377/khachsan/1235_SAFUR73I7V_55106039_q1kwtl.jpg'),
+(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974090/khachsan/a9e82cab_z_gxqrnb.jpg'),
+(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974091/khachsan/095ae6fb_z_qb8x05.jpg'),
+(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974091/khachsan/52776a1a_z_btafce.jpg'),
+(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974092/khachsan/7079a171_z_jzw7ff.jpg'),
+(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974623/khachsan/classic_jdiu3a.jpg'),
+(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974624/khachsan/photos_JNDTP9CH86__tmp_playtemp6021156645283393444_multipartBody4564599876000732013asTemporaryFile_clquex.jpg'),
+(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974625/khachsan/40714_GUT7T7S91Q_11_kwjrr5.jpg'),
+(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974626/khachsan/photos_MSS6S0TJVZ__tmp_playtemp6021156645283393444_multipartBody4657972048723225173asTemporaryFile_otqbs2.jpg'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974924/khachsan/9186_FK6PQ86P30_12_pyi52c.jpg'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974924/khachsan/9186_JMBXKBLDJV_13_fdn35y.jpg'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974925/khachsan/hibiscus-suite-4_cmhft5.jpg'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974926/khachsan/hibiscus-suite-3_zvitek.jpg'),
+(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975133/khachsan/deluxe-king-room4_dvypvz.jpg'),
+(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975134/khachsan/superior-king-room-with-seaview_02-copy_stsxq8.jpg'),
+(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975135/khachsan/superior-king-room-with-seaview_03-copy_svlspm.jpg'),
+(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975136/khachsan/superior-king-room-with-seaview_04-copy_scncob.jpg'),
+(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975377/khachsan/z2571515924120_6b841d7467c951fbcbf885ec7bb19847_iz2wwo.jpg'),
+(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975378/khachsan/june-01-8_gmr8dm.jpg'),
+(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975378/khachsan/master-bedroom-2_vcv7r8.jpg'),
+(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975379/khachsan/master-bedroom-5_onavxr.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975702/khachsan/villa-studio-1602_irmpnu.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975703/khachsan/villa-studio-2_xhqktz.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975703/khachsan/villa-studio-3_ogojsn.jpg'),
+(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975704/khachsan/villa-studio-5_zmdscw.jpg'),
+(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976333/khachsan/photos_NAXS1UVXJO__tmp_playtemp6906352608116898789_multipartBody1746072418037971232asTemporaryFile_sa1n1l.jpg'),
+(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976334/khachsan/four-bedroom_12_wfdh3z.jpg'),
+(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976335/khachsan/four-bedroom_9_upy0xl.jpg'),
+(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976335/khachsan/junior_14_zqjcii.jpg'),
+(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976597/khachsan/42050_E7ZMVE82JO_146735057_ovmeds.jpg'),
+(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976598/khachsan/42050_HZ4M7I3B4Z_199216564_dr4mzx.jpg'),
+(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976599/khachsan/42050_BK02G7YHTV_199216621_cacatf.jpg'),
+(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976599/khachsan/42050_QLUK6A0KYC_199216598_orx55j.jpg'),
+(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977024/khachsan/050250-f59743fc-efe4-4856-a4cd-697388969b87_ygg4uu.jpg'),
+(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977026/khachsan/050250-5cf22145-5246-494e-acfd-4381bba1e68d_p6ahhh.jpg'),
+(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977027/khachsan/050250-06253066-bdaa-4bef-9a02-f86bf3b5573b_jwgzbv.jpg'),
+(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978011/khachsan/041003-75de4a45-c607-4872-ac0e-d1d104956a4b_ohk5kz.jpg'),
+(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978012/khachsan/041003-25a111c8-28fd-4fe7-8451-d9b60283e5e8_yhvtgk.jpg'),
+(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978012/khachsan/041003-5e3417dc-4d9d-4209-94fd-b10c18f50f11_nk9kul.jpg'),
+(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978013/khachsan/041003-d90f55eb-6cf5-40f9-bfdd-105e2a2e24a0_hh7ixg.jpg'),
+(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978351/khachsan/042430-ff578d5e-9afe-438f-bbfd-5195f008cae7_yyxgym.jpg'),
+(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978352/khachsan/4b0af647-38a8-4f87-b60f-158bc16c024d_201603103_vpl_vppqr_3br_lake_view_villa_2_enhanced_ovfqet.jpg'),
+(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978353/khachsan/042749-d14cdec4-cda9-4ba0-8032-8abcdca6bbea_d0qk3l.jpg'),
+(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978520/khachsan/135846-263ef592-fa2c-4b0d-a09a-5dc02dfea8b8_ertzkf.jpg'),
+(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978520/khachsan/135846-a90e86f2-2ae0-4835-a7c4-65f718a5f5fa_bxozog.jpg'),
+(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978521/khachsan/135846-abfe5109-90b0-416c-8e1e-76ef610af1e5_imuo2o.jpg'),
+(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978522/khachsan/135911-37fa97ae-a45b-4248-8945-41f5ee15ff59_c7jyrs.jpg'),
+(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985492/khachsan/photos_DPSXH24VQ9__tmp_playtemp1224286142787402425_multipartBody1022593404496592554asTemporaryFile_pyhrvn.jpg'),
+(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985492/khachsan/photos_VGE3NV8XK3__tmp_playtemp1224286142787402425_multipartBody552396680483974623asTemporaryFile_tl4bkb.jpg'),
+(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985493/khachsan/photos_CEG12P0AR9__tmp_playtemp1224286142787402425_multipartBody5603883490680910495asTemporaryFile_leolez.jpg'),
+(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985494/khachsan/photos_N1CO20G8DA__tmp_playtemp1224286142787402425_multipartBody7482133511159264608asTemporaryFile_zokvjo.jpg'),
+(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988839/khachsan/photos_VGT0BWGVT2__tmp_playtemp1224286142787402425_multipartBody3364216258320482160asTemporaryFile_nbaprp.jpg'),
+(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988840/khachsan/photos_CJMDQSEOLU__tmp_playtemp1224286142787402425_multipartBody3713598672589806590asTemporaryFile_y30tp4.jpg'),
+(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988841/khachsan/photos_3GJSK19F6V__tmp_playtemp1224286142787402425_multipartBody8560084940778672038asTemporaryFile_1_ujdia5.jpg'),
+(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988842/khachsan/photos_4NXSPTW4IJ__tmp_playtemp1224286142787402425_multipartBody2022326375395409877asTemporaryFile_npqoe1.jpg'),
+(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989148/khachsan/photos_Z4P521DXCA__tmp_playtemp1224286142787402425_multipartBody2075278788761802505asTemporaryFile_nbt6qc.jpg'),
+(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989149/khachsan/photos_ZZGCQGVMLS__tmp_playtemp1224286142787402425_multipartBody7032137161637455740asTemporaryFile_u9rtm9.jpg'),
+(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989150/khachsan/photos_827EIEW7PU__tmp_playtemp1224286142787402425_multipartBody2634311597936846161asTemporaryFile_lkc3s4.jpg');
 
 --
 -- Đang đổ dữ liệu cho bảng `hinhanh_phong`
@@ -490,7 +561,7 @@ CREATE TABLE `khachsan` (
   `GioNhanPhong` int(20) NOT NULL,
   `GioTraPhong` int(20) NOT NULL,
   `IDChuKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `khachsan`
@@ -523,7 +594,7 @@ CREATE TABLE `khunggio` (
   `ID` int(11) NOT NULL,
   `GioBatDau` time NOT NULL,
   `GioKetThuc` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `khunggio`
@@ -553,16 +624,45 @@ CREATE TABLE `khuyenmai` (
   `DieuKien` text DEFAULT NULL,
   `SoLuongKM` int(11) DEFAULT NULL,
   `IDKhungGio` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `khuyenmai`
 --
 
 INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`, `MaKhuyenMai`, `BatDau`, `KetThuc`, `MoTa`, `DieuKien`, `SoLuongKM`, `IDKhungGio`) VALUES
-(3, 'Khách sạn giảm đến 200K', 8, 4, 0, 'CHAOHE23', '2023-05-09 13:00:00', '2023-05-30 12:59:00', 'Khách sạn giảm đến 200K', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><span style=\"color: rgb(224, 62, 45);\"><strong><span class=\"MuiBox-root jss946 jss944\">Điều kiện v&agrave; thể lệ chương tr&igrave;nh</span></strong></span></div>\n<div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
-(4, 'Khuyến mãi mùa hè', 13, 5, 0, 'CHAOHE22', '2023-05-11 09:13:28', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL),
-(7, 'Flash Sale bùng nổ ngày hè', 8, 5, 0, NULL, '2023-05-13 00:00:00', '2023-05-30 00:00:00', NULL, NULL, NULL, 2);
+(1, 'Flash Sale bùng nổ ngày hè 1', 8, 4, 0, NULL, '2023-05-14 10:00:00', '2023-05-31 13:00:00', NULL, NULL, NULL, 1),
+(2, 'Flash Sale bùng nổ ngày hè', 9, 4, 0, NULL, '2023-05-14 10:00:00', '2023-05-31 13:00:00', NULL, NULL, NULL, 1),
+(3, 'Flash Sale bùng nổ ngày hè 2', 16, 4, 0, NULL, '2023-05-14 17:00:00', '2023-05-31 03:00:00', NULL, NULL, NULL, 1),
+(4, 'Flash Sale bùng nổ ngày hè', 10, 4, 0, NULL, '2023-05-14 10:00:00', '2023-05-31 13:00:00', NULL, NULL, NULL, 1),
+(5, 'Flash Sale bùng nổ ngày hè 3', 20, 4, 0, NULL, '2023-05-14 10:00:00', '2023-05-31 10:00:00', NULL, NULL, NULL, 1),
+(6, 'Flash Sale bùng nổ ngày hè', 11, 4, 0, NULL, '2023-05-14 10:00:00', '2023-05-31 13:00:00', NULL, NULL, NULL, 1),
+(7, 'Flash Sale bùng nổ ngày hè 4', 21, 4, 0, NULL, '2023-05-14 03:00:00', '2023-05-31 06:00:00', NULL, NULL, NULL, 1),
+(8, 'Flash Sale bùng nổ ngày hè', 17, 4, 0, NULL, '2023-05-14 10:00:00', '2023-05-31 13:00:00', NULL, NULL, NULL, 1),
+(9, 'Flash Sale bùng nổ ngày hè 5', 22, 4, 0, NULL, '2023-05-14 11:26:29', '2023-05-31 10:00:00', NULL, NULL, NULL, 1),
+(10, 'Mừng Quốc tế thiếu nhi 1', 16, 14, 0, NULL, '2023-05-14 14:28:08', '2023-06-04 13:00:00', NULL, NULL, NULL, 2),
+(11, 'Mừng Quốc tế thiếu nhi', 9, 14, 0, NULL, '2023-05-14 14:28:08', '2023-06-04 13:00:00', NULL, NULL, NULL, 2),
+(12, 'Mừng Quốc tế thiếu nhi 2', 20, 14, 0, NULL, '2023-05-14 03:00:00', '2023-06-04 16:00:00', NULL, NULL, NULL, 2),
+(13, 'Mừng Quốc tế thiếu nhi 3', 8, 14, 0, NULL, '2023-05-14 17:00:00', '2023-06-04 10:00:00', NULL, NULL, NULL, 2),
+(14, 'Mừng Quốc tế thiếu nhi 4', 22, 14, 0, NULL, '2023-05-14 04:37:39', '2023-06-04 03:00:00', NULL, NULL, NULL, 2),
+(15, 'Mừng Quốc tế thiếu nhi 5', 21, 14, 0, NULL, '2023-05-14 11:39:05', '2023-06-04 10:00:00', NULL, NULL, NULL, 2),
+(16, 'Mừng Quốc tế thiếu nhi', 10, 14, 0, NULL, '2023-05-14 11:39:05', '2023-06-04 10:00:00', NULL, NULL, NULL, 2),
+(17, 'Mừng Quốc tế thiếu nhi', 19, 14, 0, NULL, '2023-05-14 11:39:05', '2023-06-04 10:00:00', NULL, NULL, NULL, 2),
+(18, 'Mừng Trung Thu 1', 8, 5, 0, NULL, '2023-05-14 14:28:08', '2023-06-04 13:00:00', NULL, NULL, NULL, 3),
+(19, 'Mừng Trung Thu 2', 16, 5, 0, NULL, '2023-05-14 03:00:00', '2023-06-04 16:00:00', NULL, NULL, NULL, 3),
+(20, 'Mừng Trung Thu 3', 20, 5, 0, NULL, '2023-05-14 17:00:00', '2023-06-04 10:00:00', NULL, NULL, NULL, 3),
+(21, 'Mừng Trung Thu 4', 21, 5, 0, NULL, '2023-05-14 04:37:39', '2023-06-04 03:00:00', NULL, NULL, NULL, 3),
+(22, 'Mừng Trung Thu 5', 22, 5, 0, NULL, '2023-05-14 11:39:05', '2023-06-04 10:00:00', NULL, NULL, NULL, 3),
+(23, 'Khách sạn giảm đến 200K', 8, 5, 0, 'GIAM200', '2023-05-14 09:13:28', '0000-00-00 00:00:00', 'Khách sạn giảm đến 200K', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
+(24, 'Khuyến mãi mùa hè', 16, 5, 0, 'CHAOHE23', '2023-05-14 09:13:28', '0000-00-00 00:00:00', 'Khuyến mãi mùa hè', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
+(25, 'Khách sạn giảm đến 200K', 10, 5, 0, 'GIAM200', '2023-05-14 09:13:28', '0000-00-00 00:00:00', 'Khách sạn giảm đến 200K', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
+(26, 'Khuyến mãi mùa hè', 11, 5, 0, 'CHAOHE23', '2023-05-14 09:13:28', '0000-00-00 00:00:00', 'Khuyến mãi mùa hè', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
+(27, 'Khách sạn giảm đến 200K', 15, 5, 0, 'GIAM200', '2023-05-14 09:13:28', '0000-00-00 00:00:00', 'Khách sạn giảm đến 200K', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
+(28, 'Khuyến mãi mùa hè', 17, 5, 0, 'CHAOHE23', '2023-05-14 09:13:28', '0000-00-00 00:00:00', 'Khuyến mãi mùa hè', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
+(29, 'Khách sạn giảm đến 200K', 18, 5, 0, 'GIAM200', '2023-05-14 09:13:28', '0000-00-00 00:00:00', 'Khách sạn giảm đến 200K', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
+(30, 'Khuyến mãi mùa hè', 21, 5, 0, 'CHAOHE23', '2023-05-14 09:13:28', '0000-00-00 00:00:00', 'Khuyến mãi mùa hè', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
+(31, 'Khách sạn giảm đến 200K', 20, 5, 0, 'GIAM200', '2023-05-14 09:13:28', '0000-00-00 00:00:00', 'Khách sạn giảm đến 200K', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL),
+(32, 'Khuyến mãi mùa hè', 22, 5, 0, 'CHAOHE23', '2023-05-14 09:13:28', '0000-00-00 00:00:00', 'Khuyến mãi mùa hè', '<div>\n<div>\n<div class=\"MuiBox-root jss945 jss943\"><div class=\"MuiBox-root jss947 jss942\"><strong><span class=\"MuiBox-root jss948 jss944\">Kh&aacute;ch sạn giảm đến 200K</span></strong>\n<ul>\n<li>Giảm ngay 4% tối đa 200.000Đ cho đơn ph&ograve;ng kh&aacute;ch sạn (mức giảm &aacute;p dụng cho gi&aacute; trị đơn chưa bao gồm thuế ph&iacute;).</li>\n<li>Ưu đ&atilde;i được &aacute;p dụng cho một số hạng ph&ograve;ng của kh&aacute;ch sạn</li>\n<li>Thời gian sử dụng m&atilde;: 10/05/2023 - 31/05/2023</li>\n<li>Ưu đ&atilde;i kh&ocirc;ng được &aacute;p dụng c&ugrave;ng c&aacute;c chương tr&igrave;nh khuyến m&atilde;i kh&aacute;c.</li>\n<li>Mỗi kh&aacute;ch h&agrave;ng chỉ được hưởng ưu đ&atilde;i 01 lần/ chương tr&igrave;nh. Chương tr&igrave;nh chỉ &aacute;p dụng cho kh&aacute;ch h&agrave;ng c&aacute; nh&acirc;n.</li>\n<li>Nếu ph&aacute;t hiện c&aacute;c đặt ph&ograve;ng c&oacute; dấu hiệu lạm dụng, trục lợi ưu đ&atilde;i, My Travelc&oacute; quyền từ chối &aacute;p dụng.</li>\n<li>&Aacute;p dụng ho&agrave;n hủy theo ch&iacute;nh s&aacute;ch kh&aacute;ch sạn.</li>\n<li>My Travel c&oacute; quyền thay đổi điều khoản v&agrave; thể lệ của chương tr&igrave;nh khuyến mại m&agrave; kh&ocirc;ng cần th&ocirc;ng b&aacute;o trước. Vui l&ograve;ng</li>\n<li>truy cập MyTravel.vn để cập nhật c&aacute;c ưu đ&atilde;i v&agrave; ch&iacute;nh s&aacute;ch mới nhất.<br>Mọi quyết định của Mytour l&agrave; kết quả cuối c&ugrave;ng.<br><em>*** Mọi thắc mắc vui l&ograve;ng li&ecirc;n hệ 1900 2083.</em></li>\n</ul>\n</div>\n</div>\n</div>', 100, NULL);
 
 -- --------------------------------------------------------
 
@@ -573,7 +673,7 @@ INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`
 CREATE TABLE `loaitiennghikhachsan` (
   `ID` int(11) NOT NULL,
   `TenLoai` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `loaitiennghikhachsan`
@@ -603,7 +703,7 @@ INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
 CREATE TABLE `loaitiennghiphong` (
   `TenLoai` varchar(50) NOT NULL,
   `ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `loaitiennghiphong`
@@ -637,7 +737,7 @@ CREATE TABLE `nguoidung` (
   `MaSoThue` varchar(10) DEFAULT NULL,
   `QuyMo` varchar(100) DEFAULT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `nguoidung`
@@ -645,7 +745,7 @@ CREATE TABLE `nguoidung` (
 
 INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaChi`, `MatKhau`, `PhanQuyen`, `TenCongTy`, `MaSoThue`, `QuyMo`, `TrangThai`) VALUES
 (1, 'Admin', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'admin@gmail.com', NULL, NULL, 'admin', 2, NULL, NULL, NULL, 1),
-(2, 'Vinpearl', 'https://inkythuatso.com/uploads/images/2021/09/vinpearl-logo-inkythuatso-1-13-10-21-19.jpg', 'vinpearl@gmail.com', '0928754123', 'Vinpearl Beachfront Nha Trang, 78 - 80 Đường Trần Phú, Phường Lộc Thọ, Tp. Nha Trang', '$2a$10$2sqBZxyEuduEJgNJvdIFA.ZRZV/rShXHXVcjm5Fl4jB4RTR4FlZ9C', 1, 'Vinpearl', '012578541', '20 - 49 nhân viên', 1),
+(2, 'Vinpearl', 'https://inkythuatso.com/uploads/images/2021/09/vinpearl-logo-inkythuatso-1-13-10-21-19.jpg', 'vinpearl@gmail.com', '0928754123', '78 - 80 Đường Trần Phú, Phường Lộc Thọ, Tp. Nha Trang', '$2a$10$2sqBZxyEuduEJgNJvdIFA.ZRZV/rShXHXVcjm5Fl4jB4RTR4FlZ9C', 1, 'Vinpearl', '012578541', '20 - 49 nhân viên', 1),
 (3, 'Nguyễn Đăng Mạnh Tú', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'manhtu2272002@gmail.com', '', '', '$2a$10$UAdFFtuw/24puqwJ.BYUtufh3k9yhjb7tTCjZcJLw4LUIBnoP79xW', 0, '', '', '', 0),
 (4, 'Tran Thao Quyen', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'quyenquyen@gmail.com', '098231189', 'Phường 2, quận 3, TPHCM', '$2a$10$5kf9MtdD1CyWY53vT5Um6O9ZPHsMBC2JMapEi5V/lpvW.lwmwoNuW', 0, NULL, NULL, NULL, 1),
 (5, 'Trần Huỳnh Ngọc Diệp', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'HuynhNgoc123@gmail.com', '098992321', 'Số nhà 412, đường Nguyễn Văn Cừ, quận 5, TPHCM', '$2a$10$U9eqIonkF8OOPrmKZIVpE.lMt45vqfEeLQnGKLk/OYDuU/LoXuvFC', 1, NULL, NULL, NULL, 0),
@@ -664,7 +764,7 @@ CREATE TABLE `nguoinhanphong` (
   `HoTen` varchar(255) NOT NULL,
   `Sdt` varchar(10) NOT NULL,
   `IDKhachHang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `nguoinhanphong`
@@ -688,7 +788,7 @@ CREATE TABLE `phong` (
   `DienTich` int(11) NOT NULL,
   `Gia` int(11) NOT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phong`
@@ -727,7 +827,7 @@ CREATE TABLE `taikhoanthanhtoan` (
   `SoTaiKhoan` varchar(50) NOT NULL,
   `NgayHetHan` date NOT NULL,
   `anhQR` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `taikhoanthanhtoan`
@@ -748,7 +848,7 @@ CREATE TABLE `thongtinhuuich` (
   `ID` int(11) NOT NULL,
   `ThongTin` varchar(255) NOT NULL,
   `HinhAnh` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `thongtinhuuich`
@@ -774,7 +874,7 @@ CREATE TABLE `thongtinhuuich_ks` (
   `IDKhachSan` int(11) NOT NULL,
   `IDThongTin` int(11) NOT NULL,
   `NoiDung` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `thongtinhuuich_ks`
@@ -904,7 +1004,7 @@ CREATE TABLE `tiennghichung_ks` (
   `Icon` varchar(200) NOT NULL,
   `TenTienNghi` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghichung_ks`
@@ -968,7 +1068,7 @@ CREATE TABLE `tiennghichung_phong` (
   `TenTienNghi` varchar(50) NOT NULL,
   `Icon` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghichung_phong`
@@ -1020,7 +1120,7 @@ INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
 CREATE TABLE `tiennghi_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghi_khachsan`
@@ -1363,7 +1463,7 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 CREATE TABLE `tiennghi_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghi_phong`
@@ -1799,7 +1899,7 @@ INSERT INTO `tiennghi_phong` (`IDPhong`, `IDTienNghi`) VALUES
 CREATE TABLE `uudai` (
   `ID` int(11) NOT NULL,
   `NoiDung` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `uudai`
@@ -1835,7 +1935,166 @@ INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
 CREATE TABLE `uudai_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDUuDai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `uudai_phong`
+--
+
+INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
+(15, 1),
+(15, 4),
+(15, 5),
+(15, 8),
+(15, 9),
+(15, 10),
+(15, 11),
+(15, 13),
+(15, 14),
+(15, 16),
+(15, 17),
+(15, 18),
+(16, 1),
+(16, 3),
+(16, 4),
+(16, 5),
+(16, 11),
+(16, 16),
+(17, 1),
+(17, 3),
+(17, 5),
+(17, 9),
+(17, 10),
+(17, 11),
+(17, 16),
+(18, 1),
+(18, 3),
+(18, 4),
+(18, 5),
+(18, 9),
+(18, 12),
+(18, 16),
+(19, 1),
+(19, 4),
+(19, 5),
+(19, 9),
+(19, 10),
+(19, 11),
+(19, 12),
+(19, 16),
+(20, 1),
+(20, 2),
+(20, 3),
+(20, 4),
+(20, 5),
+(20, 7),
+(20, 9),
+(20, 10),
+(20, 11),
+(21, 1),
+(21, 2),
+(21, 3),
+(21, 4),
+(21, 5),
+(21, 9),
+(21, 12),
+(21, 16),
+(21, 20),
+(22, 1),
+(22, 3),
+(22, 4),
+(22, 5),
+(22, 11),
+(22, 12),
+(22, 13),
+(22, 20),
+(23, 1),
+(23, 3),
+(23, 4),
+(23, 5),
+(23, 9),
+(23, 10),
+(23, 11),
+(23, 12),
+(23, 16),
+(23, 20),
+(24, 1),
+(24, 2),
+(24, 3),
+(24, 9),
+(24, 11),
+(24, 14),
+(24, 16),
+(24, 20),
+(25, 1),
+(25, 3),
+(25, 4),
+(25, 5),
+(25, 9),
+(25, 11),
+(25, 16),
+(26, 1),
+(26, 2),
+(26, 3),
+(26, 4),
+(26, 5),
+(26, 7),
+(26, 8),
+(26, 9),
+(26, 11),
+(26, 12),
+(26, 16),
+(27, 1),
+(27, 3),
+(27, 4),
+(27, 5),
+(27, 11),
+(27, 12),
+(27, 14),
+(27, 16),
+(28, 1),
+(28, 2),
+(28, 3),
+(28, 4),
+(28, 5),
+(28, 7),
+(28, 9),
+(28, 11),
+(28, 14),
+(28, 16),
+(28, 19),
+(29, 1),
+(29, 2),
+(29, 3),
+(29, 4),
+(29, 5),
+(29, 8),
+(29, 9),
+(29, 12),
+(29, 14),
+(29, 16),
+(29, 17),
+(30, 1),
+(30, 2),
+(30, 3),
+(30, 4),
+(30, 5),
+(30, 8),
+(30, 9),
+(30, 11),
+(30, 14),
+(30, 17),
+(30, 19),
+(31, 1),
+(31, 3),
+(31, 4),
+(31, 5),
+(31, 8),
+(31, 9),
+(31, 11),
+(31, 12),
+(31, 14),
+(31, 19);
 
 --
 -- Đang đổ dữ liệu cho bảng `uudai_phong`
@@ -2208,7 +2467,7 @@ ALTER TABLE `khunggio`
 -- AUTO_INCREMENT cho bảng `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `loaitiennghikhachsan`

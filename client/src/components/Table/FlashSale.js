@@ -7,9 +7,20 @@ import FooterPaging from '../FooterPaging/FooterPaging'
 import { DropdownOption } from '~/components'
 import styles from './Table.module.scss'
 import moment from 'moment'
+import { useState } from 'react'
 
 function FlashSaleTable({ header, option, data }) {
     const globalData = useContext(DataContext)
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState()
+
+    useEffect(() => {
+        if (data) {
+            let total = Math.floor(data.length / 5)
+            if (data.length % 5 !== 0) total++
+            setTotalPage(total)
+        }
+    }, [data])
 
     return (
         <div className={styles.tableWrapper}>
@@ -28,7 +39,7 @@ function FlashSaleTable({ header, option, data }) {
                 </thead>
                 <tbody>
                     {data &&
-                        data.map((flashSale, index) => (
+                        data.slice((page - 1) * 5, page * 5).map((flashSale, index) => (
                             <tr key={index} className={styles.memberRow}>
                                 <td className={styles.center}>
                                     <input type="checkbox" className={styles.checkBox} />
@@ -95,7 +106,7 @@ function FlashSaleTable({ header, option, data }) {
                         ))}
                 </tbody>
             </Table>
-            <FooterPaging />
+            <FooterPaging curPage={page} handleChangePage={setPage} totalPage={totalPage} />
         </div>
     )
 }

@@ -223,6 +223,13 @@ body {
         margin-right: 15px;
         font-size: 18px;
     }
+    .modalContentClose {
+        border: 1px solid red;
+    }
+    .close {
+        // background-color: red;
+        color: red;
+    }
     // .modalClose {
     //     color: #aaaaaa;
     //     float: right;
@@ -335,6 +342,11 @@ body {
         background-color: #e23428;
         border: none;
     }
+    &.stoped {
+        color: #fff;
+        background-color: #e22891;
+        border: none;
+    }
 
     &.pending {
         color: #fff;
@@ -401,4 +413,6 @@ a {
 }
 .popup-wrapper {
     background-color: white !important;
+    height: 530px !important;
+    // padding: 0px !important;
 }

@@ -1,48 +1,93 @@
-.header {
-    height: var(--height-header);
-    position: fixed;
-    top: 0;
-    color: #1a202c;
-    width: 100%;
-    padding: 0px 60px;
-    z-index: 100;
-    font-size: 14px;
+.wrapper {
+    position: sticky;
     background: #fff;
-    transition: all 0.3s;
-    line-height: 17px;
-    border-bottom: 1px solid #edf2f7;
+    color: #404e67;
+    width: 100%;
+    -webkit-box-shadow: 0 0 11px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 0 11px rgba(0, 0, 0, 0.13);
+    z-index: 100;
+    min-height: 56px;
+    padding: 0;
+    top: 0;
 
-    &__nav {
-        margin: auto;
-        width: var(--default-width);
-        height: 56px;
+    .left {
+        position: absolute;
+        top: 50%;
+        left: 165px;
+        transform: translateY(-50%);
         display: flex;
         align-items: center;
-        justify-content: space-between;
 
-        .img {
-            width: 120px;
-            height: 32px;
+        img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        .link {
+            display: block;
+            // margin-left: 20px;
+            color: #ff3366;
+            display: flex;
+            align-items: center;
+
+            span {
+                margin: 0;
+                margin-left: 10px;
+                font-weight: 600;
+                font-size: 2rem;
+            }
         }
     }
 
-    .logo {
+    .right {
+        position: absolute;
+        top: 50%;
+        right: 165px;
+        transform: translateY(-50%);
         display: flex;
         align-items: center;
         cursor: pointer;
-        text-decoration: none;
+
+        img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        span {
+            margin: 0;
+            margin-left: 10px;
+        }
+        .icon {
+            margin-left: 5px;
+            position: relative;
+            top: 1px;
+        }
     }
 
-    &__choose {
-        color: #1a202c;
-        height: 40px;
-        margin: 0 -60px;
-        display: flex;
-        padding: 0 60px;
-        align-items: center;
-    }
-}
+    .menu {
+        width: max-content;
+        position: absolute;
+        top: calc(100% + 4px);
+        right: 0;
+        background-color: #fff;
+        border-radius: 4px;
+        border: 1px solid #d4d4d4;
+        padding: 4px 0;
+        z-index: 1;
+        .menuItem {
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            color: #404e67;
+            cursor: pointer;
 
-a {
-    text-decoration: none;
+            &:hover {
+                background-color: rgba(255, 51, 102, 0.1);
+            }
+
+            &.active {
+                color: #ff3366;
+            }
+        }
+    }
 }

@@ -48,7 +48,7 @@ import {
     faWineGlassAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-const AllFacility = () => {
+const AllFacility = ({ typesHotel }) => {
     return (
         <div>
             <div className={classes.subContainer}>
@@ -56,7 +56,7 @@ const AllFacility = () => {
                     <div className="col-lg-12 col-md-12">
                         <div className={classes['box-fac']}>
                             <div className={classes['box-detail-fac']}>
-                                <FacilityList />
+                                <FacilityList typesHotel={typesHotel} />
                             </div>
                         </div>
                     </div>

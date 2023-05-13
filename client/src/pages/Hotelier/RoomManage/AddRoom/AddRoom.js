@@ -6,9 +6,11 @@ import { ButtonPrimary } from '~/components'
 import AddMultiple from '~/components/AddMultiple/AddMultiple'
 import { NumericFormat } from 'react-number-format'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 const AddRoom = () => {
     const { active, id } = useParams()
+    console.log(active)
+    const Nav = useNavigate()
     // console.log(id)
     // const { active } = useParams()
 
@@ -111,7 +113,15 @@ const AddRoom = () => {
             const formData = new FormData()
             formData.append('upload_preset', PRESET_NAME)
             formData.append('folder', FOLDER_NAME)
-
+            for (const file of selectedFiles) {
+                formData.append('file', file)
+                const res = await axios.post(api, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
+                url.push(res.data.url)
+            }
             console.log(url)
             const IDTienNghi = []
             const IDUuDai = []
@@ -133,7 +143,7 @@ const AddRoom = () => {
                 tienNghi: IDTienNghi,
                 uuDai: IDUuDai,
             })
-            // Nav('/')
+            Nav('/cks/manage-room')
         } catch (err) {
             console.log('sai')
         }

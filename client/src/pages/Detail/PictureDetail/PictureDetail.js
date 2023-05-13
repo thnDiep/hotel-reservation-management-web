@@ -11,7 +11,7 @@ const PictureDetail = ({ picHotel }) => {
     const handleButtonClick = (index) => {
         MySwal.fire({
             title: 'Hình ảnh khách sạn',
-            html: <Popup index={index} picHotel={picHotel} />,
+            html: <Popup index={index} picHotel={picHotel} check={false} />,
             showCloseButton: true,
             showConfirmButton: false,
             width: '1140px',

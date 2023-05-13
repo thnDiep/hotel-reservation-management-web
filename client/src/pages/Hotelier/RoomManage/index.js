@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 const RoomManage = () => {
     const navigate = useNavigate()
     // const optionsHotel = [
@@ -29,10 +29,13 @@ const RoomManage = () => {
     const [roomActive, setRoomActive] = useState(null)
 
     const [showDeleteModal, setShowDeleteModal] = useState(false)
+    const [showStopModal, setShowStopModal] = useState(false)
     const { data, handleData } = useContext(DataContext)
+    const [errorMessage, setErrorMessage] = useState({ value: '', check: false })
+
     useEffect(() => {
         // if (hotels) {
-        // console.log(hotels)
+        // console.log(hotel)
         if (data) {
             const optionHotel1 = []
             console.log(data)
@@ -64,22 +67,45 @@ const RoomManage = () => {
                         setShowDeleteModal(true)
                     },
                 },
+                {
+                    name: 'Tạm ngưng',
+                    handle: function (idActive, index) {
+                        const room = data.hotels.reduce((foundRoom, hotel) => {
+                            if (!foundRoom) {
+                                const roomInHotel = hotel.phong.find((room) => room.ID === idActive)
+                                return roomInHotel ? roomInHotel : foundRoom
+                            }
+                            return foundRoom
+                        }, null)
+                        setRoomActive(room)
+                        setShowStopModal(true)
+                    },
+                },
+                {
+                    name: 'Tiếp tục',
+                    handle: function (idActive) {
+                        const hotelActive = data.hotels.reduce((foundRoom, hotel) => {
+                            if (!foundRoom) {
+                                const roomInHotel = hotel.phong.find((room) => room.ID === idActive)
+                                return roomInHotel ? roomInHotel : foundRoom
+                            }
+                            return foundRoom
+                        }, null)
+                        handleStopRoom(1, hotelActive.ID)
+                    },
+                },
             ])
         }
         // }
     }, [data])
     const [showInformModal, setShowInformModal] = useState(false)
-    console.log(data)
+    //console.log(data)
     function handleDeleteRoom() {
         axios
             .get('http://localhost:8800/cks/room/del', { params: { IDPhong: roomActive.ID } })
-            .then(() => {
-                setShowInformModal(true)
+            .then((res) => {
+                setErrorMessage({ value: 'Xóa thành công', check: true })
 
-                window.setTimeout(function () {
-                    setShowInformModal(false)
-                }, 1000)
-                console.log('helllo')
                 const updatedHotels = data.hotels.map((hotel) => {
                     const updatedRooms = hotel.phong.filter((room) => room.ID !== roomActive.ID)
                     return {
@@ -87,34 +113,75 @@ const RoomManage = () => {
                         phong: updatedRooms,
                     }
                 })
-
                 handleData({
                     ...data,
                     hotels: updatedHotels,
                 })
-
-                console.log(hotel.value.phong.filter((key) => key.ID !== roomActive.ID))
-
                 setRoomActive(null)
                 setShowDeleteModal(false)
             })
             .catch((error) => {
-                console.log(error)
+                setErrorMessage({ value: error.response.data, check: true })
                 setShowDeleteModal(false)
             })
+            .finally(() => {
+                setShowInformModal(true)
+                window.setTimeout(function () {
+                    setShowInformModal(false)
+                }, 1000)
+            })
     }
-    // console.log(hotel?.value?.phong)
+    function handleStopRoom(TrangThai, IDPhong) {
+        axios
+            .get('http://localhost:8800/cks/room/stop', {
+                params: { IDPhong: IDPhong, TrangThai: TrangThai },
+            })
+            .then((response) => {
+                setErrorMessage({ value: response.data, check: true })
+                console.log('helllo')
+
+                handleData({
+                    hotels: data.hotels.map((hotel) => {
+                        const updatedRooms = hotel.phong.map((room) =>
+                            room.ID === IDPhong ? { ...room, TrangThai: TrangThai } : room,
+                        )
+                        return {
+                            ...hotel,
+                            phong: updatedRooms,
+                        }
+                    }),
+                })
+
+                setRoomActive(null)
+                setShowStopModal(false)
+            })
+            .catch((error) => {
+                // console
+                setErrorMessage({ value: error.response.data, check: false })
+                // setErrorMessage(error.response.data)
+                setShowStopModal(false)
+            })
+            .finally(() => {
+                setShowInformModal(true)
+                window.setTimeout(function () {
+                    setShowInformModal(false)
+                }, 1000)
+            })
+    }
+    //console.log('HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH')
+    //console.log(hotel?.value?.phong)
+    //console.log(hotel?.value?.hinhanh_phong)
     return (
         <div className={styles.content}>
             <div className="mt-4 d-flex justify-content-between align-items-center flex-wrap">
                 <div className={styles.leftContent}>
                     <div className="d-flex justify-content-start mt-2">
                         <span className={` ${styles.leftTitle} `}>Khách sạn: </span>
-                        <span className="">Anh yeu ba già khó tính</span>
+                        <span className="">{hotel && hotel.value.Ten}</span>
                     </div>
                     <div className="d-flex justify-content-start mt-2">
                         <span className={` ${styles.leftTitle} `}>Địa chỉ: </span>
-                        <span className="">77 đường chuyên dùng 9, Phường phú mỹ</span>
+                        <span className="">{hotel && hotel.value.DiaChi}</span>
                     </div>
                     <div className="d-flex justify-content-start mt-2">
                         <span className={` ${styles.leftTitle} `}>Điện thoại: </span>
@@ -132,9 +199,11 @@ const RoomManage = () => {
                     />
                     <div className="d-flex justify-content-between mb-2">
                         <div></div>
-                        <Link to="/cks/addRoom">
-                            <ButtonPrimary className="btnLarge1">+ Thêm phòng</ButtonPrimary>
-                        </Link>
+                        {hotel && (
+                            <Link to={`/cks/addRoom/${hotel.value.ID}`}>
+                                <ButtonPrimary className="btnLarge1">+ Thêm phòng</ButtonPrimary>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>
@@ -154,13 +223,26 @@ const RoomManage = () => {
                 content={`Bạn chắc chắn muốn xóa khách sạn`}
                 highlight={roomActive && roomActive.TieuDe}
             />
+            {/* Xác nhận khóa */}
+            <ConformModal
+                show={showStopModal}
+                onClose={() => setShowStopModal(false)}
+                onConform={() => handleStopRoom(2, roomActive.ID)}
+                content={`Bạn chắc chắn muốn khóa phòng`}
+                highlight={roomActive && roomActive.TieuDe}
+            />
+            {/* Thông báo thành công */}
             {/* Thông báo thành công */}
             {showInformModal && (
                 <div id="myModal" className="myModal1">
                     {/* <!-- Modal content --> */}
-                    <div className="modalContent">
-                        <FontAwesomeIcon icon={faCheckCircle} className="modalIcon" />
-                        <div>Thao tác thành công</div>
+                    <div className={`modalContent ${errorMessage.check ? '' : 'modalContentClose'}`}>
+                        {errorMessage.check ? (
+                            <FontAwesomeIcon icon={faCheckCircle} className="modalIcon" />
+                        ) : (
+                            <FontAwesomeIcon icon={faTimesCircle} className="modalIcon close" />
+                        )}
+                        <div>{errorMessage.value}</div>
                     </div>
                 </div>
             )}

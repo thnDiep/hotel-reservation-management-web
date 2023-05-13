@@ -1,0 +1,48 @@
+.header {
+    height: var(--height-header);
+    position: fixed;
+    top: 0;
+    color: #1a202c;
+    width: 100%;
+    padding: 0px 60px;
+    z-index: 100;
+    font-size: 14px;
+    background: #fff;
+    transition: all 0.3s;
+    line-height: 17px;
+    border-bottom: 1px solid #edf2f7;
+
+    &__nav {
+        margin: auto;
+        width: var(--default-width);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .img {
+            width: 120px;
+            height: 32px;
+        }
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    &__choose {
+        color: #1a202c;
+        height: 40px;
+        margin: 0 -60px;
+        display: flex;
+        padding: 0 60px;
+        align-items: center;
+    }
+}
+
+a {
+    text-decoration: none;
+}

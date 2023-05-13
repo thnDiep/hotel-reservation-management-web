@@ -9,6 +9,7 @@ import { vi } from 'date-fns/locale'
 function FlashSaleForm({ data, onEdit, formData, styles }) {
     function handleChange(e, type) {
         if (type === 'BatDau' || type === 'KetThuc' || type === 'IDKhungGio') {
+            console.log(e)
             onEdit({ errors: { ...data.errors, [type]: null }, fields: { ...data.fields, [type]: e } })
 
             return

@@ -11,7 +11,7 @@ function Vouchers(props) {
         <div className={clsx(styles.vouchers, 'part')}>
             <div className="part__content d-flex">
                 {props.data &&
-                    props.data.map((voucher, index) => (
+                    props.data.slice(0, 2).map((voucher, index) => (
                         <div key={index} className={styles.voucher}>
                             <span className="d-flex-js">
                                 <span className="part__subTitle">Nhập mã</span>
@@ -22,7 +22,6 @@ function Vouchers(props) {
                                 <span
                                     className={styles.subTitle2}
                                     onClick={() => {
-                                        console.log(index)
                                         setShowConditionModal(index)
                                     }}
                                 >

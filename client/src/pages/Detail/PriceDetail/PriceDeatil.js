@@ -49,12 +49,15 @@ import Axios from 'axios'
 import Star from '~/components/Star/Star'
 const MySwal = withReactContent(Swal)
 
-const PriceDetail = ({ infor, types }) => {
+const PriceDetail = ({ infor, types, typesHotel }) => {
+    const formatMoney = (amount) => {
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
+    }
     const [star, setStar] = useState(0)
     const handleButtonClick = () =>
         MySwal.fire({
             title: 'Tiện nghi Khách sạn',
-            html: <AllFacility />,
+            html: <AllFacility typesHotel={typesHotel} />,
             showCloseButton: true,
             showConfirmButton: false,
             width: '784px',
@@ -93,9 +96,11 @@ const PriceDetail = ({ infor, types }) => {
                                         </td>
                                         <td className={`${classes['col-right']} ${classes['box-info']}`}>
                                             <div className={classes['price-room-from']}>Giá phòng từ</div>
-                                            <div className={classes['price-old']}>3,960,000 VND</div>
+                                            <div className={classes['price-old']}>
+                                                {formatMoney(infor.Gia).replace('₫', '')}VND
+                                            </div>
                                             <div className={classes['price-medium']}>
-                                                2,376,000 VND<span>/ đêm</span>
+                                                {formatMoney(infor.GiaSale).replace('₫', '')}VND<span>/ đêm</span>
                                             </div>
 
                                             <ButtonPrimary className="btnChoose" onSubmit={scrollToRoomList}>

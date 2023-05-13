@@ -5,15 +5,14 @@ export default {
   getAll() {
     return db("dondatphong");
   },
-
-  // Lấy thông tin đơn đặt phòng
-  async getAllInformation() {
+  async getRareInformationOfOrder(id) {
     return await db.raw(
       `SELECT nguoidung.HoTen,nguoidung.HinhAnh, khachsan.Ten, phong.TenLoaiPhong, dondatphong.NgayNhanPhong, dondatphong.NgayTraPhong, nguoidung.SoDienThoai, dondatphong.TongTien, dondatphong.TrangThai, dondatphong.MaDatPhong
       FROM dondatphong
       INNER JOIN nguoidung ON dondatphong.IDKhachHang = nguoidung.ID
       INNER JOIN phong ON dondatphong.IDPhong = phong.ID
-      INNER JOIN khachsan ON phong.IDKhachSan = khachsan.ID;`
+      INNER JOIN khachsan ON phong.IDKhachSan = khachsan.ID and khachsan.IDChuKhachSan = ?`,
+      id
     );
   },
 
@@ -106,7 +105,6 @@ export default {
     });
     return orderInfo;
   },
-
   //lấy thông tin đơn đặt hàng
   async getOrderByOrderCode(MaDatPhong) {
     //thông tin đơn đặt phòng

@@ -88,15 +88,15 @@ function OrderDetail() {
                                     ></div>
                                     <span className={styles.title}>Trạng thái</span>
                                     {item.TrangThai === 0 && (
-                                        <span className={clsx(styles.status, styles.success)}>Thành công</span>
-                                    )}
-
-                                    {item.TrangThai === 1 && (
                                         <span className={clsx(styles.status, styles.success)}>Đang chờ duyệt</span>
                                     )}
 
+                                    {item.TrangThai === 1 && (
+                                        <span className={clsx(styles.status, styles.success)}>Chưa thanh toán</span>
+                                    )}
+
                                     {item.TrangThai === 2 && (
-                                        <span className={clsx(styles.status, styles.success)}>Đã xóa</span>
+                                        <span className={clsx(styles.status, styles.success)}>Đã hoàn tất</span>
                                     )}
                                 </div>
 
@@ -464,7 +464,7 @@ function OrderDetail() {
                                                 </div>
                                             </div>
                                         </div>
-                                        {item.TrangThai === 0 && (
+                                        {(item.TrangThai === 2 || item.TrangThai === 1) && (
                                             <div className={styles.info__order__part}>
                                                 <h3 className={styles.title}>Thanh toán</h3>
 
@@ -475,9 +475,16 @@ function OrderDetail() {
                                                     </div>
                                                     <div className={styles.checkout}>
                                                         <span>Trạng thái</span>
-                                                        <span className={clsx(styles.status, styles.success)}>
-                                                            Thành công
-                                                        </span>
+                                                        {item.TrangThai === 2 && (
+                                                            <span className={clsx(styles.status, styles.success)}>
+                                                                Thành công
+                                                            </span>
+                                                        )}
+                                                        {item.TrangThai === 1 && (
+                                                            <span className={clsx(styles.status, styles.success)}>
+                                                                Chưa thanh toán
+                                                            </span>
+                                                        )}
                                                     </div>
                                                 </div>
                                                 {/* {item.TrangThai === 1 && (

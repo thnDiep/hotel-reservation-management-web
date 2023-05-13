@@ -48,6 +48,8 @@ function Login() {
                 MatKhau: Data.pass,
             })
             if (res.status === 200) {
+                console.log(res.data.emailAvailable)
+                localStorage.setItem('user', JSON.stringify(res.data.emailAvailable))
                 await Swal.fire('Đăng nhập thành công', 'Nhấn nút để đến trang chủ', 'success')
                 Nav('/')
             }

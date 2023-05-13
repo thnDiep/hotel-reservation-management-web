@@ -34,7 +34,6 @@ router.get("/search", async (req, res, next) => {
       const [min] = await roomModel.getGiaMin(hotel.ID)
       hotel.Gia = min["min(`Gia`)"]
       const max = await roomModel.getGiaMax(hotel.ID)
-      console.log(max)
       hotel.phong = max.TenLoaiPhong
       if (hotel.DanhGia) {
         hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2)
@@ -42,7 +41,6 @@ router.get("/search", async (req, res, next) => {
         hotel.DanhGia = Number(0).toFixed(1)
       }
     }
-    // console.log(result);
     res.json(result)
   } catch (err) {
     next(err)
@@ -68,30 +66,77 @@ router.get("/detail", async (req, res, next) => {
     //const key = req.query.key;
     const idHotel = req.query.idKs || 8
     //const idHotel = 8;
-    const feedbackHotel = await hotelModel.getFeedBackByHotelId(idHotel)
+    const feedbackHotel = await feedbackModel.getFeedBackByHotelId(idHotel)
     const picHotel = await hotelModel.getPicByHotelId(idHotel)
     const infor = await hotelModel.findById(idHotel)
     const score = await feedbackModel.getAvgScore(idHotel)
     infor.avgScore = score[0][0]["ROUND(AVG(CAST(Diem AS FLOAT)), 1)"]
-
-    const types = await facilityModel.getLoaiTienNghi()
-    console.log(types)
-    for (let typeKS of types) {
-      const facilityOfHotels = await facilityModel.getNameOfLoai(typeKS.ID)
-      // console.log(facilityOfHotels);
+    //  Lấy thông tin hữu ích
+    const thongTinHuuIch = await facilityModel.getThongTinHuuIch()
+    for (const thongTin of thongTinHuuIch) {
+      thongTin.NoiDung = await facilityModel.getThongTinHuuIcKhachSan(
+        idHotel,
+        thongTin
+      )
+    }
+    //   lấy danh sách tiện nghi của khách sạn đó
+    const typesHotel = await facilityModel.getLoaiTienNghi()
+    for (const type of typesHotel) {
+      const facilityOfHotels = await facilityModel.getNameOfLoaiKhachSan(
+        type.ID
+      )
       const tienNghi = []
       for (let i = 0; i < facilityOfHotels.length; i++) {
+        //lấy fac
         const facHotel = await facilityModel.getFacilityOfHotel(
-          facilityOfHotels[i].ID
+          facilityOfHotels[i],
+          idHotel
         )
-        console.log(tienNghi)
-        //facHotel.Ten = facilityOfHotels[i].TenTienNghi;
         if (facHotel !== null) tienNghi.push(facHotel)
         //console.log(tienNghi);
       }
-      typeKS.tienNghi = tienNghi
+      type.tienNghi = tienNghi
     }
-    res.json({ infor, picHotel, feedbackHotel, types })
+
+    // Thêm các thông tin của phòng
+    const rooms = await roomModel.getAllByKhachSan(idHotel)
+    let minPrice = 1000000000
+    for (const room of rooms) {
+      const [uuDai] = await roomModel.getEndow(room.ID)
+      room.UuDai = uuDai
+      room.HinhAnh = await roomModel.getHinhAnh(room.ID)
+      const typesPhong = await facilityModel.getLoaiTienNghiRoom()
+      for (const type of typesPhong) {
+        const facilityOfRooms = await facilityModel.getNameOfLoaiPhong(type.ID)
+        const tienNghi = []
+        for (let i = 0; i < facilityOfRooms.length; i++) {
+          //lấy fac
+          const facRoom = await facilityModel.getFacilityOfRoom(
+            facilityOfRooms[i],
+            room.ID
+          )
+          if (facRoom !== null) tienNghi.push(facRoom)
+          //console.log(tienNghi);
+        }
+        type.tienNghi = tienNghi
+      }
+      room.GiamGia = infor.GiamGia
+      room.tienNghi = typesPhong
+      room.GiaSale = room.Gia - (room.Gia * room.GiamGia) / 100
+      if (+room.GiaSale < minPrice) {
+        minPrice = +room.GiaSale
+        infor.Gia = +room.Gia
+      }
+    }
+    infor.GiaSale = minPrice
+    res.json({
+      rooms,
+      thongTinHuuIch,
+      infor,
+      picHotel,
+      feedbackHotel,
+      typesHotel,
+    })
   } catch (err) {
     next(err)
   }

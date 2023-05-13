@@ -113,10 +113,10 @@ function Reserve() {
                                         <div className={styles.stateOfReserve}>
                                             <p>Tổng tiền</p>
                                             <p>
-                                                <b>{item.TongTien} &#8363;</b>
+                                                <b>{item.TongTien.toLocaleString()} &#8363;</b>
                                             </p>
 
-                                            {item.TrangThai === 1 && (
+                                            {item.TrangThai === 0 && (
                                                 <div>
                                                     <p className={styles.successRequest}>
                                                         Gửi yêu cầu đặt phòng thành công
@@ -125,7 +125,16 @@ function Reserve() {
                                                 </div>
                                             )}
 
-                                            {(item.TrangThai === 0 || item.TrangThai === 2) && (
+                                            {item.TrangThai === 1 && (
+                                                <div>
+                                                    <p className={styles.successRequest}>Đã duyệt yêu cầu</p>
+                                                    <label className={styles.waitingConfirmLabel}>
+                                                        CHƯA THANH TOÁN
+                                                    </label>
+                                                </div>
+                                            )}
+
+                                            {item.TrangThai === 2 && (
                                                 <div>
                                                     <p className={styles.successRequest}>Đặt phòng thành công</p>
                                                     <Link to={'/profile/order/comment'}>
@@ -135,7 +144,7 @@ function Reserve() {
                                                             ĐÁNH GIÁ
                                                         </label>{' '}
                                                     </Link>
-                                                    <label className={styles.confirmedLabel}>ĐÃ XÁC NHẬN</label>
+                                                    <label className={styles.confirmedLabel}>ĐÃ HOÀN TẤT</label>
                                                 </div>
                                             )}
                                         </div>

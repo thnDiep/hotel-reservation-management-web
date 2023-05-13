@@ -35,8 +35,7 @@ function SliderHotels(props) {
                                 point={des.DanhGia}
                                 oldPrice={des.GiaTieuChuan}
                                 curPrice={des.GiaSauKhiGiam}
-                                // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
-                                // memberDiscount={19}
+                                voucher={des.voucher}
                             />
                         )
                     } else {
@@ -55,8 +54,7 @@ function SliderHotels(props) {
                                 place={des.DiaDiem}
                                 point={des.DanhGia}
                                 curPrice={des.GiaTieuChuan}
-                                // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
-                                // memberDiscount={19}
+                                voucher={des.voucher}
                             />
                         )
                     }

@@ -227,6 +227,7 @@ const AddHotel = () => {
             formData.append('upload_preset', PRESET_NAME)
             formData.append('folder', FOLDER_NAME)
             for (const file of selectedFiles) {
+                console.log(file)
                 formData.append('file', file)
                 const res = await axios.post(api, formData, {
                     headers: {
@@ -246,16 +247,16 @@ const AddHotel = () => {
             }
             const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '')
             hotel.nhan = nhan
-            hotel.IDChuKhachSan = 2
+            hotel.IDChuKhachSan = 9
             if (id) hotel.ID = id
-
+            console.log(IDTienNghi)
             const res = await axios.post(`http://localhost:8800/cks/hotel/${id ? 'update' : 'insert'}`, {
                 HinhAnh: url,
                 hotel: hotel,
                 tienNghi: IDTienNghi,
                 thongTin: filteredThongTin,
             })
-            Nav('/')
+            Nav('/cks')
         } catch (err) {
             console.log(err)
         }
