@@ -227,6 +227,7 @@ const AddHotel = () => {
             formData.append('upload_preset', PRESET_NAME)
             formData.append('folder', FOLDER_NAME)
             for (const file of selectedFiles) {
+                console.log(file)
                 formData.append('file', file)
                 const res = await axios.post(api, formData, {
                     headers: {
@@ -255,7 +256,7 @@ const AddHotel = () => {
                 tienNghi: IDTienNghi,
                 thongTin: filteredThongTin,
             })
-            Nav('/')
+            Nav('/cks')
         } catch (err) {
             console.log(err)
         }

@@ -164,25 +164,29 @@
     }
 
     .cusTable.account {
-        tbody {
-            border-top: 1px solid #f2f1f1 !important;
-        }
+        // tbody {
+        //     border-top: 1px solid #f2f1f1 !important;
+        // }
 
         tbody,
         tr {
             overflow: hidden;
         }
+        tbody {
+            border-top: none !important;
+        }
 
         td {
             display: table-cell;
             /* Important */
+            border: none;
             vertical-align: middle;
         }
 
         img {
             height: 4rem;
-            width: 5rem;
-            border-radius: 0.75rem;
+            width: 4rem;
+            border-radius: 50%;
             margin-right: 1rem;
         }
 
@@ -257,16 +261,10 @@
         }
 
         .status {
-            cursor: pointer !important;
-            padding: 7px 25px !important;
-            width: 122px;
-            display: flex;
-            justify-content: center;
-
-            &Pending {
-                cursor: pointer !important;
-                padding: 7px 25px;
-            }
+            cursor: default !important;
+            padding: 7px 0;
+            min-width: 100px;
+            text-align: center;
         }
     }
 }

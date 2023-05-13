@@ -137,6 +137,10 @@ function Home() {
 
             trendingHotels.filter((item) => item.TrangThai === 1)
 
+            shockPriceHotels.sort((a, b) => {
+                return b.GiamGia - a.GiamGia
+            })
+
             setShockPriceHotels(shockPriceHotels)
             setVinPearlHotels(vinPearlHotels)
             setTrendingHotels(trendingHotels)

@@ -38,7 +38,7 @@ function VoucherTable({ header, option, data }) {
                 </thead>
                 <tbody>
                     {data &&
-                        data.map((voucher, index) => (
+                        data.slice((page - 1) * 4, page * 4).map((voucher, index) => (
                             <tr key={index} className={styles.memberRow}>
                                 <td className={styles.center}>
                                     <input type="checkbox" className={styles.checkBox} />
