@@ -71,9 +71,9 @@ router.post("/removeFromWishList", async (req, res, next) => {
 
 router.get("/wishlist", async (req, res, next) => {
   try {
-    const id = req.body.ID || 4
-    const wishlist = await wishListModel.getWishList(id)
-    res.json(wishlist)
+    const id = req.query.ID || 4;
+    const wishlist = await wishListModel.getWishList(id);
+    res.json(wishlist);
   } catch (err) {
     next(err)
   }
@@ -81,9 +81,9 @@ router.get("/wishlist", async (req, res, next) => {
 
 router.get("/order", async (req, res, next) => {
   try {
-    const id = req.query.ID || 4
-    const order = await orderModel.getOrder(id)
-    res.json(order)
+    const id = req.query.ID || 4;
+    const order = await orderModel.getOrder(id);
+    res.json(order);
   } catch (err) {
     next(err)
   }
@@ -101,11 +101,17 @@ router.get("/order/qr", async (req, res, next) => {
 
 router.get("/order/detail", async (req, res, next) => {
   try {
+<<<<<<< HEAD
     const MaDatPhong = req.body.MaDatPhong || 5743539
     const result = await orderModel.getOrderByOrderCode(MaDatPhong)
     console.log("1111")
     console.log(result)
     res.json(result)
+=======
+    const MaDatPhong = req.query.ID || 5743539;
+    const result = await orderModel.getOrderByOrderCode(MaDatPhong);
+    res.json(result);
+>>>>>>> d3cf556fc112c128dc8c98e91f6959a527963bc1
   } catch (err) {
     next(err)
   }
