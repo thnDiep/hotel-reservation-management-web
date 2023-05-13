@@ -123,7 +123,9 @@ function Home() {
                     const nowTime = stringTime.slice(0, 8)
                     if (nowTime >= start && nowTime <= end) {
                         flashSale.TrangThai = 1
-                        flashSaleHotels.push(data.hotels.find((key) => key.ID === flashSale.IDKhachSan))
+                        const hotel = data.hotels.find((key) => key.ID === flashSale.IDKhachSan)
+                        console.log(hotel)
+                        // flashSaleHotels.push()
                     }
                 }
             })
@@ -152,7 +154,7 @@ function Home() {
                 if (PhongTieuChuan) hotel.GiaTieuChuan = PhongTieuChuan.Gia
 
                 if (hotel.GiamGia !== 0 && hotel.TrangThai === 1) {
-                    hotel.GiaSauKhiGiam = hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * hotel.GiamGia
+                    hotel.GiaSauKhiGiam = Math.round(hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * hotel.GiamGia)
                     shockPriceHotels.push(hotel)
                 }
 

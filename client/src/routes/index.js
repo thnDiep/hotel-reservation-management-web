@@ -25,8 +25,8 @@ import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/compone
 import CheckOrder from '~/pages/CheckOrder/CheckOrder'
 export const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
-    { path: '/detail', component: Detail },
-    { path: '/listByPlace', component: ListByPlace },
+    // { path: '/detail', component: Detail },
+    // { path: '/listByPlace', component: ListByPlace },
     { path: '/checkout', component: Checkout, layout: HomeLayout },
     { path: '/checkout/success', component: SuccessCheckOut, layout: HomeLayout },
 

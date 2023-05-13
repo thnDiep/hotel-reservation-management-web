@@ -12,7 +12,7 @@ const router = express.Router()
 
 router.get("/", async (req, res, next) => {
   try {
-    const idUser = req.query.idUser || 5
+    const idUser = req.query.idUser || 1
     const curUser = await authModel.findById(idUser)
 
     // Chủ khách sạn
@@ -47,7 +47,7 @@ router.get("/", async (req, res, next) => {
         hotel.HinhAnh = image
       }
 
-      res.json({ hotels, promotions, periods })
+      res.json({ hotels, promotions, periods, curUser })
     } else {
       // User hoặc admin
       const hotels = await hotelModel.getAll()

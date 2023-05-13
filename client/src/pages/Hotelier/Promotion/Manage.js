@@ -37,73 +37,77 @@ function ManageVoucher() {
         }
         return 0
     })
-    // // Dữ liệu cho bảng
-    // useEffect(() => {
-    //     Axios.get('http://localhost:8800/cks/promotion', { params: { idCKS: 2 } })
-    //         .then((response) => {
-    //             const result = handleGetPromotion(response.data)
-    //             setData(result)
-    //             setOption([
-    //                 {
-    //                     name: 'Chỉnh sửa',
-    //                     handle: function (idActive, type) {
-    //                         navigate(`/cks/voucher/add/${type}/${idActive}`)
-    //                     },
-    //                 },
-    //                 {
-    //                     name: 'Ngừng khuyến mãi',
-    //                     handle: function (idActive) {
-    //                         const promotion = result.promotions.find((key) => key.ID === idActive)
-    //                         setPromotionActive(promotion)
-    //                         setShowStopModal(true)
-    //                     },
-    //                 },
-    //                 {
-    //                     name: 'Xóa',
-    //                     handle: function (idActive) {
-    //                         const promotion = result.promotions.find((key) => key.ID === idActive)
-    //                         setPromotionActive(promotion)
-    //                         setShowDeleteModal(true)
-    //                     },
-    //                 },
-    //             ])
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         })
-    // }, [])
 
     // Dữ liệu cho bảng
     useEffect(() => {
         if (context.data) {
-            const result = handleGetPromotion(context.data)
-            setData(result)
-            setOption([
-                {
-                    name: 'Chỉnh sửa',
-                    handle: function (idActive, type) {
-                        navigate(`/cks/voucher/add/${type}/${idActive}`)
-                    },
-                },
-                {
-                    name: 'Ngừng khuyến mãi',
-                    handle: function (idActive) {
-                        const promotion = result.promotions.find((key) => key.ID === idActive)
-                        setPromotionActive(promotion)
-                        setShowStopModal(true)
-                    },
-                },
-                {
-                    name: 'Xóa',
-                    handle: function (idActive) {
-                        const promotion = result.promotions.find((key) => key.ID === idActive)
-                        setPromotionActive(promotion)
-                        setShowDeleteModal(true)
-                    },
-                },
-            ])
+            Axios.get('http://localhost:8800/cks/promotion', { params: { idCKS: context.data.curUser.ID } })
+                .then((response) => {
+                    const result = handleGetPromotion(response.data)
+                    console.log(result)
+                    setData(result)
+                    setOption([
+                        {
+                            name: 'Chỉnh sửa',
+                            handle: function (idActive, type) {
+                                navigate(`/cks/voucher/add/${type}/${idActive}`)
+                            },
+                        },
+                        {
+                            name: 'Ngừng khuyến mãi',
+                            handle: function (idActive) {
+                                const promotion = result.promotions.find((key) => key.ID === idActive)
+                                setPromotionActive(promotion)
+                                setShowStopModal(true)
+                            },
+                        },
+                        {
+                            name: 'Xóa',
+                            handle: function (idActive) {
+                                const promotion = result.promotions.find((key) => key.ID === idActive)
+                                setPromotionActive(promotion)
+                                setShowDeleteModal(true)
+                            },
+                        },
+                    ])
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         }
-    }, [context])
+    }, [context.data])
+
+    // Dữ liệu cho bảng
+    // useEffect(() => {
+    //     if (context.data) {
+    //         const result = handleGetPromotion(context.data)
+    //         setData(result)
+    //         setOption([
+    //             {
+    //                 name: 'Chỉnh sửa',
+    //                 handle: function (idActive, type) {
+    //                     navigate(`/cks/voucher/add/${type}/${idActive}`)
+    //                 },
+    //             },
+    //             {
+    //                 name: 'Ngừng khuyến mãi',
+    //                 handle: function (idActive) {
+    //                     const promotion = result.promotions.find((key) => key.ID === idActive)
+    //                     setPromotionActive(promotion)
+    //                     setShowStopModal(true)
+    //                 },
+    //             },
+    //             {
+    //                 name: 'Xóa',
+    //                 handle: function (idActive) {
+    //                     const promotion = result.promotions.find((key) => key.ID === idActive)
+    //                     setPromotionActive(promotion)
+    //                     setShowDeleteModal(true)
+    //                 },
+    //             },
+    //         ])
+    //     }
+    // }, [context])
 
     function handleGetPromotion(data) {
         const periods = data.periods
@@ -115,11 +119,11 @@ function ManageVoucher() {
         if (vouchers) {
             vouchers.map((voucher) => {
                 const BatDau = new Date(voucher.BatDau)
-                voucher.BatDau = BatDau
+                // voucher.BatDau = BatDau
                 let KetThuc
                 if (voucher.KetThuc) {
                     KetThuc = new Date(voucher.KetThuc)
-                    voucher.KetThuc = KetThuc
+                    // voucher.KetThuc = KetThuc
                 } else {
                     KetThuc = new Date()
                 }
@@ -136,13 +140,11 @@ function ManageVoucher() {
         if (flashSales) {
             flashSales.map((flashSale) => {
                 const BatDau = new Date(flashSale.BatDau)
-                // BatDau.setUTCHours(0, 0, 0, 0)
-                flashSale.BatDau = BatDau
+                // flashSale.BatDau = BatDau
                 let KetThuc
-                // KetThuc.setUTCHours(0, 0, 0, 0)
                 if (flashSale.KetThuc) {
                     KetThuc = new Date(flashSale.KetThuc)
-                    flashSale.KetThuc = KetThuc
+                    // flashSale.KetThuc = KetThuc
                 } else {
                     KetThuc = new Date()
                 }
