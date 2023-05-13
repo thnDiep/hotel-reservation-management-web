@@ -44,9 +44,12 @@ export const addHotel = async (req, res, next) => {
     };
 
     const ID = await placeModel.getIDDiaDiem(hotel.DiaChi);
-    if (ID > 0) {
+    if (ID !== undefined) {
       hotel.IDDiaDiem = ID;
-    }
+    } else
+      return next(
+        res.status(400).send("Trang web của chúng tôi không hỗ trợ vị trí này")
+      );
     const [oldHotel] = await hotelModel.getHotelTrung(hotel.DiaChi);
 
     if (oldHotel === undefined) {

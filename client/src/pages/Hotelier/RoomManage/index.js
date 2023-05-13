@@ -34,7 +34,7 @@ const RoomManage = () => {
 
     useEffect(() => {
         // if (hotels) {
-        // console.log(hotels)
+        // console.log(hotel)
         if (data) {
             const optionHotel1 = []
             console.log(data)
@@ -71,7 +71,7 @@ const RoomManage = () => {
         // }
     }, [data])
     const [showInformModal, setShowInformModal] = useState(false)
-    console.log(data)
+    //console.log(data)
     function handleDeleteRoom() {
         axios
             .get('http://localhost:8800/cks/room/del', { params: { IDPhong: roomActive.ID } })
@@ -103,7 +103,9 @@ const RoomManage = () => {
                 }, 1000)
             })
     }
-    // console.log(hotel?.value?.phong)
+    //console.log('HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH')
+    //console.log(hotel?.value?.phong)
+    //console.log(hotel?.value?.hinhanh_phong)
     return (
         <div className={styles.content}>
             <div className="mt-4 d-flex justify-content-between align-items-center flex-wrap">
