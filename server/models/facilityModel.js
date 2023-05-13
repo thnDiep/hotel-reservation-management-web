@@ -39,35 +39,24 @@ export default {
     // console.log(user.password);
     return db("tiennghi_khachsan").insert(tienNghi);
   },
+  async delTienNghiKs(id) {
+    await db("tiennghi_khachsan").where("IDKhachSan", id).del();
+  },
   async updateTIenNghiKhachSan(tienNghi) {
     // console.log(tienNghi);
     // console.log(user.password);
-    await db("tiennghi_khachsan")
-      .where("IDKhachSan", tienNghi.IDKhachSan)
-      .del();
+
     return await db("tiennghi_khachsan").insert(tienNghi);
   },
   async addTIenNghiPhong(tienNghi) {
     // console.log(user.password);
     return db("tiennghi_phong").insert(tienNghi);
   },
-  async updateTIenNghiPhong(tienNghi) {
+  async delTIenNghiPhong(tienNghi) {
     // console.log(tienNghi);
     // console.log(user.password);
-    await db("tiennghi_phong").where("IDPhong", tienNghi.IDPhong).del();
-    // return db("tiennghi_phong")
-    //   .where("IDPhong", tienNghi.IDPhong)
-    //   .andWhere("IDTienNghi", tienNghi.IDTienNghi)
-    //   .then((rows) => {
-    //     if (rows.length > 0) {
-    //       // Nếu tìm thấy bản ghi, thực hiện update
-    //       return db("tiennghi_phong")
-    //         .where("IDPhong", tienNghi.IDPhong)
-    //         .andWhere("IDTienNghi", tienNghi.IDTienNghi)
-    //         .update(tienNghi);
-    //     } else {
-    // Nếu không tìm thấy bản ghi, thực hiện insert
-    return db("tiennghi_phong").insert(tienNghi);
+    return await db("tiennghi_phong").where("IDPhong", tienNghi).del();
+
     //   }
     // });
   },
@@ -75,50 +64,20 @@ export default {
     return db("uudai_phong").insert(uudai);
   },
 
-  async updateUuDaiPhong(uudai) {
+  async delUuDaiPhong(uudai) {
     // console.log(tienNghi);
     // console.log(user.password);
-    await db("uudai_phong").where("IDPhong", uudai.IDPhong).del();
-
-    // return db("uudai_phong")
-    //   .where("IDPhong", uudai.IDPhong)
-    //   .andWhere("IDUuDai", uudai.IDUuDai)
-    //   .then((rows) => {
-    //     if (rows.length > 0) {
-    //       // Nếu tìm thấy bản ghi, thực hiện update
-    //       return db("uudai_phong")
-    //         .where("IDPhong", uudai.IDPhong)
-    //         .andWhere("IDUuDai", uudai.IDUuDai)
-    //         .update(uudai);
-    //     } else {
-    // Nếu không tìm thấy bản ghi, thực hiện insert
-    return db("uudai_phong").insert(uudai);
-    //   }
-    // });
+    return await db("uudai_phong").where("IDPhong", uudai).del();
   },
 
   async addThongTinKhachSan(thongTin) {
     // console.log(user.password);
     return db("thongtinhuuich_ks").insert(thongTin);
   },
-  async updateThongTinKhachSan(thongTin) {
+  async delThongTinKhachSan(thongTin) {
     // console.log(user.password);
-    await db("thongtinhuuich_ks")
-      .where("IDKhachSan", thongTin.IDKhachSan)
-      .del();
-    // return db("thongtinhuuich_ks")
-    //   .where("IDKhachSan", thongTin.IDKhachSan)
-    //   .where("IDThongTin", thongTin.IDThongTin)
-    //   .then((rows) => {
-    //     if (rows.length > 0) {
-    //       // Nếu tìm thấy bản ghi, thực hiện update
-    //       return db("thongtinhuuich_ks")
-    //         .where("IDKhachSan", thongTin.IDKhachSan)
-    //         .where("IDThongTin", thongTin.IDThongTin)
-    //         .update(thongTin);
-    //     } else {
-    // Nếu không tìm thấy bản ghi, thực hiện insert
-    return db("thongtinhuuich_ks").insert(thongTin);
+    return await db("thongtinhuuich_ks").where("IDKhachSan", thongTin).del();
+
     //   }
     // });
     // console.log(user.password);

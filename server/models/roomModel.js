@@ -7,6 +7,12 @@ export default {
   getAllByKhachSan(id) {
     return db("phong").where("IDKhachSan", id);
   },
+  getEndow(id) {
+    return db.raw(
+      `SELECT * FROM uudai_phong up, uudai u WHERE u.ID=up.IDUuDai AND up.IDPhong=?`,
+      id
+    );
+  },
   getGiaMin(id) {
     return db("phong").where("IDKhachSan", id).min("Gia").as("Gia");
   },

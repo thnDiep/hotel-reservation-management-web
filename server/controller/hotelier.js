@@ -91,17 +91,18 @@ export const updateHotel = async (req, res, next) => {
 
     if (oldHotel === undefined || oldHotel.DiaChi === hotel.DiaChi) {
       await hotelModel.update(hotel);
-      console.log(hotel.ID);
+      await facilityModel.delTienNghiKs(hotel.ID);
       for (const ID of req.body.tienNghi) {
-        await facilityModel.updateTIenNghiKhachSan({
+        await facilityModel.addTIenNghiKhachSan({
           IDTienNghi: ID,
           IDKhachSan: hotel.ID,
         });
       }
       // console.log("ádafsđs");
+      await facilityModel.delThongTinKhachSan(hotel.ID);
       for (const ID of req.body.thongTin) {
         // console.log(ID);
-        await facilityModel.updateThongTinKhachSan({
+        await facilityModel.addThongTinKhachSan({
           IDThongTin: ID.ID,
           IDKhachSan: hotel.ID,
           NoiDung: ID.NoiDung,
@@ -180,14 +181,16 @@ export const updateRoom = async (req, res, next) => {
 
     await roomModel.updateRoom(room);
     console.log(req.body.tienNghi);
+    await delTIenNghiPhong(room.ID);
     for (const ID of req.body.tienNghi) {
-      await facilityModel.updateTIenNghiPhong({
+      await facilityModel.addTIenNghiPhong({
         IDTienNghi: ID,
         IDPhong: room.ID,
       });
     }
+    await facilityModel.delUuDaiPhong(room.ID);
     for (const ID of req.body.uuDai) {
-      await facilityModel.updateUuDaiPhong({
+      await facilityModel.addUuDaiPhong({
         IDPhong: room.ID,
         IDUuDai: ID,
       });

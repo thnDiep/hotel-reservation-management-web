@@ -90,15 +90,18 @@ export default function route(app) {
             hotel.DanhGia = Number(0).toFixed(1);
           }
         });
+
+        const rooms = await roomModel.getAll();
+        rooms.map(async (room) => {
+          room.endows = await roomModel.getEndow(room.ID);
+        });
         const users = await authModel.getAll();
         const rates = await rateModal.getAll();
         const hotelImages = await hotelModel.getAllImage();
         const places = await placeModal.getAll();
-        const rooms = await roomModel.getAll();
         const promotions = await promotionModel.getAll();
         const periods = await promotionModel.getPeriods();
         const likes = await profileModel.getWishList1(idUser);
-
         res.json({
           hotels,
           users,

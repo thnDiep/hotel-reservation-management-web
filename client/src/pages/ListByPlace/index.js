@@ -39,7 +39,6 @@ const listPlace = [
 const sort = ['Phù hợp nhất', 'Rẻ nhất', 'Đắt nhất', 'Xếp hạng sao', 'Đánh giá cao nhất']
 function ListByPlace() {
     const [indexSort, setIndexSort] = useState(0)
-    const { data, handleData } = useContext(DataContext)
     // Khách sạn lấy được từ thanh tìm kiếm
     const { state } = useLocation()
     const [hotels, setHotels] = useState()
