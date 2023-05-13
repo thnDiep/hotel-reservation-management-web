@@ -91,6 +91,11 @@ export default {
     return await db("hinhanh_khachsan").where("IDKhachSan", id);
   },
 
+  // Lấy hình ảnh theo ID phòng
+  async getImageRoom(id) {
+    return await db("hinhanh_phong").where("IDPhong", id);
+  },
+
   del(id) {
     return db("khachsan").where("ID", id).del();
   },

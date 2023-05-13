@@ -27,6 +27,11 @@ function RoomCKS({ rooms, option }) {
         setAllChecked(Object.keys(checkboxState).every((key) => checkboxState[key]))
     }
 
+    const numberFormat = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    })
+
     // const rooms = [
     //     {
     //         TenLoaiPhong: 'Đoàn văn bơ Quận 5',
@@ -104,9 +109,9 @@ function RoomCKS({ rooms, option }) {
                             </td>
                             <td className={styles.nameTitle}>
                                 <div className="d-flex-js">
-                                    <img src="https://travl.dexignlab.com/react/demo/static/media/room4.f452c0a5f4a4a74cef98.jpg" />
+                                    <img src={room.HinhAnh[0].HinhAnh} />
                                     <div className={styles.text1}>
-                                        <span>{index + 1}</span>
+                                        <span>#{index + 1}</span>
                                         <br />
                                         <span>{room.TenLoaiPhong}</span>
                                     </div>
@@ -116,7 +121,7 @@ function RoomCKS({ rooms, option }) {
                                 <div className={`${styles.point} ${styles.text}`}>{room.SoNguoi}</div>
                             </td>
                             <td>
-                                <span className={styles.text2}>{room.SoPhongTrong}/10</span>
+                                <span className={styles.text2}>{room.SoPhongTrong}</span>
                             </td>
                             <td>
                                 <div className={`${styles.point} d-flex mx-0`}>
@@ -149,7 +154,7 @@ function RoomCKS({ rooms, option }) {
 
                             <td className={styles.center}>
                                 <h3 className={clsx(styles.text1, styles.primary)}>
-                                    {room.Gia} <sup>VND</sup>
+                                    <sup>VND</sup>
                                 </h3>
                             </td>
                             <td>

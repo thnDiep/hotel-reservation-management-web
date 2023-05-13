@@ -102,15 +102,20 @@ function HotelCKSTable({ option, hotels }) {
                                     <div className="d-flex">
                                         <img className={styles.imgLarge} src={hotel.HinhAnh[0].HinhAnh} alt="khoong " />
                                         <div className={`${styles.text1} ${styles.checkImg}`}>
-                                            <span>{index + 1}</span>
+                                            <span>#{index + 1}</span>
                                             <br />
                                             <span className={styles.text1Name}>{hotel.Ten}</span>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <div className={styles.text}>d</div>
-                                    <div className={styles.text}>s</div>
+                                    {hotel.phong.slice(0, 3).map((loaiPhong) => {
+                                        return (
+                                            <div key={loaiPhong.ID} className={styles.text}>
+                                                {loaiPhong.TenLoaiPhong}
+                                            </div>
+                                        )
+                                    })}
                                 </td>
                                 <td>
                                     <span className={`${styles.text2} ${styles.text2Name}`}>{hotel.DiaChi}</span>
