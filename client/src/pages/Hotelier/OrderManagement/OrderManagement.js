@@ -16,7 +16,6 @@ import Axios from 'axios'
 
 const MySwal = withReactContent(Swal)
 function HotelTable({ data, option }) {
-    const [enteredPendingBtn, setEnteredPendingBtn] = useState(false)
     const handleButtonClick = (ma) => {
         console.log(ma)
         MySwal.fire({
@@ -29,19 +28,11 @@ function HotelTable({ data, option }) {
             backdrop: '#fffff',
         })
     }
-    const pendingBtnChangeHandler = () => {
-        setEnteredPendingBtn(!enteredPendingBtn)
-    }
 
-    const btnChangeHandler = (e) => {
-        e.stopPropagation()
-        pendingBtnChangeHandler()
-    }
     const numberFormat = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND',
     })
-
     const [page, setPage] = useState(1)
     const [totalPage, setTotalPage] = useState()
 
@@ -142,7 +133,7 @@ function HotelTable({ data, option }) {
                                         </h3>
                                     </td>
                                     <td>
-                                        <button className={styles.btnPending} onClick={btnChangeHandler}>
+                                        <button className={styles.btnPending}>
                                             <div
                                                 className={clsx(
                                                     'btn-1',
@@ -151,7 +142,7 @@ function HotelTable({ data, option }) {
                                                         pending: data.TrangThai === 1,
                                                     },
                                                     styles.statusPending,
-                                                    // !enteredPendingBtn && styles.statusPending1,
+                                                    data.TrangThai === 1 && styles.statusPending1,
                                                 )}
                                             >
                                                 {data.TrangThai === 0 ? 'Đã duyệt' : 'Chờ duyệt'}
@@ -244,8 +235,6 @@ const OrderManagement = () => {
                 }, 1000)
                 console.log('helllo')
                 setData(data.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong))
-                console.log('ata.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong)')
-                console.log(data.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong))
 
                 setOrderActive(null)
                 setShowDeleteModal(false)
@@ -256,7 +245,6 @@ const OrderManagement = () => {
             })
     }
     function handleDuyetHotel() {
-        console.log('đàafasfsdfgsd')
         Axios.get('http://localhost:8800/cks/order/update', { params: { MaDatPhong: orderActive.MaDatPhong } })
             .then(() => {
                 setShowInformModal(true)
@@ -264,10 +252,9 @@ const OrderManagement = () => {
                 window.setTimeout(function () {
                     setShowInformModal(false)
                 }, 1000)
-                console.log('helllo')
                 setData(
                     data.map((key) => {
-                        return key.MaDatPhong === orderActive ? { ...key, TrangThai: 0 } : key
+                        return key.MaDatPhong === orderActive.MaDatPhong ? { ...key, TrangThai: 0 } : key
                     }),
                 )
                 setOrderActive(null)

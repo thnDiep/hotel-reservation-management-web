@@ -87,6 +87,8 @@ router.get("/room/del", async (req, res, next) => {
 router.get("/order/del", async (req, res, next) => {
   try {
     const MaDatPhong = req.query.MaDatPhong;
+    console.log("Nó nữa meeeeeeeeeeeeeeeeee:", MaDatPhong);
+
     if (MaDatPhong) {
       await hotelModel.delOrder(MaDatPhong);
     }
