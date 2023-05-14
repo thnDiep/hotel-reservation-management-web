@@ -30,66 +30,68 @@ export const publicRoutes = [
     // { path: '/detail', component: Detail },
     // { path: '/listByPlace', component: ListByPlace },
 
-    // Checkout
-    { path: '/checkout/:id', component: Checkout, layout: HomeLayout },
-    { path: '/checkout', component: Checkout, layout: HomeLayout },
-    { path: '/checkout/success', component: SuccessCheckOut, layout: HomeLayout },
-    { path: '/checkout/QRPay/:id', component: QrPay, layout: QrPayLayout },
-    { path: '/checkout/QRPay', component: QrPay, layout: QrPayLayout },
-
     // Hotel
     { path: '/hotels/detail/:id', component: Detail },
     { path: '/hotels/:diadiem', component: ListByPlace },
     { path: '/hotels', component: ListByPlace },
 
+    { path: '/registerPartner', component: RegisterPartner, layout: null },
+    { path: '/login', component: Login, layout: null },
+    { path: '/signUp', component: SignUp, layout: null },
+    { path: '/checkOrder', component: CheckOrder },
+    { path: '/orderResult/:id', component: OrderResult, layout: HomeLayout },
+
+    // //Hotelier - Hotel
+    // { path: '/cks/profile', component: ProfileHotelier, layout: HotelierLayout },
+    // { path: '/cks/manageHotel', component: HotelManagement, layout: HotelierLayout },
+    // { path: '/cks/addHotel', component: AddHotel, layout: HotelierLayout },
+    // { path: '/cks/manage-room', component: RoomManage, layout: HotelierLayout },
+    // { path: '/cks/manageOrder', component: OrderManagement, layout: HotelierLayout },
+    // { path: '/cks/addRoom', component: AddRoom, layout: HotelierLayout },
+    // { path: '/cks/addHotel/:active/:id', component: AddHotel, layout: HotelierLayout },
+    // { path: '/cks/addRoom/:active/:id', component: AddRoom, layout: HotelierLayout },
+    // { path: '/cks/addRoom/:active', component: AddRoom, layout: HotelierLayout },
+    // { path: '/cks', component: HotelManagement, layout: HotelierLayout },
+
+    // // Hotelier - Voucher - Add
+    // { path: '/cks/voucher/add/:active/:id', component: AddPromotion, layout: HotelierLayout },
+    // { path: '/cks/voucher/add/:active', component: AddPromotion, layout: HotelierLayout },
+    // { path: '/cks/voucher/add', component: AddPromotion, layout: HotelierLayout },
+
+    // // Hotelier - Voucher - Manage
+    // { path: '/cks/voucher/:preActive', component: ManagePromotion, layout: HotelierLayout },
+    // { path: '/cks/voucher', component: ManagePromotion, layout: HotelierLayout },
+
+    // // Admin
+    // { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },
+    // { path: '/admin/account/blocked', component: BlockedAccount, layout: ManageLayout },
+    // { path: '/admin/account/active', component: ActiveAccount, layout: ManageLayout },
+    // { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
+    // { path: '/admin', component: HotelAdmin, layout: ManageLayout },
+
+    // // Not Found
+    { path: '/*', component: NotFound, layout: null },
+]
+
+export const publicRoutesUser = [
+    // Checkout
+    { path: '/checkout/:id', component: Checkout, layout: HomeLayout },
+    { path: '/checkout', component: Checkout, layout: HomeLayout },
+    { path: '/checkout/success/:id', component: SuccessCheckOut, layout: HomeLayout },
+    { path: '/checkout/QRPay/:id', component: QrPay, layout: QrPayLayout },
+    { path: '/checkout/QRPay', component: QrPay, layout: QrPayLayout },
     // Profile
     { path: '/profile', component: Account, layout: HomeLayout },
     { path: '/profile/order/:id', component: OrderDetail, layout: HomeLayout },
     { path: '/profile/order', component: Order, layout: HomeLayout },
     { path: '/profile/wish-list', component: Wishlist, layout: HomeLayout },
     { path: '/profile/order/comment', component: CommentAboutHotel, layout: null },
-
-    { path: '/registerPartner', component: RegisterPartner, layout: null },
-    { path: '/login', component: Login, layout: null },
-    { path: '/signUp', component: SignUp, layout: null },
-    { path: '/checkOrder', component: CheckOrder },
-    { path: '/orderResult', component: OrderResult, layout: HomeLayout },
-
-    //Hotelier - Hotel
-    { path: '/cks/profile', component: ProfileHotelier, layout: HotelierLayout },
-    { path: '/cks/manageHotel', component: HotelManagement, layout: HotelierLayout },
-    { path: '/cks/addHotel', component: AddHotel, layout: HotelierLayout },
-    { path: '/cks/manage-room', component: RoomManage, layout: HotelierLayout },
-    { path: '/cks/manageOrder', component: OrderManagement, layout: HotelierLayout },
-    { path: '/cks/addRoom', component: AddRoom, layout: HotelierLayout },
-    { path: '/cks/addHotel/:active/:id', component: AddHotel, layout: HotelierLayout },
-    { path: '/cks/addRoom/:active/:id', component: AddRoom, layout: HotelierLayout },
-    { path: '/cks/addRoom/:active', component: AddRoom, layout: HotelierLayout },
-    { path: '/cks', component: HotelManagement, layout: HotelierLayout },
-
-    // Hotelier - Voucher - Add
-    { path: '/cks/voucher/add/:active/:id', component: AddPromotion, layout: HotelierLayout },
-    { path: '/cks/voucher/add/:active', component: AddPromotion, layout: HotelierLayout },
-    { path: '/cks/voucher/add', component: AddPromotion, layout: HotelierLayout },
-
-    // Hotelier - Voucher - Manage
-    { path: '/cks/voucher/:preActive', component: ManagePromotion, layout: HotelierLayout },
-    { path: '/cks/voucher', component: ManagePromotion, layout: HotelierLayout },
-
-    // Admin
-    { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },
-    { path: '/admin/account/blocked', component: BlockedAccount, layout: ManageLayout },
-    { path: '/admin/account/active', component: ActiveAccount, layout: ManageLayout },
-    { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
-    { path: '/admin', component: HotelAdmin, layout: ManageLayout },
-
-    // // Not Found
-    { path: '/*', component: NotFound, layout: null },
 ]
+
 export const publicRoutesAdmin = [
-    { path: '/registerPartner', component: RegisterPartner, layout: null },
-    { path: '/login', component: Login, layout: null },
-    { path: '/signUp', component: SignUp, layout: null },
+    // { path: '/registerPartner', component: RegisterPartner, layout: null },
+    // { path: '/login', component: Login, layout: null },
+    // { path: '/signUp', component: SignUp, layout: null },
     // Admin
     { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },
     { path: '/admin/account/blocked', component: BlockedAccount, layout: ManageLayout },
@@ -98,12 +100,12 @@ export const publicRoutesAdmin = [
     { path: '/admin', component: HotelAdmin, layout: ManageLayout },
 
     // Not Found
-    { path: '/*', component: NotFound, layout: null },
+    // { path: '/*', component: NotFound, layout: null },
 ]
 export const publicRoutesHotelier = [
-    { path: '/registerPartner', component: RegisterPartner, layout: null },
-    { path: '/login', component: Login, layout: null },
-    { path: '/signUp', component: SignUp, layout: null },
+    // { path: '/registerPartner', component: RegisterPartner, layout: null },
+    // { path: '/login', component: Login, layout: null },
+    // { path: '/signUp', component: SignUp, layout: null },
     //Hotelier - Hotel
     { path: '/cks/profile', component: ProfileHotelier, layout: HotelierLayout },
     { path: '/cks/manageHotel', component: HotelManagement, layout: HotelierLayout },
@@ -124,5 +126,5 @@ export const publicRoutesHotelier = [
     // Hotelier - Voucher - Manage
     { path: '/cks/voucher/:preActive', component: ManagePromotion, layout: HotelierLayout },
     { path: '/cks/voucher', component: ManagePromotion, layout: HotelierLayout },
-    { path: '/*', component: NotFound, layout: null },
+    // { path: '/*', component: NotFound, layout: null },
 ]

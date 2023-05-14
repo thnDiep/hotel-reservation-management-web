@@ -3,6 +3,7 @@ import { useLocation, useParams, Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import Select from 'react-select'
 
 import Axios from 'axios'
 
@@ -17,6 +18,8 @@ function ManageVoucher() {
     const { state } = useLocation()
     const { preActive } = useParams()
     const context = useContext(DataContext)
+    const [hotel, setHotel] = useState(null)
+    const [optionHotel, setOptionHotel] = useState()
 
     // Conform modal
     const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -26,6 +29,7 @@ function ManageVoucher() {
     const [promotionActive, setPromotionActive] = useState(null)
     const [option, setOption] = useState([])
     const [data, setData] = useState({})
+    const [rootData, setRootData] = useState()
 
     // Menu
     const [active, setActive] = useState(() => {
@@ -38,13 +42,38 @@ function ManageVoucher() {
         return 0
     })
 
-    // Dữ liệu cho bảng
+    // Dữ liệu options
+    useEffect(() => {
+        if (rootData && hotel) {
+            if (hotel.value) {
+                const result = handleGetPromotion(rootData)
+
+                result.promotions = result.promotions.filter((item) => item.IDKhachSan === hotel.value.ID)
+                result.flashSales = result.flashSales.filter((item) => item.IDKhachSan === hotel.value.ID)
+                result.vouchers = result.vouchers.filter((item) => item.IDKhachSan === hotel.value.ID)
+                setData(result)
+            } else {
+                const result = handleGetPromotion(rootData)
+                setData(result)
+            }
+        }
+    }, [hotel, rootData])
+
+    // Dữ liệu cho bảng -> Lấy lúc đầu
     useEffect(() => {
         if (context.data) {
+            const options = [{ value: null, label: 'Tất cả' }]
+            context.data.hotels.map((hotel) => {
+                options.push({ value: hotel, label: hotel.Ten })
+            })
+            // console.log(options)
+            setOptionHotel(options)
+            setHotel(options[0])
+
             Axios.get('http://localhost:8800/cks/promotion', { params: { idCKS: context.data.curUser.ID } })
                 .then((response) => {
+                    setRootData(response.data)
                     const result = handleGetPromotion(response.data)
-                    console.log(result)
                     setData(result)
                     setOption([
                         {
@@ -257,6 +286,12 @@ function ManageVoucher() {
                 <div className="d-flex">
                     <NavHandle list={promotion.menu} active={active} onActive={setActive} />
                     {/* <DropdownButton list={promotion.state} width={150} /> */}
+                    <Select
+                        className={`col-5 ${styles.selectHotel}`}
+                        value={hotel}
+                        options={optionHotel}
+                        onChange={(selectedOption) => setHotel(selectedOption)}
+                    />
                 </div>
 
                 {active === 0 && (

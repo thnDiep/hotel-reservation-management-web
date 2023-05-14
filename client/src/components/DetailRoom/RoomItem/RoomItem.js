@@ -18,6 +18,7 @@ import ButtonPrimary from '~/components/Button/ButtonPrimary'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Popup from '../Popup/Popup'
+import { Link } from 'react-router-dom'
 library.add(faHouse, faShop, faSmoking, faBed, faWifi, faMountain, faWater)
 const MySwal = withReactContent(Swal)
 
@@ -45,10 +46,8 @@ const RoomItem = (props) => {
                     </div>
                     <div className={classes['BoxContent__left--facilities']}>
                         {props.item.tienNghi.map((data) => {
-                            console.log(data.TenLoai)
                             return data.TenLoai === 'Tiện Nghi' ? (
                                 data.tienNghi.map((tiennghi) => {
-                                    console.log(tiennghi)
                                     return tiennghi === null ? (
                                         <></>
                                     ) : (
@@ -115,7 +114,9 @@ const RoomItem = (props) => {
                                 {formatMoney(props.item.GiaSale).replace('₫', '')}VND <span>/ đêm</span>
                             </div>
                             <div>
-                                <ButtonPrimary className="btn__order">Đặt hàng</ButtonPrimary>
+                                <Link to={`/checkout/${props.item.ID}`}>
+                                    <ButtonPrimary className="btn__order">Đặt phòng</ButtonPrimary>
+                                </Link>
                             </div>
                         </div>
                     </div>

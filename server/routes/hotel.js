@@ -39,7 +39,6 @@ router.get("/search", async (req, res, next) => {
       hotel.phong = max.TenLoaiPhong;
       const voucher = await promotionModel.getAll(hotel.ID);
       const [UuDai] = await facilityModel.getUuDaiRandom();
-      console.log(UuDai);
       hotel.UuDai = UuDai.NoiDung;
       // console.log(tienNghi);
       hotel.voucher = voucher

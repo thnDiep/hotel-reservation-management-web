@@ -97,7 +97,6 @@ const Detail = () => {
                 }
             })
         }
-        console.log('render')
     }, [data])
 
     const [hotel, setHotel] = useState(null)
@@ -105,7 +104,6 @@ const Detail = () => {
         Axios.get('http://localhost:8800/hotel/detail', { params: { idKs: id } })
             .then((response) => {
                 setHotel(response.data)
-                console.log('chi tiết khách sạn: ', response.data)
                 if (data) {
                     const hotels = data.hotels.filter((item) => item.IDDiaDiem === response.data.infor.IDDiaDiem)
                     setSimilarHotels(hotels.filter((item) => item.TrangThai === 1))
@@ -116,13 +114,14 @@ const Detail = () => {
                 console.log(error)
             })
     }, [id])
+    const handleSearch = (data) => {
+        localStorage.setItem('dates', JSON.stringify(data))
+    }
     return (
         <React.Fragment>
             <div className={classes.spacing}> </div>
             <Search />
-            {/* <div className={classes.container}>
-                <ImageHotel />
-            </div> */}
+
             {hotel && (
                 <>
                     <div className={classes.subContainer}>
@@ -167,8 +166,9 @@ const Detail = () => {
                             </div>
                         </div>
                     </div>
-                    <hr className={classes.spacing2} />
-                    <div id="roomListContainer">
+                    <hr className={classes.spacing2} id="roomListContainer" />
+                    <Search detail={true} setDateDetail={(data) => handleSearch(data)} />
+                    <div>
                         <RoomsList rooms={hotel.rooms} />
                     </div>
 

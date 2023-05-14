@@ -4,7 +4,7 @@ import { faStar, faCheckCircle, faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Checkbox, FormControlLabel } from '@material-ui/core'
 import { ButtonPrimary } from '~/components'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useContext } from 'react'
 import DataContext from '~/contexts/DataContext'
 import { useEffect } from 'react'
@@ -13,8 +13,8 @@ import moment from 'moment'
 import '@fortawesome/fontawesome-free'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
 library.add(fas)
-
 const inputReducer = (state, action) => {
     let regex
     let errorText
@@ -25,14 +25,15 @@ const inputReducer = (state, action) => {
         regex = /^\d{10}$/
         errorText = 'Số điện thoại không hợp lệ'
     } else {
-        regex =
-            /^([a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+)((\s{1}[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+){1,})$/
+        regex = /^([A-ZÀ-Ỹ][a-zà-ỹ]*\s)+[A-ZÀ-Ỹ][a-zà-ỹ]*$/
         errorText = 'Họ và tên chỉ được chứa các ký tự chữ cái và khoảng trắng'
     }
     let value
     if (action.type === 'User_input') {
         value = action.val
     } else if (action.type === 'input_blur') {
+        value = state.value
+    } else if (action.type === 'input_submit') {
         value = state.value
     }
     if (value.trim().length === 0) {
@@ -46,17 +47,29 @@ const inputReducer = (state, action) => {
 const formatMoney = (amount) => {
     return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
 }
+function generateBookingID() {
+    const randomNum = Math.random().toString().substring(2, 8)
+    const bookingID = `B${randomNum}`
+    return bookingID
+}
 const Checkout = () => {
     const user = JSON.parse(localStorage.getItem('user'))
+    const date = JSON.parse(localStorage.getItem('dates'))
     const { id } = useParams()
     const { data, handleData } = useContext(DataContext)
     const [hotel, setHotel] = useState()
     const [room, setRoom] = useState()
+    const Nav = useNavigate()
     useEffect(() => {
         if (data) {
             console.log(data)
             const room = data.rooms.find((room) => room.ID === +id)
             const hotel = data.hotels.find((hotel) => hotel.ID === +room.IDKhachSan)
+            const number = Math.ceil(
+                Math.abs(new Date(date.startDate) - new Date(date.endDate)) / (1000 * 60 * 60 * 24),
+            )
+            room.dem = number
+            room.Gia = room.Gia * number
             room.GiamGia = room.Gia - (room.Gia * hotel.GiamGia) / 100
 
             const voucher = data.promotions
@@ -75,16 +88,76 @@ const Checkout = () => {
                     return isBetween && checkIDKS && checkSLSD && checkKG
                 })
                 .sort((a, b) => b.PhanTramKM - a.PhanTramKM)[0]
+
+            const flashSale1 = data.promotions.filter((voucher) => {
+                const now = moment()
+                let isBetween = false
+
+                if (moment(voucher.KetThuc).isValid())
+                    isBetween = now.isBetween(moment(voucher.BatDau), moment(voucher.KetThuc))
+                else {
+                    isBetween = now.isAfter(moment(voucher.BatDau))
+                }
+                const checkIDKS = hotel.ID === voucher.IDKhachSan
+                const checkKG = voucher.MaKhuyenMai === null
+
+                return isBetween && checkIDKS && checkKG
+            })
+            // for (const fl of flashSale) {
+            //     ;[fl.KhungGio] = data.periods.filter((item) => {
+            //         return item.ID === fl.IDKhungGio
+            //     })
+            // }
+            const flashSale = flashSale1
+                .filter((item) => {
+                    const now = new Date()
+                    let start = new Date()
+                    let end = new Date()
+                    if (item.IDKhungGio === 3) {
+                        start.setHours(19, 0, 0)
+                        end.setHours(23, 0, 0)
+                    } else if (item.IDKhungGio === 2) {
+                        start.setHours(14, 0, 0)
+                        end.setHours(16, 0, 0)
+                    } else {
+                        start.setHours(9, 0, 0)
+                        end.setHours(12, 0, 0)
+                    }
+                    return now.getHours() >= start.getHours() && now.getHours() <= end.getHours()
+                })
+                .sort((a, b) => b.PhanTramKM - a.PhanTramKM)[0]
+            // console.log(hotel.flashSale)
+
             if (!voucher) {
                 hotel.voucher = null // hoặc return {}
-                room.Thue1 = room.GiamGia * 0.05
-                room.Thue = room.GiamGia + room.GiamGia * 0.05
-                room.voucher = null
+                if (!flashSale) {
+                    hotel.flashSale = null
+                    room.Thue1 = room.GiamGia * 0.05
+                    room.Thue = room.GiamGia + room.GiamGia * 0.05
+                    room.voucher = null
+                } else {
+                    hotel.flashSale = flashSale
+                    room.soTienDcGiam = (room.GiamGia * flashSale.PhanTramKM) / 100
+                    room.voucher = room.GiamGia - (room.GiamGia * flashSale.PhanTramKM) / 100
+                    room.Thue1 = room.voucher * 0.05
+                    room.Thue = room.voucher + room.voucher * 0.05
+                }
             } else {
                 hotel.voucher = voucher
-                room.voucher = room.GiamGia - (room.GiamGia * hotel.voucher.PhanTramKM) / 100
-                room.Thue1 = room.voucher * 0.05
-                room.Thue = room.voucher + room.voucher * 0.05
+                if (!flashSale) {
+                    hotel.flashSale = null
+                    room.soTienDcGiam = (room.GiamGia * hotel.voucher.PhanTramKM) / 100
+                    room.voucher = room.GiamGia - (room.GiamGia * hotel.voucher.PhanTramKM) / 100
+                    room.Thue1 = room.voucher * 0.05
+                    room.Thue = room.voucher + room.voucher * 0.05
+                } else {
+                    hotel.flashSale = flashSale
+                    room.voucher = room.GiamGia - (room.GiamGia * hotel.voucher.PhanTramKM) / 100
+                    room.voucher = room.voucher - (room.voucher * hotel.flashSale.PhanTramKM) / 100
+                    room.soTienDcGiam = (room.voucher * hotel.flashSale.PhanTramKM) / 100
+                    room.Thue1 = room.voucher * 0.05
+                    room.Thue = room.voucher + room.voucher * 0.05
+                }
             }
             hotel.HinhAnh = data.hotelImages.find((HinhAnh) => HinhAnh.IDKhachSan === +hotel.ID).HinhAnh
             setHotel(hotel)
@@ -149,6 +222,74 @@ const Checkout = () => {
         dispatchNameRecieve({ type: 'input_blur' })
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (nameState.isValid) {
+            dispatchName({ type: 'input_submit' })
+            return
+        }
+        console.log('hello')
+        if (emailState.isValid) {
+            dispatchEmail({ type: 'input_submit' })
+            return
+        }
+        if (phoneState.isValid) {
+            dispatchPhone({ type: 'input_submit' })
+            return
+        }
+        if (nameRecieveState.value !== '' && nameRecieveState.isValid) {
+            dispatchNameRecieve({ type: 'input_submit' })
+            return
+        }
+        try {
+            const nguoidung = {
+                ID: user.ID,
+                HoTen: nameState.value,
+                SoDienThoai: phoneState.value,
+                Email: emailState.value,
+            }
+            let nguoinhanphong = null
+            if (nameRecieveState.value !== '')
+                nguoinhanphong = {
+                    HoTenNguoiNhan: nameRecieveState.value,
+                    IDKhachHang: user.ID,
+                    SoDienThoai: phoneState.value,
+                }
+            const dateNhan = new Date(date.startDate)
+            const dateTra = new Date(date.endDate)
+            const now = new Date()
+            const NgayNhanPhong = `${dateNhan.getFullYear()}-${dateNhan.getMonth() + 1}-${dateNhan.getDate()}`
+            const NgayTraPhong = `${dateTra.getFullYear()}-${dateTra.getMonth() + 1}-${dateTra.getDate()}`
+            const ThoiGianDat = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
+            const IDKhuyenMai = hotel?.voucher || null
+            const IDFlashSale = hotel?.flashSale || null
+            const MaDatPhong = generateBookingID()
+            const dondatphong = {
+                MaDatPhong: MaDatPhong,
+                NgayNhanPhong: NgayNhanPhong,
+                NgayTraPhong: NgayTraPhong,
+                ThoiGianDat: ThoiGianDat,
+                SoLuongPhong: date.number,
+                TongTien: room.Thue,
+                TrangThai: 0,
+                IDKhuyenMai: IDKhuyenMai,
+                IDFlashSale: IDFlashSale,
+                IDKhachHang: user.ID,
+                IDPhong: id,
+            }
+            const res = await axios.post('http://localhost:8800/user/order', {
+                nguoidung,
+                dondatphong,
+                nguoinhanphong,
+            })
+            if (res.status === 200) {
+                Nav(`/orderResult/${MaDatPhong}`)
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    const options = { weekday: 'short', month: 'short', day: 'numeric' }
     return (
         <div className={styles.content}>
             {hotel && room && (
@@ -173,15 +314,26 @@ const Checkout = () => {
                             <div className={` ${styles.infor__hour}`}>
                                 <div style={{ paddingRight: '60px' }} className="d-flex flex-column align-items-start">
                                     <span style={{ fontWeight: '600' }}>Nhận phòng</span>
-                                    <span className="mt-2">{hotel.GioNhanPhong}:00, T3, 02 tháng 5</span>
+                                    <span className="mt-2">
+                                        {hotel.GioNhanPhong}:00,{' '}
+                                        {new Date(date.startDate).toLocaleDateString('vi-VN', options)}
+                                    </span>
                                 </div>
                                 <div style={{ paddingRight: '60px' }} className="d-flex flex-column align-items-start">
                                     <span style={{ fontWeight: '600' }}>Trả phòng</span>
-                                    <span className="mt-2">{hotel.GioTraPhong}:00, T3, 02 tháng 5</span>
+                                    <span className="mt-2">
+                                        {hotel.GioTraPhong}:00,{' '}
+                                        {new Date(date.endDate).toLocaleDateString('vi-VN', options)}
+                                    </span>
                                 </div>
                                 <div className="d-flex flex-column align-items-start">
                                     <span style={{ fontWeight: '600' }}>Số đêm</span>
-                                    <span className="mt-2">1</span>
+                                    <span className="mt-2">
+                                        {Math.ceil(
+                                            Math.abs(new Date(date.startDate) - new Date(date.endDate)) /
+                                                (1000 * 60 * 60 * 24),
+                                        )}
+                                    </span>
                                 </div>
                             </div>
                             <div className="d-flex flex-column align-items-start mt-3">
@@ -360,119 +512,131 @@ const Checkout = () => {
                             </div>
                         )}
                         <div className={styles.infor__submit}>
-                            <p className={styles.nameTitle}>Phương thức thanh toán</p>
-                            <p className={styles.inforConfirm}>
-                                Sau khi hoàn tất thanh toán, mã xác nhận phòng sẽ được gửi ngay qua SMS và Email của
-                                bạn.
-                            </p>
-                            <div className={styles.payment}>
-                                <div className={`checkBoxPayment ${styles.paymentOnl}`}>
-                                    <div className={styles.paymentTiltle}>
-                                        <svg width="32" height="32" fill="none">
-                                            <path
-                                                d="M4 13.5l.5-6 2-1H19l3 1 .5 3V12H11l-1.5 2-.5 6-4.5-1-.5-5.5z"
-                                                fill="url(#icon_method_bank_transfer_svg__paint0_linear)"
-                                            ></path>
-                                            <path
-                                                d="M25.333 12H12a2.667 2.667 0 00-2.667 2.667v8A2.667 2.667 0 0012 25.333h13.333A2.667 2.667 0 0028 22.667v-8A2.667 2.667 0 0025.333 12z"
-                                                fill="#fff"
-                                                stroke="#2D3748"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            ></path>
-                                            <path
-                                                d="M18.667 21.333a2.667 2.667 0 100-5.333 2.667 2.667 0 000 5.333zM22.667 12V9.333A2.667 2.667 0 0020 6.667H6.667A2.667 2.667 0 004 9.333v8A2.667 2.667 0 006.667 20h2.666"
-                                                stroke="#2D3748"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            ></path>
-                                            <defs>
-                                                <linearGradient
-                                                    id="icon_method_bank_transfer_svg__paint0_linear"
-                                                    x1="13.25"
-                                                    y1="6.5"
-                                                    x2="13.25"
-                                                    y2="20"
-                                                    gradientUnits="userSpaceOnUse"
-                                                >
-                                                    <stop stopColor="#E2E8F0"></stop>
-                                                    <stop offset="1" stopColor="#CBD5E0"></stop>
-                                                </linearGradient>
-                                            </defs>
-                                        </svg>
-                                        <span>Chuyển khoản</span>
-                                    </div>
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedPayment === 'bankTransfer'}
-                                                icon={<span className="iconCheckBox"></span>}
-                                                checkedIcon={<span className="iconCheckBox checked"></span>}
-                                                onChange={handleCheckboxPayment}
-                                                value="bankTransfer"
+                            {check ? (
+                                <>
+                                    <p className={styles.nameTitle}>Phương thức thanh toán</p>
+                                    <p className={styles.inforConfirm}>
+                                        Sau khi hoàn tất thanh toán, mã xác nhận phòng sẽ được gửi ngay qua SMS và Email
+                                        của bạn.
+                                    </p>
+                                    <div className={styles.payment}>
+                                        <div className={`checkBoxPayment ${styles.paymentOnl}`}>
+                                            <div className={styles.paymentTiltle}>
+                                                <svg width="32" height="32" fill="none">
+                                                    <path
+                                                        d="M4 13.5l.5-6 2-1H19l3 1 .5 3V12H11l-1.5 2-.5 6-4.5-1-.5-5.5z"
+                                                        fill="url(#icon_method_bank_transfer_svg__paint0_linear)"
+                                                    ></path>
+                                                    <path
+                                                        d="M25.333 12H12a2.667 2.667 0 00-2.667 2.667v8A2.667 2.667 0 0012 25.333h13.333A2.667 2.667 0 0028 22.667v-8A2.667 2.667 0 0025.333 12z"
+                                                        fill="#fff"
+                                                        stroke="#2D3748"
+                                                        strokeWidth="1.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    ></path>
+                                                    <path
+                                                        d="M18.667 21.333a2.667 2.667 0 100-5.333 2.667 2.667 0 000 5.333zM22.667 12V9.333A2.667 2.667 0 0020 6.667H6.667A2.667 2.667 0 004 9.333v8A2.667 2.667 0 006.667 20h2.666"
+                                                        stroke="#2D3748"
+                                                        strokeWidth="1.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    ></path>
+                                                    <defs>
+                                                        <linearGradient
+                                                            id="icon_method_bank_transfer_svg__paint0_linear"
+                                                            x1="13.25"
+                                                            y1="6.5"
+                                                            x2="13.25"
+                                                            y2="20"
+                                                            gradientUnits="userSpaceOnUse"
+                                                        >
+                                                            <stop stopColor="#E2E8F0"></stop>
+                                                            <stop offset="1" stopColor="#CBD5E0"></stop>
+                                                        </linearGradient>
+                                                    </defs>
+                                                </svg>
+                                                <span>Chuyển khoản</span>
+                                            </div>
+                                            <FormControlLabel
+                                                control={
+                                                    <Checkbox
+                                                        checked={selectedPayment === 'bankTransfer'}
+                                                        icon={<span className="iconCheckBox"></span>}
+                                                        checkedIcon={<span className="iconCheckBox checked"></span>}
+                                                        onChange={handleCheckboxPayment}
+                                                        value="bankTransfer"
+                                                    />
+                                                }
                                             />
-                                        }
-                                    />
-                                </div>
-                                <hr />
-                                <div className={`checkBoxPayment ${styles.paymentOnl}`}>
-                                    <div className={styles.paymentTiltle}>
-                                        <svg width="32" height="32" fill="none">
-                                            <path
-                                                d="M4 13.5l.5-6 2-1H19l3 1 .5 3V12H11l-1.5 2-.5 6-4.5-1-.5-5.5z"
-                                                fill="url(#icon_method_bank_transfer_svg__paint0_linear)"
-                                            ></path>
-                                            <path
-                                                d="M25.333 12H12a2.667 2.667 0 00-2.667 2.667v8A2.667 2.667 0 0012 25.333h13.333A2.667 2.667 0 0028 22.667v-8A2.667 2.667 0 0025.333 12z"
-                                                fill="#fff"
-                                                stroke="#2D3748"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            ></path>
-                                            <path
-                                                d="M18.667 21.333a2.667 2.667 0 100-5.333 2.667 2.667 0 000 5.333zM22.667 12V9.333A2.667 2.667 0 0020 6.667H6.667A2.667 2.667 0 004 9.333v8A2.667 2.667 0 006.667 20h2.666"
-                                                stroke="#2D3748"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            ></path>
-                                            <defs>
-                                                <linearGradient
-                                                    id="icon_method_bank_transfer_svg__paint0_linear"
-                                                    x1="13.25"
-                                                    y1="6.5"
-                                                    x2="13.25"
-                                                    y2="20"
-                                                    gradientUnits="userSpaceOnUse"
-                                                >
-                                                    <stop stopColor="#E2E8F0"></stop>
-                                                    <stop offset="1" stopColor="#CBD5E0"></stop>
-                                                </linearGradient>
-                                            </defs>
-                                        </svg>
-                                        <span>Thanh toán paypall</span>
-                                    </div>
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={selectedPayment === 'paypal'}
-                                                icon={<span className="iconCheckBox"></span>}
-                                                checkedIcon={<span className="iconCheckBox checked"></span>}
-                                                onChange={handleCheckboxPayment}
-                                                value="paypal"
+                                        </div>
+                                        <hr />
+                                        <div className={`checkBoxPayment ${styles.paymentOnl}`}>
+                                            <div className={styles.paymentTiltle}>
+                                                <svg width="32" height="32" fill="none">
+                                                    <path
+                                                        d="M4 13.5l.5-6 2-1H19l3 1 .5 3V12H11l-1.5 2-.5 6-4.5-1-.5-5.5z"
+                                                        fill="url(#icon_method_bank_transfer_svg__paint0_linear)"
+                                                    ></path>
+                                                    <path
+                                                        d="M25.333 12H12a2.667 2.667 0 00-2.667 2.667v8A2.667 2.667 0 0012 25.333h13.333A2.667 2.667 0 0028 22.667v-8A2.667 2.667 0 0025.333 12z"
+                                                        fill="#fff"
+                                                        stroke="#2D3748"
+                                                        strokeWidth="1.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    ></path>
+                                                    <path
+                                                        d="M18.667 21.333a2.667 2.667 0 100-5.333 2.667 2.667 0 000 5.333zM22.667 12V9.333A2.667 2.667 0 0020 6.667H6.667A2.667 2.667 0 004 9.333v8A2.667 2.667 0 006.667 20h2.666"
+                                                        stroke="#2D3748"
+                                                        strokeWidth="1.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    ></path>
+                                                    <defs>
+                                                        <linearGradient
+                                                            id="icon_method_bank_transfer_svg__paint0_linear"
+                                                            x1="13.25"
+                                                            y1="6.5"
+                                                            x2="13.25"
+                                                            y2="20"
+                                                            gradientUnits="userSpaceOnUse"
+                                                        >
+                                                            <stop stopColor="#E2E8F0"></stop>
+                                                            <stop offset="1" stopColor="#CBD5E0"></stop>
+                                                        </linearGradient>
+                                                    </defs>
+                                                </svg>
+                                                <span>Thanh toán paypall</span>
+                                            </div>
+                                            <FormControlLabel
+                                                control={
+                                                    <Checkbox
+                                                        checked={selectedPayment === 'paypal'}
+                                                        icon={<span className="iconCheckBox"></span>}
+                                                        checkedIcon={<span className="iconCheckBox checked"></span>}
+                                                        onChange={handleCheckboxPayment}
+                                                        value="paypal"
+                                                    />
+                                                }
                                             />
-                                        }
-                                    />
+                                        </div>
+                                    </div>
+                                    <div className={styles.submitButton}>
+                                        <ButtonPrimary className="btnLarge">Thanh toán</ButtonPrimary>
+                                        <p>Bằng cách nhấn vào nút này, bạn công nhận mình đã đọc và đồng ý với</p>
+                                        <p>Điều kiện và Điều khoản của chúng tôi</p>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className={styles.submitButton}>
+                                    <ButtonPrimary onSubmit={handleSubmit} className="btnLarge">
+                                        Hoàn tất gửi yêu cầu
+                                    </ButtonPrimary>
+                                    <p>Bằng cách nhấn vào nút này, bạn công nhận mình đã đọc và đồng ý với</p>
+                                    <p>Điều kiện và Điều khoản của chúng tôi</p>
                                 </div>
-                            </div>
-                            <div className={styles.submitButton}>
-                                <ButtonPrimary className="btnLarge">Thanh toán</ButtonPrimary>
-                                <p>Bằng cách nhấn vào nút này, bạn công nhận mình đã đọc và đồng ý với</p>
-                                <p>Điều kiện và Điều khoản của chúng tôi</p>
-                            </div>
+                            )}
                         </div>
                     </div>
                     <div className={styles.room}>
@@ -505,7 +669,7 @@ const Checkout = () => {
                                     <div className="mx-3">{room.tienNghi.TenTienNghi}</div>
                                 </div>
                                 <div className={`mt-2 d-flex justify-content-start`}>
-                                    <svg width="16" height="16" fill="none" class="jss375">
+                                    <svg width="16" height="16" fill="none">
                                         <path
                                             d="M2.667 7.556V6.222a.889.889 0 01.888-.889h3.556a.889.889 0 01.889.89v1.333"
                                             stroke="#4A5568"
@@ -569,7 +733,7 @@ const Checkout = () => {
                             <span className={styles.nameTitle}>Chi tiết giá</span>
                             <div className={styles.detailPrice}>
                                 <div className={`${styles.columnFlex} ${styles.priceRoom}`}>
-                                    <span>1 phòng x 1 đêm</span>
+                                    <span>1 phòng x {room.dem} đêm</span>
                                     <span className={styles.priceSale}>
                                         <div className={styles.priceSale1}>
                                             <div className={styles.pricePercent}>-{hotel.GiamGia}%</div>
@@ -578,16 +742,16 @@ const Checkout = () => {
                                         <span>{formatMoney(room.GiamGia)}</span>
                                     </span>
                                 </div>
-                                {hotel.voucher && (
+                                {(hotel.voucher || hotel.flashSale) && (
                                     <div className={`${styles.columnFlex} `}>
                                         <span className={styles.priceSale1}>
                                             Mã giảm giá
-                                            <span className={styles.labelSale}>{hotel.voucher.MaKhuyenMai}</span>
+                                            {hotel.voucher && (
+                                                <span className={styles.labelSale}>{hotel.voucher.MaKhuyenMai}</span>
+                                            )}
+                                            {hotel.flashSale && <span className={styles.labelSale1}>flashSale</span>}
                                         </span>
-                                        <span className={styles.labelPrice}>
-                                            {' '}
-                                            -{formatMoney((room.GiamGia * hotel.voucher.PhanTramKM) / 100)}
-                                        </span>
+                                        <span className={styles.labelPrice}> -{formatMoney(room.soTienDcGiam)}</span>
                                     </div>
                                 )}
                                 {room.voucher && (
@@ -605,10 +769,9 @@ const Checkout = () => {
                                     <span>{formatMoney(room.Thue)}</span>
                                 </div>
                                 <div className={styles.vat}>Đã bao gồm thuế, phí, VAT</div>
-                                {hotel.voucher && (
+                                {(hotel.voucher || hotel.flashSale) && (
                                     <div className={styles.congratulation}>
-                                        Chúc mừng! Bạn đã tiết kiệm được{' '}
-                                        {formatMoney((room.GiamGia * hotel.voucher.PhanTramKM) / 100)}
+                                        Chúc mừng! Bạn đã tiết kiệm được {formatMoney(room.soTienDcGiam)}
                                     </div>
                                 )}
                             </div>

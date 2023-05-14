@@ -3,9 +3,14 @@ import classes from './header.module.scss'
 import TitleLinkButton from '~/components/Button/TitleButton'
 import ButtonPrimary from '~/components/Button/ButtonPrimary'
 import SideBar from '../DefaultLayout/SideBar/SideBar'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { Dropdown } from 'react-bootstrap'
+import axios from 'axios'
+import { useContext } from 'react'
+import DataContext from '~/contexts/DataContext'
 
 function Header() {
+    const Nav = useNavigate()
     const user = JSON.parse(localStorage.getItem('user'))
 
     const [enteredAnnounce, setEnteredAnnounce] = useState(false)
@@ -15,6 +20,19 @@ function Header() {
     }
     if (user !== null) {
         check = true
+    }
+    const { LogoutHandler } = useContext(DataContext)
+    const handleLogout = () => {
+        LogoutHandler()
+        Nav('/login')
+        // axios.get('http://localhost:8800/auth/logout', { params: { idUser: id } }) //
+        // .then((response) => {
+        //     console.log(response.data)
+        //     setData(response.data)
+        // })
+        // .catch((error) => {
+        //     console.log(error)
+        // })
     }
     return (
         <div className={classes.header}>
@@ -277,12 +295,11 @@ function Header() {
                             </Link>
                         </>
                     ) : (
-                        <Link to="/profile">
-                            <div className={classes.boxUser}>
-                                <img src={user.HinhAnh} className={classes.ava} alt="" />
-                                <div className={classes.nameAva}>
-                                    <span className={classes.name}>{user.HoTen}</span>
-                                    {/* <svg width="10" height="6" fill="none" className={`svgFillAll ${classes.icon}`}>
+                        <div className={`${classes.boxUser} headerDropdown`}>
+                            <img src={user.HinhAnh} className={classes.ava} alt="" />
+                            <div className={classes.nameAva}>
+                                <span className={classes.name}>{user.HoTen}</span>
+                                {/* <svg width="10" height="6" fill="none" className={`svgFillAll ${classes.icon}`}>
                                     <path
                                         d="M1.667 1.333L5 4.667l3.333-3.334"
                                         stroke="#1A202C"
@@ -291,9 +308,26 @@ function Header() {
                                         stroke-linejoin="round"
                                     ></path>
                                 </svg> */}
-                                </div>
                             </div>
-                        </Link>
+                            <Dropdown>
+                                <Dropdown.Toggle className={classes.toggle} id="dropdown-basic"></Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <div>
+                                        <Link to={'/profile'}>Tài khoản</Link>
+                                    </div>
+                                    <div>
+                                        <Link to={'/profile/wish-list'}>Yêu thích</Link>
+                                    </div>
+                                    <div>
+                                        <Link to={'/profile/order'}>Đơn phòng</Link>
+                                    </div>
+                                    <div onClick={handleLogout}>
+                                        <Link>Đâng xuất</Link>
+                                    </div>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
                     )}
 
                     <SideBar />

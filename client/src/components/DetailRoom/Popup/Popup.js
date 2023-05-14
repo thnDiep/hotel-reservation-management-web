@@ -4,10 +4,17 @@ import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 import classes from './Popup.module.scss'
 import './Popup.scss'
 import { clsx } from 'clsx'
+import MySwal from 'sweetalert2'
 const Popup = ({ picHotel, check, tienNghi }) => {
     const formatMoney = (amount) => {
         return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
     }
+    function scrollToRoomList() {
+        MySwal.close()
+        const roomListContainer = document.getElementById('roomListContainer')
+        roomListContainer.scrollIntoView({ behavior: 'smooth' })
+    }
+
     return (
         <div className="row">
             <div className="col-8">
@@ -47,6 +54,7 @@ const Popup = ({ picHotel, check, tienNghi }) => {
                     <div className={clsx(classes['carousel-indicators-image'], 'carousel-indicators')}>
                         {picHotel.map((pic, index) => (
                             <div
+                                key={pic.HinhAnh}
                                 data-bs-target="#carouselExampleCaptions"
                                 data-bs-slide-to={index}
                                 className={`${classes['active']} ${index === 0 ? 'active' : ''} `}
@@ -103,11 +111,15 @@ const Popup = ({ picHotel, check, tienNghi }) => {
                                 <label>Giá phòng chỉ từ</label> {formatMoney(tienNghi.Gia).replace('₫', '')}VND{' '}
                                 <span className={classes.tag}>/đêm</span>
                             </div>
-                            <button className={classes['box-popup-content__button']}>Xem phòng còn trống</button>
+                            <button onClick={scrollToRoomList} className={classes['box-popup-content__button']}>
+                                Xem phòng còn trống
+                            </button>
                         </div>
                     </>
                 ) : (
-                    <button className={classes['box-popup-content__button']}>Xem phòng còn trống</button>
+                    <button onClick={scrollToRoomList} className={classes['box-popup-content__button']}>
+                        Xem phòng còn trống
+                    </button>
                 )}
                 {/* */}
             </div>

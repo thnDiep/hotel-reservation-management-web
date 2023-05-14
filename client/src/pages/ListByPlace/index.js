@@ -18,6 +18,7 @@ function ListByPlace() {
         if (state) {
             setHotels(state.hotels)
             console.log(state.hotels)
+            console.log(state)
         }
     }, [state])
 

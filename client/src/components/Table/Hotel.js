@@ -15,6 +15,8 @@ function HotelTable({ header, option, data, filter }) {
 
     useEffect(() => {
         if (data) {
+            console.log('render')
+            console.log(data)
             if (filter === 0) {
                 setHotels(data)
                 let total = Math.floor(data.length / 4)
@@ -29,6 +31,7 @@ function HotelTable({ header, option, data, filter }) {
             }
         }
     }, [data, filter])
+
     return (
         <div className={styles.tableWrapper}>
             <Table responsive className={styles.cusTable}>
