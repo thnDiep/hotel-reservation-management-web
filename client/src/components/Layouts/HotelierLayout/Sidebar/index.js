@@ -37,6 +37,12 @@ const Sidebar = ({ checkHide }) => {
             icon: <i className="fas fa-ticket-alt icon"></i>,
             link: '/cks/voucher',
         },
+        {
+            id: 5,
+            name: 'Thông tin cá nhân',
+            icon: <i className="fas fa-user icon"></i>,
+            link: '/cks/profile',
+        },
     ]
     return (
         <section id="sidebar" className={`${checkHide && 'hide'}`}>

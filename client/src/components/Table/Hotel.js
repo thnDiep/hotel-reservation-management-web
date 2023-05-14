@@ -12,11 +12,13 @@ function HotelTable({ header, option, data, filter }) {
     const [page, setPage] = useState(1)
     const [totalPage, setTotalPage] = useState()
     const [hotels, setHotels] = useState(data)
-
+    // console.log('data: ', data)
     useEffect(() => {
+        // console.log('render')
+
         if (data) {
-            console.log('render')
-            console.log(data)
+            // console.log('render')
+            // console.log(data)
             if (filter === 0) {
                 setHotels(data)
                 let total = Math.floor(data.length / 4)

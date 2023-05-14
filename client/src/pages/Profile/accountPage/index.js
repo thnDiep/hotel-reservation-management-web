@@ -78,15 +78,11 @@ function Account() {
             },
         })
             .then((res) => {
-                // console.log('push anh: ', res.data.url)
                 setData({ ...data, HinhAnh: res.data.url })
-                // console('Hình ảnh: ', res.data.url)
             })
             .catch((error) => {
                 console.log(error)
             })
-
-        console.log(data.HinhAnh)
     }
 
     function handleSubmit() {
