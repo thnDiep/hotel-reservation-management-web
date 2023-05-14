@@ -60,6 +60,7 @@ const CheckOrder = () => {
     const phoneNumChangeHandler = (event) => {
         setEnteredPhoneNum({ value: event.target.value, isValid: true, error: '' })
     }
+
     const handleCheckOrder = async (e) => {
         e.preventDefault()
         try {
