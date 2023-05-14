@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 13, 2023 lúc 10:13 PM
+-- Thời gian đã tạo: Th5 14, 2023 lúc 03:07 PM
 -- Phiên bản máy phục vụ: 10.4.25-MariaDB
 -- Phiên bản PHP: 8.1.10
 
@@ -35,7 +35,7 @@ CREATE TABLE `danhgia` (
   `NoiDung` text NOT NULL,
   `Diem` int(11) NOT NULL,
   `ThoiGian` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhgia`
@@ -58,7 +58,7 @@ INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `
 CREATE TABLE `danhsachyeuthich` (
   `IDKhachHang` int(11) NOT NULL,
   `IDKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhsachyeuthich`
@@ -66,7 +66,9 @@ CREATE TABLE `danhsachyeuthich` (
 
 INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
 (4, 8),
-(4, 12);
+(4, 12),
+(4, 14),
+(4, 16);
 
 -- --------------------------------------------------------
 
@@ -78,7 +80,7 @@ CREATE TABLE `diadiem` (
   `ID` int(11) NOT NULL,
   `TenDiaDiem` varchar(255) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `diadiem`
@@ -171,17 +173,19 @@ CREATE TABLE `dondatphong` (
   `SoLuongPhong` int(100) NOT NULL,
   `TongTien` decimal(10,0) NOT NULL,
   `TrangThai` int(11) NOT NULL,
+  `IDKhuyenMai` int(11) DEFAULT NULL,
+  `IDFlashSale` int(11) DEFAULT NULL,
   `IDKhachHang` int(11) NOT NULL,
   `IDPhong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `dondatphong`
 --
 
-INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhachHang`, `IDPhong`) VALUES
-('5743539', '2023-05-02', '2023-05-10', '2023-05-11', 1, '1399000', 1, 4, 21),
-('F23214', '2023-05-12', '2023-05-14', '2023-05-17', 2, '20000000', 1, 4, 19);
+INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhuyenMai`, `IDFlashSale`, `IDKhachHang`, `IDPhong`) VALUES
+('5743539', '2023-05-02', '2023-05-10', '2023-05-11', 1, '2433750', 1, 27, 10, 4, 21),
+('F23214', '2023-05-12', '2023-05-14', '2023-05-17', 2, '3434400', 0, 31, NULL, 4, 19);
 
 -- --------------------------------------------------------
 
@@ -192,7 +196,7 @@ INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTr
 CREATE TABLE `giuong` (
   `ID` int(11) NOT NULL,
   `LoaiGiuong` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `giuong`
@@ -212,7 +216,7 @@ CREATE TABLE `giuong_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDGiuong` int(11) NOT NULL,
   `SoLuongGiuong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `giuong_phong`
@@ -222,6 +226,7 @@ INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
 (1, 2, 2),
 (15, 1, 2),
 (17, 1, 2),
+(16, 1, 2),
 (18, 1, 1),
 (19, 2, 1),
 (20, 2, 1),
@@ -244,7 +249,7 @@ INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
 CREATE TABLE `hinhanh_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `HinhAnh` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `hinhanh_khachsan`
@@ -397,78 +402,7 @@ INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
 CREATE TABLE `hinhanh_phong` (
   `IDPhong` int(11) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `hinhanh_phong`
---
-
-INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
-(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971438/khachsan/23812_88QE6SO5KT_Beach_House_Room_1_feeyvn.jpg'),
-(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971440/khachsan/23812_OUACWIQD8O_Beach_House_Room_3_hya5df.jpg'),
-(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971441/khachsan/130487906_j5grgh.jpg'),
-(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971441/khachsan/23812_MLZ4Y0BL1E_Beach_House_Room_dw7g5q.jpg'),
-(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973374/khachsan/photos_R6ZMOILXW3__tmp_playtemp5872956675624463109_multipartBody227198169022671206asTemporaryFile_y3ek0d.jpg'),
-(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973375/khachsan/img_4460_zjkexl.jpg'),
-(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973376/khachsan/img_4465_gsm0uf.jpg'),
-(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973377/khachsan/1235_SAFUR73I7V_55106039_q1kwtl.jpg'),
-(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974090/khachsan/a9e82cab_z_gxqrnb.jpg'),
-(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974091/khachsan/095ae6fb_z_qb8x05.jpg'),
-(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974091/khachsan/52776a1a_z_btafce.jpg'),
-(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974092/khachsan/7079a171_z_jzw7ff.jpg'),
-(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974623/khachsan/classic_jdiu3a.jpg'),
-(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974624/khachsan/photos_JNDTP9CH86__tmp_playtemp6021156645283393444_multipartBody4564599876000732013asTemporaryFile_clquex.jpg'),
-(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974625/khachsan/40714_GUT7T7S91Q_11_kwjrr5.jpg'),
-(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974626/khachsan/photos_MSS6S0TJVZ__tmp_playtemp6021156645283393444_multipartBody4657972048723225173asTemporaryFile_otqbs2.jpg'),
-(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974924/khachsan/9186_FK6PQ86P30_12_pyi52c.jpg'),
-(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974924/khachsan/9186_JMBXKBLDJV_13_fdn35y.jpg'),
-(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974925/khachsan/hibiscus-suite-4_cmhft5.jpg'),
-(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974926/khachsan/hibiscus-suite-3_zvitek.jpg'),
-(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975133/khachsan/deluxe-king-room4_dvypvz.jpg'),
-(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975134/khachsan/superior-king-room-with-seaview_02-copy_stsxq8.jpg'),
-(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975135/khachsan/superior-king-room-with-seaview_03-copy_svlspm.jpg'),
-(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975136/khachsan/superior-king-room-with-seaview_04-copy_scncob.jpg'),
-(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975377/khachsan/z2571515924120_6b841d7467c951fbcbf885ec7bb19847_iz2wwo.jpg'),
-(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975378/khachsan/june-01-8_gmr8dm.jpg'),
-(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975378/khachsan/master-bedroom-2_vcv7r8.jpg'),
-(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975379/khachsan/master-bedroom-5_onavxr.jpg'),
-(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975702/khachsan/villa-studio-1602_irmpnu.jpg'),
-(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975703/khachsan/villa-studio-2_xhqktz.jpg'),
-(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975703/khachsan/villa-studio-3_ogojsn.jpg'),
-(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975704/khachsan/villa-studio-5_zmdscw.jpg'),
-(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976333/khachsan/photos_NAXS1UVXJO__tmp_playtemp6906352608116898789_multipartBody1746072418037971232asTemporaryFile_sa1n1l.jpg'),
-(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976334/khachsan/four-bedroom_12_wfdh3z.jpg'),
-(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976335/khachsan/four-bedroom_9_upy0xl.jpg'),
-(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976335/khachsan/junior_14_zqjcii.jpg'),
-(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976597/khachsan/42050_E7ZMVE82JO_146735057_ovmeds.jpg'),
-(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976598/khachsan/42050_HZ4M7I3B4Z_199216564_dr4mzx.jpg'),
-(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976599/khachsan/42050_BK02G7YHTV_199216621_cacatf.jpg'),
-(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976599/khachsan/42050_QLUK6A0KYC_199216598_orx55j.jpg'),
-(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977024/khachsan/050250-f59743fc-efe4-4856-a4cd-697388969b87_ygg4uu.jpg'),
-(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977026/khachsan/050250-5cf22145-5246-494e-acfd-4381bba1e68d_p6ahhh.jpg'),
-(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977027/khachsan/050250-06253066-bdaa-4bef-9a02-f86bf3b5573b_jwgzbv.jpg'),
-(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978011/khachsan/041003-75de4a45-c607-4872-ac0e-d1d104956a4b_ohk5kz.jpg'),
-(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978012/khachsan/041003-25a111c8-28fd-4fe7-8451-d9b60283e5e8_yhvtgk.jpg'),
-(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978012/khachsan/041003-5e3417dc-4d9d-4209-94fd-b10c18f50f11_nk9kul.jpg'),
-(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978013/khachsan/041003-d90f55eb-6cf5-40f9-bfdd-105e2a2e24a0_hh7ixg.jpg'),
-(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978351/khachsan/042430-ff578d5e-9afe-438f-bbfd-5195f008cae7_yyxgym.jpg'),
-(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978352/khachsan/4b0af647-38a8-4f87-b60f-158bc16c024d_201603103_vpl_vppqr_3br_lake_view_villa_2_enhanced_ovfqet.jpg'),
-(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978353/khachsan/042749-d14cdec4-cda9-4ba0-8032-8abcdca6bbea_d0qk3l.jpg'),
-(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978520/khachsan/135846-263ef592-fa2c-4b0d-a09a-5dc02dfea8b8_ertzkf.jpg'),
-(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978520/khachsan/135846-a90e86f2-2ae0-4835-a7c4-65f718a5f5fa_bxozog.jpg'),
-(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978521/khachsan/135846-abfe5109-90b0-416c-8e1e-76ef610af1e5_imuo2o.jpg'),
-(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978522/khachsan/135911-37fa97ae-a45b-4248-8945-41f5ee15ff59_c7jyrs.jpg'),
-(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985492/khachsan/photos_DPSXH24VQ9__tmp_playtemp1224286142787402425_multipartBody1022593404496592554asTemporaryFile_pyhrvn.jpg'),
-(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985492/khachsan/photos_VGE3NV8XK3__tmp_playtemp1224286142787402425_multipartBody552396680483974623asTemporaryFile_tl4bkb.jpg'),
-(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985493/khachsan/photos_CEG12P0AR9__tmp_playtemp1224286142787402425_multipartBody5603883490680910495asTemporaryFile_leolez.jpg'),
-(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985494/khachsan/photos_N1CO20G8DA__tmp_playtemp1224286142787402425_multipartBody7482133511159264608asTemporaryFile_zokvjo.jpg'),
-(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988839/khachsan/photos_VGT0BWGVT2__tmp_playtemp1224286142787402425_multipartBody3364216258320482160asTemporaryFile_nbaprp.jpg'),
-(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988840/khachsan/photos_CJMDQSEOLU__tmp_playtemp1224286142787402425_multipartBody3713598672589806590asTemporaryFile_y30tp4.jpg'),
-(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988841/khachsan/photos_3GJSK19F6V__tmp_playtemp1224286142787402425_multipartBody8560084940778672038asTemporaryFile_1_ujdia5.jpg'),
-(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988842/khachsan/photos_4NXSPTW4IJ__tmp_playtemp1224286142787402425_multipartBody2022326375395409877asTemporaryFile_npqoe1.jpg'),
-(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989148/khachsan/photos_Z4P521DXCA__tmp_playtemp1224286142787402425_multipartBody2075278788761802505asTemporaryFile_nbt6qc.jpg'),
-(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989149/khachsan/photos_ZZGCQGVMLS__tmp_playtemp1224286142787402425_multipartBody7032137161637455740asTemporaryFile_u9rtm9.jpg'),
-(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989150/khachsan/photos_827EIEW7PU__tmp_playtemp1224286142787402425_multipartBody2634311597936846161asTemporaryFile_lkc3s4.jpg');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `hinhanh_phong`
@@ -561,7 +495,7 @@ CREATE TABLE `khachsan` (
   `GioNhanPhong` int(20) NOT NULL,
   `GioTraPhong` int(20) NOT NULL,
   `IDChuKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khachsan`
@@ -594,7 +528,7 @@ CREATE TABLE `khunggio` (
   `ID` int(11) NOT NULL,
   `GioBatDau` time NOT NULL,
   `GioKetThuc` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khunggio`
@@ -624,7 +558,7 @@ CREATE TABLE `khuyenmai` (
   `DieuKien` text DEFAULT NULL,
   `SoLuongKM` int(11) DEFAULT NULL,
   `IDKhungGio` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khuyenmai`
@@ -673,7 +607,7 @@ INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`
 CREATE TABLE `loaitiennghikhachsan` (
   `ID` int(11) NOT NULL,
   `TenLoai` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `loaitiennghikhachsan`
@@ -703,7 +637,7 @@ INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
 CREATE TABLE `loaitiennghiphong` (
   `TenLoai` varchar(50) NOT NULL,
   `ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `loaitiennghiphong`
@@ -737,7 +671,7 @@ CREATE TABLE `nguoidung` (
   `MaSoThue` varchar(10) DEFAULT NULL,
   `QuyMo` varchar(100) DEFAULT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `nguoidung`
@@ -746,10 +680,10 @@ CREATE TABLE `nguoidung` (
 INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaChi`, `MatKhau`, `PhanQuyen`, `TenCongTy`, `MaSoThue`, `QuyMo`, `TrangThai`) VALUES
 (1, 'Admin', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'admin@gmail.com', NULL, NULL, 'admin', 2, NULL, NULL, NULL, 1),
 (2, 'Vinpearl', 'https://inkythuatso.com/uploads/images/2021/09/vinpearl-logo-inkythuatso-1-13-10-21-19.jpg', 'vinpearl@gmail.com', '0928754123', '78 - 80 Đường Trần Phú, Phường Lộc Thọ, Tp. Nha Trang', '$2a$10$2sqBZxyEuduEJgNJvdIFA.ZRZV/rShXHXVcjm5Fl4jB4RTR4FlZ9C', 1, 'Vinpearl', '012578541', '20 - 49 nhân viên', 1),
-(3, 'Nguyễn Đăng Mạnh Tú', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'manhtu2272002@gmail.com', '', '', '$2a$10$UAdFFtuw/24puqwJ.BYUtufh3k9yhjb7tTCjZcJLw4LUIBnoP79xW', 0, '', '', '', 0),
-(4, 'Tran Thao Quyen', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'quyenquyen@gmail.com', '098231189', 'Phường 2, quận 3, TPHCM', '$2a$10$5kf9MtdD1CyWY53vT5Um6O9ZPHsMBC2JMapEi5V/lpvW.lwmwoNuW', 0, NULL, NULL, NULL, 1),
-(5, 'Trần Huỳnh Ngọc Diệp', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'HuynhNgoc123@gmail.com', '098992321', 'Số nhà 412, đường Nguyễn Văn Cừ, quận 5, TPHCM', '$2a$10$U9eqIonkF8OOPrmKZIVpE.lMt45vqfEeLQnGKLk/OYDuU/LoXuvFC', 1, NULL, NULL, NULL, 0),
-(8, 'Bình Phước', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'lapdoan.010102@gmail.com', '0985374624', '70 Hoàng Hoa Thám Tp Vũng Tàu', '$2a$10$2QW8cAx.eDr4ELEyzMvHCeJq.Py/qYFFpMGYLNm2eOZlnYVrWBEiC', 1, 'Hiệp phước', '123', '1 - 19 nhân viên', 1),
+(3, 'Nguyễn Đăng Mạnh Tú', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'manhtu2272002@gmail.com', '09923312', '', '$2a$10$UAdFFtuw/24puqwJ.BYUtufh3k9yhjb7tTCjZcJLw4LUIBnoP79xW', 0, '', '', '', 0),
+(4, 'Tran Thao Quyen', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684009946/khachsan/Wide_Redwoods_1024x768_blrduc.jpg', 'quyenquyen@gmail.com', '098231189', 'Phường 1, quận 5, TPHCM', '$2a$10$5kf9MtdD1CyWY53vT5Um6O9ZPHsMBC2JMapEi5V/lpvW.lwmwoNuW', 0, NULL, NULL, NULL, 1),
+(5, 'Trần Huỳnh Ngọc Diệp', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'HuynhNgoc123@gmail.com', '098992321', 'Số nhà 412, đường Nguyễn Văn Cừ, quận 5, TPHCM', '$2a$10$U9eqIonkF8OOPrmKZIVpE.lMt45vqfEeLQnGKLk/OYDuU/LoXuvFC', 1, NULL, NULL, NULL, 1),
+(8, 'Bình Phước', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'lapdoan.010102@gmail.com', '0985374624', '70 Hoàng Hoa Thám Tp Vũng Tàu', '$2a$10$2QW8cAx.eDr4ELEyzMvHCeJq.Py/qYFFpMGYLNm2eOZlnYVrWBEiC', 1, 'Hiệp phước', '123', '1 - 19 nhân viên', 0),
 (9, 'Nguyễn Đăng Mạnh', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'manhtu2002227@gmail.com', '0985374623', '77 Chuyên Dùng 9 Phường Phú Mỹ Quận 7 TPHCM', '$2a$10$1UVGUz4pLYH/tDZP2Cst7O5YF/yFTOU8KLiJYyF7wUeKp9BaGKph2', 1, 'Ozawa suruki', '7000', '50 - 99 nhân viên', 1),
 (11, 'Le Nguyen Lan Vy', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'vyle4119@gmail.com', '0346678902', '135B Trần Hưng Đạo, quận 1, TP Hồ Chí Minh', '$2a$10$MIEodqdEXp.uKwKQU.Gfoeo8ctFJAEEdMnEDY0AyAx3B6EjkQbKle', 1, NULL, NULL, NULL, 1);
 
@@ -764,14 +698,7 @@ CREATE TABLE `nguoinhanphong` (
   `HoTen` varchar(255) NOT NULL,
   `Sdt` varchar(10) NOT NULL,
   `IDKhachHang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `nguoinhanphong`
---
-
-INSERT INTO `nguoinhanphong` (`ID`, `HoTen`, `Sdt`, `IDKhachHang`) VALUES
-(1, 'Nguyễn Thanh Mai', '099232383', 4);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -788,7 +715,7 @@ CREATE TABLE `phong` (
   `DienTich` int(11) NOT NULL,
   `Gia` int(11) NOT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `phong`
@@ -827,16 +754,18 @@ CREATE TABLE `taikhoanthanhtoan` (
   `SoTaiKhoan` varchar(50) NOT NULL,
   `NgayHetHan` date NOT NULL,
   `anhQR` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `taikhoanthanhtoan`
 --
 
 INSERT INTO `taikhoanthanhtoan` (`IDKhachHang`, `ID`, `TenNganHang`, `HoTenTK`, `SoTaiKhoan`, `NgayHetHan`, `anhQR`) VALUES
-(2, 1, 'Ngân hàng VCB - Thăng Long', 'Trần Minh Việt', ' M555P553392', '2028-04-10', NULL),
-(8, 2, 'Ngân hàng Agribank - Ngân hàng nông thôn Việt Nam', 'Nguyễn Thanh Mai', ' M990923942', '2028-04-01', NULL),
-(9, 3, 'Ngân hàng ViettinBank - chi nhánh Tân Phú', 'Trần Trương Trọng Nghĩa', ' P50553990', '0205-09-01', NULL);
+(2, 1, 'Ngân hàng VCB - Thăng Long', 'Trương Toàn Nghĩa', ' M555P553392', '0205-09-01', NULL),
+(5, 2, 'Ngân hàng Agribank - Ngân hàng nông thôn nhà nước Việt Nam', 'Trần Huỳnh Ngọc Diệp', ' P50553990', '0205-09-01', NULL),
+(8, 3, 'Ngân hàng Viettinbank - chi nhánh Tân Phú', 'Hồ Hoàng Bình Phước', 'P34942324445', '2026-08-26', NULL),
+(9, 4, 'Ngân hàng Sacombank - chi nhánh Bình Thạnh', 'Nguyễn Đăng Mạnh', 'R32300834', '2023-05-01', NULL),
+(11, 5, 'Ngân hàng Agribank', 'Lê Nguyễn Lan', 'R23130023', '2030-05-11', NULL);
 
 -- --------------------------------------------------------
 
@@ -848,7 +777,7 @@ CREATE TABLE `thongtinhuuich` (
   `ID` int(11) NOT NULL,
   `ThongTin` varchar(255) NOT NULL,
   `HinhAnh` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `thongtinhuuich`
@@ -874,7 +803,7 @@ CREATE TABLE `thongtinhuuich_ks` (
   `IDKhachSan` int(11) NOT NULL,
   `IDThongTin` int(11) NOT NULL,
   `NoiDung` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `thongtinhuuich_ks`
@@ -1004,7 +933,7 @@ CREATE TABLE `tiennghichung_ks` (
   `Icon` varchar(200) NOT NULL,
   `TenTienNghi` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghichung_ks`
@@ -1068,7 +997,7 @@ CREATE TABLE `tiennghichung_phong` (
   `TenTienNghi` varchar(50) NOT NULL,
   `Icon` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghichung_phong`
@@ -1120,7 +1049,7 @@ INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
 CREATE TABLE `tiennghi_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghi_khachsan`
@@ -1463,7 +1392,7 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 CREATE TABLE `tiennghi_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghi_phong`
@@ -1899,7 +1828,7 @@ INSERT INTO `tiennghi_phong` (`IDPhong`, `IDTienNghi`) VALUES
 CREATE TABLE `uudai` (
   `ID` int(11) NOT NULL,
   `NoiDung` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `uudai`
@@ -1935,166 +1864,7 @@ INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
 CREATE TABLE `uudai_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDUuDai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `uudai_phong`
---
-
-INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
-(15, 1),
-(15, 4),
-(15, 5),
-(15, 8),
-(15, 9),
-(15, 10),
-(15, 11),
-(15, 13),
-(15, 14),
-(15, 16),
-(15, 17),
-(15, 18),
-(16, 1),
-(16, 3),
-(16, 4),
-(16, 5),
-(16, 11),
-(16, 16),
-(17, 1),
-(17, 3),
-(17, 5),
-(17, 9),
-(17, 10),
-(17, 11),
-(17, 16),
-(18, 1),
-(18, 3),
-(18, 4),
-(18, 5),
-(18, 9),
-(18, 12),
-(18, 16),
-(19, 1),
-(19, 4),
-(19, 5),
-(19, 9),
-(19, 10),
-(19, 11),
-(19, 12),
-(19, 16),
-(20, 1),
-(20, 2),
-(20, 3),
-(20, 4),
-(20, 5),
-(20, 7),
-(20, 9),
-(20, 10),
-(20, 11),
-(21, 1),
-(21, 2),
-(21, 3),
-(21, 4),
-(21, 5),
-(21, 9),
-(21, 12),
-(21, 16),
-(21, 20),
-(22, 1),
-(22, 3),
-(22, 4),
-(22, 5),
-(22, 11),
-(22, 12),
-(22, 13),
-(22, 20),
-(23, 1),
-(23, 3),
-(23, 4),
-(23, 5),
-(23, 9),
-(23, 10),
-(23, 11),
-(23, 12),
-(23, 16),
-(23, 20),
-(24, 1),
-(24, 2),
-(24, 3),
-(24, 9),
-(24, 11),
-(24, 14),
-(24, 16),
-(24, 20),
-(25, 1),
-(25, 3),
-(25, 4),
-(25, 5),
-(25, 9),
-(25, 11),
-(25, 16),
-(26, 1),
-(26, 2),
-(26, 3),
-(26, 4),
-(26, 5),
-(26, 7),
-(26, 8),
-(26, 9),
-(26, 11),
-(26, 12),
-(26, 16),
-(27, 1),
-(27, 3),
-(27, 4),
-(27, 5),
-(27, 11),
-(27, 12),
-(27, 14),
-(27, 16),
-(28, 1),
-(28, 2),
-(28, 3),
-(28, 4),
-(28, 5),
-(28, 7),
-(28, 9),
-(28, 11),
-(28, 14),
-(28, 16),
-(28, 19),
-(29, 1),
-(29, 2),
-(29, 3),
-(29, 4),
-(29, 5),
-(29, 8),
-(29, 9),
-(29, 12),
-(29, 14),
-(29, 16),
-(29, 17),
-(30, 1),
-(30, 2),
-(30, 3),
-(30, 4),
-(30, 5),
-(30, 8),
-(30, 9),
-(30, 11),
-(30, 14),
-(30, 17),
-(30, 19),
-(31, 1),
-(31, 3),
-(31, 4),
-(31, 5),
-(31, 8),
-(31, 9),
-(31, 11),
-(31, 12),
-(31, 14),
-(31, 19);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `uudai_phong`
@@ -2491,7 +2261,7 @@ ALTER TABLE `nguoidung`
 -- AUTO_INCREMENT cho bảng `nguoinhanphong`
 --
 ALTER TABLE `nguoinhanphong`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `phong`
@@ -2503,7 +2273,7 @@ ALTER TABLE `phong`
 -- AUTO_INCREMENT cho bảng `taikhoanthanhtoan`
 --
 ALTER TABLE `taikhoanthanhtoan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `thongtinhuuich`
