@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 13, 2023 lúc 10:13 PM
+-- Thời gian đã tạo: Th5 14, 2023 lúc 02:41 PM
 -- Phiên bản máy phục vụ: 10.4.25-MariaDB
 -- Phiên bản PHP: 8.1.10
 
@@ -35,7 +35,7 @@ CREATE TABLE `danhgia` (
   `NoiDung` text NOT NULL,
   `Diem` int(11) NOT NULL,
   `ThoiGian` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhgia`
@@ -58,15 +58,15 @@ INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `
 CREATE TABLE `danhsachyeuthich` (
   `IDKhachHang` int(11) NOT NULL,
   `IDKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhsachyeuthich`
 --
 
 INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
-(4, 8),
-(4, 12);
+(4, 12),
+(4, 14);
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,7 @@ CREATE TABLE `diadiem` (
   `ID` int(11) NOT NULL,
   `TenDiaDiem` varchar(255) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `diadiem`
@@ -171,17 +171,19 @@ CREATE TABLE `dondatphong` (
   `SoLuongPhong` int(100) NOT NULL,
   `TongTien` decimal(10,0) NOT NULL,
   `TrangThai` int(11) NOT NULL,
+  `IDKhuyenMai` int(11) DEFAULT NULL,
+  `IDFlashSale` int(11) DEFAULT NULL,
   `IDKhachHang` int(11) NOT NULL,
   `IDPhong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `dondatphong`
 --
 
-INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhachHang`, `IDPhong`) VALUES
-('5743539', '2023-05-02', '2023-05-10', '2023-05-11', 1, '1399000', 1, 4, 21),
-('F23214', '2023-05-12', '2023-05-14', '2023-05-17', 2, '20000000', 1, 4, 19);
+INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhuyenMai`, `IDFlashSale`, `IDKhachHang`, `IDPhong`) VALUES
+('5743539', '2023-05-02', '2023-05-10', '2023-05-11', 1, '2433750', 1, 27, 10, 4, 21),
+('F23214', '2023-05-12', '2023-05-14', '2023-05-17', 2, '3434400', 0, 31, NULL, 4, 19);
 
 -- --------------------------------------------------------
 
@@ -192,7 +194,7 @@ INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTr
 CREATE TABLE `giuong` (
   `ID` int(11) NOT NULL,
   `LoaiGiuong` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `giuong`
@@ -212,7 +214,7 @@ CREATE TABLE `giuong_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDGiuong` int(11) NOT NULL,
   `SoLuongGiuong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `giuong_phong`
@@ -244,7 +246,7 @@ INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
 CREATE TABLE `hinhanh_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `HinhAnh` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `hinhanh_khachsan`
@@ -397,10 +399,10 @@ INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
 CREATE TABLE `hinhanh_phong` (
   `IDPhong` int(11) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `hinhanh_phong`
+-- Đang đổ dữ liệu cho bảng `hinhanh_phong`
 --
 
 INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
@@ -468,13 +470,7 @@ INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
 (30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988842/khachsan/photos_4NXSPTW4IJ__tmp_playtemp1224286142787402425_multipartBody2022326375395409877asTemporaryFile_npqoe1.jpg'),
 (31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989148/khachsan/photos_Z4P521DXCA__tmp_playtemp1224286142787402425_multipartBody2075278788761802505asTemporaryFile_nbt6qc.jpg'),
 (31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989149/khachsan/photos_ZZGCQGVMLS__tmp_playtemp1224286142787402425_multipartBody7032137161637455740asTemporaryFile_u9rtm9.jpg'),
-(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989150/khachsan/photos_827EIEW7PU__tmp_playtemp1224286142787402425_multipartBody2634311597936846161asTemporaryFile_lkc3s4.jpg');
-
---
--- Đang đổ dữ liệu cho bảng `hinhanh_phong`
---
-
-INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
+(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989150/khachsan/photos_827EIEW7PU__tmp_playtemp1224286142787402425_multipartBody2634311597936846161asTemporaryFile_lkc3s4.jpg'),
 (15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971438/khachsan/23812_88QE6SO5KT_Beach_House_Room_1_feeyvn.jpg'),
 (15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971440/khachsan/23812_OUACWIQD8O_Beach_House_Room_3_hya5df.jpg'),
 (15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971441/khachsan/130487906_j5grgh.jpg'),
@@ -561,7 +557,7 @@ CREATE TABLE `khachsan` (
   `GioNhanPhong` int(20) NOT NULL,
   `GioTraPhong` int(20) NOT NULL,
   `IDChuKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khachsan`
@@ -594,7 +590,7 @@ CREATE TABLE `khunggio` (
   `ID` int(11) NOT NULL,
   `GioBatDau` time NOT NULL,
   `GioKetThuc` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khunggio`
@@ -624,7 +620,7 @@ CREATE TABLE `khuyenmai` (
   `DieuKien` text DEFAULT NULL,
   `SoLuongKM` int(11) DEFAULT NULL,
   `IDKhungGio` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `khuyenmai`
@@ -673,7 +669,7 @@ INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`
 CREATE TABLE `loaitiennghikhachsan` (
   `ID` int(11) NOT NULL,
   `TenLoai` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `loaitiennghikhachsan`
@@ -703,7 +699,7 @@ INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
 CREATE TABLE `loaitiennghiphong` (
   `TenLoai` varchar(50) NOT NULL,
   `ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `loaitiennghiphong`
@@ -737,7 +733,7 @@ CREATE TABLE `nguoidung` (
   `MaSoThue` varchar(10) DEFAULT NULL,
   `QuyMo` varchar(100) DEFAULT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `nguoidung`
@@ -747,9 +743,9 @@ INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaC
 (1, 'Admin', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'admin@gmail.com', NULL, NULL, 'admin', 2, NULL, NULL, NULL, 1),
 (2, 'Vinpearl', 'https://inkythuatso.com/uploads/images/2021/09/vinpearl-logo-inkythuatso-1-13-10-21-19.jpg', 'vinpearl@gmail.com', '0928754123', '78 - 80 Đường Trần Phú, Phường Lộc Thọ, Tp. Nha Trang', '$2a$10$2sqBZxyEuduEJgNJvdIFA.ZRZV/rShXHXVcjm5Fl4jB4RTR4FlZ9C', 1, 'Vinpearl', '012578541', '20 - 49 nhân viên', 1),
 (3, 'Nguyễn Đăng Mạnh Tú', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'manhtu2272002@gmail.com', '', '', '$2a$10$UAdFFtuw/24puqwJ.BYUtufh3k9yhjb7tTCjZcJLw4LUIBnoP79xW', 0, '', '', '', 0),
-(4, 'Tran Thao Quyen', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'quyenquyen@gmail.com', '098231189', 'Phường 2, quận 3, TPHCM', '$2a$10$5kf9MtdD1CyWY53vT5Um6O9ZPHsMBC2JMapEi5V/lpvW.lwmwoNuW', 0, NULL, NULL, NULL, 1),
-(5, 'Trần Huỳnh Ngọc Diệp', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'HuynhNgoc123@gmail.com', '098992321', 'Số nhà 412, đường Nguyễn Văn Cừ, quận 5, TPHCM', '$2a$10$U9eqIonkF8OOPrmKZIVpE.lMt45vqfEeLQnGKLk/OYDuU/LoXuvFC', 1, NULL, NULL, NULL, 0),
-(8, 'Bình Phước', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'lapdoan.010102@gmail.com', '0985374624', '70 Hoàng Hoa Thám Tp Vũng Tàu', '$2a$10$2QW8cAx.eDr4ELEyzMvHCeJq.Py/qYFFpMGYLNm2eOZlnYVrWBEiC', 1, 'Hiệp phước', '123', '1 - 19 nhân viên', 1),
+(4, 'Tran Thao Quyen', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684009946/khachsan/Wide_Redwoods_1024x768_blrduc.jpg', 'quyenquyen@gmail.com', '098231189', 'Phường 1, quận 5, TPHCM', '$2a$10$5kf9MtdD1CyWY53vT5Um6O9ZPHsMBC2JMapEi5V/lpvW.lwmwoNuW', 0, NULL, NULL, NULL, 1),
+(5, 'Trần Huỳnh Ngọc Diệp', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'HuynhNgoc123@gmail.com', '098992321', 'Số nhà 412, đường Nguyễn Văn Cừ, quận 5, TPHCM', '$2a$10$U9eqIonkF8OOPrmKZIVpE.lMt45vqfEeLQnGKLk/OYDuU/LoXuvFC', 1, NULL, NULL, NULL, 1),
+(8, 'Bình Phước', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'lapdoan.010102@gmail.com', '0985374624', '70 Hoàng Hoa Thám Tp Vũng Tàu', '$2a$10$2QW8cAx.eDr4ELEyzMvHCeJq.Py/qYFFpMGYLNm2eOZlnYVrWBEiC', 1, 'Hiệp phước', '123', '1 - 19 nhân viên', 0),
 (9, 'Nguyễn Đăng Mạnh', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'manhtu2002227@gmail.com', '0985374623', '77 Chuyên Dùng 9 Phường Phú Mỹ Quận 7 TPHCM', '$2a$10$1UVGUz4pLYH/tDZP2Cst7O5YF/yFTOU8KLiJYyF7wUeKp9BaGKph2', 1, 'Ozawa suruki', '7000', '50 - 99 nhân viên', 1),
 (11, 'Le Nguyen Lan Vy', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'vyle4119@gmail.com', '0346678902', '135B Trần Hưng Đạo, quận 1, TP Hồ Chí Minh', '$2a$10$MIEodqdEXp.uKwKQU.Gfoeo8ctFJAEEdMnEDY0AyAx3B6EjkQbKle', 1, NULL, NULL, NULL, 1);
 
@@ -764,7 +760,7 @@ CREATE TABLE `nguoinhanphong` (
   `HoTen` varchar(255) NOT NULL,
   `Sdt` varchar(10) NOT NULL,
   `IDKhachHang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `nguoinhanphong`
@@ -788,7 +784,7 @@ CREATE TABLE `phong` (
   `DienTich` int(11) NOT NULL,
   `Gia` int(11) NOT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `phong`
@@ -827,7 +823,7 @@ CREATE TABLE `taikhoanthanhtoan` (
   `SoTaiKhoan` varchar(50) NOT NULL,
   `NgayHetHan` date NOT NULL,
   `anhQR` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `taikhoanthanhtoan`
@@ -848,7 +844,7 @@ CREATE TABLE `thongtinhuuich` (
   `ID` int(11) NOT NULL,
   `ThongTin` varchar(255) NOT NULL,
   `HinhAnh` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `thongtinhuuich`
@@ -874,7 +870,7 @@ CREATE TABLE `thongtinhuuich_ks` (
   `IDKhachSan` int(11) NOT NULL,
   `IDThongTin` int(11) NOT NULL,
   `NoiDung` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `thongtinhuuich_ks`
@@ -1004,7 +1000,7 @@ CREATE TABLE `tiennghichung_ks` (
   `Icon` varchar(200) NOT NULL,
   `TenTienNghi` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghichung_ks`
@@ -1068,7 +1064,7 @@ CREATE TABLE `tiennghichung_phong` (
   `TenTienNghi` varchar(50) NOT NULL,
   `Icon` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghichung_phong`
@@ -1120,7 +1116,7 @@ INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
 CREATE TABLE `tiennghi_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghi_khachsan`
@@ -1463,7 +1459,7 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 CREATE TABLE `tiennghi_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tiennghi_phong`
@@ -1899,7 +1895,7 @@ INSERT INTO `tiennghi_phong` (`IDPhong`, `IDTienNghi`) VALUES
 CREATE TABLE `uudai` (
   `ID` int(11) NOT NULL,
   `NoiDung` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `uudai`
@@ -1935,10 +1931,10 @@ INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
 CREATE TABLE `uudai_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDUuDai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `uudai_phong`
+-- Đang đổ dữ liệu cho bảng `uudai_phong`
 --
 
 INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
@@ -2094,13 +2090,7 @@ INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
 (31, 11),
 (31, 12),
 (31, 14),
-(31, 19);
-
---
--- Đang đổ dữ liệu cho bảng `uudai_phong`
---
-
-INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
+(31, 19),
 (15, 1),
 (15, 4),
 (15, 5),
@@ -2307,245 +2297,12 @@ ALTER TABLE `hinhanh_khachsan`
   ADD PRIMARY KEY (`IDKhachSan`,`HinhAnh`);
 
 --
--- Chỉ mục cho bảng `hinhanh_phong`
---
-ALTER TABLE `hinhanh_phong`
-  ADD PRIMARY KEY (`IDPhong`,`HinhAnh`);
-
---
 -- Chỉ mục cho bảng `khachsan`
 --
 ALTER TABLE `khachsan`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `KhachSan_fk0` (`IDDiaDiem`),
   ADD KEY `IDChuKhachSan` (`IDChuKhachSan`);
-ALTER TABLE `khachsan` ADD FULLTEXT KEY `Ten` (`Ten`);
-ALTER TABLE `khachsan` ADD FULLTEXT KEY `DiaChi` (`DiaChi`);
-
---
--- Chỉ mục cho bảng `khunggio`
---
-ALTER TABLE `khunggio`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Chỉ mục cho bảng `khuyenmai`
---
-ALTER TABLE `khuyenmai`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `KhuyenMai_fk0` (`IDKhachSan`),
-  ADD KEY `KhuyenMai_KG_fk1` (`IDKhungGio`);
-
---
--- Chỉ mục cho bảng `loaitiennghikhachsan`
---
-ALTER TABLE `loaitiennghikhachsan`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Chỉ mục cho bảng `loaitiennghiphong`
---
-ALTER TABLE `loaitiennghiphong`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Chỉ mục cho bảng `nguoidung`
---
-ALTER TABLE `nguoidung`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Chỉ mục cho bảng `nguoinhanphong`
---
-ALTER TABLE `nguoinhanphong`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `NguoiNhanPhong_fk0` (`IDKhachHang`);
-
---
--- Chỉ mục cho bảng `phong`
---
-ALTER TABLE `phong`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `Phong_fk0` (`IDKhachSan`);
-
---
--- Chỉ mục cho bảng `taikhoanthanhtoan`
---
-ALTER TABLE `taikhoanthanhtoan`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `TaiKhoanThanhToan_fk0` (`IDKhachHang`);
-
---
--- Chỉ mục cho bảng `thongtinhuuich`
---
-ALTER TABLE `thongtinhuuich`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Chỉ mục cho bảng `thongtinhuuich_ks`
---
-ALTER TABLE `thongtinhuuich_ks`
-  ADD PRIMARY KEY (`IDKhachSan`,`IDThongTin`),
-  ADD KEY `ThongTinHuuIch_KS_fk1` (`IDThongTin`);
-
---
--- Chỉ mục cho bảng `tiennghichung_ks`
---
-ALTER TABLE `tiennghichung_ks`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `TienNghiChung_KS_fk0` (`IDLoai`);
-
---
--- Chỉ mục cho bảng `tiennghichung_phong`
---
-ALTER TABLE `tiennghichung_phong`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `TienNghiChung_Phong_fk0` (`IDLoai`);
-
---
--- Chỉ mục cho bảng `tiennghi_khachsan`
---
-ALTER TABLE `tiennghi_khachsan`
-  ADD PRIMARY KEY (`IDKhachSan`,`IDTienNghi`),
-  ADD KEY `TienNghi_KhachSan_fk1` (`IDTienNghi`);
-
---
--- Chỉ mục cho bảng `tiennghi_phong`
---
-ALTER TABLE `tiennghi_phong`
-  ADD PRIMARY KEY (`IDPhong`,`IDTienNghi`),
-  ADD KEY `TienNghi_Phong_fk1` (`IDTienNghi`);
-
---
--- Chỉ mục cho bảng `uudai`
---
-ALTER TABLE `uudai`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Chỉ mục cho bảng `uudai_phong`
---
-ALTER TABLE `uudai_phong`
-  ADD PRIMARY KEY (`IDPhong`,`IDUuDai`),
-  ADD KEY `UuDai_Phong_fk1` (`IDUuDai`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `danhgia`
---
-ALTER TABLE `danhgia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT cho bảng `diadiem`
---
-ALTER TABLE `diadiem`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
-
---
--- AUTO_INCREMENT cho bảng `hinhanh_khachsan`
---
-ALTER TABLE `hinhanh_khachsan`
-  MODIFY `IDKhachSan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT cho bảng `khachsan`
---
-ALTER TABLE `khachsan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT cho bảng `khunggio`
---
-ALTER TABLE `khunggio`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT cho bảng `khuyenmai`
---
-ALTER TABLE `khuyenmai`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT cho bảng `loaitiennghikhachsan`
---
-ALTER TABLE `loaitiennghikhachsan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT cho bảng `loaitiennghiphong`
---
-ALTER TABLE `loaitiennghiphong`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT cho bảng `nguoidung`
---
-ALTER TABLE `nguoidung`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT cho bảng `nguoinhanphong`
---
-ALTER TABLE `nguoinhanphong`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT cho bảng `phong`
---
-ALTER TABLE `phong`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT cho bảng `taikhoanthanhtoan`
---
-ALTER TABLE `taikhoanthanhtoan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT cho bảng `thongtinhuuich`
---
-ALTER TABLE `thongtinhuuich`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT cho bảng `tiennghichung_ks`
---
-ALTER TABLE `tiennghichung_ks`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
-
---
--- AUTO_INCREMENT cho bảng `tiennghichung_phong`
---
-ALTER TABLE `tiennghichung_phong`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
-
---
--- AUTO_INCREMENT cho bảng `uudai`
---
-ALTER TABLE `uudai`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- Các ràng buộc cho các bảng đã đổ
---
-
---
--- Các ràng buộc cho bảng `danhgia`
---
-ALTER TABLE `danhgia`
-  ADD CONSTRAINT `DanhGia_fk0` FOREIGN KEY (`IDKhachSan`) REFERENCES `khachsan` (`ID`),
-  ADD CONSTRAINT `DanhGia_fk1` FOREIGN KEY (`IDKhachHang`) REFERENCES `nguoidung` (`ID`);
-
---
--- Các ràng buộc cho bảng `khachsan`
---
-ALTER TABLE `khachsan`
-  ADD CONSTRAINT `khachsan_ibfk_1` FOREIGN KEY (`IDChuKhachSan`) REFERENCES `nguoidung` (`ID`),
-  ADD CONSTRAINT `khachsan_ibfk_2` FOREIGN KEY (`IDDiaDiem`) REFERENCES `diadiem` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

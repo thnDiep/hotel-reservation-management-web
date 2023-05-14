@@ -29,7 +29,7 @@ export const publicRoutes = [
     { path: '/detail', component: Detail },
     { path: '/listByPlace', component: ListByPlace },
     { path: '/checkout/:id', component: Checkout, layout: HomeLayout },
-    { path: '/checkout/success', component: SuccessCheckOut, layout: HomeLayout },
+    { path: '/checkout/success/:id', component: SuccessCheckOut, layout: HomeLayout },
 
     // Hotel
     { path: '/hotels/detail/:id', component: Detail },
@@ -48,7 +48,7 @@ export const publicRoutes = [
     { path: '/login', component: Login, layout: null },
     { path: '/signUp', component: SignUp, layout: null },
     { path: '/checkOrder', component: CheckOrder },
-    { path: '/orderResult', component: OrderResult, layout: HomeLayout },
+    { path: '/orderResult/:id', component: OrderResult, layout: HomeLayout },
 
     //Hotelier - Hotel
     { path: '/cks/profile', component: ProfileHotelier, layout: HotelierLayout },

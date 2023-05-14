@@ -70,11 +70,11 @@ function OrderDetail() {
                                         </svg>
                                     </div>
                                     <span className={styles.title}>Mã đặt phòng</span>
-                                    {/* 0: da duyet         1: cho duyet        2: da xoa */}
-                                    {(item.TrangThai === 0 || item.TrangThai === 2) && (
+                                    {/* 0: chờ duyệt        1: chờ thanh toán       2: đã hoàn tất */}
+                                    {(item.TrangThai === 1 || item.TrangThai === 2) && (
                                         <span className={clsx(styles.code, styles.primary)}>{item.IDPhong}</span>
                                     )}
-                                    {item.TrangThai === 1 && (
+                                    {item.TrangThai === 0 && (
                                         <span className={clsx(styles.code, styles.primary)}>Chưa có mã</span>
                                     )}
                                 </div>
@@ -128,7 +128,10 @@ function OrderDetail() {
                                         <span className={styles.subTitle}>Ngân hàng</span>
                                         <div className="d-flex-js">
                                             <span className={styles.title}>{item.TenNganHang}</span>
-                                            <img src="https://storage.googleapis.com/tripi-assets/images/banks_list/techcombank_logo.png" />
+                                            <img
+                                                src="https://storage.googleapis.com/tripi-assets/images/banks_list/techcombank_logo.png"
+                                                alt="Logo ngân hàng"
+                                            />
                                         </div>
                                     </div>
 
@@ -223,7 +226,7 @@ function OrderDetail() {
 
                             <div className={styles.orderInfo}>
                                 <div className={styles.hotelImage}>
-                                    <img src={item.HinhAnhKhachSan} />
+                                    <img src={item.HinhAnhKhachSan} alt="Hình ảnh khách sạn" />
                                 </div>
                                 <div className={styles.info}>
                                     <div className={styles.info__hotel}>
@@ -456,6 +459,17 @@ function OrderDetail() {
                                                     </div>
                                                 )}
 
+                                                {item.GiamGiaFlashSale < 0 && (
+                                                    <div className={styles.price}>
+                                                        <div>
+                                                            <span className={styles.green}>{item.TieuDeFlashSale}</span>
+                                                        </div>
+                                                        <span className={styles.green}>
+                                                            {item.GiamGiaFlashSale.toLocaleString()} <sup>₫</sup>
+                                                        </span>
+                                                    </div>
+                                                )}
+
                                                 <div className={clsx(styles.price, styles.total)}>
                                                     <span className={styles.subTitle2}>Tổng tiền</span>
                                                     <span className={styles.subTitle2}>
@@ -487,16 +501,6 @@ function OrderDetail() {
                                                         )}
                                                     </div>
                                                 </div>
-                                                {/* {item.TrangThai === 1 && (
-                                                <div className={clsx(styles.content1, 'flex-1')}>
-                                                    <div className={styles.checkout}>
-                                                        <span>Trạng thái</span>
-                                                        <span className={clsx(styles.status, styles.success)}>
-                                                            Chờ xác nhận
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            )} */}
                                             </div>
                                         )}
                                     </div>

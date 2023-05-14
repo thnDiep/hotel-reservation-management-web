@@ -1,18 +1,21 @@
 import styles from './successCheckOut.module.scss'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faMarsDouble, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { ButtonPrimary } from '~/components'
 import clsx from 'clsx'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import Axios from 'axios'
 import Star from '~/components/Star/Star'
 import moment from 'moment'
 
+// url: http://localhost:3000/checkout/success/:id
+
 function SuccessCheckOut() {
+    const { id } = useParams()
     const [data, setData] = useState()
     useEffect(() => {
-        Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: 5743539 } })
+        Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: id } })
             .then((response) => {
                 setData(response.data)
             })
@@ -97,12 +100,6 @@ function SuccessCheckOut() {
                                     <div className={styles.info__hotel__intro}>
                                         <h3 className={styles.title}>{data[0].TenKhachSan}</h3>
                                         <Star number={data[0].SoSao} />
-                                        {/* <div className={styles.rating}>
-                                            <FontAwesomeIcon className={styles.icon} icon={faStar} />
-                                            <FontAwesomeIcon className={styles.icon} icon={faStar} />
-                                            <FontAwesomeIcon className={styles.icon} icon={faStar} />
-                                            <FontAwesomeIcon className={styles.icon} icon={faStar} />
-                                        </div> */}
 
                                         <div className={styles.subTitle3}>
                                             <svg width="16" height="16" fill="none">
@@ -254,7 +251,10 @@ function SuccessCheckOut() {
                                             </div>
                                         </div>
                                         <div className={styles.hotelImage}>
-                                            <img src="https://img.tripi.vn/cdn-cgi/image/width=320/https://www.googleapis.com/download/storage/v1/b/hotel_image/o/logo%2F4%2F736941.jpg?generation=1563772721779376&alt=media" />
+                                            <img
+                                                src="https://img.tripi.vn/cdn-cgi/image/width=320/https://www.googleapis.com/download/storage/v1/b/hotel_image/o/logo%2F4%2F736941.jpg?generation=1563772721779376&alt=media"
+                                                alt="Logo Ngân hàng"
+                                            />
                                         </div>
                                     </div>
                                 </div>
