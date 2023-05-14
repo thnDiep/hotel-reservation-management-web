@@ -11,9 +11,9 @@ import axios from 'axios'
 import './styles.scss'
 import FormData from 'form-data'
 import { NumericFormat } from 'react-number-format'
-import { v4 as uuidv4 } from 'uuid'
-import { Cloudinary } from 'cloudinary-core'
 import { useNavigate, useParams } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 const options = [
     { value: 8, label: '8:00 ' },
     { value: 9, label: '9:00 ' },
@@ -39,6 +39,7 @@ const AddHotel = () => {
     const [wards, setWards] = useState([])
     const [data, setData] = useState(null)
     const Nav = useNavigate()
+    const [showInformModal, setShowInformModal] = useState(false)
 
     const [hotel, setHotel] = useState(() => {
         return {
@@ -227,6 +228,7 @@ const AddHotel = () => {
             formData.append('upload_preset', PRESET_NAME)
             formData.append('folder', FOLDER_NAME)
             for (const file of selectedFiles) {
+                console.log(file)
                 formData.append('file', file)
                 const res = await axios.post(api, formData, {
                     headers: {
@@ -255,7 +257,14 @@ const AddHotel = () => {
                 tienNghi: IDTienNghi,
                 thongTin: filteredThongTin,
             })
-            Nav('/')
+            setShowInformModal(true)
+
+            window.setTimeout(function () {
+                setShowInformModal(false)
+                Nav('/cks/manageHotel')
+            }, 1500)
+
+            console.log('Thông tin update thành công: ')
         } catch (err) {
             console.log(err)
         }
@@ -678,6 +687,19 @@ const AddHotel = () => {
                     </div>
                 </div>
             </div>
+            {/* Thông báo thành công */}
+            {showInformModal && (
+                <div id="myModal" className="myModal1">
+                    {/* <!-- Modal content --> */}
+                    <div className="modalContent">
+                        <FontAwesomeIcon icon={faCheckCircle} className="modalIcon" />
+                        <div>
+                            {!id && 'Thêm thành công'}
+                            {id && 'Lưu thành công'}
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     )
 }

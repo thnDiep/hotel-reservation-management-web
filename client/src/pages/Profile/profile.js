@@ -6,7 +6,7 @@ import nav from '~/assets/jsons/nav.json'
 
 function Profile({ children }) {
     const [active, setActive] = useState(0)
-    console.log(active)
+    // console.log(active)
     return (
         <div className={styles.container}>
             <div className={styles.wrap}>

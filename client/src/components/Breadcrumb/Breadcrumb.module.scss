@@ -1,0 +1,27 @@
+.form-group {
+    position: relative;
+}
+.form-group {
+    width: 100%;
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    align-items: center;
+    margin-top: 9px;
+    // background: var(--grey);
+    // border-radius: 5px;
+    // border: none;
+    // outline: none;
+    // padding: 10px 36px 10px 16px;
+    // transition: all 0.3s ease;
+}
+//  .form-group input:focus {
+//     box-shadow: 0 0 0 1px var(--blue), 0 0 0 4px var(--light-blue);
+// }
+.form-group .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    color: var(--dark-grey);
+}

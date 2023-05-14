@@ -26,6 +26,7 @@ function Reserve() {
         Axios.get('http://localhost:8800/profile/order', { params: { ID: 4 } })
             .then((response) => {
                 setData(response.data)
+                console.log(response.data)
                 if (response.data === null) {
                     setEmpty(true)
                 } else {
@@ -71,10 +72,7 @@ function Reserve() {
                                     <div className={styles.lineCard}></div>
 
                                     <div className={styles.footerCard}>
-                                        <img
-                                            src="https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://www.googleapis.com/download/storage/v1/b/tourcdn/o/photos%2FBZ1O6VKR21_%2Ftmp%2Fplaytemp8992226862162980543%2FmultipartBody8889052234719766714asTemporaryFile?generation=1595488423270831&alt=media"
-                                            className={clsx(styles.image)}
-                                        ></img>
+                                        <img src={item.HinhAnhKhachSan} className={clsx(styles.image)}></img>
                                         <div className={styles.infoReserve}>
                                             <p className={styles.title}>{item.TenKhachSan}</p>
 
@@ -115,10 +113,10 @@ function Reserve() {
                                         <div className={styles.stateOfReserve}>
                                             <p>Tổng tiền</p>
                                             <p>
-                                                <b>{item.TongTien} &#8363;</b>
+                                                <b>{item.TongTien.toLocaleString()} &#8363;</b>
                                             </p>
 
-                                            {item.TrangThai === 1 && (
+                                            {item.TrangThai === 0 && (
                                                 <div>
                                                     <p className={styles.successRequest}>
                                                         Gửi yêu cầu đặt phòng thành công
@@ -127,7 +125,16 @@ function Reserve() {
                                                 </div>
                                             )}
 
-                                            {(item.TrangThai === 0 || item.TrangThai === 2) && (
+                                            {item.TrangThai === 1 && (
+                                                <div>
+                                                    <p className={styles.successRequest}>Đã duyệt yêu cầu</p>
+                                                    <label className={styles.waitingConfirmLabel}>
+                                                        CHƯA THANH TOÁN
+                                                    </label>
+                                                </div>
+                                            )}
+
+                                            {item.TrangThai === 2 && (
                                                 <div>
                                                     <p className={styles.successRequest}>Đặt phòng thành công</p>
                                                     <Link to={'/profile/order/comment'}>
@@ -137,7 +144,7 @@ function Reserve() {
                                                             ĐÁNH GIÁ
                                                         </label>{' '}
                                                     </Link>
-                                                    <label className={styles.confirmedLabel}>ĐÃ XÁC NHẬN</label>
+                                                    <label className={styles.confirmedLabel}>ĐÃ HOÀN TẤT</label>
                                                 </div>
                                             )}
                                         </div>

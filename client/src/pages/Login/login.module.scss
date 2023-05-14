@@ -1,11 +1,13 @@
-.wrap{
+.wrap {
     display: flex;
+    overflow: hidden;
+    height: 100vh;
 }
 
-.introduction{
-    // background-color: aqua;  
+.introduction {
+    // background-color: aqua;
     width: 60%;
-    height: 100%;
+    // height: 100%;
 }
 
 .triangleDown {
@@ -14,7 +16,7 @@
     border-top: 800px solid #ffffff;
     border-left: 0px solid transparent;
     border-right: 140px solid transparent;
-    min-height: 100vh;
+    // min-height: 100vh;
 }
 
 .triangleUp {
@@ -26,56 +28,54 @@
     z-index: 1;
     margin-left: -18rem;
     min-height: 100vh;
-
 }
 
-.title1{
+.title1 {
     font-size: 26px;
     margin-top: 10px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     justify-content: center;
     display: flex;
     width: 90%;
 }
-.title2{
+.title2 {
     font-size: 14px;
     color: gray;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     justify-content: center;
     display: flex;
     width: 90%;
 }
 
-.image{
+.image {
     margin-top: 8rem;
     width: 490px;
 }
-.infoWeb{
+.infoWeb {
     display: flex;
     margin-top: 10rem;
     justify-content: center;
     width: 90%;
-    .logo{
+    .logo {
         height: 80px;
         width: 80px;
         min-width: none;
         margin-right: 1rem;
     }
-    .nameOfWeb{
+    .nameOfWeb {
         font-size: 30px;
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         margin-top: 5px;
         color: #ff3366;
     }
-    .description{
+    .description {
         font-size: 14px;
         color: gray;
         // margin-top: -5px;
     }
 }
 
-
-.login{
+.login {
     background-color: #f5e4e0;
     width: 100%;
     display: flex;
@@ -83,7 +83,7 @@
     align-items: center;
     padding-right: 6rem;
     padding-bottom: 3rem;
-    .title{
+    .title {
         font-size: 23px;
         justify-content: center;
         display: flex;
@@ -92,24 +92,24 @@
     }
 }
 
-.label{
+.label {
     margin-top: 1rem;
     font-size: 15px;
     font-weight: bold;
     color: rgb(97, 97, 97);
-    span{
+    span {
         color: red;
     }
 }
 
-.title3{
+.title3 {
     margin-top: 15px;
     font-size: 14px;
     color: gray;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.fieldInput{
+.fieldInput {
     border: none;
     font-size: 14px;
     border-radius: 3px;
@@ -118,7 +118,8 @@
     margin-top: 5px;
     padding: 20px;
     box-shadow: 1px 1px 5px rgb(190, 190, 190);
-    .fieldInput:focus, :active{
+    .fieldInput:focus,
+    :active {
         border: none;
     }
 }
@@ -127,7 +128,7 @@
 //     border: none;
 // }
 
-.loginBtn{
+.loginBtn {
     margin-top: 5rem;
     background-color: #ff3366;
     width: 37rem;
@@ -136,30 +137,29 @@
     color: white;
     font-weight: 600;
     border-radius: 10px;
-    
 }
-.ggLink{
-    &:hover{
+.ggLink {
+    &:hover {
         text-decoration: underline solid;
         color: blue;
         cursor: pointer;
     }
 }
 
-.signUpLink{
+.signUpLink {
     margin-left: 5px;
     color: red;
-    &:hover{
+    &:hover {
         cursor: pointer;
         color: red;
     }
 }
 
-.err{
+.err {
     color: red;
     font-size: 12px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    justify-content:flex-end;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: flex-end;
     display: flex;
     height: 2rem;
 }

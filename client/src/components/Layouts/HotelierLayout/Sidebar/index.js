@@ -16,25 +16,25 @@ const Sidebar = ({ checkHide }) => {
         {
             id: 1,
             name: 'Quản lý khách sạn',
-            icon: <i class="fas fa-hotel icon"></i>,
+            icon: <i className="fas fa-hotel icon"></i>,
             link: '/cks/manageHotel',
         },
         {
             id: 2,
             name: 'Quản lý phòng',
-            icon: <i class="fas fa-person-booth icon"></i>,
+            icon: <i className="fas fa-person-booth icon"></i>,
             link: '/cks/manage-room',
         },
         {
             id: 3,
             name: 'Quản lý đơn đặt phòng',
-            icon: <i class="fas fa-receipt icon"></i>,
+            icon: <i className="fas fa-receipt icon"></i>,
             link: '/cks/manageOrder',
         },
         {
             id: 4,
             name: 'Quản lý khuyến mãi',
-            icon: <i class="fas fa-ticket-alt icon"></i>,
+            icon: <i className="fas fa-ticket-alt icon"></i>,
             link: '/cks/voucher',
         },
     ]

@@ -107,14 +107,11 @@ function AddPromotion() {
     // Add / update
     function handleSubmit() {
         if (showForm === 0 && handleAddVoucher()) {
-            // voucherState.fields.BatDau.setUTCHours(0, 0, 0, 0)
-            // if (voucherState.fields.KetThuc) voucherState.fields.KetThuc.setUTCHours(0, 0, 0, 0)
-
             Axios.post(`http://localhost:8800/cks/promotion/${id ? 'update' : 'insert'}`, {
                 khuyenmai: voucherState.fields,
             })
                 .then((response) => {
-                    console.log(response.data)
+                    // console.log(response.data)
                     setShowInformModal(true)
 
                     window.setTimeout(function () {
@@ -126,10 +123,6 @@ function AddPromotion() {
                 })
                 .catch((error) => console.log(error))
         } else if (showForm === 1 && handleAddFlashSale()) {
-            // flashSaleState.fields.BatDau.setUTCHours(0, 0, 0, 0)
-            // if (flashSaleState.fields.KetThuc)
-            // flashSaleState.fields.KetThuc.setUTCHours(0, 0, 0, 0)
-
             Axios.post(`http://localhost:8800/cks/promotion/${id ? 'update' : 'insert'}`, {
                 khuyenmai: flashSaleState.fields,
             })

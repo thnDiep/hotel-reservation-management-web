@@ -71,7 +71,7 @@ router.post("/removeFromWishList", async (req, res, next) => {
 
 router.get("/wishlist", async (req, res, next) => {
   try {
-    const id = req.body.ID || 4;
+    const id = req.query.ID || 4;
     const wishlist = await wishListModel.getWishList(id);
     res.json(wishlist);
   } catch (err) {
@@ -81,8 +81,18 @@ router.get("/wishlist", async (req, res, next) => {
 
 router.get("/order", async (req, res, next) => {
   try {
-    const id = req.body.ID || 4;
+    const id = req.query.ID || 4;
     const order = await orderModel.getOrder(id);
+    res.json(order);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/order/qr", async (req, res, next) => {
+  try {
+    const id = req.query.ID || 4;
+    const order = await orderModel.getOrderByOrderCode(id);
     res.json(order);
   } catch (err) {
     next(err);
@@ -91,10 +101,8 @@ router.get("/order", async (req, res, next) => {
 
 router.get("/order/detail", async (req, res, next) => {
   try {
-    const MaDatPhong = req.body.MaDatPhong || 5743539;
+    const MaDatPhong = req.query.ID || 5743539;
     const result = await orderModel.getOrderByOrderCode(MaDatPhong);
-    console.log("1111");
-    console.log(result);
     res.json(result);
   } catch (err) {
     next(err);
