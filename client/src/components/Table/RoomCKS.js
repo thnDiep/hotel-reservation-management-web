@@ -182,7 +182,12 @@ function RoomCKS({ rooms, option }) {
                                 )}
                             </td>
                             <td className={styles.last}>
-                                <DropdownOption type={9} idActive={room.ID} list={option} hides={true} />
+                                <DropdownOption
+                                    type={9}
+                                    idActive={room.ID}
+                                    list={option}
+                                    hides={[false, false, room.TrangThai === 2, room.TrangThai !== 2]}
+                                />
                             </td>
                         </tr>
                     ))}

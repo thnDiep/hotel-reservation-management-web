@@ -56,7 +56,7 @@ function QrPay() {
                                 <div className={styles.billItem}>
                                     <h6 className={styles.subTitle}>Giá trị đơn hàng</h6>
                                     <h3 className={styles.text}>
-                                        {order.TongTien.toLocaleString()} <sup>VND</sup>
+                                        {(+order.TongTien).toLocaleString()} <sup>VND</sup>
                                     </h3>
                                 </div>
 
@@ -74,7 +74,7 @@ function QrPay() {
 
                                 <div className={styles.billItem} style={{ margin: 0 }}>
                                     <h6 className={styles.subTitle}>Nhà cung cấp</h6>
-                                    <h3 className={styles.text}>CÔNG TY CỔ PHẦN DU LỊCH VIỆT NAM VNTRAVEL</h3>
+                                    <h3 className={styles.text}>{order.TenNganHang}</h3>
                                 </div>
                             </div>
                         </div>
