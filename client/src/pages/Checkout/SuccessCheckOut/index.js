@@ -90,7 +90,7 @@ function SuccessCheckOut() {
                         </div>
                         <div className={styles.guideline}>
                             <p className={styles.mainTitle}>Thanh toán thành công</p>
-                            <p className={styles.codeOrder}>Mã đặt phòng: H{data[0].MaDatPhong}</p>
+                            <p className={styles.codeOrder}>Mã đặt phòng: {data[0].MaDatPhong}</p>
                         </div>
 
                         <div className={styles.orderInfo}>

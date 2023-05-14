@@ -2,6 +2,7 @@ import express from "express";
 import wishListModel from "../models/wishListModel.js";
 import authModel from "../models/authModel.js";
 import orderModel from "../models/orderModel.js";
+import hotelModel from "../models/hotelModel.js";
 
 const router = express.Router();
 
@@ -23,6 +24,16 @@ router.post("/update", async (req, res, next) => {
   try {
     // const ID = req.query.ID || 4;
     const info = req.body.info;
+    await hotelModel.blockHotelByHotelierID(
+      info.ID,
+      info.PhanQuyen,
+      info.TrangThai
+    );
+    await hotelModel.unblockHotelByHotelierID(
+      info.ID,
+      info.PhanQuyen,
+      info.TrangThai
+    );
 
     await authModel.update(info);
 

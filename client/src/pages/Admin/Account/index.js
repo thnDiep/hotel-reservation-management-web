@@ -78,11 +78,14 @@ function Account() {
                     setShowInformModal(false)
                 }, 1000)
 
-                users.forEach((user) => {
-                    if (user.ID === userActive.ID) {
-                        user = userActive
-                    }
-                })
+                // for (let user of users) {
+                //     if (user.ID === userActive.ID) {
+                //         user = userActive
+                //     }
+                // }
+
+                const index = users.findIndex((item) => item.ID === userActive.ID)
+                users[index].TrangThai = userActive.TrangThai
 
                 setUsers(users)
                 setUserActive(null)

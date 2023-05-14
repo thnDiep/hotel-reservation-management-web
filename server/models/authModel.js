@@ -14,6 +14,13 @@ export default {
     return list[0];
   },
 
+  async getBank(id) {
+    const list = await db("taikhoanthanhtoan").where("IDKhachHang", id);
+    if (list.length === 0) return null;
+
+    return list[0];
+  },
+
   // Lấy người dùng theo tên
   async findByUsername(name) {
     const list = await db("nguoidung").where("TenDangNhap", name);
@@ -68,8 +75,33 @@ export default {
   },
 
   //cập nhật thông tin người dùng
-  update(profileInfo) {
+  async update(profileInfo) {
+    // const hotel = await db("khachsan").where("IDChuKhachSan", profileInfo.ID);
+    // if (profileInfo.PhanQuyen === 1 && profileInfo.TrangThai === 0) {
+    //   hotel.forEach((item) => {
+    //     item.TrangThai = 2;
+    //   });
+    // }
+
+    // if (profileInfo.PhanQuyen === 1) {
+    //   hotel.forEach((item) => {
+    //     db("khachsan").where("ID", item.ID).update(item);
+    //   });
+    // }
+
+    // console.log(hotel);
+
     return db("nguoidung").where("ID", profileInfo.ID).update(profileInfo);
+  },
+
+  // Thêm tài khoản thanh toán
+  addBank(bank) {
+    return db("taikhoanthanhtoan").insert(bank);
+  },
+
+  // Cập nhật tài khoản thanh toán
+  updateBank(bank) {
+    return db("taikhoanthanhtoan").where("ID", bank.ID).update(bank);
   },
 
   // Cập nhật trạng thái người dùng

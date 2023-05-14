@@ -53,7 +53,7 @@ function OrderDetail({ route, navigate }) {
                                         </svg>
                                     </div>
                                     <span className={styles.title}>Mã đơn hàng</span>
-                                    <span className={styles.code}>H{item.MaDatPhong}</span>
+                                    <span className={styles.code}>{item.MaDatPhong}</span>
                                 </div>
 
                                 <div className={styles.tagInfo__part}>

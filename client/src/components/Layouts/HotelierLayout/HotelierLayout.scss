@@ -54,9 +54,10 @@ li {
     width: calc(100% - 260px);
     left: 260px;
     transition: all 0.3s ease;
+    min-height: 100vh;
 }
 
-#sidebar.hide+#content {
+#sidebar.hide + #content {
     width: calc(100% - 60px);
     left: 60px;
 }
