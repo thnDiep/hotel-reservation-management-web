@@ -33,7 +33,7 @@ function OrderResult() {
                         />
                         <div className={styles.guideline}>
                             <p className={styles.mainTitle}>Đặt phòng thành công</p>
-                            <p className={styles.codeOrder}>Mã đặt phòng: H{data[0].MaDatPhong}</p>
+                            <p className={styles.codeOrder}>Mã đặt phòng: {data[0].MaDatPhong}</p>
                             <p className={styles.timeToPay}>
                                 Quý khách vui lòng thanh toán theo thông tin hướng dẫn dưới đây.
                             </p>
