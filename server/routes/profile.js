@@ -1,102 +1,112 @@
-import express from "express";
-import wishListModel from "../models/wishListModel.js";
-import authModel from "../models/authModel.js";
-import orderModel from "../models/orderModel.js";
+import express from "express"
+import wishListModel from "../models/wishListModel.js"
+import authModel from "../models/authModel.js"
+import orderModel from "../models/orderModel.js"
 
-const router = express.Router();
+const router = express.Router()
 
 // Lấy dữ liệu thông tin người dùng
 router.get("/", async (req, res, next) => {
   try {
-    const ID = req.query.ID || 4;
+    const ID = req.query.ID || 4
 
-    const profileInfo = await authModel.findById(ID);
+    const profileInfo = await authModel.findById(ID)
 
-    res.json(profileInfo);
+    res.json(profileInfo)
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
 // Thực hiện update thông tin người dùng
 router.post("/update", async (req, res, next) => {
   try {
     // const ID = req.query.ID || 4;
-    const info = req.body.info;
+    const info = req.body.info
 
-    await authModel.update(info);
+    await authModel.update(info)
 
-    res.json({});
+    res.json({})
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
 // Xóa người dùng
 router.get("/del", async (req, res, next) => {
   try {
-    const idUser = req.query.idUser;
+    const idUser = req.query.idUser
 
     if (idUser) {
-      await authModel.del(idUser);
+      await authModel.del(idUser)
     }
 
-    res.json({ idUser });
+    res.json({ idUser })
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
 // thêm khách sạn vào ds yêu thích
 router.post("/addToWishList", async (req, res, next) => {
   try {
-    const data = req.body.data;
-    await wishListModel.addToWishList(data);
-    res.json({});
+    const data = req.body.data
+    await wishListModel.addToWishList(data)
+    res.json({})
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
 // xóa khách sạn khỏi ds yêu thích
 router.post("/removeFromWishList", async (req, res, next) => {
   try {
-    const data = req.body.data;
-    await wishListModel.removeFromWishList(data);
-    res.json({});
+    const data = req.body.data
+    await wishListModel.removeFromWishList(data)
+    res.json({})
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
 router.get("/wishlist", async (req, res, next) => {
   try {
-    const id = req.query.ID || 4;
-    const wishlist = await wishListModel.getWishList(id);
-    res.json(wishlist);
+    const id = req.query.ID || 4
+    const wishlist = await wishListModel.getWishList(id)
+    res.json(wishlist)
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
 router.get("/order", async (req, res, next) => {
   try {
-    const id = req.query.ID || 4;
-    const order = await orderModel.getOrder(id);
-    res.json(order);
+    const id = req.query.ID || 4
+    const order = await orderModel.getOrder(id)
+    res.json(order)
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
+
+router.get("/order/qr", async (req, res, next) => {
+  try {
+    const id = req.query.ID || 4
+    const order = await orderModel.getOrderByOrderCode(id)
+    res.json(order)
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.get("/order/detail", async (req, res, next) => {
   try {
-    const MaDatPhong = req.query.ID || 5743539;
-    const result = await orderModel.getOrderByOrderCode(MaDatPhong);
-    res.json(result);
+    const MaDatPhong = req.query.ID || 5743539
+    const result = await orderModel.getOrderByOrderCode(MaDatPhong)
+    res.json(result)
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
-export default router;
+export default router

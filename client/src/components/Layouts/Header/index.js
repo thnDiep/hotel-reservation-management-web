@@ -6,10 +6,15 @@ import SideBar from '../DefaultLayout/SideBar/SideBar'
 import { Link } from 'react-router-dom'
 
 function Header() {
-    const [enteredAnnounce, setEnteredAnnounce] = useState(false)
+    const user = JSON.parse(localStorage.getItem('user'))
 
+    const [enteredAnnounce, setEnteredAnnounce] = useState(false)
+    let check = false
     const announceChangeHandler = () => {
         setEnteredAnnounce(!enteredAnnounce)
+    }
+    if (user !== null) {
+        check = true
     }
     return (
         <div className={classes.header}>
@@ -94,22 +99,12 @@ function Header() {
                             ></path>
                         </svg>
                     </TitleLinkButton>
-                    <TitleLinkButton link="/profile" className="btnTitle" name="Đơn hàng" check="true">
-                        <svg width="16" height="16" fill="none" style={{ marginRight: '8px' }}>
-                            <path
-                                d="M9.2 1.6v3.022a.756.756 0 00.755.755h3.022"
-                                stroke="#1A202C"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            ></path>
-                            <path
-                                d="M11.467 15.2H3.91A1.511 1.511 0 012.4 13.689V3.11A1.511 1.511 0 013.91 1.6H9.2l3.778 3.777v8.311a1.511 1.511 0 01-1.511 1.512zM5.422 6.133h.756M5.422 9.155h4.534M5.422 12.178h4.534"
-                                stroke="#1A202C"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            ></path>
-                        </svg>
-                    </TitleLinkButton>
+                    <TitleLinkButton
+                        link="/checkOrder"
+                        className="btnTitle"
+                        name="Đơn hàng"
+                        check="true"
+                    ></TitleLinkButton>
 
                     <TitleLinkButton className="btnTitle" name="VND" link="/" check="true">
                         <img
@@ -271,12 +266,36 @@ function Header() {
                             </div>
                         </div>
                     </div>
-                    <Link to="/login">
-                        <ButtonPrimary className="signIn">Đăng nhập</ButtonPrimary>
-                    </Link>
-                    <Link to="/signup">
-                        <ButtonPrimary className="signUp">Đăng ký</ButtonPrimary>
-                    </Link>
+
+                    {check === false ? (
+                        <>
+                            <Link to="/login">
+                                <ButtonPrimary className="signIn">Đăng nhập</ButtonPrimary>
+                            </Link>
+                            <Link to="/signup">
+                                <ButtonPrimary className="signUp">Đăng ký</ButtonPrimary>
+                            </Link>
+                        </>
+                    ) : (
+                        <Link to="/profile">
+                            <div className={classes.boxUser}>
+                                <img src={user.HinhAnh} className={classes.ava} alt="" />
+                                <div className={classes.nameAva}>
+                                    <span className={classes.name}>{user.HoTen}</span>
+                                    {/* <svg width="10" height="6" fill="none" className={`svgFillAll ${classes.icon}`}>
+                                    <path
+                                        d="M1.667 1.333L5 4.667l3.333-3.334"
+                                        stroke="#1A202C"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></path>
+                                </svg> */}
+                                </div>
+                            </div>
+                        </Link>
+                    )}
+
                     <SideBar />
                 </div>
             </div>

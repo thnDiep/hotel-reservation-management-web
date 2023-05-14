@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-function OrderDetail() {
+function OrderDetail({ route, navigate }) {
     const [data, setData] = useState()
     const { id } = useParams()
     console.log(id)

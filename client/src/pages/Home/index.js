@@ -111,8 +111,13 @@ function Home() {
                 })
                 hotel.SoDanhGia = SoDanhGia
 
-                const PhongTieuChuan = data.rooms.find((item) => item.IDKhachSan === hotel.ID)
-                if (PhongTieuChuan) hotel.GiaTieuChuan = PhongTieuChuan.Gia
+                const Phong = data.rooms.filter((item) => item.IDKhachSan === hotel.ID)
+                const PhongSapXepTheoGiaTangDan = Phong.sort((a, b) => {
+                    return a.Gia - b.Gia
+                })
+                const PhongCoGiaThapNhat = PhongSapXepTheoGiaTangDan[0]
+                // const PhongTieuChuan = data.rooms.find((item) => item.IDKhachSan === hotel.ID)
+                if (PhongCoGiaThapNhat) hotel.GiaTieuChuan = PhongCoGiaThapNhat.Gia
 
                 if (hotel.GiamGia !== 0 && hotel.TrangThai === 1) {
                     hotel.GiaSauKhiGiam = Math.round(hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * hotel.GiamGia)
@@ -135,16 +140,37 @@ function Home() {
                 return b.DanhGia - a.DanhGia
             })
 
-            trendingHotels.filter((item) => item.TrangThai === 1)
+            const trendingActiveHotels = trendingHotels.filter((item) => item.TrangThai === 1)
 
             shockPriceHotels.sort((a, b) => {
                 return b.GiamGia - a.GiamGia
             })
 
+            const sortedVoucher = vouchers.sort((a, b) => {
+                return b.PhanTramKM - a.PhanTramKM
+            })
+
+            const now = new Date()
+            const activeVouchers = []
+            sortedVoucher.map((voucher) => {
+                const BatDau = new Date(voucher.BatDau)
+                let KetThuc
+                if (voucher.KetThuc) {
+                    KetThuc = new Date(voucher.KetThuc)
+                } else {
+                    KetThuc = new Date()
+                }
+
+                if (now >= BatDau && now <= KetThuc) {
+                    activeVouchers.push(voucher)
+                }
+            })
+            console.log(sortedVoucher)
+
             setShockPriceHotels(shockPriceHotels)
             setVinPearlHotels(vinPearlHotels)
-            setTrendingHotels(trendingHotels)
-            setVouchers(vouchers)
+            setTrendingHotels(trendingActiveHotels)
+            setVouchers(activeVouchers)
             // setFlashSaleHotels(flashSaleHotels)
         }
     }, [data])
@@ -187,6 +213,7 @@ function Home() {
                 if (activeDate >= flashSale.BatDau && activeDate <= flashSale.KetThuc) {
                     if (activeStart === flashSale.GioBatDau) {
                         let hotel = data.hotels.find((key) => key.ID === flashSale.IDKhachSan)
+
                         if (hotel.TrangThai === 1) {
                             if (hotel.GiamGia !== 0) {
                                 hotel.GiaSauKhiGiam = Math.round(
@@ -199,6 +226,7 @@ function Home() {
                                     hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * flashSale.PhanTramKM,
                                 )
                             }
+
                             flashSaleHotels.push(hotel)
                         }
                     }

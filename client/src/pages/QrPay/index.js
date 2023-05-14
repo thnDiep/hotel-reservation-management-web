@@ -2,86 +2,102 @@ import clsx from 'clsx'
 
 import qrImage from '~/assets/images/qr.png'
 import styles from './QrPay.module.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import GuideModal from './components/GuideModal'
 import QRModal from './components/QRModal'
+import { Link, useParams } from 'react-router-dom'
+import Axios from 'axios'
 
 function QrPay() {
+    const { id } = useParams()
     const [showGuideModal, setShowGuideModal] = useState(false)
     const [showQRModal, setShowQRModal] = useState(false)
+    const [order, setOrder] = useState()
+
+    useEffect(() => {
+        Axios.get('http://localhost:8800/profile/order/qr', { params: { ID: id } })
+            .then((response) => {
+                setOrder(response.data[0])
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [id])
 
     return (
         <div className={styles.container}>
             <GuideModal show={showGuideModal} onHide={() => setShowGuideModal(false)} />
-            <QRModal show={showQRModal} onHide={() => setShowQRModal(false)} />
 
             <div className={styles.header}>
                 <img src="https://pay.vnpay.vn/Images/brands/logo.svg" alt="VNPAY" />
             </div>
-            <div className={styles.content}>
-                <div className={styles.inform}>
-                    <img src="https://pay.vnpay.vn/images/icons-color/warning/default/24x24-alert.svg" />
-                    <span>
-                        Quý khách vui lòng không tắt trình duyệt cho đến khi nhận được kết quả giao dịch trên website.
-                        Xin cảm ơn!
-                    </span>
-                </div>
+            {order && (
+                <div className={styles.content}>
+                    <QRModal show={showQRModal} onHide={() => setShowQRModal(false)} total={order.TongTien} />
+                    <div className={styles.inform}>
+                        <img src="https://pay.vnpay.vn/images/icons-color/warning/default/24x24-alert.svg" />
+                        <span>
+                            Quý khách vui lòng không tắt trình duyệt cho đến khi nhận được kết quả giao dịch trên
+                            website. Xin cảm ơn!
+                        </span>
+                    </div>
 
-                <div className="d-flex">
-                    <div className={styles.bill}>
-                        <div className={styles.billHeader}>Thông tin đơn hàng</div>
-                        <div className={styles.billBody}>
-                            <div className={styles.billItem}>
-                                <h6 className={styles.subTitle}>Số tiền thanh toán</h6>
-                                <h3 className={clsx(styles.text, styles.primary)}>
-                                    3.160.143 <sup>VND</sup>
-                                </h3>
-                            </div>
+                    <div className="d-flex">
+                        <div className={styles.bill}>
+                            <div className={styles.billHeader}>Thông tin đơn hàng</div>
+                            <div className={styles.billBody}>
+                                <div className={styles.billItem}>
+                                    <h6 className={styles.subTitle}>Số tiền thanh toán</h6>
+                                    <h3 className={clsx(styles.text, styles.primary)}>
+                                        {order.TongTien.toLocaleString()} <sup>VND</sup>
+                                    </h3>
+                                </div>
 
-                            <div className={styles.billItem}>
-                                <h6 className={styles.subTitle}>Giá trị đơn hàng</h6>
-                                <h3 className={styles.text}>
-                                    3.160.143 <sup>VND</sup>
-                                </h3>
-                            </div>
+                                <div className={styles.billItem}>
+                                    <h6 className={styles.subTitle}>Giá trị đơn hàng</h6>
+                                    <h3 className={styles.text}>
+                                        {(+order.TongTien).toLocaleString()} <sup>VND</sup>
+                                    </h3>
+                                </div>
 
-                            <div className={styles.billItem}>
-                                <h6 className={styles.subTitle}>Phí giao dịch</h6>
-                                <h3 className={styles.text}>
-                                    0 <sup>VND</sup>
-                                </h3>
-                            </div>
+                                <div className={styles.billItem}>
+                                    <h6 className={styles.subTitle}>Phí giao dịch</h6>
+                                    <h3 className={styles.text}>
+                                        0 <sup>VND</sup>
+                                    </h3>
+                                </div>
 
-                            <div className={styles.billItem}>
-                                <h6 className={styles.subTitle}>Mã đơn hàng</h6>
-                                <h3 className={styles.text}>23050294537</h3>
-                            </div>
+                                <div className={styles.billItem}>
+                                    <h6 className={styles.subTitle}>Mã đơn hàng</h6>
+                                    <h3 className={styles.text}>{order.MaDatPhong}</h3>
+                                </div>
 
-                            <div className={styles.billItem} style={{ margin: 0 }}>
-                                <h6 className={styles.subTitle}>Nhà cung cấp</h6>
-                                <h3 className={styles.text}>CÔNG TY CỔ PHẦN DU LỊCH VIỆT NAM VNTRAVEL</h3>
+                                <div className={styles.billItem} style={{ margin: 0 }}>
+                                    <h6 className={styles.subTitle}>Nhà cung cấp</h6>
+                                    <h3 className={styles.text}>{order.TenNganHang}</h3>
+                                </div>
                             </div>
+                        </div>
+                        <div className={styles.qr}>
+                            <h2 className={styles.title}>Quét mã qua ứng dụng Ngân hàng/ Ví điện tử</h2>
+                            <div className={styles.guide} onClick={() => setShowGuideModal(true)}>
+                                <img src="	https://pay.vnpay.vn/images/icons-color/info/default/24x24-information-circle.svg" />
+                                Hướng dẫn thanh toán
+                            </div>
+                            <div
+                                className={styles.qrImageFrame}
+                                style={{ backgroundImage: `url('https://pay.vnpay.vn/images/img/mics/qr-frame.svg')` }}
+                                onClick={() => setShowQRModal(true)}
+                            >
+                                <img className={styles.qrImage} src={qrImage} />
+                            </div>
+                            <Link to={`/checkout/${id}`} className="btn-1">
+                                Hủy thanh toán
+                            </Link>
                         </div>
                     </div>
-                    <div className={styles.qr}>
-                        <h2 className={styles.title}>Quét mã qua ứng dụng Ngân hàng/ Ví điện tử</h2>
-                        <div className={styles.guide} onClick={() => setShowGuideModal(true)}>
-                            <img src="	https://pay.vnpay.vn/images/icons-color/info/default/24x24-information-circle.svg" />
-                            Hướng dẫn thanh toán
-                        </div>
-                        <div
-                            className={styles.qrImageFrame}
-                            style={{ backgroundImage: `url('https://pay.vnpay.vn/images/img/mics/qr-frame.svg')` }}
-                            onClick={() => setShowQRModal(true)}
-                        >
-                            <img className={styles.qrImage} src={qrImage} />
-                        </div>
-                        <a href="" className="btn-1">
-                            Hủy thanh toán
-                        </a>
-                    </div>
                 </div>
-            </div>
+            )}
             <div className={styles.footer}>
                 <a href="tel:1900555577">
                     <div className={styles.partFooter}>

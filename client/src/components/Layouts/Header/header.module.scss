@@ -172,6 +172,47 @@
         padding: 0 60px;
         align-items: center;
     }
+    .boxUser {
+        display: flex;
+        padding: 2px;
+        align-items: center;
+        border-radius: 100px;
+        background-color: #ffffff;
+        margin-right: 10px;
+        .ava {
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            align-items: center;
+            flex-shrink: 0;
+            font-family: Mt;
+            line-height: 1;
+            user-select: none;
+            border-radius: 50%;
+            justify-content: center;
+        }
+        .nameAva {
+            display: flex;
+            padding-left: 8px;
+            align-items: center;
+            .name {
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 17px;
+                color: rgb(26, 32, 44);
+            }
+            .icon {
+                stroke: rgb(26, 32, 44);
+                margin-left: 6px;
+                display: block;
+            }
+        }
+    }
 }
 
 a {

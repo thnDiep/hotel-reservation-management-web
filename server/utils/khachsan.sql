@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 14, 2023 lúc 02:41 PM
+-- Thời gian đã tạo: Th5 14, 2023 lúc 03:07 PM
 -- Phiên bản máy phục vụ: 10.4.25-MariaDB
 -- Phiên bản PHP: 8.1.10
 
@@ -65,8 +65,10 @@ CREATE TABLE `danhsachyeuthich` (
 --
 
 INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
+(4, 8),
 (4, 12),
-(4, 14);
+(4, 14),
+(4, 16);
 
 -- --------------------------------------------------------
 
@@ -470,71 +472,6 @@ INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
 (30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988842/khachsan/photos_4NXSPTW4IJ__tmp_playtemp1224286142787402425_multipartBody2022326375395409877asTemporaryFile_npqoe1.jpg'),
 (31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989148/khachsan/photos_Z4P521DXCA__tmp_playtemp1224286142787402425_multipartBody2075278788761802505asTemporaryFile_nbt6qc.jpg'),
 (31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989149/khachsan/photos_ZZGCQGVMLS__tmp_playtemp1224286142787402425_multipartBody7032137161637455740asTemporaryFile_u9rtm9.jpg'),
-(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989150/khachsan/photos_827EIEW7PU__tmp_playtemp1224286142787402425_multipartBody2634311597936846161asTemporaryFile_lkc3s4.jpg'),
-(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971438/khachsan/23812_88QE6SO5KT_Beach_House_Room_1_feeyvn.jpg'),
-(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971440/khachsan/23812_OUACWIQD8O_Beach_House_Room_3_hya5df.jpg'),
-(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971441/khachsan/130487906_j5grgh.jpg'),
-(15, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683971441/khachsan/23812_MLZ4Y0BL1E_Beach_House_Room_dw7g5q.jpg'),
-(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973374/khachsan/photos_R6ZMOILXW3__tmp_playtemp5872956675624463109_multipartBody227198169022671206asTemporaryFile_y3ek0d.jpg'),
-(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973375/khachsan/img_4460_zjkexl.jpg'),
-(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973376/khachsan/img_4465_gsm0uf.jpg'),
-(16, 'https://res.cloudinary.com/dzawgnpm9/image/upload/v1683973377/khachsan/1235_SAFUR73I7V_55106039_q1kwtl.jpg'),
-(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974090/khachsan/a9e82cab_z_gxqrnb.jpg'),
-(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974091/khachsan/095ae6fb_z_qb8x05.jpg'),
-(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974091/khachsan/52776a1a_z_btafce.jpg'),
-(17, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974092/khachsan/7079a171_z_jzw7ff.jpg'),
-(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974623/khachsan/classic_jdiu3a.jpg'),
-(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974624/khachsan/photos_JNDTP9CH86__tmp_playtemp6021156645283393444_multipartBody4564599876000732013asTemporaryFile_clquex.jpg'),
-(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974625/khachsan/40714_GUT7T7S91Q_11_kwjrr5.jpg'),
-(18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974626/khachsan/photos_MSS6S0TJVZ__tmp_playtemp6021156645283393444_multipartBody4657972048723225173asTemporaryFile_otqbs2.jpg'),
-(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974924/khachsan/9186_FK6PQ86P30_12_pyi52c.jpg'),
-(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974924/khachsan/9186_JMBXKBLDJV_13_fdn35y.jpg'),
-(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974925/khachsan/hibiscus-suite-4_cmhft5.jpg'),
-(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683974926/khachsan/hibiscus-suite-3_zvitek.jpg'),
-(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975133/khachsan/deluxe-king-room4_dvypvz.jpg'),
-(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975134/khachsan/superior-king-room-with-seaview_02-copy_stsxq8.jpg'),
-(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975135/khachsan/superior-king-room-with-seaview_03-copy_svlspm.jpg'),
-(20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975136/khachsan/superior-king-room-with-seaview_04-copy_scncob.jpg'),
-(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975377/khachsan/z2571515924120_6b841d7467c951fbcbf885ec7bb19847_iz2wwo.jpg'),
-(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975378/khachsan/june-01-8_gmr8dm.jpg'),
-(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975378/khachsan/master-bedroom-2_vcv7r8.jpg'),
-(21, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975379/khachsan/master-bedroom-5_onavxr.jpg'),
-(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975702/khachsan/villa-studio-1602_irmpnu.jpg'),
-(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975703/khachsan/villa-studio-2_xhqktz.jpg'),
-(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975703/khachsan/villa-studio-3_ogojsn.jpg'),
-(22, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683975704/khachsan/villa-studio-5_zmdscw.jpg'),
-(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976333/khachsan/photos_NAXS1UVXJO__tmp_playtemp6906352608116898789_multipartBody1746072418037971232asTemporaryFile_sa1n1l.jpg'),
-(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976334/khachsan/four-bedroom_12_wfdh3z.jpg'),
-(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976335/khachsan/four-bedroom_9_upy0xl.jpg'),
-(23, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976335/khachsan/junior_14_zqjcii.jpg'),
-(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976597/khachsan/42050_E7ZMVE82JO_146735057_ovmeds.jpg'),
-(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976598/khachsan/42050_HZ4M7I3B4Z_199216564_dr4mzx.jpg'),
-(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976599/khachsan/42050_BK02G7YHTV_199216621_cacatf.jpg'),
-(24, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683976599/khachsan/42050_QLUK6A0KYC_199216598_orx55j.jpg'),
-(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977024/khachsan/050250-f59743fc-efe4-4856-a4cd-697388969b87_ygg4uu.jpg'),
-(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977026/khachsan/050250-5cf22145-5246-494e-acfd-4381bba1e68d_p6ahhh.jpg'),
-(25, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683977027/khachsan/050250-06253066-bdaa-4bef-9a02-f86bf3b5573b_jwgzbv.jpg'),
-(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978011/khachsan/041003-75de4a45-c607-4872-ac0e-d1d104956a4b_ohk5kz.jpg'),
-(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978012/khachsan/041003-25a111c8-28fd-4fe7-8451-d9b60283e5e8_yhvtgk.jpg'),
-(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978012/khachsan/041003-5e3417dc-4d9d-4209-94fd-b10c18f50f11_nk9kul.jpg'),
-(26, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978013/khachsan/041003-d90f55eb-6cf5-40f9-bfdd-105e2a2e24a0_hh7ixg.jpg'),
-(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978351/khachsan/042430-ff578d5e-9afe-438f-bbfd-5195f008cae7_yyxgym.jpg'),
-(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978352/khachsan/4b0af647-38a8-4f87-b60f-158bc16c024d_201603103_vpl_vppqr_3br_lake_view_villa_2_enhanced_ovfqet.jpg'),
-(27, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978353/khachsan/042749-d14cdec4-cda9-4ba0-8032-8abcdca6bbea_d0qk3l.jpg'),
-(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978520/khachsan/135846-263ef592-fa2c-4b0d-a09a-5dc02dfea8b8_ertzkf.jpg'),
-(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978520/khachsan/135846-a90e86f2-2ae0-4835-a7c4-65f718a5f5fa_bxozog.jpg'),
-(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978521/khachsan/135846-abfe5109-90b0-416c-8e1e-76ef610af1e5_imuo2o.jpg'),
-(28, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683978522/khachsan/135911-37fa97ae-a45b-4248-8945-41f5ee15ff59_c7jyrs.jpg'),
-(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985492/khachsan/photos_DPSXH24VQ9__tmp_playtemp1224286142787402425_multipartBody1022593404496592554asTemporaryFile_pyhrvn.jpg'),
-(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985492/khachsan/photos_VGE3NV8XK3__tmp_playtemp1224286142787402425_multipartBody552396680483974623asTemporaryFile_tl4bkb.jpg'),
-(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985493/khachsan/photos_CEG12P0AR9__tmp_playtemp1224286142787402425_multipartBody5603883490680910495asTemporaryFile_leolez.jpg'),
-(29, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683985494/khachsan/photos_N1CO20G8DA__tmp_playtemp1224286142787402425_multipartBody7482133511159264608asTemporaryFile_zokvjo.jpg'),
-(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988839/khachsan/photos_VGT0BWGVT2__tmp_playtemp1224286142787402425_multipartBody3364216258320482160asTemporaryFile_nbaprp.jpg'),
-(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988840/khachsan/photos_CJMDQSEOLU__tmp_playtemp1224286142787402425_multipartBody3713598672589806590asTemporaryFile_y30tp4.jpg'),
-(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988841/khachsan/photos_3GJSK19F6V__tmp_playtemp1224286142787402425_multipartBody8560084940778672038asTemporaryFile_1_ujdia5.jpg'),
-(30, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683988842/khachsan/photos_4NXSPTW4IJ__tmp_playtemp1224286142787402425_multipartBody2022326375395409877asTemporaryFile_npqoe1.jpg'),
-(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989148/khachsan/photos_Z4P521DXCA__tmp_playtemp1224286142787402425_multipartBody2075278788761802505asTemporaryFile_nbt6qc.jpg'),
-(31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989149/khachsan/photos_ZZGCQGVMLS__tmp_playtemp1224286142787402425_multipartBody7032137161637455740asTemporaryFile_u9rtm9.jpg'),
 (31, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683989150/khachsan/photos_827EIEW7PU__tmp_playtemp1224286142787402425_multipartBody2634311597936846161asTemporaryFile_lkc3s4.jpg');
 
 -- --------------------------------------------------------
@@ -742,7 +679,7 @@ CREATE TABLE `nguoidung` (
 INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaChi`, `MatKhau`, `PhanQuyen`, `TenCongTy`, `MaSoThue`, `QuyMo`, `TrangThai`) VALUES
 (1, 'Admin', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'admin@gmail.com', NULL, NULL, 'admin', 2, NULL, NULL, NULL, 1),
 (2, 'Vinpearl', 'https://inkythuatso.com/uploads/images/2021/09/vinpearl-logo-inkythuatso-1-13-10-21-19.jpg', 'vinpearl@gmail.com', '0928754123', '78 - 80 Đường Trần Phú, Phường Lộc Thọ, Tp. Nha Trang', '$2a$10$2sqBZxyEuduEJgNJvdIFA.ZRZV/rShXHXVcjm5Fl4jB4RTR4FlZ9C', 1, 'Vinpearl', '012578541', '20 - 49 nhân viên', 1),
-(3, 'Nguyễn Đăng Mạnh Tú', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'manhtu2272002@gmail.com', '', '', '$2a$10$UAdFFtuw/24puqwJ.BYUtufh3k9yhjb7tTCjZcJLw4LUIBnoP79xW', 0, '', '', '', 0),
+(3, 'Nguyễn Đăng Mạnh Tú', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'manhtu2272002@gmail.com', '09923312', '', '$2a$10$UAdFFtuw/24puqwJ.BYUtufh3k9yhjb7tTCjZcJLw4LUIBnoP79xW', 0, '', '', '', 0),
 (4, 'Tran Thao Quyen', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684009946/khachsan/Wide_Redwoods_1024x768_blrduc.jpg', 'quyenquyen@gmail.com', '098231189', 'Phường 1, quận 5, TPHCM', '$2a$10$5kf9MtdD1CyWY53vT5Um6O9ZPHsMBC2JMapEi5V/lpvW.lwmwoNuW', 0, NULL, NULL, NULL, 1),
 (5, 'Trần Huỳnh Ngọc Diệp', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'HuynhNgoc123@gmail.com', '098992321', 'Số nhà 412, đường Nguyễn Văn Cừ, quận 5, TPHCM', '$2a$10$U9eqIonkF8OOPrmKZIVpE.lMt45vqfEeLQnGKLk/OYDuU/LoXuvFC', 1, NULL, NULL, NULL, 1),
 (8, 'Bình Phước', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'lapdoan.010102@gmail.com', '0985374624', '70 Hoàng Hoa Thám Tp Vũng Tàu', '$2a$10$2QW8cAx.eDr4ELEyzMvHCeJq.Py/qYFFpMGYLNm2eOZlnYVrWBEiC', 1, 'Hiệp phước', '123', '1 - 19 nhân viên', 0),
@@ -761,13 +698,6 @@ CREATE TABLE `nguoinhanphong` (
   `Sdt` varchar(10) NOT NULL,
   `IDKhachHang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `nguoinhanphong`
---
-
-INSERT INTO `nguoinhanphong` (`ID`, `HoTen`, `Sdt`, `IDKhachHang`) VALUES
-(1, 'Nguyễn Thanh Mai', '099232383', 4);
 
 -- --------------------------------------------------------
 
@@ -830,9 +760,11 @@ CREATE TABLE `taikhoanthanhtoan` (
 --
 
 INSERT INTO `taikhoanthanhtoan` (`IDKhachHang`, `ID`, `TenNganHang`, `HoTenTK`, `SoTaiKhoan`, `NgayHetHan`, `anhQR`) VALUES
-(2, 1, 'Ngân hàng VCB - Thăng Long', 'Trần Minh Việt', ' M555P553392', '2028-04-10', NULL),
-(8, 2, 'Ngân hàng Agribank - Ngân hàng nông thôn Việt Nam', 'Nguyễn Thanh Mai', ' M990923942', '2028-04-01', NULL),
-(9, 3, 'Ngân hàng ViettinBank - chi nhánh Tân Phú', 'Trần Trương Trọng Nghĩa', ' P50553990', '0205-09-01', NULL);
+(2, 1, 'Ngân hàng VCB - Thăng Long', 'Trương Toàn Nghĩa', ' M555P553392', '0205-09-01', NULL),
+(5, 2, 'Ngân hàng Agribank - Ngân hàng nông thôn nhà nước Việt Nam', 'Trần Huỳnh Ngọc Diệp', ' P50553990', '0205-09-01', NULL),
+(8, 3, 'Ngân hàng Viettinbank - chi nhánh Tân Phú', 'Hồ Hoàng Bình Phước', 'P34942324445', '2026-08-26', NULL),
+(9, 4, 'Ngân hàng Sacombank - chi nhánh Bình Thạnh', 'Nguyễn Đăng Mạnh', 'R32300834', '2023-05-01', NULL),
+(11, 5, 'Ngân hàng Agribank', 'Lê Nguyễn Lan', 'R23130023', '2030-05-11', NULL);
 
 -- --------------------------------------------------------
 
@@ -2090,159 +2022,6 @@ INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
 (31, 11),
 (31, 12),
 (31, 14),
-(31, 19),
-(15, 1),
-(15, 4),
-(15, 5),
-(15, 8),
-(15, 9),
-(15, 10),
-(15, 11),
-(15, 13),
-(15, 14),
-(15, 16),
-(15, 17),
-(15, 18),
-(16, 1),
-(16, 3),
-(16, 4),
-(16, 5),
-(16, 11),
-(16, 16),
-(17, 1),
-(17, 3),
-(17, 5),
-(17, 9),
-(17, 10),
-(17, 11),
-(17, 16),
-(18, 1),
-(18, 3),
-(18, 4),
-(18, 5),
-(18, 9),
-(18, 12),
-(18, 16),
-(19, 1),
-(19, 4),
-(19, 5),
-(19, 9),
-(19, 10),
-(19, 11),
-(19, 12),
-(19, 16),
-(20, 1),
-(20, 2),
-(20, 3),
-(20, 4),
-(20, 5),
-(20, 7),
-(20, 9),
-(20, 10),
-(20, 11),
-(21, 1),
-(21, 2),
-(21, 3),
-(21, 4),
-(21, 5),
-(21, 9),
-(21, 12),
-(21, 16),
-(21, 20),
-(22, 1),
-(22, 3),
-(22, 4),
-(22, 5),
-(22, 11),
-(22, 12),
-(22, 13),
-(22, 20),
-(23, 1),
-(23, 3),
-(23, 4),
-(23, 5),
-(23, 9),
-(23, 10),
-(23, 11),
-(23, 12),
-(23, 16),
-(23, 20),
-(24, 1),
-(24, 2),
-(24, 3),
-(24, 9),
-(24, 11),
-(24, 14),
-(24, 16),
-(24, 20),
-(25, 1),
-(25, 3),
-(25, 4),
-(25, 5),
-(25, 9),
-(25, 11),
-(25, 16),
-(26, 1),
-(26, 2),
-(26, 3),
-(26, 4),
-(26, 5),
-(26, 7),
-(26, 8),
-(26, 9),
-(26, 11),
-(26, 12),
-(26, 16),
-(27, 1),
-(27, 3),
-(27, 4),
-(27, 5),
-(27, 11),
-(27, 12),
-(27, 14),
-(27, 16),
-(28, 1),
-(28, 2),
-(28, 3),
-(28, 4),
-(28, 5),
-(28, 7),
-(28, 9),
-(28, 11),
-(28, 14),
-(28, 16),
-(28, 19),
-(29, 1),
-(29, 2),
-(29, 3),
-(29, 4),
-(29, 5),
-(29, 8),
-(29, 9),
-(29, 12),
-(29, 14),
-(29, 16),
-(29, 17),
-(30, 1),
-(30, 2),
-(30, 3),
-(30, 4),
-(30, 5),
-(30, 8),
-(30, 9),
-(30, 11),
-(30, 14),
-(30, 17),
-(30, 19),
-(31, 1),
-(31, 3),
-(31, 4),
-(31, 5),
-(31, 8),
-(31, 9),
-(31, 11),
-(31, 12),
-(31, 14),
 (31, 19);
 
 --
@@ -2297,12 +2076,245 @@ ALTER TABLE `hinhanh_khachsan`
   ADD PRIMARY KEY (`IDKhachSan`,`HinhAnh`);
 
 --
+-- Chỉ mục cho bảng `hinhanh_phong`
+--
+ALTER TABLE `hinhanh_phong`
+  ADD PRIMARY KEY (`IDPhong`,`HinhAnh`);
+
+--
 -- Chỉ mục cho bảng `khachsan`
 --
 ALTER TABLE `khachsan`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `KhachSan_fk0` (`IDDiaDiem`),
   ADD KEY `IDChuKhachSan` (`IDChuKhachSan`);
+ALTER TABLE `khachsan` ADD FULLTEXT KEY `Ten` (`Ten`);
+ALTER TABLE `khachsan` ADD FULLTEXT KEY `DiaChi` (`DiaChi`);
+
+--
+-- Chỉ mục cho bảng `khunggio`
+--
+ALTER TABLE `khunggio`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Chỉ mục cho bảng `khuyenmai`
+--
+ALTER TABLE `khuyenmai`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `KhuyenMai_fk0` (`IDKhachSan`),
+  ADD KEY `KhuyenMai_KG_fk1` (`IDKhungGio`);
+
+--
+-- Chỉ mục cho bảng `loaitiennghikhachsan`
+--
+ALTER TABLE `loaitiennghikhachsan`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Chỉ mục cho bảng `loaitiennghiphong`
+--
+ALTER TABLE `loaitiennghiphong`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Chỉ mục cho bảng `nguoidung`
+--
+ALTER TABLE `nguoidung`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Chỉ mục cho bảng `nguoinhanphong`
+--
+ALTER TABLE `nguoinhanphong`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `NguoiNhanPhong_fk0` (`IDKhachHang`);
+
+--
+-- Chỉ mục cho bảng `phong`
+--
+ALTER TABLE `phong`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Phong_fk0` (`IDKhachSan`);
+
+--
+-- Chỉ mục cho bảng `taikhoanthanhtoan`
+--
+ALTER TABLE `taikhoanthanhtoan`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `TaiKhoanThanhToan_fk0` (`IDKhachHang`);
+
+--
+-- Chỉ mục cho bảng `thongtinhuuich`
+--
+ALTER TABLE `thongtinhuuich`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Chỉ mục cho bảng `thongtinhuuich_ks`
+--
+ALTER TABLE `thongtinhuuich_ks`
+  ADD PRIMARY KEY (`IDKhachSan`,`IDThongTin`),
+  ADD KEY `ThongTinHuuIch_KS_fk1` (`IDThongTin`);
+
+--
+-- Chỉ mục cho bảng `tiennghichung_ks`
+--
+ALTER TABLE `tiennghichung_ks`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `TienNghiChung_KS_fk0` (`IDLoai`);
+
+--
+-- Chỉ mục cho bảng `tiennghichung_phong`
+--
+ALTER TABLE `tiennghichung_phong`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `TienNghiChung_Phong_fk0` (`IDLoai`);
+
+--
+-- Chỉ mục cho bảng `tiennghi_khachsan`
+--
+ALTER TABLE `tiennghi_khachsan`
+  ADD PRIMARY KEY (`IDKhachSan`,`IDTienNghi`),
+  ADD KEY `TienNghi_KhachSan_fk1` (`IDTienNghi`);
+
+--
+-- Chỉ mục cho bảng `tiennghi_phong`
+--
+ALTER TABLE `tiennghi_phong`
+  ADD PRIMARY KEY (`IDPhong`,`IDTienNghi`),
+  ADD KEY `TienNghi_Phong_fk1` (`IDTienNghi`);
+
+--
+-- Chỉ mục cho bảng `uudai`
+--
+ALTER TABLE `uudai`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Chỉ mục cho bảng `uudai_phong`
+--
+ALTER TABLE `uudai_phong`
+  ADD PRIMARY KEY (`IDPhong`,`IDUuDai`),
+  ADD KEY `UuDai_Phong_fk1` (`IDUuDai`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `danhgia`
+--
+ALTER TABLE `danhgia`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `diadiem`
+--
+ALTER TABLE `diadiem`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+
+--
+-- AUTO_INCREMENT cho bảng `hinhanh_khachsan`
+--
+ALTER TABLE `hinhanh_khachsan`
+  MODIFY `IDKhachSan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT cho bảng `khachsan`
+--
+ALTER TABLE `khachsan`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT cho bảng `khunggio`
+--
+ALTER TABLE `khunggio`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT cho bảng `khuyenmai`
+--
+ALTER TABLE `khuyenmai`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT cho bảng `loaitiennghikhachsan`
+--
+ALTER TABLE `loaitiennghikhachsan`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT cho bảng `loaitiennghiphong`
+--
+ALTER TABLE `loaitiennghiphong`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `nguoidung`
+--
+ALTER TABLE `nguoidung`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT cho bảng `nguoinhanphong`
+--
+ALTER TABLE `nguoinhanphong`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `phong`
+--
+ALTER TABLE `phong`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT cho bảng `taikhoanthanhtoan`
+--
+ALTER TABLE `taikhoanthanhtoan`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `thongtinhuuich`
+--
+ALTER TABLE `thongtinhuuich`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `tiennghichung_ks`
+--
+ALTER TABLE `tiennghichung_ks`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+
+--
+-- AUTO_INCREMENT cho bảng `tiennghichung_phong`
+--
+ALTER TABLE `tiennghichung_phong`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+
+--
+-- AUTO_INCREMENT cho bảng `uudai`
+--
+ALTER TABLE `uudai`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `danhgia`
+--
+ALTER TABLE `danhgia`
+  ADD CONSTRAINT `DanhGia_fk0` FOREIGN KEY (`IDKhachSan`) REFERENCES `khachsan` (`ID`),
+  ADD CONSTRAINT `DanhGia_fk1` FOREIGN KEY (`IDKhachHang`) REFERENCES `nguoidung` (`ID`);
+
+--
+-- Các ràng buộc cho bảng `khachsan`
+--
+ALTER TABLE `khachsan`
+  ADD CONSTRAINT `khachsan_ibfk_1` FOREIGN KEY (`IDChuKhachSan`) REFERENCES `nguoidung` (`ID`),
+  ADD CONSTRAINT `khachsan_ibfk_2` FOREIGN KEY (`IDDiaDiem`) REFERENCES `diadiem` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

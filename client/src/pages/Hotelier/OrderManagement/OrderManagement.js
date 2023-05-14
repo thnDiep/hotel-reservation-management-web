@@ -28,7 +28,9 @@ function HotelTable({ data, option }) {
             backdrop: '#fffff',
         })
     }
-
+    useEffect(() => {
+        localStorage.setItem('paths', ['/Quản lý đơn đặt phòng'])
+    }, [])
     const numberFormat = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND',

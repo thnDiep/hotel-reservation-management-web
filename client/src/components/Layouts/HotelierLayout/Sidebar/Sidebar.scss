@@ -12,6 +12,12 @@
     scrollbar-width: none;
     transition: all 0.3s ease;
     z-index: 200;
+    .logoCks {
+        margin-left: 10px;
+        margin-right: 14px;
+        width: 30px;
+        height: 30px;
+    }
 }
 #sidebar.hide {
     max-width: 60px;

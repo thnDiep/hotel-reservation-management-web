@@ -1,18 +1,19 @@
+import Breadcrumb from '~/components/Breadcrumb/Breadcrumb'
 import styles from './Header.module.scss'
 const Header = ({ onClick }) => {
     return (
         <nav>
             <i onClick={onClick} className={`bx bx-menu ${styles['toggle-sidebar']}`} />
             {/* <span className={styles['form-group']}>Home</span> */}
-            <ol className={`${styles['form-group']} breadcrumb`}>
+            <Breadcrumb />
+            {/* <ol className={`${styles['form-group']} breadcrumb`}>
                 <li className="breadcrumb-item">
-                    <a href="#">Quản lý khách sạn</a>
+                    <span>Quản lý khách sạn</span>
                 </li>
-
                 <li className="breadcrumb-item active" aria-current="page">
                     Thêm khách sạn
                 </li>
-            </ol>
+            </ol> */}
             {/* <a href="/" className={styles['nav-link']}>
                 <i className={`bx bxs-bell ${styles.icon}`}></i>
                 <span className="badge">5</span>

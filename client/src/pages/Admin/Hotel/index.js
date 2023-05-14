@@ -39,18 +39,8 @@ function Hotel() {
                 {
                     name: 'Duyệt',
                     handle: function (idActive) {
-                        const hotelActive = data.hotels.find((key) => key.ID === idActive)
-                        hotelActive.TrangThai = 1
-
-                        const ChuKhachSan = hotelActive.ChuKhachSan
-                        const DanhGia = hotelActive.DanhGia
-                        const HinhAnh = hotelActive.HinhAnh
-
-                        delete hotelActive.ChuKhachSan
-                        delete hotelActive.DanhGia
-                        delete hotelActive.HinhAnh
-
-                        updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh)
+                        handleActiveHotel(idActive)
+                        // updateHotel(hotelActive)
                     },
                 },
                 {
@@ -64,17 +54,8 @@ function Hotel() {
                 {
                     name: 'Gỡ khóa',
                     handle: function (idActive) {
-                        const hotelActive = data.hotels.find((key) => key.ID === idActive)
-                        hotelActive.TrangThai = 1
-
-                        const ChuKhachSan = hotelActive.ChuKhachSan
-                        const DanhGia = hotelActive.DanhGia
-                        const HinhAnh = hotelActive.HinhAnh
-
-                        delete hotelActive.ChuKhachSan
-                        delete hotelActive.DanhGia
-                        delete hotelActive.HinhAnh
-                        updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh)
+                        handleActiveHotel(idActive)
+                        // updateHotel(hotelActive)
                     },
                 },
             ])
@@ -86,6 +67,7 @@ function Hotel() {
             khachsan: hotelActive,
         })
             .then(() => {
+                console.log(hotelActive)
                 setShowInformModal(true)
 
                 window.setTimeout(function () {
@@ -110,6 +92,22 @@ function Hotel() {
                 console.log(error)
                 setShowConformModal(false)
             })
+    }
+
+    function handleActiveHotel(idActive) {
+        const hotelActive = data.hotels.find((key) => key.ID === idActive)
+
+        hotelActive.TrangThai = 1
+
+        const ChuKhachSan = hotelActive.ChuKhachSan
+        const DanhGia = hotelActive.DanhGia
+        const HinhAnh = hotelActive.HinhAnh
+
+        delete hotelActive.ChuKhachSan
+        delete hotelActive.DanhGia
+        delete hotelActive.HinhAnh
+
+        updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh)
     }
 
     function handleBlockHotel() {

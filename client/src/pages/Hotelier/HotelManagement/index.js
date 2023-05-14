@@ -74,6 +74,7 @@ const HotelManagement = () => {
         }
         // }
     }, [data])
+
     function handleDeleteHotel() {
         axios
             .get('http://localhost:8800/cks/hotel/del', { params: { idKhachSan: hotelActive.ID } })

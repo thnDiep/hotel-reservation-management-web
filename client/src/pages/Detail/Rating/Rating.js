@@ -2,7 +2,14 @@ import React from 'react'
 import classes from './Rating.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faPencil, faUmbrellaBeach } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components'
 const Rating = ({ feedback, infor }) => {
+    const Bar50 = styled.div`
+        width: ${(props) => props.percent}%;
+        height: 9px;
+        background-color: rgb(255, 51, 102);
+        border-radius: 20px;
+    `
     return (
         <div className={`container-fluid px-1 py-5 mx-auto `}>
             <div className={classes.cmt}>Đánh giá</div>
@@ -26,46 +33,46 @@ const Rating = ({ feedback, infor }) => {
                                 <td className={classes['rating-label']}>Tuyệt vời</td>
                                 <td className={classes['rating-bar']}>
                                     <div className={classes['bar-container0']}>
-                                        <div className={classes['bar-50']}></div>
+                                        <Bar50 percent={infor.perfectPercent}></Bar50>
                                     </div>
                                 </td>
-                                <td className={classes.figure}>123</td>
+                                <td className={classes.figure}>{infor.perfect}</td>
                             </tr>
                             <tr>
                                 <td className={classes['rating-label']}>Xuất sắc</td>
                                 <td className={classes['rating-bar']}>
                                     <div className={classes['bar-container']}>
-                                        <div className={classes['bar-40']}></div>
+                                        <Bar50 percent={infor.execellentPercent}></Bar50>
                                     </div>
                                 </td>
-                                <td className={classes.figure}>23</td>
+                                <td className={classes.figure}>{infor.execellent}</td>
                             </tr>
                             <tr>
                                 <td className={classes['rating-label']}>Tốt</td>
                                 <td className={classes['rating-bar']}>
                                     <div className={classes['bar-container']}>
-                                        <div className={classes['bar-30']}></div>
+                                        <Bar50 percent={infor.goodPercent}></Bar50>
                                     </div>
                                 </td>
-                                <td className={classes.figure}>10</td>
+                                <td className={classes.figure}>{infor.good}</td>
                             </tr>
                             <tr>
                                 <td className={classes['rating-label']}>Trung bình</td>
                                 <td className={classes['rating-bar']}>
                                     <div className={classes['bar-container']}>
-                                        <div className={classes['bar-20']}></div>
+                                        <Bar50 percent={infor.mediumPercent}></Bar50>
                                     </div>
                                 </td>
-                                <td className={classes.figure}>3</td>
+                                <td className={classes.figure}>{infor.medium}</td>
                             </tr>
                             <tr>
                                 <td className={classes['rating-label']}>Kém</td>
                                 <td className={classes['rating-bar']}>
                                     <div className={classes['bar-container']}>
-                                        <div className={classes['bar-10']}></div>
+                                        <Bar50 percent={infor.badPercent}></Bar50>
                                     </div>
                                 </td>
-                                <td className={classes.figure}>0</td>
+                                <td className={classes.figure}>{infor.bad}</td>
                             </tr>
                         </tbody>
                     </table>
