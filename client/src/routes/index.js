@@ -28,8 +28,13 @@ export const publicRoutes = [
     { path: '/', component: Home, layout: HomeLayout },
     { path: '/detail', component: Detail },
     { path: '/listByPlace', component: ListByPlace },
+
+    // Checkout
     { path: '/checkout/:id', component: Checkout, layout: HomeLayout },
+    { path: '/checkout', component: Checkout, layout: HomeLayout },
     { path: '/checkout/success', component: SuccessCheckOut, layout: HomeLayout },
+    { path: '/checkout/QRPay/:id', component: QrPay, layout: QrPayLayout },
+    { path: '/checkout/QRPay', component: QrPay, layout: QrPayLayout },
 
     // Hotel
     { path: '/hotels/detail/:id', component: Detail },
@@ -43,7 +48,6 @@ export const publicRoutes = [
     { path: '/profile/wish-list', component: Wishlist, layout: HomeLayout },
     { path: '/profile/order/comment', component: CommentAboutHotel, layout: null },
 
-    { path: '/qrPay', component: QrPay, layout: QrPayLayout },
     { path: '/registerPartner', component: RegisterPartner, layout: null },
     { path: '/login', component: Login, layout: null },
     { path: '/signUp', component: SignUp, layout: null },
@@ -60,6 +64,7 @@ export const publicRoutes = [
     { path: '/cks/addHotel/:active/:id', component: AddHotel, layout: HotelierLayout },
     { path: '/cks/addRoom/:active/:id', component: AddRoom, layout: HotelierLayout },
     { path: '/cks/addRoom/:active', component: AddRoom, layout: HotelierLayout },
+    { path: '/cks', component: HotelManagement, layout: HotelierLayout },
 
     // Hotelier - Voucher - Add
     { path: '/cks/voucher/add/:active/:id', component: AddPromotion, layout: HotelierLayout },
@@ -75,6 +80,8 @@ export const publicRoutes = [
     { path: '/admin/account/blocked', component: BlockedAccount, layout: ManageLayout },
     { path: '/admin/account/active', component: ActiveAccount, layout: ManageLayout },
     { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
+    { path: '/admin', component: HotelAdmin, layout: ManageLayout },
 
+    // Not Found
     { path: '/*', component: NotFound, layout: null },
 ]

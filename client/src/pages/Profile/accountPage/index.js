@@ -8,6 +8,8 @@ import Axios from 'axios'
 function Account() {
     const [err, setErr] = useState({ name: ' ', email: ' ' })
     const [data, setData] = useState({})
+    const [file, setFile] = useState()
+    const fileInput = useRef(null)
     useEffect(() => {
         Axios.get('http://localhost:8800/profile', { params: { ID: 4 } })
             .then((response) => {
@@ -60,6 +62,33 @@ function Account() {
         }
     }
 
+    function handleChangeImage(e) {
+        setFile(e.target.value)
+        const PRESET_NAME = 'ml_default'
+        const CLOUD_NAME = 'dzawgnpm9'
+        const FOLDER_NAME = 'khachsan'
+        const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
+        const formData = new FormData()
+        formData.append('upload_preset', PRESET_NAME)
+        formData.append('folder', FOLDER_NAME)
+        formData.append('file', e.target.files[0])
+        Axios.post(api, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+            .then((res) => {
+                // console.log('push anh: ', res.data.url)
+                setData({ ...data, HinhAnh: res.data.url })
+                // console('Hình ảnh: ', res.data.url)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+        console.log(data.HinhAnh)
+    }
+
     function handleSubmit() {
         var noticeOfName = document.getElementById('noticeForFieldName').value
         var noticeOfEmail = document.getElementById('noticeForFieldEmail').value
@@ -78,9 +107,27 @@ function Account() {
         <Profile>
             <div className={styles.formInformation}>
                 {/* avatar */}
-                <div>
-                    <img src={data.HinhAnh} alt="avata" className={styles.profileAvt} />
+                <div className={styles.avatar} id="avatar">
+                    <div id="preview" className={styles.preview}>
+                        <img src={data.HinhAnh} id="avatar-image" className={styles.avatarImage} />
+                    </div>
+                    <div className={styles.avatarUpload}>
+                        <label className={styles.uploadLabel}>
+                            Upload
+                            <input
+                                type="file"
+                                id="upload"
+                                className={styles.upload}
+                                // value={file}
+                                ref={fileInput}
+                                onChange={(e) => handleChangeImage(e)}
+                            />
+                        </label>
+                    </div>
                 </div>
+                {/* <div>
+                    <img src={data.HinhAnh} alt="avata" className={styles.profileAvt} />
+                </div> */}
                 {/* Thong tin ca nhan */}
                 <div className={styles.information}>
                     {/* Ho ten */}
@@ -157,7 +204,7 @@ function Account() {
                         Lưu lại
                     </button>
                     {/* Modal */}
-                    <div id="myModal" class="modal">
+                    <div id="myModal" className="modal">
                         {/* <!-- Modal content --> */}
                         <div className={styles.modalContent}>
                             <span className={styles.close} onClick={closeModal}>

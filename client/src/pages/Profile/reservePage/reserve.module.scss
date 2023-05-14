@@ -44,12 +44,8 @@
 }
 
 .wrapOfInfoCard {
-    // margin-top: 50px;
-    // margin-left: 100px;
-    // width: 85%;
     margin-bottom: 20px;
     border-radius: 5px;
-    // margin: 0 auto;
     color: #1a202c;
     display: flex;
     padding: 12px 16px;
@@ -63,7 +59,6 @@
 
     &:hover {
         box-shadow: 3px 3px 10px rgb(190, 190, 190);
-        // width: 80%;
         color: black;
         cursor: pointer;
     }
@@ -71,31 +66,22 @@
 
 .headerCard {
     display: flex;
-    // padding-right: 30px;
-    // padding-top: 5px;
-    justify-content: space-between;
-    // margin-bottom: 5px;
-    // background-color: #fafcff;
+    justify-content: space-between;    
     border-radius: 10px 10px 0 0;
-    // box-shadow: 1px 1px;
-    // margin-left: 10px;
+    
 }
 .lineCard {
     width: calc(100% + 32px);
     margin: 12px -16px;
     height: 1px;
-    // margin: 12px 0;
+    
     background-color: #edf2f7;
-    // position: relative;
-    // left: -16px;
 }
+
 .footerCard {
-    // background-color: #fafcff;
     border-radius: 0 0 10px 10px;
-    // padding-top: 10px;
     display: flex;
     box-shadow: 1px;
-    // box-shadow: 1px 1px;
 
     .title {
         font-size: 18px;
@@ -118,6 +104,7 @@
     .datesOfReserve {
         padding-right: 20px;
     }
+
 }
 
 .codeOrderFrame {
@@ -133,6 +120,7 @@
     height: 100px;
     border-radius: 10px;
     margin-right: 20px;
+    min-width: 175px;
     // margin: 0 20px 20px 20px;
 }
 
@@ -219,3 +207,5 @@
 p {
     margin: 0;
 }
+
+

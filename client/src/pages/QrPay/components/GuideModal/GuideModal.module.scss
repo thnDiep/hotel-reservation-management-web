@@ -28,8 +28,8 @@
         margin: auto;
         justify-content: center;
         align-items: center;
-        width: 28px;
-        height: 28px;
+        width: 32px;
+        height: 32px;
         color: #21262c;
         background-color: #eaedf1;
         border-radius: 100px;
@@ -40,7 +40,7 @@
             &::after {
                 content: '';
                 width: 1px;
-                height: 71px;
+                height: 66px;
                 color: #21262c;
                 background-color: #eaedf1;
                 position: absolute;
@@ -57,8 +57,8 @@
             }
             &::before {
                 content: '';
-                width: 36px;
-                height: 36px;
+                width: 40px;
+                height: 40px;
                 border-radius: 100px;
                 border: 1px solid var(--primary-color);
                 position: absolute;

@@ -107,7 +107,8 @@ const Detail = () => {
                 setHotel(response.data)
                 console.log('chi tiết khách sạn: ', response.data)
                 if (data) {
-                    setSimilarHotels(data.hotels.filter((item) => item.IDDiaDiem === response.data.infor.IDDiaDiem))
+                    const hotels = data.hotels.filter((item) => item.IDDiaDiem === response.data.infor.IDDiaDiem)
+                    setSimilarHotels(hotels.filter((item) => item.TrangThai === 1))
                 }
                 window.scrollTo(0, 0)
             })

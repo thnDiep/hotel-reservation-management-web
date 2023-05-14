@@ -71,7 +71,7 @@ router.post("/removeFromWishList", async (req, res, next) => {
 
 router.get("/wishlist", async (req, res, next) => {
   try {
-    const id = req.body.ID || 4;
+    const id = req.query.ID || 4;
     const wishlist = await wishListModel.getWishList(id);
     res.json(wishlist);
   } catch (err) {
@@ -81,8 +81,18 @@ router.get("/wishlist", async (req, res, next) => {
 
 router.get("/order", async (req, res, next) => {
   try {
-    const id = req.body.ID || 4;
+    const id = req.query.ID || 4;
     const order = await orderModel.getOrder(id);
+    res.json(order);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/order/qr", async (req, res, next) => {
+  try {
+    const id = req.query.ID || 4;
+    const order = await orderModel.getOrderByOrderCode(id);
     res.json(order);
   } catch (err) {
     next(err);

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Axios from 'axios'
 import styles from './HeartButton.module.scss'
-import { useEffect } from 'react'
 
 function HeartButton({ liked, IDKhachSan, handleClick }) {
     const [isLike, setIsLike] = useState(liked)
@@ -15,15 +14,11 @@ function HeartButton({ liked, IDKhachSan, handleClick }) {
             console.log(isLike)
             if (!isLike) {
                 Axios.post('http://localhost:8800/profile/addToWishList', { data })
-                    .then(() => {
-                        alert('them vao ds yeu thich thanh cong')
-                    })
+                    .then(() => {})
                     .catch((error) => console.log(error))
             } else {
                 Axios.post('http://localhost:8800/profile/removeFromWishList', { data })
-                    .then(() => {
-                        alert('xoa khoi ds yeu thich thanh cong')
-                    })
+                    .then(() => {})
                     .catch((error) => console.log(error))
             }
         }
