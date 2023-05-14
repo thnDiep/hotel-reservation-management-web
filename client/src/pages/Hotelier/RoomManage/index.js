@@ -42,6 +42,7 @@ const RoomManage = () => {
             for (const hotel of data.hotels) {
                 optionHotel1.push({ value: hotel, label: hotel.Ten })
             }
+            console.log(optionHotel1)
             setOptionHotel(optionHotel1)
             setHotel(optionHotel1[0])
             setOption([

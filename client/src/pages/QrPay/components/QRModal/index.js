@@ -23,7 +23,7 @@ function QRModal(props) {
                             <h6 className={styles.subTitle}>Số tiền thanh toán</h6>
                             {props.total && (
                                 <h3 className={clsx(styles.text, styles.primary)}>
-                                    {props.total.toString().toLocaleString()} <sup>VND</sup>
+                                    {props.total.toLocaleString()} <sup>VND</sup>
                                 </h3>
                             )}
                         </div>
