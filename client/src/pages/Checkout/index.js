@@ -9,7 +9,7 @@ import { useContext } from 'react'
 import DataContext from '~/contexts/DataContext'
 import { useEffect } from 'react'
 import Star from '~/components/Star/Star'
-
+import moment from 'moment'
 const inputReducer = (state, action) => {
     let regex
     let errorText
@@ -36,6 +36,10 @@ const inputReducer = (state, action) => {
     }
     return { value: value, isValid: false, error: '', type: state.type }
 }
+
+const formatMoney = (amount) => {
+    return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
+}
 const Checkout = () => {
     const user = JSON.parse(localStorage.getItem('user'))
     const { id } = useParams()
@@ -44,17 +48,32 @@ const Checkout = () => {
     const [room, setRoom] = useState()
     useEffect(() => {
         if (data) {
-            console.log('checkout')
             const room = data.rooms.find((room) => room.ID === +id)
-
             const hotel = data.hotels.find((hotel) => hotel.ID === +room.IDKhachSan)
-            console.log(hotel)
+            room.GiamGia = room.Gia - (room.Gia * hotel.GiamGia) / 100
+
+            const voucher = data.promotions
+                .filter((voucher) => {
+                    const now = moment()
+                    const isBetween = now.isBetween(moment(voucher.BatDau), moment(voucher.KetThuc))
+                    const checkIDKS = hotel.ID === voucher.IDKhachSan
+                    const checkSLSD = voucher.SoLuongSD <= voucher.SoLuongKM
+                    const checkKG = voucher.IDKhungGio === null
+                    return isBetween && checkIDKS && checkSLSD && checkKG
+                })
+                .sort((a, b) => b.PhanTramKM - a.PhanTramKM)[0]
+            if (!voucher) {
+                hotel.voucher = null // hoặc return {}
+            } else {
+                hotel.voucher = voucher
+                room.voucher = room.GiamGia - (room.GiamGia * hotel.voucher.PhanTramKM) / 100
+                room.Thue = room.voucher + room.voucher * 0.1
+            }
             hotel.HinhAnh = data.hotelImages.find((HinhAnh) => HinhAnh.IDKhachSan === +hotel.ID).HinhAnh
             setHotel(hotel)
             setRoom(room)
         }
     }, [data])
-    console.log(user)
     const [selectedPayment, setSelectedPayment] = useState('')
     const [check, setCheck] = useState(false)
     const handleCheckboxChange = (event) => {
@@ -95,21 +114,18 @@ const Checkout = () => {
         dispatchEmail({ type: 'input_blur' })
     }
     const phoneChangeHandler = (event) => {
-        console.log('helo')
         dispatchPhone({ type: 'User_input', val: event.target.value }) // kichs hoat ham phoneReducer
     }
     const validatePhoneHandler = () => {
         dispatchPhone({ type: 'input_blur' })
     }
     const nameChangeHandler = (event) => {
-        console.log('helo')
         dispatchName({ type: 'User_input', val: event.target.value }) // kichs hoat ham phoneReducer
     }
     const validateNameHandler = () => {
         dispatchName({ type: 'input_blur' })
     }
     const nameRecieveChangeHandler = (event) => {
-        console.log('helo')
         dispatchNameRecieve({ type: 'User_input', val: event.target.value }) // kichs hoat ham phoneReducer
     }
     const validateNameRecieveHandler = () => {
@@ -252,78 +268,80 @@ const Checkout = () => {
                                 )}
                             </div>
                         </form>
-                        <div className={styles.infor__sale}>
-                            <div className={styles.saleLabel}>
-                                <svg width="36" height="34" fill="none" style={{ marginRight: '12px' }}>
-                                    <g filter="url(#icon_promo_code_svg__filter0_d)">
-                                        <path
-                                            d="M30.25 6H13.625a.881.881 0 00-.62.255l-1.13 1.133-1.13-1.133a.881.881 0 00-.62-.255H5.75C4.786 6 4 6.786 4 7.75V23.5c0 .966.786 1.75 1.75 1.75h4.375a.882.882 0 00.62-.256l1.13-1.132 1.13 1.13a.876.876 0 00.62.258H30.25A1.75 1.75 0 0032 23.5V7.75C32 6.786 31.216 6 30.25 6z"
-                                            fill="url(#icon_promo_code_svg__paint0_linear)"
-                                        ></path>
-                                        <path
-                                            d="M18.875 14.75a2.628 2.628 0 01-2.625-2.625A2.628 2.628 0 0118.875 9.5a2.628 2.628 0 012.625 2.625 2.628 2.628 0 01-2.625 2.625zm0-3.5a.875.875 0 100 1.75.875.875 0 000-1.75zM24.125 21.75a2.628 2.628 0 01-2.625-2.625 2.628 2.628 0 012.625-2.625 2.628 2.628 0 012.625 2.625 2.628 2.628 0 01-2.625 2.625zm0-3.5a.878.878 0 00-.875.875c0 .481.394.875.875.875a.878.878 0 00.875-.875.878.878 0 00-.875-.875zM17.125 21.75a.875.875 0 01-.672-1.435l8.75-10.5a.876.876 0 011.232-.112c.37.31.42.861.11 1.234l-8.75 10.5a.875.875 0 01-.67.313zM12.75 9.5H11v1.75h1.75V9.5zM12.75 20H11v1.75h1.75V20zM12.75 16.5H11v1.75h1.75V16.5zM12.75 13H11v1.75h1.75V13z"
-                                            fill="#fff"
-                                        ></path>
-                                    </g>
-                                    <defs>
-                                        <linearGradient
-                                            id="icon_promo_code_svg__paint0_linear"
-                                            x1="18"
-                                            y1="6"
-                                            x2="18"
-                                            y2="25.25"
-                                            gradientUnits="userSpaceOnUse"
-                                        >
-                                            <stop stopColor="#5BD68E"></stop>
-                                            <stop offset="1" stopColor="#48BB78"></stop>
-                                        </linearGradient>
-                                        <filter
-                                            id="icon_promo_code_svg__filter0_d"
-                                            x="-2"
-                                            y="0"
-                                            width="40"
-                                            height="40"
-                                            filterUnits="userSpaceOnUse"
-                                            colorInterpolationFilters="sRGB"
-                                        >
-                                            <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-                                            <feColorMatrix
-                                                in="SourceAlpha"
-                                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                            ></feColorMatrix>
-                                            <feOffset dy="4"></feOffset>
-                                            <feGaussianBlur stdDeviation="2"></feGaussianBlur>
-                                            <feColorMatrix values="0 0 0 0 0.305882 0 0 0 0 0.764706 0 0 0 0 0.501961 0 0 0 0.15 0"></feColorMatrix>
-                                            <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
-                                            <feBlend
-                                                in="SourceGraphic"
-                                                in2="effect1_dropShadow"
-                                                result="shape"
-                                            ></feBlend>
-                                        </filter>
-                                    </defs>
-                                </svg>
-                                <div>Mã giảm giá</div>
-                            </div>
-                            <div className={styles.saleName}>
-                                <div className={styles.saleNameLabel}>
-                                    <div className={styles.nameLabelColumn}>
-                                        <div className={styles.nameLabelColumnIcon}></div>
-                                        <div className={styles.nameLabelColumnIcon}></div>
-                                        <div className={styles.nameLabelColumnIcon}></div>
-                                        <div className={styles.nameLabelColumnIcon}></div>
-                                        <div className={styles.nameLabelColumnIcon}></div>
-                                    </div>
-                                    <div className={styles.nameLabelIcon}>
-                                        <FontAwesomeIcon icon={faCheckCircle} />
-                                    </div>
-                                    <div className={styles.nameLabelTitle}>CHAOHE2023</div>
+                        {hotel.voucher && (
+                            <div className={styles.infor__sale}>
+                                <div className={styles.saleLabel}>
+                                    <svg width="36" height="34" fill="none" style={{ marginRight: '12px' }}>
+                                        <g filter="url(#icon_promo_code_svg__filter0_d)">
+                                            <path
+                                                d="M30.25 6H13.625a.881.881 0 00-.62.255l-1.13 1.133-1.13-1.133a.881.881 0 00-.62-.255H5.75C4.786 6 4 6.786 4 7.75V23.5c0 .966.786 1.75 1.75 1.75h4.375a.882.882 0 00.62-.256l1.13-1.132 1.13 1.13a.876.876 0 00.62.258H30.25A1.75 1.75 0 0032 23.5V7.75C32 6.786 31.216 6 30.25 6z"
+                                                fill="url(#icon_promo_code_svg__paint0_linear)"
+                                            ></path>
+                                            <path
+                                                d="M18.875 14.75a2.628 2.628 0 01-2.625-2.625A2.628 2.628 0 0118.875 9.5a2.628 2.628 0 012.625 2.625 2.628 2.628 0 01-2.625 2.625zm0-3.5a.875.875 0 100 1.75.875.875 0 000-1.75zM24.125 21.75a2.628 2.628 0 01-2.625-2.625 2.628 2.628 0 012.625-2.625 2.628 2.628 0 012.625 2.625 2.628 2.628 0 01-2.625 2.625zm0-3.5a.878.878 0 00-.875.875c0 .481.394.875.875.875a.878.878 0 00.875-.875.878.878 0 00-.875-.875zM17.125 21.75a.875.875 0 01-.672-1.435l8.75-10.5a.876.876 0 011.232-.112c.37.31.42.861.11 1.234l-8.75 10.5a.875.875 0 01-.67.313zM12.75 9.5H11v1.75h1.75V9.5zM12.75 20H11v1.75h1.75V20zM12.75 16.5H11v1.75h1.75V16.5zM12.75 13H11v1.75h1.75V13z"
+                                                fill="#fff"
+                                            ></path>
+                                        </g>
+                                        <defs>
+                                            <linearGradient
+                                                id="icon_promo_code_svg__paint0_linear"
+                                                x1="18"
+                                                y1="6"
+                                                x2="18"
+                                                y2="25.25"
+                                                gradientUnits="userSpaceOnUse"
+                                            >
+                                                <stop stopColor="#5BD68E"></stop>
+                                                <stop offset="1" stopColor="#48BB78"></stop>
+                                            </linearGradient>
+                                            <filter
+                                                id="icon_promo_code_svg__filter0_d"
+                                                x="-2"
+                                                y="0"
+                                                width="40"
+                                                height="40"
+                                                filterUnits="userSpaceOnUse"
+                                                colorInterpolationFilters="sRGB"
+                                            >
+                                                <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
+                                                <feColorMatrix
+                                                    in="SourceAlpha"
+                                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                ></feColorMatrix>
+                                                <feOffset dy="4"></feOffset>
+                                                <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                                                <feColorMatrix values="0 0 0 0 0.305882 0 0 0 0 0.764706 0 0 0 0 0.501961 0 0 0 0.15 0"></feColorMatrix>
+                                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                                <feBlend
+                                                    in="SourceGraphic"
+                                                    in2="effect1_dropShadow"
+                                                    result="shape"
+                                                ></feBlend>
+                                            </filter>
+                                        </defs>
+                                    </svg>
+                                    <div>Mã giảm giá</div>
                                 </div>
-                                <div className={styles.saleNameEdit}>
-                                    <FontAwesomeIcon icon={faPen} />
+                                <div className={styles.saleName}>
+                                    <div className={styles.saleNameLabel}>
+                                        <div className={styles.nameLabelColumn}>
+                                            <div className={styles.nameLabelColumnIcon}></div>
+                                            <div className={styles.nameLabelColumnIcon}></div>
+                                            <div className={styles.nameLabelColumnIcon}></div>
+                                            <div className={styles.nameLabelColumnIcon}></div>
+                                            <div className={styles.nameLabelColumnIcon}></div>
+                                        </div>
+                                        <div className={styles.nameLabelIcon}>
+                                            <FontAwesomeIcon icon={faCheckCircle} />
+                                        </div>
+                                        <div className={styles.nameLabelTitle}>{hotel.voucher.MaKhuyenMai}</div>
+                                    </div>
+                                    <div className={styles.saleNameEdit}>
+                                        <FontAwesomeIcon icon={faPen} />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                         <div className={styles.infor__submit}>
                             <p className={styles.nameTitle}>Phương thức thanh toán</p>
                             <p className={styles.inforConfirm}>
@@ -520,32 +538,38 @@ const Checkout = () => {
                                     <span className={styles.priceSale}>
                                         <div className={styles.priceSale1}>
                                             <div className={styles.pricePercent}>-{hotel.GiamGia}%</div>
-                                            <div className={styles.priceSaleOld}>{room.Gia}</div>
+                                            <div className={styles.priceSaleOld}>{formatMoney(room.Gia)}</div>
                                         </div>
-                                        <span>1.800.144 ₫</span>
+                                        <span>{formatMoney(room.GiamGia)}</span>
                                     </span>
                                 </div>
                                 <div className={`${styles.columnFlex} `}>
                                     <span className={styles.priceSale1}>
                                         Mã giảm giá
-                                        <span className={styles.labelSale}>CHAOHE2023</span>
+                                        <span className={styles.labelSale}>{hotel.voucher.MaKhuyenMai}</span>
                                     </span>
-                                    <span className={styles.labelPrice}> -72.005 ₫</span>
+                                    <span className={styles.labelPrice}>
+                                        {' '}
+                                        -{formatMoney((room.GiamGia * hotel.voucher.PhanTramKM) / 100)}
+                                    </span>
                                 </div>
                                 <div className={`${styles.columnFlex} ${styles.afterSale}`}>
                                     <span>Giá sau giảm giá</span>
-                                    <span> 1.728.139 ₫</span>
+                                    <span> {formatMoney(room.voucher)}</span>
                                 </div>
                                 <div className={`${styles.columnFlex} `}>
                                     <span>Thuế và phí dịch vụ khách sạn</span>
-                                    <span> 279.856 ₫</span>
+                                    <span> {formatMoney(room.voucher * 0.1)}</span>
                                 </div>
                                 <div className={`${styles.columnFlex1} `}>
                                     <span>Tổng tiền thanh toán</span>
-                                    <span>2.007.995 ₫</span>
+                                    <span>{formatMoney(room.Thue)}</span>
                                 </div>
                                 <div className={styles.vat}>Đã bao gồm thuế, phí, VAT</div>
-                                <div className={styles.congratulation}>Chúc mừng! Bạn đã tiết kiệm được 72.005 ₫</div>
+                                <div className={styles.congratulation}>
+                                    Chúc mừng! Bạn đã tiết kiệm được{' '}
+                                    {formatMoney((room.GiamGia * hotel.voucher.PhanTramKM) / 100)}
+                                </div>
                             </div>
                         </div>
                     </div>

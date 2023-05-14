@@ -2,40 +2,53 @@ import React from 'react'
 import './Sidebar.scss'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useEffect } from 'react'
 const Sidebar = ({ checkHide }) => {
     const [select, setSelect] = useState(1)
     const handleSelect = (value) => {
+        localStorage.setItem('activeCKS', value)
         setSelect(value)
     }
+    useEffect(() => {
+        setSelect(+localStorage.getItem('activeCKS'))
+    }, [])
     const chooses = [
         {
             id: 1,
             name: 'Quản lý khách sạn',
+            icon: <i className="fas fa-hotel icon"></i>,
             link: '/cks/manageHotel',
         },
         {
             id: 2,
             name: 'Quản lý phòng',
+            icon: <i className="fas fa-person-booth icon"></i>,
             link: '/cks/manage-room',
         },
         {
             id: 3,
             name: 'Quản lý đơn đặt phòng',
+            icon: <i className="fas fa-receipt icon"></i>,
             link: '/cks/manageOrder',
         },
         {
             id: 4,
             name: 'Quản lý khuyến mãi',
+            icon: <i className="fas fa-ticket-alt icon"></i>,
             link: '/cks/voucher',
         },
     ]
     return (
         <section id="sidebar" className={`${checkHide && 'hide'}`}>
             <Link to="/" className="brand">
-                <i className="bx bxs-smile icon"></i> AdminSite
+                <img
+                    className="logoCks"
+                    alt=""
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
+                />{' '}
+                myTravel
             </Link>
             <ul className="side-menu">
-
                 {chooses.map((choose) => {
                     return (
                         <li key={choose.id}>
@@ -44,7 +57,7 @@ const Sidebar = ({ checkHide }) => {
                                 to={choose.link}
                                 className={`${select === choose.id && 'active'}`}
                             >
-                                <i className="bx bxs-inbox icon"></i> {choose.name}
+                                {choose.icon} {choose.name}
                             </Link>
                         </li>
                     )
