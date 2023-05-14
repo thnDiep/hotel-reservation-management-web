@@ -125,9 +125,6 @@ function Login() {
                     </button>
 
                     <p className={styles.title3}>
-                        {/* <p>
-                            <a className={styles.ggLink}>Đăng nhập bằng Google</a>
-                        </p> */}
                         Bạn không có tài khoản?
                         <NavLink to="/signUp">
                             <span className={styles.signUpLink}>Đăng ký</span>

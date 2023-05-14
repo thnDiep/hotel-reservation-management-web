@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faCheckCircle, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { ButtonPrimary } from '~/components'
 import clsx from 'clsx'
 import moment from 'moment'
 import styles from './orderResult.module.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import Axios from 'axios'
 import Star from '~/components/Star/Star'
 
 function OrderResult() {
     const [data, setData] = useState()
+    const { id } = useParams()
     useEffect(() => {
-        Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: 5743539 } })
+        Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: id } })
             .then((response) => {
                 setData(response.data)
             })
@@ -28,6 +29,7 @@ function OrderResult() {
                         <img
                             className={styles.checkIcon}
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Eo_circle_yellow_checkmark.svg/1200px-Eo_circle_yellow_checkmark.svg.png"
+                            alt="Icon xác nhận đặt phòng thành công"
                         />
                         <div className={styles.guideline}>
                             <p className={styles.mainTitle}>Đặt phòng thành công</p>
@@ -55,7 +57,10 @@ function OrderResult() {
                                     <span className={styles.subTitle}>Ngân hàng</span>
                                     <div className="d-flex-js">
                                         <span className={styles.title}>{data[0].TenNganHang}</span>
-                                        <img src="https://storage.googleapis.com/tripi-assets/images/banks_list/techcombank_logo.png" />
+                                        <img
+                                            src="https://storage.googleapis.com/tripi-assets/images/banks_list/techcombank_logo.png"
+                                            alt="Logo ngân hàng"
+                                        />
                                     </div>
                                 </div>
 
@@ -93,12 +98,12 @@ function OrderResult() {
                                 </div>
                             </div>
 
-                            <div className={styles.info__part}>
+                            <div className="d-flex align-items-start mt-5">
                                 <span className={styles.subTitle}>Số tiền</span>
                                 <div className="d-flex-column-r">
-                                    <span className={styles.title}>
+                                    <div className={styles.title}>
                                         {data[0].TongTien.toLocaleString()} <sup> &nbsp; ₫</sup>
-                                    </span>
+                                    </div>
                                     <div className={styles.copy}>
                                         <svg width="16" height="16" fill="none">
                                             <path
@@ -121,8 +126,8 @@ function OrderResult() {
                                 </div>
                             </div>
 
-                            <div className={styles.info__part}>
-                                <span className={styles.subTitle}>Nội dung chuyển khoản</span>
+                            <div className="d-flex align-items-start mt-5">
+                                <div className={styles.subTitle}>Nội dung chuyển khoản</div>
                                 <div className="d-flex-column-r">
                                     <span className={styles.title}>THANHTOAN H{data[0].MaDatPhong}</span>
                                     <div className={styles.copy}>
@@ -307,7 +312,10 @@ function OrderResult() {
                                             </div>
                                         </div>
                                         <div className={styles.hotelImage}>
-                                            <img src="https://img.tripi.vn/cdn-cgi/image/width=320/https://www.googleapis.com/download/storage/v1/b/hotel_image/o/logo%2F4%2F736941.jpg?generation=1563772721779376&alt=media" />
+                                            <img
+                                                src="https://img.tripi.vn/cdn-cgi/image/width=320/https://www.googleapis.com/download/storage/v1/b/hotel_image/o/logo%2F4%2F736941.jpg?generation=1563772721779376&alt=media"
+                                                alt="Hình ảnh khách sạn"
+                                            />
                                         </div>
                                     </div>
                                 </div>

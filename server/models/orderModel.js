@@ -130,17 +130,35 @@ export default {
     );
 
     //lấy thông tin khuyến mãi
+    orderInfo[0].GiamGiaKhuyenMai = 0;
+    if (orderInfo[0].IDKhuyenMai === null) {
+      orderInfo[0].IDKhuyenMai = 0;
+    }
     const promotion = await db("khuyenmai").where(
-      "IDKhachSan",
-      hotelInfo[0].ID
+      "ID",
+      orderInfo[0].IDKhuyenMai
     );
 
     if (promotion[0]) {
       orderInfo[0].TenKhuyenMai = promotion[0].MaKhuyenMai;
       orderInfo[0].GiamGiaKhuyenMai =
         -(promotion[0].PhanTramKM / 100) * room[0].Gia;
-    } else {
-      orderInfo[0].GiamGiaKhuyenMai = 0;
+    }
+
+    //lấy thông tin flash sale
+    orderInfo[0].GiamGiaFlashSale = 0;
+    if (orderInfo[0].IDFlashSale === null) {
+      orderInfo[0].IDFlashSale = 0;
+    }
+    const flashsale = await db("khuyenmai").where(
+      "ID",
+      orderInfo[0].IDFlashSale
+    );
+
+    if (flashsale[0]) {
+      orderInfo[0].TieuDeFlashSale = flashsale[0].TieuDe;
+      orderInfo[0].GiamGiaFlashSale =
+        -(flashsale[0].PhanTramKM / 100) * room[0].Gia;
     }
 
     //lấy thông tin tài khoản thanh toán chủ khách sạn
@@ -173,7 +191,8 @@ export default {
       orderInfo[0].PhuPhi +
       orderInfo[0].ThueVaDichVuKhachSan +
       orderInfo[0].GiamThem +
-      orderInfo[0].GiamGiaKhuyenMai;
+      orderInfo[0].GiamGiaKhuyenMai +
+      orderInfo[0].GiamGiaFlashSale;
 
     orderInfo[0].TenLoaiPhong = room[0].TenLoaiPhong;
     orderInfo[0].SoNguoi = room[0].SoNguoi;
