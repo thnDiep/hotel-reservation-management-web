@@ -68,7 +68,15 @@ function Search(props) {
             setNotablePlace(response.data)
         })
     }, [])
-
+    useEffect(() => {
+        if (date && props.setDateDetail !== undefined && number) {
+            props.setDateDetail({
+                number: number.adult.value,
+                startDate: date.startDate,
+                endDate: date.endDate,
+            })
+        }
+    }, [date, number])
     function handleSubmit(tendiadiem) {
         dispatch(changeShow(null))
 
@@ -110,29 +118,40 @@ function Search(props) {
                 console.log(error)
             })
     }
+    const handleSubmitDetail = () => {
+        props.setDateDetail({
+            number: number.adult.value,
+            startDate: date.startDate,
+            endDate: date.endDate,
+        })
+        const roomListContainer = document.getElementById('roomListContainer')
+        roomListContainer.scrollIntoView({ behavior: 'smooth' })
+    }
 
     return (
         <div className={clsx(styles.container, 'd-flex')} ref={wrapperRef}>
-            <div className={styles.place} onClick={() => dispatch(changeShow(1))}>
-                <label htmlFor="placeInput" className={styles.title}>
-                    Địa điểm
-                </label>
-                <br />
-                <input
-                    id="placeInput"
-                    placeholder="Thành phố, khách sạn, điểm đến"
-                    value={place}
-                    onChange={(e) => dispatch(inputPlace(e.target.value))}
-                />
-                {show === 1 && (
-                    <Place
-                        placeHistory={placeHistory}
-                        onClearHistory={() => dispatch(clearPlaceHistory())}
-                        places={notablePlace}
-                        onChoose={handleSubmit}
+            {props.detail === undefined && (
+                <div className={styles.place} onClick={() => dispatch(changeShow(1))}>
+                    <label htmlFor="placeInput" className={styles.title}>
+                        Địa điểm
+                    </label>
+                    <br />
+                    <input
+                        id="placeInput"
+                        placeholder="Thành phố, khách sạn, điểm đến"
+                        value={place}
+                        onChange={(e) => dispatch(inputPlace(e.target.value))}
                     />
-                )}
-            </div>
+                    {show === 1 && (
+                        <Place
+                            placeHistory={placeHistory}
+                            onClearHistory={() => dispatch(clearPlaceHistory())}
+                            places={notablePlace}
+                            onChoose={handleSubmit}
+                        />
+                    )}
+                </div>
+            )}
 
             <div className={styles.dates} onClick={() => dispatch(changeShow(2))}>
                 <div className={styles.date}>
@@ -185,7 +204,11 @@ function Search(props) {
                 )}
             </div>
 
-            <SearchButton onSubmit={() => handleSubmit()} />
+            {props.detail === undefined ? (
+                <SearchButton onSubmit={() => handleSubmit()} />
+            ) : (
+                <SearchButton detail={props.detail} onSubmit={() => handleSubmitDetail()} />
+            )}
         </div>
     )
 }

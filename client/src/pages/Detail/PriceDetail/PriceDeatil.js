@@ -66,7 +66,6 @@ const PriceDetail = ({ infor, types, typesHotel }) => {
             customClass: 'popup-wrapper',
         })
     function scrollToRoomList() {
-        console.log(scrollToRoomList)
         const roomListContainer = document.getElementById('roomListContainer')
         roomListContainer.scrollIntoView({ behavior: 'smooth' })
     }

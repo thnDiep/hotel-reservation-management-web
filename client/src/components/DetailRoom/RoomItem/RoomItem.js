@@ -45,10 +45,8 @@ const RoomItem = (props) => {
                     </div>
                     <div className={classes['BoxContent__left--facilities']}>
                         {props.item.tienNghi.map((data) => {
-                            console.log(data.TenLoai)
                             return data.TenLoai === 'Tiện Nghi' ? (
                                 data.tienNghi.map((tiennghi) => {
-                                    console.log(tiennghi)
                                     return tiennghi === null ? (
                                         <></>
                                     ) : (
