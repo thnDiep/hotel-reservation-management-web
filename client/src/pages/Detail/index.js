@@ -120,9 +120,7 @@ const Detail = () => {
         <React.Fragment>
             <div className={classes.spacing}> </div>
             <Search />
-            {/* <div className={classes.container}>
-                <ImageHotel />
-            </div> */}
+
             {hotel && (
                 <>
                     <div className={classes.subContainer}>
@@ -168,6 +166,7 @@ const Detail = () => {
                         </div>
                     </div>
                     <hr className={classes.spacing2} />
+                    <Search />
                     <div id="roomListContainer">
                         <RoomsList rooms={hotel.rooms} />
                     </div>

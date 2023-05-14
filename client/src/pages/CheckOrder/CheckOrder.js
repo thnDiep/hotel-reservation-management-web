@@ -6,6 +6,9 @@ import { ButtonPrimary } from '~/components'
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
 
 const CheckOrder = () => {
     const Nav = useNavigate()
@@ -21,7 +24,7 @@ const CheckOrder = () => {
     })
 
     useEffect(() => {
-        const filter = /^[A-Z]\d{7}$/
+        const filter = /^\d{7}$/
         if (data.isValid === true) {
             const identifier = setTimeout(() => {
                 if (data.code.length === 0) {
@@ -68,9 +71,13 @@ const CheckOrder = () => {
                 MaDatPhong: data.code,
                 SoDienThoai: data.phone,
             })
-            Nav('/profile/order')
+            if (res.status === 200) {
+                await Swal.fire('Đã tìm thấy đơn đặt hàng', 'Nhấn nút để xem', 'success')
+                Nav(`/profile/order/${data.code}`, { id: data.code })
+            }
         } catch (err) {
             console.log('sai')
+            await Swal.fire('Không tìm thấy đơn đặt hàng', 'Nhấn nút để tiếp tục tìm kiếm', 'error')
         }
     }
     return (
