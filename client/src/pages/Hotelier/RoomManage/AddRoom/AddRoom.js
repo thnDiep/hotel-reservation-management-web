@@ -7,6 +7,8 @@ import AddMultiple from '~/components/AddMultiple/AddMultiple'
 import { NumericFormat } from 'react-number-format'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 const AddRoom = () => {
     const { active, id } = useParams()
     console.log(active)
@@ -56,6 +58,7 @@ const AddRoom = () => {
     const handlePrev = () => {
         if (selectedSite > 1) setSelectedSite(selectedSite - 1)
     }
+    const [showInformModal, setShowInformModal] = useState(false)
     const [data, setData] = useState(null)
     //image
     const [selectedFiles, setSelectedFiles] = useState([])
@@ -66,7 +69,7 @@ const AddRoom = () => {
     const [tienNghi, setTienNghi] = useState(null)
     const [uuDai, setUuDai] = useState(null)
     useEffect(() => {
-        console.log('fsdfsdf')
+        localStorage.setItem('paths', [`/Quản lý phòng/${id ? 'Chỉnh sửa' : 'Thêm phòng'}`])
         axios
             .get('http://localhost:8800/cks/room/facility')
             .then((response) => {
@@ -82,6 +85,7 @@ const AddRoom = () => {
             })
             .catch((error) => {})
     }, [])
+
     const handleChangeTienNghi = (tienNghi) => {
         setTienNghi(tienNghi)
     }
@@ -143,7 +147,12 @@ const AddRoom = () => {
                 tienNghi: IDTienNghi,
                 uuDai: IDUuDai,
             })
-            Nav('/cks/manage-room')
+            setShowInformModal(true)
+
+            window.setTimeout(function () {
+                setShowInformModal(false)
+                Nav('/cks/manage-room')
+            }, 1500)
         } catch (err) {
             console.log('sai')
         }
@@ -395,6 +404,20 @@ const AddRoom = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Thông báo thành công */}
+            {showInformModal && (
+                <div id="myModal" className="myModal1">
+                    {/* <!-- Modal content --> */}
+                    <div className="modalContent">
+                        <FontAwesomeIcon icon={faCheckCircle} className="modalIcon" />
+                        <div>
+                            {!id && 'Thêm thành công'}
+                            {id && 'Lưu thành công'}
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     )
 }

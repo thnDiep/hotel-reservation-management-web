@@ -32,7 +32,9 @@ const RoomManage = () => {
     const [showStopModal, setShowStopModal] = useState(false)
     const { data, handleData } = useContext(DataContext)
     const [errorMessage, setErrorMessage] = useState({ value: '', check: false })
-
+    useEffect(() => {
+        localStorage.setItem('paths', ['/Quản lý phòng'])
+    }, [])
     useEffect(() => {
         // if (hotels) {
         // console.log(hotel)
