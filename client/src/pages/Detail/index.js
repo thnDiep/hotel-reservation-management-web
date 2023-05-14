@@ -166,7 +166,7 @@ const Detail = () => {
                         </div>
                     </div>
                     <hr className={classes.spacing2} />
-                    <Search />
+
                     <div id="roomListContainer">
                         <RoomsList rooms={hotel.rooms} />
                     </div>
