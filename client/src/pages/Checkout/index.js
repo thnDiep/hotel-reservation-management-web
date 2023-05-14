@@ -10,6 +10,11 @@ import DataContext from '~/contexts/DataContext'
 import { useEffect } from 'react'
 import Star from '~/components/Star/Star'
 import moment from 'moment'
+import '@fortawesome/fontawesome-free'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas)
+
 const inputReducer = (state, action) => {
     let regex
     let errorText
@@ -20,7 +25,8 @@ const inputReducer = (state, action) => {
         regex = /^\d{10}$/
         errorText = 'Số điện thoại không hợp lệ'
     } else {
-        regex = /^[A-Z][a-z]*( [A-Z][a-z]*)*$/
+        regex =
+            /^([a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+)((\s{1}[a-vxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ]+){1,})$/
         errorText = 'Họ và tên chỉ được chứa các ký tự chữ cái và khoảng trắng'
     }
     let value
@@ -48,6 +54,7 @@ const Checkout = () => {
     const [room, setRoom] = useState()
     useEffect(() => {
         if (data) {
+            console.log(data)
             const room = data.rooms.find((room) => room.ID === +id)
             const hotel = data.hotels.find((hotel) => hotel.ID === +room.IDKhachSan)
             room.GiamGia = room.Gia - (room.Gia * hotel.GiamGia) / 100
@@ -55,7 +62,13 @@ const Checkout = () => {
             const voucher = data.promotions
                 .filter((voucher) => {
                     const now = moment()
-                    const isBetween = now.isBetween(moment(voucher.BatDau), moment(voucher.KetThuc))
+                    let isBetween = false
+
+                    if (moment(voucher.KetThuc).isValid())
+                        isBetween = now.isBetween(moment(voucher.BatDau), moment(voucher.KetThuc))
+                    else {
+                        isBetween = now.isAfter(moment(voucher.BatDau))
+                    }
                     const checkIDKS = hotel.ID === voucher.IDKhachSan
                     const checkSLSD = voucher.SoLuongSD <= voucher.SoLuongKM
                     const checkKG = voucher.IDKhungGio === null
@@ -64,10 +77,14 @@ const Checkout = () => {
                 .sort((a, b) => b.PhanTramKM - a.PhanTramKM)[0]
             if (!voucher) {
                 hotel.voucher = null // hoặc return {}
+                room.Thue1 = room.GiamGia * 0.05
+                room.Thue = room.GiamGia + room.GiamGia * 0.05
+                room.voucher = null
             } else {
                 hotel.voucher = voucher
                 room.voucher = room.GiamGia - (room.GiamGia * hotel.voucher.PhanTramKM) / 100
-                room.Thue = room.voucher + room.voucher * 0.1
+                room.Thue1 = room.voucher * 0.05
+                room.Thue = room.voucher + room.voucher * 0.05
             }
             hotel.HinhAnh = data.hotelImages.find((HinhAnh) => HinhAnh.IDKhachSan === +hotel.ID).HinhAnh
             setHotel(hotel)
@@ -465,13 +482,10 @@ const Checkout = () => {
                                 <div className={styles.roomInforSale}>
                                     <div className={styles.roomInforSaleLabel}>Giảm giá </div> {hotel.GiamGia}%
                                 </div>
-                                <img
-                                    src="https://img.tripi.vn/cdn-cgi/image/width=640,height=640/https://storage.googleapis.com/hms_prod/photo/thumb/1616820015154EF/43507457.png"
-                                    alt=""
-                                />
+                                <img src={room.HinhAnh.HinhAnh} alt="" />
                             </div>
                             <div className={styles.roomDetail}>
-                                <span> {room.HinhAnh} </span>
+                                <span> {room.TenLoaiPhong} </span>
                                 <div className={`mt-2 d-flex justify-content-start`}>
                                     <svg width="16" height="16" fill="none">
                                         <path
@@ -484,26 +498,47 @@ const Checkout = () => {
                                     <div className="mx-3">{room.SoNguoi} người</div>
                                 </div>
                                 <div className={`mt-2 d-flex justify-content-start`}>
-                                    <svg width="16" height="16" fill="none">
-                                        <path
-                                            d="M2 14v-1.333A2.667 2.667 0 014.667 10h2.666A2.667 2.667 0 0110 12.667V14m.667-11.913a2.667 2.667 0 010 5.166M14 14v-1.333a2.667 2.667 0 00-2-2.567M8.667 4.667a2.667 2.667 0 11-5.334 0 2.667 2.667 0 015.334 0z"
-                                            stroke="#4A5568"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        ></path>
-                                    </svg>
-                                    <div className="mx-3">Hướng thành phố</div>
+                                    <FontAwesomeIcon
+                                        icon={['fas', room.tienNghi.Icon]}
+                                        // className={classes['icon-fac-detail']}
+                                    ></FontAwesomeIcon>
+                                    <div className="mx-3">{room.tienNghi.TenTienNghi}</div>
                                 </div>
                                 <div className={`mt-2 d-flex justify-content-start`}>
-                                    <svg width="16" height="16" fill="none">
+                                    <svg width="16" height="16" fill="none" class="jss375">
                                         <path
-                                            d="M2 14v-1.333A2.667 2.667 0 014.667 10h2.666A2.667 2.667 0 0110 12.667V14m.667-11.913a2.667 2.667 0 010 5.166M14 14v-1.333a2.667 2.667 0 00-2-2.567M8.667 4.667a2.667 2.667 0 11-5.334 0 2.667 2.667 0 015.334 0z"
+                                            d="M2.667 7.556V6.222a.889.889 0 01.888-.889h3.556a.889.889 0 01.889.89v1.333"
+                                            stroke="#4A5568"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        ></path>
+                                        <path
+                                            d="M8 7.556V6.222a.889.889 0 01.889-.889h3.555a.889.889 0 01.89.89v1.333"
+                                            stroke="#4A5568"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        ></path>
+                                        <path
+                                            d="M2.518 7.556h10.963a1.185 1.185 0 011.186 1.185v2.815H1.333V8.74a1.185 1.185 0 011.185-1.185v0zM1.333 11.556v1.777M14.666 11.556v1.777"
+                                            stroke="#4A5568"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        ></path>
+                                        <path
+                                            d="M13.333 7.556v-4a.889.889 0 00-.889-.89H3.555a.889.889 0 00-.889.89v4"
                                             stroke="#4A5568"
                                             strokeLinecap="round"
                                             strokeLinejoin="round"
                                         ></path>
                                     </svg>
-                                    <div className="mx-3">1 giường đôi</div>
+                                    <div className="mx-3">
+                                        {room.giuong.length === 2 &&
+                                            room.giuong[0].SoLuongGiuong +
+                                                ' Giường đơn và ' +
+                                                room.giuong[1].SoLuongGiuong +
+                                                ' Giường đôi'}
+                                        {room.giuong.length === 1 && room.giuong[0].SoLuongGiuong + ' Giường đơn '}
+                                    </div>
                                 </div>
                                 <div className={`mt-2 d-flex justify-content-start`}>
                                     <svg width="16" height="16" fill="none">
@@ -526,7 +561,7 @@ const Checkout = () => {
                                             strokeLinejoin="round"
                                         ></path>
                                     </svg>
-                                    <div className="mx-3">Bữa sáng miễn phí</div>
+                                    <div className="mx-3">{room.UuDai[0].NoiDung}</div>
                                 </div>
                             </div>
                         </div>
@@ -543,33 +578,39 @@ const Checkout = () => {
                                         <span>{formatMoney(room.GiamGia)}</span>
                                     </span>
                                 </div>
-                                <div className={`${styles.columnFlex} `}>
-                                    <span className={styles.priceSale1}>
-                                        Mã giảm giá
-                                        <span className={styles.labelSale}>{hotel.voucher.MaKhuyenMai}</span>
-                                    </span>
-                                    <span className={styles.labelPrice}>
-                                        {' '}
-                                        -{formatMoney((room.GiamGia * hotel.voucher.PhanTramKM) / 100)}
-                                    </span>
-                                </div>
-                                <div className={`${styles.columnFlex} ${styles.afterSale}`}>
-                                    <span>Giá sau giảm giá</span>
-                                    <span> {formatMoney(room.voucher)}</span>
-                                </div>
+                                {hotel.voucher && (
+                                    <div className={`${styles.columnFlex} `}>
+                                        <span className={styles.priceSale1}>
+                                            Mã giảm giá
+                                            <span className={styles.labelSale}>{hotel.voucher.MaKhuyenMai}</span>
+                                        </span>
+                                        <span className={styles.labelPrice}>
+                                            {' '}
+                                            -{formatMoney((room.GiamGia * hotel.voucher.PhanTramKM) / 100)}
+                                        </span>
+                                    </div>
+                                )}
+                                {room.voucher && (
+                                    <div className={`${styles.columnFlex} ${styles.afterSale}`}>
+                                        <span>Giá sau giảm giá</span>
+                                        <span> {formatMoney(room.voucher)}</span>
+                                    </div>
+                                )}
                                 <div className={`${styles.columnFlex} `}>
                                     <span>Thuế và phí dịch vụ khách sạn</span>
-                                    <span> {formatMoney(room.voucher * 0.1)}</span>
+                                    <span> {formatMoney(room.Thue1)}</span>
                                 </div>
                                 <div className={`${styles.columnFlex1} `}>
                                     <span>Tổng tiền thanh toán</span>
                                     <span>{formatMoney(room.Thue)}</span>
                                 </div>
                                 <div className={styles.vat}>Đã bao gồm thuế, phí, VAT</div>
-                                <div className={styles.congratulation}>
-                                    Chúc mừng! Bạn đã tiết kiệm được{' '}
-                                    {formatMoney((room.GiamGia * hotel.voucher.PhanTramKM) / 100)}
-                                </div>
+                                {hotel.voucher && (
+                                    <div className={styles.congratulation}>
+                                        Chúc mừng! Bạn đã tiết kiệm được{' '}
+                                        {formatMoney((room.GiamGia * hotel.voucher.PhanTramKM) / 100)}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
