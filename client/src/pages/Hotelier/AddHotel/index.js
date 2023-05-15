@@ -261,7 +261,7 @@ const AddHotel = () => {
 
             window.setTimeout(function () {
                 setShowInformModal(false)
-                Nav('/cks/manageHotel')
+                window.location.href = '/cks/manageHotel'
             }, 1500)
 
             console.log('Thông tin update thành công: ')
@@ -678,7 +678,7 @@ const AddHotel = () => {
                                         </ButtonPrimary>
                                     ) : (
                                         <ButtonPrimary className="btnLarge2" onSubmit={handleSubmit}>
-                                            Đăng Ký
+                                            {id ? 'Lưu Phòng' : 'Đăng Ký'}
                                         </ButtonPrimary>
                                     )}
                                 </div>

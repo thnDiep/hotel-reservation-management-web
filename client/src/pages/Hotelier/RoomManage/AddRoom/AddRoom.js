@@ -140,7 +140,8 @@ const AddRoom = () => {
                 IDUuDai.push(ID.ID)
             }
             hotel.IDKhachSan = active
-            if (id) hotel.ID = id
+            if (id) hotel.ID = +id
+            console.log(hotel)
             const res = await axios.post(`http://localhost:8800/cks/room/${id ? 'update' : 'insert'}`, {
                 HinhAnh: url,
                 Room: hotel,
@@ -151,7 +152,8 @@ const AddRoom = () => {
 
             window.setTimeout(function () {
                 setShowInformModal(false)
-                Nav('/cks/manage-room')
+                window.location.href = '/cks/manage-room'
+                // Nav('/cks/manage-room')
             }, 1500)
         } catch (err) {
             console.log('sai')
@@ -395,7 +397,7 @@ const AddRoom = () => {
                                         </ButtonPrimary>
                                     ) : (
                                         <ButtonPrimary className="btnLarge2" onSubmit={handleSubmit}>
-                                            Đăng Ký
+                                            {id ? 'Lưu Phòng' : 'Đăng Ký'}
                                         </ButtonPrimary>
                                     )}
                                 </div>
