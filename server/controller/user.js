@@ -51,7 +51,6 @@ export const orderRoom = async (req, res, next) => {
     await authModel.update(info);
     console.log(req.body.nguoinhanphong);
     await roomModel.updateSoPhong(req.body.dondatphong.IDPhong);
-
     if (req.body.nguoinhanphong !== null)
       await authModel.addNguoiNhanPhong(req.body.nguoinhanphong);
     console.log(req.body.dondatphong);

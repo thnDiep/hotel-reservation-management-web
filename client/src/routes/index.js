@@ -6,7 +6,7 @@ import ListByPlace from '~/pages/ListByPlace'
 import Checkout from '~/pages/Checkout'
 import SuccessCheckOut from '~/pages/Checkout/SuccessCheckOut'
 import { Account, Wishlist, Order, OrderDetail } from '~/pages/Profile'
-import { AccountAdmin, HotelAdmin } from '~/pages/Admin'
+import { AccountAdmin, HotelAdmin, HomeAdmin } from '~/pages/Admin'
 import BlockedAccount from '~/pages/Admin/Account/BlockedAccount'
 import ActiveAccount from '~/pages/Admin/Account/ActiveAccount'
 import QrPay from '~/pages/QrPay'
@@ -20,7 +20,7 @@ import AddRoom from '~/pages/Hotelier/RoomManage/AddRoom/AddRoom'
 import CommentAboutHotel from '~/pages/CommentAboutHotel/CommentAboutHotel'
 import ProfileHotelier from '~/pages/ProfileHotelier/ProfileHotelier'
 import { AddPromotion, ManagePromotion } from '~/pages/Hotelier'
-import { HomeLayout, QrPayLayout, ManageLayout, HotelierLayout } from '~/components/Layouts'
+import { HomeLayout, QrPayLayout, ManageAdminLayout, HotelierLayout, HomeAdminLayout } from '~/components/Layouts'
 
 import CheckOrder from '~/pages/CheckOrder/CheckOrder'
 import NotFound from '~/pages/NotFound'
@@ -94,11 +94,13 @@ export const publicRoutesAdmin = [
     // { path: '/login', component: Login, layout: null },
     // { path: '/signUp', component: SignUp, layout: null },
     // Admin
-    { path: '/admin/account', component: AccountAdmin, layout: ManageLayout },
-    { path: '/admin/account/blocked', component: BlockedAccount, layout: ManageLayout },
-    { path: '/admin/account/active', component: ActiveAccount, layout: ManageLayout },
-    { path: '/admin/hotel', component: HotelAdmin, layout: ManageLayout },
-    { path: '/admin', component: HotelAdmin, layout: ManageLayout },
+    { path: '/admin/hotels/detail/:id', component: Detail, layout: ManageAdminLayout },
+    { path: '/admin/hotels', component: ListByPlace, layout: ManageAdminLayout },
+    { path: '/admin/account/active', component: ActiveAccount, layout: ManageAdminLayout },
+    { path: '/admin/account/blocked', component: BlockedAccount, layout: ManageAdminLayout },
+    { path: '/admin/account', component: AccountAdmin, layout: ManageAdminLayout },
+    { path: '/admin/hotel', component: HotelAdmin, layout: ManageAdminLayout },
+    { path: '/admin', component: HomeAdmin, layout: HomeAdminLayout },
 
     // Not Found
     // { path: '/*', component: NotFound, layout: null },

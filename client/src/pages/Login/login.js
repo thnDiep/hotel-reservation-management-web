@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useContext } from 'react'
 import DataContext from '~/contexts/DataContext'
+import { Link } from 'react-router-dom'
 const MySwal = withReactContent(Swal)
 
 function Login() {
@@ -74,15 +75,17 @@ function Login() {
         <div className={styles.wrap}>
             <div className={styles.introduction}>
                 <div className={styles.infoWeb}>
-                    <img
-                        className={styles.logo}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
-                        alt=""
-                    />
-                    <div>
-                        <p className={styles.nameOfWeb}>MyTravel</p>
-                        <p className={styles.description}>Hotels at your fingertips</p>
-                    </div>
+                    <Link to="/" className="d-flex">
+                        <img
+                            className={styles.logo}
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
+                            alt=""
+                        />
+                        <div>
+                            <p className={styles.nameOfWeb}>MyTravel</p>
+                            <p className={styles.description}>Hotels at your fingertips</p>
+                        </div>
+                    </Link>
                 </div>
                 <p className={styles.title1}>Welcome back!</p>
                 <p className={styles.title2}>Solution for a great trip</p>

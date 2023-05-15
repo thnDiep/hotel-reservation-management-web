@@ -20,8 +20,8 @@ function CardHotel(props) {
 
     return (
         <div className={styles.container}>
-            <Link to={`/hotels/detail/${props.ID}`} className="link"></Link>
-
+            {!props.admin && <Link to={`/hotels/detail/${props.ID}`} className="link"></Link>}
+            {props.admin && <Link to={`/admin/hotels/detail/${props.ID}`} className="link"></Link>}
             <div className={styles.image} style={{ backgroundImage: `url(${props.image})` }}>
                 <HeartButton liked={props.liked} IDKhachSan={props.ID} />
                 {props.percentDiscount !== 0 && (

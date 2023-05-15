@@ -1,5 +1,5 @@
 import styles from './ManageLayout.module.scss'
-import Header from './Header'
+import Header from '../Header'
 
 function ManageLayout({ children }) {
     return (

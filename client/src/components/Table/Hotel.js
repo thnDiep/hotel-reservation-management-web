@@ -131,6 +131,9 @@ function HotelTable({ header, option, data, filter }) {
                                     {hotel.TrangThai === 2 && (
                                         <div className={clsx('btn-1', 'blocked', styles.status)}>Bị khóa</div>
                                     )}
+                                    {hotel.TrangThai === 3 && (
+                                        <div className={clsx('btn-1', 'stoped', styles.status)}>Tạm ngưng</div>
+                                    )}
                                 </td>
                                 <td>
                                     <DropdownOption
@@ -141,7 +144,7 @@ function HotelTable({ header, option, data, filter }) {
                                             false,
                                             false,
                                             hotel.TrangThai !== 0,
-                                            hotel.TrangThai !== 1,
+                                            hotel.TrangThai !== 1 && hotel.TrangThai !== 3,
                                             hotel.TrangThai !== 2,
                                         ]}
                                     />

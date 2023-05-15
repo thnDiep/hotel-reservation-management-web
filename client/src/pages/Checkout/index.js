@@ -239,7 +239,6 @@ const Checkout = () => {
             dispatchName({ type: 'input_submit' })
             return
         }
-        console.log('hello')
         if (emailState.isValid) {
             dispatchEmail({ type: 'input_submit' })
             return

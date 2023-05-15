@@ -15,7 +15,7 @@ import Axios from 'axios'
 const initState = {
     show: null,
     place: '',
-    placeHistory: JSON.parse(localStorage.getItem('placeHistory')) || [],
+    // placeHistory: JSON.parse(localStorage.getItem('placeHistory')) || [],
     date: {
         startDate: new Date(),
         endDate: addDays(new Date(), 2),
@@ -93,35 +93,35 @@ function reducer(state, action) {
                 ...state,
                 number: { room, adult, child },
             }
-        case SUBMIT_SEARCH:
-            // const submit = {
-            //     place: state.place,
-            //     number: {
-            //         room: state.number.room.value,
-            //         adult: state.number.adult.value,
-            //         child: state.number.child.value,
-            //     },
-            //     startDate: state.date.startDate,
-            //     endDate: state.date.endDate,
-            // }
-            // let result
+        // case SUBMIT_SEARCH:
+        // const submit = {
+        //     place: state.place,
+        //     number: {
+        //         room: state.number.room.value,
+        //         adult: state.number.adult.value,
+        //         child: state.number.child.value,
+        //     },
+        //     startDate: state.date.startDate,
+        //     endDate: state.date.endDate,
+        // }
+        // let result
 
-            // Axios.get('http://localhost:8800/hotel', { params: { key: submit } })
-            //     .then((response) => {
-            //         // console.log(response.data)
-            //         result = response.data
-            //         // action.link(`/hotels/${action.payload}`, { state: { hotels: response.data } })
-            //     })
-            //     .catch((error) => {
-            //         console.log(error)
-            //     })
-            return {
-                ...state,
-                placeHistory:
-                    !state.placeHistory.includes(action.payload) && action.payload.trim() !== ''
-                        ? [action.payload, ...state.placeHistory]
-                        : state.placeHistory,
-            }
+        // Axios.get('http://localhost:8800/hotel', { params: { key: submit } })
+        //     .then((response) => {
+        //         // console.log(response.data)
+        //         result = response.data
+        //         // action.link(`/hotels/${action.payload}`, { state: { hotels: response.data } })
+        //     })
+        //     .catch((error) => {
+        //         console.log(error)
+        //     })
+        // return {
+        //     ...state,
+        //     placeHistory:
+        //         !state.placeHistory.includes(action.payload) && action.payload.trim() !== ''
+        //             ? [action.payload, ...state.placeHistory]
+        //             : state.placeHistory,
+        // }
 
         default:
             throw new Error('Invalid action.')

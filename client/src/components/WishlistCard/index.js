@@ -50,7 +50,7 @@ function WishlistCard({ list, liked, onEmpty }) {
         <div>
             {data &&
                 data.map((item, index) => (
-                    <div className="place">
+                    <div className="place pb-3">
                         <Link className="link" to={`/hotels/detail/${item.ID}`}>
                             {' '}
                         </Link>

@@ -31,7 +31,6 @@ router.get("/order", order);
 router.get("/order/update", async (req, res, next) => {
   try {
     const MaDatPhong = req.query.MaDatPhong;
-    console.log(MaDatPhong);
     const TrangThai = req.query.TrangThai;
     await orderModel.updateTrangThai(MaDatPhong, TrangThai);
     res.json({ MaDatPhong });
@@ -166,6 +165,7 @@ router.get("/hotel/stop", async (req, res, next) => {
     next(err);
   }
 });
+
 router.get("/room/stop", async (req, res, next) => {
   try {
     const IDPhong = req.query.IDPhong;
