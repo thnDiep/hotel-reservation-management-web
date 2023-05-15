@@ -15,6 +15,9 @@ export default {
       id
     );
   },
+  add(dondatphong) {
+    return db("dondatphong").insert(dondatphong);
+  },
 
   // Tìm đơn đặt phòng bằng id
   async findById(id) {

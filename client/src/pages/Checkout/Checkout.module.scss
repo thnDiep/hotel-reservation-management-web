@@ -1,7 +1,7 @@
 .content {
-    color: #1A202C;
+    color: #1a202c;
     width: 100%;
-    background: #EDF2F7;
+    background: #edf2f7;
 }
 
 .checkout {
@@ -20,7 +20,7 @@
         flex-direction: column;
 
         &__regulation {
-            color: #1A202C;
+            color: #1a202c;
             padding: 24px;
             font-size: 14px;
             background: white;
@@ -62,8 +62,8 @@
             }
 
             &--utilities {
-                color: #FF3366;
-                border: 1px solid #FF3366;
+                color: #ff3366;
+                border: 1px solid #ff3366;
                 padding: 2px 4px;
                 font-size: 12px;
                 line-height: 14px;
@@ -80,7 +80,7 @@
 
         .infor__hour {
             display: flex;
-            border-top: 1px solid #EDF2F7;
+            border-top: 1px solid #edf2f7;
             margin-top: 16px;
             padding-top: 16px;
 
@@ -126,7 +126,8 @@
                     overflow: hidden;
                     position: relative;
                     min-height: 40px;
-                    transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                    transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+                        box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
                     border-radius: 4px;
                     background-color: #fff;
 
@@ -149,12 +150,8 @@
                         &:focus {
                             outline: 0;
 
-
                             border: 1px solid #00adef;
                         }
-
-
-
                     }
                 }
 
@@ -166,7 +163,7 @@
                     font-family: Mt;
                     font-weight: normal;
                     line-height: 14px;
-                    color: #E5322B;
+                    color: #e5322b;
                     min-height: 24px;
                     margin-top: 6px;
                 }
@@ -213,7 +210,7 @@
 
                 .saleNameLabel {
                     width: fit-content;
-                    border: 1px solid #48BB78;
+                    border: 1px solid #48bb78;
                     height: fit-content;
                     display: flex;
                     word-break: break-all;
@@ -230,7 +227,7 @@
 
                         .nameLabelColumnIcon {
                             width: 6px;
-                            border: 1px solid #48BB78;
+                            border: 1px solid #48bb78;
                             height: 6px;
                             transform: rotate(40deg);
                             background: transparent;
@@ -246,12 +243,12 @@
                         height: 16px;
 
                         svg {
-                            color: #48BB78;
+                            color: #48bb78;
                         }
                     }
 
                     .nameLabelTitle {
-                        color: #48BB78;
+                        color: #48bb78;
                         font-size: 14px;
                         text-align: center;
                         font-weight: 600;
@@ -264,7 +261,7 @@
                     svg {
                         cursor: pointer;
                         margin: 0 24px;
-                        color: #00B6F3;
+                        color: #00b6f3;
                     }
                 }
             }
@@ -280,7 +277,7 @@
             border-radius: 8px;
 
             .inforConfirm {
-                color: #48BB78;
+                color: #48bb78;
                 font-size: 14px;
                 line-height: 17px;
                 margin-bottom: 12px;
@@ -315,7 +312,7 @@
                     align-items: center;
 
                     span {
-                        color: #1A202C;
+                        color: #1a202c;
                         font-size: 17px;
                         line-height: 19px;
                         margin-left: 12px;
@@ -341,7 +338,7 @@
         .roomInfor {
             margin-bottom: 16px;
             width: 100%;
-            border: 1px solid #EDF2F7;
+            border: 1px solid #edf2f7;
             display: flex;
             padding: 24px;
             box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
@@ -366,7 +363,7 @@
                     z-index: 2;
                     position: absolute;
                     font-size: 18px;
-                    background: #FF3366;
+                    background: #ff3366;
                     align-items: center;
                     font-weight: 600;
                     line-height: 21px;
@@ -418,7 +415,7 @@
                     font-weight: 400;
                     line-height: 16px;
                     justify-content: space-between;
-                    border-bottom: 1px solid #EDF2F7;
+                    border-bottom: 1px solid #edf2f7;
                     justify-content: space-between;
 
                     .priceSale {
@@ -437,7 +434,7 @@
                             color: #ffffff;
                             padding: 1px 3px;
                             font-size: 12px;
-                            background: #FF3366;
+                            background: #ff3366;
                             font-weight: 600;
                             line-height: 14px;
                             border-radius: 4px;
@@ -454,7 +451,17 @@
                     }
 
                     .labelSale {
-                        border: 1px solid #A0AEC0;
+                        border: 1px solid #a0aec0;
+                        padding: 4px 6px;
+                        margin-left: 8px;
+                        border-radius: 8px;
+                        // display: flex;
+                        font-size: 14px;
+                        line-height: 17px;
+                    }
+                    .labelSale1 {
+                        border: 1px solid #a0aec0;
+                        color: red;
                         padding: 4px 6px;
                         margin-left: 8px;
                         border-radius: 8px;
@@ -500,19 +507,17 @@
                 }
 
                 .congratulation {
-                    color: #FF3366;
+                    color: #ff3366;
                     display: flex;
-                    background: #FFE7F3;
+                    background: #ffe7f3;
                     align-items: center;
                     border-radius: 8px;
                     padding: 6px;
                     margin-top: 4px;
                 }
             }
-
         }
     }
-
 }
 
 .nameTitle {
@@ -524,5 +529,4 @@
 
 .inputRed {
     border: 1px solid #ef3c00 !important;
-
 }

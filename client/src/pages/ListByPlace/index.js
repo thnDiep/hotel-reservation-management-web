@@ -7,34 +7,6 @@ import Service from '~/components/Place/Filter/Rate/Service/Service'
 import UserRate from '~/components/Place/Filter/Rate/UserRate/UserRate'
 import Search from '~/components/Search'
 import { useLocation } from 'react-router-dom'
-import { useContext } from 'react'
-import DataContext from '~/contexts/DataContext'
-const listPlace = [
-    {
-        HinhAnh: [
-            {
-                id: 1,
-                HinhAnh:
-                    'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://www.googleapis.com/download/storage/v1/b/hotelcdn/o/40454%2F3A1O4S311J_ICPQ_Resort%20Exterior(2).jpg?generation=1593766513879962&alt=media',
-            },
-            {
-                id: 2,
-                HinhAnh:
-                    'https://img.tripi.vn/cdn-cgi/image/width=572,height=428/https://storage.googleapis.com/hms_prod/photo/thumb/458955zvd/150592923.jpg',
-            },
-        ],
-        ID: 1,
-        Nhan: 'Hô bơi vô cực',
-        Ten: 'InterContinental Phú Quốc Long Beach Resort',
-        soSao: 3,
-        DanhGia: 9.2,
-        DiaChi: 'Dương Tơ, Phú Quốc',
-        status: 'Classic Garden View',
-        UuDai: 'Bữa sáng miễn phí',
-        Gia: 3336610,
-        GiamGia: 0.2,
-    },
-]
 
 const sort = ['Phù hợp nhất', 'Rẻ nhất', 'Đắt nhất', 'Xếp hạng sao', 'Đánh giá cao nhất']
 function ListByPlace() {

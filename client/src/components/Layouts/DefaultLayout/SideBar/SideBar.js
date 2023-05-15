@@ -1,20 +1,30 @@
-import React, { Fragment, useState } from "react"
-import classes from "./SideBar.module.scss"
+import React, { Fragment, useState } from 'react'
+import classes from './SideBar.module.scss'
 import { faX, faHouse, faHeart } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const SideBar = (props) => {
-    const [showSideBar, setShowSideBar] = useState(false);
+    const [showSideBar, setShowSideBar] = useState(false)
     const handleShowSideBar = () => setShowSideBar(true)
-    const handleNotShowSideBar = () => setShowSideBar(false);
+    const handleNotShowSideBar = () => setShowSideBar(false)
 
     return (
         <Fragment>
-            <svg onClick={handleShowSideBar} width="24" height="24" fill="none"
-                style={{ stroke: 'rgb(26, 32, 44)', cursor: 'pointer', marginLeft: '16px' }}>
-                <path d="M4 6h16M4 12h16M4 18h16" stroke="#1A202C" strokeWidth="1.5" strokeLinecap="round"
-                    strokeLinejoin="round"></path>
+            <svg
+                onClick={handleShowSideBar}
+                width="24"
+                height="24"
+                fill="none"
+                style={{ stroke: 'rgb(26, 32, 44)', cursor: 'pointer', marginLeft: '16px' }}
+            >
+                <path
+                    d="M4 6h16M4 12h16M4 18h16"
+                    stroke="#1A202C"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                ></path>
             </svg>
-            {showSideBar && <Fragment>
+            {/* {showSideBar && <Fragment>
                 <div style={{ animation: `${showSideBar ? "fadeIn" : "fadeOutLeft"} 1s` }} onClick={handleNotShowSideBar} className={classes.overLay}></div>
                 <div style={{ animation: `${showSideBar ? "fadeInRight" : "fadeOutLeft"} 1s` }} className={classes.sideBar}>
                     <FontAwesomeIcon onClick={handleNotShowSideBar} icon={faX} className={classes.faX} />
@@ -91,8 +101,7 @@ const SideBar = (props) => {
                     </div>
                 </div>
             </Fragment>
-            }
-
+            } */}
         </Fragment>
     )
 }

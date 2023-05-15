@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 14, 2023 lúc 03:07 PM
--- Phiên bản máy phục vụ: 10.4.25-MariaDB
--- Phiên bản PHP: 8.1.10
+-- Host: localhost:3307
+-- Generation Time: May 14, 2023 at 10:07 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `khachsan`
+-- Database: `khachsan`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhgia`
+-- Table structure for table `danhgia`
 --
 
 CREATE TABLE `danhgia` (
@@ -35,10 +35,10 @@ CREATE TABLE `danhgia` (
   `NoiDung` text NOT NULL,
   `Diem` int(11) NOT NULL,
   `ThoiGian` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `danhgia`
+-- Dumping data for table `danhgia`
 --
 
 INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `Diem`, `ThoiGian`) VALUES
@@ -52,16 +52,16 @@ INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhsachyeuthich`
+-- Table structure for table `danhsachyeuthich`
 --
 
 CREATE TABLE `danhsachyeuthich` (
   `IDKhachHang` int(11) NOT NULL,
   `IDKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `danhsachyeuthich`
+-- Dumping data for table `danhsachyeuthich`
 --
 
 INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
@@ -73,17 +73,17 @@ INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `diadiem`
+-- Table structure for table `diadiem`
 --
 
 CREATE TABLE `diadiem` (
   `ID` int(11) NOT NULL,
   `TenDiaDiem` varchar(255) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `diadiem`
+-- Dumping data for table `diadiem`
 --
 
 INSERT INTO `diadiem` (`ID`, `TenDiaDiem`, `HinhAnh`) VALUES
@@ -162,7 +162,7 @@ INSERT INTO `diadiem` (`ID`, `TenDiaDiem`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `dondatphong`
+-- Table structure for table `dondatphong`
 --
 
 CREATE TABLE `dondatphong` (
@@ -177,10 +177,10 @@ CREATE TABLE `dondatphong` (
   `IDFlashSale` int(11) DEFAULT NULL,
   `IDKhachHang` int(11) NOT NULL,
   `IDPhong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `dondatphong`
+-- Dumping data for table `dondatphong`
 --
 
 INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhuyenMai`, `IDFlashSale`, `IDKhachHang`, `IDPhong`) VALUES
@@ -190,16 +190,16 @@ INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTr
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giuong`
+-- Table structure for table `giuong`
 --
 
 CREATE TABLE `giuong` (
   `ID` int(11) NOT NULL,
   `LoaiGiuong` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `giuong`
+-- Dumping data for table `giuong`
 --
 
 INSERT INTO `giuong` (`ID`, `LoaiGiuong`) VALUES
@@ -209,23 +209,24 @@ INSERT INTO `giuong` (`ID`, `LoaiGiuong`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giuong_phong`
+-- Table structure for table `giuong_phong`
 --
 
 CREATE TABLE `giuong_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDGiuong` int(11) NOT NULL,
   `SoLuongGiuong` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `giuong_phong`
+-- Dumping data for table `giuong_phong`
 --
 
 INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
 (1, 2, 2),
 (15, 1, 2),
 (17, 1, 2),
+(16, 1, 2),
 (18, 1, 1),
 (19, 2, 1),
 (20, 2, 1),
@@ -242,16 +243,16 @@ INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hinhanh_khachsan`
+-- Table structure for table `hinhanh_khachsan`
 --
 
 CREATE TABLE `hinhanh_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `HinhAnh` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hinhanh_khachsan`
+-- Dumping data for table `hinhanh_khachsan`
 --
 
 INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
@@ -395,16 +396,16 @@ INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hinhanh_phong`
+-- Table structure for table `hinhanh_phong`
 --
 
 CREATE TABLE `hinhanh_phong` (
   `IDPhong` int(11) NOT NULL,
   `HinhAnh` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hinhanh_phong`
+-- Dumping data for table `hinhanh_phong`
 --
 
 INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
@@ -477,7 +478,7 @@ INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khachsan`
+-- Table structure for table `khachsan`
 --
 
 CREATE TABLE `khachsan` (
@@ -494,10 +495,10 @@ CREATE TABLE `khachsan` (
   `GioNhanPhong` int(20) NOT NULL,
   `GioTraPhong` int(20) NOT NULL,
   `IDChuKhachSan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `khachsan`
+-- Dumping data for table `khachsan`
 --
 
 INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, `GioiThieu`, `TrangThai`, `IDDiaDiem`, `Nhan`, `GioNhanPhong`, `GioTraPhong`, `IDChuKhachSan`) VALUES
@@ -510,27 +511,27 @@ INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, 
 (14, 'Movenpick Resort Phan Thiết', 'Đường Hòn Giồ, Thuận Qúy , Phường Mũi Né, Thành phố Phan Thiết, Tỉnh Bình Thuận', 35, 4, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/poshanu-resort-phan-thiet.html\">Poshanu Resort</a>&nbsp;</strong>sở hữu một lối đi để ra khu vực b&atilde;i biển ri&ecirc;ng v&agrave; hệ thống những bungalow với diện t&iacute;ch rộng r&atilde;i&nbsp;gi&uacute;p du kh&aacute;ch tận hưởng chuyến đi một c&aacute;ch thoải m&aacute;i v&agrave; trọn vẹn nhất. Đặc biệt, những tiện nghi như&nbsp;<strong>s&agrave;n gỗ, giường 4 cọc v&agrave; quạt trần</strong>&nbsp;được trang bị tại đ&acirc;y đ&atilde; to&aacute;t l&ecirc;n được vẻ độc đ&aacute;o v&agrave; gần gũi với thi&ecirc;n nhi&ecirc;n, tạo n&ecirc;n kh&ocirc;ng gian l&yacute; tưởng cho việc nghỉ dưỡng.</p>\n<p>B&ecirc;n cạnh vẻ truyền thống th&igrave; những vật dụng hiện đại như k&eacute;t an to&agrave;n, v&ograve;i hoa sen, tivi truyền h&igrave;nh c&aacute;p m&agrave;n h&igrave;nh phẳng, minibar,.. cũng c&oacute; trong mỗi Bungalow. Ngo&agrave;i ra, để mang lại sự thuận tiện cho du kh&aacute;ch th&igrave; resort cũng cung cấp &aacute;p cho&agrave;ng tắm v&agrave; d&eacute;p. Kh&ocirc;ng dừng lại ở đ&oacute;, du kh&aacute;ch sẽ được tận hưởng l&agrave;n nước m&aacute;t l&agrave;nh ở trong&nbsp;<strong>bể bơi ngo&agrave;i trời&nbsp;</strong>hoặc vươn m&igrave;nh dưới hơi ấm của mặt trời khi nằm tr&ecirc;n c&acirc;c ghế phơi nắng tại resort.</p>', 1, 11, 'Khách sạn yêu thích', 13, 12, 9),
 (15, 'New World Phú Quốc Resort', 'Bãi Khem, An Thới, Phường An Thới, Thành phố Phú Quốc, Tỉnh Kiên Giang', 13, 4, '<p><strong>Ch&iacute;nh s&aacute;ch chung:</strong></p>\n<div>\n<ul>\n<li>Kh&ocirc;ng cho ph&eacute;p h', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 34, 'Ưu đãi chớp nhoáng', 14, 12, 9),
 (16, 'Vinpearl Resort & Spa Hội An', 'Tổ 6, Khối Phước Hải,, Phường Cửa Đại, Thành phố Hội An, Tỉnh Quảng Nam', 34, 4, '<p><strong>Ch&iacute;nh s&aacute;ch chung:</strong></p>\n<div>\n<ul>\n<li>Kh&ocirc;ng cho ph&eacute;p h', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/la-siesta-hoi-an-resort-spa.html\">La Siesta Hội An</a></strong>&nbsp;nằm ngay trong&nbsp;khu vực Phố cổ Hội An,&nbsp;được TripAdvisor b&igrave;nh chọn v&agrave;o&nbsp;top 25 kh&aacute;ch sạn tốt nhất Ch&acirc;u &Aacute; v&agrave; đứng số 1 tại Hội An. Từ khu nghỉ dưỡng, qu&yacute; kh&aacute;ch c&oacute; thể&nbsp;thuận lợi đến c&aacute;c điểm tham quan như l&agrave;ng gốm Thanh H&agrave;, ch&ugrave;a Cầu, chợ Hội An. Khu nghỉ dưỡng n&agrave;y được x&acirc;y dựng theo<strong>&nbsp;</strong>ti&ecirc;u chuẩn 5 sao quốc tế với tổng cộng 107 ph&ograve;ng, chia l&agrave;m 2 c&aacute;nh kh&aacute;c nhau.</p>\n<p>Nằm trong khu vườn nhiệt đới đầy m&agrave;u sắc,&nbsp;<strong>La Siesta Hội An</strong>&nbsp;được chia th&agrave;nh 2 c&aacute;nh. C&aacute;nh ph&iacute;a t&acirc;y với 70 ph&ograve;ng được thiết kế theo kiểu kh&aacute;ch sạn rộng r&atilde;i nhưng truyền thống, cổ điển. C&aacute;nh ph&iacute;a đ&ocirc;ng đặc trưng với c&aacute;c đặc điểm của khu phố cổ qua t&aacute;m biệt thự nh&agrave; phố tr&ecirc;n s&acirc;n hi&ecirc;n c&oacute; sức chứa 37 ph&ograve;ng suite cổ điển nổi bật.</p>', 1, 48, 'Giá độc quyền', 14, 12, 2),
-(17, 'Ana Mandara Villas Đà Lạt Resort & Spa', 'Lê Lai, Phường 5, Thành phố Đà Lạt, Tỉnh Lâm Đồng', 15, 5, '<div class=\"MuiBox-root jss2185\"><strong><span class=\"MuiBox-root jss2186\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss2187 jss2167\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss2188\"><strong><span class=\"MuiBox-root jss2189\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss2190 jss2167\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/ana-mandara-villas-da-lat-resort-spa.html\">Ana Mandara Villas Đ&agrave; Lạt Resort &amp; Spa</a>&nbsp;</strong>được thiết kế theo kiểu kiến tr&uacute;c cổ điển Ph&aacute;p. Khu nghỉ dưỡng nằm tại vị tr&iacute; l&yacute; tưởng tr&ecirc;n những sườn dốc mộng mơ ở<strong>&nbsp;trung t&acirc;m th&agrave;nh phố Đ&agrave; Lạt</strong>. Từ đ&acirc;y bạn c&oacute; thể di chuyển dễ d&agrave;ng đến nhiều địa điểm tham quan của xứ sở ng&agrave;n hoa như: Hồ Xu&acirc;n Hương, Hồ Tuyền L&acirc;m, Thung lũng t&igrave;nh y&ecirc;u,... Ph&ograve;ng nghỉ ở&nbsp;Ana Villas Dalat Resort &amp; Spa ấm c&uacute;ng v&agrave; đầy đủ tiện nghi như: M&aacute;y sấy t&oacute;c, tủ lạnh mini, k&eacute;t sắt, quạt, điều h&ograve;a,...</p>\n<p>Đặc biệt, tại&nbsp;<strong>Ana Mandara Villas Đ&agrave; Lạt Resort &amp; Spa</strong>&nbsp;c&oacute;&nbsp;<strong>hồ bơi ngo&agrave;i trời, nh&agrave; h&agrave;ng</strong>&nbsp;v&agrave; trung t&acirc;m spa rất hiện đại, sang trọng, l&agrave; nơi l&yacute; tưởng để bạn hưởng thụ v&agrave; thư gi&atilde;n sau những giờ l&agrave;m việc mệt nho&agrave;i. La Cochinchine Spa c&oacute; 5 ph&ograve;ng thư gi&atilde;n với c&aacute;c liệu ph&aacute;p như massage ch&acirc;n, ph&ograve;ng x&ocirc;ng hơi kh&ocirc; v&agrave; ướt,... gi&uacute;p bạn kho&aacute;c l&ecirc;n một diện mạo mới trong kỳ nghỉ dưỡng.</p>\n<p>Nếu như bạn c&oacute; bất kỳ thắc mắc n&agrave;o về dịch vụ&nbsp;<strong>đặt ph&ograve;ng&nbsp;</strong><strong>Ana Mandara Villas Đ&agrave; Lạt</strong>&nbsp;hay&nbsp;<strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/khach-san-da-lat.html\">đặt ph&ograve;ng kh&aacute;ch sạn Đ&agrave; Lạt</a></strong>, vui l&ograve;ng li&ecirc;n hệ số&nbsp;<strong>hotline&nbsp;1900 4698&nbsp;</strong>để được tư vấn v&agrave; hỗ trợ chi tiết nhất.</p>', 0, 39, 'Giá cực tốt', 14, 12, 9),
-(18, 'Stelia Beach Resort Phú Yên', 'Độc Lập, Phường 9, Thành phố Tuy Hoà, Tỉnh Phú Yên', 20, 5, '<div class=\"MuiBox-root jss5438\"><strong><span class=\"MuiBox-root jss5439\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss5440 jss5420\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss5441\"><strong><span class=\"MuiBox-root jss5442\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss5443 jss5420\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p class=\"MsoNormal\"><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/stelia-beach-resort-phu-yen.html\" target=\"_blank\" rel=\"noopener\">Stelia Beach Resort Ph&uacute; Y&ecirc;n</a></strong>&nbsp;l&agrave; khu biệt thự nghỉ dưỡng hiện đại nằm giữa thi&ecirc;n nhi&ecirc;n trong l&agrave;nh xanh m&aacute;t, Diện t&iacute;ch l&ecirc;n đến 9 hecta với b&atilde;i biển ri&ecirc;ng, resort được thiết kế theo phong c&aacute;ch Địa Trung Hải Santorini sẽ mang đến cho du kh&aacute;ch trải nghiệm nghỉ dưỡng đẳng cấp 5 sao. Resort nằm c&aacute;ch s&acirc;n bay Tuy H&ograve;a 8 km, th&aacute;p Nghinh Phong,&nbsp;Quảng Trường 1-4,&nbsp;N&uacute;i Nhạn, ch&ugrave;a Bảo L&acirc;m, G&agrave;nh &Ocirc;ng, G&agrave;nh B&agrave; c&ugrave;ng nhiều địa điểm tham quan du lịch kh&aacute;c của Ph&uacute; Y&ecirc;n chỉ với v&agrave;i ph&uacute;t di chuyển bằng xe.&nbsp;</p>\n<p class=\"MsoNormal\">Đến với&nbsp;<strong>Stelia Beach Resort Ph&uacute; Y&ecirc;n</strong>&nbsp;qu&yacute; kh&aacute;ch sẽ bị đắm ch&igrave;m v&agrave;o cảnh sắc thi&ecirc;n nhi&ecirc;n tuyệt đẹp h&ograve;a hợp với kiệt t&aacute;c s&aacute;ng tạo của con người. Với thiết kế 41 ph&ograve;ng v&agrave; biệt thự nghỉ dưỡng với hai t&ocirc;ng m&agrave;u xanh trắng chủ đạo, tối giản nhưng tinh tế h&agrave;i h&ograve;a với thi&ecirc;n nhi&ecirc;n. Được trang bị nội thất cao cấp, sang trọng phục vụ cho nhu cầu nghỉ dưỡng của du kh&aacute;ch c&ugrave;ng với c&aacute;c tiện t&iacute;ch miễn ph&iacute; c&oacute; tại Resort qu&yacute; kh&aacute;ch c&oacute; thể tận hưởng chuyến đi v&agrave; vui chơi c&ugrave;ng gia đ&igrave;nh v&agrave; người th&acirc;n với c&aacute;c hoạt động ngo&agrave;i trời như bể bơi v&ocirc; cực, đạp xe dạo quanh, khu vui chơi trẻ em, xem phim, chạy bộ tr&ecirc;n b&atilde;i biển, ph&ograve;ng tập thể dục...&nbsp;</p>\n<p class=\"MsoNormal\">Khu vực nh&agrave; h&agrave;ng Gozo được thiết kế rất đặc biệt với h&igrave;nh d&aacute;ng c&aacute;nh diều đ&oacute;n gi&oacute; hướng ra biển, Gozo Brew House l&agrave; nh&agrave; h&agrave;ng tre lớn nhất Việt Nam với diện t&iacute;ch l&ecirc;n đến 1900m2, được gh&eacute;p từ hơn 40.000 c&acirc;y tầm v&ocirc;ng v&agrave; m&aacute;i v&ograve;m được lợp từ h&agrave;ng trăm l&aacute; dừa nước rất độc đ&aacute;o. Nh&agrave; h&agrave;ng phục vụ c&aacute;c m&oacute;n ăn mang phong c&aacute;ch từ &Acirc;u đến &Aacute; v&agrave; c&aacute;c m&oacute;n hải sản tươi sống đặc sản của v&ugrave;ng biển Ph&uacute; Y&ecirc;n, đặc biệt hơn nữa nơi d&acirc;y c&ograve;n sở hữu d&acirc;y chuyền nấu bia truyền thống ngay trong nh&agrave; h&agrave;ng, Gozo Brew House tạo ra những ly bia tươi ngon trọn vị kh&oacute; qu&ecirc;n. Ngo&agrave;i ra&nbsp;Stelia Beach Resort Ph&uacute; Y&ecirc;n&nbsp;c&ograve;n c&oacute; khu vực Aura Spa gi&uacute;p bạn c&oacute; thời gian thư giản xua tan những mệt mỏi c&ugrave;ng với dịch vụ x&ocirc;ng hơi, massage chuy&ecirc;n nghiệp nhất sẽ l&agrave;m h&agrave;i l&ograve;ng tuyệt đối d&ugrave; l&agrave; vị kh&aacute;ch kh&oacute; t&iacute;nh nhất.</p>', 0, 46, 'Giá độc quyền', 14, 12, 9),
-(19, 'Azerai Cần Thơ', 'Cồn Ấu, Phường Hưng Phú, Quận Cái Răng, Thành phố Cần Thơ', 10, 5, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss508 jss488\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n<p>Hạn chế người Việt Nam v&agrave; người nước ngo&agrave;i check-in c&ugrave;ng 1 ph&ograve;ng, nếu kh&ocirc;ng xuất tr&igrave;nh giấy đăng k&yacute; kết h&ocirc;n</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss509\"><strong><span class=\"MuiBox-root jss510\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss511 jss488\">\n<p>Trẻ em từ 13 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/khu-nghi-duong-azerai-can-tho.html\">Khu nghỉ dưỡng&nbsp;Azerai Cần Thơ</a></strong>&nbsp;tọa lạc tại vị tr&iacute; tuyệt đẹp của Cồn Ấu, gần trung t&acirc;m th&agrave;nh phố Cần Thơ.&nbsp;<strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong>&nbsp;mang d&aacute;ng vẻ phương Đ&ocirc;ng đặc trưng h&ograve;a c&ugrave;ng khung cảnh thi&ecirc;n nhi&ecirc;n b&ecirc;n d&ograve;ng s&ocirc;ng Hậu đầy thơ mộng. &ldquo;Ốc đảo b&igrave;nh dị độc đ&aacute;o&rdquo; n&agrave;y ẩn m&igrave;nh dưới h&agrave;ng c&acirc;y trăm tuổi được giữ lại nguy&ecirc;n vẹn trong qu&aacute; tr&igrave;nh x&acirc;y dựng.&nbsp;</p>\n<p><strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong>&nbsp;l&agrave; sản phẩm cao cấp kết hợp của tập đo&agrave;n Novaland c&ugrave;ng tập đo&agrave;n danh tiếng thế giới Adrian Zecha với tham vọng ph&aacute;t triển Cần Thơ th&agrave;nh ng&ocirc;i sao s&aacute;ng tr&ecirc;n bản đồ du lịch thế giới.</p>\n<p><strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong>&nbsp;c&oacute; tất cả 60 bungalow với kh&ocirc;ng gian mở, chan h&ograve;a &aacute;nh s&aacute;ng, nội thất nền n&atilde; v&agrave; sang trọng. Đặc biệt,&nbsp;<strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong> c&ograve;n cung cấp nhiều dịch vụ đi k&egrave;m đạt chuẩn 5 sao như hồ bơi ngo&agrave;i trời, spa thư gi&atilde;n, ph&ograve;ng gym, yoga, tennis, nh&agrave; h&agrave;ng với ẩm thực phong ph&uacute;, cửa h&agrave;ng lưu niệm.</p>', 0, 14, 'Vị trí đẹp', 15, 12, 9),
-(20, 'Vinpearl Resort & Spa Phú Quốc', 'Bãi Dài, Xã Gành Dầu, Thành phố Phú Quốc, Tỉnh Kiên Giang', 25, 5, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss505 jss485\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss508 jss485\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/vinpearl-resort-spa-phu-quoc.html\">Vinpearl Resort &amp; Spa Ph&uacute; Quốc</a>&nbsp;</strong>nằm ở ph&iacute;a Bắc của đảo Ph&uacute; Quốc,&nbsp;l&agrave; lựa chọn tuyệt vời d&agrave;nh cho du kh&aacute;ch mỗi khi đến tham quan h&ograve;n đảo Ph&uacute; Quốc xinh đẹp.&nbsp;Khu nghỉ dưỡng chỉ c&aacute;ch s&acirc;n bay Ph&uacute; Quốc khoảng 24 km, c&aacute;ch chợ đ&ecirc;m Ph&uacute; Quốc 18 km, c&aacute;ch s&ograve;ng bạc Corona Casino 1 km...</p>\n<p><strong>Vinpearl Resort &amp; Spa Ph&uacute; Quốc</strong>&nbsp;mang đậm n&eacute;t kiến tr&uacute;c Đ&ocirc;ng Dương với h&igrave;nh ảnh những t&ograve;a nh&agrave; m&aacute;i ng&oacute;i đỏ đặc trưng. C&aacute;c ph&ograve;ng đều được trang bị đầy đủ tiện nghi đ&aacute;p ứng c&aacute;c nhu cầu của kh&aacute;ch h&agrave;ng. Đến đ&acirc;y, bạn sẽ kh&ocirc;ng khỏi ngạc nhi&ecirc;n trước sự sang trọng bậc nhất m&agrave; kh&ocirc;ng t&igrave;m thấy ở nơi kh&aacute;c.</p>\n<p>Khu nghỉ dưỡng được kết nối thuận tiện với c&aacute;c khu resort kh&aacute;c của Vinpearl tr&ecirc;n đảo Ph&uacute; Quốc. Hệ thống nh&agrave; h&agrave;ng với sự đa dạng trong ẩm thực hứa hẹn sẽ l&agrave;m h&agrave;i l&ograve;ng bất kỳ ai.&nbsp;<strong>Vinpearl Resort &amp; Spa Ph&uacute; Quốc</strong>&nbsp;được c&aacute;c gia đ&igrave;nh, nh&oacute;m bạn v&agrave; cặp đ&ocirc;i rất ưa chuộng.</p>\n<p>Nếu như bạn c&oacute; bất kỳ thắc mắc n&agrave;o về dịch vụ&nbsp;đặt ph&ograve;ng<strong>&nbsp;<a href=\"https://www.vietnambooking.com/hotel/vietnam/khach-san-phu-quoc.html\">kh&aacute;ch sạn Ph&uacute; Quốc</a></strong>, vui l&ograve;ng li&ecirc;n hệ số tổng đ&agrave;i&nbsp;<span>1900 4698</span>&nbsp;để được hỗ trợ v&agrave; tư vấn chi tiết nhất.</p>', 0, 34, 'Giá cực tốt', 14, 12, 2),
-(21, 'Vinpearl Resort Nha Trang', 'Lê Thánh Tôn, Phường Lộc Thọ, Thành phố Nha Trang, Tỉnh Khánh Hòa', 10, 5, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss505 jss485\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss508 jss485\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><a href=\"https://www.vietnambooking.com/hotel/vietnam/melia-vinpearl-nha-trang-empire.html\"><strong>Melia Vinpearl Nha Trang Empire</strong></a>&nbsp;l&agrave; sản phẩm căn hộ kh&aacute;ch sạn đẳng cấp mang đến cho kh&aacute;ch h&agrave;ng kh&ocirc;ng gian lưu tr&uacute; tiện nghi nhất. Đến đ&acirc;y qu&yacute; kh&aacute;ch sẽ được tận hưởng trải nghiệm du lịch sinh th&aacute;i ngay trong kh&ocirc;ng gian th&agrave;nh phố biển. Với quy m&ocirc; 41 tầng đẳng cấp tọa lạc ngay&nbsp;<strong>trung t&acirc;m th&agrave;nh phố Nha Trang,</strong>&nbsp;hứa hẹn<strong>&nbsp;</strong>đem đến cho du kh&aacute;ch những cảm nhận trọn vẹn nhất về nhịp sống hiện đại.&nbsp;</p>\n<p>Điểm đặc biệt tại&nbsp;<strong>Melia Vinpearl Nha Trang Empire</strong>&nbsp;đ&oacute; l&agrave; đa số c&aacute;c&nbsp;<strong>ph&ograve;ng đều c&oacute; view biển</strong>&nbsp;v&agrave; Vingroup c&ograve;n thu&ecirc; cho kh&aacute;ch một&nbsp;<strong>b&atilde;i biển ri&ecirc;ng&nbsp;</strong>đ&atilde; được k&ecirc; ghế d&ugrave; đầy đủ. Ngo&agrave;i ra, qu&yacute; kh&aacute;ch c&ograve;n c&oacute; thể vui chơi, mua sắm thỏa th&iacute;ch tại Trung t&acirc;m thương mại Vincom, khu giải tr&iacute; Vinpearl Land, Vinpearl Golf, Trung t&acirc;m ẩm thực &amp; giải tr&iacute; Ocean Hill&hellip; của hệ sinh th&aacute;i Vinpearl.</p>\n<div>\n<div>Kh&ocirc;ng chỉ c&oacute; thế,<strong>&nbsp;</strong><strong>Melia Vinpearl Nha Trang Empire</strong>&nbsp;c&ograve;n nằm gần nhiều địa điểm nổi tiếng như:&nbsp;<strong>Th&aacute;p Trầm Hương, Viện Hải dương học,</strong>&nbsp;Th&aacute;p b&agrave; Ponagar,... Nếu như bạn đang muốn t&igrave;m kiếm một kh&aacute;ch sạn 5 sao chuẩn quốc tế theo m&ocirc; h&igrave;nh căn hộ, tận hưởng kh&ocirc;ng gian nghỉ dưỡng sang trọng v&agrave; ri&ecirc;ng tư giống như ở nh&agrave; th&igrave; đ&acirc;y l&agrave; lựa chọn l&yacute; tưởng d&agrave;nh cho bạn.&nbsp;</div>\n</div>', 0, 33, 'Khách sạn yêu thích', 14, 12, 2),
+(17, 'Ana Mandara Villas Đà Lạt Resort & Spa', 'Lê Lai, Phường 5, Thành phố Đà Lạt, Tỉnh Lâm Đồng', 15, 5, '<div class=\"MuiBox-root jss2185\"><strong><span class=\"MuiBox-root jss2186\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss2187 jss2167\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss2188\"><strong><span class=\"MuiBox-root jss2189\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss2190 jss2167\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/ana-mandara-villas-da-lat-resort-spa.html\">Ana Mandara Villas Đ&agrave; Lạt Resort &amp; Spa</a>&nbsp;</strong>được thiết kế theo kiểu kiến tr&uacute;c cổ điển Ph&aacute;p. Khu nghỉ dưỡng nằm tại vị tr&iacute; l&yacute; tưởng tr&ecirc;n những sườn dốc mộng mơ ở<strong>&nbsp;trung t&acirc;m th&agrave;nh phố Đ&agrave; Lạt</strong>. Từ đ&acirc;y bạn c&oacute; thể di chuyển dễ d&agrave;ng đến nhiều địa điểm tham quan của xứ sở ng&agrave;n hoa như: Hồ Xu&acirc;n Hương, Hồ Tuyền L&acirc;m, Thung lũng t&igrave;nh y&ecirc;u,... Ph&ograve;ng nghỉ ở&nbsp;Ana Villas Dalat Resort &amp; Spa ấm c&uacute;ng v&agrave; đầy đủ tiện nghi như: M&aacute;y sấy t&oacute;c, tủ lạnh mini, k&eacute;t sắt, quạt, điều h&ograve;a,...</p>\n<p>Đặc biệt, tại&nbsp;<strong>Ana Mandara Villas Đ&agrave; Lạt Resort &amp; Spa</strong>&nbsp;c&oacute;&nbsp;<strong>hồ bơi ngo&agrave;i trời, nh&agrave; h&agrave;ng</strong>&nbsp;v&agrave; trung t&acirc;m spa rất hiện đại, sang trọng, l&agrave; nơi l&yacute; tưởng để bạn hưởng thụ v&agrave; thư gi&atilde;n sau những giờ l&agrave;m việc mệt nho&agrave;i. La Cochinchine Spa c&oacute; 5 ph&ograve;ng thư gi&atilde;n với c&aacute;c liệu ph&aacute;p như massage ch&acirc;n, ph&ograve;ng x&ocirc;ng hơi kh&ocirc; v&agrave; ướt,... gi&uacute;p bạn kho&aacute;c l&ecirc;n một diện mạo mới trong kỳ nghỉ dưỡng.</p>\n<p>Nếu như bạn c&oacute; bất kỳ thắc mắc n&agrave;o về dịch vụ&nbsp;<strong>đặt ph&ograve;ng&nbsp;</strong><strong>Ana Mandara Villas Đ&agrave; Lạt</strong>&nbsp;hay&nbsp;<strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/khach-san-da-lat.html\">đặt ph&ograve;ng kh&aacute;ch sạn Đ&agrave; Lạt</a></strong>, vui l&ograve;ng li&ecirc;n hệ số&nbsp;<strong>hotline&nbsp;1900 4698&nbsp;</strong>để được tư vấn v&agrave; hỗ trợ chi tiết nhất.</p>', 1, 39, 'Giá cực tốt', 14, 12, 9),
+(18, 'Stelia Beach Resort Phú Yên', 'Độc Lập, Phường 9, Thành phố Tuy Hoà, Tỉnh Phú Yên', 20, 5, '<div class=\"MuiBox-root jss5438\"><strong><span class=\"MuiBox-root jss5439\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss5440 jss5420\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss5441\"><strong><span class=\"MuiBox-root jss5442\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss5443 jss5420\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p class=\"MsoNormal\"><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/stelia-beach-resort-phu-yen.html\" target=\"_blank\" rel=\"noopener\">Stelia Beach Resort Ph&uacute; Y&ecirc;n</a></strong>&nbsp;l&agrave; khu biệt thự nghỉ dưỡng hiện đại nằm giữa thi&ecirc;n nhi&ecirc;n trong l&agrave;nh xanh m&aacute;t, Diện t&iacute;ch l&ecirc;n đến 9 hecta với b&atilde;i biển ri&ecirc;ng, resort được thiết kế theo phong c&aacute;ch Địa Trung Hải Santorini sẽ mang đến cho du kh&aacute;ch trải nghiệm nghỉ dưỡng đẳng cấp 5 sao. Resort nằm c&aacute;ch s&acirc;n bay Tuy H&ograve;a 8 km, th&aacute;p Nghinh Phong,&nbsp;Quảng Trường 1-4,&nbsp;N&uacute;i Nhạn, ch&ugrave;a Bảo L&acirc;m, G&agrave;nh &Ocirc;ng, G&agrave;nh B&agrave; c&ugrave;ng nhiều địa điểm tham quan du lịch kh&aacute;c của Ph&uacute; Y&ecirc;n chỉ với v&agrave;i ph&uacute;t di chuyển bằng xe.&nbsp;</p>\n<p class=\"MsoNormal\">Đến với&nbsp;<strong>Stelia Beach Resort Ph&uacute; Y&ecirc;n</strong>&nbsp;qu&yacute; kh&aacute;ch sẽ bị đắm ch&igrave;m v&agrave;o cảnh sắc thi&ecirc;n nhi&ecirc;n tuyệt đẹp h&ograve;a hợp với kiệt t&aacute;c s&aacute;ng tạo của con người. Với thiết kế 41 ph&ograve;ng v&agrave; biệt thự nghỉ dưỡng với hai t&ocirc;ng m&agrave;u xanh trắng chủ đạo, tối giản nhưng tinh tế h&agrave;i h&ograve;a với thi&ecirc;n nhi&ecirc;n. Được trang bị nội thất cao cấp, sang trọng phục vụ cho nhu cầu nghỉ dưỡng của du kh&aacute;ch c&ugrave;ng với c&aacute;c tiện t&iacute;ch miễn ph&iacute; c&oacute; tại Resort qu&yacute; kh&aacute;ch c&oacute; thể tận hưởng chuyến đi v&agrave; vui chơi c&ugrave;ng gia đ&igrave;nh v&agrave; người th&acirc;n với c&aacute;c hoạt động ngo&agrave;i trời như bể bơi v&ocirc; cực, đạp xe dạo quanh, khu vui chơi trẻ em, xem phim, chạy bộ tr&ecirc;n b&atilde;i biển, ph&ograve;ng tập thể dục...&nbsp;</p>\n<p class=\"MsoNormal\">Khu vực nh&agrave; h&agrave;ng Gozo được thiết kế rất đặc biệt với h&igrave;nh d&aacute;ng c&aacute;nh diều đ&oacute;n gi&oacute; hướng ra biển, Gozo Brew House l&agrave; nh&agrave; h&agrave;ng tre lớn nhất Việt Nam với diện t&iacute;ch l&ecirc;n đến 1900m2, được gh&eacute;p từ hơn 40.000 c&acirc;y tầm v&ocirc;ng v&agrave; m&aacute;i v&ograve;m được lợp từ h&agrave;ng trăm l&aacute; dừa nước rất độc đ&aacute;o. Nh&agrave; h&agrave;ng phục vụ c&aacute;c m&oacute;n ăn mang phong c&aacute;ch từ &Acirc;u đến &Aacute; v&agrave; c&aacute;c m&oacute;n hải sản tươi sống đặc sản của v&ugrave;ng biển Ph&uacute; Y&ecirc;n, đặc biệt hơn nữa nơi d&acirc;y c&ograve;n sở hữu d&acirc;y chuyền nấu bia truyền thống ngay trong nh&agrave; h&agrave;ng, Gozo Brew House tạo ra những ly bia tươi ngon trọn vị kh&oacute; qu&ecirc;n. Ngo&agrave;i ra&nbsp;Stelia Beach Resort Ph&uacute; Y&ecirc;n&nbsp;c&ograve;n c&oacute; khu vực Aura Spa gi&uacute;p bạn c&oacute; thời gian thư giản xua tan những mệt mỏi c&ugrave;ng với dịch vụ x&ocirc;ng hơi, massage chuy&ecirc;n nghiệp nhất sẽ l&agrave;m h&agrave;i l&ograve;ng tuyệt đối d&ugrave; l&agrave; vị kh&aacute;ch kh&oacute; t&iacute;nh nhất.</p>', 1, 46, 'Giá độc quyền', 14, 12, 9),
+(19, 'Azerai Cần Thơ', 'Cồn Ấu, Phường Hưng Phú, Quận Cái Răng, Thành phố Cần Thơ', 10, 5, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss508 jss488\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n<p>Hạn chế người Việt Nam v&agrave; người nước ngo&agrave;i check-in c&ugrave;ng 1 ph&ograve;ng, nếu kh&ocirc;ng xuất tr&igrave;nh giấy đăng k&yacute; kết h&ocirc;n</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss509\"><strong><span class=\"MuiBox-root jss510\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss511 jss488\">\n<p>Trẻ em từ 13 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/khu-nghi-duong-azerai-can-tho.html\">Khu nghỉ dưỡng&nbsp;Azerai Cần Thơ</a></strong>&nbsp;tọa lạc tại vị tr&iacute; tuyệt đẹp của Cồn Ấu, gần trung t&acirc;m th&agrave;nh phố Cần Thơ.&nbsp;<strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong>&nbsp;mang d&aacute;ng vẻ phương Đ&ocirc;ng đặc trưng h&ograve;a c&ugrave;ng khung cảnh thi&ecirc;n nhi&ecirc;n b&ecirc;n d&ograve;ng s&ocirc;ng Hậu đầy thơ mộng. &ldquo;Ốc đảo b&igrave;nh dị độc đ&aacute;o&rdquo; n&agrave;y ẩn m&igrave;nh dưới h&agrave;ng c&acirc;y trăm tuổi được giữ lại nguy&ecirc;n vẹn trong qu&aacute; tr&igrave;nh x&acirc;y dựng.&nbsp;</p>\n<p><strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong>&nbsp;l&agrave; sản phẩm cao cấp kết hợp của tập đo&agrave;n Novaland c&ugrave;ng tập đo&agrave;n danh tiếng thế giới Adrian Zecha với tham vọng ph&aacute;t triển Cần Thơ th&agrave;nh ng&ocirc;i sao s&aacute;ng tr&ecirc;n bản đồ du lịch thế giới.</p>\n<p><strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong>&nbsp;c&oacute; tất cả 60 bungalow với kh&ocirc;ng gian mở, chan h&ograve;a &aacute;nh s&aacute;ng, nội thất nền n&atilde; v&agrave; sang trọng. Đặc biệt,&nbsp;<strong>Khu nghỉ dưỡng Azerai Cần Thơ</strong> c&ograve;n cung cấp nhiều dịch vụ đi k&egrave;m đạt chuẩn 5 sao như hồ bơi ngo&agrave;i trời, spa thư gi&atilde;n, ph&ograve;ng gym, yoga, tennis, nh&agrave; h&agrave;ng với ẩm thực phong ph&uacute;, cửa h&agrave;ng lưu niệm.</p>', 1, 14, 'Vị trí đẹp', 15, 12, 9),
+(20, 'Vinpearl Resort & Spa Phú Quốc', 'Bãi Dài, Xã Gành Dầu, Thành phố Phú Quốc, Tỉnh Kiên Giang', 25, 5, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss505 jss485\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss508 jss485\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/vinpearl-resort-spa-phu-quoc.html\">Vinpearl Resort &amp; Spa Ph&uacute; Quốc</a>&nbsp;</strong>nằm ở ph&iacute;a Bắc của đảo Ph&uacute; Quốc,&nbsp;l&agrave; lựa chọn tuyệt vời d&agrave;nh cho du kh&aacute;ch mỗi khi đến tham quan h&ograve;n đảo Ph&uacute; Quốc xinh đẹp.&nbsp;Khu nghỉ dưỡng chỉ c&aacute;ch s&acirc;n bay Ph&uacute; Quốc khoảng 24 km, c&aacute;ch chợ đ&ecirc;m Ph&uacute; Quốc 18 km, c&aacute;ch s&ograve;ng bạc Corona Casino 1 km...</p>\n<p><strong>Vinpearl Resort &amp; Spa Ph&uacute; Quốc</strong>&nbsp;mang đậm n&eacute;t kiến tr&uacute;c Đ&ocirc;ng Dương với h&igrave;nh ảnh những t&ograve;a nh&agrave; m&aacute;i ng&oacute;i đỏ đặc trưng. C&aacute;c ph&ograve;ng đều được trang bị đầy đủ tiện nghi đ&aacute;p ứng c&aacute;c nhu cầu của kh&aacute;ch h&agrave;ng. Đến đ&acirc;y, bạn sẽ kh&ocirc;ng khỏi ngạc nhi&ecirc;n trước sự sang trọng bậc nhất m&agrave; kh&ocirc;ng t&igrave;m thấy ở nơi kh&aacute;c.</p>\n<p>Khu nghỉ dưỡng được kết nối thuận tiện với c&aacute;c khu resort kh&aacute;c của Vinpearl tr&ecirc;n đảo Ph&uacute; Quốc. Hệ thống nh&agrave; h&agrave;ng với sự đa dạng trong ẩm thực hứa hẹn sẽ l&agrave;m h&agrave;i l&ograve;ng bất kỳ ai.&nbsp;<strong>Vinpearl Resort &amp; Spa Ph&uacute; Quốc</strong>&nbsp;được c&aacute;c gia đ&igrave;nh, nh&oacute;m bạn v&agrave; cặp đ&ocirc;i rất ưa chuộng.</p>\n<p>Nếu như bạn c&oacute; bất kỳ thắc mắc n&agrave;o về dịch vụ&nbsp;đặt ph&ograve;ng<strong>&nbsp;<a href=\"https://www.vietnambooking.com/hotel/vietnam/khach-san-phu-quoc.html\">kh&aacute;ch sạn Ph&uacute; Quốc</a></strong>, vui l&ograve;ng li&ecirc;n hệ số tổng đ&agrave;i&nbsp;<span>1900 4698</span>&nbsp;để được hỗ trợ v&agrave; tư vấn chi tiết nhất.</p>', 1, 34, 'Giá cực tốt', 14, 12, 2),
+(21, 'Vinpearl Resort Nha Trang', 'Lê Thánh Tôn, Phường Lộc Thọ, Thành phố Nha Trang, Tỉnh Khánh Hòa', 10, 5, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss505 jss485\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss508 jss485\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><a href=\"https://www.vietnambooking.com/hotel/vietnam/melia-vinpearl-nha-trang-empire.html\"><strong>Melia Vinpearl Nha Trang Empire</strong></a>&nbsp;l&agrave; sản phẩm căn hộ kh&aacute;ch sạn đẳng cấp mang đến cho kh&aacute;ch h&agrave;ng kh&ocirc;ng gian lưu tr&uacute; tiện nghi nhất. Đến đ&acirc;y qu&yacute; kh&aacute;ch sẽ được tận hưởng trải nghiệm du lịch sinh th&aacute;i ngay trong kh&ocirc;ng gian th&agrave;nh phố biển. Với quy m&ocirc; 41 tầng đẳng cấp tọa lạc ngay&nbsp;<strong>trung t&acirc;m th&agrave;nh phố Nha Trang,</strong>&nbsp;hứa hẹn<strong>&nbsp;</strong>đem đến cho du kh&aacute;ch những cảm nhận trọn vẹn nhất về nhịp sống hiện đại.&nbsp;</p>\n<p>Điểm đặc biệt tại&nbsp;<strong>Melia Vinpearl Nha Trang Empire</strong>&nbsp;đ&oacute; l&agrave; đa số c&aacute;c&nbsp;<strong>ph&ograve;ng đều c&oacute; view biển</strong>&nbsp;v&agrave; Vingroup c&ograve;n thu&ecirc; cho kh&aacute;ch một&nbsp;<strong>b&atilde;i biển ri&ecirc;ng&nbsp;</strong>đ&atilde; được k&ecirc; ghế d&ugrave; đầy đủ. Ngo&agrave;i ra, qu&yacute; kh&aacute;ch c&ograve;n c&oacute; thể vui chơi, mua sắm thỏa th&iacute;ch tại Trung t&acirc;m thương mại Vincom, khu giải tr&iacute; Vinpearl Land, Vinpearl Golf, Trung t&acirc;m ẩm thực &amp; giải tr&iacute; Ocean Hill&hellip; của hệ sinh th&aacute;i Vinpearl.</p>\n<div>\n<div>Kh&ocirc;ng chỉ c&oacute; thế,<strong>&nbsp;</strong><strong>Melia Vinpearl Nha Trang Empire</strong>&nbsp;c&ograve;n nằm gần nhiều địa điểm nổi tiếng như:&nbsp;<strong>Th&aacute;p Trầm Hương, Viện Hải dương học,</strong>&nbsp;Th&aacute;p b&agrave; Ponagar,... Nếu như bạn đang muốn t&igrave;m kiếm một kh&aacute;ch sạn 5 sao chuẩn quốc tế theo m&ocirc; h&igrave;nh căn hộ, tận hưởng kh&ocirc;ng gian nghỉ dưỡng sang trọng v&agrave; ri&ecirc;ng tư giống như ở nh&agrave; th&igrave; đ&acirc;y l&agrave; lựa chọn l&yacute; tưởng d&agrave;nh cho bạn.&nbsp;</div>\n</div>', 1, 33, 'Khách sạn yêu thích', 14, 12, 2),
 (22, 'Khách sạn Melia Vinpearl Huế', '50A Hùng Vương, Phường Phú Nhuận, Thành phố Huế, Tỉnh Thừa Thiên Huế', 10, 5, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss508 jss488\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss509\"><strong><span class=\"MuiBox-root jss510\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss511 jss488\">\n<p>Trẻ em từ 13 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><a href=\"https://www.vietnambooking.com/hotel/vietnam/khach-san-melia-vinpearl-hue.html\"><strong>Melia Vinpearl Huế</strong></a><strong>&nbsp;</strong>tọa lạc tại&nbsp;<strong>trung t&acirc;m th&agrave;nh phố Huế&nbsp;</strong>cổ k&iacute;nh với vị tr&iacute; hướng s&ocirc;ng Hương - tựa n&uacute;i Ngự. Từ kh&aacute;ch sạn bạn c&oacute; thể dễ d&agrave;ng di chuyển tới nhiều điểm tham quan nổi tiếng như: Đại nội Huế, ch&ugrave;a Thi&ecirc;n Mụ, ph&aacute; Tam Giang,...</p>\n<p><strong>Melia Vinpearl Huế</strong>&nbsp;với&nbsp;<strong>33 tầng cao</strong>, gồm 240 ph&ograve;ng nghỉ ti&ecirc;u chuẩn quốc tế 5 sao cao cấp được thiết kế trang nh&atilde;, sang trọng, với tầm nh&igrave;n nh&igrave;n to&agrave;n cảnh th&agrave;nh phố Huế v&agrave; s&ocirc;ng Hương thơ mộng.&nbsp;</p>\n<p>Tại đ&acirc;y c&oacute; nhiều tiện &iacute;ch nổi bật để bạn kh&aacute;m ph&aacute; như:&nbsp;<strong>Nh&agrave; h&agrave;ng Cung Đ&igrave;nh,&nbsp;Sky bar đẳng cấp</strong>,&nbsp;ph&ograve;ng tập gym, spa, bể bơi hiện đại&hellip;</p>', 1, 58, 'Khách sạn yêu thích', 14, 12, 2);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khunggio`
+-- Table structure for table `khunggio`
 --
 
 CREATE TABLE `khunggio` (
   `ID` int(11) NOT NULL,
   `GioBatDau` time NOT NULL,
   `GioKetThuc` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `khunggio`
+-- Dumping data for table `khunggio`
 --
 
 INSERT INTO `khunggio` (`ID`, `GioBatDau`, `GioKetThuc`) VALUES
@@ -541,7 +542,7 @@ INSERT INTO `khunggio` (`ID`, `GioBatDau`, `GioKetThuc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khuyenmai`
+-- Table structure for table `khuyenmai`
 --
 
 CREATE TABLE `khuyenmai` (
@@ -557,10 +558,10 @@ CREATE TABLE `khuyenmai` (
   `DieuKien` text DEFAULT NULL,
   `SoLuongKM` int(11) DEFAULT NULL,
   `IDKhungGio` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `khuyenmai`
+-- Dumping data for table `khuyenmai`
 --
 
 INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`, `MaKhuyenMai`, `BatDau`, `KetThuc`, `MoTa`, `DieuKien`, `SoLuongKM`, `IDKhungGio`) VALUES
@@ -600,16 +601,16 @@ INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `loaitiennghikhachsan`
+-- Table structure for table `loaitiennghikhachsan`
 --
 
 CREATE TABLE `loaitiennghikhachsan` (
   `ID` int(11) NOT NULL,
   `TenLoai` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `loaitiennghikhachsan`
+-- Dumping data for table `loaitiennghikhachsan`
 --
 
 INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
@@ -630,16 +631,16 @@ INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `loaitiennghiphong`
+-- Table structure for table `loaitiennghiphong`
 --
 
 CREATE TABLE `loaitiennghiphong` (
   `TenLoai` varchar(50) NOT NULL,
   `ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `loaitiennghiphong`
+-- Dumping data for table `loaitiennghiphong`
 --
 
 INSERT INTO `loaitiennghiphong` (`TenLoai`, `ID`) VALUES
@@ -654,7 +655,7 @@ INSERT INTO `loaitiennghiphong` (`TenLoai`, `ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nguoidung`
+-- Table structure for table `nguoidung`
 --
 
 CREATE TABLE `nguoidung` (
@@ -670,26 +671,27 @@ CREATE TABLE `nguoidung` (
   `MaSoThue` varchar(10) DEFAULT NULL,
   `QuyMo` varchar(100) DEFAULT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `nguoidung`
+-- Dumping data for table `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaChi`, `MatKhau`, `PhanQuyen`, `TenCongTy`, `MaSoThue`, `QuyMo`, `TrangThai`) VALUES
-(1, 'Admin', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'admin@gmail.com', NULL, NULL, 'admin', 2, NULL, NULL, NULL, 1),
-(2, 'Vinpearl', 'https://inkythuatso.com/uploads/images/2021/09/vinpearl-logo-inkythuatso-1-13-10-21-19.jpg', 'vinpearl@gmail.com', '0928754123', '78 - 80 Đường Trần Phú, Phường Lộc Thọ, Tp. Nha Trang', '$2a$10$2sqBZxyEuduEJgNJvdIFA.ZRZV/rShXHXVcjm5Fl4jB4RTR4FlZ9C', 1, 'Vinpearl', '012578541', '20 - 49 nhân viên', 1),
+(1, 'Admin', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'admin@gmail.com', NULL, NULL, '$2a$10$.WRsgIHWvodzxD84lBQ1be/lA06zXn1TkxMoILVnPndc5ZQ72dZvG', 2, NULL, NULL, NULL, 1),
+(2, ' Vinpearl Land', 'https://inkythuatso.com/uploads/images/2021/09/vinpearl-logo-inkythuatso-1-13-10-21-19.jpg', 'vinpearl@gmail.com', '0928754123', '78 - 80 Đường Trần Phú, Phường Lộc Thọ, Tp. Nha Trang', '$2a$10$2sqBZxyEuduEJgNJvdIFA.ZRZV/rShXHXVcjm5Fl4jB4RTR4FlZ9C', 1, 'Vinpearl', '0147258369', '20 - 49 nhân viên', 1),
 (3, 'Nguyễn Đăng Mạnh Tú', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'manhtu2272002@gmail.com', '09923312', '', '$2a$10$UAdFFtuw/24puqwJ.BYUtufh3k9yhjb7tTCjZcJLw4LUIBnoP79xW', 0, '', '', '', 0),
 (4, 'Tran Thao Quyen', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684009946/khachsan/Wide_Redwoods_1024x768_blrduc.jpg', 'quyenquyen@gmail.com', '098231189', 'Phường 1, quận 5, TPHCM', '$2a$10$5kf9MtdD1CyWY53vT5Um6O9ZPHsMBC2JMapEi5V/lpvW.lwmwoNuW', 0, NULL, NULL, NULL, 1),
-(5, 'Trần Huỳnh Ngọc Diệp', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'HuynhNgoc123@gmail.com', '098992321', 'Số nhà 412, đường Nguyễn Văn Cừ, quận 5, TPHCM', '$2a$10$U9eqIonkF8OOPrmKZIVpE.lMt45vqfEeLQnGKLk/OYDuU/LoXuvFC', 1, NULL, NULL, NULL, 1),
-(8, 'Bình Phước', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'lapdoan.010102@gmail.com', '0985374624', '70 Hoàng Hoa Thám Tp Vũng Tàu', '$2a$10$2QW8cAx.eDr4ELEyzMvHCeJq.Py/qYFFpMGYLNm2eOZlnYVrWBEiC', 1, 'Hiệp phước', '123', '1 - 19 nhân viên', 0),
-(9, 'Nguyễn Đăng Mạnh', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'manhtu2002227@gmail.com', '0985374623', '77 Chuyên Dùng 9 Phường Phú Mỹ Quận 7 TPHCM', '$2a$10$1UVGUz4pLYH/tDZP2Cst7O5YF/yFTOU8KLiJYyF7wUeKp9BaGKph2', 1, 'Ozawa suruki', '7000', '50 - 99 nhân viên', 1),
-(11, 'Le Nguyen Lan Vy', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'vyle4119@gmail.com', '0346678902', '135B Trần Hưng Đạo, quận 1, TP Hồ Chí Minh', '$2a$10$MIEodqdEXp.uKwKQU.Gfoeo8ctFJAEEdMnEDY0AyAx3B6EjkQbKle', 1, NULL, NULL, NULL, 1);
+(5, 'Trần Huỳnh Ngọc Diệp', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684092988/khachsan/d-1015532_960_720_h4fow9.webp', 'thndiepkhtn@gmail.com', '098992321', 'Số nhà 412, đường Nguyễn Văn Cừ, quận 5, TPHCM', '$2a$10$4ejxihAiUxIbr7HB1hsnZOMLDG/jLxotMcCpmBt5aEFCujJ8JSL5C', 1, 'Công ty Trần Huỳnh Ngọc Diệp', '0127155236', '500 - 1000 nhân viên', 1),
+(8, 'Bình Phước', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'lapdoan.010102@gmail.com', '0985374624', '70, Hoàng Hoa Thám, Thành phố Vũng Tàu', '$2a$10$2QW8cAx.eDr4ELEyzMvHCeJq.Py/qYFFpMGYLNm2eOZlnYVrWBEiC', 1, 'Công ty Hiệp Phước', '1593521301', '200 - 499 nhân viên', 0),
+(9, 'Nguyễn Đăng Mạnh Tú', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684093297/khachsan/t-1015548_960_720_pbudya.jpg', 'manhtu2002227@gmail.com', '0985374623', '77, Chuyên Dùng 9, phường Phú Mỹ, Quận 7, TPHCM', '$2a$10$1UVGUz4pLYH/tDZP2Cst7O5YF/yFTOU8KLiJYyF7wUeKp9BaGKph2', 1, 'Công ty Nguyễn Đăng Mạnh Tú', '6532471389', '50 - 99 nhân viên', 1),
+(11, 'Lê Nguyễn Lan Vy', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'vyle4119@gmail.com', '0346678902', '135B Trần Hưng Đạo, quận 1, TP Hồ Chí Minh', '$2a$10$MIEodqdEXp.uKwKQU.Gfoeo8ctFJAEEdMnEDY0AyAx3B6EjkQbKle', 1, 'Công ty Lê Nguyễn Lan Vy', '0127155236', '20 - 49 nhân viên', 1),
+(12, 'Trần Thảo Quyên', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684093908/khachsan/red-heart_118047-2506_expigt.avif', 'thaoquyen@gmail.com', '0997652130', '123, phường Hiệp Thành, huyện Củ Chi, TPHCM', '$2a$10$pANKnq0EavcMpXnk28FrNueCllgeaG8rle9IxqpGfcCRvLkXTx4rO', 1, 'Công ty Trần Thảo Quyên', '0213549531', '1 - 19 nhân viên', 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nguoinhanphong`
+-- Table structure for table `nguoinhanphong`
 --
 
 CREATE TABLE `nguoinhanphong` (
@@ -697,12 +699,12 @@ CREATE TABLE `nguoinhanphong` (
   `HoTen` varchar(255) NOT NULL,
   `Sdt` varchar(10) NOT NULL,
   `IDKhachHang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phong`
+-- Table structure for table `phong`
 --
 
 CREATE TABLE `phong` (
@@ -714,10 +716,10 @@ CREATE TABLE `phong` (
   `DienTich` int(11) NOT NULL,
   `Gia` int(11) NOT NULL,
   `TrangThai` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `phong`
+-- Dumping data for table `phong`
 --
 
 INSERT INTO `phong` (`ID`, `TenLoaiPhong`, `IDKhachSan`, `SoPhongTrong`, `SoNguoi`, `DienTich`, `Gia`, `TrangThai`) VALUES
@@ -742,7 +744,7 @@ INSERT INTO `phong` (`ID`, `TenLoaiPhong`, `IDKhachSan`, `SoPhongTrong`, `SoNguo
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `taikhoanthanhtoan`
+-- Table structure for table `taikhoanthanhtoan`
 --
 
 CREATE TABLE `taikhoanthanhtoan` (
@@ -752,34 +754,35 @@ CREATE TABLE `taikhoanthanhtoan` (
   `HoTenTK` varchar(100) NOT NULL,
   `SoTaiKhoan` varchar(50) NOT NULL,
   `NgayHetHan` date NOT NULL,
-  `anhQR` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `anhQR` varchar(10000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `taikhoanthanhtoan`
+-- Dumping data for table `taikhoanthanhtoan`
 --
 
 INSERT INTO `taikhoanthanhtoan` (`IDKhachHang`, `ID`, `TenNganHang`, `HoTenTK`, `SoTaiKhoan`, `NgayHetHan`, `anhQR`) VALUES
-(2, 1, 'Ngân hàng VCB - Thăng Long', 'Trương Toàn Nghĩa', ' M555P553392', '0205-09-01', NULL),
-(5, 2, 'Ngân hàng Agribank - Ngân hàng nông thôn nhà nước Việt Nam', 'Trần Huỳnh Ngọc Diệp', ' P50553990', '0205-09-01', NULL),
-(8, 3, 'Ngân hàng Viettinbank - chi nhánh Tân Phú', 'Hồ Hoàng Bình Phước', 'P34942324445', '2026-08-26', NULL),
-(9, 4, 'Ngân hàng Sacombank - chi nhánh Bình Thạnh', 'Nguyễn Đăng Mạnh', 'R32300834', '2023-05-01', NULL),
-(11, 5, 'Ngân hàng Agribank', 'Lê Nguyễn Lan', 'R23130023', '2030-05-11', NULL);
+(2, 1, 'Ngân hàng VCB - Thăng Long', 'VINPEARL', '0147258369', '2030-09-29', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684092561/khachsan/qr_ptc8hy.png'),
+(5, 2, 'Ngân hàng Agribank - Ngân hàng nông thôn nhà nước Việt Nam', 'Trần Huỳnh Ngọc Diệp', '6380220048735', '0205-08-31', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684092922/khachsan/qr_cfmkqm.png'),
+(8, 3, 'Ngân hàng Vietinbank - Chi nhánh Tân Phú', 'Hồ Hoàng Bình Phước', 'P34942324445', '2026-08-25', NULL),
+(9, 4, 'Ngân hàng Sacombank -  Chi nhánh Bình Thạnh', 'Nguyễn Đăng Mạnh Tú', 'R32300834245', '2023-04-30', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684093308/khachsan/qr_a5vb9x.png'),
+(11, 5, 'Ngân hàng Agribank', 'Lê Nguyễn Lan Vy', 'R23130023123', '2030-05-10', NULL),
+(12, 7, 'Ngân hàng Agribank - Ngân hàng nông thôn nhà nước Việt Nam', 'Trần Thảo Quyên', '0997652130', '2050-02-01', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684094723/khachsan/qr_fp8tsz.png');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thongtinhuuich`
+-- Table structure for table `thongtinhuuich`
 --
 
 CREATE TABLE `thongtinhuuich` (
   `ID` int(11) NOT NULL,
   `ThongTin` varchar(255) NOT NULL,
   `HinhAnh` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `thongtinhuuich`
+-- Dumping data for table `thongtinhuuich`
 --
 
 INSERT INTO `thongtinhuuich` (`ID`, `ThongTin`, `HinhAnh`) VALUES
@@ -795,17 +798,17 @@ INSERT INTO `thongtinhuuich` (`ID`, `ThongTin`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thongtinhuuich_ks`
+-- Table structure for table `thongtinhuuich_ks`
 --
 
 CREATE TABLE `thongtinhuuich_ks` (
   `IDKhachSan` int(11) NOT NULL,
   `IDThongTin` int(11) NOT NULL,
   `NoiDung` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `thongtinhuuich_ks`
+-- Dumping data for table `thongtinhuuich_ks`
 --
 
 INSERT INTO `thongtinhuuich_ks` (`IDKhachSan`, `IDThongTin`, `NoiDung`) VALUES
@@ -924,7 +927,7 @@ INSERT INTO `thongtinhuuich_ks` (`IDKhachSan`, `IDThongTin`, `NoiDung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tiennghichung_ks`
+-- Table structure for table `tiennghichung_ks`
 --
 
 CREATE TABLE `tiennghichung_ks` (
@@ -932,10 +935,10 @@ CREATE TABLE `tiennghichung_ks` (
   `Icon` varchar(200) NOT NULL,
   `TenTienNghi` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tiennghichung_ks`
+-- Dumping data for table `tiennghichung_ks`
 --
 
 INSERT INTO `tiennghichung_ks` (`ID`, `Icon`, `TenTienNghi`, `IDLoai`) VALUES
@@ -988,7 +991,7 @@ INSERT INTO `tiennghichung_ks` (`ID`, `Icon`, `TenTienNghi`, `IDLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tiennghichung_phong`
+-- Table structure for table `tiennghichung_phong`
 --
 
 CREATE TABLE `tiennghichung_phong` (
@@ -996,10 +999,10 @@ CREATE TABLE `tiennghichung_phong` (
   `TenTienNghi` varchar(50) NOT NULL,
   `Icon` varchar(50) NOT NULL,
   `IDLoai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tiennghichung_phong`
+-- Dumping data for table `tiennghichung_phong`
 --
 
 INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
@@ -1042,16 +1045,16 @@ INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tiennghi_khachsan`
+-- Table structure for table `tiennghi_khachsan`
 --
 
 CREATE TABLE `tiennghi_khachsan` (
   `IDKhachSan` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tiennghi_khachsan`
+-- Dumping data for table `tiennghi_khachsan`
 --
 
 INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
@@ -1385,16 +1388,16 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tiennghi_phong`
+-- Table structure for table `tiennghi_phong`
 --
 
 CREATE TABLE `tiennghi_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDTienNghi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tiennghi_phong`
+-- Dumping data for table `tiennghi_phong`
 --
 
 INSERT INTO `tiennghi_phong` (`IDPhong`, `IDTienNghi`) VALUES
@@ -1821,16 +1824,16 @@ INSERT INTO `tiennghi_phong` (`IDPhong`, `IDTienNghi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `uudai`
+-- Table structure for table `uudai`
 --
 
 CREATE TABLE `uudai` (
   `ID` int(11) NOT NULL,
   `NoiDung` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `uudai`
+-- Dumping data for table `uudai`
 --
 
 INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
@@ -1857,16 +1860,16 @@ INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `uudai_phong`
+-- Table structure for table `uudai_phong`
 --
 
 CREATE TABLE `uudai_phong` (
   `IDPhong` int(11) NOT NULL,
   `IDUuDai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `uudai_phong`
+-- Dumping data for table `uudai_phong`
 --
 
 INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
@@ -2025,11 +2028,11 @@ INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
 (31, 19);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `danhgia`
+-- Indexes for table `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD PRIMARY KEY (`ID`),
@@ -2037,52 +2040,52 @@ ALTER TABLE `danhgia`
   ADD KEY `DanhGia_fk1` (`IDKhachHang`);
 
 --
--- Chỉ mục cho bảng `danhsachyeuthich`
+-- Indexes for table `danhsachyeuthich`
 --
 ALTER TABLE `danhsachyeuthich`
   ADD PRIMARY KEY (`IDKhachHang`,`IDKhachSan`),
   ADD KEY `DanhSachYeuThich_fk1` (`IDKhachSan`);
 
 --
--- Chỉ mục cho bảng `diadiem`
+-- Indexes for table `diadiem`
 --
 ALTER TABLE `diadiem`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `dondatphong`
+-- Indexes for table `dondatphong`
 --
 ALTER TABLE `dondatphong`
   ADD PRIMARY KEY (`MaDatPhong`),
   ADD KEY `DonDatPhong_fk0` (`IDKhachHang`);
 
 --
--- Chỉ mục cho bảng `giuong`
+-- Indexes for table `giuong`
 --
 ALTER TABLE `giuong`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `giuong_phong`
+-- Indexes for table `giuong_phong`
 --
 ALTER TABLE `giuong_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDGiuong`),
   ADD KEY `Giuong_Phong_fk1` (`IDGiuong`);
 
 --
--- Chỉ mục cho bảng `hinhanh_khachsan`
+-- Indexes for table `hinhanh_khachsan`
 --
 ALTER TABLE `hinhanh_khachsan`
   ADD PRIMARY KEY (`IDKhachSan`,`HinhAnh`);
 
 --
--- Chỉ mục cho bảng `hinhanh_phong`
+-- Indexes for table `hinhanh_phong`
 --
 ALTER TABLE `hinhanh_phong`
   ADD PRIMARY KEY (`IDPhong`,`HinhAnh`);
 
 --
--- Chỉ mục cho bảng `khachsan`
+-- Indexes for table `khachsan`
 --
 ALTER TABLE `khachsan`
   ADD PRIMARY KEY (`ID`),
@@ -2092,13 +2095,13 @@ ALTER TABLE `khachsan` ADD FULLTEXT KEY `Ten` (`Ten`);
 ALTER TABLE `khachsan` ADD FULLTEXT KEY `DiaChi` (`DiaChi`);
 
 --
--- Chỉ mục cho bảng `khunggio`
+-- Indexes for table `khunggio`
 --
 ALTER TABLE `khunggio`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `khuyenmai`
+-- Indexes for table `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   ADD PRIMARY KEY (`ID`),
@@ -2106,211 +2109,211 @@ ALTER TABLE `khuyenmai`
   ADD KEY `KhuyenMai_KG_fk1` (`IDKhungGio`);
 
 --
--- Chỉ mục cho bảng `loaitiennghikhachsan`
+-- Indexes for table `loaitiennghikhachsan`
 --
 ALTER TABLE `loaitiennghikhachsan`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `loaitiennghiphong`
+-- Indexes for table `loaitiennghiphong`
 --
 ALTER TABLE `loaitiennghiphong`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `nguoidung`
+-- Indexes for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `nguoinhanphong`
+-- Indexes for table `nguoinhanphong`
 --
 ALTER TABLE `nguoinhanphong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `NguoiNhanPhong_fk0` (`IDKhachHang`);
 
 --
--- Chỉ mục cho bảng `phong`
+-- Indexes for table `phong`
 --
 ALTER TABLE `phong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Phong_fk0` (`IDKhachSan`);
 
 --
--- Chỉ mục cho bảng `taikhoanthanhtoan`
+-- Indexes for table `taikhoanthanhtoan`
 --
 ALTER TABLE `taikhoanthanhtoan`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TaiKhoanThanhToan_fk0` (`IDKhachHang`);
 
 --
--- Chỉ mục cho bảng `thongtinhuuich`
+-- Indexes for table `thongtinhuuich`
 --
 ALTER TABLE `thongtinhuuich`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `thongtinhuuich_ks`
+-- Indexes for table `thongtinhuuich_ks`
 --
 ALTER TABLE `thongtinhuuich_ks`
   ADD PRIMARY KEY (`IDKhachSan`,`IDThongTin`),
   ADD KEY `ThongTinHuuIch_KS_fk1` (`IDThongTin`);
 
 --
--- Chỉ mục cho bảng `tiennghichung_ks`
+-- Indexes for table `tiennghichung_ks`
 --
 ALTER TABLE `tiennghichung_ks`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TienNghiChung_KS_fk0` (`IDLoai`);
 
 --
--- Chỉ mục cho bảng `tiennghichung_phong`
+-- Indexes for table `tiennghichung_phong`
 --
 ALTER TABLE `tiennghichung_phong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TienNghiChung_Phong_fk0` (`IDLoai`);
 
 --
--- Chỉ mục cho bảng `tiennghi_khachsan`
+-- Indexes for table `tiennghi_khachsan`
 --
 ALTER TABLE `tiennghi_khachsan`
   ADD PRIMARY KEY (`IDKhachSan`,`IDTienNghi`),
   ADD KEY `TienNghi_KhachSan_fk1` (`IDTienNghi`);
 
 --
--- Chỉ mục cho bảng `tiennghi_phong`
+-- Indexes for table `tiennghi_phong`
 --
 ALTER TABLE `tiennghi_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDTienNghi`),
   ADD KEY `TienNghi_Phong_fk1` (`IDTienNghi`);
 
 --
--- Chỉ mục cho bảng `uudai`
+-- Indexes for table `uudai`
 --
 ALTER TABLE `uudai`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `uudai_phong`
+-- Indexes for table `uudai_phong`
 --
 ALTER TABLE `uudai_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDUuDai`),
   ADD KEY `UuDai_Phong_fk1` (`IDUuDai`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `danhgia`
+-- AUTO_INCREMENT for table `danhgia`
 --
 ALTER TABLE `danhgia`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `diadiem`
+-- AUTO_INCREMENT for table `diadiem`
 --
 ALTER TABLE `diadiem`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
--- AUTO_INCREMENT cho bảng `hinhanh_khachsan`
+-- AUTO_INCREMENT for table `hinhanh_khachsan`
 --
 ALTER TABLE `hinhanh_khachsan`
   MODIFY `IDKhachSan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT cho bảng `khachsan`
+-- AUTO_INCREMENT for table `khachsan`
 --
 ALTER TABLE `khachsan`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT cho bảng `khunggio`
+-- AUTO_INCREMENT for table `khunggio`
 --
 ALTER TABLE `khunggio`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `khuyenmai`
+-- AUTO_INCREMENT for table `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT cho bảng `loaitiennghikhachsan`
+-- AUTO_INCREMENT for table `loaitiennghikhachsan`
 --
 ALTER TABLE `loaitiennghikhachsan`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `loaitiennghiphong`
+-- AUTO_INCREMENT for table `loaitiennghiphong`
 --
 ALTER TABLE `loaitiennghiphong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `nguoidung`
+-- AUTO_INCREMENT for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT cho bảng `nguoinhanphong`
+-- AUTO_INCREMENT for table `nguoinhanphong`
 --
 ALTER TABLE `nguoinhanphong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `phong`
+-- AUTO_INCREMENT for table `phong`
 --
 ALTER TABLE `phong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT cho bảng `taikhoanthanhtoan`
+-- AUTO_INCREMENT for table `taikhoanthanhtoan`
 --
 ALTER TABLE `taikhoanthanhtoan`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `thongtinhuuich`
+-- AUTO_INCREMENT for table `thongtinhuuich`
 --
 ALTER TABLE `thongtinhuuich`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `tiennghichung_ks`
+-- AUTO_INCREMENT for table `tiennghichung_ks`
 --
 ALTER TABLE `tiennghichung_ks`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
--- AUTO_INCREMENT cho bảng `tiennghichung_phong`
+-- AUTO_INCREMENT for table `tiennghichung_phong`
 --
 ALTER TABLE `tiennghichung_phong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
--- AUTO_INCREMENT cho bảng `uudai`
+-- AUTO_INCREMENT for table `uudai`
 --
 ALTER TABLE `uudai`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `danhgia`
+-- Constraints for table `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD CONSTRAINT `DanhGia_fk0` FOREIGN KEY (`IDKhachSan`) REFERENCES `khachsan` (`ID`),
   ADD CONSTRAINT `DanhGia_fk1` FOREIGN KEY (`IDKhachHang`) REFERENCES `nguoidung` (`ID`);
 
 --
--- Các ràng buộc cho bảng `khachsan`
+-- Constraints for table `khachsan`
 --
 ALTER TABLE `khachsan`
   ADD CONSTRAINT `khachsan_ibfk_1` FOREIGN KEY (`IDChuKhachSan`) REFERENCES `nguoidung` (`ID`),

@@ -20,10 +20,11 @@ function Hotel() {
     const { data } = useContext(DataContext)
     const [option, setOption] = useState([])
     const [hotels, setHotels] = useState()
-    const [hotelActive, setHotelActive] = useState(null)
+    const [hotelA, setHotelA] = useState(null)
 
     useEffect(() => {
         if (data) {
+            console.log(data.hotels)
             setHotels(data.hotels)
             setOption([
                 {
@@ -47,7 +48,7 @@ function Hotel() {
                     name: 'Khóa',
                     handle: function (idActive) {
                         const hotelActive = data.hotels.find((key) => key.ID === idActive)
-                        setHotelActive(hotelActive)
+                        setHotelA(hotelActive)
                         setShowConformModal(true)
                     },
                 },
@@ -55,7 +56,6 @@ function Hotel() {
                     name: 'Gỡ khóa',
                     handle: function (idActive) {
                         handleActiveHotel(idActive)
-                        // updateHotel(hotelActive)
                     },
                 },
             ])
@@ -67,7 +67,6 @@ function Hotel() {
             khachsan: hotelActive,
         })
             .then(() => {
-                console.log(hotelActive)
                 setShowInformModal(true)
 
                 window.setTimeout(function () {
@@ -78,14 +77,21 @@ function Hotel() {
                 hotelActive.DanhGia = DanhGia
                 hotelActive.HinhAnh = HinhAnh
 
-                hotels.forEach((hotel) => {
-                    if (hotel.ID === hotelActive.ID) {
-                        hotel = hotelActive
-                    }
-                })
+                // for (let item of hotels) {
+                //     if (item.ID === hotelActive.ID) {
+                //         item = hotelActive
 
+                //         console.log(item)
+                //     }
+                // }
+
+                const index = hotels.findIndex((item) => item.ID === hotelActive.ID)
+                hotels[index].TrangThai = hotelActive.TrangThai
+                // hotel
+                // console.log(index)
+                // console.log('hotel: ', hotels)
                 setHotels(hotels)
-                setHotelActive(null)
+                setHotelA(null)
                 setShowConformModal(false)
             })
             .catch((error) => {
@@ -111,17 +117,17 @@ function Hotel() {
     }
 
     function handleBlockHotel() {
-        hotelActive.TrangThai = 2
+        hotelA.TrangThai = 2
 
-        const ChuKhachSan = hotelActive.ChuKhachSan
-        const DanhGia = hotelActive.DanhGia
-        const HinhAnh = hotelActive.HinhAnh
+        const ChuKhachSan = hotelA.ChuKhachSan
+        const DanhGia = hotelA.DanhGia
+        const HinhAnh = hotelA.HinhAnh
 
-        delete hotelActive.ChuKhachSan
-        delete hotelActive.DanhGia
-        delete hotelActive.HinhAnh
+        delete hotelA.ChuKhachSan
+        delete hotelA.DanhGia
+        delete hotelA.HinhAnh
 
-        updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh)
+        updateHotel(hotelA, ChuKhachSan, DanhGia, HinhAnh)
     }
 
     return (
@@ -138,7 +144,7 @@ function Hotel() {
                 onClose={() => setShowConformModal(false)}
                 onConform={() => handleBlockHotel()}
                 content={`Bạn chắc chắn muốn khóa khách sạn`}
-                highlight={hotelActive && hotelActive.Ten}
+                highlight={hotelA && hotelA.Ten}
                 conFormBtn="Khóa"
             />
 

@@ -23,7 +23,10 @@ export default {
     const facility = await db("tiennghichung_phong").where("IDLoai", id);
     return facility;
   },
-
+  async getGiuong(id) {
+    const giuong = await db("giuong_phong").where("IDPhong", id);
+    return giuong;
+  },
   async getFacilityOfHotel(faciity, idks) {
     const [fac] = await db("tiennghi_khachsan")
       .where("IDTienNghi", faciity.ID)
@@ -32,6 +35,10 @@ export default {
       fac.TenTienNghi = faciity.TenTienNghi;
       fac.Icon = faciity.Icon;
     }
+    return fac;
+  },
+  async getNameFacilityRoom(ID) {
+    const [fac] = await db("tiennghichung_phong").where("ID", ID);
     return fac;
   },
   async getFacilityOfRoom(faciity, idPhong) {
@@ -60,6 +67,9 @@ export default {
   },
   async getUuDai() {
     return db("uudai");
+  },
+  async getUuDaiRandom() {
+    return db("uudai").orderByRaw("RAND()").limit(1);
   },
   async addTIenNghiKhachSan(tienNghi) {
     // console.log(user.password);
@@ -117,7 +127,14 @@ export default {
     // console.log(user.password);
     return db("uudai_phong").where("IDPhong", id);
   },
-
+  async getTenTienIchKhachSan(id) {
+    const IDTienNghi = await db("tiennghichung_ks")
+      .orderByRaw("RAND()")
+      .limit(1);
+    // console.log("IDTienNghi");
+    // console.log(IDTienNghi);
+    return IDTienNghi;
+  },
   async getTienIchKhachSan(id) {
     const IDTienNghi = await db("tiennghi_khachsan")
       .where("IDKhachSan", id)

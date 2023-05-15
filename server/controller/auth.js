@@ -54,34 +54,26 @@ export const login = async (req, res, next) => {
         const ret = bcrypt.compareSync(req.body.MatKhau, passAvailable.MatKhau);
         //console.log(ret);
         if (!ret) {
+          console.log("thanhCong");
           return next(res.status(400).send("Email và Password không đúng"));
         }
-        res.json({ emailAvailable });
-        // res.status(200).send("Đăng nhập thành công.");
-        // if (ret) {
-        //   //req.session.isAuthenticated = true;
-        //   // Xét quyền của 3 vai trò
-        //   if (emailAvailable.permissionID == 2) {
-        //     req.session.isStudent = true;
-        //     req.session.authUser = emailAvailable;
-        //     return res.redirect("/");
-        //   } else if (emailAvailable.permissionID == 3) {
-        //     req.session.isTeacher = true;
-        //     req.session.authTeacher = emailAvailable;
-        //     return res.redirect("/teacher/profile");
-        //   } else if (emailAvailable.permissionID == 1) {
-        //     req.session.isAdmin = true;
-        //     req.session.authAdmin = emailAvailable;
-        //     return res.redirect("/admin/listAccount");
-        //   }
-        // } else {
-        //   return res.render("login", {
-        //     layout: false,
-        //     email: req.body.email,
 
-        //     err_message: "Email & password is not correct...",
-        //   });
-        // }
+        let link;
+        req.session.isAuthenticated = true;
+        if (emailAvailable.PhanQuyen == 0) {
+          req.session.isUser = true;
+          req.session.authUser = emailAvailable;
+          link = "/";
+        } else if (emailAvailable.PhanQuyen == 1) {
+          req.session.isHotelier = true;
+          req.session.authHotelier = emailAvailable;
+          link = "/cks/manageHotel";
+        } else if (emailAvailable.PhanQuyen == 2) {
+          req.session.isAdmin = true;
+          req.session.authAdmin = emailAvailable;
+          link = "/admin/hotel";
+        }
+        res.json({ emailAvailable, link });
       }
     }
   } catch (err) {
