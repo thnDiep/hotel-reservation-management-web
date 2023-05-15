@@ -1,78 +1,79 @@
-import bcrypt from "bcryptjs";
-import authModel from "../models/authModel.js";
+import bcrypt from "bcryptjs"
+import authModel from "../models/authModel.js"
 
 export const signup = async (req, res, next) => {
   try {
-    const rawPassword = req.body.MatKhau;
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(rawPassword, salt);
+    const rawPassword = req.body.MatKhau
+    const salt = bcrypt.genSaltSync(10)
+    const hash = bcrypt.hashSync(rawPassword, salt)
     const user = {
       ...req.body,
       MatKhau: hash,
       PhanQuyen: 0 || 1,
-    };
+    }
     const check = (name, check, i) => {
       if (name === check) {
-        return 0;
+        return 0
       }
-      return 1;
-    };
-    const emailAvailable = await authModel.findByEmail(req.body.Email);
+      return 1
+    }
+    const emailAvailable = await authModel.findByEmail(req.body.Email)
     // Đem check tên đã đc tìm trong db vs tên user vừa req lên
 
-    const checkEmail = check(emailAvailable?.Email, user.Email, 1);
+    const checkEmail = check(emailAvailable?.Email, user.Email, 1)
 
     if (checkEmail === 0) {
-      return next(res.status(400).send("Email đã tồn tại"));
+      return next(res.status(400).send("Email đã tồn tại"))
     }
-    await authModel.add(user);
-    res.status(200).send("User has been created.");
+    await authModel.add(user)
+    res.status(200).send("User has been created.")
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
 
 export const login = async (req, res, next) => {
   try {
     const check = (name, chec) => {
       if (name === chec) {
-        return 0;
+        return 0
       } else {
-        return 1;
+        return 1
       }
-    };
-    const emailAvailable = await authModel.findByEmail(req.body.Email);
+    }
+    const emailAvailable = await authModel.findByEmail(req.body.Email)
     if (check(emailAvailable?.Email, req.body.Email) == 1) {
-      return next(res.status(400).send("Email và Password không đúng"));
+      return next(res.status(400).send("Email và Password không đúng"))
     } else {
       if (check(emailAvailable?.Email, req.body.Email) == 0) {
         // Đúng email rồi so sánh password
         const [passAvailable] = await authModel.findByEmailToCheckPassword(
           req.body.Email
-        );
-        const ret = bcrypt.compareSync(req.body.MatKhau, passAvailable.MatKhau);
+        )
+        const ret = bcrypt.compareSync(req.body.MatKhau, passAvailable.MatKhau)
         if (!ret) {
-          return next(res.status(400).send("Email và Password không đúng"));
+          return next(res.status(400).send("Email và Password không đúng"))
         }
-        let ThongBao = "";
+        let ThongBao = ""
         if (emailAvailable.TrangThai === 0) {
-          ThongBao = "Tài khoản đã bị khóa";
+          ThongBao = "Tài khoản đã bị khóa"
         } else {
-          ThongBao = "Đăng nhập thành công";
+          ThongBao = "Đăng nhập thành công"
         }
 
-        let link;
+        let link
         if (emailAvailable.PhanQuyen == 0) {
-          link = "/";
+          link = "/"
         } else if (emailAvailable.PhanQuyen == 1) {
-          link = "/cks/manageHotel";
+          link = "/cks/manageHotel"
         } else if (emailAvailable.PhanQuyen == 2) {
-          link = "/admin/hotel";
+          link = "/admin"
         }
-        res.json({ emailAvailable, link, ThongBao });
+
+        res.json({ emailAvailable, link, ThongBao })
       }
     }
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}

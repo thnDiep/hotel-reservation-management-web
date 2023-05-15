@@ -30,6 +30,7 @@ function ManageVoucher() {
     const [option, setOption] = useState([])
     const [data, setData] = useState({})
     const [rootData, setRootData] = useState()
+    const user = JSON.parse(localStorage.getItem('user'))
 
     // Menu
     const [active, setActive] = useState(() => {
@@ -70,7 +71,7 @@ function ManageVoucher() {
             setOptionHotel(options)
             setHotel(options[0])
 
-            Axios.get('http://localhost:8800/cks/promotion', { params: { idCKS: context.data.curUser.ID } })
+            Axios.get('http://localhost:8800/cks/promotion', { params: { idCKS: user.ID } })
                 .then((response) => {
                     setRootData(response.data)
                     const result = handleGetPromotion(response.data)

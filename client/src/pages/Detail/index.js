@@ -72,13 +72,6 @@ const Detail = () => {
                 const DiaDiem = data.places.find((item) => item.ID === hotel.IDDiaDiem)
                 if (DiaDiem) hotel.DiaDiem = DiaDiem.TenDiaDiem
 
-                const YeuThich = data.likes.find((item) => item.IDKhachSan === hotel.ID)
-                if (YeuThich) {
-                    hotel.YeuThich = true
-                } else {
-                    hotel.YeuThich = false
-                }
-
                 let SoDanhGia = 0
                 data.rates.map((rate) => {
                     if (rate.IDKhachSan === hotel.ID) SoDanhGia++
