@@ -13,6 +13,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 const RoomManage = () => {
     const navigate = useNavigate()
+    const user = JSON.parse(localStorage.getItem('user'))
+
     // const optionsHotel = [
     //     { value: 'Khách sạn Hoàng Gia', label: 'Khách sạn Hoàng Gia' },
     //     { value: 'Khách sạn Hoàng hậu', label: 'Khách sạn Hoàng hậu' },
@@ -188,7 +190,7 @@ const RoomManage = () => {
                     </div>
                     <div className="d-flex justify-content-start mt-2">
                         <span className={` ${styles.leftTitle} `}>Điện thoại: </span>
-                        <span className="">0985154345</span>
+                        <span className="">{user && user.SoDienThoai}</span>
                     </div>
                 </div>
                 {/* <NavBar list={['Tất cả', 'chờ duyệt', 'hoạt động', 'Đã khóa']}></NavBar> */}

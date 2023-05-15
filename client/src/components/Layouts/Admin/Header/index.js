@@ -1,11 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Header.module.scss'
 import { faAngleDown, faHome, faHotel, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useContext } from 'react'
+import DataContext from '~/contexts/DataContext'
 const Header = () => {
     const [show, setShow] = useState(false)
-
+    const { LogoutHandler } = useContext(DataContext)
+    const Nav = useNavigate()
+    const handleLogout = () => {
+        LogoutHandler()
+        Nav('/login')
+    }
     return (
         <div className={styles.wrapper}>
             <div className={styles.left}>
@@ -36,10 +43,10 @@ const Header = () => {
                             <FontAwesomeIcon icon={faUser} />
                             <span>Quản lý người dùng</span>
                         </Link>
-                        <Link to={'/logIn'} className={styles.menuItem}>
+                        <div onClick={handleLogout} className={styles.menuItem}>
                             <FontAwesomeIcon icon={faSignOut} />
                             <span>Đăng xuất</span>
-                        </Link>
+                        </div>
                     </div>
                 )}
             </div>

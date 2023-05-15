@@ -17,6 +17,8 @@ function Breadcrumb() {
             paths.push({ link: pathname, name: 'Quản lý đơn đặt phòng' })
         } else if (pathname === '/cks/voucher') {
             paths.push({ link: pathname, name: 'Quản lý khuyến mãi' })
+        } else if (pathname === '/cks/profile') {
+            paths.push({ link: pathname, name: 'Thông tin cá nhân' })
         }
         // if (pathname === '/cks/addHotel') {
         //     paths.push({ link: '/cks/manageHotel', name: 'Quản lý khách sạn' })
