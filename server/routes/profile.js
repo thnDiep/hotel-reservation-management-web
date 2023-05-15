@@ -134,7 +134,7 @@ router.get("/order/qr", async (req, res, next) => {
 
 router.get("/order/detail", async (req, res, next) => {
   try {
-    const MaDatPhong = req.query.ID || 5743539
+    const MaDatPhong = req.query.ID
     const result = await orderModel.getOrderByOrderCode(MaDatPhong)
     res.json(result)
   } catch (err) {

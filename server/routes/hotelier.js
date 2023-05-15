@@ -8,6 +8,7 @@ import {
   updateHotel,
   addRoom,
   facilityRoom,
+  updateRoom,
 } from "../controller/hotelier.js";
 import facilityModel from "../models/facilityModel.js";
 import roomModel from "../models/roomModel.js";
@@ -41,7 +42,7 @@ router.get("/order/update", async (req, res, next) => {
 
 // Thực hiện thêm phong
 router.post("/room/insert", addRoom);
-// router.post("/room/update", addRoom);
+router.post("/room/update", updateRoom);
 
 router.get("/hotel/del", async (req, res, next) => {
   try {
@@ -89,10 +90,10 @@ router.get("/room/del", async (req, res, next) => {
 router.get("/order/del", async (req, res, next) => {
   try {
     const MaDatPhong = req.query.MaDatPhong;
-    console.log("Nó nữa meeeeeeeeeeeeeeeeee:", MaDatPhong);
-
+    const IDPhong = req.query.IDPhong;
     if (MaDatPhong) {
       await hotelModel.delOrder(MaDatPhong);
+      await roomModel.updateCongPhong(IDPhong);
     }
 
     res.json({ MaDatPhong });
@@ -106,15 +107,15 @@ router.get("/order/del", async (req, res, next) => {
 // thongTin: filteredThongTin,
 router.get("/room/update", async (req, res, next) => {
   try {
-    console.log("đâsdasd");
-    const idKhachSan = req.query.IDKhachSan || 1;
+    console.log("đâsdasdjghjgjg");
     const idRoom = req.query.IDPhong || 1;
 
     const [room] = await roomModel.getRoomByID(idRoom);
     const [giuongDon] = await roomModel.getGiuong(idRoom, 1);
-    room.GiuongDon = giuongDon.SoLuongGiuong;
-    const [giuonDoi] = await roomModel.getGiuong(idRoom, 2);
-    room.GiuongDoi = giuongDon.SoLuongGiuong;
+    if (giuongDon !== undefined) room.GiuongDon = giuongDon.SoLuongGiuong;
+    const [giuongDoi] = await roomModel.getGiuong(idRoom, 2);
+    console.log(giuongDoi);
+    if (giuongDoi !== undefined) room.GiuongDoi = giuongDoi.SoLuongGiuong;
 
     const hinhAnh = await roomModel.getImage(idRoom);
     const tienNghi = await facilityModel.getTienNghiPhong(idRoom);
@@ -135,10 +136,12 @@ router.get("/hotel/update", async (req, res, next) => {
   try {
     const idKhachSan = req.query.IDKhachSan || 1;
     const idCKS = req.query.IDCKS || 1;
-    const [hotel] = await hotelModel.findById(idKhachSan);
+    const hotel = await hotelModel.findById(idKhachSan);
+    console.log(hotel);
     const hinhAnh = await hotelModel.getImage(idKhachSan);
     const tienNghi = await facilityModel.getTienNghiKhachSan(idKhachSan);
     const thongTin = await facilityModel.getThongTinKhachSan(idKhachSan);
+    console.log(thongTin);
     const idTienNghi = tienNghi.map((item) => item.IDTienNghi);
     // const hotels = await hotelModel.findByHotelierId(idCKS)
     // const promotion = await promotionModel.findById(idPromotion);

@@ -59,7 +59,7 @@ const Sidebar = ({ checkHide }) => {
     }
     return (
         <section id="sidebar" className={`${checkHide && 'hide'}`}>
-            <Link to="/" className="brand">
+            <Link to="/cks/manageHotel" className="brand">
                 <img
                     className="logoCks"
                     alt=""

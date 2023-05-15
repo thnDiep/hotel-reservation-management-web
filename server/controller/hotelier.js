@@ -184,19 +184,20 @@ export const addRoom = async (req, res, next) => {
 
 export const updateRoom = async (req, res, next) => {
   try {
+    console.log(req.body.Room.ID);
     const room = {
-      ID: req.body.room.ID,
-      TenLoaiPhong: req.body.Room.Ten,
+      ID: req.body.Room.ID,
+      TenLoaiPhong: req.body.Room.TenLoaiPhong,
       IDKhachSan: req.body.Room.IDKhachSan,
       SoPhongTrong: req.body.Room.SoPhongTrong,
       SoNguoi: req.body.Room.SoNguoi,
       DienTich: req.body.Room.DienTich,
       Gia: req.body.Room.Gia,
     };
-
+    console.log(room);
     await roomModel.updateRoom(room);
     console.log(req.body.tienNghi);
-    await delTIenNghiPhong(room.ID);
+    await facilityModel.delTIenNghiPhong(room.ID);
     for (const ID of req.body.tienNghi) {
       await facilityModel.addTIenNghiPhong({
         IDTienNghi: ID,
@@ -233,9 +234,10 @@ export const updateRoom = async (req, res, next) => {
 
 export const order = async (req, res, next) => {
   try {
-    const idCKS = req.query.idCKS || 2;
+    //console.log(req.query.idCKS);
+    const idCKS = req.query.idCKS;
     const [orders] = await orderModel.getRareInformationOfOrder(idCKS);
-    console.log(orders);
+    //console.log(orders);
     if (orders.length === 0) return null;
     res.json({ orders });
   } catch (err) {

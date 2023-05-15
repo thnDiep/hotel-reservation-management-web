@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1:3310
--- Thời gian đã tạo: Th5 15, 2023 lúc 11:13 AM
--- Phiên bản máy phục vụ: 10.4.25-MariaDB
--- Phiên bản PHP: 8.1.10
+-- Host: 127.0.0.1
+-- Generation Time: May 15, 2023 at 04:19 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `khachsan`
+-- Database: `khachsan`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhgia`
+-- Table structure for table `danhgia`
 --
 
 CREATE TABLE `danhgia` (
@@ -38,7 +38,7 @@ CREATE TABLE `danhgia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `danhgia`
+-- Dumping data for table `danhgia`
 --
 
 INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `Diem`, `ThoiGian`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `danhgia` (`ID`, `IDKhachSan`, `IDKhachHang`, `TieuDe`, `NoiDung`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhsachyeuthich`
+-- Table structure for table `danhsachyeuthich`
 --
 
 CREATE TABLE `danhsachyeuthich` (
@@ -61,7 +61,7 @@ CREATE TABLE `danhsachyeuthich` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `danhsachyeuthich`
+-- Dumping data for table `danhsachyeuthich`
 --
 
 INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
@@ -76,7 +76,7 @@ INSERT INTO `danhsachyeuthich` (`IDKhachHang`, `IDKhachSan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `diadiem`
+-- Table structure for table `diadiem`
 --
 
 CREATE TABLE `diadiem` (
@@ -86,7 +86,7 @@ CREATE TABLE `diadiem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `diadiem`
+-- Dumping data for table `diadiem`
 --
 
 INSERT INTO `diadiem` (`ID`, `TenDiaDiem`, `HinhAnh`) VALUES
@@ -165,7 +165,7 @@ INSERT INTO `diadiem` (`ID`, `TenDiaDiem`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `dondatphong`
+-- Table structure for table `dondatphong`
 --
 
 CREATE TABLE `dondatphong` (
@@ -183,7 +183,7 @@ CREATE TABLE `dondatphong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `dondatphong`
+-- Dumping data for table `dondatphong`
 --
 
 INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhuyenMai`, `IDFlashSale`, `IDKhachHang`, `IDPhong`) VALUES
@@ -197,7 +197,7 @@ INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTr
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giuong`
+-- Table structure for table `giuong`
 --
 
 CREATE TABLE `giuong` (
@@ -206,7 +206,7 @@ CREATE TABLE `giuong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `giuong`
+-- Dumping data for table `giuong`
 --
 
 INSERT INTO `giuong` (`ID`, `LoaiGiuong`) VALUES
@@ -216,7 +216,7 @@ INSERT INTO `giuong` (`ID`, `LoaiGiuong`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giuong_phong`
+-- Table structure for table `giuong_phong`
 --
 
 CREATE TABLE `giuong_phong` (
@@ -226,7 +226,7 @@ CREATE TABLE `giuong_phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `giuong_phong`
+-- Dumping data for table `giuong_phong`
 --
 
 INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
@@ -250,7 +250,7 @@ INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hinhanh_khachsan`
+-- Table structure for table `hinhanh_khachsan`
 --
 
 CREATE TABLE `hinhanh_khachsan` (
@@ -259,7 +259,7 @@ CREATE TABLE `hinhanh_khachsan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `hinhanh_khachsan`
+-- Dumping data for table `hinhanh_khachsan`
 --
 
 INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
@@ -368,6 +368,13 @@ INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
 (18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683900262/khachsan/y9d1463943419_ana_mandara_villas_dalat_resort_spa_sfnkjf.jpg'),
 (18, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683900263/khachsan/wqc1463943365_ana_mandara_villas_dalat_resort_spa_upmchc.jpg'),
 (19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683901211/khachsan/DWS1oYQFS3GV1_PDWerKHA-392_ulcpq6.jpg'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684159345/khachsan/azct-reception-overview-copy_n2okhq.png'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684159346/khachsan/42050_N55TDC6OIE_126960311_hwo0mg.jpg'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684159348/khachsan/azct-overview-of-the-islet-copy_kse62s.png'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684159349/khachsan/azct-lotus-pond-breakfast-copy_cbplbv.png'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684159351/khachsan/azct-the-swimming-pool-framed-by-nature-copy_jtx6ht.png'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684159352/khachsan/azct-overview-property-daylight-copy_ap6fec.png'),
+(19, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684159355/khachsan/azct-overview-daylight-copy_fj8i9e.png'),
 (20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683902273/khachsan/61428369_dbfwog.jpg'),
 (20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683902274/khachsan/63134786_bquuuj.jpg'),
 (20, 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1683902276/khachsan/193794623_lxk2fx.jpg'),
@@ -403,7 +410,7 @@ INSERT INTO `hinhanh_khachsan` (`IDKhachSan`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hinhanh_phong`
+-- Table structure for table `hinhanh_phong`
 --
 
 CREATE TABLE `hinhanh_phong` (
@@ -412,7 +419,7 @@ CREATE TABLE `hinhanh_phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `hinhanh_phong`
+-- Dumping data for table `hinhanh_phong`
 --
 
 INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
@@ -485,7 +492,7 @@ INSERT INTO `hinhanh_phong` (`IDPhong`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khachsan`
+-- Table structure for table `khachsan`
 --
 
 CREATE TABLE `khachsan` (
@@ -505,17 +512,17 @@ CREATE TABLE `khachsan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `khachsan`
+-- Dumping data for table `khachsan`
 --
 
 INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, `GioiThieu`, `TrangThai`, `IDDiaDiem`, `Nhan`, `GioNhanPhong`, `GioTraPhong`, `IDChuKhachSan`) VALUES
-(8, 'Vinpearl Resort & Spa Hạ Long', '117 Đảo Rều, Phường Bạch Đằng, Thành phố Hạ Long, Tỉnh Quảng Ninh', 0, 5, '<div class=\"MuiBox-root jss502\"><strong><span class=\"MuiBox-root jss503\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/new-world-phu-quoc-resort.html\">New World Ph&uacute; Quốc</a>&nbsp;</strong>l&agrave; khu nghỉ dưỡng tọa lạc b&ecirc;n b&ecirc;n b&atilde;i biển Khem nổi tiếng xinh đẹp, thơ mộng. Resort đạt chuẩn 5 sao quốc tế với thiết kế c&ugrave;ng những dịch vụ tiện nghi v&agrave; b&atilde;i biển ri&ecirc;ng trong xanh. Từ khu nghỉ dưỡng, bạn c&oacute; thể đi tham quan c&aacute;c địa danh của đảo Ph&uacute; Quốc như: C&aacute;p treo (5km), nh&agrave; t&ugrave; Ph&uacute; Quốc (11km),...</p>\n<p><strong>New World Ph&uacute; Quốc</strong>&nbsp;bao gồm 375 căn biệt thự c&oacute; hồ bơi 3 hoặc 4 ph&ograve;ng ngủ d&agrave;nh cho cặp đ&ocirc;i, nh&oacute;m bạn hoặc gia đ&igrave;nh. Trong mỗi căn sẽ chia ra c&aacute;c ph&ograve;ng như ph&ograve;ng ngủ, nh&agrave; bếp, ph&ograve;ng kh&aacute;ch. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c vật dụng cần thiết: TV truyền h&igrave;nh c&aacute;p, tủ lạnh, m&aacute;y pha c&agrave; ph&ecirc;, mấy sấy t&oacute;c,...</p>\n<p><strong>New World Ph&uacute; Quốc</strong>&nbsp;c&ograve;n sở hữu nh&agrave; h&agrave;ng, hồ bơi ngo&agrave;i trời, trung t&acirc;m thể thao v&agrave; một khu vườn với b&agrave;n ghế ngo&agrave;i trời. Qu&yacute; kh&aacute;ch c&oacute; thể tận hưởng kỳ nghỉ dưỡng l&yacute; tượng với việc tắm bồn nước nước hoặc spa. Kh&aacute;ch sạn cung cấp Wifi miễn ph&iacute; khắp khu&ocirc;n vi&ecirc;n.</p>', 1, 50, 'Giá cực tốt', 14, 12, 2),
+(8, 'Vinpearl Resort & Spa Hạ Long', '117 Đảo Rều, Phường Bạch Đằng, Thành phố Hạ Long, Tỉnh Quảng Ninh', 0, 5, '<div class=\"MuiBox-root jss502\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-root jss506\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss507 jss487\">\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss508\"><strong><span class=\"MuiBox-root jss509\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss510 jss487\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/new-world-phu-quoc-resort.html\">New World Ph&uacute; Quốc</a>&nbsp;</strong>l&agrave; khu nghỉ dưỡng tọa lạc b&ecirc;n b&ecirc;n b&atilde;i biển Khem nổi tiếng xinh đẹp, thơ mộng. Resort đạt chuẩn 5 sao quốc tế với thiết kế c&ugrave;ng những dịch vụ tiện nghi v&agrave; b&atilde;i biển ri&ecirc;ng trong xanh. Từ khu nghỉ dưỡng, bạn c&oacute; thể đi tham quan c&aacute;c địa danh của đảo Ph&uacute; Quốc như: C&aacute;p treo (5km), nh&agrave; t&ugrave; Ph&uacute; Quốc (11km),...</p>\n<p><strong>New World Ph&uacute; Quốc</strong>&nbsp;bao gồm 375 căn biệt thự c&oacute; hồ bơi 3 hoặc 4 ph&ograve;ng ngủ d&agrave;nh cho cặp đ&ocirc;i, nh&oacute;m bạn hoặc gia đ&igrave;nh. Trong mỗi căn sẽ chia ra c&aacute;c ph&ograve;ng như ph&ograve;ng ngủ, nh&agrave; bếp, ph&ograve;ng kh&aacute;ch. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c vật dụng cần thiết: TV truyền h&igrave;nh c&aacute;p, tủ lạnh, m&aacute;y pha c&agrave; ph&ecirc;, mấy sấy t&oacute;c,...</p>\n<p><strong>New World Ph&uacute; Quốc</strong>&nbsp;c&ograve;n sở hữu nh&agrave; h&agrave;ng, hồ bơi ngo&agrave;i trời, trung t&acirc;m thể thao v&agrave; một khu vườn với b&agrave;n ghế ngo&agrave;i trời. Qu&yacute; kh&aacute;ch c&oacute; thể tận hưởng kỳ nghỉ dưỡng l&yacute; tượng với việc tắm bồn nước nước hoặc spa. Kh&aacute;ch sạn cung cấp Wifi miễn ph&iacute; khắp khu&ocirc;n vi&ecirc;n.</p>', 1, 50, 'Giá cực tốt', 14, 12, 9),
 (9, 'Sol by Meliá Phú Quốc Resort', 'Đt 975, Đường Bào, Xã Dương Tơ, Thành phố Phú Quốc, Tỉnh Kiên Giang', 30, 5, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/new-world-phu-quoc-resort.html\">New World Ph&uacute; Quốc</a>&nbsp;</strong>l&agrave; khu nghỉ dưỡng tọa lạc b&ecirc;n b&ecirc;n b&atilde;i biển Khem nổi tiếng xinh đẹp, thơ mộng. Resort đạt chuẩn 5 sao quốc tế với thiết kế c&ugrave;ng những dịch vụ tiện nghi v&agrave; b&atilde;i biển ri&ecirc;ng trong xanh. Từ khu nghỉ dưỡng, bạn c&oacute; thể đi tham quan c&aacute;c địa danh của đảo Ph&uacute; Quốc như: C&aacute;p treo (5km), nh&agrave; t&ugrave; Ph&uacute; Quốc (11km),...</p>\n<p><strong>New World Ph&uacute; Quốc</strong>&nbsp;bao gồm 375 căn biệt thự c&oacute; hồ bơi 3 hoặc 4 ph&ograve;ng ngủ d&agrave;nh cho cặp đ&ocirc;i, nh&oacute;m bạn hoặc gia đ&igrave;nh. Trong mỗi căn sẽ chia ra c&aacute;c ph&ograve;ng như ph&ograve;ng ngủ, nh&agrave; bếp, ph&ograve;ng kh&aacute;ch. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c vật dụng cần thiết: TV truyền h&igrave;nh c&aacute;p, tủ lạnh, m&aacute;y pha c&agrave; ph&ecirc;, mấy sấy t&oacute;c,...</p>\n<p><strong>New World Ph&uacute; Quốc</strong>&nbsp;c&ograve;n sở hữu nh&agrave; h&agrave;ng, hồ bơi ngo&agrave;i trời, trung t&acirc;m thể thao v&agrave; một khu vườn với b&agrave;n ghế ngo&agrave;i trời. Qu&yacute; kh&aacute;ch c&oacute; thể tận hưởng kỳ nghỉ dưỡng l&yacute; tượng với việc tắm bồn nước nước hoặc spa. Kh&aacute;ch sạn cung cấp Wifi miễn ph&iacute; khắp khu&ocirc;n vi&ecirc;n.</p>', 1, 34, 'Ưu đãi chớp nhoáng', 14, 12, 8),
-(10, 'Khách Sạn Mường Thanh Holiday Mũi Né', '12 Quang Văn Chuẩn, Phường Phú Thủy, Thành phố Phan Thiết, Tỉnh Bình Thuận', 10, 5, '<div class=\"MuiBox-root jss502\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-root jss506\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss507 jss487\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss508\"><strong><span class=\"MuiBox-root jss509\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss510 jss487\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/khu-nghi-duong-jw-marriott-phu-quoc-emerald-bay.html\" target=\"_blank\" rel=\"noopener\">JW Marriott Ph&uacute; Quốc Emerald Bay</a></strong>&nbsp;l&agrave; khu nghỉ dưỡng đạt ti&ecirc;u chuẩn quốc tế 5 sao, tọa lạc tại bờ biển của khu vực B&atilde;i Khem.</p>\n<p>Khu nghỉ dưỡng c&oacute; tổng cộng tất cả l&agrave; 244 ph&ograve;ng nghỉ được thiết kế độc đ&aacute;o bởi&nbsp;<strong>kiến tr&uacute;c sư nổi tiếng Bill Bensley</strong>&nbsp;dựa tr&ecirc;n &yacute; tưởng kiến tr&uacute;c của đại học Lamarck University. Tất cả c&aacute;c ph&ograve;ng tại đ&acirc;y đều được cung cấp đầy đủ trang bị c&aacute;c tiện nghi cần thiết, hiện đại cao cấp như: m&aacute;y lạnh, tủ lạnh, truyền h&igrave;nh c&aacute;p, mini bar, dụng cụ giặt ủi &aacute;o quần, sofa, b&agrave;n trang điểm, mấy sấy t&oacute;c, ph&ograve;ng tắm ri&ecirc;ng sang trọng c&oacute; bồn tắm ri&ecirc;ng v&agrave; v&ograve;i sen hiện đại.</p>\n<p>Ngo&agrave;i việc an dưỡng, tận hưởng bầu kh&ocirc;ng kh&iacute; trong l&agrave;nh, khi đặt ph&ograve;ng trực tuyến tại&nbsp;<strong>JW Marriott Ph&uacute; Quốc Emerald Bay</strong>, du kh&aacute;ch c&ograve;n c&oacute; thể tận hưởng&nbsp;<strong>c&aacute;c dịch vụ cao cấp</strong>&nbsp;kh&aacute;c. Một số dịch vụ ti&ecirc;u biểu&nbsp;như: spa chăm s&oacute;c sức khỏe v&agrave; sắc đẹp, hồ bơi ngo&agrave;i trời, dịch vụ cho thu&ecirc; xe, c&aacute;c hoạt động giải tr&iacute; dưới nước&hellip; Kh&ocirc;ng dừng lại ở đ&oacute;, khu nghỉ dưỡng c&ograve;n cung cấp đến 3 nh&agrave; h&agrave;ng v&agrave; bar với h&agrave;ng loạt c&aacute;c m&oacute;n hải sản tươi ngon của địa phương v&agrave; quốc tế c&ugrave;ng với</p>', 1, 11, 'Ưu đãi chớp nhoáng', 14, 12, 9),
-(11, 'Khách Sạn Hilton Đà Nẵng', '50, Bạch Đằng,, Phường Hòa Cường Bắc, Quận Hải Châu, Thành phố Đà Nẵng', 20, 3, '<div class=\"MuiBox-root jss502\"><strong><span class=\"MuiBox-root jss503\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 15, 'Ưu đãi chớp nhoáng', 14, 12, 9),
-(12, 'Khách sạn Paos Sapa Leisure', 'Đường Mường Hoa, Phường Sa Pa, Thị xã Sa Pa, Tỉnh Lào Cai', 25, 5, '<div class=\"MuiBox-root jss504 jss476\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 37, 'Vị trí đẹp', 15, 12, 9),
-(13, 'Binh An Village Đà Lạt Resort', 'Hồ Tuyền Lâm, Hồ Tuyền Lâm, Xã Tà Nung, Thành phố Đà Lạt, Tỉnh Lâm Đồng', 12, 4, '<div class=\"MuiBox-root jss506\"><strong><span class=\"MuiBox-root jss507\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 39, 'Vị trí đẹp', 15, 12, 9),
-(14, 'Movenpick Resort Phan Thiết', 'Đường Hòn Giồ, Thuận Qúy , Phường Mũi Né, Thành phố Phan Thiết, Tỉnh Bình Thuận', 35, 4, '<div class=\"MuiBox-root jss503\"><strong><span class=\"MuiBox-root jss504\">Ch&iacute;nh s&aacute;ch ch', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/poshanu-resort-phan-thiet.html\">Poshanu Resort</a>&nbsp;</strong>sở hữu một lối đi để ra khu vực b&atilde;i biển ri&ecirc;ng v&agrave; hệ thống những bungalow với diện t&iacute;ch rộng r&atilde;i&nbsp;gi&uacute;p du kh&aacute;ch tận hưởng chuyến đi một c&aacute;ch thoải m&aacute;i v&agrave; trọn vẹn nhất. Đặc biệt, những tiện nghi như&nbsp;<strong>s&agrave;n gỗ, giường 4 cọc v&agrave; quạt trần</strong>&nbsp;được trang bị tại đ&acirc;y đ&atilde; to&aacute;t l&ecirc;n được vẻ độc đ&aacute;o v&agrave; gần gũi với thi&ecirc;n nhi&ecirc;n, tạo n&ecirc;n kh&ocirc;ng gian l&yacute; tưởng cho việc nghỉ dưỡng.</p>\n<p>B&ecirc;n cạnh vẻ truyền thống th&igrave; những vật dụng hiện đại như k&eacute;t an to&agrave;n, v&ograve;i hoa sen, tivi truyền h&igrave;nh c&aacute;p m&agrave;n h&igrave;nh phẳng, minibar,.. cũng c&oacute; trong mỗi Bungalow. Ngo&agrave;i ra, để mang lại sự thuận tiện cho du kh&aacute;ch th&igrave; resort cũng cung cấp &aacute;p cho&agrave;ng tắm v&agrave; d&eacute;p. Kh&ocirc;ng dừng lại ở đ&oacute;, du kh&aacute;ch sẽ được tận hưởng l&agrave;n nước m&aacute;t l&agrave;nh ở trong&nbsp;<strong>bể bơi ngo&agrave;i trời&nbsp;</strong>hoặc vươn m&igrave;nh dưới hơi ấm của mặt trời khi nằm tr&ecirc;n c&acirc;c ghế phơi nắng tại resort.</p>', 1, 11, 'Khách sạn yêu thích', 13, 12, 9),
+(10, 'Khách Sạn Mường Thanh Holiday Mũi Né', '12 Quang Văn Chuẩn, Phường Phú Thủy, Thành phố Phan Thiết, Tỉnh Bình Thuận', 10, 5, '<div class=\"MuiBox-root jss502\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-root jss506\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss507 jss487\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss508\"><strong><span class=\"MuiBox-root jss509\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss510 jss487\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/khu-nghi-duong-jw-marriott-phu-quoc-emerald-bay.html\" target=\"_blank\" rel=\"noopener\">JW Marriott Ph&uacute; Quốc Emerald Bay</a></strong>&nbsp;l&agrave; khu nghỉ dưỡng đạt ti&ecirc;u chuẩn quốc tế 5 sao, tọa lạc tại bờ biển của khu vực B&atilde;i Khem.</p>\n<p>Khu nghỉ dưỡng c&oacute; tổng cộng tất cả l&agrave; 244 ph&ograve;ng nghỉ được thiết kế độc đ&aacute;o bởi&nbsp;<strong>kiến tr&uacute;c sư nổi tiếng Bill Bensley</strong>&nbsp;dựa tr&ecirc;n &yacute; tưởng kiến tr&uacute;c của đại học Lamarck University. Tất cả c&aacute;c ph&ograve;ng tại đ&acirc;y đều được cung cấp đầy đủ trang bị c&aacute;c tiện nghi cần thiết, hiện đại cao cấp như: m&aacute;y lạnh, tủ lạnh, truyền h&igrave;nh c&aacute;p, mini bar, dụng cụ giặt ủi &aacute;o quần, sofa, b&agrave;n trang điểm, mấy sấy t&oacute;c, ph&ograve;ng tắm ri&ecirc;ng sang trọng c&oacute; bồn tắm ri&ecirc;ng v&agrave; v&ograve;i sen hiện đại.</p>\n<p>Ngo&agrave;i việc an dưỡng, tận hưởng bầu kh&ocirc;ng kh&iacute; trong l&agrave;nh, khi đặt ph&ograve;ng trực tuyến tại&nbsp;<strong>JW Marriott Ph&uacute; Quốc Emerald Bay</strong>, du kh&aacute;ch c&ograve;n c&oacute; thể tận hưởng&nbsp;<strong>c&aacute;c dịch vụ cao cấp</strong>&nbsp;kh&aacute;c. Một số dịch vụ ti&ecirc;u biểu&nbsp;như: spa chăm s&oacute;c sức khỏe v&agrave; sắc đẹp, hồ bơi ngo&agrave;i trời, dịch vụ cho thu&ecirc; xe, c&aacute;c hoạt động giải tr&iacute; dưới nước&hellip; Kh&ocirc;ng dừng lại ở đ&oacute;, khu nghỉ dưỡng c&ograve;n cung cấp đến 3 nh&agrave; h&agrave;ng v&agrave; bar với h&agrave;ng loạt c&aacute;c m&oacute;n hải sản tươi ngon của địa phương v&agrave; quốc tế c&ugrave;ng với</p>', 1, 11, 'Giá độc quyền', 14, 12, 9),
+(11, 'Khách Sạn Hilton Đà Nẵng', '50, Bạch Đằng,, Phường Hòa Cường Bắc, Quận Hải Châu, Thành phố Đà Nẵng', 20, 3, '<div class=\"MuiBox-root jss502\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-root jss506\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss507 jss487\">\n<ul>\n<li>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</li>\n<li>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</li>\n<li>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</li>\n</ul>\n</div>\n</div>\n<div class=\"MuiBox-root jss508\"><strong><span class=\"MuiBox-root jss509\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss510 jss487\">\n<ul>\n<li>Trẻ em từ 12 tuổi sẽ được xem như người lớn</li>\n<li>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</li>\n</ul>\n</div>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 15, 'Giá độc quyền', 14, 12, 9),
+(12, 'Khách sạn Paos Sapa Leisure', 'Đường Mường Hoa, Phường Sa Pa, Thị xã Sa Pa, Tỉnh Lào Cai', 25, 5, '<div class=\"MuiBox-root jss504 jss476\">\n<div class=\"MuiBox-root jss505\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-root jss506\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss507 jss487\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss508\"><strong><span class=\"MuiBox-root jss509\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss510 jss487\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 37, 'Vị trí đẹp', 15, 12, 9),
+(13, 'Binh An Village Đà Lạt Resort', 'Hồ Tuyền Lâm, Hồ Tuyền Lâm, Xã Tà Nung, Thành phố Đà Lạt, Tỉnh Lâm Đồng', 12, 4, '<div class=\"MuiBox-root jss506\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-root jss506\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss507 jss487\">\n<ul>\n<li>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</li>\n<li>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</li>\n</ul>\n</div>\n</div>\n<div class=\"MuiBox-root jss508\"><strong><span class=\"MuiBox-root jss509\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss510 jss487\">\n<ul>\n<li>Trẻ em từ 12 tuổi sẽ được xem như người lớn</li>\n<li>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</li>\n</ul>\n</div>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 39, 'Giá độc quyền', 15, 12, 9),
+(14, 'Movenpick Resort Phan Thiết', 'Đường Hòn Giồ, Thuận Qúy , Phường Mũi Né, Thành phố Phan Thiết, Tỉnh Bình Thuận', 35, 4, '<div class=\"MuiBox-root jss503\">\n<div class=\"MuiBox-root jss505\"><strong><span class=\"MuiBox-root jss506\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss507 jss487\">\n<ul>\n<li>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</li>\n<li>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</li>\n<li>Kh&ocirc;ng cho ph&eacute;p tổ chức tiệc / sự kiện</li>\n</ul>\n</div>\n</div>\n<div class=\"MuiBox-root jss508\"><strong><span class=\"MuiBox-root jss509\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss510 jss487\">\n<ul>\n<li>Trẻ em từ 12 tuổi sẽ được xem như người lớn</li>\n<li>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</li>\n</ul>\n</div>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/poshanu-resort-phan-thiet.html\">Poshanu Resort</a>&nbsp;</strong>sở hữu một lối đi để ra khu vực b&atilde;i biển ri&ecirc;ng v&agrave; hệ thống những bungalow với diện t&iacute;ch rộng r&atilde;i&nbsp;gi&uacute;p du kh&aacute;ch tận hưởng chuyến đi một c&aacute;ch thoải m&aacute;i v&agrave; trọn vẹn nhất. Đặc biệt, những tiện nghi như&nbsp;<strong>s&agrave;n gỗ, giường 4 cọc v&agrave; quạt trần</strong>&nbsp;được trang bị tại đ&acirc;y đ&atilde; to&aacute;t l&ecirc;n được vẻ độc đ&aacute;o v&agrave; gần gũi với thi&ecirc;n nhi&ecirc;n, tạo n&ecirc;n kh&ocirc;ng gian l&yacute; tưởng cho việc nghỉ dưỡng.</p>\n<p>B&ecirc;n cạnh vẻ truyền thống th&igrave; những vật dụng hiện đại như k&eacute;t an to&agrave;n, v&ograve;i hoa sen, tivi truyền h&igrave;nh c&aacute;p m&agrave;n h&igrave;nh phẳng, minibar,.. cũng c&oacute; trong mỗi Bungalow. Ngo&agrave;i ra, để mang lại sự thuận tiện cho du kh&aacute;ch th&igrave; resort cũng cung cấp &aacute;p cho&agrave;ng tắm v&agrave; d&eacute;p. Kh&ocirc;ng dừng lại ở đ&oacute;, du kh&aacute;ch sẽ được tận hưởng l&agrave;n nước m&aacute;t l&agrave;nh ở trong&nbsp;<strong>bể bơi ngo&agrave;i trời&nbsp;</strong>hoặc vươn m&igrave;nh dưới hơi ấm của mặt trời khi nằm tr&ecirc;n c&acirc;c ghế phơi nắng tại resort.</p>', 1, 11, 'Khách sạn yêu thích', 13, 12, 9),
 (15, 'New World Phú Quốc Resort', 'Bãi Khem, An Thới, Phường An Thới, Thành phố Phú Quốc, Tỉnh Kiên Giang', 13, 4, '<p><strong>Ch&iacute;nh s&aacute;ch chung:</strong></p>\n<div>\n<ul>\n<li>Kh&ocirc;ng cho ph&eacute;p h', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/da-nang-mikazuki-japanese-resorts-spa.html\">Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</a></strong>&nbsp;l&agrave; địa điểm dừng ch&acirc;n l&yacute; tưởng của nhiều kh&aacute;ch h&agrave;ng khi đến với th&agrave;nh phố. Kh&aacute;ch sạn đạt ti&ecirc;u chuẩn 5 sao nằm ở Vịnh Đ&agrave; Nẵng - một trong những b&atilde;i biển xinh đẹp bậc nhất&nbsp;c&aacute;ch s&acirc;n bay quốc tế Đ&agrave; Nẵng khoảng 8,4 km.</p>\n<p dir=\"ltr\"><strong>Đ&agrave; Nẵng Mikazuki Japanese Resorts &amp; Spa</strong>&nbsp;c&oacute; hệ thống gồm 12 căn biệt thự với 48 ph&ograve;ng ngủ với 2 loại ph&ograve;ng đơn v&agrave; ph&ograve;ng đ&ocirc;i. Nội thất trong ph&ograve;ng được b&agrave;y tr&iacute; v&agrave; sắp xếp theo kiểu Nhật Bản đặc biệt l&agrave; ở đầu giường c&oacute; treo bức tranh theo phong c&aacute;ch Nhật Bản. Trong ph&ograve;ng được trang bị đầy đủ c&aacute;c thiết bị với m&aacute;y điều h&ograve;a, b&igrave;nh nước n&oacute;ng, m&aacute;y sấy t&oacute;c...</p>\n<p>Nh&agrave; h&agrave;ng&nbsp;Japanese Nami l&agrave; nơi hội tụ những tinh hoa ẩm thực Việt Nam v&agrave; Nhật Bản c&oacute; hướng nh&igrave;n ra biển. Qu&yacute; kh&aacute;ch sẽ c&oacute; thể được thưởng thức ẩm thực vừa nh&igrave;n ra biển. Hệ thống c&ocirc;ng vi&ecirc;n nước với c&aacute;c bể bơi trượt nước, khu Onsen gi&uacute;p cho qu&yacute; kh&aacute;ch c&oacute; thể thỏa sức vui chơi. Ngo&agrave;i ra,&nbsp;<strong>Đ&agrave; Nẵng Mikazuki</strong></p>', 1, 34, 'Ưu đãi chớp nhoáng', 14, 12, 9),
 (16, 'Vinpearl Resort & Spa Hội An', 'Tổ 6, Khối Phước Hải,, Phường Cửa Đại, Thành phố Hội An, Tỉnh Quảng Nam', 34, 4, '<p><strong>Ch&iacute;nh s&aacute;ch chung:</strong></p>\n<div>\n<ul>\n<li>Kh&ocirc;ng cho ph&eacute;p h', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/la-siesta-hoi-an-resort-spa.html\">La Siesta Hội An</a></strong>&nbsp;nằm ngay trong&nbsp;khu vực Phố cổ Hội An,&nbsp;được TripAdvisor b&igrave;nh chọn v&agrave;o&nbsp;top 25 kh&aacute;ch sạn tốt nhất Ch&acirc;u &Aacute; v&agrave; đứng số 1 tại Hội An. Từ khu nghỉ dưỡng, qu&yacute; kh&aacute;ch c&oacute; thể&nbsp;thuận lợi đến c&aacute;c điểm tham quan như l&agrave;ng gốm Thanh H&agrave;, ch&ugrave;a Cầu, chợ Hội An. Khu nghỉ dưỡng n&agrave;y được x&acirc;y dựng theo<strong>&nbsp;</strong>ti&ecirc;u chuẩn 5 sao quốc tế với tổng cộng 107 ph&ograve;ng, chia l&agrave;m 2 c&aacute;nh kh&aacute;c nhau.</p>\n<p>Nằm trong khu vườn nhiệt đới đầy m&agrave;u sắc,&nbsp;<strong>La Siesta Hội An</strong>&nbsp;được chia th&agrave;nh 2 c&aacute;nh. C&aacute;nh ph&iacute;a t&acirc;y với 70 ph&ograve;ng được thiết kế theo kiểu kh&aacute;ch sạn rộng r&atilde;i nhưng truyền thống, cổ điển. C&aacute;nh ph&iacute;a đ&ocirc;ng đặc trưng với c&aacute;c đặc điểm của khu phố cổ qua t&aacute;m biệt thự nh&agrave; phố tr&ecirc;n s&acirc;n hi&ecirc;n c&oacute; sức chứa 37 ph&ograve;ng suite cổ điển nổi bật.</p>', 1, 48, 'Giá độc quyền', 14, 12, 2),
 (17, 'Ana Mandara Villas Đà Lạt Resort & Spa', 'Lê Lai, Phường 5, Thành phố Đà Lạt, Tỉnh Lâm Đồng', 15, 5, '<div class=\"MuiBox-root jss2185\"><strong><span class=\"MuiBox-root jss2186\">Ch&iacute;nh s&aacute;ch chung</span></strong>\n<div class=\"MuiBox-root jss2187 jss2167\">\n<p>Kh&ocirc;ng cho ph&eacute;p h&uacute;t thuốc</p>\n<p>Kh&ocirc;ng cho ph&eacute;p th&uacute; cưng</p>\n<p>Cho ph&eacute;p tổ chức tiệc / sự kiện</p>\n</div>\n</div>\n<div class=\"MuiBox-root jss2188\"><strong><span class=\"MuiBox-root jss2189\">Ch&iacute;nh s&aacute;ch trẻ em</span></strong>\n<div class=\"MuiBox-root jss2190 jss2167\">\n<p>Trẻ em từ 12 tuổi sẽ được xem như người lớn</p>\n<p>Qu&yacute; kh&aacute;ch h&agrave;ng vui l&ograve;ng nhập đ&uacute;ng số lượng kh&aacute;ch v&agrave; tuổi để c&oacute; gi&aacute; ch&iacute;nh x&aacute;c.</p>\n</div>\n</div>', '<p><strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/ana-mandara-villas-da-lat-resort-spa.html\">Ana Mandara Villas Đ&agrave; Lạt Resort &amp; Spa</a>&nbsp;</strong>được thiết kế theo kiểu kiến tr&uacute;c cổ điển Ph&aacute;p. Khu nghỉ dưỡng nằm tại vị tr&iacute; l&yacute; tưởng tr&ecirc;n những sườn dốc mộng mơ ở<strong>&nbsp;trung t&acirc;m th&agrave;nh phố Đ&agrave; Lạt</strong>. Từ đ&acirc;y bạn c&oacute; thể di chuyển dễ d&agrave;ng đến nhiều địa điểm tham quan của xứ sở ng&agrave;n hoa như: Hồ Xu&acirc;n Hương, Hồ Tuyền L&acirc;m, Thung lũng t&igrave;nh y&ecirc;u,... Ph&ograve;ng nghỉ ở&nbsp;Ana Villas Dalat Resort &amp; Spa ấm c&uacute;ng v&agrave; đầy đủ tiện nghi như: M&aacute;y sấy t&oacute;c, tủ lạnh mini, k&eacute;t sắt, quạt, điều h&ograve;a,...</p>\n<p>Đặc biệt, tại&nbsp;<strong>Ana Mandara Villas Đ&agrave; Lạt Resort &amp; Spa</strong>&nbsp;c&oacute;&nbsp;<strong>hồ bơi ngo&agrave;i trời, nh&agrave; h&agrave;ng</strong>&nbsp;v&agrave; trung t&acirc;m spa rất hiện đại, sang trọng, l&agrave; nơi l&yacute; tưởng để bạn hưởng thụ v&agrave; thư gi&atilde;n sau những giờ l&agrave;m việc mệt nho&agrave;i. La Cochinchine Spa c&oacute; 5 ph&ograve;ng thư gi&atilde;n với c&aacute;c liệu ph&aacute;p như massage ch&acirc;n, ph&ograve;ng x&ocirc;ng hơi kh&ocirc; v&agrave; ướt,... gi&uacute;p bạn kho&aacute;c l&ecirc;n một diện mạo mới trong kỳ nghỉ dưỡng.</p>\n<p>Nếu như bạn c&oacute; bất kỳ thắc mắc n&agrave;o về dịch vụ&nbsp;<strong>đặt ph&ograve;ng&nbsp;</strong><strong>Ana Mandara Villas Đ&agrave; Lạt</strong>&nbsp;hay&nbsp;<strong><a href=\"https://www.vietnambooking.com/hotel/vietnam/khach-san-da-lat.html\">đặt ph&ograve;ng kh&aacute;ch sạn Đ&agrave; Lạt</a></strong>, vui l&ograve;ng li&ecirc;n hệ số&nbsp;<strong>hotline&nbsp;1900 4698&nbsp;</strong>để được tư vấn v&agrave; hỗ trợ chi tiết nhất.</p>', 1, 39, 'Giá cực tốt', 14, 12, 9),
@@ -528,7 +535,7 @@ INSERT INTO `khachsan` (`ID`, `Ten`, `DiaChi`, `GiamGia`, `soSao`, `ChinhSach`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khunggio`
+-- Table structure for table `khunggio`
 --
 
 CREATE TABLE `khunggio` (
@@ -538,7 +545,7 @@ CREATE TABLE `khunggio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `khunggio`
+-- Dumping data for table `khunggio`
 --
 
 INSERT INTO `khunggio` (`ID`, `GioBatDau`, `GioKetThuc`) VALUES
@@ -549,7 +556,7 @@ INSERT INTO `khunggio` (`ID`, `GioBatDau`, `GioKetThuc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khuyenmai`
+-- Table structure for table `khuyenmai`
 --
 
 CREATE TABLE `khuyenmai` (
@@ -568,7 +575,7 @@ CREATE TABLE `khuyenmai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `khuyenmai`
+-- Dumping data for table `khuyenmai`
 --
 
 INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`, `MaKhuyenMai`, `BatDau`, `KetThuc`, `MoTa`, `DieuKien`, `SoLuongKM`, `IDKhungGio`) VALUES
@@ -608,7 +615,7 @@ INSERT INTO `khuyenmai` (`ID`, `TieuDe`, `IDKhachSan`, `PhanTramKM`, `SoLuongSD`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `loaitiennghikhachsan`
+-- Table structure for table `loaitiennghikhachsan`
 --
 
 CREATE TABLE `loaitiennghikhachsan` (
@@ -617,7 +624,7 @@ CREATE TABLE `loaitiennghikhachsan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `loaitiennghikhachsan`
+-- Dumping data for table `loaitiennghikhachsan`
 --
 
 INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
@@ -638,7 +645,7 @@ INSERT INTO `loaitiennghikhachsan` (`ID`, `TenLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `loaitiennghiphong`
+-- Table structure for table `loaitiennghiphong`
 --
 
 CREATE TABLE `loaitiennghiphong` (
@@ -647,7 +654,7 @@ CREATE TABLE `loaitiennghiphong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `loaitiennghiphong`
+-- Dumping data for table `loaitiennghiphong`
 --
 
 INSERT INTO `loaitiennghiphong` (`TenLoai`, `ID`) VALUES
@@ -662,7 +669,7 @@ INSERT INTO `loaitiennghiphong` (`TenLoai`, `ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nguoidung`
+-- Table structure for table `nguoidung`
 --
 
 CREATE TABLE `nguoidung` (
@@ -681,7 +688,7 @@ CREATE TABLE `nguoidung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `nguoidung`
+-- Dumping data for table `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaChi`, `MatKhau`, `PhanQuyen`, `TenCongTy`, `MaSoThue`, `QuyMo`, `TrangThai`) VALUES
@@ -698,7 +705,7 @@ INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaC
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nguoinhanphong`
+-- Table structure for table `nguoinhanphong`
 --
 
 CREATE TABLE `nguoinhanphong` (
@@ -711,7 +718,7 @@ CREATE TABLE `nguoinhanphong` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phong`
+-- Table structure for table `phong`
 --
 
 CREATE TABLE `phong` (
@@ -726,7 +733,7 @@ CREATE TABLE `phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `phong`
+-- Dumping data for table `phong`
 --
 
 INSERT INTO `phong` (`ID`, `TenLoaiPhong`, `IDKhachSan`, `SoPhongTrong`, `SoNguoi`, `DienTich`, `Gia`, `TrangThai`) VALUES
@@ -751,7 +758,7 @@ INSERT INTO `phong` (`ID`, `TenLoaiPhong`, `IDKhachSan`, `SoPhongTrong`, `SoNguo
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `taikhoanthanhtoan`
+-- Table structure for table `taikhoanthanhtoan`
 --
 
 CREATE TABLE `taikhoanthanhtoan` (
@@ -765,7 +772,7 @@ CREATE TABLE `taikhoanthanhtoan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `taikhoanthanhtoan`
+-- Dumping data for table `taikhoanthanhtoan`
 --
 
 INSERT INTO `taikhoanthanhtoan` (`IDKhachHang`, `ID`, `TenNganHang`, `HoTenTK`, `SoTaiKhoan`, `NgayHetHan`, `anhQR`) VALUES
@@ -779,7 +786,7 @@ INSERT INTO `taikhoanthanhtoan` (`IDKhachHang`, `ID`, `TenNganHang`, `HoTenTK`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thongtinhuuich`
+-- Table structure for table `thongtinhuuich`
 --
 
 CREATE TABLE `thongtinhuuich` (
@@ -789,7 +796,7 @@ CREATE TABLE `thongtinhuuich` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `thongtinhuuich`
+-- Dumping data for table `thongtinhuuich`
 --
 
 INSERT INTO `thongtinhuuich` (`ID`, `ThongTin`, `HinhAnh`) VALUES
@@ -805,7 +812,7 @@ INSERT INTO `thongtinhuuich` (`ID`, `ThongTin`, `HinhAnh`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thongtinhuuich_ks`
+-- Table structure for table `thongtinhuuich_ks`
 --
 
 CREATE TABLE `thongtinhuuich_ks` (
@@ -815,7 +822,7 @@ CREATE TABLE `thongtinhuuich_ks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `thongtinhuuich_ks`
+-- Dumping data for table `thongtinhuuich_ks`
 --
 
 INSERT INTO `thongtinhuuich_ks` (`IDKhachSan`, `IDThongTin`, `NoiDung`) VALUES
@@ -834,6 +841,13 @@ INSERT INTO `thongtinhuuich_ks` (`IDKhachSan`, `IDThongTin`, `NoiDung`) VALUES
 (9, 6, '1'),
 (9, 7, '12'),
 (9, 8, '12'),
+(10, 1, '1'),
+(10, 2, '1'),
+(10, 3, '1'),
+(10, 4, '2010'),
+(10, 5, '1'),
+(10, 6, '1'),
+(10, 7, '1'),
 (10, 8, '12'),
 (11, 1, '2'),
 (11, 2, '3'),
@@ -934,7 +948,7 @@ INSERT INTO `thongtinhuuich_ks` (`IDKhachSan`, `IDThongTin`, `NoiDung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tiennghichung_ks`
+-- Table structure for table `tiennghichung_ks`
 --
 
 CREATE TABLE `tiennghichung_ks` (
@@ -945,7 +959,7 @@ CREATE TABLE `tiennghichung_ks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `tiennghichung_ks`
+-- Dumping data for table `tiennghichung_ks`
 --
 
 INSERT INTO `tiennghichung_ks` (`ID`, `Icon`, `TenTienNghi`, `IDLoai`) VALUES
@@ -998,7 +1012,7 @@ INSERT INTO `tiennghichung_ks` (`ID`, `Icon`, `TenTienNghi`, `IDLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tiennghichung_phong`
+-- Table structure for table `tiennghichung_phong`
 --
 
 CREATE TABLE `tiennghichung_phong` (
@@ -1009,7 +1023,7 @@ CREATE TABLE `tiennghichung_phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `tiennghichung_phong`
+-- Dumping data for table `tiennghichung_phong`
 --
 
 INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
@@ -1052,7 +1066,7 @@ INSERT INTO `tiennghichung_phong` (`ID`, `TenTienNghi`, `Icon`, `IDLoai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tiennghi_khachsan`
+-- Table structure for table `tiennghi_khachsan`
 --
 
 CREATE TABLE `tiennghi_khachsan` (
@@ -1061,7 +1075,7 @@ CREATE TABLE `tiennghi_khachsan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `tiennghi_khachsan`
+-- Dumping data for table `tiennghi_khachsan`
 --
 
 INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
@@ -1086,6 +1100,20 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 (8, 61),
 (8, 62),
 (8, 63),
+(8, 81),
+(8, 82),
+(8, 83),
+(8, 84),
+(8, 85),
+(8, 86),
+(8, 91),
+(8, 92),
+(8, 101),
+(8, 102),
+(8, 113),
+(8, 114),
+(8, 116),
+(8, 121),
 (9, 1),
 (9, 2),
 (9, 3),
@@ -1107,6 +1135,29 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 (9, 61),
 (9, 62),
 (9, 63),
+(10, 1),
+(10, 2),
+(10, 4),
+(10, 5),
+(10, 11),
+(10, 21),
+(10, 22),
+(10, 31),
+(10, 41),
+(10, 44),
+(10, 47),
+(10, 51),
+(10, 61),
+(10, 73),
+(10, 82),
+(10, 83),
+(10, 85),
+(10, 86),
+(10, 92),
+(10, 102),
+(10, 103),
+(10, 112),
+(10, 113),
 (10, 115),
 (11, 1),
 (11, 2),
@@ -1129,6 +1180,10 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 (11, 61),
 (11, 62),
 (11, 63),
+(11, 91),
+(11, 92),
+(11, 101),
+(11, 102),
 (12, 1),
 (12, 2),
 (12, 3),
@@ -1151,6 +1206,10 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 (12, 61),
 (12, 62),
 (12, 63),
+(12, 81),
+(12, 84),
+(12, 112),
+(12, 115),
 (13, 1),
 (13, 2),
 (13, 3),
@@ -1175,6 +1234,15 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 (13, 61),
 (13, 62),
 (13, 63),
+(13, 81),
+(13, 82),
+(13, 84),
+(13, 92),
+(13, 101),
+(13, 111),
+(13, 114),
+(13, 115),
+(13, 121),
 (14, 1),
 (14, 2),
 (14, 3),
@@ -1193,6 +1261,23 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 (14, 45),
 (14, 46),
 (14, 47),
+(14, 51),
+(14, 52),
+(14, 61),
+(14, 62),
+(14, 72),
+(14, 81),
+(14, 82),
+(14, 84),
+(14, 85),
+(14, 91),
+(14, 92),
+(14, 101),
+(14, 102),
+(14, 111),
+(14, 112),
+(14, 115),
+(14, 121),
 (15, 1),
 (15, 2),
 (15, 3),
@@ -1395,7 +1480,7 @@ INSERT INTO `tiennghi_khachsan` (`IDKhachSan`, `IDTienNghi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tiennghi_phong`
+-- Table structure for table `tiennghi_phong`
 --
 
 CREATE TABLE `tiennghi_phong` (
@@ -1404,7 +1489,7 @@ CREATE TABLE `tiennghi_phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `tiennghi_phong`
+-- Dumping data for table `tiennghi_phong`
 --
 
 INSERT INTO `tiennghi_phong` (`IDPhong`, `IDTienNghi`) VALUES
@@ -1831,7 +1916,7 @@ INSERT INTO `tiennghi_phong` (`IDPhong`, `IDTienNghi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `uudai`
+-- Table structure for table `uudai`
 --
 
 CREATE TABLE `uudai` (
@@ -1840,7 +1925,7 @@ CREATE TABLE `uudai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `uudai`
+-- Dumping data for table `uudai`
 --
 
 INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
@@ -1867,7 +1952,7 @@ INSERT INTO `uudai` (`ID`, `NoiDung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `uudai_phong`
+-- Table structure for table `uudai_phong`
 --
 
 CREATE TABLE `uudai_phong` (
@@ -1876,7 +1961,7 @@ CREATE TABLE `uudai_phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `uudai_phong`
+-- Dumping data for table `uudai_phong`
 --
 
 INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
@@ -2035,11 +2120,11 @@ INSERT INTO `uudai_phong` (`IDPhong`, `IDUuDai`) VALUES
 (31, 19);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `danhgia`
+-- Indexes for table `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD PRIMARY KEY (`ID`),
@@ -2047,52 +2132,52 @@ ALTER TABLE `danhgia`
   ADD KEY `DanhGia_fk1` (`IDKhachHang`);
 
 --
--- Chỉ mục cho bảng `danhsachyeuthich`
+-- Indexes for table `danhsachyeuthich`
 --
 ALTER TABLE `danhsachyeuthich`
   ADD PRIMARY KEY (`IDKhachHang`,`IDKhachSan`),
   ADD KEY `DanhSachYeuThich_fk1` (`IDKhachSan`);
 
 --
--- Chỉ mục cho bảng `diadiem`
+-- Indexes for table `diadiem`
 --
 ALTER TABLE `diadiem`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `dondatphong`
+-- Indexes for table `dondatphong`
 --
 ALTER TABLE `dondatphong`
   ADD PRIMARY KEY (`MaDatPhong`),
   ADD KEY `DonDatPhong_fk0` (`IDKhachHang`);
 
 --
--- Chỉ mục cho bảng `giuong`
+-- Indexes for table `giuong`
 --
 ALTER TABLE `giuong`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `giuong_phong`
+-- Indexes for table `giuong_phong`
 --
 ALTER TABLE `giuong_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDGiuong`),
   ADD KEY `Giuong_Phong_fk1` (`IDGiuong`);
 
 --
--- Chỉ mục cho bảng `hinhanh_khachsan`
+-- Indexes for table `hinhanh_khachsan`
 --
 ALTER TABLE `hinhanh_khachsan`
   ADD PRIMARY KEY (`IDKhachSan`,`HinhAnh`);
 
 --
--- Chỉ mục cho bảng `hinhanh_phong`
+-- Indexes for table `hinhanh_phong`
 --
 ALTER TABLE `hinhanh_phong`
   ADD PRIMARY KEY (`IDPhong`,`HinhAnh`);
 
 --
--- Chỉ mục cho bảng `khachsan`
+-- Indexes for table `khachsan`
 --
 ALTER TABLE `khachsan`
   ADD PRIMARY KEY (`ID`),
@@ -2102,13 +2187,13 @@ ALTER TABLE `khachsan` ADD FULLTEXT KEY `Ten` (`Ten`);
 ALTER TABLE `khachsan` ADD FULLTEXT KEY `DiaChi` (`DiaChi`);
 
 --
--- Chỉ mục cho bảng `khunggio`
+-- Indexes for table `khunggio`
 --
 ALTER TABLE `khunggio`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `khuyenmai`
+-- Indexes for table `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   ADD PRIMARY KEY (`ID`),
@@ -2116,211 +2201,211 @@ ALTER TABLE `khuyenmai`
   ADD KEY `KhuyenMai_KG_fk1` (`IDKhungGio`);
 
 --
--- Chỉ mục cho bảng `loaitiennghikhachsan`
+-- Indexes for table `loaitiennghikhachsan`
 --
 ALTER TABLE `loaitiennghikhachsan`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `loaitiennghiphong`
+-- Indexes for table `loaitiennghiphong`
 --
 ALTER TABLE `loaitiennghiphong`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `nguoidung`
+-- Indexes for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `nguoinhanphong`
+-- Indexes for table `nguoinhanphong`
 --
 ALTER TABLE `nguoinhanphong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `NguoiNhanPhong_fk0` (`IDKhachHang`);
 
 --
--- Chỉ mục cho bảng `phong`
+-- Indexes for table `phong`
 --
 ALTER TABLE `phong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Phong_fk0` (`IDKhachSan`);
 
 --
--- Chỉ mục cho bảng `taikhoanthanhtoan`
+-- Indexes for table `taikhoanthanhtoan`
 --
 ALTER TABLE `taikhoanthanhtoan`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TaiKhoanThanhToan_fk0` (`IDKhachHang`);
 
 --
--- Chỉ mục cho bảng `thongtinhuuich`
+-- Indexes for table `thongtinhuuich`
 --
 ALTER TABLE `thongtinhuuich`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `thongtinhuuich_ks`
+-- Indexes for table `thongtinhuuich_ks`
 --
 ALTER TABLE `thongtinhuuich_ks`
   ADD PRIMARY KEY (`IDKhachSan`,`IDThongTin`),
   ADD KEY `ThongTinHuuIch_KS_fk1` (`IDThongTin`);
 
 --
--- Chỉ mục cho bảng `tiennghichung_ks`
+-- Indexes for table `tiennghichung_ks`
 --
 ALTER TABLE `tiennghichung_ks`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TienNghiChung_KS_fk0` (`IDLoai`);
 
 --
--- Chỉ mục cho bảng `tiennghichung_phong`
+-- Indexes for table `tiennghichung_phong`
 --
 ALTER TABLE `tiennghichung_phong`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TienNghiChung_Phong_fk0` (`IDLoai`);
 
 --
--- Chỉ mục cho bảng `tiennghi_khachsan`
+-- Indexes for table `tiennghi_khachsan`
 --
 ALTER TABLE `tiennghi_khachsan`
   ADD PRIMARY KEY (`IDKhachSan`,`IDTienNghi`),
   ADD KEY `TienNghi_KhachSan_fk1` (`IDTienNghi`);
 
 --
--- Chỉ mục cho bảng `tiennghi_phong`
+-- Indexes for table `tiennghi_phong`
 --
 ALTER TABLE `tiennghi_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDTienNghi`),
   ADD KEY `TienNghi_Phong_fk1` (`IDTienNghi`);
 
 --
--- Chỉ mục cho bảng `uudai`
+-- Indexes for table `uudai`
 --
 ALTER TABLE `uudai`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Chỉ mục cho bảng `uudai_phong`
+-- Indexes for table `uudai_phong`
 --
 ALTER TABLE `uudai_phong`
   ADD PRIMARY KEY (`IDPhong`,`IDUuDai`),
   ADD KEY `UuDai_Phong_fk1` (`IDUuDai`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `danhgia`
+-- AUTO_INCREMENT for table `danhgia`
 --
 ALTER TABLE `danhgia`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `diadiem`
+-- AUTO_INCREMENT for table `diadiem`
 --
 ALTER TABLE `diadiem`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
--- AUTO_INCREMENT cho bảng `hinhanh_khachsan`
+-- AUTO_INCREMENT for table `hinhanh_khachsan`
 --
 ALTER TABLE `hinhanh_khachsan`
   MODIFY `IDKhachSan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT cho bảng `khachsan`
+-- AUTO_INCREMENT for table `khachsan`
 --
 ALTER TABLE `khachsan`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT cho bảng `khunggio`
+-- AUTO_INCREMENT for table `khunggio`
 --
 ALTER TABLE `khunggio`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `khuyenmai`
+-- AUTO_INCREMENT for table `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT cho bảng `loaitiennghikhachsan`
+-- AUTO_INCREMENT for table `loaitiennghikhachsan`
 --
 ALTER TABLE `loaitiennghikhachsan`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `loaitiennghiphong`
+-- AUTO_INCREMENT for table `loaitiennghiphong`
 --
 ALTER TABLE `loaitiennghiphong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `nguoidung`
+-- AUTO_INCREMENT for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT cho bảng `nguoinhanphong`
+-- AUTO_INCREMENT for table `nguoinhanphong`
 --
 ALTER TABLE `nguoinhanphong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `phong`
+-- AUTO_INCREMENT for table `phong`
 --
 ALTER TABLE `phong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT cho bảng `taikhoanthanhtoan`
+-- AUTO_INCREMENT for table `taikhoanthanhtoan`
 --
 ALTER TABLE `taikhoanthanhtoan`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `thongtinhuuich`
+-- AUTO_INCREMENT for table `thongtinhuuich`
 --
 ALTER TABLE `thongtinhuuich`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `tiennghichung_ks`
+-- AUTO_INCREMENT for table `tiennghichung_ks`
 --
 ALTER TABLE `tiennghichung_ks`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
--- AUTO_INCREMENT cho bảng `tiennghichung_phong`
+-- AUTO_INCREMENT for table `tiennghichung_phong`
 --
 ALTER TABLE `tiennghichung_phong`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
--- AUTO_INCREMENT cho bảng `uudai`
+-- AUTO_INCREMENT for table `uudai`
 --
 ALTER TABLE `uudai`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `danhgia`
+-- Constraints for table `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD CONSTRAINT `DanhGia_fk0` FOREIGN KEY (`IDKhachSan`) REFERENCES `khachsan` (`ID`),
   ADD CONSTRAINT `DanhGia_fk1` FOREIGN KEY (`IDKhachHang`) REFERENCES `nguoidung` (`ID`);
 
 --
--- Các ràng buộc cho bảng `khachsan`
+-- Constraints for table `khachsan`
 --
 ALTER TABLE `khachsan`
   ADD CONSTRAINT `khachsan_ibfk_1` FOREIGN KEY (`IDChuKhachSan`) REFERENCES `nguoidung` (`ID`),

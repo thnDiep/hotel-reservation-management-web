@@ -419,39 +419,42 @@ function OrderDetail({ route, navigate }) {
                                                         {moment(item.NgayTraPhong).diff(item.NgayNhanPhong, 'days')} đêm
                                                     </span>
                                                     <span>
-                                                        {item.Gia.toLocaleString()}
-                                                        <sup>₫</sup>
+                                                        {item.Gia.toLocaleString('vi-VN', {
+                                                            style: 'currency',
+                                                            currency: 'VND',
+                                                        })}
                                                     </span>
                                                 </div>
                                                 <div className={styles.price}>
                                                     <span>Phụ phí</span>
                                                     <span>
-                                                        {item.PhuPhi.toLocaleString()}
-                                                        <sup> ₫</sup>
+                                                        {item.PhuPhi.toLocaleString('vi-VN', {
+                                                            style: 'currency',
+                                                            currency: 'VND',
+                                                        })}
                                                     </span>
                                                 </div>
                                                 <div className={styles.price}>
                                                     <span>Thuế và phí dịch vụ khách sạn</span>
                                                     <span>
-                                                        {item.ThueVaDichVuKhachSan.toLocaleString()} <sup>₫</sup>
+                                                        {item.ThueVaDichVuKhachSan.toLocaleString('vi-VN', {
+                                                            style: 'currency',
+                                                            currency: 'VND',
+                                                        })}
                                                     </span>
                                                 </div>
-                                                <div className={styles.price}>
-                                                    <div>
-                                                        <span className={styles.green}>Giảm thêm</span>
-                                                        <span className={styles.code}>{item.GiamGia} %</span>
-                                                    </div>
-                                                    <span className={styles.green}>
-                                                        {item.GiamThem.toLocaleString()} <sup>₫</sup>
-                                                    </span>
-                                                </div>
-                                                {item.GiamGia < 0 && (
+
+                                                {item.GiamGia > 0 && (
                                                     <div className={styles.price}>
+                                                        <div>
+                                                            <span className={styles.green}>Giảm thêm</span>
+                                                            <span className={styles.code}>{item.GiamGia} %</span>
+                                                        </div>
                                                         <span className={styles.green}>
-                                                            Chúng tôi khớp giá, giảm thêm
-                                                        </span>
-                                                        <span className={styles.green}>
-                                                            {item.GiamThem.toLocaleString()} <sup>₫</sup>
+                                                            {item.GiamThem.toLocaleString('vi-VN', {
+                                                                style: 'currency',
+                                                                currency: 'VND',
+                                                            })}
                                                         </span>
                                                     </div>
                                                 )}
@@ -463,7 +466,10 @@ function OrderDetail({ route, navigate }) {
                                                             <span className={styles.code}>{item.TenKhuyenMai}</span>
                                                         </div>
                                                         <span className={styles.green}>
-                                                            {item.GiamGiaKhuyenMai.toLocaleString()} <sup>₫</sup>
+                                                            {item.GiamGiaKhuyenMai.toLocaleString('vi-VN', {
+                                                                style: 'currency',
+                                                                currency: 'VND',
+                                                            })}
                                                         </span>
                                                     </div>
                                                 )}
@@ -474,7 +480,10 @@ function OrderDetail({ route, navigate }) {
                                                             <span className={styles.green}>{item.TieuDeFlashSale}</span>
                                                         </div>
                                                         <span className={styles.green}>
-                                                            {item.GiamGiaFlashSale.toLocaleString()} <sup>₫</sup>
+                                                            {item.GiamGiaFlashSale.toLocaleString('vi-VN', {
+                                                                style: 'currency',
+                                                                currency: 'VND',
+                                                            })}
                                                         </span>
                                                     </div>
                                                 )}
@@ -482,7 +491,10 @@ function OrderDetail({ route, navigate }) {
                                                 <div className={clsx(styles.price, styles.total)}>
                                                     <span className={styles.subTitle2}>Tổng tiền</span>
                                                     <span className={styles.subTitle2}>
-                                                        {(+item.TongTien).toLocaleString()} <sup>₫</sup>
+                                                        {(+item.TongTien).toLocaleString('vi-VN', {
+                                                            style: 'currency',
+                                                            currency: 'VND',
+                                                        })}
                                                     </span>
                                                 </div>
                                             </div>

@@ -159,7 +159,7 @@ function HotelTable({ data, option }) {
                                             type={9}
                                             idActive={data.MaDatPhong}
                                             list={option}
-                                            hides={true}
+                                            hides={[false, data.TrangThai !== 0]}
                                         />
                                     </td>
                                 </tr>
@@ -172,6 +172,7 @@ function HotelTable({ data, option }) {
     )
 }
 const OrderManagement = () => {
+    const Nav = useNavigate()
     const user = JSON.parse(localStorage.getItem('user'))
     const [data, setData] = useState(null)
     const [orderO, setOrderO] = useState(null)
@@ -193,16 +194,17 @@ const OrderManagement = () => {
     const [showDuyetModal, setShowDuyetModal] = useState(false)
     const handleActive = (value) => {
         setActive(value)
-        if (value === 1 && value !== active) {
-            setData(orderO.filter((key) => key.TrangThai === 1))
-        } else if (value === 2 && value !== active) {
-            setData(orderO.filter((key) => key.TrangThai === 0))
-        } else if (value === 3 && value !== active) {
-            setData(orderO.filter((key) => key.TrangThai === 2))
-        } else if (value === 0 && value !== active) {
-            setData(orderO)
+        if (data) {
+            if (value === 1 && value !== active) {
+                setData(orderO.filter((key) => key.TrangThai === 1))
+            } else if (value === 2 && value !== active) {
+                setData(orderO.filter((key) => key.TrangThai === 0))
+            } else if (value === 3 && value !== active) {
+                setData(orderO.filter((key) => key.TrangThai === 2))
+            } else if (value === 0 && value !== active) {
+                setData(orderO)
+            }
         }
-        setActive(value)
     }
     useEffect(() => {
         if (data) {
@@ -234,7 +236,9 @@ const OrderManagement = () => {
     }, [data])
     const [showInformModal, setShowInformModal] = useState(false)
     function handleDeleteHotel() {
-        Axios.get('http://localhost:8800/cks/order/del', { params: { MaDatPhong: orderActive.MaDatPhong } })
+        Axios.get('http://localhost:8800/cks/order/del', {
+            params: { MaDatPhong: orderActive.MaDatPhong, IDPhong: orderActive.IDPhong },
+        })
             .then(() => {
                 setShowInformModal(true)
 
@@ -243,6 +247,7 @@ const OrderManagement = () => {
                 }, 1000)
                 console.log('helllo')
                 setData(data.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong))
+                setOrderO(orderO.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong))
 
                 setOrderActive(null)
                 setShowDeleteModal(false)
@@ -277,6 +282,14 @@ const OrderManagement = () => {
             })
     }
 
+    const handleSearch = (e) => {
+        console.log(orderO)
+        const SDT = orderO.filter((key) => key.SoDienThoai.includes(e.target.value))
+        console.log(SDT)
+        if (SDT.length !== 0) setData(SDT)
+        else setData(orderO.filter((key) => key.HoTen.includes(e.target.value)))
+    }
+
     return (
         <div className={styles.content}>
             <div className="mt-4 d-flex justify-content-between align-items-center ">
@@ -304,7 +317,12 @@ const OrderManagement = () => {
                 <div className="d-flex align-items-center mb-2">
                     <div className="input-group">
                         <div id="search-autocomplete" className="form-outline">
-                            <input type="search" id="form1" className={`form-control ${styles.form1}`} />
+                            <input
+                                type="search"
+                                onChange={handleSearch}
+                                id="phoneInput"
+                                className={`form-control ${styles.form1}`}
+                            />
                         </div>
                         <button type="button" className={`btn btn-primary ${styles.btnSearch}`}>
                             <i className="fas fa-search"></i>

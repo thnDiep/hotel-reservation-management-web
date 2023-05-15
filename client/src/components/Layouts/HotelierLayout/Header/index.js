@@ -1,6 +1,9 @@
 import Breadcrumb from '~/components/Breadcrumb/Breadcrumb'
 import styles from './Header.module.scss'
+import { Link } from 'react-router-dom'
 const Header = ({ onClick }) => {
+    const user = JSON.parse(localStorage.getItem('user'))
+
     return (
         <nav>
             <i onClick={onClick} className={`bx bx-menu ${styles['toggle-sidebar']}`} />
@@ -24,27 +27,14 @@ const Header = ({ onClick }) => {
             </a> */}
             <span className={styles.divider}></span>
             <div className={styles.profile}>
-                <img
-                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                    alt=""
-                />
-                <ul className={styles['profile-link']}>
-                    <li>
-                        <a href="/">
+                <Link to="/cks/profile">
+                    <img src={user.HinhAnh} alt="" />
+                    <ul className={styles['profile-link']}>
+                        <li>
                             <i className={`bx bxs-user-circle ${styles.icon}`}></i> Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                            <i className="bx bxs-cog"></i> Settings
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                            <i className="bx bxs-log-out-circle"></i> Logout
-                        </a>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </Link>
             </div>
         </nav>
     )
