@@ -61,6 +61,12 @@ const Detail = () => {
     const { data, handleData } = useContext(DataContext)
     const [similarHotels, setSimilarHotels] = useState([])
     const { id } = useParams()
+    const [reviewHistory, setReviewHistory] = useState(JSON.parse(localStorage.getItem('reviewHistory')) || [])
+
+    useEffect(() => {
+        // console.log('change: ', placeHistory)
+        localStorage.setItem('reviewHistory', JSON.stringify(reviewHistory))
+    }, [reviewHistory])
 
     // UI Homepage
     useEffect(() => {
@@ -97,9 +103,20 @@ const Detail = () => {
         Axios.get('http://localhost:8800/hotel/detail', { params: { idKs: id } })
             .then((response) => {
                 setHotel(response.data)
+                console.log(response.data.infor)
+
                 if (data) {
                     const hotels = data.hotels.filter((item) => item.IDDiaDiem === response.data.infor.IDDiaDiem)
-                    setSimilarHotels(hotels.filter((item) => item.TrangThai === 1))
+                    const activeHotels = hotels.filter((item) => item.TrangThai === 1)
+                    setSimilarHotels(activeHotels.filter((item) => item.ID !== id))
+                    const { ...view } = response.data.infor
+                    view.HinhAnh = response.data.picHotel[0].HinhAnh
+
+                    if (!reviewHistory.find((item) => item.ID === view.ID)) {
+                        setReviewHistory([view, ...reviewHistory])
+                    }
+
+                    // console.log([reviewHotels, ...reviewHistory])
                 }
                 window.scrollTo(0, 0)
             })
@@ -107,6 +124,7 @@ const Detail = () => {
                 console.log(error)
             })
     }, [id])
+
     const handleSearch = (data) => {
         localStorage.setItem('dates', JSON.stringify(data))
     }
@@ -241,7 +259,7 @@ const Detail = () => {
                         </div>
                     </div>
 
-                    <RecentViews data={data && data.hotels} />
+                    <RecentViews data={reviewHistory} />
 
                     {similarHotels && (
                         <div className="part">

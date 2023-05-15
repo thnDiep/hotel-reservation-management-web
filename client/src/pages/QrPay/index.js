@@ -49,7 +49,7 @@ function QrPay() {
                                 <div className={styles.billItem}>
                                     <h6 className={styles.subTitle}>Số tiền thanh toán</h6>
                                     <h3 className={clsx(styles.text, styles.primary)}>
-                                        {order.TongTien.toLocaleString()} <sup>VND</sup>
+                                        {(+order.TongTien).toLocaleString()} <sup>VND</sup>
                                     </h3>
                                 </div>
 

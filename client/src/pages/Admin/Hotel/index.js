@@ -19,7 +19,7 @@ function Hotel() {
 
     const { data, handleData } = useContext(DataContext)
     const [option, setOption] = useState([])
-    const [hotels, setHotels] = useState(data.hotels)
+    const [hotels, setHotels] = useState()
     const [hotelA, setHotelA] = useState(null)
 
     useEffect(() => {

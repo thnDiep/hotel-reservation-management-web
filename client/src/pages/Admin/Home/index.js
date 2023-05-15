@@ -19,6 +19,7 @@ function Home() {
     const [trendingHotels, setTrendingHotels] = useState([])
     const [flashSaleHotels, setFlashSaleHotels] = useState([])
     const [vouchers, setVouchers] = useState([])
+    const [reviewHistory, setReviewHistory] = useState(JSON.parse(localStorage.getItem('reviewHistory')) || [])
 
     const intervalRef = useRef()
     const vidRef = useRef()
@@ -87,6 +88,7 @@ function Home() {
     // UI Homepage
     useEffect(() => {
         if (data) {
+            setReviewHistory(JSON.parse(localStorage.getItem('reviewHistory')) || [])
             const shockPriceHotels = []
             const vinPearlHotels = []
             const vouchers = data.promotions.filter((item) => item.MaKhuyenMai !== null)
@@ -541,7 +543,7 @@ function Home() {
             </div>
 
             {/* Xem gần đây */}
-            <RecentViews data={data && data.hotels} admin={true} />
+            <RecentViews data={reviewHistory} admin={true} />
 
             {/* Điểm đến yêu thích */}
             <div className={clsx(styles.favoriteDestination, 'part')}>

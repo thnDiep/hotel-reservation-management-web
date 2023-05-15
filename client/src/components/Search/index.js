@@ -32,8 +32,9 @@ function Search(props) {
     const navigate = useNavigate()
     const wrapperRef = useRef(null)
     const [state, dispatch] = useReducer(reducer, initState)
-    const { show, place, placeHistory, date, number } = state
+    const { show, place, date, number } = state
     const [notablePlace, setNotablePlace] = useState()
+    const [placeHistory, setPlaceHistory] = useState(JSON.parse(localStorage.getItem('placeHistory')) || [])
 
     useEffect(() => {
         /**
@@ -53,6 +54,7 @@ function Search(props) {
     }, [wrapperRef])
 
     useEffect(() => {
+        // console.log('change: ', placeHistory)
         localStorage.setItem('placeHistory', JSON.stringify(placeHistory))
     }, [placeHistory])
 
@@ -87,6 +89,7 @@ function Search(props) {
                 adult: number.adult.value,
                 child: number.child.value,
             },
+            // placeHistory: placeHistory,
             startDate: date.startDate,
             endDate: date.endDate,
         }
@@ -96,11 +99,13 @@ function Search(props) {
             submit.place = tendiadiem
         }
 
+        setPlaceHistory([submit.place, ...placeHistory])
+
         Axios.get('http://localhost:8800/hotel/search', { params: { key: submit } })
             .then((response) => {
                 // console.log(response.data)
                 // result = response.data
-                dispatch(submitSearch(submit.place))
+                // dispatch(submitSearch(state.place))
                 navigate(`/hotels/${submit.place}`, {
                     state: {
                         hotels: response.data,

@@ -20,7 +20,7 @@ function Account() {
     const [showInformModal, setShowInformModal] = useState(false)
 
     const { data, handleData } = useContext(DataContext)
-    const [users, setUsers] = useState(data.users)
+    const [users, setUsers] = useState()
     const [userActive, setUserActive] = useState(null)
 
     useEffect(() => {
