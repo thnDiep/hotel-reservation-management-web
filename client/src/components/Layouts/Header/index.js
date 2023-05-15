@@ -324,7 +324,7 @@ function Header() {
                                         <Link to={'/profile/order'}>Đơn phòng</Link>
                                     </div>
                                     <div onClick={handleLogout}>
-                                        <Link>Đâng xuất</Link>
+                                        <Link>Đăng xuất</Link>
                                     </div>
                                 </Dropdown.Menu>
                             </Dropdown>
