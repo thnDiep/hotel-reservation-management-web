@@ -140,12 +140,17 @@ function HotelTable({ data, option }) {
                                                     {
                                                         active: data.TrangThai === 0,
                                                         pending: data.TrangThai === 1,
+                                                        primary: data.TrangThai === 2,
                                                     },
                                                     styles.statusPending,
                                                     data.TrangThai === 1 && styles.statusPending1,
                                                 )}
                                             >
-                                                {data.TrangThai === 0 ? 'Đã duyệt' : 'Chờ duyệt'}
+                                                {data.TrangThai === 0
+                                                    ? 'Đã duyệt'
+                                                    : data.TrangThai === 2
+                                                    ? 'Đã hoàn thành'
+                                                    : 'Chờ duyệt'}
                                             </div>
                                         </button>
                                     </td>
@@ -167,11 +172,12 @@ function HotelTable({ data, option }) {
     )
 }
 const OrderManagement = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
     const [data, setData] = useState(null)
     const [orderO, setOrderO] = useState(null)
     const [option, setOption] = useState([])
     useEffect(() => {
-        Axios.get('http://localhost:8800/cks/order', { params: { idCKS: 8 } })
+        Axios.get('http://localhost:8800/cks/order', { params: { idCKS: user.ID } })
             .then((response) => {
                 setData(response.data.orders)
                 setOrderO(response.data.orders)

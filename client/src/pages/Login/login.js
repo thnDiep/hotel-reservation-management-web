@@ -59,7 +59,6 @@ function Login() {
                 window.location.href = res.data.link
             }
         } catch (err) {
-            console.log(err.response.data)
             await Swal.fire('Đăng nhập thất bại', 'Nhấn nút để thực hiện lại việc đăng nhập', 'error')
         }
     }
