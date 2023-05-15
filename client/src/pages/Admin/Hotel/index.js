@@ -111,11 +111,15 @@ function Hotel() {
                     setShowInformModal(false)
                 }, 1000)
 
-                const index = hotels.findIndex((item) => item.ID === idActive)
-                hotels[index].TrangThai = state
+                if (data) {
+                    const index = data.hotels.findIndex((item) => item.ID === idActive)
+                    data.hotels[index].TrangThai = state
+                }
+                // const index = hotels.findIndex((item) => item.ID === idActive)
+                // hotels[index].TrangThai = state
 
-                setHotels(hotels)
-                handleData({ ...data, hotels: hotels })
+                setHotels(data.hotels)
+                handleData({ ...data, hotels: data.hotels })
                 setHotelA(null)
                 setShowConformModal(false)
             })

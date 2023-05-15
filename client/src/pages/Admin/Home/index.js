@@ -167,7 +167,7 @@ function Home() {
                     activeVouchers.push(voucher)
                 }
             })
-            console.log(sortedVoucher)
+            // console.log(sortedVoucher)
 
             setShockPriceHotels(shockPriceHotels)
             setVinPearlHotels(vinPearlHotels)
