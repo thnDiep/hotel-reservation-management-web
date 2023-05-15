@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useContext } from 'react'
 import DataContext from '~/contexts/DataContext'
+import { Link } from 'react-router-dom'
 
 function Login() {
     const MySwal = withReactContent(Swal)
@@ -54,19 +55,12 @@ function Login() {
                 MatKhau: Data.pass,
             })
 
-            if (res.status === 200) {
-                if (res.data.ThongBao === 'Tài khoản đã bị khóa') {
-                    await Swal.fire('Tài khoản đã bị khóa', 'Nhấn nút để tiếp tục đăng nhập', 'error')
-                    return
-                } else {
-                    await Swal.fire('Đăng nhập thành công', 'Nhấn nút để đến trang chủ', 'success')
-                }
-                localStorage.setItem('user', JSON.stringify(res.data.emailAvailable))
-                LoginHandler(res.data.emailAvailable)
-                window.location.href = res.data.link
-            }
+            await Swal.fire('Đăng nhập thành công', 'Nhấn nút để đến trang chủ', 'success')
+            localStorage.setItem('user', JSON.stringify(res.data.emailAvailable))
+            LoginHandler(res.data.emailAvailable)
+            window.location.href = res.data.link
         } catch (err) {
-            await Swal.fire('Đăng nhập thất bại', 'Nhấn nút để thực hiện lại việc đăng nhập', 'error')
+            await Swal.fire(err.response.data, 'Nhấn nút để thực hiện lại việc đăng nhập', 'error')
         }
     }
 
@@ -74,15 +68,17 @@ function Login() {
         <div className={styles.wrap}>
             <div className={styles.introduction}>
                 <div className={styles.infoWeb}>
-                    <img
-                        className={styles.logo}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
-                        alt=""
-                    />
-                    <div>
-                        <p className={styles.nameOfWeb}>MyTravel</p>
-                        <p className={styles.description}>Hotels at your fingertips</p>
-                    </div>
+                    <Link to="/" className="d-flex">
+                        <img
+                            className={styles.logo}
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
+                            alt=""
+                        />
+                        <div>
+                            <p className={styles.nameOfWeb}>MyTravel</p>
+                            <p className={styles.description}>Hotels at your fingertips</p>
+                        </div>
+                    </Link>
                 </div>
                 <p className={styles.title1}>Welcome back!</p>
                 <p className={styles.title2}>Solution for a great trip</p>

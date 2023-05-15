@@ -12,7 +12,6 @@ import { useParams } from 'react-router-dom'
 function OrderDetail({ route, navigate }) {
     const [data, setData] = useState()
     const { id } = useParams()
-    console.log(id)
 
     useEffect(() => {
         Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: id } })
@@ -420,7 +419,8 @@ function OrderDetail({ route, navigate }) {
                                                         {moment(item.NgayTraPhong).diff(item.NgayNhanPhong, 'days')} đêm
                                                     </span>
                                                     <span>
-                                                        {item.Gia.toLocaleString()} <sup>₫</sup>
+                                                        {item.Gia.toLocaleString()}
+                                                        <sup>₫</sup>
                                                     </span>
                                                 </div>
                                                 <div className={styles.price}>
@@ -434,6 +434,15 @@ function OrderDetail({ route, navigate }) {
                                                     <span>Thuế và phí dịch vụ khách sạn</span>
                                                     <span>
                                                         {item.ThueVaDichVuKhachSan.toLocaleString()} <sup>₫</sup>
+                                                    </span>
+                                                </div>
+                                                <div className={styles.price}>
+                                                    <div>
+                                                        <span className={styles.green}>Giảm thêm</span>
+                                                        <span className={styles.code}>{item.GiamGia} %</span>
+                                                    </div>
+                                                    <span className={styles.green}>
+                                                        {item.GiamThem.toLocaleString()} <sup>₫</sup>
                                                     </span>
                                                 </div>
                                                 {item.GiamGia < 0 && (
@@ -473,7 +482,7 @@ function OrderDetail({ route, navigate }) {
                                                 <div className={clsx(styles.price, styles.total)}>
                                                     <span className={styles.subTitle2}>Tổng tiền</span>
                                                     <span className={styles.subTitle2}>
-                                                        {item.TongTien.toLocaleString()} <sup>₫</sup>
+                                                        {(+item.TongTien).toLocaleString()} <sup>₫</sup>
                                                     </span>
                                                 </div>
                                             </div>

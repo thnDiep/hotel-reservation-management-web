@@ -10,8 +10,10 @@ function Account() {
     const [data, setData] = useState({})
     const [file, setFile] = useState()
     const fileInput = useRef(null)
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user)
     useEffect(() => {
-        Axios.get('http://localhost:8800/profile', { params: { ID: 4 } })
+        Axios.get('http://localhost:8800/profile', { params: { ID: user.ID } })
             .then((response) => {
                 setData(response.data)
             })

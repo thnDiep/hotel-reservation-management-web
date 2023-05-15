@@ -10,8 +10,9 @@ function Wishlist() {
     const [isEmpty, setEmpty] = useState(false)
 
     const [data, setData] = useState()
+    const user = JSON.parse(localStorage.getItem('user'))
     useEffect(() => {
-        Axios.get('http://localhost:8800/profile/wishlist', { params: { ID: 4 } })
+        Axios.get('http://localhost:8800/profile/wishlist', { params: { ID: user.ID } })
             .then((response) => {
                 setData(response.data)
                 if (response.data === null) {

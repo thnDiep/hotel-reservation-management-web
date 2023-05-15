@@ -13,7 +13,6 @@ const HotelManagement = () => {
 
     const [active, setActive] = useState(0)
     const handleActive = (value) => {
-        console.log(value)
         setActive(value)
         if (value === 1 && value !== active) {
             setHotels(data.hotels.filter((key) => key.TrangThai === 1))
@@ -115,13 +114,13 @@ const HotelManagement = () => {
                         return hotel.ID === IDKhachSan ? { ...hotel, TrangThai: TrangThai } : hotel
                     }),
                 })
-                handleActive(active)
 
                 setHotels(
                     hotels.map((hotel) => {
                         return hotel.ID === IDKhachSan ? { ...hotel, TrangThai: TrangThai } : hotel
                     }),
                 )
+                handleActive(active)
 
                 setHotelActive(null)
                 setShowStopModal(false)

@@ -9,7 +9,6 @@ export const signup = async (req, res, next) => {
     const user = {
       ...req.body,
       MatKhau: hash,
-      PhanQuyen: 0 || 1,
     };
     const check = (name, check, i) => {
       if (name === check) {
@@ -26,7 +25,7 @@ export const signup = async (req, res, next) => {
       return next(res.status(400).send("Email đã tồn tại"));
     }
     await authModel.add(user);
-    res.status(200).send("User has been created.");
+    res.status(200).send("Đăng ký thành công");
   } catch (err) {
     next(err);
   }
@@ -56,9 +55,7 @@ export const login = async (req, res, next) => {
         }
         let ThongBao = "";
         if (emailAvailable.TrangThai === 0) {
-          ThongBao = "Tài khoản đã bị khóa";
-        } else {
-          ThongBao = "Đăng nhập thành công";
+          return next(res.status(400).send("Tài khoản đã bị khóa"));
         }
 
         let link;
@@ -67,8 +64,9 @@ export const login = async (req, res, next) => {
         } else if (emailAvailable.PhanQuyen == 1) {
           link = "/cks/manageHotel";
         } else if (emailAvailable.PhanQuyen == 2) {
-          link = "/admin/hotel";
+          link = "/admin";
         }
+
         res.json({ emailAvailable, link, ThongBao });
       }
     }

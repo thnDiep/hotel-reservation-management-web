@@ -5,7 +5,9 @@ import styles from './HeartButton.module.scss'
 function HeartButton({ liked, IDKhachSan, handleClick }) {
     const [isLike, setIsLike] = useState(liked)
 
-    const data = { IDKhachHang: 4, IDKhachSan }
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    const data = { IDKhachHang: user.ID, IDKhachSan }
     function onClickHeart(IDKhachSan, liked) {
         if (handleClick) {
             handleClick(IDKhachSan, liked)

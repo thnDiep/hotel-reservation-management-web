@@ -7,5 +7,5 @@ export const INPUT_DATE = 'input_date'
 
 export const INPUT_NUMBER = 'input_number'
 
-export const SUBMIT_SEARCH = 'submit_search'
+// export const SUBMIT_SEARCH = 'submit_search'
 export const CHANGE_ALL = 'change_all'

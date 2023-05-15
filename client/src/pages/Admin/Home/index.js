@@ -342,7 +342,7 @@ function Home() {
                         </div>
                     </div>
 
-                    <SliderHotels hotels={flashSaleHotels} />
+                    <SliderHotels hotels={flashSaleHotels} admin={true} />
 
                     {/* <div className="part__footer">
                         <ButtonPrimary className="btnSeeMore-m">Xem thêm</ButtonPrimary>
@@ -358,7 +358,7 @@ function Home() {
                         Các khách sạn được tìm kiếm & đặt nhiều nhất do My Travel đề xuất
                     </h6>
 
-                    <SliderHotels hotels={trendingHotels} />
+                    <SliderHotels hotels={trendingHotels} admin={true} />
                 </div>
             </div>
 
@@ -407,6 +407,7 @@ function Home() {
                                             oldPrice={hotel.GiaTieuChuan}
                                             curPrice={hotel.GiaSauKhiGiam}
                                             voucher={hotel.voucher}
+                                            admin={true}
                                         />
                                     )
                                 } else {
@@ -426,6 +427,7 @@ function Home() {
                                             point={hotel.DanhGia}
                                             curPrice={hotel.GiaTieuChuan}
                                             voucher={hotel.voucher}
+                                            admin={true}
                                         />
                                     )
                                 }
@@ -470,6 +472,7 @@ function Home() {
                                             point={des.DanhGia}
                                             oldPrice={des.GiaTieuChuan}
                                             curPrice={des.GiaSauKhiGiam}
+                                            admin={true}
                                         />
                                     )
                                 } else {
@@ -486,6 +489,7 @@ function Home() {
                                             numberFeedback={des.SoDanhGia}
                                             point={des.DanhGia}
                                             curPrice={des.GiaTieuChuan}
+                                            admin={true}
                                         />
                                     )
                                 }
@@ -510,6 +514,7 @@ function Home() {
                                                 point={des.DanhGia}
                                                 oldPrice={des.GiaTieuChuan}
                                                 curPrice={des.GiaSauKhiGiam}
+                                                admin={true}
                                             />
                                         )
                                     } else {
@@ -526,6 +531,7 @@ function Home() {
                                                 numberFeedback={des.SoDanhGia}
                                                 point={des.DanhGia}
                                                 curPrice={des.GiaTieuChuan}
+                                                admin={true}
                                             />
                                         )
                                     }
@@ -537,7 +543,7 @@ function Home() {
             </div>
 
             {/* Xem gần đây */}
-            <RecentViews data={reviewHistory} />
+            <RecentViews data={reviewHistory} admin={true} />
 
             {/* Điểm đến yêu thích */}
             <div className={clsx(styles.favoriteDestination, 'part')}>
@@ -548,17 +554,17 @@ function Home() {
                     {data &&
                         data.places &&
                         data.places.slice(58, 70).map((des, index) => (
-                            <Link to={`hotels/${des.TenDiaDiem}`} key={index}>
-                                <div className={clsx(styles.destination, styles[`id-${index}`])}>
-                                    <div
-                                        className={styles.imageDestination}
-                                        style={{ backgroundImage: `url(${des.HinhAnh})` }}
-                                    ></div>
-                                    <div className={styles.nameDestination}>
-                                        <p>{des.TenDiaDiem}</p>
-                                    </div>
+                            // <Link to={`/hotels/${des.TenDiaDiem}`} key={index}>
+                            <div className={clsx(styles.destination, styles[`id-${index}`])}>
+                                <div
+                                    className={styles.imageDestination}
+                                    style={{ backgroundImage: `url(${des.HinhAnh})` }}
+                                ></div>
+                                <div className={styles.nameDestination}>
+                                    <p>{des.TenDiaDiem}</p>
                                 </div>
-                            </Link>
+                            </div>
+                            // </Link>
                         ))}
                 </div>
             </div>

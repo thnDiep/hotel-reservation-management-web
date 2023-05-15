@@ -159,7 +159,7 @@ function HotelTable({ data, option }) {
                                             type={9}
                                             idActive={data.MaDatPhong}
                                             list={option}
-                                            hides={true}
+                                            hides={[false, data.TrangThai !== 0]}
                                         />
                                     </td>
                                 </tr>
@@ -235,7 +235,9 @@ const OrderManagement = () => {
     }, [data])
     const [showInformModal, setShowInformModal] = useState(false)
     function handleDeleteHotel() {
-        Axios.get('http://localhost:8800/cks/order/del', { params: { MaDatPhong: orderActive.MaDatPhong } })
+        Axios.get('http://localhost:8800/cks/order/del', {
+            params: { MaDatPhong: orderActive.MaDatPhong, IDPhong: orderActive.IDPhong },
+        })
             .then(() => {
                 setShowInformModal(true)
 
@@ -244,6 +246,7 @@ const OrderManagement = () => {
                 }, 1000)
                 console.log('helllo')
                 setData(data.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong))
+                setOrderO(orderO.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong))
 
                 setOrderActive(null)
                 setShowDeleteModal(false)
@@ -278,26 +281,9 @@ const OrderManagement = () => {
             })
     }
 
-    function searchAndHighlight(searchValue) {
-        var paragraphs = document.getElementsByTagName('p')
-
-        for (var i = 0; i < paragraphs.length; i++) {
-            var paragraph = paragraphs[i]
-            var text = paragraph.innerHTML
-            var index = text.indexOf(searchValue)
-
-            if (index >= 0) {
-                var highlightedText =
-                    text.substring(0, index) +
-                    "<span class='highlight'>" +
-                    text.substring(index, index + searchValue.length) +
-                    '</span>' +
-                    text.substring(index + searchValue.length)
-                paragraph.innerHTML = highlightedText
-                paragraph.scrollIntoView({ behavior: 'smooth', block: 'center' })
-                break // Dừng lại sau khi tìm thấy giá trị đầu tiên
-            }
-        }
+    const handleSearch = (e) => {
+        setData(orderO.filter((key) => key.SoDienThoai.includes(e.target.value)))
+        setData(orderO.filter((key) => key.HoTen.includes(e.target.value)))
     }
 
     return (
@@ -327,7 +313,12 @@ const OrderManagement = () => {
                 <div className="d-flex align-items-center mb-2">
                     <div className="input-group">
                         <div id="search-autocomplete" className="form-outline">
-                            <input type="search" id="phoneInput" className={`form-control ${styles.form1}`} />
+                            <input
+                                type="search"
+                                onChange={handleSearch}
+                                id="phoneInput"
+                                className={`form-control ${styles.form1}`}
+                            />
                         </div>
                         <button type="button" className={`btn btn-primary ${styles.btnSearch}`}>
                             <i className="fas fa-search"></i>

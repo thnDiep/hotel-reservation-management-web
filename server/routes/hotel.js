@@ -85,6 +85,20 @@ router.post("/update", async (req, res, next) => {
   }
 });
 
+router.post("/update/state", async (req, res, next) => {
+  try {
+    const id = req.body.id;
+    const state = req.body.state;
+
+    if (id) {
+      await hotelModel.updateTrangThai(id, state);
+      res.json({ id });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 // lấy thông tin chi tiết khách sạn
 router.get("/detail", async (req, res, next) => {
   try {

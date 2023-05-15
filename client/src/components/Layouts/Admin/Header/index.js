@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Header.module.scss'
-import { faAngleDown, faHome, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDown, faHome, faHotel, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 const Header = () => {
@@ -11,7 +11,7 @@ const Header = () => {
             <div className={styles.left}>
                 {/* <FontAwesomeIcon icon={faBars} onClick={onClick} className={styles.menu} /> */}
 
-                <Link to={'/'} className={styles.link}>
+                <Link to={'/admin'} className={styles.link}>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU" />
                     <span>MyTravel</span>
                 </Link>
@@ -24,15 +24,19 @@ const Header = () => {
 
                 {show && (
                     <div className={styles.menu}>
-                        <Link to={'/admin/hotel'} className={styles.menuItem}>
+                        <Link to={'/admin'} className={styles.menuItem}>
                             <FontAwesomeIcon icon={faHome} />
+                            <span>Trang chủ</span>
+                        </Link>
+                        <Link to={'/admin/hotel'} className={styles.menuItem}>
+                            <FontAwesomeIcon icon={faHotel} />
                             <span>Quản lý khách sạn</span>
                         </Link>
                         <Link to={'/admin/account'} className={styles.menuItem}>
                             <FontAwesomeIcon icon={faUser} />
                             <span>Quản lý người dùng</span>
                         </Link>
-                        <Link to={'/signUp'} className={styles.menuItem}>
+                        <Link to={'/logIn'} className={styles.menuItem}>
                             <FontAwesomeIcon icon={faSignOut} />
                             <span>Đăng xuất</span>
                         </Link>

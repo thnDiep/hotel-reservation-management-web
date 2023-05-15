@@ -43,6 +43,23 @@ router.post("/update", async (req, res, next) => {
   }
 });
 
+// Thực hiện update thông tin người dùng
+router.post("/update/state", async (req, res, next) => {
+  try {
+    const id = req.body.id;
+    const state = req.body.state;
+
+    if (id) {
+      await authModel.updateTrangThai(id, state);
+      await hotelModel.blockHotelByHotelierID(id);
+      await hotelModel.unblockHotelByHotelierID(id);
+      res.json({ id });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 // Xóa người dùng
 router.get("/del", async (req, res, next) => {
   try {

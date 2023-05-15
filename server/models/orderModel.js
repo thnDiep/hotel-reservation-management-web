@@ -7,7 +7,7 @@ export default {
   },
   async getRareInformationOfOrder(id) {
     return await db.raw(
-      `SELECT nguoidung.HoTen,nguoidung.HinhAnh, khachsan.Ten, phong.TenLoaiPhong, dondatphong.NgayNhanPhong, dondatphong.NgayTraPhong, nguoidung.SoDienThoai, dondatphong.TongTien, dondatphong.TrangThai, dondatphong.MaDatPhong
+      `SELECT nguoidung.HoTen,nguoidung.HinhAnh, khachsan.Ten,dondatphong.IDPhong, phong.TenLoaiPhong, dondatphong.NgayNhanPhong, dondatphong.NgayTraPhong, nguoidung.SoDienThoai, dondatphong.TongTien, dondatphong.TrangThai, dondatphong.MaDatPhong
       FROM dondatphong
       INNER JOIN nguoidung ON dondatphong.IDKhachHang = nguoidung.ID
       INNER JOIN phong ON dondatphong.IDPhong = phong.ID
@@ -111,6 +111,7 @@ export default {
           item.TenLoaiPhong = _room.TenLoaiPhong;
           item.SoNguoi = _room.SoNguoi;
           item.Gia = _room.Gia;
+          item.IDPhong = _room.ID;
         }
       });
     });
@@ -125,6 +126,9 @@ export default {
   async getOrderByOrderCode(MaDatPhong) {
     //thông tin đơn đặt phòng
     const orderInfo = await db("dondatphong").where("MaDatPhong", MaDatPhong);
+    const time =
+      orderInfo[0].NgayTraPhong.getTime() -
+      orderInfo[0].NgayNhanPhong.getTime();
 
     if (orderInfo.length === 0) return null;
 
@@ -194,10 +198,11 @@ export default {
     orderInfo[0].DiaChi = hotelInfo[0].DiaChi;
     orderInfo[0].GioNhanPhong = hotelInfo[0].GioNhanPhong;
     orderInfo[0].GioTraPhong = hotelInfo[0].GioTraPhong;
+    orderInfo[0].GiamGia = hotelInfo[0].GiamGia;
     orderInfo[0].SoSao = hotelInfo[0].soSao;
-    // orderInfo[0].GiamGia = hotelInfo[0].GiamGia;
 
-    orderInfo[0].Gia = room[0].Gia;
+    orderInfo[0].Gia =
+      (time / (1000 * 3600 * 24)) * room[0].Gia * orderInfo[0].SoLuongPhong;
     orderInfo[0].PhuPhi = room[0].Gia * 0.02;
     orderInfo[0].ThueVaDichVuKhachSan = room[0].Gia * 0.05;
     orderInfo[0].GiamThem = -(hotelInfo[0].GiamGia / 100) * room[0].Gia;

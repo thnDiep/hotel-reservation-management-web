@@ -49,9 +49,9 @@ export const inputNumber = (payload) => {
     }
 }
 
-export const submitSearch = (payload) => {
-    return {
-        type: SUBMIT_SEARCH,
-        payload,
-    }
-}
+// export const submitSearch = (payload) => {
+//     return {
+//         type: SUBMIT_SEARCH,
+//         payload,
+//     }
+// }
