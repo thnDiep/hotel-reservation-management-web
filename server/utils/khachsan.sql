@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3310
--- Thời gian đã tạo: Th5 15, 2023 lúc 09:24 AM
+-- Thời gian đã tạo: Th5 15, 2023 lúc 11:13 AM
 -- Phiên bản máy phục vụ: 10.4.25-MariaDB
 -- Phiên bản PHP: 8.1.10
 
@@ -188,6 +188,7 @@ CREATE TABLE `dondatphong` (
 
 INSERT INTO `dondatphong` (`MaDatPhong`, `ThoiGianDat`, `NgayNhanPhong`, `NgayTraPhong`, `SoLuongPhong`, `TongTien`, `TrangThai`, `IDKhuyenMai`, `IDFlashSale`, `IDKhachHang`, `IDPhong`) VALUES
 ('5743539', '2023-05-02', '2023-05-10', '2023-05-11', 1, '2433750', 1, 27, 10, 4, 21),
+('B251516', '2023-05-15', '2023-05-15', '2023-05-17', 1, '2993445', 0, NULL, NULL, 4, 20),
 ('B329277', '2023-05-15', '2023-05-15', '2023-05-17', 1, '60376680', 1, 0, NULL, 3, 25),
 ('B335450', '2023-05-15', '2023-05-15', '2023-05-17', 1, '4047810', 0, 0, NULL, 3, 25),
 ('B497098', '2023-05-15', '2023-05-15', '2023-05-17', 1, '1338260', 0, NULL, NULL, 3, 15),
@@ -686,10 +687,10 @@ CREATE TABLE `nguoidung` (
 INSERT INTO `nguoidung` (`ID`, `HoTen`, `HinhAnh`, `Email`, `SoDienThoai`, `DiaChi`, `MatKhau`, `PhanQuyen`, `TenCongTy`, `MaSoThue`, `QuyMo`, `TrangThai`) VALUES
 (1, 'Admin', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'admin@gmail.com', NULL, NULL, '$2a$10$.WRsgIHWvodzxD84lBQ1be/lA06zXn1TkxMoILVnPndc5ZQ72dZvG', 2, NULL, NULL, NULL, 1),
 (2, ' Vinpearl Land', 'https://inkythuatso.com/uploads/images/2021/09/vinpearl-logo-inkythuatso-1-13-10-21-19.jpg', 'vinpearl@gmail.com', '0928754123', '78 - 80 Đường Trần Phú, Phường Lộc Thọ, Tp. Nha Trang', '$2a$10$2sqBZxyEuduEJgNJvdIFA.ZRZV/rShXHXVcjm5Fl4jB4RTR4FlZ9C', 1, 'Vinpearl', '0147258369', '20 - 49 nhân viên', 1),
-(3, 'Nguyễn Đăng Mạnh Tú', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'manhtu2272002@gmail.com', '09923312', '', '$2a$10$UAdFFtuw/24puqwJ.BYUtufh3k9yhjb7tTCjZcJLw4LUIBnoP79xW', 0, '', '', '', 0),
+(3, 'Nguyễn Đăng Mạnh Tú', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg	', 'manhtu2272002@gmail.com', '09923312', '', '$2a$10$UAdFFtuw/24puqwJ.BYUtufh3k9yhjb7tTCjZcJLw4LUIBnoP79xW', 0, '', '', '', 1),
 (4, 'Tran Thao Quyen', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684009946/khachsan/Wide_Redwoods_1024x768_blrduc.jpg', 'quyenquyen@gmail.com', '098231189', 'Phường 1, quận 5, TPHCM', '$2a$10$5kf9MtdD1CyWY53vT5Um6O9ZPHsMBC2JMapEi5V/lpvW.lwmwoNuW', 0, NULL, NULL, NULL, 1),
 (5, 'Trần Huỳnh Ngọc Diệp', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684092988/khachsan/d-1015532_960_720_h4fow9.webp', 'thndiepkhtn@gmail.com', '098992321', 'Số nhà 412, đường Nguyễn Văn Cừ, quận 5, TPHCM', '$2a$10$4ejxihAiUxIbr7HB1hsnZOMLDG/jLxotMcCpmBt5aEFCujJ8JSL5C', 1, 'Công ty Trần Huỳnh Ngọc Diệp', '0127155236', '500 - 1000 nhân viên', 1),
-(8, 'Bình Phước', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'lapdoan.010102@gmail.com', '0985374624', '70, Hoàng Hoa Thám, Thành phố Vũng Tàu', '$2a$10$2QW8cAx.eDr4ELEyzMvHCeJq.Py/qYFFpMGYLNm2eOZlnYVrWBEiC', 1, 'Công ty Hiệp Phước', '1593521301', '200 - 499 nhân viên', 0),
+(8, 'Bình Phước', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'lapdoan.010102@gmail.com', '0985374624', '70, Hoàng Hoa Thám, Thành phố Vũng Tàu', '$2a$10$2QW8cAx.eDr4ELEyzMvHCeJq.Py/qYFFpMGYLNm2eOZlnYVrWBEiC', 1, 'Công ty Hiệp Phước', '1593521301', '200 - 499 nhân viên', 1),
 (9, 'Nguyễn Đăng Mạnh Tú', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684093297/khachsan/t-1015548_960_720_pbudya.jpg', 'manhtu2002227@gmail.com', '0985374623', '77, Chuyên Dùng 9, phường Phú Mỹ, Quận 7, TPHCM', '$2a$10$1UVGUz4pLYH/tDZP2Cst7O5YF/yFTOU8KLiJYyF7wUeKp9BaGKph2', 1, 'Công ty Nguyễn Đăng Mạnh Tú', '6532471389', '50 - 99 nhân viên', 1),
 (11, 'Lê Nguyễn Lan Vy', 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg', 'vyle4119@gmail.com', '0346678902', '135B Trần Hưng Đạo, quận 1, TP Hồ Chí Minh', '$2a$10$MIEodqdEXp.uKwKQU.Gfoeo8ctFJAEEdMnEDY0AyAx3B6EjkQbKle', 1, 'Công ty Lê Nguyễn Lan Vy', '0127155236', '20 - 49 nhân viên', 1),
 (12, 'Trần Thảo Quyên', 'http://res.cloudinary.com/dzawgnpm9/image/upload/v1684093908/khachsan/red-heart_118047-2506_expigt.avif', 'thaoquyen@gmail.com', '0997652130', '123, phường Hiệp Thành, huyện Củ Chi, TPHCM', '$2a$10$pANKnq0EavcMpXnk28FrNueCllgeaG8rle9IxqpGfcCRvLkXTx4rO', 1, 'Công ty Trần Thảo Quyên', '0213549531', '1 - 19 nhân viên', 1);
