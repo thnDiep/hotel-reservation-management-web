@@ -38,6 +38,7 @@ export const comment = async (req, res, next) => {
       ...req.body,
     };
     await feedbackModel.add(feedback);
+    res.status(200).send("Đã thêm thành công");
   } catch (error) {
     console.log(error);
     // console.log("sai")

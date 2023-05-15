@@ -53,12 +53,13 @@ const CommentAboutHotel = () => {
                 NoiDung: content.value,
                 ThoiGian: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
             })
-            if (res.status === 200) {
-                Nav(`/hotels/detail/${id}`, { id: id })
-            }
+            console.log('dasdasdas')
+            // if (res.status === 200) {
+            Nav(`/hotels/detail/${id}`)
+            // }
         } catch (err) {
             console.log(err)
-            //console.log('sai1')
+            console.log('sai1')
         }
     }
     return (
