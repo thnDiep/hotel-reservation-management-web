@@ -226,8 +226,7 @@ const Checkout = () => {
             if (res.status === 200) {
                 if (selectedPayment === 'paypal') {
                     Nav(`/checkout/QRPay/${active}`)
-                }
-                Nav(`/checkout/success/${active}`)
+                } else Nav(`/checkout/success/${active}`)
             }
         } catch (error) {
             console.log(error)

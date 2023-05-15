@@ -11,7 +11,7 @@ function OrderDetailCard({ MaDatPhong }) {
     const [data, setData] = useState()
     useEffect(() => {
         console.log(MaDatPhong)
-        Axios.get('http://localhost:8800/profile/order/detail', { params: { MaDatPhong: MaDatPhong } })
+        Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: MaDatPhong } })
             .then((response) => {
                 console.log(response.data)
                 setData(response.data[0])

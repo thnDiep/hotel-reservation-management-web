@@ -129,8 +129,8 @@ router.get("/order/qr", async (req, res, next) => {
 
 router.get("/order/detail", async (req, res, next) => {
   try {
-    console.log("REqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", req.query.MaDatPhong);
-    const MaDatPhong = req.query.MaDatPhong;
+    // console.log("REqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", req.query.MaDatPhong);
+    const MaDatPhong = req.query.ID;
     const result = await orderModel.getOrderByOrderCode(MaDatPhong);
     console.log("RESSSSSSSSSSSSSSSSSSSSSSS", result);
     res.json(result);
