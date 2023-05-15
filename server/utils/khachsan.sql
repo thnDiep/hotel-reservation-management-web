@@ -226,6 +226,7 @@ INSERT INTO `giuong_phong` (`IDPhong`, `IDGiuong`, `SoLuongGiuong`) VALUES
 (1, 2, 2),
 (15, 1, 2),
 (17, 1, 2),
+(16, 1, 2),
 (18, 1, 1),
 (19, 2, 1),
 (20, 2, 1),

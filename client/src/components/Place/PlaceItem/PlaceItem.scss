@@ -101,6 +101,43 @@
                 border-style: solid;
                 border-width: 0px 5px 5px 0;
             }
+            .price__voucher {
+                border: 1px dashed #cbd5e0;
+                display: flex;
+                padding: 6px 12px;
+                border-radius: 8px;
+                flex-direction: column;
+                .price__voucher--name {
+                    display: flex;
+                    align-items: center;
+                }
+                .price__voucher--title {
+                    color: #00b6f3;
+                    display: inline-block;
+                    overflow: hidden;
+                    max-width: 125px;
+                    font-weight: 600;
+                    margin-left: 2px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                .price__voucher--con {
+                    color: #ffffff;
+                    padding: 1px 4px;
+                    background: #00b6f3;
+                    font-weight: 600;
+                    margin-left: 4px;
+                    border-radius: 3px;
+                }
+                .price__voucher--ap {
+                    color: #ff3366;
+                    font-size: 20px;
+                    margin-top: 3px;
+                    text-align: right;
+                    font-weight: 600;
+                    line-height: 24px;
+                }
+            }
         }
 
         &--endow {

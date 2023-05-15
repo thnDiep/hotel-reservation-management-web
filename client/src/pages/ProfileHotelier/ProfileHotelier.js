@@ -34,6 +34,8 @@ const ProfileHotelier = () => {
     // Dữ liệu cho bảng -> Lấy lúc đầu
     useEffect(() => {
         if (data) {
+            console.log(data)
+            console.log(data.curUser.ID)
             Axios.get('http://localhost:8800/cks/profile', { params: { idCKS: data.curUser.ID } })
                 .then((response) => {
                     const info = response.data.user

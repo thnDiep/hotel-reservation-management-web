@@ -24,7 +24,7 @@ const CheckOrder = () => {
     })
 
     useEffect(() => {
-        const filter = /^\d{7}$/
+        const filter = /^\d{6}$/
         if (data.isValid === true) {
             const identifier = setTimeout(() => {
                 if (data.code.length === 0) {

@@ -1,4 +1,3 @@
-import uploadCloud from "../middlewares/uploader.js";
 import facilityModel from "../models/facilityModel.js";
 import hotelModel from "../models/hotelModel.js";
 import roomModel from "../models/roomModel.js";

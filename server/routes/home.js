@@ -12,9 +12,10 @@ const router = express.Router()
 
 router.get("/", async (req, res, next) => {
   try {
-    const idUser = req.query.idUser || 1
-    const curUser = await authModel.findById(idUser)
-
+    const idUser = req.query.idUser
+    let curUser = {}
+    if (idUser !== "khach") curUser = await authModel.findById(idUser)
+    else curUser.PhanQuyen = 0
     // Chủ khách sạn
     if (curUser.PhanQuyen === 1) {
       const hotels = await hotelModel.getHotelByIDCKS(idUser)
@@ -50,6 +51,7 @@ router.get("/", async (req, res, next) => {
       }
 
       res.json({ hotels, promotions, periods, curUser })
+      // } else if (curUser.PhanQuyen === 0) {
     } else if (curUser.PhanQuyen === 0) {
       // User
       const hotels = await hotelModel.getAll()
@@ -74,7 +76,17 @@ router.get("/", async (req, res, next) => {
         }
       }
       for (const room of rooms) {
-        room.endows = await roomModel.getEndow(room.ID)
+        const [endows] = await roomModel.getEndow(room.ID)
+        const [HinhAnh] = await roomModel.getHinhAnh(room.ID)
+        room.UuDai = endows
+        room.HinhAnh = HinhAnh
+        const [tienNghi] = await facilityModel.getTienIchPhong(room.ID)
+        const Giuong = await facilityModel.getGiuong(room.ID)
+        room.giuong = Giuong
+        room.tienNghi = await facilityModel.getNameFacilityRoom(
+          tienNghi.IDTienNghi,
+          room.ID
+        )
       }
       res.json({
         hotels,

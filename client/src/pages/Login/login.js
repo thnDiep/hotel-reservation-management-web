@@ -5,13 +5,15 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { useContext } from 'react'
+import DataContext from '~/contexts/DataContext'
 const MySwal = withReactContent(Swal)
 
 function Login() {
     const Nav = useNavigate()
     const data = JSON.parse(localStorage.getItem('identification'))
     const [valid, setValid] = useState(false)
-
+    const { LoginHandler } = useContext(DataContext)
     const [Data, setData] = useState(() => {
         return { email: '', pass: '', isValid: false }
     })
@@ -53,7 +55,8 @@ function Login() {
             if (res.status === 200) {
                 localStorage.setItem('user', JSON.stringify(res.data.emailAvailable))
                 await Swal.fire('Đăng nhập thành công', 'Nhấn nút để đến trang chủ', 'success')
-                Nav('/')
+                LoginHandler(res.data.emailAvailable)
+                window.location.href = res.data.link
             }
         } catch (err) {
             console.log(err.response.data)
@@ -68,6 +71,7 @@ function Login() {
                     <img
                         className={styles.logo}
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
+                        alt=""
                     />
                     <div>
                         <p className={styles.nameOfWeb}>MyTravel</p>

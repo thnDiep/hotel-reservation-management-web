@@ -15,10 +15,10 @@ export default {
   },
 
   async getBank(id) {
-    const list = await db("taikhoanthanhtoan").where("IDKhachHang", id)
-    if (list.length === 0) return null
+    const list = await db("taikhoanthanhtoan").where("IDKhachHang", id);
+    if (list.length === 0) return null;
 
-    return list[0]
+    return list[0];
   },
 
   // Lấy người dùng theo tên
@@ -64,6 +64,11 @@ export default {
     return db("nguoidung").insert(user);
   },
 
+  // Thêm người dùng
+  addNguoiNhanPhong(user) {
+    return db("nguoinhanphong").insert(user);
+  },
+
   // XÓa người dùng
   del(id) {
     return db("nguoidung").where("ID", id).del();
@@ -91,12 +96,12 @@ export default {
 
   // Thêm tài khoản thanh toán
   addBank(bank) {
-    return db("taikhoanthanhtoan").insert(bank)
+    return db("taikhoanthanhtoan").insert(bank);
   },
 
   // Cập nhật tài khoản thanh toán
   updateBank(bank) {
-    return db("taikhoanthanhtoan").where("ID", bank.ID).update(bank)
+    return db("taikhoanthanhtoan").where("ID", bank.ID).update(bank);
   },
 
   // Cập nhật trạng thái người dùng

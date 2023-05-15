@@ -18,6 +18,7 @@ import ButtonPrimary from '~/components/Button/ButtonPrimary'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Popup from '../Popup/Popup'
+import { Link } from 'react-router-dom'
 library.add(faHouse, faShop, faSmoking, faBed, faWifi, faMountain, faWater)
 const MySwal = withReactContent(Swal)
 
@@ -44,16 +45,13 @@ const RoomItem = (props) => {
                         <img alt="jell" onClick={handleButtonClick} src={props.item.HinhAnh[0].HinhAnh} />
                     </div>
                     <div className={classes['BoxContent__left--facilities']}>
-                        {props.item.tienNghi.map((data) => {
+                        {props.item.tienNghi.map((data, index) => {
                             return data.TenLoai === 'Tiện Nghi' ? (
-                                data.tienNghi.map((tiennghi) => {
+                                data.tienNghi.map((tiennghi, index) => {
                                     return tiennghi === null ? (
-                                        <></>
+                                        <div key={index}></div>
                                     ) : (
-                                        <div
-                                            key={data.IDTienNghi}
-                                            style={tiennghi.Icon === 'wifi' ? { color: '#32a923' } : null}
-                                        >
+                                        <div key={index} style={tiennghi.Icon === 'wifi' ? { color: '#32a923' } : null}>
                                             <FontAwesomeIcon
                                                 style={tiennghi.Icon === 'wifi' ? { color: '#32a923' } : null}
                                                 icon={['fas', tiennghi.Icon]}
@@ -64,7 +62,7 @@ const RoomItem = (props) => {
                                     )
                                 })
                             ) : (
-                                <div key={data.ID}></div>
+                                <div key={index}></div>
                             )
                         })}
                     </div>
@@ -113,7 +111,9 @@ const RoomItem = (props) => {
                                 {formatMoney(props.item.GiaSale).replace('₫', '')}VND <span>/ đêm</span>
                             </div>
                             <div>
-                                <ButtonPrimary className="btn__order">Đặt hàng</ButtonPrimary>
+                                <Link to={`/checkout/${props.item.ID}`}>
+                                    <ButtonPrimary className="btn__order">Đặt phòng</ButtonPrimary>
+                                </Link>
                             </div>
                         </div>
                     </div>

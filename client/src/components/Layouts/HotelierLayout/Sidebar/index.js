@@ -1,8 +1,10 @@
 import React from 'react'
 import './Sidebar.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { useContext } from 'react'
+import DataContext from '~/contexts/DataContext'
 const Sidebar = ({ checkHide }) => {
     const [select, setSelect] = useState(1)
     const handleSelect = (value) => {
@@ -44,6 +46,12 @@ const Sidebar = ({ checkHide }) => {
             link: '/cks/profile',
         },
     ]
+    const { LogoutHandler } = useContext(DataContext)
+    const Nav = useNavigate()
+    const handle = () => {
+        LogoutHandler()
+        Nav('/login')
+    }
     return (
         <section id="sidebar" className={`${checkHide && 'hide'}`}>
             <Link to="/" className="brand">
@@ -86,9 +94,9 @@ const Sidebar = ({ checkHide }) => {
             </ul>
             <div className="ads">
                 <div className="wrapper">
-                    <Link to="/" className="btn-upgrade">
+                    <div onClick={handle} className="btn-upgrade">
                         Đăng xuất
-                    </Link>
+                    </div>
                 </div>
             </div>
         </section>

@@ -15,6 +15,9 @@ export default {
       id
     );
   },
+  add(dondatphong) {
+    return db("dondatphong").insert(dondatphong);
+  },
 
   // Tìm đơn đặt phòng bằng id
   async findById(id) {
@@ -72,6 +75,7 @@ export default {
         hotelInfo.forEach((_hotel) => {
           if (item.IDPhong === _room.ID && _room.IDKhachSan == _hotel.ID) {
             item.TenKhachSan = _hotel.Ten;
+            item.IDKhachSan = _hotel.ID;
           }
         });
       });

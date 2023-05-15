@@ -5,10 +5,16 @@ import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+
 import axios from 'axios'
-const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 const CommentAboutHotel = () => {
+    const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    const { id } = useParams()
     const Nav = useNavigate()
+    const user = JSON.parse(localStorage.getItem('user'))
+
     const today = new Date()
     const [title, setTitle] = useState(() => {
         return { value: '', error: '', isValid: false }
@@ -40,16 +46,19 @@ const CommentAboutHotel = () => {
         }
         try {
             const res = await axios.post('http://localhost:8800/user/giveFeedback', {
-                IDKhachSan: 1,
-                IDKhachHang: 4,
+                IDKhachSan: id,
+                IDKhachHang: user.ID,
                 TieuDe: title.value,
                 Diem: selectedOption,
                 NoiDung: content.value,
                 ThoiGian: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
             })
-            Nav('/detail')
+            if (res.status === 200) {
+                Nav(`/hotels/detail/${id}`, { id: id })
+            }
         } catch (err) {
-            console.log('sai1')
+            console.log(err)
+            //console.log('sai1')
         }
     }
     return (
