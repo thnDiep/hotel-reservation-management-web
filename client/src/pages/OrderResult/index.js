@@ -102,7 +102,10 @@ function OrderResult() {
                                 <span className={styles.subTitle}>Số tiền</span>
                                 <div className="d-flex-column-r">
                                     <div className={styles.title}>
-                                        {data[0].TongTien.toLocaleString()} <sup> &nbsp; ₫</sup>
+                                        {data[0].TongTien.toLocaleString('vi-VN', {
+                                            style: 'currency',
+                                            currency: 'VND',
+                                        })}
                                     </div>
                                     <div className={styles.copy}>
                                         <svg width="16" height="16" fill="none">
@@ -366,7 +369,12 @@ function OrderResult() {
                                         <h3 className={styles.subTitle1}>Tổng tiền</h3>
                                         <div className="d-flex">
                                             <p className={styles.subTitle3}>Đã bao gồm thuế, phí, VAT</p>
-                                            <p className={styles.subTitle1}>{data[0].TongTien.toLocaleString()} ₫</p>
+                                            <p className={styles.subTitle1}>
+                                                {data[0].TongTien.toLocaleString('vi-VN', {
+                                                    style: 'currency',
+                                                    currency: 'VND',
+                                                })}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
