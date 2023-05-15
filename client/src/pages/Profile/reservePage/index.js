@@ -14,6 +14,8 @@ function Reserve() {
     const [isEmpty, setEmpty] = useState(false)
     const { id } = useParams()
 
+    console.log(id)
+
     const [showDetail, setShowDetail] = useState(0)
 
     const user = JSON.parse(localStorage.getItem('user'))
