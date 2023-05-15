@@ -282,8 +282,11 @@ const OrderManagement = () => {
     }
 
     const handleSearch = (e) => {
-        setData(orderO.filter((key) => key.SoDienThoai.includes(e.target.value)))
-        setData(orderO.filter((key) => key.HoTen.includes(e.target.value)))
+        console.log(orderO)
+        const SDT = orderO.filter((key) => key.SoDienThoai.includes(e.target.value))
+        console.log(SDT)
+        if (SDT.length !== 0) setData(SDT)
+        else setData(orderO.filter((key) => key.HoTen.includes(e.target.value)))
     }
 
     return (
