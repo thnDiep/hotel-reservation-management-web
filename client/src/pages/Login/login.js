@@ -10,6 +10,7 @@ import DataContext from '~/contexts/DataContext'
 const MySwal = withReactContent(Swal)
 
 function Login() {
+    const user = JSON.parse(localStorage.getItem('user'))
     const Nav = useNavigate()
     const data = JSON.parse(localStorage.getItem('identification'))
     const [valid, setValid] = useState(false)
@@ -52,9 +53,15 @@ function Login() {
                 Email: Data.email,
                 MatKhau: Data.pass,
             })
+
             if (res.status === 200) {
                 localStorage.setItem('user', JSON.stringify(res.data.emailAvailable))
-                await Swal.fire('Đăng nhập thành công', 'Nhấn nút để đến trang chủ', 'success')
+                if (res.data.ThongBao === 'Tài khoản đã bị khóa') {
+                    await Swal.fire('Tài khoản đã bị khóa', 'Nhấn nút để tiếp tục đăng nhập', 'error')
+                    return
+                } else {
+                    await Swal.fire('Đăng nhập thành công', 'Nhấn nút để đến trang chủ', 'success')
+                }
                 LoginHandler(res.data.emailAvailable)
                 window.location.href = res.data.link
             }
