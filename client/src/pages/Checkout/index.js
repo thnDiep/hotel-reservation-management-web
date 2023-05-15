@@ -70,9 +70,8 @@ const Checkout = () => {
                 Math.abs(new Date(date.startDate) - new Date(date.endDate)) / (1000 * 60 * 60 * 24),
             )
             room.dem = number
-            room.Gia = room.Gia * number
-            room.GiamGia = room.Gia - (room.Gia * hotel.GiamGia) / 100
-
+            const Gia = room.Gia * number
+            const GiamGia = Gia - (Gia * hotel.GiamGia) / 100
             const voucher = data.promotions
                 .filter((voucher) => {
                     const now = moment()
@@ -128,13 +127,13 @@ const Checkout = () => {
                 hotel.voucher = null // hoặc return {}
                 if (!flashSale) {
                     hotel.flashSale = null
-                    room.Thue1 = room.GiamGia * 0.05
-                    room.Thue = room.GiamGia + room.GiamGia * 0.05
+                    room.Thue1 = GiamGia * 0.05
+                    room.Thue = GiamGia + GiamGia * 0.05
                     room.voucher = null
                 } else {
                     hotel.flashSale = flashSale
-                    room.soTienDcGiam = (room.GiamGia * flashSale.PhanTramKM) / 100
-                    room.voucher = room.GiamGia - (room.GiamGia * flashSale.PhanTramKM) / 100
+                    room.soTienDcGiam = (GiamGia * flashSale.PhanTramKM) / 100
+                    room.voucher = GiamGia - (GiamGia * flashSale.PhanTramKM) / 100
                     room.Thue1 = room.voucher * 0.05
                     room.Thue = room.voucher + room.voucher * 0.05
                 }
@@ -142,19 +141,21 @@ const Checkout = () => {
                 hotel.voucher = voucher
                 if (!flashSale) {
                     hotel.flashSale = null
-                    room.soTienDcGiam = (room.GiamGia * hotel.voucher.PhanTramKM) / 100
-                    room.voucher = room.GiamGia - (room.GiamGia * hotel.voucher.PhanTramKM) / 100
+                    room.soTienDcGiam = (GiamGia * hotel.voucher.PhanTramKM) / 100
+                    room.voucher = GiamGia - (GiamGia * hotel.voucher.PhanTramKM) / 100
                     room.Thue1 = room.voucher * 0.05
                     room.Thue = room.voucher + room.voucher * 0.05
                 } else {
                     hotel.flashSale = flashSale
-                    room.voucher = room.GiamGia - (room.GiamGia * hotel.voucher.PhanTramKM) / 100
+                    room.voucher = GiamGia - (GiamGia * hotel.voucher.PhanTramKM) / 100
                     room.voucher = room.voucher - (room.voucher * hotel.flashSale.PhanTramKM) / 100
                     room.soTienDcGiam = (room.voucher * hotel.flashSale.PhanTramKM) / 100
                     room.Thue1 = room.voucher * 0.05
                     room.Thue = room.voucher + room.voucher * 0.05
                 }
             }
+            room.GiamGia1 = GiamGia
+            room.Gia1 = Gia
             hotel.HinhAnh = data.hotelImages.find((HinhAnh) => HinhAnh.IDKhachSan === +hotel.ID).HinhAnh
             setHotel(hotel)
             setRoom(room)
@@ -748,9 +749,9 @@ const Checkout = () => {
                                     <span className={styles.priceSale}>
                                         <div className={styles.priceSale1}>
                                             <div className={styles.pricePercent}>-{hotel.GiamGia}%</div>
-                                            <div className={styles.priceSaleOld}>{formatMoney(room.Gia)}</div>
+                                            <div className={styles.priceSaleOld}>{formatMoney(room.Gia1)}</div>
                                         </div>
-                                        <span>{formatMoney(room.GiamGia)}</span>
+                                        <span>{formatMoney(room.GiamGia1)}</span>
                                     </span>
                                 </div>
                                 {(hotel.voucher || hotel.flashSale) && (
