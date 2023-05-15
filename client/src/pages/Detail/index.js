@@ -241,9 +241,9 @@ const Detail = () => {
                                 <div className={classes['box-title']}>
                                     <h3>Giới thiệu về khách sạn</h3>
                                 </div>
-                                <p>
+                                <div>
                                     <div dangerouslySetInnerHTML={{ __html: hotel.infor.GioiThieu }} />
-                                </p>
+                                </div>
                             </div>
                         </div>
                     </div>

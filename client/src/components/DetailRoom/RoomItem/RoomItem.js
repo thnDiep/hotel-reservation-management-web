@@ -48,7 +48,7 @@ const RoomItem = (props) => {
                             return data.TenLoai === 'Tiện Nghi' ? (
                                 data.tienNghi.map((tiennghi) => {
                                     return tiennghi === null ? (
-                                        <></>
+                                        <div key={data.IDTienNghi}></div>
                                     ) : (
                                         <div
                                             key={data.IDTienNghi}

@@ -19,8 +19,8 @@
         justify-content: space-between;
 
         .img {
-            width: 120px;
-            height: 32px;
+            width: 50px;
+            height: 50px;
         }
 
         .nav__title {
@@ -162,6 +162,12 @@
         align-items: center;
         cursor: pointer;
         text-decoration: none;
+        span {
+            color: #ff3366;
+            margin-left: 10px;
+            font-weight: 600;
+            font-size: 2rem;
+        }
     }
 
     &__choose {
