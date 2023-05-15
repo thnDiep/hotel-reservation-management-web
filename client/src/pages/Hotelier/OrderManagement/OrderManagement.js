@@ -194,16 +194,17 @@ const OrderManagement = () => {
     const [showDuyetModal, setShowDuyetModal] = useState(false)
     const handleActive = (value) => {
         setActive(value)
-        if (value === 1 && value !== active) {
-            setData(orderO.filter((key) => key.TrangThai === 1))
-        } else if (value === 2 && value !== active) {
-            setData(orderO.filter((key) => key.TrangThai === 0))
-        } else if (value === 3 && value !== active) {
-            setData(orderO.filter((key) => key.TrangThai === 2))
-        } else if (value === 0 && value !== active) {
-            setData(orderO)
+        if (data) {
+            if (value === 1 && value !== active) {
+                setData(orderO.filter((key) => key.TrangThai === 1))
+            } else if (value === 2 && value !== active) {
+                setData(orderO.filter((key) => key.TrangThai === 0))
+            } else if (value === 3 && value !== active) {
+                setData(orderO.filter((key) => key.TrangThai === 2))
+            } else if (value === 0 && value !== active) {
+                setData(orderO)
+            }
         }
-        setActive(value)
     }
     useEffect(() => {
         if (data) {

@@ -32,11 +32,11 @@ const ProfileHotelier = () => {
         { value: '500 - 1000 nhân viên', label: '500 - 1000 nhân viên' },
     ])
     // Dữ liệu cho bảng -> Lấy lúc đầu
+    const user = JSON.parse(localStorage.getItem('user'))
+
     useEffect(() => {
-        if (data) {
-            console.log(data)
-            console.log(data.curUser.ID)
-            Axios.get('http://localhost:8800/cks/profile', { params: { idCKS: data.curUser.ID } })
+        if (data && user) {
+            Axios.get('http://localhost:8800/cks/profile', { params: { idCKS: user.ID } })
                 .then((response) => {
                     const info = response.data.user
                     if (response.data.bank) {
