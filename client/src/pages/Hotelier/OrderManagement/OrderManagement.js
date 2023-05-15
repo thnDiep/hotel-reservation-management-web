@@ -172,6 +172,7 @@ function HotelTable({ data, option }) {
     )
 }
 const OrderManagement = () => {
+    const Nav = useNavigate()
     const user = JSON.parse(localStorage.getItem('user'))
     const [data, setData] = useState(null)
     const [orderO, setOrderO] = useState(null)
@@ -277,6 +278,28 @@ const OrderManagement = () => {
             })
     }
 
+    function searchAndHighlight(searchValue) {
+        var paragraphs = document.getElementsByTagName('p')
+
+        for (var i = 0; i < paragraphs.length; i++) {
+            var paragraph = paragraphs[i]
+            var text = paragraph.innerHTML
+            var index = text.indexOf(searchValue)
+
+            if (index >= 0) {
+                var highlightedText =
+                    text.substring(0, index) +
+                    "<span class='highlight'>" +
+                    text.substring(index, index + searchValue.length) +
+                    '</span>' +
+                    text.substring(index + searchValue.length)
+                paragraph.innerHTML = highlightedText
+                paragraph.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                break // Dừng lại sau khi tìm thấy giá trị đầu tiên
+            }
+        }
+    }
+
     return (
         <div className={styles.content}>
             <div className="mt-4 d-flex justify-content-between align-items-center ">
@@ -304,7 +327,7 @@ const OrderManagement = () => {
                 <div className="d-flex align-items-center mb-2">
                     <div className="input-group">
                         <div id="search-autocomplete" className="form-outline">
-                            <input type="search" id="form1" className={`form-control ${styles.form1}`} />
+                            <input type="search" id="phoneInput" className={`form-control ${styles.form1}`} />
                         </div>
                         <button type="button" className={`btn btn-primary ${styles.btnSearch}`}>
                             <i className="fas fa-search"></i>

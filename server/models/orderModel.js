@@ -26,6 +26,13 @@ export default {
     return list[0];
   },
 
+  // Tìm đơn đặt phòng bằng số điện thoại
+  async findByPhoneNum(phoneNumber) {
+    return await db.raw(
+      `SELECT * FROM nguoidung, dondatphong WHERE nguoidung.ID = dondatphong.IDKhachHang and nguoidung.SoDienThoai =  ?`,
+      phoneNumber
+    );
+  },
   // Tìm đơn đặt phòng
   async findByIdToCheckPhone(id) {
     let list = null;

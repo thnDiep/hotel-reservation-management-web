@@ -19,7 +19,7 @@ const Header = () => {
 
             <div className={styles.right} onClick={() => setShow(!show)}>
                 <img src="https://cdn1.iconfinder.com/data/icons/marketing-19/100/Profile-512.png" />
-                <span>Hello, Amin</span>
+                <span>Hello, Admin</span>
                 <FontAwesomeIcon icon={faAngleDown} className={styles.icon} />
 
                 {show && (

@@ -96,6 +96,27 @@ router.get("/detail", async (req, res, next) => {
     const infor = await hotelModel.findById(idHotel);
     const score = await feedbackModel.getAvgScore(idHotel);
     infor.avgScore = score[0][0]["ROUND(AVG(CAST(Diem AS FLOAT)), 1)"];
+
+    // Lấy % tiêu chí đánh giá (tuyệt vời, xuất sắc,...)
+    const n = await feedbackModel.getCount(idHotel);
+    const perfect = await feedbackModel.getGreaterThan9(idHotel);
+    const execellent = await feedbackModel.getGreaterThan8(idHotel);
+    const good = await feedbackModel.getGreaterThan7(idHotel);
+    const medium = await feedbackModel.getGreaterThan6(idHotel);
+    const bad = await feedbackModel.getLessThanOrEqualTo6(idHotel);
+
+    infor.perfect = perfect[0][0]["COUNT(ID)"];
+    infor.execellent = execellent[0][0]["COUNT(ID)"];
+    infor.good = good[0][0]["COUNT(ID)"];
+    infor.medium = medium[0][0]["COUNT(ID)"];
+    infor.bad = bad[0][0]["COUNT(ID)"];
+
+    infor.perfectPercent = (perfect[0][0]["COUNT(ID)"] / n) * 100;
+    infor.execellentPercent = (execellent[0][0]["COUNT(ID)"] / n) * 100;
+    infor.goodPercent = (good[0][0]["COUNT(ID)"] / n) * 100;
+    infor.mediumPercent = (medium[0][0]["COUNT(ID)"] / n) * 100;
+    infor.badPercent = (bad[0][0]["COUNT(ID)"] / n) * 100;
+
     //  Lấy thông tin hữu ích
     const thongTinHuuIch = await facilityModel.getThongTinHuuIch();
     for (const thongTin of thongTinHuuIch) {

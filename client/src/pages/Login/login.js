@@ -7,9 +7,9 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useContext } from 'react'
 import DataContext from '~/contexts/DataContext'
-const MySwal = withReactContent(Swal)
 
 function Login() {
+    const MySwal = withReactContent(Swal)
     const user = JSON.parse(localStorage.getItem('user'))
     const Nav = useNavigate()
     const data = JSON.parse(localStorage.getItem('identification'))
@@ -55,13 +55,13 @@ function Login() {
             })
 
             if (res.status === 200) {
-                localStorage.setItem('user', JSON.stringify(res.data.emailAvailable))
                 if (res.data.ThongBao === 'Tài khoản đã bị khóa') {
                     await Swal.fire('Tài khoản đã bị khóa', 'Nhấn nút để tiếp tục đăng nhập', 'error')
                     return
                 } else {
                     await Swal.fire('Đăng nhập thành công', 'Nhấn nút để đến trang chủ', 'success')
                 }
+                localStorage.setItem('user', JSON.stringify(res.data.emailAvailable))
                 LoginHandler(res.data.emailAvailable)
                 window.location.href = res.data.link
             }

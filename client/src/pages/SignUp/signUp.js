@@ -3,8 +3,11 @@ import { NavLink } from 'react-router-dom'
 import styles from './signUp.module.scss'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function SignUp() {
+    const MySwal = withReactContent(Swal)
     const [data, setData] = useState(() => {
         // name: giá trị input, nameValid: đánh dấu người dùng nhập vào
         return {
@@ -108,10 +111,15 @@ function SignUp() {
                     MatKhau: data.pass,
                     PhanQuyen: 0,
                 })
-                Nav('/login')
+
+                if (res.status === 200) {
+                    await Swal.fire('Đăng ký thành công', 'Nhấn nút để đến trang đăng nhập', 'success')
+                    Nav('/login')
+                }
             }
         } catch (err) {
             console.log(err.response.data)
+            await Swal.fire('Đăng ký thất bại', 'Nhấn nút để tiếp tục thực hiện đăng ký', 'error')
         }
     }
 

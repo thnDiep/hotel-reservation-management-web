@@ -233,9 +233,10 @@ export const updateRoom = async (req, res, next) => {
 
 export const order = async (req, res, next) => {
   try {
-    const idCKS = req.query.idCKS || 2;
+    //console.log(req.query.idCKS);
+    const idCKS = req.query.idCKS;
     const [orders] = await orderModel.getRareInformationOfOrder(idCKS);
-    console.log(orders);
+    //console.log(orders);
     if (orders.length === 0) return null;
     res.json({ orders });
   } catch (err) {
