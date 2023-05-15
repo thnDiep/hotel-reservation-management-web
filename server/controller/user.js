@@ -29,7 +29,7 @@ export const order = async (req, res, next) => {
   }
 };
 
-// đánh giá và bình luận KS  <chưa thay đổi id người dùng, ks>
+// đánh giá và bình luận KS
 export const comment = async (req, res, next) => {
   try {
     console.log(req.body);
@@ -37,12 +37,12 @@ export const comment = async (req, res, next) => {
       ...req.body,
     };
     await feedbackModel.add(feedback);
+    res.status(200).send("Đã lưu đánh giá.");
   } catch (error) {
     console.log(error);
-    // console.log("sai")
+    return next(res.status(400).send("Không lưu được đánh giá."));
   }
 };
-
 export const orderRoom = async (req, res, next) => {
   try {
     console.log(req.body.nguoidung);

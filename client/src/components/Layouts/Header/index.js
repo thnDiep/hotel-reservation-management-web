@@ -40,10 +40,11 @@ function Header() {
                 <Link to="/" className={classes.logo}>
                     {/* <h1>SunLight</h1> */}
                     <img
-                        src="https://storage.googleapis.com/tripi-assets/mytour/icons/icon_logo_mytour_red.svg"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
                         className={classes.img}
                         alt="logo_mytour"
                     />
+                    <span>MyTravel</span>
                 </Link>
                 <div className={classes.nav__title}>
                     <TitleLinkButton className="btnTitle" name="Ưu đãi" link="/">

@@ -75,6 +75,7 @@ export default {
         hotelInfo.forEach((_hotel) => {
           if (item.IDPhong === _room.ID && _room.IDKhachSan == _hotel.ID) {
             item.TenKhachSan = _hotel.Ten;
+            item.IDKhachSan = _hotel.ID;
           }
         });
       });

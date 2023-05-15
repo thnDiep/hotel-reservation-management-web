@@ -137,7 +137,7 @@ function Reserve() {
                                             {item.TrangThai === 2 && (
                                                 <div>
                                                     <p className={styles.successRequest}>Đặt phòng thành công</p>
-                                                    <Link to={'/profile/order/comment'}>
+                                                    <Link to={`/profile/order/comment/${item.IDKhachSan}`}>
                                                         <label
                                                             className={`${styles.feedBackLabel} ${styles.confirmedLabel}`}
                                                         >
