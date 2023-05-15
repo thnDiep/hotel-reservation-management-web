@@ -83,6 +83,9 @@ router.get("/", async (req, res, next) => {
         hotelImages,
         places,
         rooms,
+        promotions,
+        periods,
+        likes,
       })
     } else if (curUser.PhanQuyen === 2) {
       const hotels = await hotelModel.getAll()
