@@ -24,13 +24,10 @@ const CheckOrder = () => {
     })
 
     useEffect(() => {
-        const filter = /^\d{7}$/
         if (data.isValid === true) {
             const identifier = setTimeout(() => {
                 if (data.code.length === 0) {
                     setEnteredCode({ ...enteredCode, error: 'Vui lòng nhập thông tin mã đơn hàng' })
-                } else if (!filter.test(data.code)) {
-                    setEnteredCode({ ...enteredCode, error: 'Mã đơn hàng không đúng định dạng' })
                 } else {
                     setEnteredCode({ ...enteredCode, error: '' })
                 }
@@ -42,7 +39,6 @@ const CheckOrder = () => {
     }, [data.code])
 
     useEffect(() => {
-        const filter = /(84|0[3|5|7|8|9])+([0-9]{8})\b/
         if (enteredPhoneNum.isValid === true) {
             const identifier = setTimeout(() => {
                 if (enteredPhoneNum.value.length === 0) {

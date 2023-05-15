@@ -1,5 +1,6 @@
 import Breadcrumb from '~/components/Breadcrumb/Breadcrumb'
 import styles from './Header.module.scss'
+import { Link } from 'react-router-dom'
 const Header = ({ onClick }) => {
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -26,24 +27,14 @@ const Header = ({ onClick }) => {
             </a> */}
             <span className={styles.divider}></span>
             <div className={styles.profile}>
-                <img src={user.HinhAnh} alt="" />
-                <ul className={styles['profile-link']}>
-                    <li>
-                        <a href="/">
+                <Link to="/cks/profile">
+                    <img src={user.HinhAnh} alt="" />
+                    <ul className={styles['profile-link']}>
+                        <li>
                             <i className={`bx bxs-user-circle ${styles.icon}`}></i> Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                            <i className="bx bxs-cog"></i> Settings
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/">
-                            <i className="bx bxs-log-out-circle"></i> Logout
-                        </a>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </Link>
             </div>
         </nav>
     )
