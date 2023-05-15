@@ -114,4 +114,20 @@ export default {
   //     isActive: user.isActive,
   //   })
   // },
+
+  delWashListByHotelier(id) {
+    return db("danhsachyeuthich").where("IDKhachHang", id).del()
+  },
+
+  delFeedbackByHotelier(id) {
+    return db("danhgia").where("IDKhachHang", id).del()
+  },
+
+  delOrderByHotelier(id) {
+    return db("dondatphong").where("IDKhachHang", id).del()
+  },
+
+  delNNPByHotelier(id) {
+    return db("nguoinhanphong").where("IDKhachHang", id).del()
+  },
 }

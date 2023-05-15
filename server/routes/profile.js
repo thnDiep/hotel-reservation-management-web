@@ -3,6 +3,7 @@ import wishListModel from "../models/wishListModel.js"
 import authModel from "../models/authModel.js"
 import orderModel from "../models/orderModel.js"
 import hotelModel from "../models/hotelModel.js"
+import feedBackModel from "../models/feedbackModel.js"
 
 const router = express.Router()
 
@@ -71,6 +72,11 @@ router.get("/del", async (req, res, next) => {
     const idUser = req.query.idUser
 
     if (idUser) {
+      await authModel.delFeedbackByHotelier(idUser)
+      await authModel.delOrderByHotelier(idUser)
+      await authModel.delWashListByHotelier(idUser)
+      await authModel.delNNPByHotelier(idUser)
+
       await authModel.del(idUser)
     }
 
