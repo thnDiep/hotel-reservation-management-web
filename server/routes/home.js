@@ -67,9 +67,7 @@ router.get("/", async (req, res, next) => {
         hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan);
         hotel.DanhGia = await feedbackModel.getAvgRate(hotel.ID);
         const HinhAnh = await hotelModel.getImage(hotel.ID);
-
         hotel.HinhAnh = HinhAnh[0].HinhAnh;
-
         if (hotel.DanhGia) {
           hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2);
         } else {
@@ -77,17 +75,7 @@ router.get("/", async (req, res, next) => {
         }
       }
       for (const room of rooms) {
-        const [endows] = await roomModel.getEndow(room.ID);
-        const [HinhAnh] = await roomModel.getHinhAnh(room.ID);
-        room.UuDai = endows;
-        room.HinhAnh = HinhAnh;
-        const [tienNghi] = await facilityModel.getTienIchPhong(room.ID);
-        const Giuong = await facilityModel.getGiuong(room.ID);
-        room.giuong = Giuong;
-        room.tienNghi = await facilityModel.getNameFacilityRoom(
-          tienNghi.IDTienNghi,
-          room.ID
-        );
+        room.endows = await roomModel.getEndow(room.ID);
       }
       res.json({
         hotels,
@@ -96,6 +84,9 @@ router.get("/", async (req, res, next) => {
         hotelImages,
         places,
         rooms,
+        promotions,
+        periods,
+        likes,
       });
     } else if (curUser.PhanQuyen === 2) {
       const hotels = await hotelModel.getAll();

@@ -45,16 +45,13 @@ const RoomItem = (props) => {
                         <img alt="jell" onClick={handleButtonClick} src={props.item.HinhAnh[0].HinhAnh} />
                     </div>
                     <div className={classes['BoxContent__left--facilities']}>
-                        {props.item.tienNghi.map((data) => {
+                        {props.item.tienNghi.map((data, index) => {
                             return data.TenLoai === 'Tiện Nghi' ? (
-                                data.tienNghi.map((tiennghi) => {
+                                data.tienNghi.map((tiennghi, index) => {
                                     return tiennghi === null ? (
-                                        <></>
+                                        <div key={index}></div>
                                     ) : (
-                                        <div
-                                            key={data.IDTienNghi}
-                                            style={tiennghi.Icon === 'wifi' ? { color: '#32a923' } : null}
-                                        >
+                                        <div key={index} style={tiennghi.Icon === 'wifi' ? { color: '#32a923' } : null}>
                                             <FontAwesomeIcon
                                                 style={tiennghi.Icon === 'wifi' ? { color: '#32a923' } : null}
                                                 icon={['fas', tiennghi.Icon]}
@@ -65,7 +62,7 @@ const RoomItem = (props) => {
                                     )
                                 })
                             ) : (
-                                <div key={data.ID}></div>
+                                <div key={index}></div>
                             )
                         })}
                     </div>

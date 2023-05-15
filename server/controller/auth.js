@@ -59,18 +59,11 @@ export const login = async (req, res, next) => {
         }
 
         let link;
-        req.session.isAuthenticated = true;
         if (emailAvailable.PhanQuyen == 0) {
-          req.session.isUser = true;
-          req.session.authUser = emailAvailable;
           link = "/";
         } else if (emailAvailable.PhanQuyen == 1) {
-          req.session.isHotelier = true;
-          req.session.authHotelier = emailAvailable;
           link = "/cks/manageHotel";
         } else if (emailAvailable.PhanQuyen == 2) {
-          req.session.isAdmin = true;
-          req.session.authAdmin = emailAvailable;
           link = "/admin/hotel";
         }
         res.json({ emailAvailable, link });
