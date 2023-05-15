@@ -332,6 +332,7 @@ const ProfileHotelier = () => {
                                                 <input
                                                     type="text"
                                                     value={info.fields.HoTen}
+                                                    className={clsx({ [styles.error]: info.errors.HoTen })}
                                                     onChange={(e) => handleChange(e, 'HoTen')}
                                                 />
                                                 <span className={styles.form__error}>{info.errors.HoTen}</span>
@@ -345,6 +346,7 @@ const ProfileHotelier = () => {
                                                 <input
                                                     type="text"
                                                     value={info.fields.Email}
+                                                    className={clsx({ [styles.error]: info.errors.Email })}
                                                     onChange={(e) => handleChange(e, 'Email')}
                                                 />
                                                 <span className={styles.form__error}>{info.errors.Email}</span>
@@ -358,6 +360,7 @@ const ProfileHotelier = () => {
                                                 <input
                                                     type="number"
                                                     value={info.fields.SoDienThoai}
+                                                    className={clsx({ [styles.error]: info.errors.SoDienThoai })}
                                                     onChange={(e) => handleChange(e, 'SoDienThoai')}
                                                 />
                                                 <span className={styles.form__error}>{info.errors.SoDienThoai}</span>
@@ -379,6 +382,7 @@ const ProfileHotelier = () => {
                                                 <input
                                                     type="text"
                                                     value={info.fields.TenCongTy}
+                                                    className={clsx({ [styles.error]: info.errors.TenCongTy })}
                                                     onChange={(e) => handleChange(e, 'TenCongTy')}
                                                 />
                                                 <span className={styles.form__error}>{info.errors.TenCongTy}</span>
@@ -392,6 +396,7 @@ const ProfileHotelier = () => {
                                                 <input
                                                     type="number"
                                                     value={info.fields.MaSoThue}
+                                                    className={clsx({ [styles.error]: info.errors.MaSoThue })}
                                                     onChange={(e) => handleChange(e, 'MaSoThue')}
                                                 />
                                                 <span className={styles.form__error}>{info.errors.MaSoThue}</span>
@@ -419,6 +424,7 @@ const ProfileHotelier = () => {
                                                 <input
                                                     type="text"
                                                     value={info.fields.DiaChi}
+                                                    className={clsx({ [styles.error]: info.errors.DiaChi })}
                                                     onChange={(e) => handleChange(e, 'DiaChi')}
                                                 />
                                                 <span className={styles.form__error}>{info.errors.DiaChi}</span>
@@ -437,6 +443,7 @@ const ProfileHotelier = () => {
                                                 <input
                                                     type="text"
                                                     value={info.fields.TenNganHang}
+                                                    className={clsx({ [styles.error]: info.errors.TenNganHang })}
                                                     onChange={(e) => handleChange(e, 'TenNganHang')}
                                                 />
                                                 <span className={styles.form__error}>{info.errors.TenNganHang}</span>
@@ -451,6 +458,7 @@ const ProfileHotelier = () => {
                                                     <input
                                                         type="text"
                                                         value={info.fields.HoTenTK}
+                                                        className={clsx({ [styles.error]: info.errors.HoTenTK })}
                                                         onChange={(e) => handleChange(e, 'HoTenTK')}
                                                     />
                                                     <span className={styles.form__error}>{info.errors.HoTenTK}</span>
@@ -465,6 +473,7 @@ const ProfileHotelier = () => {
                                                 <input
                                                     type="text"
                                                     value={info.fields.SoTaiKhoan}
+                                                    className={clsx({ [styles.error]: info.errors.SoTaiKhoan })}
                                                     onChange={(e) => handleChange(e, 'SoTaiKhoan')}
                                                 />
                                                 <span className={styles.form__error}>{info.errors.SoTaiKhoan}</span>

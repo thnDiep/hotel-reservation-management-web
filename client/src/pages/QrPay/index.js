@@ -81,7 +81,7 @@ function QrPay() {
                         <div className={styles.qr}>
                             <h2 className={styles.title}>Quét mã qua ứng dụng Ngân hàng/ Ví điện tử</h2>
                             <div className={styles.guide} onClick={() => setShowGuideModal(true)}>
-                                <img src="	https://pay.vnpay.vn/images/icons-color/info/default/24x24-information-circle.svg" />
+                                <img src="https://pay.vnpay.vn/images/icons-color/info/default/24x24-information-circle.svg" />
                                 Hướng dẫn thanh toán
                             </div>
                             <div
