@@ -148,6 +148,7 @@ function Account() {
 
                 const newUsers = users.filter((key) => key.ID !== userActive.ID)
                 setUsers(newUsers)
+                handleData({ ...data, users: newUsers })
                 setUserActive(null)
                 setShowDeleteModal(false)
             })
