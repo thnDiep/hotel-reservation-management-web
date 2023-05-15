@@ -91,8 +91,8 @@ function QrPay() {
                             >
                                 <img className={styles.qrImage} src={qrImage} />
                             </div>
-                            <Link to={`/checkout/${id}`} className="btn-1">
-                                Hủy thanh toán
+                            <Link to={`/checkout/success/${id}`} className="btn-1">
+                                Đã hoàn thành
                             </Link>
                         </div>
                     </div>

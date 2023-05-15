@@ -7,6 +7,7 @@ import promotionModel from "../models/promotionModel.js";
 import wishListModel from "../models/wishListModel.js";
 import facilityModel from "../models/facilityModel.js";
 import feedbackModel from "../models/feedbackModel.js";
+import orderModel from "../models/orderModel.js";
 
 const router = express.Router();
 
@@ -52,7 +53,7 @@ router.get("/", async (req, res, next) => {
 
       res.json({ hotels, promotions, periods, curUser });
       // } else if (curUser.PhanQuyen === 0) {
-    } else {
+    } else if (curUser.PhanQuyen === 0) {
       // User
       const hotels = await hotelModel.getAll();
       const users = await authModel.getAll();
@@ -63,6 +64,7 @@ router.get("/", async (req, res, next) => {
       const promotions = await promotionModel.getAll();
       const periods = await promotionModel.getPeriods();
       const likes = await wishListModel.getWishList1(idUser);
+      const orders = await orderModel.getAll();
 
       for (const hotel of hotels) {
         hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan);
@@ -98,6 +100,31 @@ router.get("/", async (req, res, next) => {
         promotions,
         periods,
         likes,
+        orders,
+      });
+    } else if (curUser.PhanQuyen === 2) {
+      const hotels = await hotelModel.getAll();
+      const users = await authModel.getAll();
+      const rates = await feedbackModel.getAll();
+      const hotelImages = await hotelModel.getAllImage();
+      const places = await placeModal.getAll();
+      for (const hotel of hotels) {
+        hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan);
+        hotel.DanhGia = await feedbackModel.getAvgRate(hotel.ID);
+        const HinhAnh = await hotelModel.getImage(hotel.ID);
+        hotel.HinhAnh = HinhAnh[0].HinhAnh;
+        if (hotel.DanhGia) {
+          hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2);
+        } else {
+          hotel.DanhGia = Number(0).toFixed(1);
+        }
+      }
+      res.json({
+        hotels,
+        users,
+        rates,
+        hotelImages,
+        places,
       });
     }
   } catch (err) {
