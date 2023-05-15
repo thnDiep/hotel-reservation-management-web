@@ -1,36 +1,45 @@
 import { Table } from 'react-bootstrap'
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 import { DropdownOption } from '~/components'
 import FooterPaging from '../FooterPaging/FooterPaging'
 import styles from './Table.module.scss'
+import DataContext from '~/contexts/DataContext'
 
 function HotelTable({ header, option, data, filter }) {
     const [page, setPage] = useState(1)
     const [totalPage, setTotalPage] = useState()
     const [hotels, setHotels] = useState(data)
-    // console.log('data: ', data)
-    useEffect(() => {
-        // console.log('render')
+    const context = useContext(DataContext)
 
+    useEffect(() => {
         if (data) {
-            // console.log('render')
-            // console.log(data)
+            let result
             if (filter === 0) {
-                setHotels(data)
+                result = data
                 let total = Math.floor(data.length / 4)
                 if (data.length % 4 !== 0) total++
                 setTotalPage(total)
             } else {
                 const hotels = data.filter((item) => item.TrangThai === filter - 1)
-                setHotels(hotels)
+                result = hotels
                 let total = Math.floor(hotels.length / 4)
                 if (hotels.length % 4 !== 0) total++
                 setTotalPage(total)
             }
+
+            result.map((hotel) => {
+                const CKS = context.data.users.find((item) => item.ID === hotel.ChuKhachSan.ID)
+                if (CKS.TrangThai === 0) {
+                    hotel.disableActive = true
+                }
+            })
+
+            console.log(result)
+            setHotels(result)
         }
     }, [data, filter])
 
@@ -140,6 +149,7 @@ function HotelTable({ header, option, data, filter }) {
                                         list={option}
                                         idActive={hotel.ID}
                                         phoneActive={hotel.ChuKhachSan.SoDienThoai}
+                                        disables={[false, false, false, false, hotel.disableActive]}
                                         hides={[
                                             false,
                                             false,

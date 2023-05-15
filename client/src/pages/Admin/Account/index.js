@@ -110,10 +110,24 @@ function Account() {
                     setShowInformModal(false)
                 }, 1000)
 
-                const index = users.findIndex((item) => item.ID === idActive)
-                users[index].TrangThai = state
-                setUsers(users)
-                handleData({ ...data, users: users })
+                if (data) {
+                    const index = data.users.findIndex((item) => item.ID === idActive)
+                    data.users[index].TrangThai = state
+
+                    const hotels = data.hotels
+                    for (const hotel of hotels) {
+                        if (hotel.ChuKhachSan.ID === data.users[index].ID) {
+                            if (state === 0) {
+                                hotel.TrangThai = 2
+                            } else {
+                                hotel.TrangThai = 1
+                            }
+                        }
+                    }
+                }
+
+                setUsers(data.users)
+                handleData({ ...data, users: data.users, hotels: data.hotels })
                 setUserActive(null)
                 setShowBlockModal(false)
             })

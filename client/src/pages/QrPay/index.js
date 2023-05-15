@@ -49,21 +49,32 @@ function QrPay() {
                                 <div className={styles.billItem}>
                                     <h6 className={styles.subTitle}>Số tiền thanh toán</h6>
                                     <h3 className={clsx(styles.text, styles.primary)}>
-                                        {(+order.TongTien).toLocaleString()} <sup>VND</sup>
+                                        {(+order.TongTien).toLocaleString('vi-VN', {
+                                            style: 'currency',
+                                            currency: 'VND',
+                                        })}
+                                        {/* <sup>VND</sup> */}
                                     </h3>
                                 </div>
 
                                 <div className={styles.billItem}>
                                     <h6 className={styles.subTitle}>Giá trị đơn hàng</h6>
                                     <h3 className={styles.text}>
-                                        {(+order.TongTien).toLocaleString()} <sup>VND</sup>
+                                        {(+order.TongTien).toLocaleString('vi-VN', {
+                                            style: 'currency',
+                                            currency: 'VND',
+                                        })}
+                                        {/* <sup>VND</sup> */}
                                     </h3>
                                 </div>
 
                                 <div className={styles.billItem}>
                                     <h6 className={styles.subTitle}>Phí giao dịch</h6>
                                     <h3 className={styles.text}>
-                                        0 <sup>VND</sup>
+                                        {(+0).toLocaleString('vi-VN', {
+                                            style: 'currency',
+                                            currency: 'VND',
+                                        })}
                                     </h3>
                                 </div>
 
