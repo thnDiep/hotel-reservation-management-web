@@ -305,7 +305,12 @@ function SuccessCheckOut() {
                                         <h3 className={styles.subTitle1}>Tổng tiền</h3>
                                         <div className="d-flex">
                                             <p className={styles.subTitle3}>Đã bao gồm thuế, phí, VAT</p>
-                                            <p className={styles.subTitle1}>{data[0].TongTien.toLocaleString()} ₫</p>
+                                            <p className={styles.subTitle1}>
+                                                {data[0].TongTien.toLocaleString('vi-VN', {
+                                                    style: 'currency',
+                                                    currency: 'VND',
+                                                })}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

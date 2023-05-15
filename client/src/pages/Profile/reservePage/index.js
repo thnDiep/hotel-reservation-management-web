@@ -116,7 +116,13 @@ function Reserve() {
                                             <div className={styles.stateOfReserve}>
                                                 <p>Tổng tiền</p>
                                                 <p>
-                                                    <b>{(+item.TongTien).toLocaleString()} &#8363;</b>
+                                                    <b>
+                                                        {' '}
+                                                        {(+item.TongTien).toLocaleString('vi-VN', {
+                                                            style: 'currency',
+                                                            currency: 'VND',
+                                                        })}
+                                                    </b>
                                                 </p>
 
                                                 {item.TrangThai === 0 && (
@@ -212,7 +218,13 @@ function Reserve() {
                                             <div className={styles.stateOfReserve}>
                                                 <p>Tổng tiền</p>
                                                 <p>
-                                                    <b>{(+item.TongTien).toLocaleString()} &#8363;</b>
+                                                    <b>
+                                                        {' '}
+                                                        {(+item.TongTien).toLocaleString('vi-VN', {
+                                                            style: 'currency',
+                                                            currency: 'VND',
+                                                        })}{' '}
+                                                    </b>
                                                 </p>
 
                                                 {item.TrangThai === 0 && (

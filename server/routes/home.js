@@ -53,7 +53,7 @@ router.get("/", async (req, res, next) => {
 
       res.json({ hotels, promotions, periods, curUser });
       // } else if (curUser.PhanQuyen === 0) {
-    } else if (curUser.PhanQuyen === 0) {
+    } else {
       // User
       const hotels = await hotelModel.getAll();
       const users = await authModel.getAll();
