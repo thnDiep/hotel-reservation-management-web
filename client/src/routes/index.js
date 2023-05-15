@@ -76,6 +76,7 @@ export const publicRoutes = [
 export const publicRoutesUser = [
     // Checkout
     { path: '/checkout/:id', component: Checkout, layout: HomeLayout },
+    { path: '/checkout/:id/:active', component: Checkout, layout: HomeLayout },
     { path: '/checkout', component: Checkout, layout: HomeLayout },
     { path: '/checkout/success/:id', component: SuccessCheckOut, layout: HomeLayout },
     { path: '/checkout/QRPay/:id', component: QrPay, layout: QrPayLayout },

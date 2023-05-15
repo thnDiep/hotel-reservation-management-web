@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import orderModel from "../models/orderModel.js";
 import feedbackModel from "../models/feedbackModel.js";
 import authModel from "../models/authModel.js";
+import roomModel from "../models/roomModel.js";
 
 // kiểm tra đơn đặt phòng
 export const order = async (req, res, next) => {
@@ -29,7 +30,7 @@ export const order = async (req, res, next) => {
   }
 };
 
-// đánh giá và bình luận KS
+// đánh giá và bình luận KS  <chưa thay đổi id người dùng, ks>
 export const comment = async (req, res, next) => {
   try {
     console.log(req.body);
@@ -37,22 +38,24 @@ export const comment = async (req, res, next) => {
       ...req.body,
     };
     await feedbackModel.add(feedback);
-    res.status(200).send("Đã lưu đánh giá.");
   } catch (error) {
     console.log(error);
-    return next(res.status(400).send("Không lưu được đánh giá."));
+    // console.log("sai")
   }
 };
+
 export const orderRoom = async (req, res, next) => {
   try {
     console.log(req.body.nguoidung);
     const info = req.body.nguoidung;
     await authModel.update(info);
     console.log(req.body.nguoinhanphong);
+    await roomModel.updateSoPhong(req.body.dondatphong.IDPhong);
     if (req.body.nguoinhanphong !== null)
       await authModel.addNguoiNhanPhong(req.body.nguoinhanphong);
     console.log(req.body.dondatphong);
-    await orderModel.add(req.body.dondatphong);
+    const x = await orderModel.add(req.body.dondatphong);
+    console.log(x);
     res.status(200).send("Đơn hàng đã được tạo");
   } catch (error) {
     next(error);

@@ -131,9 +131,8 @@ export default {
     return db("khachsan").where("ID", id).update({ TrangThai: trangthai });
   },
 
-  async blockHotelByHotelierID(hotelierID) {
-    const user = await db("nguoidung").where("ID", hotelierID);
-    if (user[0].PhanQuyen === 1 && user[0].TrangThai === 0) {
+  async blockHotelByHotelierID(hotelierID, hotelierRight, hotelierState) {
+    if (hotelierRight === 1 && hotelierState === 0) {
       return db("khachsan")
         .where("IDChuKhachSan", hotelierID)
         .andWhere("TrangThai", 1)
@@ -141,9 +140,8 @@ export default {
     }
     return null;
   },
-  async unblockHotelByHotelierID(hotelierID) {
-    const user = await db("nguoidung").where("ID", hotelierID);
-    if (user[0].PhanQuyen === 1 && user[0].TrangThai === 1) {
+  async unblockHotelByHotelierID(hotelierID, hotelierRight, hotelierState) {
+    if (hotelierRight === 1 && hotelierState === 1) {
       return db("khachsan")
         .where("IDChuKhachSan", hotelierID)
         .andWhere("TrangThai", 2)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './header.module.scss'
 import TitleLinkButton from '~/components/Button/TitleButton'
 import ButtonPrimary from '~/components/Button/ButtonPrimary'
@@ -8,6 +8,7 @@ import { Dropdown } from 'react-bootstrap'
 import axios from 'axios'
 import { useContext } from 'react'
 import DataContext from '~/contexts/DataContext'
+import moment from 'moment'
 
 function Header() {
     const Nav = useNavigate()
@@ -20,6 +21,91 @@ function Header() {
     }
     if (user !== null) {
         check = true
+    }
+    const { data } = useContext(DataContext)
+    const [voucher, setVoucher] = useState(null)
+    const [flashSale, setFlashSale] = useState(null)
+    const [order, setOrder] = useState(null)
+    useEffect(() => {
+        if (data) {
+            const vouchers = data.promotions.filter((voucher) => {
+                const now = moment()
+                let isBetween = false
+                if (moment(voucher.KetThuc).isValid())
+                    isBetween = now.isBetween(moment(voucher.BatDau), moment(voucher.KetThuc))
+                else {
+                    isBetween = now.isAfter(moment(voucher.BatDau))
+                }
+                const checkSLSD = voucher.SoLuongSD <= voucher.SoLuongKM
+                const checkKG = voucher.IDKhungGio === null
+                return isBetween && checkSLSD && checkKG
+            })
+            const flashSale1 = data.promotions.filter((voucher) => {
+                const now = moment()
+                let isBetween = false
+
+                if (moment(voucher.KetThuc).isValid())
+                    isBetween = now.isBetween(moment(voucher.BatDau), moment(voucher.KetThuc))
+                else {
+                    isBetween = now.isAfter(moment(voucher.BatDau))
+                }
+                const checkKG = voucher.MaKhuyenMai === null
+
+                return isBetween && checkKG
+            })
+            const flashSale = flashSale1.filter((item) => {
+                const now = new Date()
+                let start = new Date()
+                let end = new Date()
+                if (item.IDKhungGio === 3) {
+                    start.setHours(19, 0, 0)
+                    end.setHours(23, 0, 0)
+                } else if (item.IDKhungGio === 2) {
+                    start.setHours(14, 0, 0)
+                    end.setHours(16, 0, 0)
+                } else {
+                    start.setHours(9, 0, 0)
+                    end.setHours(12, 0, 0)
+                }
+                return now.getHours() >= start.getHours() && now.getHours() <= end.getHours()
+            })
+            for (const hotel of data.hotels) {
+                for (const flash of flashSale) {
+                    if (hotel.ID === flash.IDKhachSan) {
+                        flashSale.TenKhachSan = hotel.Ten
+                    }
+                }
+                for (const voucher of vouchers) {
+                    if (hotel.ID === voucher.IDKhachSan) {
+                        voucher.TenKhachSan = hotel.Ten
+                        voucher.HinhAnh = hotel.HinhAnh
+                    }
+                }
+            }
+
+            const orders = data.orders.filter((order) => {
+                return order.IDKhachHang === user.ID && order.TrangThai === 1
+            })
+            const roomMap = {}
+            for (const room of data.rooms) {
+                roomMap[room.ID] = room.HinhAnh.HinhAnh
+            }
+
+            for (const order of orders) {
+                const roomImage = roomMap[order.IDPhong]
+                if (roomImage) {
+                    order.HinhAnh = roomImage
+                }
+            }
+            console.log(orders)
+            console.log('orderssssss')
+            setVoucher(vouchers)
+            setOrder(orders)
+            setFlashSale(flashSale)
+        }
+    }, [data])
+    const formatMoney = (amount) => {
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
     }
     const { LogoutHandler } = useContext(DataContext)
     const handleLogout = () => {
@@ -163,125 +249,51 @@ function Header() {
                                 <button className={classes.readAll}>Đọc tất cả</button>
                             </div>
                             <div>
-                                <a className={`${classes.hoverTag} `}>
-                                    <div className={classes.item}>
-                                        <img
-                                            src="https://assets.tripi.vn/assets/show/mkt-portal/img/467415RbtoPcDv/-54-off.png"
-                                            alt="icon_type_notify"
-                                        />
-                                        <div className={classes.info}>
-                                            <span className={classes.info1}>
-                                                SALE SỐC💥The Cap Vũng Tàu giảm tới -54%
-                                            </span>
-                                            <span className={classes.info2}>
-                                                Hưởng trọn nhiều ưu đãi độc quyền khi đặt phòng tại MyTravel
-                                            </span>
-                                            <span className={classes.dateAnnounce}>02/5/2023</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a className={`${classes.hoverTag} `}>
-                                    <div className={classes.item}>
-                                        <img
-                                            src="https://assets.tripi.vn/assets/show/mkt-portal/img/467415RbtoPcDv/-54-off.png"
-                                            alt="icon_type_notify"
-                                        />
-                                        <div className={classes.info}>
-                                            <span className={classes.info1}>
-                                                SALE SỐC💥The Cap Vũng Tàu giảm tới -54%
-                                            </span>
-                                            <span className={classes.info2}>
-                                                Hưởng trọn nhiều ưu đãi độc quyền khi đặt phòng tại MyTravel
-                                            </span>
-                                            <span className={classes.dateAnnounce}>02/5/2023</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a className={`${classes.hoverTag} `}>
-                                    <div className={classes.item}>
-                                        <img
-                                            src="https://assets.tripi.vn/assets/show/mkt-portal/img/467415RbtoPcDv/-54-off.png"
-                                            alt="icon_type_notify"
-                                        />
-                                        <div className={classes.info}>
-                                            <span className={classes.info1}>
-                                                SALE SỐC💥The Cap Vũng Tàu giảm tới -54%
-                                            </span>
-                                            <span className={classes.info2}>
-                                                Hưởng trọn nhiều ưu đãi độc quyền khi đặt phòng tại MyTravel
-                                            </span>
-                                            <span className={classes.dateAnnounce}>02/5/2023</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a className={`${classes.hoverTag} `}>
-                                    <div className={classes.item}>
-                                        <img
-                                            src="https://assets.tripi.vn/assets/show/mkt-portal/img/467415RbtoPcDv/-54-off.png"
-                                            alt="icon_type_notify"
-                                        />
-                                        <div className={classes.info}>
-                                            <span className={classes.info1}>
-                                                SALE SỐC💥The Cap Vũng Tàu giảm tới -54%
-                                            </span>
-                                            <span className={classes.info2}>
-                                                Hưởng trọn nhiều ưu đãi độc quyền khi đặt phòng tại MyTravel
-                                            </span>
-                                            <span className={classes.dateAnnounce}>02/5/2023</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a className={`${classes.hoverTag} `}>
-                                    <div className={classes.item}>
-                                        <img
-                                            src="https://assets.tripi.vn/assets/show/mkt-portal/img/467415RbtoPcDv/-54-off.png"
-                                            alt="icon_type_notify"
-                                        />
-                                        <div className={classes.info}>
-                                            <span className={classes.info1}>
-                                                SALE SỐC💥The Cap Vũng Tàu giảm tới -54%
-                                            </span>
-                                            <span className={classes.info2}>
-                                                Hưởng trọn nhiều ưu đãi độc quyền khi đặt phòng tại MyTravel
-                                            </span>
-                                            <span className={classes.dateAnnounce}>02/5/2023</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a className={`${classes.hoverTag} `}>
-                                    <div className={classes.item}>
-                                        <img
-                                            src="https://assets.tripi.vn/assets/show/mkt-portal/img/467415RbtoPcDv/-54-off.png"
-                                            alt="icon_type_notify"
-                                        />
-                                        <div className={classes.info}>
-                                            <span className={classes.info1}>
-                                                SALE SỐC💥The Cap Vũng Tàu giảm tới -54%
-                                            </span>
-                                            <span className={classes.info2}>
-                                                Hưởng trọn nhiều ưu đãi độc quyền khi đặt phòng tại MyTravel
-                                            </span>
-                                            <span className={classes.dateAnnounce}>02/5/2023</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a className={`${classes.hoverTag} `}>
-                                    <div className={classes.item}>
-                                        <img
-                                            src="https://assets.tripi.vn/assets/show/mkt-portal/img/467415RbtoPcDv/-54-off.png"
-                                            alt="icon_type_notify"
-                                        />
-                                        <div className={classes.info}>
-                                            <span className={classes.info1}>
-                                                SALE SỐC💥The Cap Vũng Tàu giảm tới -54%
-                                            </span>
-                                            <span className={classes.info2}>
-                                                Hưởng trọn nhiều ưu đãi độc quyền khi đặt phòng tại MyTravel
-                                            </span>
-                                            <span className={classes.dateAnnounce}>02/5/2023</span>
-                                        </div>
-                                    </div>
-                                </a>
+                                {order &&
+                                    order.map((oders) => (
+                                        <Link to={`/checkout/${oders.IDPhong}/${oders.MaDatPhong}`}>
+                                            <div
+                                                onClick={announceChangeHandler}
+                                                className={`${classes.hoverTag} `}
+                                                key={oders.MaDatPhong}
+                                            >
+                                                <div className={classes.item}>
+                                                    <img src={oders.HinhAnh} alt="icon_type_notify" />
+                                                    <div className={classes.info}>
+                                                        <span className={classes.info1}>
+                                                            Bạn có mã đơn phòng chưa thanh toán: {oders.MaDatPhong}
+                                                        </span>
+                                                        <span className={classes.info2}>
+                                                            Với số tiền phải thanh toán là:{' '}
+                                                            {formatMoney(+oders.TongTien)}
+                                                        </span>
+                                                        <span className={classes.dateAnnounce}>
+                                                            {oders.ThoiGianDat}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                {voucher &&
+                                    voucher.map((voucher) => {
+                                        return (
+                                            <div
+                                                onClick={announceChangeHandler}
+                                                className={`${classes.hoverTag} `}
+                                                key={voucher.ID}
+                                            >
+                                                <div className={classes.item}>
+                                                    <img src={voucher.HinhAnh} alt="icon_type_notify" />
+                                                    <div className={classes.info}>
+                                                        <span className={classes.info1}>{voucher.TenKhachSan}</span>
+                                                        <span className={classes.info2}>{voucher.TieuDe}</span>
+                                                        <span className={classes.dateAnnounce}>{voucher.BatDau}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
                             </div>
                         </div>
                     </div>

@@ -128,6 +128,9 @@
                     font-size: 14px;
                     line-height: 17px;
                     background-color: rgb(255, 255, 255);
+                    &:hover {
+                        background-color: rgb(255, 247, 249);
+                    }
                     img {
                         width: 56px;
                         height: 56px;

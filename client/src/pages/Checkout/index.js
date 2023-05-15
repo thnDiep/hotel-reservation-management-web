@@ -55,7 +55,8 @@ function generateBookingID() {
 const Checkout = () => {
     const user = JSON.parse(localStorage.getItem('user'))
     const date = JSON.parse(localStorage.getItem('dates'))
-    const { id } = useParams()
+    const { id, active } = useParams()
+    console.log(id)
     const { data, handleData } = useContext(DataContext)
     const [hotel, setHotel] = useState()
     const [room, setRoom] = useState()
@@ -103,11 +104,6 @@ const Checkout = () => {
 
                 return isBetween && checkIDKS && checkKG
             })
-            // for (const fl of flashSale) {
-            //     ;[fl.KhungGio] = data.periods.filter((item) => {
-            //         return item.ID === fl.IDKhungGio
-            //     })
-            // }
             const flashSale = flashSale1
                 .filter((item) => {
                     const now = new Date()
@@ -164,7 +160,7 @@ const Checkout = () => {
             setRoom(room)
         }
     }, [data])
-    const [selectedPayment, setSelectedPayment] = useState('')
+    const [selectedPayment, setSelectedPayment] = useState('paypal')
     const [check, setCheck] = useState(false)
     const handleCheckboxChange = (event) => {
         setCheck(!check)
@@ -222,6 +218,21 @@ const Checkout = () => {
         dispatchNameRecieve({ type: 'input_blur' })
     }
 
+    const handleThanhToan = async () => {
+        try {
+            const res = await axios.get('http://localhost:8800/cks/order/update', {
+                params: { MaDatPhong: active, TrangThai: 2 },
+            })
+            if (res.status === 200) {
+                if (selectedPayment === 'paypal') {
+                    Nav(`/checkout/QRPay/${active}`)
+                }
+                Nav(`/checkout/success/${active}`)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (nameState.isValid) {
@@ -260,8 +271,8 @@ const Checkout = () => {
             const NgayNhanPhong = `${dateNhan.getFullYear()}-${dateNhan.getMonth() + 1}-${dateNhan.getDate()}`
             const NgayTraPhong = `${dateTra.getFullYear()}-${dateTra.getMonth() + 1}-${dateTra.getDate()}`
             const ThoiGianDat = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
-            const IDKhuyenMai = hotel?.voucher || null
-            const IDFlashSale = hotel?.flashSale || null
+            const IDKhuyenMai = hotel?.voucher.ID || null
+            const IDFlashSale = hotel?.flashSale.ID || null
             const MaDatPhong = generateBookingID()
             const dondatphong = {
                 MaDatPhong: MaDatPhong,
@@ -274,7 +285,7 @@ const Checkout = () => {
                 IDKhuyenMai: IDKhuyenMai,
                 IDFlashSale: IDFlashSale,
                 IDKhachHang: user.ID,
-                IDPhong: id,
+                IDPhong: +id,
             }
             const res = await axios.post('http://localhost:8800/user/order', {
                 nguoidung,
@@ -511,7 +522,7 @@ const Checkout = () => {
                             </div>
                         )}
                         <div className={styles.infor__submit}>
-                            {check ? (
+                            {active ? (
                                 <>
                                     <p className={styles.nameTitle}>Phương thức thanh toán</p>
                                     <p className={styles.inforConfirm}>
@@ -606,7 +617,7 @@ const Checkout = () => {
                                                         </linearGradient>
                                                     </defs>
                                                 </svg>
-                                                <span>Thanh toán paypall</span>
+                                                <span>Thanh toán QR pay</span>
                                             </div>
                                             <FormControlLabel
                                                 control={
@@ -622,7 +633,9 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                     <div className={styles.submitButton}>
-                                        <ButtonPrimary className="btnLarge">Thanh toán</ButtonPrimary>
+                                        <ButtonPrimary className="btnLarge" onSubmit={handleThanhToan}>
+                                            Thanh toán
+                                        </ButtonPrimary>
                                         <p>Bằng cách nhấn vào nút này, bạn công nhận mình đã đọc và đồng ý với</p>
                                         <p>Điều kiện và Điều khoản của chúng tôi</p>
                                     </div>
