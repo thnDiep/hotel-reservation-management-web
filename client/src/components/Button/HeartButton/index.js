@@ -7,7 +7,7 @@ function HeartButton({ liked, IDKhachSan, handleClick }) {
 
     const user = JSON.parse(localStorage.getItem('user'))
 
-    const data = { IDKhachHang: user.ID, IDKhachSan }
+    const data = { IDKhachHang: user?.ID, IDKhachSan }
     function onClickHeart(IDKhachSan, liked) {
         if (handleClick) {
             handleClick(IDKhachSan, liked)

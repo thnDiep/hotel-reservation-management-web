@@ -27,7 +27,7 @@ function Header() {
     const [flashSale, setFlashSale] = useState(null)
     const [order, setOrder] = useState(null)
     useEffect(() => {
-        if (data) {
+        if (data && user) {
             const vouchers = data.promotions.filter((voucher) => {
                 const now = moment()
                 let isBetween = false
@@ -84,7 +84,7 @@ function Header() {
             }
 
             const orders = data.orders.filter((order) => {
-                return order.IDKhachHang === user.ID && order.TrangThai === 1
+                return order.IDKhachHang === user?.ID && order.TrangThai === 1
             })
             const roomMap = {}
             for (const room of data.rooms) {
@@ -250,6 +250,7 @@ function Header() {
                             </div>
                             <div>
                                 {order &&
+                                    user &&
                                     order.map((oders) => (
                                         <Link to={`/checkout/${oders.IDPhong}/${oders.MaDatPhong}`}>
                                             <div
@@ -276,6 +277,7 @@ function Header() {
                                         </Link>
                                     ))}
                                 {voucher &&
+                                    user &&
                                     voucher.map((voucher) => {
                                         return (
                                             <div
