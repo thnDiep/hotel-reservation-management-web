@@ -140,12 +140,17 @@ function HotelTable({ data, option }) {
                                                     {
                                                         active: data.TrangThai === 0,
                                                         pending: data.TrangThai === 1,
+                                                        primary: data.TrangThai === 2,
                                                     },
                                                     styles.statusPending,
                                                     data.TrangThai === 1 && styles.statusPending1,
                                                 )}
                                             >
-                                                {data.TrangThai === 0 ? 'Đã duyệt' : 'Chờ duyệt'}
+                                                {data.TrangThai === 0
+                                                    ? 'Chờ duyệt'
+                                                    : data.TrangThai === 1
+                                                    ? 'Chưa thanh toán'
+                                                    : 'Đã hoàn tất'}
                                             </div>
                                         </button>
                                     </td>
@@ -167,11 +172,12 @@ function HotelTable({ data, option }) {
     )
 }
 const OrderManagement = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
     const [data, setData] = useState(null)
     const [orderO, setOrderO] = useState(null)
     const [option, setOption] = useState([])
     useEffect(() => {
-        Axios.get('http://localhost:8800/cks/order', { params: { idCKS: 8 } })
+        Axios.get('http://localhost:8800/cks/order', { params: { idCKS: user.ID } })
             .then((response) => {
                 setData(response.data.orders)
                 setOrderO(response.data.orders)
@@ -188,10 +194,12 @@ const OrderManagement = () => {
     const handleActive = (value) => {
         setActive(value)
         if (value === 1 && value !== active) {
-            setData(orderO.filter((key) => key.TrangThai === 0))
-        } else if (value === 2 && value !== active) {
             setData(orderO.filter((key) => key.TrangThai === 1))
-        } else {
+        } else if (value === 2 && value !== active) {
+            setData(orderO.filter((key) => key.TrangThai === 0))
+        } else if (value === 3 && value !== active) {
+            setData(orderO.filter((key) => key.TrangThai === 2))
+        } else if (value === 0 && value !== active) {
             setData(orderO)
         }
         setActive(value)
@@ -245,7 +253,10 @@ const OrderManagement = () => {
             })
     }
     function handleDuyetHotel() {
-        Axios.get('http://localhost:8800/cks/order/update', { params: { MaDatPhong: orderActive.MaDatPhong } })
+        console.log('ấdasd')
+        Axios.get('http://localhost:8800/cks/order/update', {
+            params: { MaDatPhong: orderActive.MaDatPhong, TrangThai: 1 },
+        })
             .then(() => {
                 setShowInformModal(true)
 
@@ -254,7 +265,7 @@ const OrderManagement = () => {
                 }, 1000)
                 setData(
                     data.map((key) => {
-                        return key.MaDatPhong === orderActive.MaDatPhong ? { ...key, TrangThai: 0 } : key
+                        return key.MaDatPhong === orderActive.MaDatPhong ? { ...key, TrangThai: 1 } : key
                     }),
                 )
                 setOrderActive(null)
@@ -284,7 +295,11 @@ const OrderManagement = () => {
                             <TitleLinkButton name="Đã xóa" className="btnChoose"></TitleLinkButton>
                         </li>
                     </ul> */}
-                    <NavHandle list={['Tất cả', 'đã duyệt', 'chờ duyệt']} active={active} onActive={handleActive} />
+                    <NavHandle
+                        list={['Tất cả', 'Chưa thanh toán', 'Chờ duyệt', 'Đã hoàn tất']}
+                        active={active}
+                        onActive={handleActive}
+                    />
                 </div>
                 <div className="d-flex align-items-center mb-2">
                     <div className="input-group">

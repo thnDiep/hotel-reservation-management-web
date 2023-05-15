@@ -50,12 +50,15 @@ export const login = async (req, res, next) => {
         const [passAvailable] = await authModel.findByEmailToCheckPassword(
           req.body.Email
         )
-        //console.log(passAvailable);
         const ret = bcrypt.compareSync(req.body.MatKhau, passAvailable.MatKhau)
-        //console.log(ret);
         if (!ret) {
-          console.log("thanhCong")
           return next(res.status(400).send("Email và Password không đúng"))
+        }
+        let ThongBao = ""
+        if (emailAvailable.TrangThai === 0) {
+          ThongBao = "Tài khoản đã bị khóa"
+        } else {
+          ThongBao = "Đăng nhập thành công"
         }
 
         let link
@@ -66,7 +69,8 @@ export const login = async (req, res, next) => {
         } else if (emailAvailable.PhanQuyen == 2) {
           link = "/admin"
         }
-        res.json({ emailAvailable, link })
+
+        res.json({ emailAvailable, link, ThongBao })
       }
     }
   } catch (err) {

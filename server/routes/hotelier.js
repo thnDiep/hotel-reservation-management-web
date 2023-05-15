@@ -31,7 +31,8 @@ router.get("/order", order)
 router.get("/order/update", async (req, res, next) => {
   try {
     const MaDatPhong = req.query.MaDatPhong
-    await orderModel.updateTrangThai(MaDatPhong)
+    const TrangThai = req.query.TrangThai
+    await orderModel.updateTrangThai(MaDatPhong, TrangThai)
     res.json({ MaDatPhong })
   } catch (err) {
     next(err)

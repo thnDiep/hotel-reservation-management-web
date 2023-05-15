@@ -12,7 +12,6 @@ import { useParams } from 'react-router-dom'
 function OrderDetail({ route, navigate }) {
     const [data, setData] = useState()
     const { id } = useParams()
-    console.log(id)
 
     useEffect(() => {
         Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: id } })

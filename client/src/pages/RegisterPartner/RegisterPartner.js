@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react'
 import classes from './RegisterPartner.module.scss'
 import { ButtonPrimary } from '~/components'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
 const RegisterPartner = () => {
+    const Nav = useNavigate()
     const [enteredNameCompany, setEnteredNameCompany] = useState(() => {
         return { value: '', error: '', isValid: false }
     })
@@ -251,9 +256,13 @@ const RegisterPartner = () => {
                 PhanQuyen: 1,
                 MaSoThue: enteredTaxCode.value,
             })
+            if (res.status === 200) {
+                await Swal.fire('Đăng ký chủ khách sạn thành công', 'Nhấn nút để đến trang đăng nhập', 'success')
+                Nav('/login')
+            }
         } catch (err) {
-            console.log(err)
-            console.log('sai')
+            //console.log(err)
+            await Swal.fire('Đăng ký thất bại', 'Nhấn nút để thực hiện lại việc đăng ký', 'error')
         }
     }
 
