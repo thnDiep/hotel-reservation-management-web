@@ -138,16 +138,23 @@ function HotelCKSTable({ option, hotels }) {
                                         type={9}
                                         idActive={hotel.ID}
                                         list={option}
+                                        disables={[hotel.TrangThai === 2, false]}
                                         hides={[
                                             false,
                                             false,
-                                            false,
-                                            false,
-                                            hotel.TrangThai !== 0,
-                                            hotel.TrangThai !== 1,
-                                            hotel.TrangThai !== 2,
-                                            hotel.TrangThai !== 3,
+                                            hotel.TrangThai === 3 || hotel.TrangThai === 2,
+                                            hotel.TrangThai === 1 || hotel.TrangThai === 2,
                                         ]}
+                                        // hides={[
+                                        //     false,
+                                        //     false,
+                                        //     false,
+                                        //     false,
+                                        //     hotel.TrangThai !== 0,
+                                        //     hotel.TrangThai !== 1,
+                                        //     hotel.TrangThai !== 2,
+                                        //     hotel.TrangThai !== 3,
+                                        // ]}
                                     />
                                 </td>
                             </tr>

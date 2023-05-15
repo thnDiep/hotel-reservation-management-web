@@ -17,20 +17,22 @@ function Hotel() {
     const [showConformModal, setShowConformModal] = useState(false)
     const [showInformModal, setShowInformModal] = useState(false)
 
-    const { data } = useContext(DataContext)
+    const { data, handleData } = useContext(DataContext)
     const [option, setOption] = useState([])
-    const [hotels, setHotels] = useState()
+    const [hotels, setHotels] = useState(data.hotels)
     const [hotelA, setHotelA] = useState(null)
 
     useEffect(() => {
+        console.log('render')
         if (data) {
-            console.log(data.hotels)
             setHotels(data.hotels)
+            // console.log(data)
+            // console.log(data.hotels)
             setOption([
                 {
                     name: 'Xem khách sạn',
                     handle: function (idActive) {
-                        navigate(`/hotels/detail/${idActive}`)
+                        navigate(`/admin/hotels/detail/${idActive}`)
                     },
                 },
                 {
@@ -40,8 +42,7 @@ function Hotel() {
                 {
                     name: 'Duyệt',
                     handle: function (idActive) {
-                        handleActiveHotel(idActive)
-                        // updateHotel(hotelActive)
+                        handleUpdateState(idActive, 1)
                     },
                 },
                 {
@@ -55,16 +56,53 @@ function Hotel() {
                 {
                     name: 'Gỡ khóa',
                     handle: function (idActive) {
-                        handleActiveHotel(idActive)
+                        handleUpdateState(idActive, 1)
                     },
                 },
             ])
         }
     }, [data])
 
-    function updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh) {
-        Axios.post('http://localhost:8800/hotel/update', {
-            khachsan: hotelActive,
+    // function updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh) {
+    //     Axios.post('http://localhost:8800/hotel/update', {
+    //         khachsan: hotelActive,
+    //     })
+    //         .then(() => {
+    //             setShowInformModal(true)
+
+    //             window.setTimeout(function () {
+    //                 setShowInformModal(false)
+    //             }, 1000)
+
+    //             hotelActive.ChuKhachSan = ChuKhachSan
+    //             hotelActive.DanhGia = DanhGia
+    //             hotelActive.HinhAnh = HinhAnh
+
+    //             const index = hotels.findIndex((item) => item.ID === hotelActive.ID)
+    //             hotels[index].TrangThai = hotelActive.TrangThai
+    //             setHotels(hotels)
+    //             setHotelA(null)
+    //             setShowConformModal(false)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //             setShowConformModal(false)
+    //         })
+    // }
+
+    function handleUpdateState(idActive, state) {
+        // const hotelActive = data.hotels.find((key) => key.ID === idActive)
+        // hotelActive.TrangThai = 1
+        // const ChuKhachSan = hotelActive.ChuKhachSan
+        // const DanhGia = hotelActive.DanhGia
+        // const HinhAnh = hotelActive.HinhAnh
+        // delete hotelActive.ChuKhachSan
+        // delete hotelActive.DanhGia
+        // delete hotelActive.HinhAnh
+        // updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh)
+        Axios.post('http://localhost:8800/hotel/update/state', {
+            id: idActive,
+            state,
         })
             .then(() => {
                 setShowInformModal(true)
@@ -73,24 +111,11 @@ function Hotel() {
                     setShowInformModal(false)
                 }, 1000)
 
-                hotelActive.ChuKhachSan = ChuKhachSan
-                hotelActive.DanhGia = DanhGia
-                hotelActive.HinhAnh = HinhAnh
+                const index = hotels.findIndex((item) => item.ID === idActive)
+                hotels[index].TrangThai = state
 
-                // for (let item of hotels) {
-                //     if (item.ID === hotelActive.ID) {
-                //         item = hotelActive
-
-                //         console.log(item)
-                //     }
-                // }
-
-                const index = hotels.findIndex((item) => item.ID === hotelActive.ID)
-                hotels[index].TrangThai = hotelActive.TrangThai
-                // hotel
-                // console.log(index)
-                // console.log('hotel: ', hotels)
                 setHotels(hotels)
+                handleData({ ...data, hotels: hotels })
                 setHotelA(null)
                 setShowConformModal(false)
             })
@@ -100,34 +125,19 @@ function Hotel() {
             })
     }
 
-    function handleActiveHotel(idActive) {
-        const hotelActive = data.hotels.find((key) => key.ID === idActive)
-
-        hotelActive.TrangThai = 1
-
-        const ChuKhachSan = hotelActive.ChuKhachSan
-        const DanhGia = hotelActive.DanhGia
-        const HinhAnh = hotelActive.HinhAnh
-
-        delete hotelActive.ChuKhachSan
-        delete hotelActive.DanhGia
-        delete hotelActive.HinhAnh
-
-        updateHotel(hotelActive, ChuKhachSan, DanhGia, HinhAnh)
-    }
-
     function handleBlockHotel() {
-        hotelA.TrangThai = 2
+        // hotelA.TrangThai = 2
 
-        const ChuKhachSan = hotelA.ChuKhachSan
-        const DanhGia = hotelA.DanhGia
-        const HinhAnh = hotelA.HinhAnh
+        // const ChuKhachSan = hotelA.ChuKhachSan
+        // const DanhGia = hotelA.DanhGia
+        // const HinhAnh = hotelA.HinhAnh
 
-        delete hotelA.ChuKhachSan
-        delete hotelA.DanhGia
-        delete hotelA.HinhAnh
+        // delete hotelA.ChuKhachSan
+        // delete hotelA.DanhGia
+        // delete hotelA.HinhAnh
 
-        updateHotel(hotelA, ChuKhachSan, DanhGia, HinhAnh)
+        // updateHotel(hotelA, ChuKhachSan, DanhGia, HinhAnh)
+        handleUpdateState(hotelA.ID, 2)
     }
 
     return (

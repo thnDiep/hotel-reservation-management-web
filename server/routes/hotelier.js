@@ -162,6 +162,7 @@ router.get("/hotel/stop", async (req, res, next) => {
     next(err)
   }
 })
+
 router.get("/room/stop", async (req, res, next) => {
   try {
     const IDPhong = req.query.IDPhong

@@ -52,7 +52,7 @@ router.get("/", async (req, res, next) => {
 
       res.json({ hotels, promotions, periods, curUser })
       // } else if (curUser.PhanQuyen === 0) {
-    } else if (curUser.PhanQuyen === 0) {
+    } else {
       // User
       const hotels = await hotelModel.getAll()
       const users = await authModel.getAll()
@@ -99,30 +99,46 @@ router.get("/", async (req, res, next) => {
         periods,
         likes,
       })
-    } else if (curUser.PhanQuyen === 2) {
-      const hotels = await hotelModel.getAll()
-      const users = await authModel.getAll()
-      const rates = await feedbackModel.getAll()
-      const hotelImages = await hotelModel.getAllImage()
-      const places = await placeModal.getAll()
-      for (const hotel of hotels) {
-        hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan)
-        hotel.DanhGia = await feedbackModel.getAvgRate(hotel.ID)
-        const HinhAnh = await hotelModel.getImage(hotel.ID)
-        hotel.HinhAnh = HinhAnh[0].HinhAnh
-        if (hotel.DanhGia) {
-          hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2)
-        } else {
-          hotel.DanhGia = Number(0).toFixed(1)
-        }
-      }
-      res.json({
-        hotels,
-        users,
-        rates,
-        hotelImages,
-        places,
-      })
+      // } else if (curUser.PhanQuyen === 2) {
+      //   const hotels = await hotelModel.getAll()
+      //   const users = await authModel.getAll()
+      //   const rates = await feedbackModel.getAll()
+      //   const hotelImages = await hotelModel.getAllImage()
+      //   const places = await placeModal.getAll()
+      //   const rooms = await roomModel.getAll()
+
+      //   for (const hotel of hotels) {
+      //     hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan)
+      //     hotel.DanhGia = await feedbackModel.getAvgRate(hotel.ID)
+      //     const HinhAnh = await hotelModel.getImage(hotel.ID)
+      //     hotel.HinhAnh = HinhAnh[0].HinhAnh
+      //     if (hotel.DanhGia) {
+      //       hotel.DanhGia = parseInt(hotel.DanhGia).toFixed(2)
+      //     } else {
+      //       hotel.DanhGia = Number(0).toFixed(1)
+      //     }
+      //   }
+      //   for (const room of rooms) {
+      //     const [endows] = await roomModel.getEndow(room.ID)
+      //     const [HinhAnh] = await roomModel.getHinhAnh(room.ID)
+      //     room.UuDai = endows
+      //     room.HinhAnh = HinhAnh
+      //     const [tienNghi] = await facilityModel.getTienIchPhong(room.ID)
+      //     const Giuong = await facilityModel.getGiuong(room.ID)
+      //     room.giuong = Giuong
+      //     room.tienNghi = await facilityModel.getNameFacilityRoom(
+      //       tienNghi.IDTienNghi,
+      //       room.ID
+      //     )
+      //   }
+      //   res.json({
+      //     hotels,
+      //     users,
+      //     rates,
+      //     rooms,
+      //     hotelImages,
+      //     places,
+      //   })
     }
   } catch (err) {
     next(err)

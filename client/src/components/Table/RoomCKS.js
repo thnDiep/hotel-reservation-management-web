@@ -178,7 +178,7 @@ function RoomCKS({ rooms, option }) {
                                     <div className={clsx('btn-1', 'active', styles.status)}>Còn phòng</div>
                                 )}
                                 {room.TrangThai === 2 && (
-                                    <div className={clsx('btn-1', 'blocked', styles.status)}>Bị khóa</div>
+                                    <div className={clsx('btn-1', 'stoped', styles.status)}>Tạm ngưng</div>
                                 )}
                             </td>
                             <td className={styles.last}>

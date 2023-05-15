@@ -19,8 +19,8 @@ function Account() {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [showInformModal, setShowInformModal] = useState(false)
 
-    const { data } = useContext(DataContext)
-    const [users, setUsers] = useState()
+    const { data, handleData } = useContext(DataContext)
+    const [users, setUsers] = useState(data.users)
     const [userActive, setUserActive] = useState(null)
 
     useEffect(() => {
@@ -38,10 +38,7 @@ function Account() {
                 {
                     name: 'Bỏ vô hiệu hóa',
                     handle: function (idActive) {
-                        const userActive = data.users.find((key) => key.ID === idActive)
-                        userActive.TrangThai = 1
-
-                        updateUser(userActive)
+                        handleUpdateState(idActive, 1)
                     },
                 },
                 {
@@ -67,9 +64,44 @@ function Account() {
     //         })
     // }, [])
 
-    function updateUser(userActive) {
-        Axios.post('http://localhost:8800/profile/update', {
-            info: userActive,
+    // function updateUser(userActive) {
+    //     Axios.post('http://localhost:8800/profile/update', {
+    //         info: userActive,
+    //     })
+    //         .then(() => {
+    //             setShowInformModal(true)
+
+    //             window.setTimeout(function () {
+    //                 setShowInformModal(false)
+    //             }, 1000)
+
+    //             // for (let user of users) {
+    //             //     if (user.ID === userActive.ID) {
+    //             //         user = userActive
+    //             //     }
+    //             // }
+
+    //             const index = users.findIndex((item) => item.ID === userActive.ID)
+    //             users[index].TrangThai = userActive.TrangThai
+
+    //             setUsers(users)
+    //             setUserActive(null)
+    //             setShowBlockModal(false)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //             setShowDeleteModal(false)
+    //         })
+    // }
+
+    function handleBlockUser() {
+        handleUpdateState(userActive.ID, 0)
+    }
+
+    function handleUpdateState(idActive, state) {
+        Axios.post('http://localhost:8800/profile/update/state', {
+            id: idActive,
+            state,
         })
             .then(() => {
                 setShowInformModal(true)
@@ -78,28 +110,17 @@ function Account() {
                     setShowInformModal(false)
                 }, 1000)
 
-                // for (let user of users) {
-                //     if (user.ID === userActive.ID) {
-                //         user = userActive
-                //     }
-                // }
-
-                const index = users.findIndex((item) => item.ID === userActive.ID)
-                users[index].TrangThai = userActive.TrangThai
-
+                const index = users.findIndex((item) => item.ID === idActive)
+                users[index].TrangThai = state
                 setUsers(users)
+                handleData({ ...data, users: users })
                 setUserActive(null)
                 setShowBlockModal(false)
             })
             .catch((error) => {
                 console.log(error)
-                setShowDeleteModal(false)
+                setShowBlockModal(false)
             })
-    }
-
-    function handleBlockUser() {
-        userActive.TrangThai = 0
-        updateUser(userActive)
     }
 
     function handleDeleteUser() {

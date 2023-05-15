@@ -1,5 +1,5 @@
 import { useState, useEffect, isValidElement } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import styles from './signUp.module.scss'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -119,14 +119,16 @@ function SignUp() {
         <div className={styles.wrap}>
             <div className={styles.form}>
                 <div className={styles.infoWeb}>
-                    <img
-                        className={styles.logo}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
-                    />
-                    <div>
-                        <p className={styles.nameOfWeb}>MyTravel</p>
-                        <p className={styles.description}>Hotels at your fingertips</p>
-                    </div>
+                    <Link to={'/'} className="d-flex">
+                        <img
+                            className={styles.logo}
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
+                        />
+                        <div>
+                            <p className={styles.nameOfWeb}>MyTravel</p>
+                            <p className={styles.description}>Hotels at your fingertips</p>
+                        </div>
+                    </Link>
                 </div>
 
                 <p className={styles.title1}>Đăng ký tài khoản</p>
