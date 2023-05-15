@@ -13,6 +13,7 @@ function App() {
     }
     // const user = JSON.parse(localStorage.getItem('user')) || {}
     const user = JSON.parse(localStorage.getItem('user')) || {}
+    const isLoggedIn1 = localStorage.getItem('isLoggedIn')
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     useEffect(() => {
@@ -20,9 +21,9 @@ function App() {
         if (user.ID !== undefined) {
             id = user.ID
         } else {
-            id = 1
+            id = 'khach'
         }
-        const isLoggedIn1 = JSON.parse(localStorage.getItem('isLoggedIn'))
+        // const isLoggedIn1 = localStorage.getItem('isLoggedIn')
         if (isLoggedIn1 === '1') {
             setIsLoggedIn(true)
         }
@@ -34,7 +35,7 @@ function App() {
             .catch((error) => {
                 console.log(error)
             })
-    }, [isLoggedIn])
+    }, [])
 
     const LogoutHandler = () => {
         localStorage.removeItem('isLoggedIn')
@@ -50,9 +51,12 @@ function App() {
         setIsLoggedIn(false)
     }
     const LoginHandler = (e) => {
+        console.log('fsdfsdfs')
         localStorage.setItem('isLoggedIn', '1')
         setIsLoggedIn(true)
     }
+    console.log(isLoggedIn)
+
     return (
         <Router>
             <div className="App">
@@ -135,14 +139,14 @@ function App() {
                                   }
 
                                   const Page = route.component
-                                  //   console.log(isLoggedIn)
+                                  console.log(isLoggedIn)
                                   //   if (!isLoggedIn && route.path !== '/login') <Navigate to="/login" />
                                   return (
                                       <Route
                                           key={index}
                                           path={route.path}
                                           element={
-                                              isLoggedIn ? (
+                                              isLoggedIn1 === '1' ? (
                                                   <Layout>
                                                       <Page />
                                                   </Layout>
