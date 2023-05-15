@@ -97,12 +97,16 @@ function CardVinpearl(props) {
 
                         <div className="d-flex-column-r">
                             {props.oldPrice ? (
-                                <div className={styles.oldPrice}>{props.oldPrice.toLocaleString()} ₫</div>
+                                <div className={styles.oldPrice}>
+                                    {props.oldPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+                                </div>
                             ) : (
                                 <div></div>
                             )}
                             {props.curPrice ? (
-                                <div className={styles.curPrice}>{props.curPrice.toLocaleString()} ₫</div>
+                                <div className={styles.curPrice}>
+                                    {props.curPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+                                </div>
                             ) : (
                                 <div></div>
                             )}

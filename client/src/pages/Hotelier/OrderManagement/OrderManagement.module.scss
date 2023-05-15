@@ -31,6 +31,9 @@
     padding-top: 0px;
 }
 .cusTable {
+    .highlight {
+        background-color: yellow;
+    }
     tbody {
         border-top: 1px solid #f2f1f1 !important;
         tr:hover {

@@ -85,4 +85,11 @@ export default {
       .where("ID", id)
       .update({ SoPhongTrong: phong.SoPhongTrong - 1 });
   },
+  async updateCongPhong(id) {
+    const [phong] = await db("phong").where("ID", id);
+    console.log(phong);
+    return await db("phong")
+      .where("ID", id)
+      .update({ SoPhongTrong: phong.SoPhongTrong + 1 });
+  },
 };

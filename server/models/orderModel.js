@@ -7,7 +7,7 @@ export default {
   },
   async getRareInformationOfOrder(id) {
     return await db.raw(
-      `SELECT nguoidung.HoTen,nguoidung.HinhAnh, khachsan.Ten, phong.TenLoaiPhong, dondatphong.NgayNhanPhong, dondatphong.NgayTraPhong, nguoidung.SoDienThoai, dondatphong.TongTien, dondatphong.TrangThai, dondatphong.MaDatPhong
+      `SELECT nguoidung.HoTen,nguoidung.HinhAnh, khachsan.Ten,dondatphong.IDPhong, phong.TenLoaiPhong, dondatphong.NgayNhanPhong, dondatphong.NgayTraPhong, nguoidung.SoDienThoai, dondatphong.TongTien, dondatphong.TrangThai, dondatphong.MaDatPhong
       FROM dondatphong
       INNER JOIN nguoidung ON dondatphong.IDKhachHang = nguoidung.ID
       INNER JOIN phong ON dondatphong.IDPhong = phong.ID
@@ -26,6 +26,13 @@ export default {
     return list[0];
   },
 
+  // Tìm đơn đặt phòng bằng số điện thoại
+  async findByPhoneNum(phoneNumber) {
+    return await db.raw(
+      `SELECT * FROM nguoidung, dondatphong WHERE nguoidung.ID = dondatphong.IDKhachHang and nguoidung.SoDienThoai =  ?`,
+      phoneNumber
+    );
+  },
   // Tìm đơn đặt phòng
   async findByIdToCheckPhone(id) {
     let list = null;

@@ -13,6 +13,7 @@ function OrderDetailCard({ MaDatPhong }) {
         console.log(MaDatPhong)
         Axios.get('http://localhost:8800/profile/order/detail', { params: { MaDatPhong: MaDatPhong } })
             .then((response) => {
+                console.log(response.data)
                 setData(response.data[0])
             })
             .catch((error) => {
@@ -105,7 +106,7 @@ function OrderDetailCard({ MaDatPhong }) {
                             <div className={styles.info__part}>
                                 <span className={styles.subTitle}>Nội dung chuyển khoản</span>
                                 <div className="d-flex-js">
-                                    <span className={styles.title}>THANHTOAN 2XFS553392</span>
+                                    <span className={styles.title}>THANHTOAN {data.MaDatPhong}</span>
                                     <div className={styles.copy}>
                                         <svg width="16" height="16" fill="none">
                                             <path
@@ -132,7 +133,7 @@ function OrderDetailCard({ MaDatPhong }) {
 
                     <div className={styles.orderInfo}>
                         <div className={styles.hotelImage}>
-                            <img src="https://img.tripi.vn/cdn-cgi/image/width=320/https://www.googleapis.com/download/storage/v1/b/hotel_image/o/logo%2F4%2F736941.jpg?generation=1563772721779376&alt=media" />
+                            <img src={data.HinhAnhKhachSan} alt="" />
                         </div>
                         <div className={styles.info}>
                             <div className={styles.info__hotel}>
@@ -195,7 +196,7 @@ function OrderDetailCard({ MaDatPhong }) {
                                 </div>
 
                                 <div className={styles.subTitle3}>
-                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" class="jss3676">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
                                         <path
                                             d="M1 19v-2a4 4 0 014-4h4a4 4 0 014 4v2m1-17.87a4 4 0 010 7.75M19 19v-2a4 4 0 00-3-3.85M11 5a4 4 0 11-8 0 4 4 0 018 0z"
                                             stroke="#1A202C"
@@ -208,7 +209,7 @@ function OrderDetailCard({ MaDatPhong }) {
                                 </div>
 
                                 <div className={styles.subTitle3}>
-                                    <svg width="16" height="16" fill="none" class="jss3677">
+                                    <svg width="16" height="16" fill="none">
                                         <path
                                             d="M2.667 7.556V6.222a.889.889 0 01.888-.889h3.556a.889.889 0 01.889.89v1.333"
                                             stroke="#4A5568"
@@ -315,7 +316,9 @@ function OrderDetailCard({ MaDatPhong }) {
                                             <span className={styles.subTitle2}>
                                                 Thời gian nhận phòng dự kiến: &nbsp;
                                             </span>
-                                            <span className={styles.subTitle3}>Tôi chưa biết</span>
+                                            <span className={styles.subTitle3}>
+                                                {moment(data.NgayNhanPhong).format('DD/MM/yyyy')}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -330,58 +333,87 @@ function OrderDetailCard({ MaDatPhong }) {
                                                 {moment(data.NgayTraPhong).diff(data.NgayNhanPhong, 'days')} đêm
                                             </span>
                                             <span>
-                                                {data.Gia} <sup>₫</sup>
+                                                {data.Gia.toLocaleString()} <sup>₫</sup>
                                             </span>
                                         </div>
                                         <div className={styles.price}>
                                             <span>Phụ phí</span>
                                             <span>
-                                                700.000 <sup>₫</sup>
+                                                {data.PhuPhi.toLocaleString()} <sup>₫</sup>
                                             </span>
                                         </div>
                                         <div className={styles.price}>
                                             <span>Thuế và phí dịch vụ khách sạn</span>
                                             <span>
-                                                2.738.203 <sup>₫</sup>
+                                                {data.ThueVaDichVuKhachSan.toLocaleString()} <sup>₫</sup>
                                             </span>
                                         </div>
-                                        <div className={styles.price}>
-                                            <span className={styles.green}>Chúng tôi khớp giá, giảm thêm</span>
-                                            <span className={styles.green}>
-                                                -910.025 <sup>₫</sup>
-                                            </span>
-                                        </div>
-                                        <div className={styles.price}>
-                                            <div>
-                                                <span className={styles.green}>Mã giảm giá</span>
-                                                <span className={styles.code}>CHAOHE2023</span>
+                                        {data.GiamGia < 0 && (
+                                            <div className={styles.price}>
+                                                <span className={styles.green}>Chúng tôi khớp giá, giảm thêm</span>
+                                                <span className={styles.green}>
+                                                    {data.GiamThem.toLocaleString()} <sup>₫</sup>
+                                                </span>
                                             </div>
-                                            <span className={styles.green}>
-                                                -200.000 <sup>₫</sup>
-                                            </span>
-                                        </div>
+                                        )}
+
+                                        {data.GiamGiaKhuyenMai < 0 && (
+                                            <div className={styles.price}>
+                                                <div>
+                                                    <span className={styles.green}>Mã giảm giá</span>
+                                                    <span className={styles.code}>{data.TenKhuyenMai}</span>
+                                                </div>
+                                                <span className={styles.green}>
+                                                    {data.GiamGiaKhuyenMai.toLocaleString()} <sup>₫</sup>
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        {data.GiamGiaFlashSale < 0 && (
+                                            <div className={styles.price}>
+                                                <div>
+                                                    <span className={styles.green}>{data.TieuDeFlashSale}</span>
+                                                </div>
+                                                <span className={styles.green}>
+                                                    {data.GiamGiaFlashSale.toLocaleString()} <sup>₫</sup>
+                                                </span>
+                                            </div>
+                                        )}
+
                                         <div className={clsx(styles.price, styles.total)}>
                                             <span className={styles.subTitle2}>Tổng tiền</span>
                                             <span className={styles.subTitle2}>
-                                                19.294.000 <sup>₫</sup>
+                                                {data.TongTien.toLocaleString()} <sup>₫</sup>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className={styles.info__order__part}>
-                                    <h3 className={styles.title}>Thanh toán</h3>
-                                    <div className={clsx(styles.content1, 'flex-1')}>
-                                        <div className={styles.checkout}>
-                                            <span>Phương thức thanh toán: </span>
-                                            <span>Chuyển khoản ngân hàng</span>
-                                        </div>
-                                        <div className={styles.checkout}>
-                                            <span>Trạng thái</span>
-                                            <span className={clsx(styles.status, styles.success)}>Thành công</span>
+                                {(data.TrangThai === 2 || data.TrangThai === 1) && (
+                                    <div className={styles.info__order__part}>
+                                        <h3 className={styles.title}>Thanh toán</h3>
+
+                                        <div className={clsx(styles.content1, 'flex-1')}>
+                                            <div className={styles.checkout}>
+                                                <span>Phương thức thanh toán</span>
+                                                <span className={`ml-5 ${styles.pay}`}>Chuyển khoản ngân hàng</span>
+                                            </div>
+                                            <div className={styles.checkout}>
+                                                <span>Trạng thái</span>
+                                                {data.TrangThai === 2 && (
+                                                    <span className={clsx(styles.status, styles.success)}>
+                                                        Thành công
+                                                    </span>
+                                                )}
+                                                {data.TrangThai === 1 && (
+                                                    <span className={clsx(styles.status, styles.success)}>
+                                                        Chưa thanh toán
+                                                    </span>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
                         </div>
                     </div>

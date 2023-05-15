@@ -271,8 +271,8 @@ const Checkout = () => {
             const NgayNhanPhong = `${dateNhan.getFullYear()}-${dateNhan.getMonth() + 1}-${dateNhan.getDate()}`
             const NgayTraPhong = `${dateTra.getFullYear()}-${dateTra.getMonth() + 1}-${dateTra.getDate()}`
             const ThoiGianDat = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
-            const IDKhuyenMai = hotel?.voucher.ID || null
-            const IDFlashSale = hotel?.flashSale.ID || null
+            const IDKhuyenMai = hotel?.voucher?.ID || null
+            const IDFlashSale = hotel?.flashSale?.ID || null
             const MaDatPhong = generateBookingID()
             const dondatphong = {
                 MaDatPhong: MaDatPhong,

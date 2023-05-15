@@ -89,10 +89,10 @@ router.get("/room/del", async (req, res, next) => {
 router.get("/order/del", async (req, res, next) => {
   try {
     const MaDatPhong = req.query.MaDatPhong;
-    console.log("Nó nữa meeeeeeeeeeeeeeeeee:", MaDatPhong);
-
+    const IDPhong = req.query.IDPhong;
     if (MaDatPhong) {
       await hotelModel.delOrder(MaDatPhong);
+      await roomModel.updateCongPhong(IDPhong);
     }
 
     res.json({ MaDatPhong });

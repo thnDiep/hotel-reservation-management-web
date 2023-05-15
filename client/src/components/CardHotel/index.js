@@ -108,12 +108,16 @@ function CardHotel(props) {
                 {!props.memberDiscount && (
                     <div className="d-flex-column-r">
                         {props.oldPrice ? (
-                            <div className={styles.oldPrice}>{props.oldPrice.toLocaleString()} ₫</div>
+                            <div className={styles.oldPrice}>
+                                {props.oldPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+                            </div>
                         ) : (
                             <div></div>
                         )}
                         {props.curPrice ? (
-                            <div className={styles.curPrice}>{props.curPrice.toLocaleString()} ₫</div>
+                            <div className={styles.curPrice}>
+                                {props.curPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+                            </div>
                         ) : (
                             <div className={styles.nonePrice}>???</div>
                         )}
@@ -129,8 +133,7 @@ function CardHotel(props) {
                                     <span className={styles.voucherPrice}>
                                         {Math.floor(
                                             props.curPrice - (props.curPrice * props.voucher.PhanTramKM) / 100,
-                                        ).toLocaleString()}{' '}
-                                        ₫
+                                        ).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
                                     </span>
                                 ) : (
                                     <span></span>

@@ -40,7 +40,7 @@ function App() {
     const LogoutHandler = () => {
         localStorage.removeItem('isLoggedIn')
         localStorage.removeItem('user')
-        Axios.get('http://localhost:8800', { params: { idUser: 1 } }) //
+        Axios.get('http://localhost:8800', { params: { idUser: 'khach' } }) //
             .then((response) => {
                 console.log(response.data)
                 setData(response.data)

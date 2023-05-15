@@ -218,7 +218,7 @@
                 padding: 0 40px 0 10px;
                 border-left: 1px solid #e2e8f0;
                 flex-direction: column;
-                padding-left: 6px;
+                padding-left: 50px;
                 align-items: flex-start;
             }
         }
@@ -230,6 +230,9 @@
             &__part {
                 display: flex;
                 padding-top: 24px;
+                .pay {
+                    margin-left: 15px;
+                }
             }
             .title {
                 min-width: 140px;
