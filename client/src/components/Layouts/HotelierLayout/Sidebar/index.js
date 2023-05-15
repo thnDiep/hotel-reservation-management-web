@@ -48,8 +48,8 @@ const Sidebar = ({ checkHide }) => {
     useEffect(() => {
         setSelect(+localStorage.getItem('activeCKS'))
         const [choose] = chooses.filter((item) => item.id === +localStorage.getItem('activeCKS'))
-
-        Nav(choose.link)
+        if (choose) Nav(choose.link)
+        else Nav('/cks/manageHotel')
     }, [])
 
     const { LogoutHandler } = useContext(DataContext)
