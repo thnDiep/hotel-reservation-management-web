@@ -147,10 +147,10 @@ function HotelTable({ data, option }) {
                                                 )}
                                             >
                                                 {data.TrangThai === 0
-                                                    ? 'Đã duyệt'
-                                                    : data.TrangThai === 2
-                                                    ? 'Đã hoàn thành'
-                                                    : 'Chờ duyệt'}
+                                                    ? 'Chờ duyệt'
+                                                    : data.TrangThai === 1
+                                                    ? 'Chưa thanh toán'
+                                                    : 'Đã hoàn tất'}
                                             </div>
                                         </button>
                                     </td>
@@ -194,10 +194,12 @@ const OrderManagement = () => {
     const handleActive = (value) => {
         setActive(value)
         if (value === 1 && value !== active) {
-            setData(orderO.filter((key) => key.TrangThai === 0))
-        } else if (value === 2 && value !== active) {
             setData(orderO.filter((key) => key.TrangThai === 1))
-        } else {
+        } else if (value === 2 && value !== active) {
+            setData(orderO.filter((key) => key.TrangThai === 0))
+        } else if (value === 3 && value !== active) {
+            setData(orderO.filter((key) => key.TrangThai === 2))
+        } else if (value === 0 && value !== active) {
             setData(orderO)
         }
         setActive(value)
@@ -251,7 +253,10 @@ const OrderManagement = () => {
             })
     }
     function handleDuyetHotel() {
-        Axios.get('http://localhost:8800/cks/order/update', { params: { MaDatPhong: orderActive.MaDatPhong } })
+        console.log('ấdasd')
+        Axios.get('http://localhost:8800/cks/order/update', {
+            params: { MaDatPhong: orderActive.MaDatPhong, TrangThai: 1 },
+        })
             .then(() => {
                 setShowInformModal(true)
 
@@ -260,7 +265,7 @@ const OrderManagement = () => {
                 }, 1000)
                 setData(
                     data.map((key) => {
-                        return key.MaDatPhong === orderActive.MaDatPhong ? { ...key, TrangThai: 0 } : key
+                        return key.MaDatPhong === orderActive.MaDatPhong ? { ...key, TrangThai: 1 } : key
                     }),
                 )
                 setOrderActive(null)
@@ -290,7 +295,11 @@ const OrderManagement = () => {
                             <TitleLinkButton name="Đã xóa" className="btnChoose"></TitleLinkButton>
                         </li>
                     </ul> */}
-                    <NavHandle list={['Tất cả', 'đã duyệt', 'chờ duyệt']} active={active} onActive={handleActive} />
+                    <NavHandle
+                        list={['Tất cả', 'Chưa thanh toán', 'Chờ duyệt', 'Đã hoàn tất']}
+                        active={active}
+                        onActive={handleActive}
+                    />
                 </div>
                 <div className="d-flex align-items-center mb-2">
                     <div className="input-group">

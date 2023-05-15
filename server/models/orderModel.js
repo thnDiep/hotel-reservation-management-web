@@ -109,6 +109,11 @@ export default {
     });
     return orderInfo;
   },
+  updateTrangThai(id, trangthai) {
+    return db("dondatphong")
+      .where("MaDatPhong", id)
+      .update({ TrangThai: trangthai });
+  },
   //lấy thông tin đơn đặt hàng
   async getOrderByOrderCode(MaDatPhong) {
     //thông tin đơn đặt phòng
