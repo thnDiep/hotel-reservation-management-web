@@ -8,11 +8,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 // Axios.get('http://localhost:8800')
 //     .then((response) => {
 root.render(
-    // <React.StrictMode>
-    // <GlobalStyles>
-    <App />,
-    // </GlobalStyles>
-    // </React.StrictMode>,
+    <React.StrictMode>
+        {/* <DataContext.Provider value={response.data}> */}
+        <GlobalStyles>
+            <App />
+        </GlobalStyles>
+        {/* </DataContext.Provider> */}
+    </React.StrictMode>,
 )
 // })
 // .catch((error) => {

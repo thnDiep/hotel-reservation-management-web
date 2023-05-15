@@ -45,7 +45,7 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault()
         try {
-            if (localStorage.getItem('user' !== undefined)) {
+            if (localStorage.getItem('user') !== undefined) {
                 localStorage.removeItem('user')
             }
             const res = await axios.post('http://localhost:8800/auth/login', {
