@@ -49,7 +49,10 @@ const Sidebar = ({ checkHide }) => {
         setSelect(+localStorage.getItem('activeCKS'))
         const [choose] = chooses.filter((item) => item.id === +localStorage.getItem('activeCKS'))
         if (choose) Nav(choose.link)
-        else Nav('/cks/manageHotel')
+        else {
+            setSelect(1)
+            Nav('/cks/manageHotel')
+        }
     }, [])
 
     const { LogoutHandler } = useContext(DataContext)

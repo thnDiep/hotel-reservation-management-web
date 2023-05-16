@@ -54,11 +54,9 @@ function Login() {
                 Email: Data.email,
                 MatKhau: Data.pass,
             })
-
+            await LoginHandler(res.data.emailAvailable)
             await Swal.fire('Đăng nhập thành công', 'Nhấn nút để đến trang chủ', 'success')
-            localStorage.setItem('user', JSON.stringify(res.data.emailAvailable))
-            LoginHandler(res.data.emailAvailable)
-            window.location.href = res.data.link
+            Nav(res.data.link)
         } catch (err) {
             await Swal.fire(err.response.data, 'Nhấn nút để thực hiện lại việc đăng nhập', 'error')
         }

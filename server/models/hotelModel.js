@@ -33,7 +33,7 @@ export default {
   },
 
   async getAllImage() {
-    return await db("hinhAnh_khachSan")
+    return await db("hinhanh_khachsan")
   },
 
   // Tìm kiếm khách sạn theo từ khóa

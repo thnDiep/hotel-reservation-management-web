@@ -133,7 +133,7 @@ export default {
     if (orderInfo.length === 0) return null;
 
     //thông tin khách hàng
-    const user = await db("NguoiDung").where("ID", orderInfo[0].IDKhachHang);
+    const user = await db("nguoidung").where("ID", orderInfo[0].IDKhachHang);
 
     //lấy thông tin phòng
     const room = await db("phong").where("ID", orderInfo[0].IDPhong);

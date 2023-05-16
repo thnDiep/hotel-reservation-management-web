@@ -5,6 +5,7 @@ import DataContext from './contexts/DataContext'
 import { DefaultLayout } from '~/components/Layouts'
 import Axios from 'axios'
 import { useContext } from 'react'
+import Swal from 'sweetalert2'
 
 function App() {
     const [data, setData] = useState()
@@ -50,10 +51,19 @@ function App() {
             })
         setIsLoggedIn(false)
     }
-    const LoginHandler = (e) => {
+    const LoginHandler = async (user) => {
         console.log('fsdfsdfs')
         localStorage.setItem('isLoggedIn', '1')
-        setIsLoggedIn(true)
+        await Axios.get('http://localhost:8800', { params: { idUser: user.ID } }) //
+            .then(async (response) => {
+                setData(response.data)
+                localStorage.setItem('user', JSON.stringify(user))
+                setIsLoggedIn(true)
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
     console.log(isLoggedIn)
 
@@ -86,77 +96,77 @@ function App() {
                         })}
                         {user?.PhanQuyen === 2
                             ? publicRoutesAdmin.map((route, index) => {
-                                  let Layout = DefaultLayout
-                                  if (route.layout) {
-                                      Layout = route.layout
-                                  } else if (route.layout === null) {
-                                      Layout = Fragment
-                                  }
+                                let Layout = DefaultLayout
+                                if (route.layout) {
+                                    Layout = route.layout
+                                } else if (route.layout === null) {
+                                    Layout = Fragment
+                                }
 
-                                  const Page = route.component
+                                const Page = route.component
 
-                                  return (
-                                      <Route
-                                          key={index}
-                                          path={route.path}
-                                          element={
-                                              <Layout>
-                                                  <Page />
-                                              </Layout>
-                                          }
-                                      />
-                                  )
-                              })
+                                return (
+                                    <Route
+                                        key={index}
+                                        path={route.path}
+                                        element={
+                                            <Layout>
+                                                <Page />
+                                            </Layout>
+                                        }
+                                    />
+                                )
+                            })
                             : user?.PhanQuyen === 1
-                            ? publicRoutesHotelier.map((route, index) => {
-                                  let Layout = DefaultLayout
-                                  if (route.layout) {
-                                      Layout = route.layout
-                                  } else if (route.layout === null) {
-                                      Layout = Fragment
-                                  }
+                                ? publicRoutesHotelier.map((route, index) => {
+                                    let Layout = DefaultLayout
+                                    if (route.layout) {
+                                        Layout = route.layout
+                                    } else if (route.layout === null) {
+                                        Layout = Fragment
+                                    }
 
-                                  const Page = route.component
+                                    const Page = route.component
 
-                                  return (
-                                      <Route
-                                          key={index}
-                                          path={route.path}
-                                          element={
-                                              <Layout>
-                                                  <Page />
-                                              </Layout>
-                                          }
-                                      />
-                                  )
-                              })
-                            : publicRoutesUser.map((route, index) => {
-                                  let Layout = DefaultLayout
-                                  if (route.layout) {
-                                      Layout = route.layout
-                                  } else if (route.layout === null) {
-                                      Layout = Fragment
-                                  }
+                                    return (
+                                        <Route
+                                            key={index}
+                                            path={route.path}
+                                            element={
+                                                <Layout>
+                                                    <Page />
+                                                </Layout>
+                                            }
+                                        />
+                                    )
+                                })
+                                : publicRoutesUser.map((route, index) => {
+                                    let Layout = DefaultLayout
+                                    if (route.layout) {
+                                        Layout = route.layout
+                                    } else if (route.layout === null) {
+                                        Layout = Fragment
+                                    }
 
-                                  const Page = route.component
-                                  console.log(isLoggedIn)
-                                  //   if (!isLoggedIn && route.path !== '/login') <Navigate to="/login" />
-                                  return (
-                                      <Route
-                                          key={index}
-                                          path={route.path}
-                                          element={
-                                              isLoggedIn1 === '1' ? (
-                                                  <Layout>
-                                                      <Page />
-                                                  </Layout>
-                                              ) : (
-                                                  <Navigate to="/login" />
-                                              )
-                                          }
-                                      />
-                                  )
-                              })}
+                                    const Page = route.component
+                                    console.log(isLoggedIn)
+                                    //   if (!isLoggedIn && route.path !== '/login') <Navigate to="/login" />
+                                    return (
+                                        <Route
+                                            key={index}
+                                            path={route.path}
+                                            element={
+                                                isLoggedIn1 === '1' ? (
+                                                    <Layout>
+                                                        <Page />
+                                                    </Layout>
+                                                ) : (
+                                                    <Navigate to="/login" />
+                                                )
+                                            }
+                                        />
+                                    )
+                                })}
                     </Routes>
                 </DataContext.Provider>
             </div>
