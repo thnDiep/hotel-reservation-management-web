@@ -138,9 +138,9 @@ function HotelTable({ data, option }) {
                                                 className={clsx(
                                                     'btn-1',
                                                     {
-                                                        active: data.TrangThai === 0,
+                                                        primary: data.TrangThai === 0,
                                                         pending: data.TrangThai === 1,
-                                                        primary: data.TrangThai === 2,
+                                                        active: data.TrangThai === 2,
                                                     },
                                                     styles.statusPending,
                                                     data.TrangThai === 1 && styles.statusPending1,
@@ -245,7 +245,7 @@ const OrderManagement = () => {
                 window.setTimeout(function () {
                     setShowInformModal(false)
                 }, 1000)
-                console.log('helllo')
+                // console.log('helllo')
                 setData(data.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong))
                 setOrderO(orderO.filter((key) => key.MaDatPhong !== orderActive.MaDatPhong))
 
@@ -258,7 +258,7 @@ const OrderManagement = () => {
             })
     }
     function handleDuyetHotel() {
-        console.log('ấdasd')
+        // console.log('ấdasd')
         Axios.get('http://localhost:8800/cks/order/update', {
             params: { MaDatPhong: orderActive.MaDatPhong, TrangThai: 1 },
         })
@@ -342,8 +342,8 @@ const OrderManagement = () => {
                                         show={showDeleteModal}
                                         onClose={() => setShowDeleteModal(false)}
                                         onConform={() => handleDeleteHotel()}
-                                        content={`Bạn chắc chắn muốn xóa khách sạn`}
-                                        highlight={orderActive && orderActive.TieuDe}
+                                        content={`Bạn chắc chắn muốn xóa đơn`}
+                                        highlight={orderActive && orderActive.MaDatPhong}
                                     />
                                     {/* Xác nhận Duyệt */}
                                     <ConformModal
@@ -351,8 +351,8 @@ const OrderManagement = () => {
                                         conFormBtn="OK"
                                         onClose={() => setShowDuyetModal(false)}
                                         onConform={() => handleDuyetHotel()}
-                                        content={`Bạn chắc chắn muốn duyệt đơn này không`}
-                                        highlight={orderActive && orderActive.TieuDe}
+                                        content={`Bạn chắc chắn muốn duyệt đơn `}
+                                        highlight={orderActive && orderActive.MaDatPhong}
                                     />
                                     {/* Thông báo thành công */}
                                     {showInformModal && (

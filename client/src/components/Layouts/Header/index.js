@@ -168,7 +168,7 @@ function Header() {
                             ></path>
                         </svg>
                     </TitleLinkButton>
-                    <TitleLinkButton className="btnTitle" name="Hợp tác nhận quà" link="/">
+                    {/* <TitleLinkButton className="btnTitle" name="Hợp tác nhận quà" link="/">
                         <svg width="16" height="16" fill="none" style={{ marginRight: '8px' }}>
                             <path
                                 d="M9.236 5.09L7.893 6.434a2.473 2.473 0 01-3.496 0l-.106-.106L7.337 3.28a4.372 4.372 0 016.182 0v0a4.373 4.373 0 01.662 5.334"
@@ -185,7 +185,8 @@ function Header() {
                                 strokeLinejoin="round"
                             ></path>
                         </svg>
-                    </TitleLinkButton>
+                    </TitleLinkButton> */}
+
                     <TitleLinkButton link="/registerPartner" className="btnTitle" name="Khách hàng doanh nghiệp">
                         <svg width="17" height="16" fill="none" style={{ marginRight: '8px' }}>
                             <path
@@ -207,8 +208,8 @@ function Header() {
                     <TitleLinkButton
                         link="/checkOrder"
                         className="btnTitle"
-                        name="Đơn hàng"
-                        check="true"
+                        name="Kiểm tra đơn hàng"
+                        // check="true"
                     ></TitleLinkButton>
 
                     <TitleLinkButton className="btnTitle" name="VND" link="/" check="true">
@@ -218,6 +219,7 @@ function Header() {
                             alt=""
                         />
                     </TitleLinkButton>
+
                     <div className={classes.annouce}>
                         <svg
                             width="20"

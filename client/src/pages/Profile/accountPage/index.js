@@ -6,7 +6,7 @@ import Profile from '../profile'
 import Axios from 'axios'
 
 function Account() {
-    const [err, setErr] = useState({ name: ' ', email: ' ' })
+    const [err, setErr] = useState({ name: ' ', email: ' ', phone: ' ' })
     const [data, setData] = useState({})
     const [file, setFile] = useState()
     const fileInput = useRef(null)
@@ -49,6 +49,22 @@ function Account() {
             }
         }
     }, [data.Email])
+
+    useEffect(() => {
+        if (data.SoDienThoai !== undefined) {
+            if (data.SoDienThoai.length === 0) {
+                setErr({ ...err, phone: 'Bạn chưa nhập số điện thoại' })
+                document.getElementById('noticeForFieldPhone').value = '0'
+            } else if (data.SoDienThoai.length < 8 || data.SoDienThoai.length > 10) {
+                setErr({ ...err, phone: 'Độ dài không phù hợp (8 - 10)' })
+                document.getElementById('noticeForFieldPhone').value = '0'
+            } else {
+                setErr({ ...err, phone: ' ' })
+                document.getElementById('noticeForFieldPhone').value = '1'
+            }
+        }
+    }, [data.SoDienThoai])
+
     // Get the modal
     var modal = document.getElementById('myModal')
 
@@ -90,6 +106,7 @@ function Account() {
     function handleSubmit() {
         var noticeOfName = document.getElementById('noticeForFieldName').value
         var noticeOfEmail = document.getElementById('noticeForFieldEmail').value
+        var noticeOfPhone = document.getElementById('noticeForFieldPhone').value
 
         if (noticeOfEmail === '1' && noticeOfName === '1') {
             Axios.post('http://localhost:8800/profile/update', { info: data })
@@ -169,7 +186,7 @@ function Account() {
                     {/* So dien thoai */}
                     <div>
                         <label htmlFor="field-numberPhone" className={styles.label}>
-                            Số điện thoại
+                            Số điện thoại<span>*</span>
                         </label>
                         <div>
                             <input
@@ -180,6 +197,9 @@ function Account() {
                                 value={data.SoDienThoai}
                                 onChange={(e) => setData({ ...data, SoDienThoai: e.target.value })}
                             />
+                            <p id="noticeForFieldPhone" className={styles.notice} value="1">
+                                {err.phone}
+                            </p>
                         </div>
                     </div>
                     {/* Dia chi */}
