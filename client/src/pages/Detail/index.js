@@ -65,7 +65,6 @@ const Detail = () => {
     const [reviewHistory, setReviewHistory] = useState(JSON.parse(localStorage.getItem('reviewHistory')) || [])
 
     useEffect(() => {
-        // console.log('change: ', placeHistory)
         localStorage.setItem('reviewHistory', JSON.stringify(reviewHistory))
     }, [reviewHistory])
 
@@ -100,12 +99,12 @@ const Detail = () => {
     }, [data])
 
     const [hotel, setHotel] = useState(null)
+    const [rooms, setRooms] = useState(null)
     useEffect(() => {
         Axios.get('http://localhost:8800/hotel/detail', { params: { idKs: id } })
             .then((response) => {
                 setHotel(response.data)
-                console.log(response.data.infor)
-
+                setRooms(response.data.rooms)
                 if (data) {
                     const hotels = data.hotels.filter((item) => item.IDDiaDiem === response.data.infor.IDDiaDiem)
                     const activeHotels = hotels.filter((item) => item.TrangThai === 1)
@@ -116,8 +115,6 @@ const Detail = () => {
                     if (!reviewHistory.find((item) => item.ID === view.ID)) {
                         setReviewHistory([view, ...reviewHistory])
                     }
-
-                    // console.log([reviewHotels, ...reviewHistory])
                 }
                 window.scrollTo(0, 0)
             })
@@ -134,22 +131,23 @@ const Detail = () => {
                 new Date(order.NgayNhanPhong) < new Date(data1.endDate)
             )
         })
-        console.log(orders)
         // const [check] = hotel.rooms.filter((room) => {
-        for (const room of hotel.rooms) {
+        const updatedRooms = rooms.map((room) => {
             let soPhongTrong = +room.SoPhongTrong
+
             for (const item of orders) {
-                if (hotel.ID === 15) {
-                    console.log(item.IDPhong)
-                    console.log('item.IDPhong')
-                }
-                if (item.IDPhong === room.ID && room.IDKhachSan === hotel.ID) {
-                    soPhongTrong = soPhongTrong - item.SoLuongPhong
+                if (item.IDPhong === room.ID) {
+                    soPhongTrong -= +item.SoLuongPhong
                 }
             }
-            if (soPhongTrong <= 0) room.checkRoom = true
-            else room.checkRoom = false
-        }
+
+            return {
+                ...room,
+                checkRoom: soPhongTrong <= 0,
+            }
+        })
+
+        setRooms(updatedRooms)
     }
     return (
         <React.Fragment>
@@ -205,7 +203,7 @@ const Detail = () => {
                             <hr className={classes.spacing2} id="roomListContainer" />
                             <Search detail={true} setDateDetail={(data) => handleSearch(data)} />
                             <div>
-                                <RoomsList rooms={hotel.rooms} />
+                                <RoomsList rooms={rooms} />
                             </div>
 
                             <div className={classes.subContainer}>

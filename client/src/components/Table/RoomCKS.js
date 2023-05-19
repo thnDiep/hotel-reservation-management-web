@@ -129,7 +129,9 @@ function RoomCKS({ rooms, option }) {
                                 <div className={`${styles.point} ${styles.text}`}>{room.SoNguoi} người</div>
                             </td>
                             <td>
-                                <span className={styles.text2}>{room.soPhong}/{room.SoPhongTrong}</span>
+                                <span className={styles.text2}>
+                                    {room.soPhong}/{room.SoPhongTrong}
+                                </span>
                             </td>
                             <td>
                                 <div className={`${styles.point} d-flex mx-0`}>
@@ -183,7 +185,7 @@ function RoomCKS({ rooms, option }) {
                             </td>
                             <td className={styles.last}>
                                 <DropdownOption
-                                    type={9}
+                                    type={room.IDKhachSan}
                                     idActive={room.ID}
                                     list={option}
                                     hides={[false, false, room.TrangThai === 2, room.TrangThai !== 2]}

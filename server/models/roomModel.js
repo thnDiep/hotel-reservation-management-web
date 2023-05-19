@@ -82,17 +82,17 @@ export default {
   updateTrangThai(id, trangthai) {
     return db("phong").where("ID", id).update({ TrangThai: trangthai });
   },
-  async updateSoPhong(id) {
-    const [phong] = await db("phong").where("ID", id);
-    return await db("phong")
-      .where("ID", id)
-      .update({ SoPhongTrong: phong.SoPhongTrong - 1 });
-  },
-  async updateCongPhong(id) {
-    const [phong] = await db("phong").where("ID", id);
-    console.log(phong);
-    return await db("phong")
-      .where("ID", id)
-      .update({ SoPhongTrong: phong.SoPhongTrong + 1 });
-  },
+  // async updateSoPhong(id) {
+  //   const [phong] = await db("phong").where("ID", id);
+  //   return await db("phong")
+  //     .where("ID", id)
+  //     .update({ SoPhongTrong: phong.SoPhongTrong - 1 });
+  // },
+  // async updateCongPhong(id) {
+  //   const [phong] = await db("phong").where("ID", id);
+  //   console.log(phong);
+  //   return await db("phong")
+  //     .where("ID", id)
+  //     .update({ SoPhongTrong: phong.SoPhongTrong + 1 });
+  // },
 };

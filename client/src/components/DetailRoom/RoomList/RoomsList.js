@@ -9,10 +9,9 @@ const RoomsList = ({ rooms }) => {
     // }
     return (
         <div className={classes.RoomOfHotel}>
-            {rooms.map((Place) => (
-                // console.log(Place)
-                <RoomItem key={Place.ID} item={Place} />
-            ))}
+            {rooms.map((Place) => {
+                return <RoomItem key={Place.ID} item={Place} />
+            })}
         </div>
     )
 }
