@@ -1,25 +1,50 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Axios from 'axios'
 import styles from './HeartButton.module.scss'
+import DataContext from '~/contexts/DataContext'
 
 function HeartButton({ liked, IDKhachSan, handleClick }) {
     const [isLike, setIsLike] = useState(liked)
 
     const user = JSON.parse(localStorage.getItem('user'))
 
-    const data = { IDKhachHang: user?.ID, IDKhachSan }
+    const data1 = { IDKhachHang: user?.ID, IDKhachSan }
+
+    const { data, handleData } = useContext(DataContext)
     function onClickHeart(IDKhachSan, liked) {
+        setIsLike(!isLike)
+
+        let isHas = false
+        const newLikes = []
+        console.log('goc: ', data.likes)
+        data.likes.map((like, index) => {
+            if (like.IDKhachHang === data1.IDKhachHang && like.IDKhachSan === data1.IDKhachSan) {
+                console.log('Trung: ', data1)
+                isHas = true
+            } else {
+                newLikes.push(like)
+            }
+        })
+
+        // console.log()
+        if (!isHas) {
+            console.log(data1)
+            newLikes.push(data1)
+        }
+
+        console.log('moi: ', newLikes)
+
+        handleData({ ...data, likes: newLikes })
+
         if (handleClick) {
             handleClick(IDKhachSan, liked)
         } else {
-            setIsLike(!isLike)
-            console.log(isLike)
             if (!isLike) {
-                Axios.post('http://localhost:8800/profile/addToWishList', { data })
+                Axios.post('http://localhost:8800/profile/addToWishList', { data: data1 })
                     .then(() => {})
                     .catch((error) => console.log(error))
             } else {
-                Axios.post('http://localhost:8800/profile/removeFromWishList', { data })
+                Axios.post('http://localhost:8800/profile/removeFromWishList', { data: data1 })
                     .then(() => {})
                     .catch((error) => console.log(error))
             }
