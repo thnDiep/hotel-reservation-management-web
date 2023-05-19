@@ -208,6 +208,7 @@ function Home() {
                 const start = periodFlashSale.current[indexPeriod.active].start
                 const end = periodFlashSale.current[indexPeriod.active].end
                 const currentPeriod = periodFlashSale.current[indexPeriod.current]
+                // console.log(currentPeriod)
 
                 const activeDate = new Date(start.getFullYear(), start.getMonth(), start.getDate())
                 const activeStart = start.toTimeString().slice(0, 5)
@@ -216,9 +217,8 @@ function Home() {
                 if (activeDate >= flashSale.BatDau && activeDate <= flashSale.KetThuc) {
                     if (activeStart === flashSale.GioBatDau) {
                         let hotel = data.hotels.find((key) => key.ID === flashSale.IDKhachSan)
-
                         if (hotel.TrangThai === 1) {
-                            if (today.current >= currentPeriod.start && today.current <= currentPeriod.end) {
+                            if (today >= currentPeriod.start && today <= currentPeriod.end) {
                                 hotel.GiaFS = Math.round(
                                     hotel.GiaTieuChuan -
                                         (hotel.GiaTieuChuan / 100) * hotel.GiamGia -

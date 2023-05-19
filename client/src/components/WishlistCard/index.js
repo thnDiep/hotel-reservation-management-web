@@ -10,22 +10,25 @@ import { useState, useEffect } from 'react'
 import HeartButton from '~/components/Button/HeartButton'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
+import { useContext } from 'react'
+import DataContext from '~/contexts/DataContext'
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function WishlistCard({ list, liked, onEmpty }) {
     const [data, setData] = useState(list)
+    const user = JSON.parse(localStorage.getItem('user'))
 
     function handleClickHeart(id, isLike) {
-        const data = { IDKhachHang: 4, IDKhachSan: id }
+        const data1 = { IDKhachHang: user?.ID, IDKhachSan: id }
 
         if (!isLike) {
-            Axios.post('http://localhost:8800/profile/addToWishList', { data })
+            Axios.post('http://localhost:8800/profile/addToWishList', { data: data1 })
                 .then(() => {
                     // const newList = list.filter((item) => item.ID !== IDKhachSan)
                     // setList(newList)
                 })
                 .catch((error) => console.log(error))
         } else {
-            Axios.post('http://localhost:8800/profile/removeFromWishList', { data })
+            Axios.post('http://localhost:8800/profile/removeFromWishList', { data: data1 })
                 .then(() => {
                     const newList = list.filter((item) => item.ID !== id)
                     setData(newList)
@@ -58,7 +61,8 @@ function WishlistCard({ list, liked, onEmpty }) {
                             <div className="image">
                                 <img className="image" src={item.HinhAnh} alt="Anh khach san" />
                             </div>
-                            <HeartButton liked handleClick={handleClickHeart} IDKhachSan={item.ID} />
+                            {/* <HeartButton liked handleClick={handleClickHeart} IDKhachSan={item.ID} /> */}
+                            <HeartButton liked IDKhachSan={item.ID} />
                         </div>
                         <div className="place__detail">
                             <div className="place__detail--content">

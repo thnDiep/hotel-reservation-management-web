@@ -90,6 +90,7 @@ router.get("/del", async (req, res, next) => {
 router.post("/addToWishList", async (req, res, next) => {
   try {
     const data = req.body.data
+    // console.log(data)
     await wishListModel.addToWishList(data)
     res.json({})
   } catch (err) {
