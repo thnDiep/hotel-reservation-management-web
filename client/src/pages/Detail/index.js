@@ -57,6 +57,7 @@ import Rating from './Rating/Rating'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import Axios from 'axios'
 import DataContext from '~/contexts/DataContext'
+import NotFound from '../NotFound'
 const Detail = () => {
     const { data, handleData } = useContext(DataContext)
     const [similarHotels, setSimilarHotels] = useState([])
@@ -157,143 +158,157 @@ const Detail = () => {
 
             {hotel && (
                 <>
-                    <div className={classes.subContainer}>
-                        <PictureDetail picHotel={hotel.picHotel} />
-                    </div>
-                    <PriceDetail infor={hotel.infor} types={hotel.types} typesHotel={hotel.typesHotel} />
+                    {hotel.infor.TrangThai === 1 ? (
+                        <>
+                            <div className={classes.subContainer}>
+                                <PictureDetail picHotel={hotel.picHotel} />
+                            </div>
+                            <PriceDetail infor={hotel.infor} types={hotel.types} typesHotel={hotel.typesHotel} />
 
-                    <div className={classes.container}>
-                        <div className="row">
-                            <div className="col-lg-12 col-md-12">
-                                <div className={classes['box-map']}>
-                                    <div className={classes['box-content']}>
-                                        <div className={classes['box-title']}>
-                                            <h3>Khám phá địa điểm lân cận</h3>
+                            <div className={classes.container}>
+                                <div className="row">
+                                    <div className="col-lg-12 col-md-12">
+                                        <div className={classes['box-map']}>
+                                            <div className={classes['box-content']}>
+                                                <div className={classes['box-title']}>
+                                                    <h3>Khám phá địa điểm lân cận</h3>
+                                                </div>
+                                                <div className={classes['content-item']}>
+                                                    <ul>
+                                                        <li>Công viên nước Vũng Tàu </li>
+                                                        <li>Cổng Hoa Giấy Checkin Vũng Tàu </li>
+                                                        <li>Căn Nhà Hoang Bãi Sau </li>
+                                                        <li>Sat </li>
+                                                        <li>Monument for War Heroes </li>
+                                                        <li>DU LỊCH BẢO HÂN VŨNG TÀU </li>
+                                                        <li>Nhà SEO FI / Selfie House </li>
+                                                        <li>Chùa Phước Hải Tự </li>
+                                                        <li>Linh Sơn Cổ Tự </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div className={classes['box-content']}>
+                                                <a
+                                                    href="https://www.google.com/maps/search/?api=1&query=10.3524333,107.1015845"
+                                                    title=""
+                                                >
+                                                    <img
+                                                        src="https://data.vietnambooking.com/business/hotel/svg/common/icon_map.svg"
+                                                        alt="map google"
+                                                    />
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div className={classes['content-item']}>
-                                            <ul>
-                                                <li>Công viên nước Vũng Tàu </li>
-                                                <li>Cổng Hoa Giấy Checkin Vũng Tàu </li>
-                                                <li>Căn Nhà Hoang Bãi Sau </li>
-                                                <li>Sat </li>
-                                                <li>Monument for War Heroes </li>
-                                                <li>DU LỊCH BẢO HÂN VŨNG TÀU </li>
-                                                <li>Nhà SEO FI / Selfie House </li>
-                                                <li>Chùa Phước Hải Tự </li>
-                                                <li>Linh Sơn Cổ Tự </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div className={classes['box-content']}>
-                                        <a
-                                            href="https://www.google.com/maps/search/?api=1&query=10.3524333,107.1015845"
-                                            title=""
-                                        >
-                                            <img
-                                                src="https://data.vietnambooking.com/business/hotel/svg/common/icon_map.svg"
-                                                alt="map google"
-                                            />
-                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <hr className={classes.spacing2} id="roomListContainer" />
-                    <Search detail={true} setDateDetail={(data) => handleSearch(data)} />
-                    <div>
-                        <RoomsList rooms={hotel.rooms} />
-                    </div>
-
-                    <div className={classes.subContainer}>
-                        <div className="row">
-                            <div className="col-lg-12 col-md-12">
-                                <div>
-                                    <div className={classes['box-title']}>
-                                        <h3>Chính sách Khách sạn </h3>
-                                    </div>
-                                    <div className={classes.hotelPolicyHour}>
-                                        <div className={classes.hour}>
-                                            <div className={classes.CheckInAndOut}>
-                                                <div>Nhận phòng</div>
-                                                <div className={classes.hourPolicy}>
-                                                    Từ {hotel.infor.GioNhanPhong}:00
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className={classes.hour}>
-                                            <div className={classes.CheckInAndOut}>
-                                                <div>Trả phòng</div>
-                                                <div className={classes.hourPolicy}>
-                                                    Trước {hotel.infor.GioTraPhong}:00
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className={classes.hotelPolicyRegular}>
-                                        <div className={classes.regular}>
-                                            {/* <span className={classes.regularTitle}>Chính sách chung</span> */}
-                                            <div className={classes.regularContent}>
-                                                <div dangerouslySetInnerHTML={{ __html: hotel.infor.ChinhSach }} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr />
-                                </div>
+                            <hr className={classes.spacing2} id="roomListContainer" />
+                            <Search detail={true} setDateDetail={(data) => handleSearch(data)} />
+                            <div>
+                                <RoomsList rooms={hotel.rooms} />
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-12 col-md-12 mt-1">
-                                <div>
-                                    <div className={classes['box-title']}>
-                                        <h3>Thông tin hữu ích </h3>
-                                    </div>
-                                    <div className={classes.usefulInformation}>
-                                        {hotel.thongTinHuuIch.map((thongTin) => {
-                                            return (
-                                                <div key={thongTin.ID} className={classes.item}>
-                                                    <div className={classes.partOfItem}>
-                                                        <span dangerouslySetInnerHTML={{ __html: thongTin.HinhAnh }} />
-                                                        <span className={classes.text}>{thongTin.ThongTin}</span>
+
+                            <div className={classes.subContainer}>
+                                <div className="row">
+                                    <div className="col-lg-12 col-md-12">
+                                        <div>
+                                            <div className={classes['box-title']}>
+                                                <h3>Chính sách Khách sạn </h3>
+                                            </div>
+                                            <div className={classes.hotelPolicyHour}>
+                                                <div className={classes.hour}>
+                                                    <div className={classes.CheckInAndOut}>
+                                                        <div>Nhận phòng</div>
+                                                        <div className={classes.hourPolicy}>
+                                                            Từ {hotel.infor.GioNhanPhong}:00
+                                                        </div>
                                                     </div>
-                                                    <span>{thongTin.NoiDung}</span>
                                                 </div>
-                                            )
-                                        })}
+                                                <div className={classes.hour}>
+                                                    <div className={classes.CheckInAndOut}>
+                                                        <div>Trả phòng</div>
+                                                        <div className={classes.hourPolicy}>
+                                                            Trước {hotel.infor.GioTraPhong}:00
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className={classes.hotelPolicyRegular}>
+                                                <div className={classes.regular}>
+                                                    {/* <span className={classes.regularTitle}>Chính sách chung</span> */}
+                                                    <div className={classes.regularContent}>
+                                                        <div
+                                                            dangerouslySetInnerHTML={{ __html: hotel.infor.ChinhSach }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        </div>
                                     </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-lg-12 col-md-12 mt-1">
+                                        <div>
+                                            <div className={classes['box-title']}>
+                                                <h3>Thông tin hữu ích </h3>
+                                            </div>
+                                            <div className={classes.usefulInformation}>
+                                                {hotel.thongTinHuuIch.map((thongTin) => {
+                                                    return (
+                                                        <div key={thongTin.ID} className={classes.item}>
+                                                            <div className={classes.partOfItem}>
+                                                                <span
+                                                                    dangerouslySetInnerHTML={{
+                                                                        __html: thongTin.HinhAnh,
+                                                                    }}
+                                                                />
+                                                                <span className={classes.text}>
+                                                                    {thongTin.ThongTin}
+                                                                </span>
+                                                            </div>
+                                                            <span>{thongTin.NoiDung}</span>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
 
-                                    <hr />
+                                            <hr />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div className={classes.subContainer}>
-                        <div className="row">
-                            <div className="col-lg-12 col-md-12">
-                                <div className={classes['box-title']}>
-                                    <h3>Giới thiệu về khách sạn</h3>
-                                </div>
-                                <div>
-                                    <div dangerouslySetInnerHTML={{ __html: hotel.infor.GioiThieu }} />
+                            <div className={classes.subContainer}>
+                                <div className="row">
+                                    <div className="col-lg-12 col-md-12">
+                                        <div className={classes['box-title']}>
+                                            <h3>Giới thiệu về khách sạn</h3>
+                                        </div>
+                                        <div>
+                                            <div dangerouslySetInnerHTML={{ __html: hotel.infor.GioiThieu }} />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <RecentViews data={reviewHistory} />
+                            <RecentViews data={reviewHistory} />
 
-                    {similarHotels && (
-                        <div className="part">
-                            <div className="part__content">
-                                <h1 className="part__title">Các khách sạn tương tự</h1>
+                            {similarHotels && (
+                                <div className="part">
+                                    <div className="part__content">
+                                        <h1 className="part__title">Các khách sạn tương tự</h1>
 
-                                <SliderHotels hotels={similarHotels} />
-                            </div>
-                        </div>
+                                        <SliderHotels hotels={similarHotels} />
+                                    </div>
+                                </div>
+                            )}
+
+                            <Rating feedback={hotel.feedbackHotel} infor={hotel.infor} />
+                        </>
+                    ) : (
+                        <NotFound />
                     )}
-
-                    <Rating feedback={hotel.feedbackHotel} infor={hotel.infor} />
                 </>
             )}
         </React.Fragment>
