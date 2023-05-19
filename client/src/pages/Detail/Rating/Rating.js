@@ -13,7 +13,7 @@ const Rating = ({ feedback, infor }) => {
     return (
         <div className={`container-fluid px-1 py-5 mx-auto `}>
             <div className={classes.cmt}>Đánh giá</div>
-            <div className={classes.subCmt}>100% đánh giá từ khách hàng đặt phòng trên Mytour</div>
+            <div className={classes.subCmt}>100% đánh giá từ khách hàng đặt phòng trên MyTravel</div>
 
             <div className={`${classes.card} d-flex `}>
                 <div className={classes['circle-img']}>
@@ -22,7 +22,7 @@ const Rating = ({ feedback, infor }) => {
                         <h3 className={classes[`head-rate`]}>
                             {Number.isInteger(infor.avgScore) ? infor.avgScore.toFixed(1) : infor.avgScore}
                         </h3>
-                        <h3 className={classes[`subhead-rate`]}>out of 10</h3>
+                        {/* <h3 className={classes[`subhead-rate`]}>out of 10</h3> */}
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@ const Rating = ({ feedback, infor }) => {
                     </table>
                 </div>
 
-                <div className={`${classes['rating-bar']} justify-content-center`}>
+                {/* <div className={`${classes['rating-bar']} justify-content-center`}>
                     <table className="text-left mx-auto">
                         <tbody>
                             <tr>
@@ -128,7 +128,7 @@ const Rating = ({ feedback, infor }) => {
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> */}
             </div>
             <div className={classes.cmtContent}>
                 {feedback.map((fb) => (

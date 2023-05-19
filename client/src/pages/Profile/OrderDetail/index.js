@@ -437,7 +437,7 @@ function OrderDetail({ route, navigate }) {
                                                         })}
                                                     </span>
                                                 </div>
-                                                <div className={styles.price}>
+                                                {/* <div className={styles.price}>
                                                     <span>Phụ phí</span>
                                                     <span>
                                                         {item.PhuPhi.toLocaleString('vi-VN', {
@@ -445,7 +445,7 @@ function OrderDetail({ route, navigate }) {
                                                             currency: 'VND',
                                                         })}
                                                     </span>
-                                                </div>
+                                                </div> */}
                                                 <div className={styles.price}>
                                                     <span>Thuế và phí dịch vụ khách sạn</span>
                                                     <span>
@@ -517,7 +517,7 @@ function OrderDetail({ route, navigate }) {
 
                                                 <div className={clsx(styles.content1, 'flex-1')}>
                                                     <div className={styles.checkout}>
-                                                        <span>Phương thức thanh toán</span>
+                                                        <span>Phương thức thanh toán:&nbsp;</span>
                                                         <span>Chuyển khoản ngân hàng</span>
                                                     </div>
                                                     <div className={styles.checkout}>

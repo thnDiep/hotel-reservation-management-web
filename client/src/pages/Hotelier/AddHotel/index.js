@@ -372,7 +372,7 @@ const AddHotel = () => {
                                         <div className="col-lg-12 mb-2">
                                             <div className="form-group mb-3">
                                                 <label className={`text-label ${styles.label}`}>
-                                                    Họ và tên
+                                                    Tên khách sạn
                                                     <span>
                                                         <span>*</span>
                                                     </span>

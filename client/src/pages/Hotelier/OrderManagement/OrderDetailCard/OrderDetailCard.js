@@ -79,7 +79,11 @@ function OrderDetailCard({ MaDatPhong }) {
                                 <span className={styles.subTitle}>Số tiền</span>
                                 <div className="d-flex-js">
                                     <span className={styles.title}>
-                                        19.294.000 <sup>₫</sup>
+                                        {data.TongTien.toLocaleString('vi-VN', {
+                                            style: 'currency',
+                                            currency: 'VND',
+                                        })}{' '}
+                                        {/* <sup>₫</sup> */}
                                     </span>
                                     <div className={styles.copy}>
                                         <svg width="16" height="16" fill="none">
@@ -333,29 +337,59 @@ function OrderDetailCard({ MaDatPhong }) {
                                                 {moment(data.NgayTraPhong).diff(data.NgayNhanPhong, 'days')} đêm
                                             </span>
                                             <span>
-                                                {data.Gia.toLocaleString()} <sup>₫</sup>
+                                                {data.Gia.toLocaleString('vi-VN', {
+                                                    style: 'currency',
+                                                    currency: 'VND',
+                                                })}{' '}
+                                                {/* <sup>₫</sup> */}
                                             </span>
                                         </div>
-                                        <div className={styles.price}>
+                                        {/* <div className={styles.price}>
                                             <span>Phụ phí</span>
                                             <span>
-                                                {data.PhuPhi.toLocaleString()} <sup>₫</sup>
+                                                {data.PhuPhi.toLocaleString('vi-VN', {
+                                                    style: 'currency',
+                                                    currency: 'VND',
+                                                })}{' '}
+                                                <sup>₫</sup>
                                             </span>
-                                        </div>
+                                        </div> */}
                                         <div className={styles.price}>
                                             <span>Thuế và phí dịch vụ khách sạn</span>
                                             <span>
-                                                {data.ThueVaDichVuKhachSan.toLocaleString()} <sup>₫</sup>
+                                                {data.ThueVaDichVuKhachSan.toLocaleString('vi-VN', {
+                                                    style: 'currency',
+                                                    currency: 'VND',
+                                                })}{' '}
+                                                {/* <sup>₫</sup> */}
                                             </span>
                                         </div>
-                                        {data.GiamGia < 0 && (
+                                        {data.GiamGia > 0 && (
                                             <div className={styles.price}>
-                                                <span className={styles.green}>Chúng tôi khớp giá, giảm thêm</span>
+                                                <div>
+                                                    <span className={styles.green}>Giảm thêm</span>
+                                                    <span className={styles.code}>{data.GiamGia} %</span>
+                                                </div>
                                                 <span className={styles.green}>
-                                                    {data.GiamThem.toLocaleString()} <sup>₫</sup>
+                                                    {data.GiamThem.toLocaleString('vi-VN', {
+                                                        style: 'currency',
+                                                        currency: 'VND',
+                                                    })}
                                                 </span>
                                             </div>
                                         )}
+                                        {/* {data.GiamGia < 0 && (
+                                            <div className={styles.price}>
+                                                <span className={styles.green}>Chúng tôi khớp giá, giảm thêm</span>
+                                                <span className={styles.green}>
+                                                    {data.GiamThem.toLocaleString('vi-VN', {
+                                                        style: 'currency',
+                                                        currency: 'VND',
+                                                    })}{' '}
+                                                    <sup>₫</sup>
+                                                </span>
+                                            </div>
+                                        )} */}
 
                                         {data.GiamGiaKhuyenMai < 0 && (
                                             <div className={styles.price}>
@@ -364,7 +398,11 @@ function OrderDetailCard({ MaDatPhong }) {
                                                     <span className={styles.code}>{data.TenKhuyenMai}</span>
                                                 </div>
                                                 <span className={styles.green}>
-                                                    {data.GiamGiaKhuyenMai.toLocaleString()} <sup>₫</sup>
+                                                    {data.GiamGiaKhuyenMai.toLocaleString('vi-VN', {
+                                                        style: 'currency',
+                                                        currency: 'VND',
+                                                    })}{' '}
+                                                    <sup>₫</sup>
                                                 </span>
                                             </div>
                                         )}
@@ -375,7 +413,11 @@ function OrderDetailCard({ MaDatPhong }) {
                                                     <span className={styles.green}>{data.TieuDeFlashSale}</span>
                                                 </div>
                                                 <span className={styles.green}>
-                                                    {data.GiamGiaFlashSale.toLocaleString()} <sup>₫</sup>
+                                                    {data.GiamGiaFlashSale.toLocaleString('vi-VN', {
+                                                        style: 'currency',
+                                                        currency: 'VND',
+                                                    })}{' '}
+                                                    {/* <sup>₫</sup> */}
                                                 </span>
                                             </div>
                                         )}
@@ -383,7 +425,11 @@ function OrderDetailCard({ MaDatPhong }) {
                                         <div className={clsx(styles.price, styles.total)}>
                                             <span className={styles.subTitle2}>Tổng tiền</span>
                                             <span className={styles.subTitle2}>
-                                                {data.TongTien.toLocaleString()} <sup>₫</sup>
+                                                {data.TongTien.toLocaleString('vi-VN', {
+                                                    style: 'currency',
+                                                    currency: 'VND',
+                                                })}{' '}
+                                                {/* <sup>₫</sup> */}
                                             </span>
                                         </div>
                                     </div>
@@ -395,7 +441,7 @@ function OrderDetailCard({ MaDatPhong }) {
 
                                         <div className={clsx(styles.content1, 'flex-1')}>
                                             <div className={styles.checkout}>
-                                                <span>Phương thức thanh toán</span>
+                                                <span>Phương thức thanh toán:&nbsp;</span>
                                                 <span className={`ml-5 ${styles.pay}`}>Chuyển khoản ngân hàng</span>
                                             </div>
                                             <div className={styles.checkout}>

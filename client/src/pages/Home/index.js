@@ -207,6 +207,7 @@ function Home() {
 
                 const start = periodFlashSale.current[indexPeriod.active].start
                 const end = periodFlashSale.current[indexPeriod.active].end
+                const currentPeriod = periodFlashSale.current[indexPeriod.current]
 
                 const activeDate = new Date(start.getFullYear(), start.getMonth(), start.getDate())
                 const activeStart = start.toTimeString().slice(0, 5)
@@ -217,23 +218,31 @@ function Home() {
                         let hotel = data.hotels.find((key) => key.ID === flashSale.IDKhachSan)
 
                         if (hotel.TrangThai === 1) {
-                            if (hotel.GiamGia !== 0) {
-                                hotel.GiaSauKhiGiam = Math.round(
+                            if (today.current >= currentPeriod.start && today.current <= currentPeriod.end) {
+                                hotel.GiaFS = Math.round(
                                     hotel.GiaTieuChuan -
                                         (hotel.GiaTieuChuan / 100) * hotel.GiamGia -
                                         (hotel.GiaTieuChuan / 100) * flashSale.PhanTramKM,
                                 )
                             } else {
-                                hotel.GiaSauKhiGiam = Math.round(
-                                    hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * flashSale.PhanTramKM,
-                                )
+                                hotel.GiaFS = null
                             }
 
+                            // if (hotel.GiamGia !== 0) {
+
+                            // }
+                            // } else {
+                            //     hotel.GiaFS = Math.round(
+                            //         hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * flashSale.PhanTramKM,
+                            //     )
+                            // }
                             flashSaleHotels.push(hotel)
                         }
                     }
                 }
             })
+
+            console.log(flashSaleHotels)
             setFlashSaleHotels(flashSaleHotels)
         }
     }, [data, indexPeriod])
@@ -342,7 +351,7 @@ function Home() {
                         </div>
                     </div>
 
-                    <SliderHotels hotels={flashSaleHotels} />
+                    <SliderHotels hotels={flashSaleHotels} FS={true} />
 
                     {/* <div className="part__footer">
                         <ButtonPrimary className="btnSeeMore-m">Xem thêm</ButtonPrimary>

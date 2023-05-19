@@ -34,8 +34,8 @@ function SliderHotels(props) {
                                 place={des.DiaDiem}
                                 point={des.DanhGia}
                                 oldPrice={des.GiaTieuChuan}
-                                curPrice={des.GiaSauKhiGiam}
-                                voucher={des.voucher}
+                                curPrice={props.FS ? des.GiaFS : des.GiaSauKhiGiam}
+                                voucher={props.FS ? null : des.voucher}
                                 admin={props.admin}
                             />
                         )
@@ -54,8 +54,8 @@ function SliderHotels(props) {
                                 numberFeedback={des.SoDanhGia}
                                 place={des.DiaDiem}
                                 point={des.DanhGia}
-                                curPrice={des.GiaTieuChuan}
-                                voucher={des.voucher}
+                                curPrice={props.FS ? des.GiaFS : des.GiaTieuChuan}
+                                voucher={props.FS ? null : des.voucher}
                                 admin={props.admin}
                             />
                         )
@@ -82,9 +82,10 @@ function SliderHotels(props) {
                                     place={des.DiaDiem}
                                     point={des.DanhGia}
                                     oldPrice={des.GiaTieuChuan}
-                                    curPrice={des.GiaSauKhiGiam}
+                                    curPrice={props.FS ? des.GiaFS : des.GiaSauKhiGiam}
                                     // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
                                     // memberDiscount={19}
+                                    voucher={props.FS ? null : des.voucher}
                                     admin={props.admin}
                                 />
                             )
@@ -103,7 +104,8 @@ function SliderHotels(props) {
                                     numberFeedback={des.SoDanhGia}
                                     place={des.DiaDiem}
                                     point={des.DanhGia}
-                                    curPrice={des.GiaTieuChuan}
+                                    curPrice={props.FS ? des.GiaFS : des.GiaTieuChuan}
+                                    voucher={props.FS ? null : des.voucher}
                                     // voucher={{ code: 'GIAIPHONG', percent: 1, price: '5.729.940' }}
                                     // memberDiscount={19}
                                     admin={props.admin}

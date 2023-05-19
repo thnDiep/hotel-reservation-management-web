@@ -16,6 +16,7 @@ function OrderResult() {
         Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: id } })
             .then((response) => {
                 setData(response.data)
+                console.log(response.data[0])
             })
             .catch((error) => {
                 console.log(error)

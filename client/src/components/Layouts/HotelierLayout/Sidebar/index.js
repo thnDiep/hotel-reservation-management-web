@@ -68,7 +68,7 @@ const Sidebar = ({ checkHide }) => {
                     alt=""
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaMgiTOs33abnEsiYTsqGrPaj5JsZJOjS-gQ&usqp=CAU"
                 />{' '}
-                myTravel
+                MyTravel
             </Link>
             <ul className="side-menu">
                 {chooses.map((choose) => {

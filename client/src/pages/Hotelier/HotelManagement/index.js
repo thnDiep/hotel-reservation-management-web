@@ -172,7 +172,7 @@ const HotelManagement = () => {
                 onClose={() => setShowDeleteModal(false)}
                 onConform={() => handleDeleteHotel()}
                 content={`Bạn chắc chắn muốn xóa khách sạn`}
-                highlight={hotelActive && hotelActive.TieuDe}
+                highlight={hotelActive && hotelActive.Ten}
             />
             {/* Xác nhận ngung */}
             <ConformModal
@@ -181,7 +181,7 @@ const HotelManagement = () => {
                 onClose={() => setShowStopModal(false)}
                 onConform={() => handleStopHotel(3, 'Tạm ngưng thành công', hotelActive.ID)}
                 content={`Bạn chắc chắn muốn tạm ngưng khách sạn`}
-                highlight={hotelActive && hotelActive.TieuDe}
+                highlight={hotelActive && hotelActive.Ten}
             />
             {/* Thông báo thành công */}
             {showInformModal && (
