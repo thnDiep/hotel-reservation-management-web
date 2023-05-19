@@ -34,6 +34,7 @@ const AddHotel = () => {
     // const { IDCKS, IDKhachSan } = { active, id }
     // const active=1
     // const id=1
+    const user = JSON.parse(localStorage.getItem('user'))
 
     const [selectedSite, setSelectedSite] = useState(1)
     const [provinces, setProvinces] = useState([])
@@ -251,7 +252,7 @@ const AddHotel = () => {
             }
             const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '')
             hotel.nhan = nhan
-            hotel.IDChuKhachSan = 9
+            hotel.IDChuKhachSan = user.ID
             if (id) hotel.ID = id
             console.log(IDTienNghi)
             const res = await axios.post(`http://localhost:8800/cks/hotel/${id ? 'update' : 'insert'}`, {
@@ -263,17 +264,15 @@ const AddHotel = () => {
             setShowInformModal(true)
 
             window.setTimeout(async () => {
-                setShowInformModal(false);
+                setShowInformModal(false)
                 try {
-                    const user = JSON.parse(localStorage.getItem('user'))
-                    const response = await axios.get('http://localhost:8800', { params: { idUser: user.ID } });
-                    handleData(response.data);
-                    Nav('/cks/manageHotel');
+                    const response = await axios.get('http://localhost:8800', { params: { idUser: user.ID } })
+                    handleData(response.data)
+                    Nav('/cks/manageHotel')
                 } catch (error) {
-                    console.log(error);
+                    console.log(error)
                 }
-            }, 1500);
-
+            }, 1500)
 
             console.log('Thông tin update thành công: ')
         } catch (err) {
@@ -381,8 +380,9 @@ const AddHotel = () => {
                                                     type="text"
                                                     name="firstName"
                                                     value={hotel.Ten}
-                                                    className={`form-control ${styles.formControl} ${hotel.Ten === '' && nextCheck && styles.inputRed
-                                                        }`}
+                                                    className={`form-control ${styles.formControl} ${
+                                                        hotel.Ten === '' && nextCheck && styles.inputRed
+                                                    }`}
                                                     placeholder="Tên khách sạn"
                                                     onChange={(e) => {
                                                         handleChange(e.target.value, 'Ten')
@@ -415,8 +415,9 @@ const AddHotel = () => {
                                                     value={hotel.GiamGia}
                                                     // thousandSeparator="."
                                                     // decimalSeparator=","
-                                                    className={`form-control ${styles.formControl} ${hotel.GiamGia === '' && nextCheck && styles.inputRed
-                                                        } ${hotel.GiamGia > 100 && styles.inputRed}`}
+                                                    className={`form-control ${styles.formControl} ${
+                                                        hotel.GiamGia === '' && nextCheck && styles.inputRed
+                                                    } ${hotel.GiamGia > 100 && styles.inputRed}`}
                                                     suffix=" %"
                                                     decimalScale={0}
                                                     allowNegative={false}
@@ -446,8 +447,9 @@ const AddHotel = () => {
                                                 </label>
                                                 <Select
                                                     // className={`form-control `}
-                                                    className={` ${diaChi.ThanhPho === '' && nextCheck && styles.inputRed
-                                                        }`}
+                                                    className={` ${
+                                                        diaChi.ThanhPho === '' && nextCheck && styles.inputRed
+                                                    }`}
                                                     value={diaChi.ThanhPho}
                                                     options={provinces}
                                                     placeholder="Chọn tỉnh/thành phố"
@@ -482,8 +484,9 @@ const AddHotel = () => {
                                                 </label>
                                                 <Select
                                                     // className={`form-control `}
-                                                    className={` ${diaChi.Phuong === '' && nextCheck && styles.inputRed
-                                                        }`}
+                                                    className={` ${
+                                                        diaChi.Phuong === '' && nextCheck && styles.inputRed
+                                                    }`}
                                                     value={diaChi.Phuong}
                                                     options={wards}
                                                     placeholder="Chọn phường/xã"
@@ -503,8 +506,9 @@ const AddHotel = () => {
                                                     type="text"
                                                     value={diaChi.Duong}
                                                     onChange={(e) => handleChangeDiaChi(e.target.value, 'Duong')}
-                                                    className={`form-control ${styles.formControl}  ${diaChi.Duong === '' && nextCheck && styles.inputRed
-                                                        }  ${!diaChi.Phuong && styles.disabled}`}
+                                                    className={`form-control ${styles.formControl}  ${
+                                                        diaChi.Duong === '' && nextCheck && styles.inputRed
+                                                    }  ${!diaChi.Phuong && styles.disabled}`}
                                                     placeholder="Nhập đường"
                                                     required=""
                                                 />
@@ -518,8 +522,9 @@ const AddHotel = () => {
                                                 <input
                                                     disabled
                                                     type="text"
-                                                    className={`form-control ${styles.formControl} ${styles.disabled
-                                                        }  ${hotel.DiaChi === '' && nextCheck && styles.inputRed}`}
+                                                    className={`form-control ${styles.formControl} ${
+                                                        styles.disabled
+                                                    }  ${hotel.DiaChi === '' && nextCheck && styles.inputRed}`}
                                                     value={hotel.DiaChi}
                                                     required=""
                                                 />
@@ -531,8 +536,9 @@ const AddHotel = () => {
                                                     Giờ nhận phòng<span>*</span>
                                                 </label>
                                                 <Select
-                                                    className={` ${hotel.GioNhanPhong === '' && nextCheck && styles.inputRed
-                                                        }`}
+                                                    className={` ${
+                                                        hotel.GioNhanPhong === '' && nextCheck && styles.inputRed
+                                                    }`}
                                                     value={hotel.GioNhanPhong}
                                                     options={options}
                                                     placeholder="Chọn giờ nhận phòng"
@@ -548,8 +554,9 @@ const AddHotel = () => {
                                                     Giờ Trả phòng<span>*</span>
                                                 </label>
                                                 <Select
-                                                    className={` ${hotel.GioTraPhong === '' && nextCheck && styles.inputRed
-                                                        }`}
+                                                    className={` ${
+                                                        hotel.GioTraPhong === '' && nextCheck && styles.inputRed
+                                                    }`}
                                                     value={hotel.GioTraPhong}
                                                     options={options}
                                                     placeholder="Chọn giờ trả phòng"
@@ -651,7 +658,7 @@ const AddHotel = () => {
                                                     check={id ? true : false}
                                                     HinhAnh={image}
                                                     handleImagesChange={handleImagesChange}
-                                                // display={`${selectedSite === 3 ? 'block' : 'none'}`}
+                                                    // display={`${selectedSite === 3 ? 'block' : 'none'}`}
                                                 />
                                             </div>
                                         </div>
