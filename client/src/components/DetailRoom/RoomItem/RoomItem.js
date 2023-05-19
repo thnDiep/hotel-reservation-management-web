@@ -36,6 +36,12 @@ const RoomItem = (props) => {
             height: '80vh',
             backdrop: 'rgba(39,46,52,1)',
         })
+    // console.log(props.item)
+    // console.log(props.item.checkRoom)
+    // for (var key in props.item) {
+    //     console.log('Key:', key, 'Value:', props.item[key])
+    // }
+    // console.log('props.item')
     return (
         <div className={classes.BoxRoomItem}>
             <div className={classes.BoxTitle}>{props.item.TenLoaiPhong}</div>
@@ -111,7 +117,7 @@ const RoomItem = (props) => {
                                 {formatMoney(props.item.GiaSale).replace('₫', '')}VND <span>/ đêm</span>
                             </div>
                             <div>
-                                {props.item.checkroom ? (
+                                {props.item.checkRoom ? (
                                     <ButtonPrimary className="btn__order">Hết phòng</ButtonPrimary>
                                 ) : (
                                     <Link to={`/checkout/${props.item.ID}`}>

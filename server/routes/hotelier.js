@@ -93,7 +93,7 @@ router.get("/order/del", async (req, res, next) => {
     const IDPhong = req.query.IDPhong;
     if (MaDatPhong) {
       await hotelModel.delOrder(MaDatPhong);
-      await roomModel.updateCongPhong(IDPhong);
+      // await roomModel.updateCongPhong(IDPhong);
     }
 
     res.json({ MaDatPhong });

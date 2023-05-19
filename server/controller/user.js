@@ -51,10 +51,12 @@ export const orderRoom = async (req, res, next) => {
     const info = req.body.nguoidung;
     await authModel.update(info);
     console.log(req.body.nguoinhanphong);
-    await roomModel.updateSoPhong(req.body.dondatphong.IDPhong);
-    req.body.dondatphong.IDNguoiNhanPhong = null
+    // await roomModel.updateSoPhong(req.body.dondatphong.IDPhong);
+    req.body.dondatphong.IDNguoiNhanPhong = null;
     if (req.body.nguoinhanphong !== null)
-      req.body.dondatphong.IDNguoiNhanPhong = await authModel.addNguoiNhanPhong(req.body.nguoinhanphong);
+      req.body.dondatphong.IDNguoiNhanPhong = await authModel.addNguoiNhanPhong(
+        req.body.nguoinhanphong
+      );
     // console.log(req.body.dondatphong);
     const x = await orderModel.add(req.body.dondatphong);
     // console.log(x);

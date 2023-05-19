@@ -97,8 +97,6 @@ function Header() {
                     order.HinhAnh = roomImage
                 }
             }
-            console.log(orders)
-            console.log('orderssssss')
             setVoucher(vouchers)
             setOrder(orders)
             setFlashSale(flashSale)
@@ -113,11 +111,9 @@ function Header() {
         Nav('/login')
         // axios.get('http://localhost:8800/auth/logout', { params: { idUser: id } }) //
         // .then((response) => {
-        //     console.log(response.data)
         //     setData(response.data)
         // })
         // .catch((error) => {
-        //     console.log(error)
         // })
     }
     return (
@@ -254,12 +250,11 @@ function Header() {
                                 {order &&
                                     user &&
                                     order.map((oders) => (
-                                        <Link to={`/checkout/${oders.IDPhong}/${oders.MaDatPhong}`}>
-                                            <div
-                                                onClick={announceChangeHandler}
-                                                className={`${classes.hoverTag} `}
-                                                key={oders.MaDatPhong}
-                                            >
+                                        <Link
+                                            to={`/checkout/${oders.IDPhong}/${oders.MaDatPhong}`}
+                                            key={oders.MaDatPhong}
+                                        >
+                                            <div onClick={announceChangeHandler} className={`${classes.hoverTag} `}>
                                                 <div className={classes.item}>
                                                     <img src={oders.HinhAnh} alt="icon_type_notify" />
                                                     <div className={classes.info}>

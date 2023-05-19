@@ -182,16 +182,17 @@ const AddHotel = () => {
         if (selectedSite < 2) setSelectedSite(selectedSite + 1)
     }
     const handlePrev = () => {
-        if (selectedSite === 2) {
-            let filteredTienNghi = tienNghi?.filter((item) => item.checked)
+        // if (selectedSite === 2) {
+        //     let filteredTienNghi = tienNghi?.filter((item) => item.checked)
 
-            const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '')
-            if (filteredTienNghi.length === 0 || filteredThongTin.length === 0 || nhan === null) {
-                setNextCheck(true)
-                return
-            }
-        }
-        if (selectedSite > 1) setSelectedSite(selectedSite - 1)
+        //     const filteredThongTin = thongTin.filter((item) => item.NoiDung !== '')
+        //     if (filteredTienNghi.length === 0 || filteredThongTin.length === 0 || nhan === null) {
+        //         setNextCheck(true)
+        //         return
+        //     }
+        // }
+
+        setSelectedSite(selectedSite - 1)
     }
 
     const handleChange = (value, name) => {

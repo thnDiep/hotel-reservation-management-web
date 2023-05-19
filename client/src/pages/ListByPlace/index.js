@@ -33,7 +33,7 @@ function ListByPlace() {
                             console.log('item.IDPhong')
                         }
                         if (item.IDPhong === room.ID && room.IDKhachSan === hotel.ID) {
-                            soPhongTrong = soPhongTrong - item.SoLuongPhong
+                            soPhongTrong = soPhongTrong - +item.SoLuongPhong
                         }
                     }
                     if (soPhongTrong <= 0) return true
