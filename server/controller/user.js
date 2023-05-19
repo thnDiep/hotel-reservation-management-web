@@ -52,11 +52,12 @@ export const orderRoom = async (req, res, next) => {
     await authModel.update(info);
     console.log(req.body.nguoinhanphong);
     await roomModel.updateSoPhong(req.body.dondatphong.IDPhong);
+    req.body.dondatphong.IDNguoiNhanPhong = null
     if (req.body.nguoinhanphong !== null)
-      await authModel.addNguoiNhanPhong(req.body.nguoinhanphong);
-    console.log(req.body.dondatphong);
+      req.body.dondatphong.IDNguoiNhanPhong = await authModel.addNguoiNhanPhong(req.body.nguoinhanphong);
+    // console.log(req.body.dondatphong);
     const x = await orderModel.add(req.body.dondatphong);
-    console.log(x);
+    // console.log(x);
     res.status(200).send("Đơn hàng đã được tạo");
   } catch (error) {
     next(error);

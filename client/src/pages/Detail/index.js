@@ -125,8 +125,30 @@ const Detail = () => {
             })
     }, [id])
 
-    const handleSearch = (data) => {
-        localStorage.setItem('dates', JSON.stringify(data))
+    const handleSearch = (data1) => {
+        localStorage.setItem('dates', JSON.stringify(data1))
+        const orders = data.orders.filter((order) => {
+            return (
+                new Date(order.NgayTraPhong) > new Date(data1.startDate) &&
+                new Date(order.NgayNhanPhong) < new Date(data1.endDate)
+            )
+        })
+        console.log(orders)
+        // const [check] = hotel.rooms.filter((room) => {
+        for (const room of hotel.rooms) {
+            let soPhongTrong = +room.SoPhongTrong
+            for (const item of orders) {
+                if (hotel.ID === 15) {
+                    console.log(item.IDPhong)
+                    console.log('item.IDPhong')
+                }
+                if (item.IDPhong === room.ID && room.IDKhachSan === hotel.ID) {
+                    soPhongTrong = soPhongTrong - item.SoLuongPhong
+                }
+            }
+            if (soPhongTrong <= 0) room.checkRoom = true
+            else room.checkRoom = false
+        }
     }
     return (
         <React.Fragment>

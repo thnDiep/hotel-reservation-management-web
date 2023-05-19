@@ -40,6 +40,7 @@ export const publicRoutes = [
     { path: '/signUp', component: SignUp, layout: null },
     { path: '/checkOrder', component: CheckOrder },
     { path: '/orderResult/:id', component: OrderResult, layout: HomeLayout },
+    { path: '/checkOrder/:id/:active', component: OrderDetail, layout: HomeLayout },
 
     // //Hotelier - Hotel
     // { path: '/cks/profile', component: ProfileHotelier, layout: HotelierLayout },
@@ -77,7 +78,7 @@ export const publicRoutesUser = [
     // Checkout
     { path: '/checkout/:id', component: Checkout, layout: HomeLayout },
     { path: '/checkout/:id/:active', component: Checkout, layout: HomeLayout },
-    { path: '/checkout', component: Checkout, layout: HomeLayout },
+    // { path: '/checkout', component: Checkout, layout: HomeLayout },
     { path: '/checkout/success/:id', component: SuccessCheckOut, layout: HomeLayout },
     { path: '/checkout/QRPay/:id', component: QrPay, layout: QrPayLayout },
     { path: '/checkout/QRPay', component: QrPay, layout: QrPayLayout },

@@ -129,7 +129,7 @@ function RoomCKS({ rooms, option }) {
                                 <div className={`${styles.point} ${styles.text}`}>{room.SoNguoi} người</div>
                             </td>
                             <td>
-                                <span className={styles.text2}>{room.SoPhongTrong}</span>
+                                <span className={styles.text2}>{room.soPhong}/{room.SoPhongTrong}</span>
                             </td>
                             <td>
                                 <div className={`${styles.point} d-flex mx-0`}>

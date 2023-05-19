@@ -1,5 +1,5 @@
 import classes from './ListByPlace.module.scss'
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import PlacesList from '~/components/Place/PlaceList/PlacesList'
 import PriceSlider from '~/components/Place/Filter/Price/Price'
 import Star from '~/components/Place/Filter/Rate/Star/Star'
@@ -7,6 +7,7 @@ import Service from '~/components/Place/Filter/Rate/Service/Service'
 import UserRate from '~/components/Place/Filter/Rate/UserRate/UserRate'
 import Search from '~/components/Search'
 import { useLocation } from 'react-router-dom'
+import DataContext from '~/contexts/DataContext'
 
 const sort = ['Phù hợp nhất', 'Rẻ nhất', 'Đắt nhất', 'Xếp hạng sao', 'Đánh giá cao nhất']
 function ListByPlace() {
@@ -14,13 +15,44 @@ function ListByPlace() {
     // Khách sạn lấy được từ thanh tìm kiếm
     const { state } = useLocation()
     const [hotels, setHotels] = useState()
+    const { data, handleData } = useContext(DataContext)
     useEffect(() => {
-        if (state) {
-            setHotels(state.hotels)
-            console.log(state.hotels)
+        if (state && data) {
+            const startDate = new Date(state.searchBar.date.startDate)
+            const endDate = new Date(state.searchBar.date.endDate)
+            const orders = data.orders.filter((order) => {
+                return new Date(order.NgayTraPhong) > startDate && new Date(order.NgayNhanPhong) < endDate
+            })
+            console.log(orders)
+            const hotel = state.hotels.filter((hotel) => {
+                const [check] = data.rooms.filter((room) => {
+                    let soPhongTrong = +room.SoPhongTrong
+                    for (const item of orders) {
+                        if (hotel.ID === 15) {
+                            console.log(item.IDPhong)
+                            console.log('item.IDPhong')
+                        }
+                        if (item.IDPhong === room.ID && room.IDKhachSan === hotel.ID) {
+                            soPhongTrong = soPhongTrong - item.SoLuongPhong
+                        }
+                    }
+                    if (soPhongTrong <= 0) return true
+                    return false
+                })
+
+                if (check === undefined) return true
+                else return false
+            })
+            for (const ho of hotel) {
+                ho.liked = false
+                for (const like of data.likes) if (ho.ID === like.IDKhachSan) ho.liked = true
+            }
+            console.log(hotel)
+            // hotel.size = hotel.length
+            setHotels(hotel)
             console.log(state)
         }
-    }, [state])
+    }, [state, data])
 
     const handleChangeIndex = (index) => {
         let sortedHotels = [...hotels] // Tạo một bản sao của mảng hotels để tránh thay đổi giá trị gốc
@@ -98,7 +130,9 @@ function ListByPlace() {
             </div>
             <div className={classes.listPlace}>
                 <div className={classes.title}>
-                    <h2>111 Khách sạn tại Phú Quốc, Kiên Giang</h2>
+                    <h2>
+                        {hotels && hotels.length} Khách sạn tại {state.searchBar.place}
+                    </h2>
                 </div>
                 <div className={classes.content}>
                     <div className={classes.filter}>

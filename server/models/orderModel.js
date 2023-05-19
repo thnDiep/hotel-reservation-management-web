@@ -5,6 +5,10 @@ export default {
   getAll() {
     return db("dondatphong");
   },
+  getAllAfter() {
+    const currentDate = new Date();
+    return db("dondatphong").where('ngayNhanPhong', '>', currentDate);
+  },
   async getRareInformationOfOrder(id) {
     return await db.raw(
       `SELECT nguoidung.HoTen,nguoidung.HinhAnh, khachsan.Ten,dondatphong.IDPhong, phong.TenLoaiPhong, dondatphong.NgayNhanPhong, dondatphong.NgayTraPhong, nguoidung.SoDienThoai, dondatphong.TongTien, dondatphong.TrangThai, dondatphong.MaDatPhong

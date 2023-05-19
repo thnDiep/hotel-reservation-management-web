@@ -125,7 +125,7 @@ function Search(props) {
     }
     const handleSubmitDetail = () => {
         props.setDateDetail({
-            number: number.adult.value,
+            number: number.room.value,
             startDate: date.startDate,
             endDate: date.endDate,
         })

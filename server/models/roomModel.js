@@ -8,6 +8,9 @@ export default {
   getAllByKhachSan(id) {
     return db("phong").where("IDKhachSan", id);
   },
+  getAllByKhachSanTrangThai(id) {
+    return db("phong").where("IDKhachSan", id).andWhere("TrangThai", "!=", 2);
+  },
   getEndow(id) {
     return db.raw(
       `SELECT * FROM uudai_phong up, uudai u WHERE u.ID=up.IDUuDai AND up.IDPhong=?`,

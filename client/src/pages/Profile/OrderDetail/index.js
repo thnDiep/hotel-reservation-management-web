@@ -11,7 +11,8 @@ import { useParams } from 'react-router-dom'
 
 function OrderDetail({ route, navigate }) {
     const [data, setData] = useState()
-    const { id } = useParams()
+    const { id, active } = useParams()
+    console.log(active)
 
     useEffect(() => {
         Axios.get('http://localhost:8800/profile/order/detail', { params: { ID: id } })
@@ -31,10 +32,17 @@ function OrderDetail({ route, navigate }) {
                     data.map((item, index) => (
                         <div className={styles.container}>
                             <header className={styles.header}>
-                                <NavLink to="/profile/order">
-                                    <FontAwesomeIcon icon={faArrowLeft} />
-                                    <span>Quay lại đơn phòng</span>
-                                </NavLink>
+                                {active ? (
+                                    <NavLink to="/checkOrder">
+                                        <FontAwesomeIcon icon={faArrowLeft} />
+                                        <span>Quay lại tra cứu đơn đặt phòng</span>
+                                    </NavLink>
+                                ) : (
+                                    <NavLink to="/profile/order">
+                                        <FontAwesomeIcon icon={faArrowLeft} />
+                                        <span>Quay lại đơn phòng</span>
+                                    </NavLink>
+                                )}
                             </header>
 
                             <div className={styles.tagInfo}>
@@ -113,115 +121,119 @@ function OrderDetail({ route, navigate }) {
                                 </div>
                             </div>
 
-                            <div className={styles.checkoutInfo}>
-                                <div className={styles.time}>
-                                    <span>
-                                        Vui lòng thanh toán trước 00.00,{' '}
-                                        {moment(item.NgayNhanPhong).format('DD/MM/yyyy')}
-                                    </span>
+                            {active ? (
+                                <></>
+                            ) : (
+                                <div className={styles.checkoutInfo}>
+                                    <div className={styles.time}>
+                                        <span>
+                                            Vui lòng thanh toán trước 00.00,{' '}
+                                            {moment(item.NgayNhanPhong).format('DD/MM/yyyy')}
+                                        </span>
+                                    </div>
+                                    <div className={styles.info}>
+                                        <h6 className={styles.title}>Thông tin chuyển khoản</h6>
+
+                                        <div className={styles.info__part}>
+                                            <span className={styles.subTitle}>Ngân hàng</span>
+                                            <div className="d-flex-js">
+                                                <span className={styles.title}>{item.TenNganHang}</span>
+                                                <img
+                                                    src="https://storage.googleapis.com/tripi-assets/images/banks_list/techcombank_logo.png"
+                                                    alt="Logo ngân hàng"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className={styles.info__part}>
+                                            <span className={styles.subTitle}>Số tài khoản</span>
+                                            <div className="d-flex-js">
+                                                <span className={styles.title}>{item.SoTaiKhoan}</span>
+                                                <div className={styles.copy}>
+                                                    <svg width="16" height="16" fill="none">
+                                                        <path
+                                                            d="M12 5.333H6.666c-.736 0-1.333.597-1.333 1.334V12c0 .736.597 1.334 1.333 1.334H12c.736 0 1.333-.598 1.333-1.334V6.667c0-.737-.597-1.333-1.333-1.333z"
+                                                            stroke="#00B6F3"
+                                                            strokeWidth="1.2"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        ></path>
+                                                        <path
+                                                            d="M10.667 5.333V4a1.334 1.334 0 00-1.333-1.333H4A1.333 1.333 0 002.667 4v5.333A1.333 1.333 0 004 10.666h1.334"
+                                                            stroke="#00B6F3"
+                                                            strokeWidth="1.2"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        ></path>
+                                                    </svg>
+                                                    <span>Sao chép</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className={styles.info__part}>
+                                            <span className={styles.subTitle}>Tên chủ tài khoản</span>
+                                            <div className="d-flex-js">
+                                                <span className={styles.title}>{item.TenChuTaiKhoan}</span>
+                                            </div>
+                                        </div>
+
+                                        <div className={styles.info__part}>
+                                            <span className={styles.subTitle}>Số tiền</span>
+                                            <div className="d-flex-js">
+                                                <span className={styles.title}>
+                                                    19.294.000 <sup>₫</sup>
+                                                </span>
+                                                <div className={styles.copy}>
+                                                    <svg width="16" height="16" fill="none">
+                                                        <path
+                                                            d="M12 5.333H6.666c-.736 0-1.333.597-1.333 1.334V12c0 .736.597 1.334 1.333 1.334H12c.736 0 1.333-.598 1.333-1.334V6.667c0-.737-.597-1.333-1.333-1.333z"
+                                                            stroke="#00B6F3"
+                                                            strokeWidth="1.2"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        ></path>
+                                                        <path
+                                                            d="M10.667 5.333V4a1.334 1.334 0 00-1.333-1.333H4A1.333 1.333 0 002.667 4v5.333A1.333 1.333 0 004 10.666h1.334"
+                                                            stroke="#00B6F3"
+                                                            strokeWidth="1.2"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        ></path>
+                                                    </svg>
+                                                    <span>Sao chép</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className={styles.info__part}>
+                                            <span className={styles.subTitle}>Nội dung chuyển khoản</span>
+                                            <div className="d-flex-js">
+                                                <span className={styles.title}>THANHTOAN {item.MaDatPhong}</span>
+                                                <div className={styles.copy}>
+                                                    <svg width="16" height="16" fill="none">
+                                                        <path
+                                                            d="M12 5.333H6.666c-.736 0-1.333.597-1.333 1.334V12c0 .736.597 1.334 1.333 1.334H12c.736 0 1.333-.598 1.333-1.334V6.667c0-.737-.597-1.333-1.333-1.333z"
+                                                            stroke="#00B6F3"
+                                                            strokeWidth="1.2"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        ></path>
+                                                        <path
+                                                            d="M10.667 5.333V4a1.334 1.334 0 00-1.333-1.333H4A1.333 1.333 0 002.667 4v5.333A1.333 1.333 0 004 10.666h1.334"
+                                                            stroke="#00B6F3"
+                                                            strokeWidth="1.2"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        ></path>
+                                                    </svg>
+                                                    <span>Sao chép</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className={styles.info}>
-                                    <h6 className={styles.title}>Thông tin chuyển khoản</h6>
-
-                                    <div className={styles.info__part}>
-                                        <span className={styles.subTitle}>Ngân hàng</span>
-                                        <div className="d-flex-js">
-                                            <span className={styles.title}>{item.TenNganHang}</span>
-                                            <img
-                                                src="https://storage.googleapis.com/tripi-assets/images/banks_list/techcombank_logo.png"
-                                                alt="Logo ngân hàng"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className={styles.info__part}>
-                                        <span className={styles.subTitle}>Số tài khoản</span>
-                                        <div className="d-flex-js">
-                                            <span className={styles.title}>{item.SoTaiKhoan}</span>
-                                            <div className={styles.copy}>
-                                                <svg width="16" height="16" fill="none">
-                                                    <path
-                                                        d="M12 5.333H6.666c-.736 0-1.333.597-1.333 1.334V12c0 .736.597 1.334 1.333 1.334H12c.736 0 1.333-.598 1.333-1.334V6.667c0-.737-.597-1.333-1.333-1.333z"
-                                                        stroke="#00B6F3"
-                                                        strokeWidth="1.2"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    ></path>
-                                                    <path
-                                                        d="M10.667 5.333V4a1.334 1.334 0 00-1.333-1.333H4A1.333 1.333 0 002.667 4v5.333A1.333 1.333 0 004 10.666h1.334"
-                                                        stroke="#00B6F3"
-                                                        strokeWidth="1.2"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    ></path>
-                                                </svg>
-                                                <span>Sao chép</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className={styles.info__part}>
-                                        <span className={styles.subTitle}>Tên chủ tài khoản</span>
-                                        <div className="d-flex-js">
-                                            <span className={styles.title}>{item.TenChuTaiKhoan}</span>
-                                        </div>
-                                    </div>
-
-                                    <div className={styles.info__part}>
-                                        <span className={styles.subTitle}>Số tiền</span>
-                                        <div className="d-flex-js">
-                                            <span className={styles.title}>
-                                                19.294.000 <sup>₫</sup>
-                                            </span>
-                                            <div className={styles.copy}>
-                                                <svg width="16" height="16" fill="none">
-                                                    <path
-                                                        d="M12 5.333H6.666c-.736 0-1.333.597-1.333 1.334V12c0 .736.597 1.334 1.333 1.334H12c.736 0 1.333-.598 1.333-1.334V6.667c0-.737-.597-1.333-1.333-1.333z"
-                                                        stroke="#00B6F3"
-                                                        strokeWidth="1.2"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    ></path>
-                                                    <path
-                                                        d="M10.667 5.333V4a1.334 1.334 0 00-1.333-1.333H4A1.333 1.333 0 002.667 4v5.333A1.333 1.333 0 004 10.666h1.334"
-                                                        stroke="#00B6F3"
-                                                        strokeWidth="1.2"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    ></path>
-                                                </svg>
-                                                <span>Sao chép</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className={styles.info__part}>
-                                        <span className={styles.subTitle}>Nội dung chuyển khoản</span>
-                                        <div className="d-flex-js">
-                                            <span className={styles.title}>THANHTOAN {item.MaDatPhong}</span>
-                                            <div className={styles.copy}>
-                                                <svg width="16" height="16" fill="none">
-                                                    <path
-                                                        d="M12 5.333H6.666c-.736 0-1.333.597-1.333 1.334V12c0 .736.597 1.334 1.333 1.334H12c.736 0 1.333-.598 1.333-1.334V6.667c0-.737-.597-1.333-1.333-1.333z"
-                                                        stroke="#00B6F3"
-                                                        strokeWidth="1.2"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    ></path>
-                                                    <path
-                                                        d="M10.667 5.333V4a1.334 1.334 0 00-1.333-1.333H4A1.333 1.333 0 002.667 4v5.333A1.333 1.333 0 004 10.666h1.334"
-                                                        stroke="#00B6F3"
-                                                        strokeWidth="1.2"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    ></path>
-                                                </svg>
-                                                <span>Sao chép</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            )}
 
                             <div className={styles.orderInfo}>
                                 <div className={styles.hotelImage}>

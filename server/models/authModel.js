@@ -69,8 +69,13 @@ export default {
   },
 
   // Thêm người dùng
-  addNguoiNhanPhong(user) {
-    return db("nguoinhanphong").insert(user)
+  async addNguoiNhanPhong(user) {
+    const x = await db("nguoinhanphong").insert(user).then((result) => {
+      const insertedId = result[0];
+      return insertedId;
+    });
+    return (x)
+    console.log(x)
   },
 
   // XÓa người dùng

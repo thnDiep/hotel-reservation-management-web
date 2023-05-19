@@ -9,6 +9,8 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import { useContext } from 'react'
+import DataContext from '~/contexts/DataContext'
 const AddRoom = () => {
     const { active, id } = useParams()
     console.log(active)
@@ -83,7 +85,7 @@ const AddRoom = () => {
                 setTienNghi(response.data.types)
                 setUuDai(response.data.endow)
             })
-            .catch((error) => {})
+            .catch((error) => { })
     }, [])
 
     const handleChangeTienNghi = (tienNghi) => {
@@ -103,6 +105,7 @@ const AddRoom = () => {
         }
         setHotel((prev) => ({ ...prev, [name]: value }))
     }
+    const { handleData } = useContext(DataContext)
 
     const handleSubmit = async (event) => {
         // Gửi dữ liệu formData về server
@@ -149,11 +152,16 @@ const AddRoom = () => {
                 uuDai: IDUuDai,
             })
             setShowInformModal(true)
-
-            window.setTimeout(function () {
+            window.setTimeout(async () => {
                 setShowInformModal(false)
-                window.location.href = '/cks/manage-room'
-                // Nav('/cks/manage-room')
+                try {
+                    const user = JSON.parse(localStorage.getItem('user'))
+                    const response = await axios.get('http://localhost:8800', { params: { idUser: user.ID } });
+                    handleData(response.data);
+                    Nav('/cks/manage-room')
+                } catch (error) {
+                    console.log(error);
+                }
             }, 1500)
         } catch (err) {
             console.log('sai')
@@ -232,9 +240,8 @@ const AddRoom = () => {
                                                 <input
                                                     type="text"
                                                     name="firstName"
-                                                    className={`form-control ${styles.formControl} ${
-                                                        hotel.TenLoaiPhong === '' && nextCheck && styles.inputRed
-                                                    }`}
+                                                    className={`form-control ${styles.formControl} ${hotel.TenLoaiPhong === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     value={hotel.TenLoaiPhong}
                                                     placeholder="Tên phòng"
                                                     onChange={(e) => {
@@ -253,9 +260,8 @@ const AddRoom = () => {
                                                     type="number"
                                                     value={hotel.SoPhongTrong}
                                                     onChange={(e) => handleChange(+e.target.value, 'SoPhongTrong')}
-                                                    className={`form-control ${styles.formControl} ${
-                                                        hotel.SoPhongTrong === '' && nextCheck && styles.inputRed
-                                                    }`}
+                                                    className={`form-control ${styles.formControl} ${hotel.SoPhongTrong === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     min={0}
                                                     placeholder="Số lượng phòng"
                                                     required=""
@@ -272,9 +278,8 @@ const AddRoom = () => {
                                                     type="number"
                                                     value={hotel.DienTich}
                                                     onChange={(e) => handleChange(+e.target.value, 'DienTich')}
-                                                    className={`form-control ${styles.formControl} ${
-                                                        hotel.DienTich === '' && nextCheck && styles.inputRed
-                                                    }`}
+                                                    className={`form-control ${styles.formControl} ${hotel.DienTich === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     min={0}
                                                     placeholder="Diện tích"
                                                     required=""
@@ -291,9 +296,8 @@ const AddRoom = () => {
                                                     type="number"
                                                     value={hotel.SoNguoi}
                                                     onChange={(e) => handleChange(+e.target.value, 'SoNguoi')}
-                                                    className={`form-control ${styles.formControl} ${
-                                                        hotel.SoNguoi === '' && nextCheck && styles.inputRed
-                                                    }`}
+                                                    className={`form-control ${styles.formControl} ${hotel.SoNguoi === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     min={0}
                                                     placeholder="Số người ở"
                                                     required=""
@@ -313,9 +317,8 @@ const AddRoom = () => {
                                                     onValueChange={(values) => {
                                                         handleChange(values.floatValue, 'Gia')
                                                     }}
-                                                    className={`form-control ${styles.formControl} ${
-                                                        hotel.Gia === '' && nextCheck && styles.inputRed
-                                                    }`}
+                                                    className={`form-control ${styles.formControl} ${hotel.Gia === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     placeholder="Giá phòng"
                                                     required
                                                 />
@@ -330,9 +333,8 @@ const AddRoom = () => {
                                                     type="number"
                                                     value={hotel.GiuongDon}
                                                     onChange={(e) => handleChange(+e.target.value, 'GiuongDon')}
-                                                    className={`form-control ${styles.formControl} ${
-                                                        hotel.GiuongDon === '' && nextCheck && styles.inputRed
-                                                    }`}
+                                                    className={`form-control ${styles.formControl} ${hotel.GiuongDon === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     min={0}
                                                     max={5}
                                                     placeholder="Số giường đơn"
@@ -349,9 +351,8 @@ const AddRoom = () => {
                                                     type="number"
                                                     value={hotel.GiuongDoi}
                                                     onChange={(e) => handleChange(+e.target.value, 'GiuongDoi')}
-                                                    className={`form-control ${styles.formControl} ${
-                                                        hotel.GiuongDoi === '' && nextCheck && styles.inputRed
-                                                    }`}
+                                                    className={`form-control ${styles.formControl} ${hotel.GiuongDoi === '' && nextCheck && styles.inputRed
+                                                        }`}
                                                     min={0}
                                                     max={5}
                                                     placeholder="Số giường đôi"

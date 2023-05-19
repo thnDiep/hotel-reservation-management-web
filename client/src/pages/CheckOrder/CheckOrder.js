@@ -69,7 +69,7 @@ const CheckOrder = () => {
             })
             if (res.status === 200) {
                 await Swal.fire('Đã tìm thấy đơn đặt hàng', 'Nhấn nút để xem', 'success')
-                Nav(`/profile/order/${data.code}`, { id: data.code })
+                Nav(`/checkOrder/${data.code}/${true}`, { id: data.code })
             }
         } catch (err) {
             console.log('sai')

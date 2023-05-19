@@ -70,7 +70,7 @@ const Checkout = () => {
                 Math.abs(new Date(date.startDate) - new Date(date.endDate)) / (1000 * 60 * 60 * 24),
             )
             room.dem = number
-            const Gia = room.Gia * number
+            const Gia = room.Gia * number * +date.number
             const GiamGia = Gia - (Gia * hotel.GiamGia) / 100
             const voucher = data.promotions
                 .filter((voucher) => {
@@ -261,9 +261,9 @@ const Checkout = () => {
             let nguoinhanphong = null
             if (nameRecieveState.value !== '')
                 nguoinhanphong = {
-                    HoTenNguoiNhan: nameRecieveState.value,
+                    HoTen: nameRecieveState.value,
                     IDKhachHang: user.ID,
-                    SoDienThoai: phoneState.value,
+                    Sdt: phoneState.value,
                 }
             const dateNhan = new Date(date.startDate)
             const dateTra = new Date(date.endDate)
@@ -274,6 +274,10 @@ const Checkout = () => {
             const IDKhuyenMai = hotel?.voucher?.ID || null
             const IDFlashSale = hotel?.flashSale?.ID || null
             const MaDatPhong = generateBookingID()
+            let PTThanhToan = 0
+            if (selectedPayment === 'paypal') {
+                PTThanhToan = 1
+            }
             const dondatphong = {
                 MaDatPhong: MaDatPhong,
                 NgayNhanPhong: NgayNhanPhong,
@@ -286,6 +290,7 @@ const Checkout = () => {
                 IDFlashSale: IDFlashSale,
                 IDKhachHang: user.ID,
                 IDPhong: +id,
+                PTThanhToan: PTThanhToan,
             }
             const res = await axios.post('http://localhost:8800/user/order', {
                 nguoidung,
@@ -348,7 +353,9 @@ const Checkout = () => {
                             </div>
                             <div className="d-flex flex-column align-items-start mt-3">
                                 <span style={{ fontWeight: '600' }}>Số phòng</span>
-                                <span className="mt-2">1 x {room.TenLoaiPhong}</span>
+                                <span className="mt-2">
+                                    {date.number} x {room.TenLoaiPhong}
+                                </span>
                             </div>
                             <div className="d-flex flex-column align-items-start mt-3">
                                 <span style={{ fontWeight: '600' }}>Đủ chỗ ngủ cho</span>
@@ -745,7 +752,9 @@ const Checkout = () => {
                             <span className={styles.nameTitle}>Chi tiết giá</span>
                             <div className={styles.detailPrice}>
                                 <div className={`${styles.columnFlex} ${styles.priceRoom}`}>
-                                    <span>1 phòng x {room.dem} đêm</span>
+                                    <span>
+                                        {date.number} phòng x {room.dem} đêm
+                                    </span>
                                     <span className={styles.priceSale}>
                                         <div className={styles.priceSale1}>
                                             <div className={styles.pricePercent}>-{hotel.GiamGia}%</div>

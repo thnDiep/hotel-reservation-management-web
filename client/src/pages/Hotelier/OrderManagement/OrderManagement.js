@@ -46,7 +46,7 @@ function HotelTable({ data, option }) {
 
     return (
         <div className={styles.tableWrapper}>
-            <Table responsive className={styles.cusTable}>
+            <Table className={styles.cusTable}>
                 <thead>
                     <tr>
                         <th className={styles.center}>
@@ -270,6 +270,11 @@ const OrderManagement = () => {
                 }, 1000)
                 setData(
                     data.map((key) => {
+                        return key.MaDatPhong === orderActive.MaDatPhong ? { ...key, TrangThai: 1 } : key
+                    }),
+                )
+                setOrderO(
+                    orderO.map((key) => {
                         return key.MaDatPhong === orderActive.MaDatPhong ? { ...key, TrangThai: 1 } : key
                     }),
                 )

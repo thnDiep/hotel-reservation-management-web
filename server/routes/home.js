@@ -22,6 +22,7 @@ router.get("/", async (req, res, next) => {
       const hotels = await hotelModel.getHotelByIDCKS(idUser)
       const promotions = await promotionModel.getPromotionByHotelierId(idUser)
       const periods = await promotionModel.getPeriods()
+      const orders = await orderModel.getAll()
 
       // thêm tên tiện nghi
       for (const hotel of hotels) {
@@ -51,7 +52,7 @@ router.get("/", async (req, res, next) => {
         hotel.HinhAnh = image
       }
 
-      res.json({ hotels, promotions, periods, curUser })
+      res.json({ hotels, promotions, periods, curUser,orders })
       // } else if (curUser.PhanQuyen === 0) {
     } else {
       // User

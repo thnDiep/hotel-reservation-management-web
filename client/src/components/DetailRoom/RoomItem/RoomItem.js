@@ -111,9 +111,13 @@ const RoomItem = (props) => {
                                 {formatMoney(props.item.GiaSale).replace('₫', '')}VND <span>/ đêm</span>
                             </div>
                             <div>
-                                <Link to={`/checkout/${props.item.ID}`}>
-                                    <ButtonPrimary className="btn__order">Đặt phòng</ButtonPrimary>
-                                </Link>
+                                {props.item.checkroom ? (
+                                    <ButtonPrimary className="btn__order">Hết phòng</ButtonPrimary>
+                                ) : (
+                                    <Link to={`/checkout/${props.item.ID}`}>
+                                        <ButtonPrimary className="btn__order">Đặt phòng</ButtonPrimary>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>

@@ -22,6 +22,7 @@ router.get("/search", async (req, res, next) => {
     const key = req.query.key;
 
     const result = await hotelModel.search(key.place);
+
     for (const hotel of result) {
       hotel.checked = true;
       hotel.ChuKhachSan = await authModel.findById(hotel.IDChuKhachSan);
@@ -159,7 +160,7 @@ router.get("/detail", async (req, res, next) => {
     }
 
     // Thêm các thông tin của phòng
-    const rooms = await roomModel.getAllByKhachSan(idHotel);
+    const rooms = await roomModel.getAllByKhachSanTrangThai(idHotel);
     let minPrice = 1000000000;
     for (const room of rooms) {
       const [uuDai] = await roomModel.getEndow(room.ID);

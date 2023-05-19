@@ -25,7 +25,27 @@ const RoomManage = () => {
     const [optionHotel, setOptionHotel] = useState(null)
     const [hotel, setHotel] = useState(null)
     const [option, setOption] = useState(null)
+    const today = new Date().toISOString().split('T')[0];
+    const [date, setDate] = useState(today)
     const handleChange = (selectedOption) => {
+        const orders = data.orders.filter((order) => {
+            return new Date(order.NgayTraPhong) > new Date(date) && new Date(order.NgayNhanPhong) <= new Date(date)
+        })
+        console.log(orders)
+        console.log(data.orders)
+        for (const room of selectedOption.value.phong) {
+            room.soPhong = +room.SoPhongTrong
+            for (const item of orders) {
+                if (item.IDPhong === room.ID) { console.log("hêlllo") }
+                if (item.IDPhong === room.ID && room.IDKhachSan === selectedOption.value.ID) {
+                    console.log(room.soPhong)
+                    room.soPhong = room.soPhong - 1
+                }
+            }
+            if (room.soPhong <= 0)
+                room.TrangThai = 0
+        }
+        console.log(selectedOption)
         setHotel(selectedOption)
     }
     const [roomActive, setRoomActive] = useState(null)
@@ -40,10 +60,22 @@ const RoomManage = () => {
     useEffect(() => {
         // if (hotels) {
         // console.log(hotel)
-        if (data) {
+        if (data !== null && data !== undefined) {
             const optionHotel1 = []
             console.log(data)
+            const orders = data.orders.filter((order) => {
+                return new Date(order.NgayTraPhong) > new Date() && new Date(order.NgayNhanPhong) <= new Date()
+            })
             for (const hotel of data.hotels) {
+                for (const room of hotel.phong) {
+                    room.soPhong = +room.SoPhongTrong
+                    for (const item of orders) {
+                        if (item.IDPhong === room.ID && room.IDKhachSan === hotel.ID)
+                            room.soPhong -= item.SoLuongPhong
+                    }
+                    if (room.soPhong <= 0)
+                        room.TrangThai = 0
+                }
                 optionHotel1.push({ value: hotel, label: hotel.Ten })
             }
             console.log(optionHotel1)
@@ -103,6 +135,26 @@ const RoomManage = () => {
         }
         // }
     }, [data])
+    const handleDate = (e) => {
+        console.log('e.target.value')
+        console.log(e.target.value)
+        setDate(e.target.value)
+        const startDate = e.target.value
+        const orders = data.orders.filter((order) => {
+            return new Date(order.NgayTraPhong) > new Date(startDate) && new Date(order.NgayNhanPhong) <= new Date(startDate)
+        })
+        console.log(hotel)
+        for (const room of hotel.value.phong) {
+            room.soPhong = +room.SoPhongTrong
+            for (const item of orders) {
+                if (item.IDPhong === room.ID && room.IDKhachSan === hotel.value.ID)
+                    room.soPhong -= item.SoLuongPhong
+            }
+            if (room.soPhong <= 0)
+                room.TrangThai = 0
+        }
+        setHotel(hotel)
+    }
     const [showInformModal, setShowInformModal] = useState(false)
     //console.log(data)
     function handleDeleteRoom() {
@@ -146,6 +198,7 @@ const RoomManage = () => {
                 console.log('helllo')
 
                 handleData({
+                    ...data,
                     hotels: data.hotels.map((hotel) => {
                         const updatedRooms = hotel.phong.map((room) =>
                             room.ID === IDPhong ? { ...room, TrangThai: TrangThai } : room,
@@ -209,6 +262,9 @@ const RoomManage = () => {
                                 <ButtonPrimary className="btnLarge1">+ Thêm phòng</ButtonPrimary>
                             </Link>
                         )}
+                    </div>
+                    <div>
+                        <input type='date' value={date} min={today} onChange={handleDate} />
                     </div>
                 </div>
             </div>
