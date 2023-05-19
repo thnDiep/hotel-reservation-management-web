@@ -25,7 +25,7 @@ const RoomManage = () => {
     const [optionHotel, setOptionHotel] = useState(null)
     const [hotel, setHotel] = useState(null)
     const [option, setOption] = useState(null)
-    const today = new Date().toISOString().split('T')[0];
+    const today = new Date().toISOString().split('T')[0]
     const [date, setDate] = useState(today)
     const handleChange = (selectedOption) => {
         const orders = data.orders.filter((order) => {
@@ -36,14 +36,18 @@ const RoomManage = () => {
         for (const room of selectedOption.value.phong) {
             room.soPhong = +room.SoPhongTrong
             for (const item of orders) {
-                if (item.IDPhong === room.ID) { console.log("hêlllo") }
+                if (item.IDPhong === room.ID) {
+                    console.log('hêlllo')
+                }
                 if (item.IDPhong === room.ID && room.IDKhachSan === selectedOption.value.ID) {
                     console.log(room.soPhong)
-                    room.soPhong = room.soPhong - 1
+                    room.soPhong = room.soPhong - item.SoLuongPhong
                 }
             }
-            if (room.soPhong <= 0)
+            if (room.soPhong <= 0) {
                 room.TrangThai = 0
+                room.soPhong = 0
+            }
         }
         console.log(selectedOption)
         setHotel(selectedOption)
@@ -70,11 +74,9 @@ const RoomManage = () => {
                 for (const room of hotel.phong) {
                     room.soPhong = +room.SoPhongTrong
                     for (const item of orders) {
-                        if (item.IDPhong === room.ID && room.IDKhachSan === hotel.ID)
-                            room.soPhong -= item.SoLuongPhong
+                        if (item.IDPhong === room.ID && room.IDKhachSan === hotel.ID) room.soPhong -= item.SoLuongPhong
                     }
-                    if (room.soPhong <= 0)
-                        room.TrangThai = 0
+                    if (room.soPhong <= 0) room.TrangThai = 0
                 }
                 optionHotel1.push({ value: hotel, label: hotel.Ten })
             }
@@ -141,17 +143,18 @@ const RoomManage = () => {
         setDate(e.target.value)
         const startDate = e.target.value
         const orders = data.orders.filter((order) => {
-            return new Date(order.NgayTraPhong) > new Date(startDate) && new Date(order.NgayNhanPhong) <= new Date(startDate)
+            return (
+                new Date(order.NgayTraPhong) > new Date(startDate) &&
+                new Date(order.NgayNhanPhong) <= new Date(startDate)
+            )
         })
         console.log(hotel)
         for (const room of hotel.value.phong) {
             room.soPhong = +room.SoPhongTrong
             for (const item of orders) {
-                if (item.IDPhong === room.ID && room.IDKhachSan === hotel.value.ID)
-                    room.soPhong -= item.SoLuongPhong
+                if (item.IDPhong === room.ID && room.IDKhachSan === hotel.value.ID) room.soPhong -= item.SoLuongPhong
             }
-            if (room.soPhong <= 0)
-                room.TrangThai = 0
+            if (room.soPhong <= 0) room.TrangThai = 0
         }
         setHotel(hotel)
     }
@@ -264,7 +267,7 @@ const RoomManage = () => {
                         )}
                     </div>
                     <div>
-                        <input type='date' value={date} min={today} onChange={handleDate} />
+                        <input type="date" value={date} min={today} onChange={handleDate} />
                     </div>
                 </div>
             </div>
