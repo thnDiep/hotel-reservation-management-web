@@ -153,6 +153,11 @@ export default {
       room[0].IDKhachSan
     );
 
+    orderInfo[0].Gia =
+      (time / (1000 * 3600 * 24)) * room[0].Gia * orderInfo[0].SoLuongPhong;
+    orderInfo[0].GiamThem = -(hotelInfo[0].GiamGia / 100) * orderInfo[0].Gia;
+
+    orderInfo[0].Gia = orderInfo[0].Gia + orderInfo[0].GiamThem;
     //lấy thông tin khuyến mãi
     orderInfo[0].GiamGiaKhuyenMai = 0;
     if (orderInfo[0].IDKhuyenMai === null) {
@@ -166,7 +171,9 @@ export default {
     if (promotion[0]) {
       orderInfo[0].TenKhuyenMai = promotion[0].MaKhuyenMai;
       orderInfo[0].GiamGiaKhuyenMai =
-        -(promotion[0].PhanTramKM / 100) * room[0].Gia;
+        -(promotion[0].PhanTramKM / 100) * orderInfo[0].Gia;
+    } else {
+      orderInfo[0].GiamGiaKhuyenMai = 0;
     }
 
     //lấy thông tin flash sale
@@ -182,7 +189,9 @@ export default {
     if (flashsale[0]) {
       orderInfo[0].TieuDeFlashSale = flashsale[0].TieuDe;
       orderInfo[0].GiamGiaFlashSale =
-        -(flashsale[0].PhanTramKM / 100) * room[0].Gia;
+        -(flashsale[0].PhanTramKM / 100) * orderInfo[0].Gia;
+    } else {
+      orderInfo[0].GiamGiaFlashSale = 0;
     }
 
     //lấy thông tin tài khoản thanh toán chủ khách sạn
@@ -193,8 +202,8 @@ export default {
 
     //lấy thông tin người nhận phòng
     const checkInPerson = await db("nguoinhanphong").where(
-      "IDKhachHang",
-      orderInfo[0].IDKhachHang
+      "ID",
+      orderInfo[0].IDNguoiNhanPhong
     );
 
     orderInfo[0].TenKhachSan = hotelInfo[0].Ten;
@@ -205,13 +214,8 @@ export default {
     orderInfo[0].GiamGia = hotelInfo[0].GiamGia;
     orderInfo[0].SoSao = hotelInfo[0].soSao;
 
-    orderInfo[0].Gia =
-      (time / (1000 * 3600 * 24)) * room[0].Gia * orderInfo[0].SoLuongPhong;
-    orderInfo[0].GiamThem = -(hotelInfo[0].GiamGia / 100) * room[0].Gia;
-
     orderInfo[0].TongTien =
       orderInfo[0].Gia +
-      orderInfo[0].GiamThem +
       orderInfo[0].GiamGiaKhuyenMai +
       orderInfo[0].GiamGiaFlashSale;
 

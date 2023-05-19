@@ -71,8 +71,6 @@ const Checkout = () => {
             )
             room.dem = number
             const Gia = room.Gia * number * +date.number
-            console.log(Gia)
-            console.log(hotel.GiamGia)
             const GiamGia = Gia - (Gia * hotel.GiamGia) / 100
             const voucher = data.promotions
                 .filter((voucher) => {
@@ -123,7 +121,6 @@ const Checkout = () => {
                     return now.getHours() >= start.getHours() && now.getHours() <= end.getHours()
                 })
                 .sort((a, b) => b.PhanTramKM - a.PhanTramKM)[0]
-            // console.log(hotel.flashSale)
 
             if (!voucher) {
                 hotel.voucher = null // hoặc return {}
@@ -151,8 +148,6 @@ const Checkout = () => {
                     hotel.flashSale = flashSale
                     room.voucher = GiamGia - (GiamGia * hotel.voucher.PhanTramKM) / 100
                     room.soTienDcGiam = (GiamGia * hotel.voucher.PhanTramKM) / 100
-                    console.log(hotel.flashSale.PhanTramKM)
-                    console.log(hotel.voucher.PhanTramKM)
                     room.soTienDcGiam = room.soTienDcGiam + (room.voucher * hotel.flashSale.PhanTramKM) / 100
                     room.voucher = room.voucher - (room.voucher * hotel.flashSale.PhanTramKM) / 100
                     room.Thue1 = room.voucher * 0.05

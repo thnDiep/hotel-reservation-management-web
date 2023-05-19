@@ -182,7 +182,10 @@ function OrderDetail({ route, navigate }) {
                                             <span className={styles.subTitle}>Số tiền</span>
                                             <div className="d-flex-js">
                                                 <span className={styles.title}>
-                                                    19.294.000 <sup>₫</sup>
+                                                    {(+item.TongTien).toLocaleString('vi-VN', {
+                                                        style: 'currency',
+                                                        currency: 'VND',
+                                                    })}
                                                 </span>
                                                 <div className={styles.copy}>
                                                     <svg width="16" height="16" fill="none">
