@@ -1,4 +1,4 @@
-import knex from "knex"
+import knex from "knex";
 
 export default knex({
   client: "mysql2",
@@ -9,4 +9,4 @@ export default knex({
     password: "",
     database: "khachsan",
   },
-})
+});

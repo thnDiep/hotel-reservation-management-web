@@ -11,8 +11,14 @@ const Popup = ({ picHotel, check, tienNghi }) => {
     }
     function scrollToRoomList() {
         MySwal.close()
-        const roomListContainer = document.getElementById('roomListContainer')
-        roomListContainer.scrollIntoView({ behavior: 'smooth' })
+        // window.scrollTo(0, 100000)
+        const roomListElement = document.getElementById('roomListContainer')
+        if (roomListElement) {
+            const offsetTop = roomListElement.offsetTop
+            window.scrollTo(0, offsetTop)
+        }
+        // const roomListContainer = document.getElementById('roomListContainer')
+        // roomListContainer.scrollIntoView({ behavior: 'smooth' })
     }
 
     return (

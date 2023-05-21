@@ -28,13 +28,14 @@ const RoomItem = (props) => {
     }
     const handleButtonClick = (index) =>
         MySwal.fire({
-            title: 'Hình ảnh khách sạn',
+            title: 'Hình ảnh phòng',
             html: <Popup index={index} picHotel={props.item.HinhAnh} check={true} tienNghi={props.item} />,
             showCloseButton: true,
             showConfirmButton: false,
             width: '1140px',
             height: '80vh',
             backdrop: 'rgba(39,46,52,1)',
+            customClass: 'khachsan',
         })
     // console.log(props.item)
     // console.log(props.item.checkRoom)

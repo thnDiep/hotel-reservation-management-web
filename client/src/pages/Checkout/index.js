@@ -148,8 +148,8 @@ const Checkout = () => {
                     hotel.flashSale = flashSale
                     room.voucher = GiamGia - (GiamGia * hotel.voucher.PhanTramKM) / 100
                     room.soTienDcGiam = (GiamGia * hotel.voucher.PhanTramKM) / 100
-                    room.soTienDcGiam = room.soTienDcGiam + (room.voucher * hotel.flashSale.PhanTramKM) / 100
-                    room.voucher = room.voucher - (room.voucher * hotel.flashSale.PhanTramKM) / 100
+                    room.soTienDcGiam = room.soTienDcGiam + (GiamGia * hotel.flashSale.PhanTramKM) / 100
+                    room.voucher = room.voucher - (GiamGia * hotel.flashSale.PhanTramKM) / 100
                     room.Thue1 = room.voucher * 0.05
                     room.Thue = room.voucher + room.voucher * 0.05
                 }

@@ -47,7 +47,7 @@
     min-height: 150px;
     position: relative;
     border-radius: 5px;
-
+    // overflow: hidden; /* Tắt cuộn */
     &__button {
         font-size: 16px;
         color: #fff;
@@ -71,8 +71,22 @@
 }
 .boxContentItem {
     max-height: 460px;
-    overflow: auto;
+    overflow-y: scroll; /* Hiển thị thanh cuộn dọc khi cần thiết */
+    scrollbar-width: thin; /* Kích thước mỏng cho thanh cuộn */
+    scrollbar-color: transparent transparent; /* Màu trong suốt cho thanh cuộn */
     margin-top: 20px;
+    /* Ẩn thanh cuộn dọc */
+    &::-webkit-scrollbar {
+        width: 0.5rem; /* Kích thước thanh cuộn */
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent; /* Màu nền cho thanh cuộn */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent; /* Màu nền cho thanh cuộn khi cuộn */
+    }
     .boxItem {
         text-align: left;
         padding-left: 20px;

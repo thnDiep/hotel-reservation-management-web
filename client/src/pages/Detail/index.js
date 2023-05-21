@@ -63,7 +63,7 @@ const Detail = () => {
     const [similarHotels, setSimilarHotels] = useState([])
     const { id } = useParams()
     const [reviewHistory, setReviewHistory] = useState(JSON.parse(localStorage.getItem('reviewHistory')) || [])
-
+    const [data1, setData1] = useState(null)
     useEffect(() => {
         localStorage.setItem('reviewHistory', JSON.stringify(reviewHistory))
     }, [reviewHistory])
@@ -102,7 +102,7 @@ const Detail = () => {
     const [hotel, setHotel] = useState(null)
     const [rooms, setRooms] = useState(null)
     useEffect(() => {
-        Axios.get('http://localhost:8800/hotel/detail', { params: { idKs: id, IDUser: user.ID || null } })
+        Axios.get('http://localhost:8800/hotel/detail', { params: { idKs: id, IDUser: user?.ID || null } })
             .then((response) => {
                 setHotel(response.data)
                 setRooms(response.data.rooms)
@@ -124,31 +124,37 @@ const Detail = () => {
             })
     }, [id])
 
+    useEffect(() => {
+        if (data && data1) {
+            const orders = data.orders.filter((order) => {
+                return (
+                    new Date(order.NgayTraPhong) > new Date(data1.startDate) &&
+                    new Date(order.NgayNhanPhong) < new Date(data1.endDate)
+                )
+            })
+            // const [check] = hotel.rooms.filter((room) => {
+            const updatedRooms = rooms.map((room) => {
+                let soPhongTrong = +room.SoPhongTrong
+
+                for (const item of orders) {
+                    if (item.IDPhong === room.ID) {
+                        soPhongTrong -= +item.SoLuongPhong
+                    }
+                }
+
+                return {
+                    ...room,
+                    checkRoom: soPhongTrong <= 0,
+                }
+            })
+
+            setRooms(updatedRooms)
+        }
+    }, [data, data1])
+
     const handleSearch = (data1) => {
         localStorage.setItem('dates', JSON.stringify(data1))
-        const orders = data.orders.filter((order) => {
-            return (
-                new Date(order.NgayTraPhong) > new Date(data1.startDate) &&
-                new Date(order.NgayNhanPhong) < new Date(data1.endDate)
-            )
-        })
-        // const [check] = hotel.rooms.filter((room) => {
-        const updatedRooms = rooms.map((room) => {
-            let soPhongTrong = +room.SoPhongTrong
-
-            for (const item of orders) {
-                if (item.IDPhong === room.ID) {
-                    soPhongTrong -= +item.SoLuongPhong
-                }
-            }
-
-            return {
-                ...room,
-                checkRoom: soPhongTrong <= 0,
-            }
-        })
-
-        setRooms(updatedRooms)
+        setData1(data1)
     }
     return (
         <React.Fragment>

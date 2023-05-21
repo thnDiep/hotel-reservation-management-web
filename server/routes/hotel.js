@@ -107,13 +107,16 @@ router.get("/detail", async (req, res, next) => {
     //const key = req.query.key;
     const idHotel = req.query.idKs || 8;
     const IDUser = req.query.IDUser;
-    //const idHotel = 8;
+    //const idHotel = 8
     const feedbackHotel = await feedbackModel.getFeedBackByHotelId(idHotel);
     const picHotel = await hotelModel.getPicByHotelId(idHotel);
     const infor = await hotelModel.findById(idHotel);
     const score = await feedbackModel.getAvgScore(idHotel);
     infor.avgScore = score[0][0]["ROUND(AVG(CAST(Diem AS FLOAT)), 1)"];
-    const [liked] = await wishListModel.getWishList1ofUser(idHotel, IDUser);
+    let liked;
+    if (IDUser)
+      [liked] = await wishListModel.getWishList1ofUser(idHotel, IDUser);
+    console.log(liked);
     infor.liked = liked ? true : false;
 
     // Lấy % tiêu chí đánh giá (tuyệt vời, xuất sắc,...)
