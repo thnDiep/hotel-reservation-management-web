@@ -108,7 +108,7 @@ function Account() {
         var noticeOfEmail = document.getElementById('noticeForFieldEmail').value
         var noticeOfPhone = document.getElementById('noticeForFieldPhone').value
 
-        if (noticeOfEmail === '1' && noticeOfName === '1') {
+        if (noticeOfEmail === '1' && noticeOfName === '1' && noticeOfPhone === '1') {
             Axios.post('http://localhost:8800/profile/update', { info: data })
                 .then(() => {
                     // alert('Cap nhat thành công')
