@@ -37,6 +37,11 @@ export default {
   async getWishList1(id) {
     return await db("danhsachyeuthich").where("IDKhachHang", id);
   },
+  async getWishList1ofUser(idKS, IDUser) {
+    return await db("danhsachyeuthich")
+      .where("IDKhachHang", IDUser)
+      .andWhere("IDKhachSan", idKS);
+  },
   //thêm ks vào danh sách yêu thích
   async addToWishList(data) {
     return db("danhsachyeuthich").insert(data);

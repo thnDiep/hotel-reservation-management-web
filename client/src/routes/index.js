@@ -130,5 +130,5 @@ export const publicRoutesHotelier = [
     // Hotelier - Voucher - Manage
     { path: '/cks/voucher/:preActive', component: ManagePromotion, layout: HotelierLayout },
     { path: '/cks/voucher', component: ManagePromotion, layout: HotelierLayout },
-    // { path: '/*', component: NotFound, layout: null },
+    { path: '/*', component: NotFound, layout: null },
 ]
