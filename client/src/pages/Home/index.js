@@ -181,9 +181,8 @@ function Home() {
         if (data) {
             const flashSales = data.promotions.filter((item) => item.MaKhuyenMai === null)
             const today = new Date()
-            today.setHours(0, 0, 0, 0)
-            const tomorrow = new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000))
-            tomorrow.setHours(0, 0, 0, 0)
+            // const tomorrow = new Date(new Date(new Date().getTime() + 24 * 60 * 60 * 1000))
+            // tomorrow.setHours(0, 0, 0, 0)
 
             const flashSaleHotels = []
 
@@ -207,8 +206,6 @@ function Home() {
 
                 const start = periodFlashSale.current[indexPeriod.active].start
                 const end = periodFlashSale.current[indexPeriod.active].end
-                const currentPeriod = periodFlashSale.current[indexPeriod.current]
-                // console.log(currentPeriod)
 
                 const activeDate = new Date(start.getFullYear(), start.getMonth(), start.getDate())
                 const activeStart = start.toTimeString().slice(0, 5)
@@ -218,7 +215,7 @@ function Home() {
                     if (activeStart === flashSale.GioBatDau) {
                         let hotel = data.hotels.find((key) => key.ID === flashSale.IDKhachSan)
                         if (hotel.TrangThai === 1) {
-                            if (today >= currentPeriod.start && today <= currentPeriod.end) {
+                            if (indexPeriod.active === indexPeriod.current) {
                                 hotel.GiaFS = Math.round(
                                     hotel.GiaTieuChuan -
                                         (hotel.GiaTieuChuan / 100) * hotel.GiamGia -
@@ -228,21 +225,12 @@ function Home() {
                                 hotel.GiaFS = null
                             }
 
-                            // if (hotel.GiamGia !== 0) {
-
-                            // }
-                            // } else {
-                            //     hotel.GiaFS = Math.round(
-                            //         hotel.GiaTieuChuan - (hotel.GiaTieuChuan / 100) * flashSale.PhanTramKM,
-                            //     )
-                            // }
                             flashSaleHotels.push(hotel)
                         }
                     }
                 }
             })
 
-            console.log(flashSaleHotels)
             setFlashSaleHotels(flashSaleHotels)
         }
     }, [data, indexPeriod])

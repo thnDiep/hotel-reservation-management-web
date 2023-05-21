@@ -284,16 +284,16 @@ const RoomManage = () => {
                 show={showDeleteModal}
                 onClose={() => setShowDeleteModal(false)}
                 onConform={() => handleDeleteRoom()}
-                content={`Bạn chắc chắn muốn xóa khách sạn`}
-                highlight={roomActive && roomActive.TieuDe}
+                content={`Bạn chắc chắn muốn xóa phòng`}
+                highlight={roomActive && roomActive.TenLoaiPhong}
             />
             {/* Xác nhận khóa */}
             <ConformModal
                 show={showStopModal}
                 onClose={() => setShowStopModal(false)}
                 onConform={() => handleStopRoom(2, roomActive.ID)}
-                content={`Bạn chắc chắn muốn khóa phòng`}
-                highlight={roomActive && roomActive.TieuDe}
+                content={`Bạn chắc chắn muốn tạm ngưng phòng`}
+                highlight={roomActive && roomActive.TenLoaiPhong}
             />
             {/* Thông báo thành công */}
             {/* Thông báo thành công */}

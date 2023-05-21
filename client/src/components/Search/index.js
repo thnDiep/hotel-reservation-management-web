@@ -150,7 +150,7 @@ function Search(props) {
                     {show === 1 && (
                         <Place
                             placeHistory={placeHistory}
-                            onClearHistory={() => dispatch(clearPlaceHistory())}
+                            onClearHistory={() => setPlaceHistory([])}
                             places={notablePlace}
                             onChoose={handleSubmit}
                         />
