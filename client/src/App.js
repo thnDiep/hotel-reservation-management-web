@@ -71,28 +71,29 @@ function App() {
             <div className="App">
                 <DataContext.Provider value={{ data, handleData, isLoggedIn, LogoutHandler, LoginHandler }}>
                     <Routes>
-                        {publicRoutes.map((route, index) => {
-                            let Layout = DefaultLayout
-                            if (route.layout) {
-                                Layout = route.layout
-                            } else if (route.layout === null) {
-                                Layout = Fragment
-                            }
+                        {user?.PhanQuyen !== 1 &&
+                            publicRoutes.map((route, index) => {
+                                let Layout = DefaultLayout
+                                if (route.layout) {
+                                    Layout = route.layout
+                                } else if (route.layout === null) {
+                                    Layout = Fragment
+                                }
 
-                            const Page = route.component
+                                const Page = route.component
 
-                            return (
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    element={
-                                        <Layout>
-                                            <Page />
-                                        </Layout>
-                                    }
-                                />
-                            )
-                        })}
+                                return (
+                                    <Route
+                                        key={index}
+                                        path={route.path}
+                                        element={
+                                            <Layout>
+                                                <Page />
+                                            </Layout>
+                                        }
+                                    />
+                                )
+                            })}
                         {user?.PhanQuyen === 2
                             ? publicRoutesAdmin.map((route, index) => {
                                   let Layout = DefaultLayout

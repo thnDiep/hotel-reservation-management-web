@@ -13,6 +13,7 @@ import roomModel from "../models/roomModel.js";
 import facilityModel from "../models/facilityModel.js";
 import promotionModel from "../models/promotionModel.js";
 import moment from "moment";
+import wishListModel from "../models/wishListModel.js";
 
 const router = express.Router();
 
@@ -105,12 +106,15 @@ router.get("/detail", async (req, res, next) => {
   try {
     //const key = req.query.key;
     const idHotel = req.query.idKs || 8;
+    const IDUser = req.query.IDUser;
     //const idHotel = 8;
     const feedbackHotel = await feedbackModel.getFeedBackByHotelId(idHotel);
     const picHotel = await hotelModel.getPicByHotelId(idHotel);
     const infor = await hotelModel.findById(idHotel);
     const score = await feedbackModel.getAvgScore(idHotel);
     infor.avgScore = score[0][0]["ROUND(AVG(CAST(Diem AS FLOAT)), 1)"];
+    const [liked] = await wishListModel.getWishList1ofUser(idHotel, IDUser);
+    infor.liked = liked ? true : false;
 
     // Lấy % tiêu chí đánh giá (tuyệt vời, xuất sắc,...)
     const n = await feedbackModel.getCount(idHotel);

@@ -97,11 +97,12 @@ const Detail = () => {
             })
         }
     }, [data])
+    const user = JSON.parse(localStorage.getItem('user'))
 
     const [hotel, setHotel] = useState(null)
     const [rooms, setRooms] = useState(null)
     useEffect(() => {
-        Axios.get('http://localhost:8800/hotel/detail', { params: { idKs: id } })
+        Axios.get('http://localhost:8800/hotel/detail', { params: { idKs: id, IDUser: user.ID || null } })
             .then((response) => {
                 setHotel(response.data)
                 setRooms(response.data.rooms)
@@ -159,7 +160,11 @@ const Detail = () => {
                     {hotel.infor.TrangThai === 1 ? (
                         <>
                             <div className={classes.subContainer}>
-                                <PictureDetail picHotel={hotel.picHotel} />
+                                <PictureDetail
+                                    picHotel={hotel.picHotel}
+                                    ID={hotel.infor.ID}
+                                    liked={hotel.infor.liked}
+                                />
                             </div>
                             <PriceDetail infor={hotel.infor} types={hotel.types} typesHotel={hotel.typesHotel} />
 

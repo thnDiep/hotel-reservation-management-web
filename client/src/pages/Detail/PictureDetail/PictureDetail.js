@@ -6,8 +6,9 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 // import { clsx } from 'clsx'
 import Popup from '~/components/DetailRoom/Popup/Popup'
+import HeartButton from '~/components/Button/HeartButton'
 const MySwal = withReactContent(Swal)
-const PictureDetail = ({ picHotel }) => {
+const PictureDetail = ({ picHotel, ID, liked }) => {
     const handleButtonClick = (index) => {
         MySwal.fire({
             title: 'Hình ảnh khách sạn',
@@ -30,6 +31,7 @@ const PictureDetail = ({ picHotel }) => {
                     </div>
                     <div className={classes['box-item-content']}>
                         <div className={classes['box-second']}>
+                            <HeartButton liked={liked} IDKhachSan={ID} />
                             <img onClick={() => handleButtonClick(1)} src={picHotel[1].HinhAnh} alt="" />
                         </div>
                         <div className={`${classes['item-box-plus']}`}>
