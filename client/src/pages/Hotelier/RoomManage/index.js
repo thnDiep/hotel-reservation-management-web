@@ -82,7 +82,7 @@ const RoomManage = () => {
             }
             console.log(optionHotel1)
             setOptionHotel(optionHotel1)
-            setHotel(optionHotel1[0])
+            setHotel(hotel !== null ? hotel : optionHotel1[0])
             setOption([
                 {
                     name: 'Chỉnh sửa',
@@ -177,6 +177,12 @@ const RoomManage = () => {
                     ...data,
                     hotels: updatedHotels,
                 })
+                setHotel(hotel => {
+                    const updatedPhong = hotel.value.phong.filter(room =>
+                        room.ID !== roomActive.ID
+                    );
+                    return { ...hotel, value: { ...hotel.value, phong: updatedPhong } };
+                });
                 setRoomActive(null)
                 setShowDeleteModal(false)
             })
@@ -212,6 +218,13 @@ const RoomManage = () => {
                         }
                     }),
                 })
+                console.log(hotel)
+                setHotel(hotel => {
+                    const updatedPhong = hotel.value.phong.map(room =>
+                        room.ID === IDPhong ? { ...room, TrangThai: TrangThai } : room
+                    );
+                    return { ...hotel, value: { ...hotel.value, phong: updatedPhong } };
+                });
 
                 setRoomActive(null)
                 setShowStopModal(false)
@@ -289,6 +302,7 @@ const RoomManage = () => {
             />
             {/* Xác nhận khóa */}
             <ConformModal
+                conFormBtn="Tạm ngưng"
                 show={showStopModal}
                 onClose={() => setShowStopModal(false)}
                 onConform={() => handleStopRoom(2, roomActive.ID)}

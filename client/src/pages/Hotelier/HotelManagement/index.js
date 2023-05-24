@@ -14,11 +14,11 @@ const HotelManagement = () => {
     const [active, setActive] = useState(0)
     const handleActive = (value) => {
         setActive(value)
-        if (value === 1 && value !== active) {
+        if (value === 1) {
             setHotels(data.hotels.filter((key) => key.TrangThai === 1))
-        } else if (value === 2 && value !== active) {
+        } else if (value === 2) {
             setHotels(data.hotels.filter((key) => key.TrangThai === 0))
-        } else if (value === 3 && value !== active) {
+        } else if (value === 3) {
             setHotels(data.hotels.filter((key) => key.TrangThai === 3))
         } else {
             setHotels(data.hotels)
@@ -39,7 +39,10 @@ const HotelManagement = () => {
         // console.log(hotels)
         if (data) {
             console.log(data)
+            // if (hotels === null)
             setHotels(data.hotels)
+            handleActive(active)
+
             setOption([
                 {
                     name: 'Chỉnh sửa',
@@ -82,9 +85,9 @@ const HotelManagement = () => {
                 setErrorMessage({ value: 'Xóa thành công', check: true })
                 console.log('helllo')
                 handleData({
+                    ...data,
                     hotels: data.hotels.filter((key) => key.ID !== hotelActive.ID),
                 })
-                handleActive(active)
                 setHotelActive(null)
                 setShowDeleteModal(false)
             })
@@ -110,17 +113,11 @@ const HotelManagement = () => {
                 setErrorMessage({ value: message, check: true })
                 console.log('helllo')
                 handleData({
+                    ...data,
                     hotels: data.hotels.map((hotel) => {
                         return hotel.ID === IDKhachSan ? { ...hotel, TrangThai: TrangThai } : hotel
                     }),
                 })
-
-                setHotels(
-                    hotels.map((hotel) => {
-                        return hotel.ID === IDKhachSan ? { ...hotel, TrangThai: TrangThai } : hotel
-                    }),
-                )
-                handleActive(active)
 
                 setHotelActive(null)
                 setShowStopModal(false)

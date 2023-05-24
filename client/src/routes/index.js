@@ -107,9 +107,9 @@ export const publicRoutesAdmin = [
     // { path: '/*', component: NotFound, layout: null },
 ]
 export const publicRoutesHotelier = [
-    // { path: '/registerPartner', component: RegisterPartner, layout: null },
-    // { path: '/login', component: Login, layout: null },
-    // { path: '/signUp', component: SignUp, layout: null },
+    { path: '/registerPartner', component: RegisterPartner, layout: null },
+    { path: '/login', component: Login, layout: null },
+    { path: '/signUp', component: SignUp, layout: null },
     //Hotelier - Hotel
     { path: '/cks/profile', component: ProfileHotelier, layout: HotelierLayout },
     { path: '/cks/manageHotel', component: HotelManagement, layout: HotelierLayout },
