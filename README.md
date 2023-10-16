@@ -4,7 +4,6 @@
 https://youtu.be/nNm_NhheCGA?si=GdK2Ak95IP49ODr_
 
 ## Things you should know about my project:
-- Flutter: 3.7.7
 - Server: Nodejs: https://github.com/thnDiep/HCMUS-Evivu-Web/tree/main/server
 - Client: reactjs: https://github.com/thnDiep/HCMUS-Evivu-Web/tree/main/client.
 
